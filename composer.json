@@ -1,10 +1,10 @@
 {
-    "name": "marcoconsiglio/ephemeris",
-    "description": "A Laravel package for planet calendar",
+    "name": "marcoconsiglio/laravel-swiss-ephemeris",
+    "description": "A Laravel package for planet positions.",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Marcoconsiglio\\Ephemeris\\": "src/"
+            "MarcoConsiglio\\Ephemeris\\": "src"
         }
     },
     "authors": [

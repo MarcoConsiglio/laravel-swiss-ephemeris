@@ -21,7 +21,7 @@ class EphemerisCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Prints the help of swetest executable.';
+    protected $description = 'Wrapper of swetest executable (Swiss Ephemeris).';
 
     /**
      * Create a new command instance.
@@ -40,7 +40,7 @@ class EphemerisCommand extends Command
      */
     public function handle()
     {
-        $swetest = new Swetest(base_path().'/packages/marcoconsiglio/ephemeris/lib/');
+        $swetest = new Swetest(__DIR__."/../../lib/");
         $swetest->query($this->getUnescapedQuery())->execute();
         foreach($swetest->getOutput() as $line) {
             $this->line($line);
@@ -48,6 +48,11 @@ class EphemerisCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * Unescape swetest query parameters string.
+     *
+     * @return string
+     */
     protected function getUnescapedQuery()
     {
         return str_replace("\\", "", $this->argument("query"));
