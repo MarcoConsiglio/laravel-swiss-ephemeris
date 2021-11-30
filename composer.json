@@ -1,0 +1,23 @@
+{
+    "name": "marcoconsiglio/ephemeris",
+    "description": "A Laravel package for planet calendar",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Marcoconsiglio\\Ephemeris\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marco Consiglio",
+            "email": "mrccnsgl@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MarcoConsiglio\\Ephemeris\\EphemerisServiceProvider"
+            ]
+        }
+    }
+}
