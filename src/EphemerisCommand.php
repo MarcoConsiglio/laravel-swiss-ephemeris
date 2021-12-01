@@ -1,6 +1,6 @@
 <?php
 
-namespace MarcoConsiglio\Ephemeris\Commands;
+namespace MarcoConsiglio\Ephemeris;
 
 use Illuminate\Console\Command;
 use DestinyLab\Swetest;
