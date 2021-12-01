@@ -52,7 +52,7 @@ class EphemerisServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ephemeris');
+        // $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ephemeris');
 
         // Register the main class to use with the facade
         $this->app->singleton('ephemeris', function () {
