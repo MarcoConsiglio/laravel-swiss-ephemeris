@@ -1,10 +1,16 @@
 {
-    "name": "marcoconsiglio/laravel-swiss-ephemeris",
+    "name": "marcoconsiglio/ephemeris",
     "description": "A Laravel package for planet positions.",
     "type": "library",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "MarcoConsiglio\\Ephemeris\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MarcoConsiglio\\Ephemeris\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -19,5 +25,23 @@
                 "MarcoConsiglio\\Ephemeris\\EphemerisServiceProvider"
             ]
         }
+    },
+    "repositories": [
+        {
+            "packagist.org": false,
+            "type": "github",
+            "name": "rogergerecke/swiss-ephemeris",
+            "url": "https://github.com/rogergerecke/SwissEphemeris.git"
+        }
+    ],
+    "require": {
+        "rogergerecke/swiss-ephemeris": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
 }

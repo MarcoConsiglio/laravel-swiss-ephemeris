@@ -20,9 +20,9 @@ class EphemerisServiceProvider extends ServiceProvider
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         if ($this->app->runningInConsole()) {
-            // $this->publishes([
-            //     __DIR__.'/../config/config.php' => config_path('ephemeris.php'),
-            // ], 'config');
+            $this->publishes([
+                __DIR__.'/../config/config.php' => config_path('ephemeris.php'),
+            ], 'config');
 
             // Publishing the views.
             /*$this->publishes([
@@ -40,9 +40,9 @@ class EphemerisServiceProvider extends ServiceProvider
             ], 'lang');*/
 
             // Registering package commands.
-            $this->commands([
-                EphemerisCommand::class
-            ]);
+            // $this->commands([
+            //     EphemerisCommand::class
+            // ]);
         }
     }
 
@@ -52,11 +52,11 @@ class EphemerisServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        // $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ephemeris');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'ephemeris');
 
         // Register the main class to use with the facade
-        $this->app->singleton('ephemeris', function () {
-            return new Ephemeris;
-        });
+        // $this->app->singleton('ephemeris', function () {
+        //     return new Ephemeris;
+        // });
     }
 }

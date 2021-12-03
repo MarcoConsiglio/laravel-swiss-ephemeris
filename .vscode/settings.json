@@ -1,0 +1,3 @@
+{
+    "intelephense.environment.documentRoot": "vendor/orchestra/testbench-core/laravel/public"
+}
