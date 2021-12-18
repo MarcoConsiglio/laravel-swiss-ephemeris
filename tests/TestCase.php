@@ -1,22 +1,43 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests;
 
-use Illuminate\Support\Facades\Config;
+use App\Console\Kernel as ConsoleKernel;
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\Console\Kernel;
 use MarcoConsiglio\Ephemeris\EphemerisServiceProvider;
+use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
+use Orchestra\Testbench\Console\Kernel as TestbenchConsoleKernel;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase
 {
     /**
-     * Configuration used by the package being tested.
+     * The application configs.
      *  
-     * @var array
+     * @var \Illuminate\Config\Repository
      */
     protected $config;
 
+    /**
+     * The Swiss Ephemeris Library
+     *
+     * @var \MarcoConsiglio\Ephemeris\LaravelSwissEphemeris
+     */
+    protected $ephemeris;
+
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();
+        $this->ephemeris = new LaravelSwissEphemeris(
+            $this->app['config']->get("ephemeris.latitude"), 
+            $this->app['config']->get("ephemeris.longitude"),
+            $this->app['config']->get("ephemeris.timezone")
+        );
     }
 
     protected function getPackageProviders($app)
@@ -24,9 +45,21 @@ class TestCase extends OrchestraTestCase
         return [EphemerisServiceProvider::class];
     } 
 
+    /**
+     * Get application timezone.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return string|null
+     */
+    protected function getApplicationTimezone($app)
+    {
+        return 'Europe/Rome';
+    }
+
+
     protected function getEnvironmentSetUp($app)
     {
-        $this->config = $app->conf
+        $this->config = $app['config'];
     }
 
     /**
@@ -37,7 +70,7 @@ class TestCase extends OrchestraTestCase
      */
     protected function resolveApplicationConsoleKernel($app)
     {
-
+        $app->alias("config", Repository::class);
+        $app->singleton(Kernel::class, TestbenchConsoleKernel::class);
     }
-
 }

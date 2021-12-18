@@ -1,33 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  bootstrap="vendor/autoload.php"
-  backupGlobals="false"
-  backupStaticAttributes="false"
-  colors="true"
-  verbose="true"
-  convertErrorsToExceptions="true"
-  convertNoticesToExceptions="true"
-  convertWarningsToExceptions="true"
-  processIsolation="false"
-  stopOnFailure="false"
-  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
->
-  <coverage>
-    <include>
-      <directory suffix=".php">src/</directory>
-    </include>
-  </coverage>
-  <testsuites>
-    <testsuite name="Unit">
-      <directory suffix="Test.php">./tests/Unit</directory>
-    </testsuite>
-    <testsuite name="Feature">
-      <directory suffix="Test.php">./tests/Feature</directory>
-    </testsuite>
-  </testsuites>
-  <php>
-    <env name="DB_CONNECTION" value="testing"/>
-    <env name="APP_KEY" value="base64:2fl+Ktvkfl+Fuz4Qp/A75G2RTiWVA/ZoKZvp6fiiM10="/>
-  </php>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+    </php>
+    <coverage
+        cacheDirectory="tests/cache"
+        includeUncoveredFiles="true"
+        processUncoveredFiles="true"
+        pathCoverage="true">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+        <exclude>
+            <file>src/index.php</file>
+        </exclude>
+        <report>
+            <html outputDirectory="tests/coverage_report" lowUpperBound="50" highLowerBound="90"/>
+        </report>
+    </coverage>
+<!-- <listeners>
+        <listener class="hollodotme\PHPUnit\TestListeners\TestDox\Markdown">
+            <arguments>
+                <string>Development</string>
+                <string>TESTS.md</string>
+                <string>MarcoConsiglio\Trigonometry\Tests</string>
+                <array>
+                    <element key="Passed">
+                        <string>💚</string>
+                    </element>
+                    <element key="Error">
+                        <string>💔</string>
+                    </element>
+                    <element key="Failure">
+                        <string>💔</string>
+                    </element>
+                    <element key="Warning">
+                        <string>🧡</string>
+                    </element>
+                    <element key="Risky">
+                        <string>💛</string>
+                    </element>
+                    <element key="Incomplete">
+                        <string>💙</string>
+                    </element>
+                    <element key="Skipped">
+                        <string>💜</string>
+                    </element>
+                </array>
+            </arguments>
+        </listener>
+    </listeners> -->
 </phpunit>

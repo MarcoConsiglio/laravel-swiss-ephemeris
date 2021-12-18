@@ -7,7 +7,7 @@ return [
      * The following example set location to Rome.
      * Feel free to override this location.
      */
-    "latitude" => "41,902782",
-    "longiture" => "12,496366",
+    "latitude" => 41.902782,
+    "longitude" => 12.496366,
     "timezone" => "Europe/Rome"
 ];
