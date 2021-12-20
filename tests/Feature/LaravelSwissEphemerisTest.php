@@ -9,10 +9,17 @@ use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Tests\TestCase;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Trigonometry\Angle;
 
+/**
+ * @testdox The Laravel Swiss Ephemeris
+ */
 class LaravelSwissEphemerisTest extends TestCase
 {
+    /**
+     * @testdox can show Synodic Rhythm.
+     */
     public function test_synodic_rhythm()
     {
         // Arrange
@@ -25,21 +32,10 @@ class LaravelSwissEphemerisTest extends TestCase
         $response = $this->ephemeris->getMoonSynodicRhythm((new Carbon)->format("d.m.Y"), 1);
 
         // Assert
-        // assertArrayKey() method is not reliable.
         $this->assertInstanceOf(SynodicRhythm::class, $response, 
             "The response should be a Collection instance, but ".gettype($response)." found.");
-        // // $this->assertArrayNotHasKey($name, $response->all(), 
-        // //     "The response must not contain '$name' key.");
-        // $this->assertCount(24, $response, 
-        //     "The response should have 24 records (1 per hour in a day). This one has ".count($response)." records.");
-        // $this->assertContainsOnlyInstancesOf(Carbon::class, $response->pluck($timestamp)->all(), 
-        //     "All '$timestamp' elements should be Carbon instances.");
-        // $this->assertContainsOnlyInstancesOf(Angle::class, $response->pluck($angular_distance)->all(), 
-        //     "All '$angular_distance' should be Angle instances.");
-        // // $this->assertArrayHasKey($synodic_rhythm, $response->all(),
-        // //     "The response must contain the '$synodic_rhythm' column.");
-        // $this->assertContainsOnly("float", $response->pluck($synodic_rhythm)->all(),
-        //     "All '$synodic_rhythm' elements should be float type.");
+        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $response->all(), 
+            "A SynodicRhythm must contains only SynodicRhythmRecord(s).");
     }
 
 }

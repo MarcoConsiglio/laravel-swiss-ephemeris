@@ -5,6 +5,7 @@ use App\SwissEphemeris\SwissEphemeris;
 use App\SwissEphemeris\SwissEphemerisException;
 use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Trigonometry\Angle;
 
 class LaravelSwissEphemeris extends SwissEphemeris
@@ -75,39 +76,68 @@ class LaravelSwissEphemeris extends SwissEphemeris
             "head"
         ]);
         $this->execute();
-        if ($this->getStatus() == 0) {
-            $row_result = new SynodicRhythm($this->getOutput());
-        } else {
+        if ($this->getStatus() != 0) {
             throw new SwissEphemerisException($this->getName());
         }
+        /**
+         * @var array
+         */
+        $output = $this->getOutput();
+        $output = $this->filterUnwantedRows($output, $steps);
+        $output = $this->reMapColumns($output, [
+            0 => "timestamp",
+            1 => null,
+            2 => "angular_distance"
+        ]);      
 
-        // Filter unwanted rows.
-        $result = $row_result->filter(function ($item, $key) use ($steps) {
-            return $key <= $steps - 1;
-        });
-
-        // Change columns to a readable format.
-        $result->transform(function ($item, $key) {
-           $item["timestamp"] = $item[0];
-           $item["angular_distance"] = $item[2];
-           unset($item[0]); 
-           unset($item[1]); 
-           unset($item[2]); 
-           return $item;
-        });        
+        return new SynodicRhythm($output);
         
         // Elaborate data.
-        $result->transform(function ($item, $key) {
-            $item["timestamp"] = Carbon::createFromFormat("d.m.Y H:m:i", trim(str_replace("UT", "", $item["timestamp"])));
-            $item["angular_distance"] = Angle::createFromDecimal((float) trim($item["angular_distance"]));
-            /**
-             * @var \MarcoConsiglio\Trigonometry\Angle
-             */
-            $alfa = $item["angular_distance"];
-            $item["percentage"] = round($alfa->toDecimal() / 180, 2, PHP_ROUND_HALF_DOWN);
-            return $item;
-        });
+        // $result->transform(function ($item, $key) {
+        //     $item["timestamp"] = Carbon::createFromFormat("d.m.Y H:m:i", trim(str_replace("UT", "", $item["timestamp"])));
+        //     $item["angular_distance"] = Angle::createFromDecimal((float) trim($item["angular_distance"]));
+        //     /**
+        //      * @var \MarcoConsiglio\Trigonometry\Angle
+        //      */
+        //     $alfa = $item["angular_distance"];
+        //     $item["percentage"] = round($alfa->toDecimal() / 180, 2, PHP_ROUND_HALF_DOWN);
+        //     return $item;
+        // });
 
-        return $result;
+        // return $result;
+    }
+
+    /**
+     * Filter unwanted rows.
+     *
+     * @param array $output
+     * @param int $steps
+     * @return array
+     */
+    protected function filterUnwantedRows(array $output, int $steps): array 
+    {
+        return array_filter($output, function ($key) use ($steps) {
+            return $key < $steps;
+        }, ARRAY_FILTER_USE_KEY);
+    }
+
+    /**
+     * Change columns in a readable format
+     *
+     * @param array $output
+     * @param array $columns Columns with number as key and name as value.
+     * @return array
+     */
+    protected function reMapColumns(array $output, array $columns)
+    {
+        return collect($output)->transform(function ($record) use ($columns) {
+            foreach ($columns as $number => $column) {
+                if ($column) {
+                    $record[$column] = $record[$number];
+                }
+                unset($record[$number]);
+            }
+            return $record;
+        })->all();
     }
 }

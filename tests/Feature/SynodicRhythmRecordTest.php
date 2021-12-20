@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Tests\TestCase;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Trigonometry\Angle;
 
 /**
@@ -14,20 +15,14 @@ use MarcoConsiglio\Trigonometry\Angle;
  */
 class SynodicRhythmRecordTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, WithFailureMessage;
 
     /**
-     * @testdox has synodic rhythm data for a timestep.
+     * @testdox has public properties.
      */
     public function test_getters()
     {
         // Arrange
-        $type_failure = function(string $property) {
-            return "'$property' type not expected.";
-        };
-        $getter_failure = function($property) {
-            return "'$property' property is not working properly.";
-        };
         $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 24))->minutes(0)->seconds(0);
         $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, -180, 180));
         $synodic_rhythm_record = new SynodicRhythmRecord(
@@ -39,13 +34,15 @@ class SynodicRhythmRecordTest extends TestCase
         $actual_timestamp = $synodic_rhythm_record->timestamp;
         $actual_angular_distance = $synodic_rhythm_record->angular_distance;
         $actual_percentage = $synodic_rhythm_record->percentage;
+        $expected_percentage = round($angular_distance->toDecimal() / 180, 2);
 
         // Assert
-        $this->assertInstanceOf(Carbon::class, $actual_timestamp, $type_failure("timestamp"));
-        $this->assertEquals((string) $timestamp, (string) $actual_timestamp, $getter_failure("timestamp"));
-        $this->assertInstanceOf(Angle::class, $actual_angular_distance, $type_failure(Angle::class, $actual_angular_distance));
-        $this->assertEquals($angular_distance->toDecimal(), $actual_angular_distance->toDecimal(), $getter_failure("angular_distance"));
-        $this->assertIsFloat($actual_percentage, $type_failure("float", $actual_percentage));
+        $this->assertInstanceOf(Carbon::class, $actual_timestamp, $this->typeFail("timestamp"));
+        $this->assertEquals((string) $timestamp, (string) $actual_timestamp, $this->getterFail("timestamp"));
+        $this->assertInstanceOf(Angle::class, $actual_angular_distance, $this->typeFail("angular_distance"));
+        $this->assertEquals($angular_distance->toDecimal(), $actual_angular_distance->toDecimal(), $this->getterFail("angular_distance"));
+        $this->assertIsFloat($actual_percentage, $this->typeFail("percentage"));
+        $this->assertEquals($expected_percentage, $actual_percentage, $this->getterFail("angular_distance"));
     }
 
     /**
