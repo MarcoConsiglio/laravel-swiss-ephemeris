@@ -72,7 +72,7 @@ class LaravelSwissEphemeris extends SwissEphemeris
             "n" => $steps,
             // Each step during 1 hour
             "s" => 60 . "m",
-            "f" => "TPl",
+            "f" => "Tl",
             "head"
         ]);
         $this->execute();
@@ -86,25 +86,10 @@ class LaravelSwissEphemeris extends SwissEphemeris
         $output = $this->filterUnwantedRows($output, $steps);
         $output = $this->reMapColumns($output, [
             0 => "timestamp",
-            1 => null,
-            2 => "angular_distance"
+            1 => "angular_distance"
         ]);      
 
         return new SynodicRhythm($output);
-        
-        // Elaborate data.
-        // $result->transform(function ($item, $key) {
-        //     $item["timestamp"] = Carbon::createFromFormat("d.m.Y H:m:i", trim(str_replace("UT", "", $item["timestamp"])));
-        //     $item["angular_distance"] = Angle::createFromDecimal((float) trim($item["angular_distance"]));
-        //     /**
-        //      * @var \MarcoConsiglio\Trigonometry\Angle
-        //      */
-        //     $alfa = $item["angular_distance"];
-        //     $item["percentage"] = round($alfa->toDecimal() / 180, 2, PHP_ROUND_HALF_DOWN);
-        //     return $item;
-        // });
-
-        // return $result;
     }
 
     /**

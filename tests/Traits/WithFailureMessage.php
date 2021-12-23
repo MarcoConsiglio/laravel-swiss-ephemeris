@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 trait WithFailureMessage
 {
     /**
-     * Get a property type failure message.
+     * Gets a property type failure message.
      *
      * @param string $property
      * @return string
@@ -15,7 +15,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Get a getter failure message.
+     * Gets a getter failure message.
      *
      * @param string $property
      * @return string
@@ -23,5 +23,16 @@ trait WithFailureMessage
     protected function getterFail(string $property): string
     {
         return "'$property' property is not working properly.";
+    }
+
+    /**
+     * Gets a function failure message.
+     *
+     * @param string $name
+     * @return string
+     */
+    protected function functionFail(string $name): string
+    {
+        return "'$name()' method is not working properly.";
     }
 }

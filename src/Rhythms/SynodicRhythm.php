@@ -13,21 +13,29 @@ class SynodicRhythm extends Collection
     /**
      * Create a new SynodicRhythm.
      *
-     * @param  mixed  $items
-     * @return void
+     * @param array $items
      */
-    public function __construct($items = [])
+    public function __construct($items)
     {
+        // 
         $records = [];
+        $self = self::class;
         foreach ($items as $item) {
-            if (is_array($item)) {
-                $records[] = new SynodicRhythmRecord($item["timestamp"], (float) trim($item["angular_distance"]));
-            }
             if ($item instanceof SynodicRhythmRecord) {
                 $records[] = $item;
+                continue;
             }
+            if (is_array($item) && isset($item["timestamp"]) && isset($item["angular_distance"])) {
+                $records[] = new SynodicRhythmRecord($item["timestamp"], (float) trim($item["angular_distance"]));
+                continue;
+            }
+            throw new InvalidArgumentException("The SynodicRhythm must be constructed with SynodicRhythmRecord(s) or an array with 'timestamp' and 'angular_distance' setted.");
         }
-        $this->items = $records;
+        if (!empty($items)) {
+            $this->items = $records;
+        } else {
+            throw new InvalidArgumentException("The SynodicRhythm must be constructed with SynodicRhythmRecord(s) or an array with 'timestamp' and 'angular_distance' setted.");
+        }
     }
 
     /**
@@ -59,17 +67,7 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Get all waxing periods.
-     *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\WaxingMoonPeriods
-     */
-    public function getWaxingPeriods(): WaxingMoonPeriods
-    {
-        return new WaxingMoonPeriods($this);
-    }
-
-    /**
-     * Get a SynodicRhythmRecord from the collection by key.
+     * Gets a SynodicRhythmRecord from the collection by key.
      *
      * @param  mixed  $key
      * @param  mixed  $default
@@ -78,5 +76,15 @@ class SynodicRhythm extends Collection
     public function get($key, $default = null): SynodicRhythmRecord
     {
         return parent::get($key, $default = null);
+    }
+
+    /**
+     * Gets a collection of MoonPeriods.
+     *
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods
+     */
+    public function getPeriods()
+    {
+        return new MoonPeriods($this);
     }
 }

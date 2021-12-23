@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -22,11 +22,7 @@ class LaravelSwissEphemerisTest extends TestCase
      */
     public function test_synodic_rhythm()
     {
-        // Arrange
-        $angular_distance = "angular_distance";
-        $timestamp = "timestamp";
-        $name = "name";
-        $synodic_rhythm = "percentage";
+        // Arrange in setUp()
 
         // Act
         $response = $this->ephemeris->getMoonSynodicRhythm((new Carbon)->format("d.m.Y"), 1);

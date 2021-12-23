@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
