@@ -54,7 +54,6 @@ class FromRecordsTest extends TestCase
         
         // Act
         $builder = new FromRecords($records);
-        $builder->extractArray();
         $builder->validateData();
         $builder->buildRecords();
 
