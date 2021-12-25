@@ -19,7 +19,6 @@ class SynodicRhythm extends Collection
     {
         // 
         $records = [];
-        $self = self::class;
         foreach ($items as $item) {
             if ($item instanceof SynodicRhythmRecord) {
                 $records[] = $item;
@@ -31,7 +30,7 @@ class SynodicRhythm extends Collection
             }
             throw new InvalidArgumentException("The SynodicRhythm must be constructed with SynodicRhythmRecord(s) or an array with 'timestamp' and 'angular_distance' setted.");
         }
-        if (!empty($items)) {
+        if (!empty($records)) {
             $this->items = $records;
         } else {
             throw new InvalidArgumentException("The SynodicRhythm must be constructed with SynodicRhythmRecord(s) or an array with 'timestamp' and 'angular_distance' setted.");

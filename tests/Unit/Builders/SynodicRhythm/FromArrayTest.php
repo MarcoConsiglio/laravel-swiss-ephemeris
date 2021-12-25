@@ -50,7 +50,7 @@ class FromArrayTest extends TestCase
     }
 
     /**
-     * @testdox can be constructed from an array.
+     * @testdox can be constructed from an array of raw ephemeris data.
      */
     public function test_build_synodic_rhythm_from_array()
     {

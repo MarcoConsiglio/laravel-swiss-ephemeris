@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\LaravelSwissEphemerisTest" methodName="test_synodic_rhythm" prettifiedClassName="The Laravel Swiss Ephemeris" prettifiedMethodName="can show Synodic Rhythm." status="0" time="0.191023849" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest" methodName="test_moon_periods_is_a_collection" prettifiedClassName="MoonPeriods collection" prettifiedMethodName="consists of MoonPeriod instances." status="0" time="0.13670103" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest" methodName="test_moon_periods_is_empty_if_synodic_rhythm_is_empty" prettifiedClassName="MoonPeriods collection" prettifiedMethodName="Moon periods is empty if synodic rhythm is empty" status="0" time="0.067600441" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmRecordTest" methodName="test_getters" prettifiedClassName="A Synodic Rhythm Record" prettifiedMethodName="has public properties." status="0" time="0.090824907" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmRecordTest" methodName="test_is_waxing" prettifiedClassName="A Synodic Rhythm Record" prettifiedMethodName="can tell if it refers to a waxing moon period." status="0" time="0.061150983" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmRecordTest" methodName="test_is_waning" prettifiedClassName="A Synodic Rhythm Record" prettifiedMethodName="can tell if it refers to a waning moon period." status="0" time="0.058720898" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest" methodName="test_synodic_rhythm_records" prettifiedClassName="The SynodicRhythm collection" prettifiedMethodName="consists of SynodicRhythmRecord instances." status="0" time="0.066677743" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest" methodName="test_synodic_rhythm_throw_exception_if_records_are_empty" prettifiedClassName="The SynodicRhythm collection" prettifiedMethodName="throw exception if records are empty." status="0" time="0.061170515" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest" methodName="test_synodic_rhythm_throw_exception_if_records_are_incomplete" prettifiedClassName="The SynodicRhythm collection" prettifiedMethodName="throw exception if records are incomplete." status="0" time="0.062534841" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest" methodName="test_synodic_rhythm_has_periods" prettifiedClassName="The SynodicRhythm collection" prettifiedMethodName="can be converted into a MoonPeriods collection." status="0" time="0.233565251" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="Tests\Unit\Builders\SynodicRhythm\FromArrayTest" methodName="test_build_synodic_rhythm_from_array" prettifiedClassName="The SynodicRhythm" prettifiedMethodName="can be constructed from an array of raw ephemeris data." status="0" time="0.038985795" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="Tests\Unit\Builders\SynodicRhythm\FromArrayTest" methodName="test_from_array_builder_wants_timestamp_column" prettifiedClassName="The SynodicRhythm" prettifiedMethodName="can't be built without timestamp." status="0" time="0.031851723" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="Tests\Unit\Builders\SynodicRhythm\FromArrayTest" methodName="test_from_array_builder_wants_angular_distance_column" prettifiedClassName="The SynodicRhythm" prettifiedMethodName="can't be built without angular_distance." status="0" time="0.032733226" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="Tests\Unit\Builders\SynodicRhythm\FromRecordsTest" methodName="test_build_synodic_rhythm_from_records" prettifiedClassName="The SynodicRhythm" prettifiedMethodName="can be constructed from an array of SynodicRhythmRecord(s)." status="0" time="0.036707944" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Unit\MoonPeriodTest" methodName="test_getters" prettifiedClassName="A MoonPeriod" prettifiedMethodName="has properties." status="0" time="0.078137069" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Unit\MoonPeriodTest" methodName="test_is_waxing" prettifiedClassName="A MoonPeriod" prettifiedMethodName="can be a waxing one." status="0" time="0.060742854" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+  <test className="MarcoConsiglio\Ephemeris\Tests\Unit\MoonPeriodTest" methodName="test_is_waning" prettifiedClassName="A MoonPeriod" prettifiedMethodName="can be a waning one." status="0" time="0.057033105" size="-1" groups="default">
+    <group name="default"/>
+  </test>
+</tests>

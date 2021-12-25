@@ -1,0 +1,23 @@
+{
+    "$schema": "https://raw.githubusercontent.com/infection/infection/0.25.4/resources/schema.json",
+    "source": {
+        "directories": [
+            "./src"
+        ],
+        "excludes": [
+            "config",
+            "lib",
+            "vendor"
+        ]
+    },
+    "mutators": {
+        "@default": true
+    },
+    "logs": {
+        "text": "infection.log",
+        "summary": "infection.summary.log",
+        "perMutator": "php://stdout"
+    },
+    "testFramework": "phpunit",
+    "testFrameworkOptions": "--testdox"
+}

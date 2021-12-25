@@ -11,38 +11,60 @@ class MoonPeriods extends Collection
         $prev_record = null;
         $waxing_period = [];
         $waning_period = [];
-        foreach ($synodic_rhythm as $record) {
-            /**
-             * @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $record
-             */
-            /**
-             * @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $prev_record
-             */
-            if ($prev_record) {
-                // Check if it is the start of a waxing period.
-                if ($record->isWaxing() && $prev_record->isWaning()) {
-                    $waxing_period["start"] = $record->timestamp;
-                    $waning_period["end"] = $prev_record->timestamp;
+        if ($synodic_rhythm->isNotEmpty()) {
+            foreach ($synodic_rhythm as $record) {
+                /**
+                 * @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $record
+                 */
+                /**
+                 * @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $prev_record
+                 */
+                if ($prev_record) {
+                    // Check if it is the start of a waxing period.
+                    if ($this->isStartingWaxingPeriod($record, $prev_record)) {
+                        $waxing_period["start"] = $record->timestamp;
+                        $waning_period["end"] = $prev_record->timestamp;
+                    }
+                    if ($this->isStartingWaningPeriod($record, $prev_record)) {
+                        $waning_period["start"] = $record->timestamp;
+                        $waxing_period["end"] = $prev_record->timestamp;
+                    }
+                } else {
+                    if ($record->isWaxing()) {
+                        $waxing_period["start"] = $record->timestamp;
+                    } elseif($record->isWaning()) {
+                        $waning_period["start"] = $record->timestamp;
+                    }
                 }
-                if ($record->isWaning() && $prev_record->isWaxing()) {
-                    $waning_period["start"] = $record->timestamp;
-                    $waxing_period["end"] = $prev_record->timestamp;
+                if ($this->wasAPeriodFound($waxing_period)) {
+                    $periods[] = $this->createMoonPeriod($waxing_period, MoonPeriod::WAXING);
                 }
-            } else {
-                if ($record->isWaxing()) {
-                    $waxing_period["start"] = $record->timestamp;
-                } elseif($record->isWaning()) {
-                    $waning_period["start"] = $record->timestamp;
+                if ($this->wasAPeriodFound($waning_period)) {
+                    $periods[] = $this->createMoonPeriod($waning_period, MoonPeriod::WANING);
                 }
+                $prev_record = $record;
             }
-            if (array_key_exists("start", $waxing_period) && array_key_exists("end", $waxing_period)) {
-                $periods[] = new MoonPeriod($waxing_period["start"], $waxing_period["end"], MoonPeriod::WAXING);
-            }
-            if (array_key_exists("start", $waning_period) && array_key_exists("end", $waning_period)) {
-                $periods[] = new MoonPeriod($waning_period["start"], $waning_period["end"], MoonPeriod::WANING);
-            }
-            $prev_record = $record;
+            parent::__construct($periods);
         }
-        parent::__construct($periods);
+    }
+
+    private function isStartingWaxingPeriod(SynodicRhythmRecord $current_record, SynodicRhythmRecord $previous_record)
+    {
+        return $current_record->isWaxing() && $previous_record->isWaning();
+    }
+
+    private function isStartingWaningPeriod(SynodicRhythmRecord $current_record, SynodicRhythmRecord $previous_record)
+    {
+        return $current_record->isWaning() && $previous_record->isWaxing();
+    }
+
+    private function wasAPeriodFound(array $period)
+    {
+        return array_key_exists("start", $period) && array_key_exists("end", $period);
+    }
+
+    private function createMoonPeriod(array $period, int $type): MoonPeriod
+    {
+        return new MoonPeriod($period["start"], $period["end"], $type);
     }
 }

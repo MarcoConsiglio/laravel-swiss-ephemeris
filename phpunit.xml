@@ -19,6 +19,9 @@
     <php>
         <env name="APP_ENV" value="testing"/>
     </php>
+    <logging>
+        <testdoxXml outputFile="test_book.xml"/>
+    </logging>
     <coverage
         cacheDirectory="tests/cache"
         includeUncoveredFiles="true"

@@ -14,14 +14,14 @@ use MarcoConsiglio\Ephemeris\Tests\TestCase as TestCase;
 use MarcoConsiglio\Trigonometry\Angle;
 
 /**
- * @testdox The SynodicRhythm
+ * @testdox The SynodicRhythm collection
  */
 class SynodicRhythmTest extends TestCase
 {
     use WithFaker;
 
     /**
-     * @testdox is a collection of SynodicRhythmRecord(s).
+     * @testdox consists of SynodicRhythmRecord instances.
      */
     public function test_synodic_rhythm_records()
     {
@@ -36,12 +36,6 @@ class SynodicRhythmTest extends TestCase
             "SynodicRhythm must contain SynodicRhythmRecords.");
         $this->assertEquals(24 * $days, $count = count($synodic_rhythm), 
             "The total of records must be 24 x $days = ".(24*$days).". Found $count records.");
-        // $this->assertContainsOnlyInstancesOf(Carbon::class, $synodic_rhythm->pluck($timestamp_col)->all(), 
-        //     "The '$timestamp_col' property must contains only Carbon instances.");
-        // $this->assertContainsOnlyInstancesOf(Angle::class, $synodic_rhythm->pluck($angle_col)->all(), 
-        //     "The '$angle_col' property must contains only Angle instances.");
-        // $this->assertContainsOnly("float", $synodic_rhythm->pluck($percentage)->all(), 
-        //     "The '$percentage' property must contains only float values.");
     }
 
     /**
