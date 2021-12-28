@@ -7,12 +7,12 @@ use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 
 /**
- * Builds a SynodicRhythm from an array of raw values.
+ * Builds a SynodicRhythm starting from an array of raw ephemeris values.
  */
 class FromArray implements Builder
 {
     /**
-     * The data from which build a SynodicRhythm
+     * The data used to create the SynodicRhythm collection.
      *
      * @var mixed
      */

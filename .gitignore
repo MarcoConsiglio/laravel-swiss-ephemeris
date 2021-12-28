@@ -4,3 +4,5 @@ tests/cache
 .phpunit.result.cache
 public
 *.log
+.phive
+tools
