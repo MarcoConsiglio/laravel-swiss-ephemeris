@@ -15,13 +15,15 @@ use MarcoConsiglio\Ephemeris\Tests\TestCase;
  */
 class MoonPeriodsTest extends TestCase
 {
+    use WithFaker;
+
     /**
      * @testdox consists of MoonPeriod instances.
      */
     public function test_moon_periods_is_a_collection()
     {
         // Arrange in setUp()
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.2020", 15);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("6.10.2021", 59);
 
         // Act
         $moon_periods = $synodic_rhythm->getPeriods();
@@ -31,17 +33,29 @@ class MoonPeriodsTest extends TestCase
             "The SynodicRhythm can be transformed to a MoonPeriods collection.");
         $this->assertContainsOnlyInstancesOf(MoonPeriod::class, $moon_periods, 
             "A MoonPeriods collection must contains only MoonPeriod instances.");
+        $failure_message = "Something is wrong in finding the correct MoonPeriod(s).";
+        $this->assertTrue($moon_periods->get(0)->isWaning(), $failure_message);
+        $this->assertTrue($moon_periods->get(1)->isWaxing(), $failure_message);
+        $this->assertTrue($moon_periods->get(2)->isWaning(), $failure_message);
+        $this->assertTrue($moon_periods->get(3)->isWaxing(), $failure_message);
     }
 
-    public function test_moon_periods_is_empty_if_synodic_rhythm_is_empty()
+    /**
+     * @testdox has a getter.
+     */
+    public function test_moon_periods_has_getter()
     {
-        // Arrange in setUp()
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.2021", 1);
-
-        // Act
+        // Arrange
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.2000");
         $moon_periods = $synodic_rhythm->getPeriods();
 
+        // Act
+        $period = $moon_periods->get($this->faker->numberBetween(0, $moon_periods->count() - 1));
+        $null_value = $moon_periods->get($moon_periods->count());
+
         // Assert
-        $this->assertEmpty($moon_periods, "If the SynodicRhythm is empty, MoonPeriods must be empty.");
+        $this->assertInstanceOf(MoonPeriod::class, $period, "The MoonPeriods getter must return a MoonPeriod instance.");
+        $this->assertNull($null_value, "The MoonPeriods collection getter return null if the key doesn't exist.");
     }
+
 }

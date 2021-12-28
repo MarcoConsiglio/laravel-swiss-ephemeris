@@ -23,7 +23,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_getters()
     {
         // Arrange
-        $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 24))->minutes(0)->seconds(0);
+        $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 23))->minutes(0)->seconds(0);
         $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, -180, 180));
         $synodic_rhythm_record = new SynodicRhythmRecord(
             $timestamp->format("d.m.Y H:m:i")." UT",
@@ -35,6 +35,7 @@ class SynodicRhythmRecordTest extends TestCase
         $actual_angular_distance = $synodic_rhythm_record->angular_distance;
         $actual_percentage = $synodic_rhythm_record->percentage;
         $expected_percentage = round($angular_distance->toDecimal() / 180, 2);
+        $unknown_property = $synodic_rhythm_record->shabadula;
 
         // Assert
         $this->assertInstanceOf(Carbon::class, $actual_timestamp, $this->typeFail("timestamp"));
@@ -43,6 +44,7 @@ class SynodicRhythmRecordTest extends TestCase
         $this->assertEquals($angular_distance->toDecimal(), $actual_angular_distance->toDecimal(), $this->getterFail("angular_distance"));
         $this->assertIsFloat($actual_percentage, $this->typeFail("percentage"));
         $this->assertEquals($expected_percentage, $actual_percentage, $this->getterFail("angular_distance"));
+        $this->assertNull($unknown_property, "An unknown property must be null.");
     }
 
     /**
@@ -51,7 +53,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waxing()
     {
         // Arrange
-        $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 24))->minutes(0)->seconds(0);
+        $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 23))->minutes(0)->seconds(0);
         $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, 0, 180));
         $synodic_rhythm_record = new SynodicRhythmRecord(
             $timestamp->format("d.m.Y H:m:i")." UT",
@@ -60,9 +62,12 @@ class SynodicRhythmRecordTest extends TestCase
 
         // Act
         $is_waxing = $synodic_rhythm_record->isWaxing();
+        $is_waning = $synodic_rhythm_record->isWaning();
 
         // Assert
-        $this->assertTrue($is_waxing, "Expected a waxing moon.");
+        $failure_message = "Expected a waxing moon.";
+        $this->assertTrue($is_waxing, $failure_message);
+        $this->assertFalse($is_waning, $failure_message);
     }
 
     /**
@@ -71,17 +76,20 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waning()
     {
         // Arrange
-        $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 24))->minutes(0)->seconds(0);
-        $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, -180, -0.009));
+        $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 23))->minutes(0)->seconds(0);
+        $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, -180, -0));
         $synodic_rhythm_record = new SynodicRhythmRecord(
             $timestamp->format("d.m.Y H:m:i")." UT",
             $angular_distance->toDecimal()
         );
 
         // Act
-        $is_waxing = $synodic_rhythm_record->isWaning();
+        $is_waning = $synodic_rhythm_record->isWaning();
+        $is_waxing = $synodic_rhythm_record->isWaxing();
 
         // Assert
-        $this->assertTrue($is_waxing, "Expected a waning moon.");
+        $failure_message = "Expected a waning moon.";
+        $this->assertTrue($is_waning, $failure_message);
+        $this->assertFalse($is_waxing, $failure_message);
     }
 }

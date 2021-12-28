@@ -4,6 +4,7 @@ use App\SwissEphemeris\Repository\SwissEphemerisRepository;
 use App\SwissEphemeris\SwissEphemeris;
 use App\SwissEphemeris\SwissEphemerisException;
 use Carbon\Carbon;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Trigonometry\Angle;
@@ -26,27 +27,26 @@ class LaravelSwissEphemeris extends SwissEphemeris
         $this->setLibPhat(__DIR__."/../lib/");
     }
 
-    /**
-     * Encode the result in a php array, without "name" key as the parent class
-     * would do.
-     * @param $output
-     * @return array|null
-     */
-    public function encodePhpArray($output): ?array
-    {
-        $php_array = array();
-        $i = 0;
-        if (is_array($output)) {
+    // /**
+    //  * Encode the result in a php array, without "name" key as the parent class
+    //  * would do.
+    //  * @param $output
+    //  * @return array|null
+    //  */
+    // public function encodePhpArray($output): ?array
+    // {
+    //     $php_array = array();
+    //     $i = 0;
+    //     if (is_array($output)) {
+    //         $collection = collect($output);
+    //         $object = $this;
+    //         $php_array = $collection->map(function ($item, $key) use ($object) {
+    //             return $object->splitOutput($item);
+    //         })->all();
+    //     }
 
-            foreach ($output as $value) {
-
-                $php_array[$i] = $this->splitOutput($value);
-                $i++;
-            }
-        }
-
-        return $php_array;
-    }
+    //     return $php_array;
+    // }
 
     /**
      * Get the moon synodic rhythm starting from $start_date and $start time
@@ -76,9 +76,6 @@ class LaravelSwissEphemeris extends SwissEphemeris
             "head"
         ]);
         $this->execute();
-        if ($this->getStatus() != 0) {
-            throw new SwissEphemerisException($this->getName());
-        }
         /**
          * @var array
          */
@@ -88,8 +85,10 @@ class LaravelSwissEphemeris extends SwissEphemeris
             0 => "timestamp",
             1 => "angular_distance"
         ]);      
-
-        return new SynodicRhythm($output);
+        $builder = new FromArray($output);
+        $builder->validateData();
+        $builder->buildRecords();
+        return $builder->fetchCollection();
     }
 
     /**

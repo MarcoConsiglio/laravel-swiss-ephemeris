@@ -23,12 +23,13 @@ class SynodicRhythmTest extends TestCase
     /**
      * @testdox consists of SynodicRhythmRecord instances.
      */
-    public function test_synodic_rhythm_records()
+    public function test_synodic_rhythm_has_records()
     {
         // Arrange in setUp()
      
         // Act
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm((new Carbon())->format("d.m.Y"), $days = 1);
+        $record = $synodic_rhythm->get($this->faker->numberBetween(0, $synodic_rhythm->count() - 1));
 
         // Assert
         $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm);
@@ -36,6 +37,7 @@ class SynodicRhythmTest extends TestCase
             "SynodicRhythm must contain SynodicRhythmRecords.");
         $this->assertEquals(24 * $days, $count = count($synodic_rhythm), 
             "The total of records must be 24 x $days = ".(24*$days).". Found $count records.");
+        $this->assertInstanceOf(SynodicRhythmRecord::class, $record, "The getter must return a SynodicRhythmRecord.");
     }
 
     /**
@@ -52,37 +54,15 @@ class SynodicRhythmTest extends TestCase
         new SynodicRhythm($empty_records);
     }
 
-    /**
-     * @testdox throw exception if records are incomplete.
-     */
-    public function test_synodic_rhythm_throw_exception_if_records_are_incomplete()
+    public function test_synodic_rhythm_has_last_getter()
     {
         // Arrange
-        $incomplete_records = [
-            0 => [
-                "timestamp" => new Carbon,
-                "angular_distance" => null
-            ]
-        ];   
-        // Act & Assert
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The SynodicRhythm must be constructed with SynodicRhythmRecord(s) or an array with 'timestamp' and 'angular_distance' setted.");
-        new SynodicRhythm($incomplete_records);
-    }
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.2000", 1);
 
-    /**
-     * @testdox can be converted into a MoonPeriods collection.
-     */
-    public function test_synodic_rhythm_has_periods()
-    {
-        // Arrange in setUp()
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("4.11.2021", 30);
-        
         // Act
-        $moon_periods = $synodic_rhythm->getPeriods();
+        $last = $synodic_rhythm->last();
 
         // Assert
-        $this->assertInstanceOf(MoonPeriods::class, $moon_periods, 
-            "A SynodicRhythm should have MoonPeriods collection.");
+        $this->assertInstanceOf(SynodicRhythmRecord::class, $last, "The SynodicRhythm last getter must return a SynodicRhythmRecord instance.");
     }
 }

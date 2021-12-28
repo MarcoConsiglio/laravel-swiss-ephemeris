@@ -1,7 +1,7 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\Interfaces;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces;
 
-interface SynodicRhythmBuilder
+interface Builder
 {
     public function validateData();
 

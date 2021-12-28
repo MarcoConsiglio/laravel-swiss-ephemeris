@@ -2,14 +2,14 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm;
 
 use InvalidArgumentException;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\Interfaces\SynodicRhythmBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 
 /**
  * Builds a SynodicRhythm from an array of raw values.
  */
-class FromRecords implements SynodicRhythmBuilder
+class FromRecords implements Builder
 {
     /**
      * The data from which build a SynodicRhythm
@@ -44,21 +44,32 @@ class FromRecords implements SynodicRhythmBuilder
     public function validateData()
     {
         if (!is_array($this->data)) {
-            throw new InvalidArgumentException("The SynodicRhythmBuilder FromRecords must have array data.");
+            throw new InvalidArgumentException("The builder FromRecords must have array data.");
         }
-        foreach ($this->data as $item) {
+        $collection = collect($this->data);
+        $collection->filter(function ($item, $key) {
             if (!$item instanceof SynodicRhythmRecord) {
-                throw new InvalidArgumentException("The SynodicRhythmBuilder FromRecords must have an array of SynodicRhythmRecord.");
+                throw new InvalidArgumentException("The builder FromRecords must have an array of SynodicRhythmRecord.");
             }
-        }
+        });
     }
 
+    /**
+     * Build records.
+     *
+     * @return void
+     */
     public function buildRecords()
     {
         // $this->data contains already SynodicRhythmRecord(s).
     }
 
-    public function fetchCollection()
+    /**
+     * Fetch the builded collection.
+     *
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm
+     */
+    public function fetchCollection(): SynodicRhythm
     {
         return new SynodicRhythm($this->data);
     }

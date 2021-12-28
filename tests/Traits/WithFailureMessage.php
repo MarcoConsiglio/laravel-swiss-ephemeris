@@ -1,6 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
+/**
+ * Provides testing failure message helpers.
+ */
 trait WithFailureMessage
 {
     /**

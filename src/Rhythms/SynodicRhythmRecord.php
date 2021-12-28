@@ -87,4 +87,14 @@ class SynodicRhythmRecord
         }
         return false;
     }
+
+    /**
+     * Get the type of this SynodicRhythmRecord.
+     *
+     * @return int
+     */
+    public function getType(): int
+    {
+        return $this->isWaxing() ? MoonPeriod::WAXING : MoonPeriod::WANING;
+    }
 }

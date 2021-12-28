@@ -2,6 +2,7 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
+use App\SwissEphemeris\SwissEphemerisException;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -25,13 +26,24 @@ class LaravelSwissEphemerisTest extends TestCase
         // Arrange in setUp()
 
         // Act
-        $response = $this->ephemeris->getMoonSynodicRhythm((new Carbon)->format("d.m.Y"), 1);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm((new Carbon)->format("d.m.Y"), 1);
 
         // Assert
-        $this->assertInstanceOf(SynodicRhythm::class, $response, 
-            "The response should be a Collection instance, but ".gettype($response)." found.");
-        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $response->all(), 
+        $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm, 
+            "The synodic_rhythm should be a Collection instance, but ".gettype($synodic_rhythm)." found.");
+        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm, 
             "A SynodicRhythm must contains only SynodicRhythmRecord(s).");
+    }
+
+    public function test_synodic_rhythm_error()
+    {
+        // Arrange
+
+        // Act
+        $this->expectException(SwissEphemerisException::class);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.1", -30);
+
+        // Assert
     }
 
 }

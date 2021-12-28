@@ -1,13 +1,14 @@
 <?php
 
-namespace Tests\Unit\Builders\SynodicRhythm;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\SynodicRhythm;
 
 use Carbon\Carbon;
 use InvalidArgumentException;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromArray;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\Interfaces\SynodicRhythmBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithReflection;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,6 +16,8 @@ use PHPUnit\Framework\TestCase;
  */
 class FromArrayTest extends TestCase
 {
+    use WithReflection;
+
     /**
      * The faker instance.
      *
@@ -62,7 +65,7 @@ class FromArrayTest extends TestCase
         $builder->buildRecords();
 
         // Assert
-        $this->assertInstanceOf(SynodicRhythmBuilder::class, $builder, "The FromArray builder must realize the SynodicRhythmBuilder interface.");
+        $this->assertInstanceOf(Builder::class, $builder, "The FromArray builder must realize the SynodicRhythmBuilder interface.");
         $this->assertInstanceOf(SynodicRhythm::class, $collection = $builder->fetchCollection(), "A SynodicRhythmBuilder must produce a SynodicRhythm.");       
         $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $collection, "The SynodicRhythm must consists of SynodicRhythmRecord(s)."); 
     }
@@ -76,16 +79,11 @@ class FromArrayTest extends TestCase
          * Missing key "timestamp"
          */
         // Arrange
-        $data1 = [
-            0 => [
-                "angular_distance" => "anything",
-                "hello" => null
-            ]
-        ];
+        unset($this->data[0]["timestamp"]);
         
         // Act & Assert
         $this->expectException(InvalidArgumentException::class);
-        $builder = new FromArray($data1);
+        $builder = new FromArray($this->data);
         $builder->validateData();
     }
 
@@ -98,16 +96,22 @@ class FromArrayTest extends TestCase
          * Missing key "angular_distance"
          */
         // Arrange
-        $data2 = [
-            0 => [
-                "timestamp" => "somewhat",
-                "hello" => null
-            ]
-        ];
+        unset($this->data[0]["angular_distance"]);
 
         // Act & Assert
         $this->expectException(InvalidArgumentException::class);
-        $builder = new FromArray($data2);
+        $builder = new FromArray($this->data);
+        $builder->validateData();
+    }
+    
+    public function test_validate_data_method()
+    {
+        // Arrange
+        $builder = new FromArray([]);
+        
+        // Act & Assert
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("The FromArray builder cannot work with an empty array.");
         $builder->validateData();
     }
 }

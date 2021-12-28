@@ -19,31 +19,31 @@ class EphemerisServiceProvider extends ServiceProvider
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('ephemeris.php'),
-            ], 'config');
-
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/ephemeris'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/ephemeris'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/ephemeris'),
-            ], 'lang');*/
-
+        // $this->publishes([
+        //     __DIR__.'/../config/config.php' => config_path('ephemeris.php'),
+        // ], 'config');
+        
+        // Publishing the views.
+        /*$this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/ephemeris'),
+        ], 'views');*/
+        
+        // Publishing assets.
+        /*$this->publishes([
+            __DIR__.'/../resources/assets' => public_path('vendor/ephemeris'),
+        ], 'assets');*/
+        
+        // Publishing the translation files.
+        /*$this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/ephemeris'),
+        ], 'lang');*/
+        
+        // if ($this->app->runningInConsole()) {
             // Registering package commands.
             // $this->commands([
             //     EphemerisCommand::class
             // ]);
-        }
+        // }
     }
 
     /**
