@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Tests\TestCase;
 
 /**
- * @testdox MoonPeriods collection
+ * @testdox A MoonPeriods collection
  */
 class MoonPeriodsTest extends TestCase
 {
@@ -33,7 +33,7 @@ class MoonPeriodsTest extends TestCase
             "The SynodicRhythm can be transformed to a MoonPeriods collection.");
         $this->assertContainsOnlyInstancesOf(MoonPeriod::class, $moon_periods, 
             "A MoonPeriods collection must contains only MoonPeriod instances.");
-        $failure_message = "Something is wrong in finding the correct MoonPeriod(s).";
+        $failure_message = "Something is wrong in finding the expected MoonPeriod(s).";
         $this->assertTrue($moon_periods->get(0)->isWaning(), $failure_message);
         $this->assertTrue($moon_periods->get(1)->isWaxing(), $failure_message);
         $this->assertTrue($moon_periods->get(2)->isWaning(), $failure_message);
@@ -41,7 +41,7 @@ class MoonPeriodsTest extends TestCase
     }
 
     /**
-     * @testdox has a getter.
+     * @testdox has a getter that return a specific MoonPeriod.
      */
     public function test_moon_periods_has_getter()
     {

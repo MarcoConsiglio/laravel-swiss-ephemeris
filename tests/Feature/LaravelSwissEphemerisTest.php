@@ -35,15 +35,16 @@ class LaravelSwissEphemerisTest extends TestCase
             "A SynodicRhythm must contains only SynodicRhythmRecord(s).");
     }
 
+    /**
+     * @testdox throws the SwissEphemerisException if something went wrong.
+     */
     public function test_synodic_rhythm_error()
     {
         // Arrange
 
-        // Act
+        // Act & Assert
         $this->expectException(SwissEphemerisException::class);
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.1", -30);
-
-        // Assert
+        $this->ephemeris->getMoonSynodicRhythm("1.1.1", -30);
     }
 
 }

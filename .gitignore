@@ -6,3 +6,5 @@ public
 *.log
 .phive
 tools
+.phpdoc
+.vscode

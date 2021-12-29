@@ -18,7 +18,7 @@ class SynodicRhythmRecordTest extends TestCase
     use WithFaker, WithFailureMessage;
 
     /**
-     * @testdox has public properties.
+     * @testdox has read-only properties 'timestamp', 'angular_distance' and 'percentage'.
      */
     public function test_getters()
     {
@@ -48,7 +48,7 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     /**
-     * @testdox can tell if it refers to a waxing moon period.
+     * @testdox can tell if it is waxing moon period.
      */
     public function test_is_waxing()
     {
@@ -71,7 +71,7 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     /**
-     * @testdox can tell if it refers to a waning moon period.
+     * @testdox can tell if it is a waning moon period.
      */
     public function test_is_waning()
     {

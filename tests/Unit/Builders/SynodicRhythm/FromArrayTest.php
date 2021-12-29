@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithReflection;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @testdox The SynodicRhythm
+ * @testdox The SynodicRhythm/FromArray builder
  */
 class FromArrayTest extends TestCase
 {
@@ -53,7 +53,7 @@ class FromArrayTest extends TestCase
     }
 
     /**
-     * @testdox can be constructed from an array of raw ephemeris data.
+     * @testdox can build a SynodicRhythm starting from an array of raw ephemeris data.
      */
     public function test_build_synodic_rhythm_from_array()
     {
@@ -71,7 +71,7 @@ class FromArrayTest extends TestCase
     }
 
     /**
-     * @testdox can't be built without timestamp.
+     * @testdox require the 'timestamp' ephemeris column.
      */
     public function test_from_array_builder_wants_timestamp_column()
     {
@@ -88,7 +88,7 @@ class FromArrayTest extends TestCase
     }
 
     /**
-     * @testdox can't be built without angular_distance.
+     * @testdox require the 'angular_distance' ephemeris column.
      */
     public function test_from_array_builder_wants_angular_distance_column()
     {   
@@ -103,7 +103,10 @@ class FromArrayTest extends TestCase
         $builder = new FromArray($this->data);
         $builder->validateData();
     }
-    
+
+    /**
+     * @testdox cannot build a SynodicRhythm with an empty array.
+     */
     public function test_validate_data_method()
     {
         // Arrange

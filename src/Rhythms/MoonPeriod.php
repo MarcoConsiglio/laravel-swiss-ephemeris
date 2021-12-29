@@ -3,6 +3,11 @@ namespace MarcoConsiglio\Ephemeris\Rhythms;
 
 use Carbon\Carbon;
 
+/**
+ * A waxing or waning moon period.
+ * @property-read \Carbon\Carbon $start
+ * @property-read \Carbon\Carbon $end
+ */
 class MoonPeriod
 {
     /**

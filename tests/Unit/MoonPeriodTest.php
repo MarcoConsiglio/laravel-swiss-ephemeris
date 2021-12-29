@@ -16,7 +16,7 @@ class MoonPeriodTest extends TestCase
     use WithFailureMessage;
 
     /**
-     * @testdox has properties.
+     * @testdox has read-only properties 'start' and 'end'.
      */
     public function test_getters()
     {

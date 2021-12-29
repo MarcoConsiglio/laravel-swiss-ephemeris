@@ -8,12 +8,12 @@ use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods;
 use MarcoConsiglio\Ephemeris\Tests\TestCase;
 
 /**
- * @testdox The FromSynodicRhythm builder
+ * @testdox The MoonPeriods/FromSynodicRhythm builder
  */
 class FromSynodicRhythmTest extends TestCase
 {
     /**
-     * @testdox can build a MoonPeriods collection.
+     * @testdox can build a MoonPeriods collection starting from a SynodicRhythm.
      */
     public function test_build_moon_periods_from_synodic_rhythm()
     {

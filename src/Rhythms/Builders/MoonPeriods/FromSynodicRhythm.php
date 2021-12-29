@@ -53,6 +53,9 @@ class FromSynodicRhythm implements Builder
      */
     public function buildRecords()
     {
+        /**
+         * @var \Illuminate\Support\LazyCollection $periods
+         */
         // Divide SynodicRhythm in waxing and waning moon periods.
         $periods = $this->data->chunkWhile(function ($record, $key, $chunk) {
             /**
@@ -60,9 +63,6 @@ class FromSynodicRhythm implements Builder
              */
             return $record->isWaxing() === $chunk->last()->isWaxing();
         })->all();
-        /**
-         * @var \Illuminate\Support\LazyCollection $periods
-         */
 
         // For each period...
         $this->items = $periods->map(function ($period, $key) {
@@ -72,10 +72,10 @@ class FromSynodicRhythm implements Builder
             /**
              * @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $first_record
              */
-            $first_record = $period->first();
             /**
              * @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $last_record
              */
+            $first_record = $period->first();
             $last_record = $period->last();
             // ...take the first and the last timestamp to build a MoonPeriod.
             return new MoonPeriod($first_record->timestamp, $last_record->timestamp, $first_record->getType());
@@ -84,7 +84,7 @@ class FromSynodicRhythm implements Builder
     }
 
     /**
-     * Fetch the builded MoonPeriod collection.
+     * Fetch the builded MoonPeriods collection.
      *
      * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods
      */

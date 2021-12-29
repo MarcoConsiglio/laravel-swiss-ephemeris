@@ -7,12 +7,12 @@ use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 
 /**
- * Builds a SynodicRhythm from an array of raw values.
+ * Builds a SynodicRhythm from an array of SynodicRhythmRecord(s).
  */
 class FromRecords implements Builder
 {
     /**
-     * The data from which build a SynodicRhythm
+     * The data used to create the SynodicRhythm collection.
      *
      * @var mixed
      */
@@ -26,7 +26,7 @@ class FromRecords implements Builder
     protected array $records = [];
 
     /**
-     * Constructs the builder.
+     * Constructs the builder with an array of SynodiRhythmRecord(s).
      *
      * @param mixed $data
      */
@@ -65,7 +65,7 @@ class FromRecords implements Builder
     }
 
     /**
-     * Fetch the builded collection.
+     * Fetch the builded SynodicRhythm collection.
      *
      * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm
      */

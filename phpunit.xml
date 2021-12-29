@@ -21,6 +21,7 @@
     </php>
     <logging>
         <testdoxXml outputFile="test_book.xml"/>
+        <testdoxText outputFile="test_book.txt"/>
     </logging>
     <coverage
         cacheDirectory="tests/cache"

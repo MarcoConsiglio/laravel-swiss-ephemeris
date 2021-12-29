@@ -26,7 +26,7 @@ class FromArray implements Builder
     protected array $records = [];
 
     /**
-     * Constructs the builder.
+     * Constructs the builder with raw data.
      *
      * @param mixed $data
      */
@@ -60,7 +60,7 @@ class FromArray implements Builder
     }
 
     /**
-     * Build records.
+     * Build SynodicRhythmRecords.
      *
      * @return void
      */
@@ -74,7 +74,7 @@ class FromArray implements Builder
     }
 
     /**
-     * Fetch the builded collection.
+     * Fetch the builded SynodicRhythm collection.
      *
      * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm
      */

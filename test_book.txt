@@ -1,0 +1,37 @@
+The Laravel Swiss Ephemeris
+ [x] can show Synodic Rhythm.
+ [x] throws the SwissEphemerisException if something went wrong.
+
+A MoonPeriods collection
+ [x] consists of MoonPeriod instances.
+ [x] has a getter that return a specific MoonPeriod.
+
+A Synodic Rhythm Record
+ [x] has read-only properties 'timestamp', 'angular_distance' and 'percentage'.
+ [x] can tell if it is waxing moon period.
+ [x] can tell if it is a waning moon period.
+
+The SynodicRhythm collection
+ [x] consists of SynodicRhythmRecord instances.
+ [x] cannot be constructed with empty records.
+ [x] can give you the first and last SynodicRhythmRecord.
+
+The MoonPeriods/FromSynodicRhythm builder
+ [x] can build a MoonPeriods collection starting from a SynodicRhythm.
+
+The SynodicRhythm/FromArray builder
+ [x] can build a SynodicRhythm starting from an array of raw ephemeris data.
+ [x] require the 'timestamp' ephemeris column.
+ [x] require the 'angular_distance' ephemeris column.
+ [x] cannot build a SynodicRhythm with an empty array.
+
+The SynodicRhythm/FromRecords builder
+ [x] can build a SynodicRhythm starting from SynodicRhythmRecord(s).
+ [x] cannot build a SynodicRhythm without an array.
+ [x] cannot build a SynodicRhythm without SynodicRhythmRecord(s).
+
+A MoonPeriod
+ [x] has read-only properties 'start' and 'end'.
+ [x] can be a waxing one.
+ [x] can be a waning one.
+

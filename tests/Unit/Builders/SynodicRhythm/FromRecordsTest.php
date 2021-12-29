@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**
- * @testdox The SynodicRhythm
+ * @testdox The SynodicRhythm/FromRecords builder
  */
 class FromRecordsTest extends TestCase
 {
@@ -51,7 +51,7 @@ class FromRecordsTest extends TestCase
     }
 
     /**
-     * @testdox can be constructed from an array of SynodicRhythmRecord(s).
+     * @testdox can build a SynodicRhythm starting from SynodicRhythmRecord(s).
      */
     public function test_build_synodic_rhythm_from_records()
     {
@@ -73,7 +73,7 @@ class FromRecordsTest extends TestCase
     }
 
     /**
-     * @testdox must be built with array data.
+     * @testdox cannot build a SynodicRhythm without an array.
      */
     public function test_from_records_builder_wants_array_data()
     {
@@ -87,7 +87,7 @@ class FromRecordsTest extends TestCase
     }
 
     /**
-     * @testdox must be built with an array of SynodicRhythmRecord(s).
+     * @testdox cannot build a SynodicRhythm without SynodicRhythmRecord(s).
      */
     public function test_from_records_builder_wants_synodic_rhythm_records()
     {

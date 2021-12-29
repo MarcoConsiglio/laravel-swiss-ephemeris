@@ -41,7 +41,7 @@ class SynodicRhythmTest extends TestCase
     }
 
     /**
-     * @testdox throw exception if records are empty.
+     * @testdox cannot be constructed with empty records.
      */
     public function test_synodic_rhythm_throw_exception_if_records_are_empty()
     {
@@ -54,7 +54,10 @@ class SynodicRhythmTest extends TestCase
         new SynodicRhythm($empty_records);
     }
 
-    public function test_synodic_rhythm_has_last_getter()
+    /**
+     * @testdox can give you the first and last SynodicRhythmRecord.
+     */
+    public function test_synodic_rhythm_has_first_and_last_getter()
     {
         // Arrange
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.2000", 1);
