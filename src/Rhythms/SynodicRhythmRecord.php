@@ -36,15 +36,20 @@ class SynodicRhythmRecord
     /**
      * Instantiate a SynodicRhythmRecord from Swiss Ephemeris.
      *
-     * @param string $timestamp
+     * @param string|\Carbon\Carbon $timestamp
      * @param float $angular_distance
      */
-    public function __construct(string $timestamp, float $angular_distance)
+    public function __construct(string|Carbon $timestamp, float $angular_distance)
     {
-        $this->timestamp = Carbon::createFromFormat(
-            "d.m.Y H:m:i", 
-            trim(str_replace("UT", "", $timestamp))
-        );
+        if (is_string($timestamp)) {
+            $this->timestamp = Carbon::createFromFormat(
+                "d.m.Y H:m:i", 
+                trim(str_replace("UT", "", $timestamp))
+            );
+        }
+        if ($timestamp instanceof Carbon) {
+            $this->timestamp = $timestamp;
+        }
         $this->angular_distance = Angle::createFromDecimal($angular_distance);
         $this->percentage = round($this->angular_distance->toDecimal() / 180, 2);
     }
@@ -96,5 +101,19 @@ class SynodicRhythmRecord
     public function getType(): int
     {
         return $this->isWaxing() ? MoonPeriod::WAXING : MoonPeriod::WANING;
+    }
+
+    /**
+     * Check if this record is equal to another.
+     *
+     * @param SynodicRhythmRecord $object
+     * @return boolean
+     */
+    public function equals(SynodicRhythmRecord $object): bool
+    {
+        $a = $object->timestamp === $this->timestamp;
+        $b = $object->angular_distance === $this->angular_distance;
+        $c = $object->percentage === $this->percentage;
+        return $a && $b && $c; 
     }
 }

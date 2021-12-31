@@ -19,6 +19,21 @@ The SynodicRhythm collection
 The MoonPeriods/FromSynodicRhythm builder
  [x] can build a MoonPeriods collection starting from a SynodicRhythm.
 
+A MoonPeriods\FromSynodicRhythm builder
+ [ ] can build a MoonPhases collection from the SynodicRhythm.
+
+The FirstQuarter strategy
+ [x] can find a SynodicRhythmRecord whose 'angular_distance' is about 90.
+
+A FullMoon strategy
+ [x] can find a SynodicRhythmRecord whose 'angular_distance' is about -/+180°.
+
+The NewMoon strategy
+ [x] can find a SyndicRhythmRecord whose 'angular_distance' is about zero.
+
+The ThirdQuarter strategy
+ [x] can find a SynodicRhythmRecord whose 'angular_distance' is about -90°.
+
 The SynodicRhythm/FromArray builder
  [x] can build a SynodicRhythm starting from an array of raw ephemeris data.
  [x] require the 'timestamp' ephemeris column.
@@ -30,8 +45,14 @@ The SynodicRhythm/FromRecords builder
  [x] cannot build a SynodicRhythm without an array.
  [x] cannot build a SynodicRhythm without SynodicRhythmRecord(s).
 
+The MoonPhase enumeration
+ [x] consists of NewMoon, FirstQuarter, FullMoon, ThirdQuarter.
+
 A MoonPeriod
  [x] has read-only properties 'start' and 'end'.
  [x] can be a waxing one.
  [x] can be a waning one.
+
+A MoonPhaseRecord
+ [x] Getters
 

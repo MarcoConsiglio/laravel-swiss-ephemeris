@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Tests;
 use App\Console\Kernel as ConsoleKernel;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Testing\WithFaker;
 use MarcoConsiglio\Ephemeris\EphemerisServiceProvider;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use Orchestra\Testbench\Console\Kernel as TestbenchConsoleKernel;
@@ -11,6 +12,8 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase
 {
+    use WithFaker;
+    
     /**
      * The application configs.
      *  
