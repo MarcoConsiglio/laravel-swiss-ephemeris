@@ -5,7 +5,10 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
-class ThirdQuarter implements BuilderStrategy
+/**
+ * Check if a SynodicRhythmRecord is a third quarter moon phase.
+ */
+class ThirdQuarter extends MoonPhaseStrategy
 {
     use WithFuzzyCondition;
 
@@ -33,7 +36,7 @@ class ThirdQuarter implements BuilderStrategy
      */
     public function findRecord(): ?SynodicRhythmRecord
     {
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), -90)) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), -90, $this->getDelta())) {
             return $this->record;
         }
         return null;

@@ -1,11 +1,13 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
-class FirstQuarter implements BuilderStrategy
+/**
+ * Check if a SynodicRhythmRecord is a first quarter moon phase.
+ */
+class FirstQuarter extends MoonPhaseStrategy
 {
     use WithFuzzyCondition;
 
@@ -33,7 +35,7 @@ class FirstQuarter implements BuilderStrategy
      */
     public function findRecord(): ?SynodicRhythmRecord
     {
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), 90)) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), 90, $this->getDelta())) {
             return $this->record;
         }
         return null;

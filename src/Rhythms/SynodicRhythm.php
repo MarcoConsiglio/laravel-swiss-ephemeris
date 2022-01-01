@@ -10,6 +10,9 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\WaxingMoonPeriods;
 use MarcoConsiglio\Trigonometry\Angle;
 
+/**
+ * Represents the rythm of the Moon.
+ */
 class SynodicRhythm extends Collection
 {
     /**

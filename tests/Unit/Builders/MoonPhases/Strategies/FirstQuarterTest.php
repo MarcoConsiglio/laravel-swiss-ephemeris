@@ -17,8 +17,8 @@ class FirstQuarterTest extends StrategyTestCase
      */
     public function setUp(): void
     {
+        $this->tested_class = FirstQuarter::class;
         parent::setUp();
-        $this->tested_class = class_basename(FirstQuarter::class);
     }
 
     /**
@@ -32,10 +32,10 @@ class FirstQuarterTest extends StrategyTestCase
         $record_non_90 = $this->getNonFirstQuarterRecord();
 
         // Act
-        $strategy = new FirstQuarter($record_90);
-        $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->tested_class} strategy must realize BuilderStrategy interface.");
+        $strategy = $this->makeStrategy($record_90);
+        $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->strategy_name} strategy must realize BuilderStrategy interface.");
         $actual_record_90 = $strategy->findRecord();
-        $strategy = new FirstQuarter($record_non_90);
+        $strategy = $this->makeStrategy($record_non_90);
         $actual_record_non_90 = $strategy->findRecord();
 
         // Assert

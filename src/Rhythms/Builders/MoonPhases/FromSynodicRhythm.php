@@ -2,7 +2,13 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FirstQuarter;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FullMoon;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\NewMoon;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\ThirdQuarter;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
 
 class FromSynodicRhythm implements Builder
 {
@@ -32,23 +38,28 @@ class FromSynodicRhythm implements Builder
 
     public function buildRecords()
     {
-        $collection = $this->data->filter(function ($record, $key) {
+        $this->records = $this->data->transform(function ($record, $key) {
             /**
              * @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $record
              */
-            $longitude = $record->angular_distance->toDecimal();
-            return 
-                $longitude == -180  ||
-                $longitude == -90   ||
-                $longitude == 0     ||
-                $longitude == 90    ||
-                $longitude == 180;
-        });
-        $ciao = "!";
+            if ($chosen = (new NewMoon($record))->findRecord()) {
+                return new MoonPhaseRecord($chosen->timestamp, MoonPhaseType::NewMoon);
+            }
+            if ($chosen = (new FirstQuarter($record))->findRecord()) {
+                return new MoonPhaseRecord($chosen->timestamp, MoonPhaseType::FirstQuarter);
+            }
+            if ($chosen = (new FullMoon($record))->findRecord()) {
+                return new MoonPhaseRecord($chosen->timestamp, MoonPhaseType::FullMoon);
+            }
+            if ($chosen = (new ThirdQuarter($record))->findRecord()) {
+                return new MoonPhaseRecord($chosen->timestamp, MoonPhaseType::ThirdQuarter);
+            }
+            return false;
+        })->all();
     }
 
     public function fetchCollection()
     {
-        
+        return new MoonPhases($this->records);
     }
 }

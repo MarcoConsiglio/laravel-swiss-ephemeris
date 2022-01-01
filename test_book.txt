@@ -19,9 +19,6 @@ The SynodicRhythm collection
 The MoonPeriods/FromSynodicRhythm builder
  [x] can build a MoonPeriods collection starting from a SynodicRhythm.
 
-A MoonPeriods\FromSynodicRhythm builder
- [ ] can build a MoonPhases collection from the SynodicRhythm.
-
 The FirstQuarter strategy
  [x] can find a SynodicRhythmRecord whose 'angular_distance' is about 90.
 

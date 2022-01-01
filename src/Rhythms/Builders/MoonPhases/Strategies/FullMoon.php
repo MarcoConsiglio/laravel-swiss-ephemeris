@@ -5,7 +5,10 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
-class FullMoon implements BuilderStrategy
+/**
+ * Check if a SynodicRhythmRecord is a full moon phase.
+ */
+class FullMoon extends MoonPhaseStrategy
 {
     use WithFuzzyCondition;
 
@@ -33,10 +36,10 @@ class FullMoon implements BuilderStrategy
      */
     public function findRecord(): ?SynodicRhythmRecord
     {
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), -180)) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), -180, $this->getDelta())) {
             return $this->record;
         }
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), 180)) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), 180, $this->getDelta())) {
             return $this->record;
         }
         return null;

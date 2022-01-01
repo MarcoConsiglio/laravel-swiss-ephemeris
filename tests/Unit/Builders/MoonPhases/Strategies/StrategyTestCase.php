@@ -2,6 +2,8 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\Strategies;
 
 use Carbon\Carbon;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Tests\TestCase as BaseTestCase;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
@@ -21,6 +23,20 @@ class StrategyTestCase extends BaseTestCase
     protected string $tested_class;
 
     /**
+     * The strategy name.
+     *
+     * @var string
+     */
+    protected string $strategy_name;
+
+    /**
+     * The strategy being tested.
+     *
+     * @var \MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy
+     */
+    protected BuilderStrategy $strategy;
+
+    /**
      * A testing date.
      *
      * @var \Carbon\Carbon
@@ -32,7 +48,7 @@ class StrategyTestCase extends BaseTestCase
      *
      * @var float
      */
-    protected float $delta = 1;
+    protected float $delta = 0.5;
 
     /**
      * Setup the test environment.
@@ -43,6 +59,8 @@ class StrategyTestCase extends BaseTestCase
     {
         parent::setUp();
         $this->date = (new Carbon)->minutes(0)->seconds(0);
+        $this->strategy_name = class_basename($this->tested_class);
+        $this->delta = MoonPhaseStrategy::getDelta();
     }
 
     /**
@@ -175,8 +193,8 @@ class StrategyTestCase extends BaseTestCase
      */
     protected function assertRecordFound($expected_record, $actual_record)
     {
-        $this->assertInstanceOf(SynodicRhythmRecord::class, $actual_record, "The {$this->tested_class} strategy must find a SynodicRhythmRecord.");
-        $this->assertObjectEquals($expected_record, $actual_record, "equals", "The {$this->tested_class} strategy failed to find the correct record.");
+        $this->assertInstanceOf(SynodicRhythmRecord::class, $actual_record, "The {$this->strategy_name} strategy must find a SynodicRhythmRecord.");
+        $this->assertObjectEquals($expected_record, $actual_record, "equals", "The {$this->strategy_name} strategy failed to find the correct record.");
     }
 
     /**
@@ -187,6 +205,42 @@ class StrategyTestCase extends BaseTestCase
      */
     protected function assertRecordNotFound($actual_record)
     {
-        $this->assertNull($actual_record, "The {$this->tested_class} strategy accepted a record that must be rejected.");
+        $this->assertNull($actual_record, "The {$this->strategy_name} strategy accepted a record that must be rejected.");
+    }
+
+    /**
+     * Calculates the min and max extremes for a fuzzy condition.
+     *
+     * @param float $delta
+     * @param float $number
+     * @return array The first element is the minimum, the second element is the maximum.
+     */
+    protected function getDeltaExtremes(float $delta, float $number): array
+    {
+        $min = $number - abs($delta);
+        $max = $number + abs($delta);
+        if ($min < -180) {
+            $min = -180;
+        } 
+        if ($max > 180) {
+            $max = 180;
+        }
+        return [
+            $number - abs($delta), 
+            $number + abs($delta)
+        ];
+    }
+
+    /**
+     * Constructs the strategy to test.
+     *
+     * @param string                                                $strategy
+     * @param \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $record
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy
+     */
+    protected function makeStrategy(SynodicRhythmRecord $record): BuilderStrategy
+    {
+        $class = $this->tested_class;
+        return new $class($record);
     }
 }

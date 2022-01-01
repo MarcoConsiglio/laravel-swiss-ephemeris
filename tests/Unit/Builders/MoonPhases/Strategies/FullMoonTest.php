@@ -17,8 +17,8 @@ class FullMoonTest extends StrategyTestCase
      */
     public function setUp(): void
     {
+        $this->tested_class = FullMoon::class;
         parent::setUp();
-        $this->tested_class = class_basename(FullMoon::class);
     }
 
     /**
@@ -33,12 +33,12 @@ class FullMoonTest extends StrategyTestCase
         $record_non_180 = $this->getNonFullMoonRecord();
 
         // Act
-        $strategy = new FullMoon($positive_record_180);
-        $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->tested_class} strategy must realize BuilderStrategy interface.");
+        $strategy = $this->makeStrategy($positive_record_180);
+        $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->strategy_name} strategy must realize BuilderStrategy interface.");
         $actual_positive_record_180 = $strategy->findRecord();
-        $strategy = new FullMoon($negative_record_180);
+        $strategy = $this->makeStrategy($negative_record_180);
         $actual_negative_record_180 = $strategy->findRecord();
-        $strategy = new FullMoon($record_non_180);
+        $strategy = $this->makeStrategy($record_non_180);
         $actual_record_non_180 = $strategy->findRecord();
 
         // Assert

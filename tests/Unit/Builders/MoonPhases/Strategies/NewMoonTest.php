@@ -17,8 +17,8 @@ class NewMoonTest extends StrategyTestCase
      */
     public function setUp(): void
     {
+        $this->tested_class = NewMoon::class;
         parent::setUp();
-        $this->tested_class = class_basename(NewMoon::class);
     }
 
     /**
@@ -32,10 +32,10 @@ class NewMoonTest extends StrategyTestCase
         $record_non_zero = $this->getNonNewMoonRecord();
 
         // Act
-        $strategy = new NewMoon($record_zero);
-        $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The NewMoon strategy must realize BuilderStrategy interface.");
+        $strategy = $this->makeStrategy($record_zero);
+        $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->strategy_name} strategy must realize BuilderStrategy interface.");
         $actual_record_zero = $strategy->findRecord();
-        $strategy = new NewMoon($record_non_zero);
+        $strategy = $this->makeStrategy($record_non_zero);
         $actual_record_non_zero = $strategy->findRecord();
         
         // Assert

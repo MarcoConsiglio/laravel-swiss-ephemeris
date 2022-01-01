@@ -7,14 +7,14 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm;
 /**
  * @testdox A MoonPeriods\FromSynodicRhythm builder
  */
-class FromSynodicRhythmTest extends TestCase
+class FromSynodicRhythms extends TestCase
 {
     /**
      * @testdox can build a MoonPhases collection from the SynodicRhythm.
      */
     public function test_build_moon_phases_from_synodic_rhythm()
     {
-        $this->markTestSkipped("Need to refactor FromSynodicRhythm builder with strategies.");
+        // $this->markTestSkipped("Need to refactor FromSynodicRhythm builder with strategies.");
         // Arrange
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("4.12.2021", 31);
 

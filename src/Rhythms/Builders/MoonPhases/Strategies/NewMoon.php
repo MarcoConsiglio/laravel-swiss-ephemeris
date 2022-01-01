@@ -8,7 +8,7 @@ use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 /**
  * Check if a SynodicRhythmRecord is a new moon phase.
  */
-class NewMoon implements BuilderStrategy
+class NewMoon extends MoonPhaseStrategy
 {
     use WithFuzzyCondition;
 
@@ -36,7 +36,7 @@ class NewMoon implements BuilderStrategy
      */
     public function findRecord(): ?SynodicRhythmRecord
     {   
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), 0)) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), 0, $this->getDelta())) {
             return $this->record;
         }
         return null;
