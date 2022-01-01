@@ -9,6 +9,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Tests\TestCase;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Trigonometry\Angle;
+use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
 
 /**
  * @testdox A Synodic Rhythm Record
@@ -23,10 +24,10 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_getters()
     {
         // Arrange
-        $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 23))->minutes(0)->seconds(0);
+        $timestamp = (new Carbon)->minutes(0)->seconds(0);
         $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, -180, 180));
         $synodic_rhythm_record = new SynodicRhythmRecord(
-            $timestamp->format("d.m.Y H:m:i")." UT",
+            $timestamp,
             $angular_distance->toDecimal()
         );
 
@@ -38,12 +39,9 @@ class SynodicRhythmRecordTest extends TestCase
         $unknown_property = $synodic_rhythm_record->shabadula;
 
         // Assert
-        $this->assertInstanceOf(Carbon::class, $actual_timestamp, $this->typeFail("timestamp"));
-        $this->assertEquals((string) $timestamp, (string) $actual_timestamp, $this->getterFail("timestamp"));
-        $this->assertInstanceOf(Angle::class, $actual_angular_distance, $this->typeFail("angular_distance"));
-        $this->assertEquals($angular_distance->toDecimal(), $actual_angular_distance->toDecimal(), $this->getterFail("angular_distance"));
-        $this->assertIsFloat($actual_percentage, $this->typeFail("percentage"));
-        $this->assertEquals($expected_percentage, $actual_percentage, $this->getterFail("angular_distance"));
+        $this->assertProperty("timestamp", $timestamp, Carbon::class, $actual_timestamp);
+        $this->assertProperty("angular_distance", $angular_distance, AngleInterface::class, $actual_angular_distance);
+        $this->assertProperty("percentage", $expected_percentage, "float", $actual_percentage);
         $this->assertNull($unknown_property, "An unknown property must be null.");
     }
 

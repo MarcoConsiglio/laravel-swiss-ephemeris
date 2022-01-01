@@ -30,10 +30,8 @@ class MoonPeriodTest extends TestCase
         $actual_end = $moon_period->end;
 
         // Assert
-        $this->assertInstanceOf(Carbon::class, $actual_start, $this->typeFail("start"));
-        $this->assertEquals($start, $actual_start, $this->getterFail("start"));
-        $this->assertInstanceOf(Carbon::class, $actual_end, $this->typeFail("end"));
-        $this->assertEquals($end, $actual_end, $this->getterFail("end"));
+        $this->assertProperty("start", $start, Carbon::class, $actual_start);
+        $this->assertProperty("end", $end, Carbon::class, $actual_end);
         $this->assertEquals(null, $moon_period->ace_ventura);
     }
 

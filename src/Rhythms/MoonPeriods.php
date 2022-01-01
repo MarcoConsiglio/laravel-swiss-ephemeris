@@ -4,6 +4,9 @@ namespace MarcoConsiglio\Ephemeris\Rhythms;
 use Illuminate\Support\Collection;
 use Iterator;
 
+/**
+ * A collection of MoonPeriod(s).
+ */
 class MoonPeriods extends Collection
 {
     /**

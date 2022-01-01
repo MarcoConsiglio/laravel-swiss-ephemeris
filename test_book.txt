@@ -6,11 +6,6 @@ A MoonPeriods collection
  [x] consists of MoonPeriod instances.
  [x] has a getter that return a specific MoonPeriod.
 
-A Synodic Rhythm Record
- [x] has read-only properties 'timestamp', 'angular_distance' and 'percentage'.
- [x] can tell if it is waxing moon period.
- [x] can tell if it is a waning moon period.
-
 The SynodicRhythm collection
  [x] consists of SynodicRhythmRecord instances.
  [x] cannot be constructed with empty records.
@@ -52,4 +47,9 @@ A MoonPeriod
 
 A MoonPhaseRecord
  [x] Getters
+
+A Synodic Rhythm Record
+ [x] has read-only properties 'timestamp', 'angular_distance' and 'percentage'.
+ [x] can tell if it is waxing moon period.
+ [x] can tell if it is a waning moon period.
 

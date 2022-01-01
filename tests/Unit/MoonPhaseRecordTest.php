@@ -12,13 +12,12 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
  */
 class MoonPhaseRecordTest extends TestCase
 {
-    use WithFailureMessage;
 
     public function test_getters()
     {
         // Arrange
         $moon_phase_type = $this->faker->randomElement(MoonPhaseType::cases());
-        $timestamp = new Carbon;
+        $timestamp = (new Carbon)->minutes(0)->seconds(0);
         $moon_phase_record = new MoonPhaseRecord($timestamp, $moon_phase_type);
 
         // Act
@@ -26,10 +25,8 @@ class MoonPhaseRecordTest extends TestCase
         $actual_moon_phase_type = $moon_phase_record->type;
 
         // Assert
-        $this->assertInstanceOf(MoonPhaseType::class, $actual_moon_phase_type, $this->typeFail("type"));
-        $this->assertEquals($moon_phase_type, $actual_moon_phase_type, $this->getterFail("type"));
-        $this->assertInstanceOf(Carbon::class, $actual_timestamp, $this->typeFail("timestamp"));
-        $this->assertEquals($timestamp->toDateTimeString(), $actual_timestamp->toDateTimeString());
+        $this->assertProperty("type", $moon_phase_type, MoonPhaseType::class, $actual_moon_phase_type);
+        $this->assertProperty("timestamp", $timestamp, Carbon::class, $actual_timestamp);
         $this->assertNull($moon_phase_record->sghidibudi, "What da fuck? A non existing property should be null.");
     }
 }

@@ -36,7 +36,7 @@ class SynodicRhythmRecord
     /**
      * Instantiate a SynodicRhythmRecord from Swiss Ephemeris.
      *
-     * @param string|\Carbon\Carbon $timestamp
+     * @param string|\Carbon\Carbon $timestamp The string timestamp must match the pattern "d.m.Y H:m:i UT".
      * @param float $angular_distance
      */
     public function __construct(string|Carbon $timestamp, float $angular_distance)
