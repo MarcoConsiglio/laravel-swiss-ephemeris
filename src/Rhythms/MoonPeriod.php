@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms;
 
 use Carbon\Carbon;
+use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType;
 
 /**
  * A waxing or waning moon period.
@@ -10,16 +11,6 @@ use Carbon\Carbon;
  */
 class MoonPeriod
 {
-    /**
-     * It refers to the waxing moon period.
-     */
-    public const WAXING = 0;
-
-    /**
-     * It refers to the waning moon period.
-     */
-    public const WANING = 1;
-
     /**
      * Start timestamp of this period.
      *
@@ -37,9 +28,9 @@ class MoonPeriod
     /**
      * The type of this period (waning or waxing).
      *
-     * @var integer
+     * @var \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType
      */
-    private int $type;
+    protected MoonPeriodType $type;
 
     /**
      * Constructs a MoonPeriod.
@@ -48,7 +39,7 @@ class MoonPeriod
      * @param Carbon  $end
      * @param integer $type The type of the period: waning or waxing.
      */
-    public function __construct(Carbon $start, Carbon $end, int $type)
+    public function __construct(Carbon $start, Carbon $end, MoonPeriodType $type)
     {
         $this->start = $start;
         $this->end = $end;
@@ -62,7 +53,7 @@ class MoonPeriod
      */
     public function isWaxing()
     {
-        return $this->type == self::WAXING;
+        return $this->type == MoonPeriodType::Waxing;
     }
 
     /**
@@ -72,7 +63,7 @@ class MoonPeriod
      */
     public function isWaning()
     {
-        return $this->type == self::WANING;
+        return $this->type == MoonPeriodType::Waning;
     }
 
     /**

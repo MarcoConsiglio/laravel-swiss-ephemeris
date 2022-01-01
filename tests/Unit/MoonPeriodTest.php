@@ -3,7 +3,7 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\WithFaker;
+use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod;
 use MarcoConsiglio\Ephemeris\Tests\TestCase;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
@@ -23,7 +23,7 @@ class MoonPeriodTest extends TestCase
         // Arrange
         $start = new Carbon("2021-06-10 13:00:00");
         $end = new Carbon("2021-06-24 21:00:00");
-        $moon_period = new MoonPeriod($start, $end, MoonPeriod::WAXING);
+        $moon_period = new MoonPeriod($start, $end, MoonPeriodType::Waxing);
 
         // Act
         $actual_start = $moon_period->start;
@@ -41,9 +41,10 @@ class MoonPeriodTest extends TestCase
     public function test_is_waxing()
     {
         // Arrange
+        // That's a waxing moon period.
         $start = new Carbon("2021-06-10 13:00:00");
         $end = new Carbon("2021-06-24 21:00:00");
-        $moon_period = new MoonPeriod($start, $end, MoonPeriod::WAXING);
+        $moon_period = new MoonPeriod($start, $end, MoonPeriodType::Waxing);
 
         // Act & Assert
         $this->assertTrue($moon_period->isWaxing(), "The testing moon period should be a waxing one but found the opposite.");
@@ -56,9 +57,10 @@ class MoonPeriodTest extends TestCase
     public function test_is_waning()
     {
         // Arrange
+        // That's a waning moon period.
         $start = new Carbon("2021-06-24 22:00:00");
         $end = new Carbon("2021-07-10 03:00:00");
-        $moon_period = new MoonPeriod($start, $end, MoonPeriod::WANING);
+        $moon_period = new MoonPeriod($start, $end, MoonPeriodType::Waning);
 
         // Act & Assert
         $this->assertTrue($moon_period->isWaning(), "The testing moon period should be a waning one but found the opposite.");

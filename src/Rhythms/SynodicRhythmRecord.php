@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms;
 
 use Carbon\Carbon;
+use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType;
 use MarcoConsiglio\Trigonometry\Angle;
 
 /**
@@ -94,13 +95,13 @@ class SynodicRhythmRecord
     }
 
     /**
-     * Get the type of this SynodicRhythmRecord.
+     * Get the type of the Moon period in this SynodicRhythmRecord.
      *
-     * @return int
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType
      */
-    public function getType(): int
+    public function getType(): MoonPeriodType
     {
-        return $this->isWaxing() ? MoonPeriod::WAXING : MoonPeriod::WANING;
+        return $this->isWaxing() ? MoonPeriodType::Waxing : MoonPeriodType::Waning;
     }
 
     /**
