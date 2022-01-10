@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
 
 /**
- * Represents an exact moon phase in a particular timestamp.
+ * A Moon phase in a precise timestamp.
  * @property-read \Carbon\Carbon $timestamp
  * @property-read \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType $type
  */

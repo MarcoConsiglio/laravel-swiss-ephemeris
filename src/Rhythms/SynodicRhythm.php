@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\WaxingMoonPeriods;
 use MarcoConsiglio\Trigonometry\Angle;
 
 /**
- * Represents the rythm of the Moon.
+ * Represents the rhythm of the Moon over a period of time.
  */
 class SynodicRhythm extends Collection
 {

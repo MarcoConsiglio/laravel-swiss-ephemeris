@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Documentation</title>
+            <title>Documentation</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -54,10 +55,12 @@
 <aside class="phpdocumentor-column -four phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/marcoconsiglio.html">MarcoConsiglio</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/marcoconsiglio.html" class="">MarcoConsiglio</a>
+</h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/marcoconsiglio-ephemeris.html">Ephemeris</a>
+                <a href="namespaces/marcoconsiglio-trigonometry.html" class="">Trigonometry</a>
                 
             </li>
             </ul>
@@ -65,7 +68,9 @@
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Application.html" class="-active">Application</a>
+</h4>
 
                         </section>
             
@@ -92,32 +97,38 @@
         
 
 <h3 id="interfaces_class_traits">
-    Interfaces, Classes and Traits
+    Interfaces, Classes, Traits and Enums
     <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Interfaces-Builder.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder">Builder</abbr></a></dt>
-        <dd>The behaviour of a rhythm builder.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Trigonometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Trigonometry\Interfaces\Angle">Angle</abbr></a></dt>
+        <dd>The angle behavior.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Trigonometry-Interfaces-AngleBuilder.html"><abbr title="\MarcoConsiglio\Trigonometry\Interfaces\AngleBuilder">AngleBuilder</abbr></a></dt>
+        <dd>How an angle should be constructed.</dd>
     
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Ephemeris-EphemerisServiceProvider.html"><abbr title="\MarcoConsiglio\Ephemeris\EphemerisServiceProvider">EphemerisServiceProvider</abbr></a></dt>
-        <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html"><abbr title="\MarcoConsiglio\Ephemeris\LaravelSwissEphemeris">LaravelSwissEphemeris</abbr></a></dt>
-        <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-MoonPeriods-FromSynodicRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm">FromSynodicRhythm</abbr></a></dt>
-        <dd>Build a MoonPeriods collection starting from the SynodicRhythm.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-SynodicRhythm-FromArray.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromArray">FromArray</abbr></a></dt>
-        <dd>Builds a SynodicRhythm starting from an array of raw ephemeris values.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-SynodicRhythm-FromRecords.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromRecords">FromRecords</abbr></a></dt>
-        <dd>Builds a SynodicRhythm from an array of SynodicRhythmRecord(s).</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-MoonPeriod.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod">MoonPeriod</abbr></a></dt>
-        <dd>A waxing or waning moon period.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-MoonPeriods.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods">MoonPeriods</abbr></a></dt>
-        <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-SynodicRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm">SynodicRhythm</abbr></a></dt>
-        <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-SynodicRhythmRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord">SynodicRhythmRecord</abbr></a></dt>
-        <dd>A single snapshot of the Moon synodic rhythm.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Angle.html"><abbr title="\MarcoConsiglio\Trigonometry\Angle">Angle</abbr></a></dt>
+        <dd>Represents an angle.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Builders-AngleBuilder.html"><abbr title="\MarcoConsiglio\Trigonometry\Builders\AngleBuilder">AngleBuilder</abbr></a></dt>
+        <dd>Represents the concept of an angle builder.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Builders-FromDecimal.html"><abbr title="\MarcoConsiglio\Trigonometry\Builders\FromDecimal">FromDecimal</abbr></a></dt>
+        <dd>Represents the concept of an angle builder.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Builders-FromDegrees.html"><abbr title="\MarcoConsiglio\Trigonometry\Builders\FromDegrees">FromDegrees</abbr></a></dt>
+        <dd>Can build Angle objects from degrees values.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Builders-FromRadiant.html"><abbr title="\MarcoConsiglio\Trigonometry\Builders\FromRadiant">FromRadiant</abbr></a></dt>
+        <dd>Can build Angle objects from degrees values.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Builders-FromString.html"><abbr title="\MarcoConsiglio\Trigonometry\Builders\FromString">FromString</abbr></a></dt>
+        <dd>Represents the concept of an angle builder.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Exceptions-AngleOverflowException.html"><abbr title="\MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException">AngleOverflowException</abbr></a></dt>
+        <dd>This exception is thrown when the client code
+tries to create an angle that exceeds 360°.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Trigonometry\Exceptions\NoMatchException">NoMatchException</abbr></a></dt>
+        <dd>This exception is thrown when non string angle is matched.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Exceptions-RegExFailureException.html"><abbr title="\MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException">RegExFailureException</abbr></a></dt>
+        <dd>This exception is thrown when the angle regex fails to find a string angle.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/MarcoConsiglio-Trigonometry-Operations-Sum.html"><abbr title="\MarcoConsiglio\Trigonometry\Operations\Sum">Sum</abbr></a></dt>
+        <dd>Sums two angles.</dd>
+    
     
     </dl>
 

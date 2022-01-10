@@ -5,7 +5,7 @@ use Illuminate\Support\Collection;
 use Iterator;
 
 /**
- * A collection of MoonPeriod(s).
+ * A collection of lunar periods relative to the Sun over a period of time.
  */
 class MoonPeriods extends Collection
 {
@@ -17,9 +17,6 @@ class MoonPeriods extends Collection
      */
     public function get($key, $default = null): ?MoonPeriod
     {
-        if (isset($this->items[$key])) {
-            return $this->items[$key];
-        }
-        return null;
+        return parent::get($key, $default);
     }
 }

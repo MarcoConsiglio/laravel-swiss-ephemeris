@@ -9,6 +9,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\ThirdQuarter
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonPhases;
 
 class FromSynodicRhythm implements Builder
 {
@@ -55,7 +56,7 @@ class FromSynodicRhythm implements Builder
                 return new MoonPhaseRecord($chosen->timestamp, MoonPhaseType::ThirdQuarter);
             }
             return false;
-        })->all();
+        })->filter()->all();
     }
 
     public function fetchCollection()

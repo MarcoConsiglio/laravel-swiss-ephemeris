@@ -4,10 +4,13 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Tests\TestCase;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonPhases;
+
 /**
  * @testdox A MoonPeriods\FromSynodicRhythm builder
  */
-class FromSynodicRhythms extends TestCase
+class FromSynodicRhythmTest extends TestCase
 {
     /**
      * @testdox can build a MoonPhases collection from the SynodicRhythm.
@@ -27,6 +30,6 @@ class FromSynodicRhythms extends TestCase
 
         // Assert
         $this->assertInstanceOf(MoonPhases::class, $moon_phases, "The builder must build a MoonPhases collection.");
-        $this->assertContainsOnlyInstancesOf(MoonPhase::class, $moon_phases, "The collection must consists of MoonPhase enumeration values.");
+        $this->assertContainsOnlyInstancesOf(MoonPhaseRecord::class, $moon_phases, "The collection must consists of MoonPhase enumeration values.");
     }
 }
