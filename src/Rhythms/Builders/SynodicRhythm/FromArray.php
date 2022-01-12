@@ -3,7 +3,6 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm;
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 
 /**
@@ -14,7 +13,7 @@ class FromArray implements Builder
     /**
      * The data used to create the SynodicRhythm collection.
      *
-     * @var mixed
+     * @var array
      */
     protected array $data;
 
