@@ -8,11 +8,14 @@
     <paths>
         <output>docs/.build</output>
     </paths>
-    <version number="3.2.1">
+    <version number="0.2.0-alpha">
         <api>
             <source dsn=".">
                 <path>src</path>
             </source>
+            <visibility>public</visibility>
+            <default-package-name>Laravel Swiss Ephemeris</default-package-name>
+            <include-source>false</include-source>
         </api>
     </version>
 </phpdocumentor>
