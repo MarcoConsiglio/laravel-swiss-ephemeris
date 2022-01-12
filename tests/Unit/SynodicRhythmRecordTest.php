@@ -1,12 +1,10 @@
 <?php
 
-namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Tests\TestCase;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Trigonometry\Angle;
 use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
@@ -16,7 +14,8 @@ use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
  */
 class SynodicRhythmRecordTest extends TestCase
 {
-    use WithFaker, WithFailureMessage;
+    use WithFailureMessage, WithCustomAssertions;
+    
 
     /**
      * @testdox has read-only properties 'timestamp', 'angular_distance' and 'percentage'.

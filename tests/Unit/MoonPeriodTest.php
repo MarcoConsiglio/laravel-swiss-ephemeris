@@ -5,7 +5,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod;
-use MarcoConsiglio\Ephemeris\Tests\TestCase;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 
 /**
@@ -13,7 +13,7 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
  */
 class MoonPeriodTest extends TestCase
 {
-    use WithFailureMessage;
+    use WithFailureMessage, WithCustomAssertions;
 
     /**
      * @testdox has read-only properties 'start' and 'end'.

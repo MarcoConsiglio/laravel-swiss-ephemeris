@@ -27,19 +27,21 @@ class FromSynodicRhythm implements Builder
     protected array $items = [];
 
     /**
-     * Construct the builder with the SynodicRhythm.
+     * Constructs the builder with the SynodicRhythm.
      *
      * @param \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm $data
      */
     public function __construct(SynodicRhythm $data)
     {
         $this->data = $data;
+        $this->validateData();
     }
 
     /**
      * Validates data.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     public function validateData()
     {
@@ -84,12 +86,12 @@ class FromSynodicRhythm implements Builder
     }
 
     /**
-     * Fetch the builded MoonPeriods collection.
+     * Fetch the builded array of MoonPeriod(s).
      *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods
+     * @return array
      */
-    public function fetchCollection(): MoonPeriods
+    public function fetchCollection(): array
     {
-        return new MoonPeriods($this->items);
+        return $this->items;
     }
 }

@@ -35,11 +35,11 @@ class FullMoonTest extends StrategyTestCase
         // Act
         $strategy = $this->makeStrategy($positive_record_180);
         $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->strategy_name} strategy must realize BuilderStrategy interface.");
-        $actual_positive_record_180 = $strategy->findRecord();
+        $actual_positive_record_180 = $strategy->found();
         $strategy = $this->makeStrategy($negative_record_180);
-        $actual_negative_record_180 = $strategy->findRecord();
+        $actual_negative_record_180 = $strategy->found();
         $strategy = $this->makeStrategy($record_non_180);
-        $actual_record_non_180 = $strategy->findRecord();
+        $actual_record_non_180 = $strategy->found();
 
         // Assert
         $this->assertRecordFound($positive_record_180, $actual_positive_record_180);

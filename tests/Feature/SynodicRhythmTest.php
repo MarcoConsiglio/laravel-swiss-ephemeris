@@ -5,13 +5,9 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Collection;
 use InvalidArgumentException;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Tests\TestCase as TestCase;
-use MarcoConsiglio\Trigonometry\Angle;
 
 /**
  * @testdox The SynodicRhythm collection

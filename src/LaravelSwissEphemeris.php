@@ -88,7 +88,7 @@ class LaravelSwissEphemeris extends SwissEphemeris
         $builder = new FromArray($output);
         $builder->validateData();
         $builder->buildRecords();
-        return $builder->fetchCollection();
+        return new SynodicRhythm($builder->fetchCollection());
     }
 
     /**

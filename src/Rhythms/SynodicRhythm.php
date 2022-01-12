@@ -6,6 +6,7 @@ use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use InvalidArgumentException;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\WaxingMoonPeriods;
 use MarcoConsiglio\Trigonometry\Angle;
@@ -18,9 +19,9 @@ class SynodicRhythm extends Collection
     /**
      * Create a new SynodicRhythm.
      *
-     * @param array $items
+     * @param mixed $items
      */
-    public function __construct($items)
+    public function __construct($items = [])
     {
         if (empty($items)) {
             throw new InvalidArgumentException("The SynodicRhythm must be constructed with SynodicRhythmRecord(s) or an array with 'timestamp' and 'angular_distance' setted.");
@@ -50,7 +51,7 @@ class SynodicRhythm extends Collection
         $builder = new FromSynodicRhythm($this);
         $builder->validateData();
         $builder->buildRecords();
-        return $builder->fetchCollection();
+        return new MoonPeriods($builder->fetchCollection());
     }
 
     /**

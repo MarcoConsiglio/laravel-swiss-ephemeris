@@ -5,13 +5,13 @@ use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Tests\TestCase as BaseTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
 /**
  * Test case for builder strategies.
  */
-class StrategyTestCase extends BaseTestCase
+class StrategyTestCase extends TestCase
 {
     use WithFuzzyCondition;
 

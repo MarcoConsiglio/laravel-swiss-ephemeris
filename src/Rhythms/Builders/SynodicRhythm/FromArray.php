@@ -76,10 +76,11 @@ class FromArray implements Builder
     /**
      * Fetch the builded SynodicRhythm collection.
      *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm
+     * @return array
      */
-    public function fetchCollection(): SynodicRhythm
+    public function fetchCollection(): array
     {
-        return new SynodicRhythm($this->records);
+        $this->buildRecords();
+        return $this->records;
     }
 }

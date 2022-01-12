@@ -31,7 +31,7 @@ trait WithReflection
      * @param string $property
      * @return mixed
      */
-    protected function get(object $object, string $property)
+    protected function getProperty(object $object, string $property)
     {
         $class = $this->getReflectionClass($object);
         return $class->getProperty($property)->getValue();

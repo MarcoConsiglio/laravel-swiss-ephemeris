@@ -6,23 +6,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Tests\TestCase;
 
 /**
  * @testdox A MoonPeriods collection
  */
 class MoonPeriodsTest extends TestCase
 {
-    use WithFaker;
 
     /**
      * @testdox consists of MoonPeriod instances.
      */
     public function test_moon_periods_is_a_collection()
     {
-        // Arrange in setUp()
+        // Arrange
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("6.10.2021", 59);
 
         // Act

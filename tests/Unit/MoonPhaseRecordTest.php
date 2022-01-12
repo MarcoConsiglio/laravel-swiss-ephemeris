@@ -3,8 +3,8 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
-use MarcoConsiglio\Ephemeris\Tests\TestCase;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 
 /**
@@ -12,6 +12,7 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
  */
 class MoonPhaseRecordTest extends TestCase
 {
+    use WithCustomAssertions, WithFailureMessage;
 
     public function test_getters()
     {

@@ -6,12 +6,8 @@ use App\SwissEphemeris\SwissEphemerisException;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Collection;
-use MarcoConsiglio\Ephemeris\Tests\TestCase;
-use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Trigonometry\Angle;
 
 /**
  * @testdox The Laravel Swiss Ephemeris

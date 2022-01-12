@@ -11,5 +11,5 @@ interface BuilderStrategy
      *
      * @return mixed
      */
-    public function findRecord();
+    public function found();
 }

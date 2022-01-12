@@ -22,7 +22,7 @@ abstract class MoonPhaseStrategy implements BuilderStrategy
      *
      * @return mixed
      */
-    public abstract function findRecord();
+    public abstract function found();
 
     /**
      * Gets the delta specified by the strategy.

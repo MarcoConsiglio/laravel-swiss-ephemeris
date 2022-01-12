@@ -33,7 +33,7 @@ class FirstQuarter extends MoonPhaseStrategy
      *
      * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord|null
      */
-    public function findRecord(): ?SynodicRhythmRecord
+    public function found(): ?SynodicRhythmRecord
     {
         if ($this->isAbout($this->record->angular_distance->toDecimal(), 90, $this->getDelta())) {
             return $this->record;

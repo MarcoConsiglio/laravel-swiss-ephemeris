@@ -34,9 +34,9 @@ class NewMoonTest extends StrategyTestCase
         // Act
         $strategy = $this->makeStrategy($record_zero);
         $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->strategy_name} strategy must realize BuilderStrategy interface.");
-        $actual_record_zero = $strategy->findRecord();
+        $actual_record_zero = $strategy->found();
         $strategy = $this->makeStrategy($record_non_zero);
-        $actual_record_non_zero = $strategy->findRecord();
+        $actual_record_non_zero = $strategy->found();
         
         // Assert
         $this->assertRecordFound($record_zero, $actual_record_zero);

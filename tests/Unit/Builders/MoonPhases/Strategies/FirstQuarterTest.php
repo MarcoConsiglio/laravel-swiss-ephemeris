@@ -34,9 +34,9 @@ class FirstQuarterTest extends StrategyTestCase
         // Act
         $strategy = $this->makeStrategy($record_90);
         $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->strategy_name} strategy must realize BuilderStrategy interface.");
-        $actual_record_90 = $strategy->findRecord();
+        $actual_record_90 = $strategy->found();
         $strategy = $this->makeStrategy($record_non_90);
-        $actual_record_non_90 = $strategy->findRecord();
+        $actual_record_non_90 = $strategy->found();
 
         // Assert
         $this->assertRecordFound($record_90, $actual_record_90);

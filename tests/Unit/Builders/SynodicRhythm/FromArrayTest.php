@@ -9,21 +9,14 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithReflection;
-use PHPUnit\Framework\TestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 
 /**
  * @testdox The SynodicRhythm/FromArray builder
  */
-class FromArrayTest extends TestCase
+class FromArrayTest extends BuilderTestCase
 {
     use WithReflection;
-
-    /**
-     * The faker instance.
-     *
-     * @var \Faker\Generator
-     */
-    protected $faker;
 
     /**
      * Test data.
@@ -34,10 +27,12 @@ class FromArrayTest extends TestCase
 
     /**
      * This method is called before each test.
+     * 
+     * @return void
      */
-    protected function setUp(): void
+    public function setUp(): void
     {
-        $this->faker = \Faker\Factory::create();
+        parent::setUp();
         $t1 = (new Carbon())->hour(12)->minutes(0)->seconds(0);
         $t2 = $t1->copy()->addHour();
         $this->data = [
@@ -53,21 +48,24 @@ class FromArrayTest extends TestCase
     }
 
     /**
-     * @testdox can build a SynodicRhythm starting from an array of raw ephemeris data.
+     * @testdox can build an array of SynodicRhythmRecords starting from an array of raw ephemeris data.
      */
     public function test_build_synodic_rhythm_from_array()
     {
-        // Arrange in setUp()
+        // Arrange
 
         // Act
+        /** @var \MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromArray $builder */
         $builder = new FromArray($this->data);
-        $builder->validateData();
-        $builder->buildRecords();
+        $synodic_rhythm_records = $builder->fetchCollection();
 
         // Assert
-        $this->assertInstanceOf(Builder::class, $builder, "The FromArray builder must realize the SynodicRhythmBuilder interface.");
-        $this->assertInstanceOf(SynodicRhythm::class, $collection = $builder->fetchCollection(), "A SynodicRhythmBuilder must produce a SynodicRhythm.");       
-        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $collection, "The SynodicRhythm must consists of SynodicRhythmRecord(s)."); 
+        $this->assertIsArray($synodic_rhythm_records, 
+            "The FromArray builder must produce an array.");
+        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm_records, 
+            "The FromArray builder must contains only SynodicRhythmRecord(s).");
+        $this->assertCount(count($this->data), $synodic_rhythm_records, 
+            "The FromArray builder must produce the same ammount of records as the input.");
     }
 
     /**
@@ -109,12 +107,24 @@ class FromArrayTest extends TestCase
      */
     public function test_validate_data_method()
     {
-        // Arrange
+        // Act
         $builder = new FromArray([]);
         
-        // Act & Assert
+        // Assert
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("The FromArray builder cannot work with an empty array.");
+        
+        // Arrange
         $builder->validateData();
+    }
+
+    /**
+     * Returns the FromArray builder class.
+     *
+     * @return string
+     */
+    protected function getBuilderClass(): string
+    {
+        return FromArray::class;
     }
 }

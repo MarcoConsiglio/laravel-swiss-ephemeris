@@ -1,16 +1,18 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPeriods;
 
-use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods;
-use MarcoConsiglio\Ephemeris\Tests\TestCase;
+use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 
 /**
  * @testdox The MoonPeriods/FromSynodicRhythm builder
  */
-class FromSynodicRhythmTest extends TestCase
+class FromSynodicRhythmTest extends BuilderTestCase
 {
     /**
      * @testdox can build a MoonPeriods collection starting from a SynodicRhythm.
@@ -18,16 +20,35 @@ class FromSynodicRhythmTest extends TestCase
     public function test_build_moon_periods_from_synodic_rhythm()
     {
         // Arrange
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.2000");
+        $builder = $this->getMockedRhythmBuilder(
+            mocked_methods: ["buildRecords", "validateData"],
+            original_constructor: true,
+            constructor_arguments: [$this->getMocked(SynodicRhythm::class)]
+        );
+        $builder->expects($this->once())->method("buildRecords");
+        $this->setObjectProperty($builder, "items", $records = [
+            $this->getMocked(MoonPeriod::class),
+            $this->getMocked(MoonPeriod::class),
+            $this->getMocked(MoonPeriod::class)
+        ]);
 
         // Act
-        $builder = new FromSynodicRhythm($synodic_rhythm);
+        /** @var \MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm $builder */
         $builder->validateData();
         $builder->buildRecords();
         $moon_periods = $builder->fetchCollection();
 
         // Assert
-        $this->assertInstanceOf(Builder::class, $builder, "Every rhythm builder must realize the Builder interface.");
-        $this->assertInstanceOf(MoonPeriods::class, $moon_periods, "The FromSynodicRhythm builder must produce a MoonPeriods collection.");
+        $this->assertIsArray($moon_periods, 
+            "The FromSynodicRhythm builder must produce a MoonPeriods collection.");
+        $this->assertContainsOnlyInstancesOf(MoonPeriod::class, $moon_periods, 
+            "The FromSynodicRhythm builder must contains only MoonPeriod(s).");
+        $this->assertGreaterThanOrEqual(1, count($moon_periods), 
+            "The FromSynodicRhythm builder must return at least one MoonPeriod.");
+    }
+
+    protected function getBuilderClass(): string
+    {
+        return FromSynodicRhythm::class;
     }
 }
