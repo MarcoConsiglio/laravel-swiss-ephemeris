@@ -27,37 +27,16 @@ class LaravelSwissEphemeris extends SwissEphemeris
         $this->setLibPhat(__DIR__."/../lib/");
     }
 
-    // /**
-    //  * Encode the result in a php array, without "name" key as the parent class
-    //  * would do.
-    //  * @param $output
-    //  * @return array|null
-    //  */
-    // public function encodePhpArray($output): ?array
-    // {
-    //     $php_array = array();
-    //     $i = 0;
-    //     if (is_array($output)) {
-    //         $collection = collect($output);
-    //         $object = $this;
-    //         $php_array = $collection->map(function ($item, $key) use ($object) {
-    //             return $object->splitOutput($item);
-    //         })->all();
-    //     }
-
-    //     return $php_array;
-    // }
-
     /**
-     * Get the moon synodic rhythm starting from $start_date and $start time
-     * up until a specified number of $days. The steps are 24 per $day, one per hour.
+     * Get the Moon synodic rhythm starting from $start_date up until a specified number 
+     * of $days. Each step is long $step_size minutes.
      *
-     * @param string $start_date
-     * @param string $start_time
+     * @param \Carbon\Carbon $start_date
      * @param integer $days
+     * @param integer $step_size The duration in minutes of each step in the ephemeris.
      * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm
      */
-    public function getMoonSynodicRhythm(string $start_date, int $days = 30, string $start_time = "00:00:00")
+    public function getMoonSynodicRhythm(Carbon $start_date, int $days = 30, int $step_size = 60)
     {
         $steps = $days * 24;
         $this->query([
@@ -66,12 +45,12 @@ class LaravelSwissEphemeris extends SwissEphemeris
             // Sun
             "d" => "0",
             // Starting from
-            "b" => $start_date,
-            "ut" => $start_time,
+            "b" => $start_date->format("d.m.Y"),
+            "ut" => $start_date->format("H:i:s"),
             // No. steps
             "n" => $steps,
             // Each step during 1 hour
-            "s" => 60 . "m",
+            "s" => $step_size. "m",
             "f" => "Tl",
             "head"
         ]);
