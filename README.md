@@ -29,7 +29,7 @@ $ephemeris = new LaravelSwissEphemeris(
 ```
 
 # Moon
-## Synodic Rhythm
+## SynodicRhythm
 The synodic rhythm is the cycle that the Moon completes with respect to the position of the Sun. Determine the four phases of the moon and the periods of waxing and waning moons.
 
 You can obtain a SynodicRhythm object, representing the Moon synodic rhythm over a period of time.
@@ -53,8 +53,29 @@ $synodic_rhythm = $ephemeris->getMoonSynodicRhythm(new Carbon("2022-01-12"), 7);
 $record = $synodic_rhythm->first();
 
 $total_record = $synodic_rhythm->count(); // 168
+```
+### SynodicRhythmRecord
+It is a snapshot contained in the `SynodicRhythm`. It has some read-only properties that represents some raw values of a SynodicRhythm.
+```php
+/** @var \Carbon\Carbon */
+// The timestamp of the record.
+$record->timestamp;
+
+/** @var \MarcoConsiglio\Trigonometry\Angle */
+// The angular distance between the Moon and the Sun, 
+// with the Earth at the vertex. Min: -180°. Max: +180°.
+$record->angular_distance;
+
+/** @var float */
+// The angular distance expressed in a percentage. Min -1.0. Max: +1.0.
+$record->percentage;
+```
+This is an example usage.
+```php
+/** @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm $synodic_rhythm */
+/** @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $record */
 foreach($synodic_rhythm as $record) { 
-    echo $record->timestamp."\t".$record->angular_distance."\t\t\t\t ".($record->percentage * 100)."%\n"; 
-    // 2021-12-12 10:00:00     119° 24' 7.5"                    66%
+    echo $record->timestamp."\t".$record->angular_distance."\t".($record->percentage * 100)."%\n"; 
+    // 2021-12-12 10:00:00     119° 24' 7.5"    66%
 };
 ```
