@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\SwissDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Trigonometry\Angle;
@@ -23,10 +24,10 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_getters()
     {
         // Arrange
-        $timestamp = (new Carbon)->minutes(0)->seconds(0);
+        $timestamp = (new SwissDateTime)->minutes(0)->seconds(0)->round();
         $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, -180, 180));
         $synodic_rhythm_record = new SynodicRhythmRecord(
-            $timestamp,
+            $timestamp->toGregorianUT(),
             $angular_distance->toDecimal()
         );
 
@@ -38,7 +39,7 @@ class SynodicRhythmRecordTest extends TestCase
         $unknown_property = $synodic_rhythm_record->shabadula;
 
         // Assert
-        $this->assertProperty("timestamp", $timestamp, Carbon::class, $actual_timestamp);
+        $this->assertProperty("timestamp", $timestamp, SwissDateTime::class, $actual_timestamp);
         $this->assertProperty("angular_distance", $angular_distance, AngleInterface::class, $actual_angular_distance);
         $this->assertProperty("percentage", $expected_percentage, "float", $actual_percentage);
         $this->assertNull($unknown_property, "An unknown property must be null.");
@@ -50,10 +51,10 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waxing()
     {
         // Arrange
-        $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 23))->minutes(0)->seconds(0);
+        $timestamp = (new SwissDateTime)->minutes(0)->seconds(0)->toGregorianUT();
         $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, 0, 180));
         $synodic_rhythm_record = new SynodicRhythmRecord(
-            $timestamp->format("d.m.Y H:m:i")." UT",
+            $timestamp,
             $angular_distance->toDecimal()
         );
 
@@ -73,10 +74,10 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waning()
     {
         // Arrange
-        $timestamp = (new Carbon)->hours($this->faker->numberBetween(0, 23))->minutes(0)->seconds(0);
+        $timestamp = (new SwissDateTime)->minutes(0)->seconds(0)->toGregorianUT();
         $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, -180, -0));
         $synodic_rhythm_record = new SynodicRhythmRecord(
-            $timestamp->format("d.m.Y H:m:i")." UT",
+            $timestamp,
             $angular_distance->toDecimal()
         );
 

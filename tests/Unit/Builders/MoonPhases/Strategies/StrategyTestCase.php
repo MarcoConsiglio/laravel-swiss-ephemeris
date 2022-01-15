@@ -1,10 +1,10 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\Strategies;
 
-use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\SwissDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
@@ -39,9 +39,9 @@ class StrategyTestCase extends TestCase
     /**
      * A testing date.
      *
-     * @var \Carbon\Carbon
+     * @var \MarcoConsiglio\Ephemeris\SwissDateTime
      */
-    protected Carbon $date;
+    protected SwissDateTime $date;
 
     /**
      * A delta bias used for fuzzy conditions.
@@ -58,7 +58,7 @@ class StrategyTestCase extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->date = (new Carbon)->minutes(0)->seconds(0);
+        $this->date = (new SwissDateTime)->minutes(0)->seconds(0);
         $this->strategy_name = class_basename($this->tested_class);
         $this->delta = MoonPhaseStrategy::getDelta();
     }
@@ -70,7 +70,7 @@ class StrategyTestCase extends TestCase
      */
     protected function getNewMoonRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date, $this->getBiasedAngularDistance(0));
+        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(0));
     }
 
     /**
@@ -80,7 +80,7 @@ class StrategyTestCase extends TestCase
      */
     protected function getFirstQuarterRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date, $this->getBiasedAngularDistance(90));
+        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(90));
     }
 
     /**
@@ -92,9 +92,9 @@ class StrategyTestCase extends TestCase
     protected function getFullMoonRecord($positive = true): SynodicRhythmRecord
     {
         if ($positive) {
-            return new SynodicRhythmRecord($this->date, $this->getBiasedAngularDistance(180));
+            return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(180));
         }
-        return new SynodicRhythmRecord($this->date, $this->getBiasedAngularDistance(-180));
+        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(-180));
     }
 
     /**
@@ -104,7 +104,7 @@ class StrategyTestCase extends TestCase
      */
     protected function getThirdQuarterRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date, $this->getBiasedAngularDistance(-90));
+        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(-90));
     }
 
     /**
@@ -114,7 +114,7 @@ class StrategyTestCase extends TestCase
      */
     protected function getNonNewMoonRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date, $this->getBiasedAngularDistanceExceptFor(0));
+        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(0));
     }
 
     /**
@@ -124,7 +124,7 @@ class StrategyTestCase extends TestCase
      */
     protected function getNonFirstQuarterRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date, $this->getBiasedAngularDistanceExceptFor(90));
+        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(90));
     }
 
     /**
@@ -134,7 +134,7 @@ class StrategyTestCase extends TestCase
      */
     protected function getNonFullMoonRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date, $this->faker->randomElement([
+        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->faker->randomElement([
             $this->getBiasedAngularDistanceExceptFor(-180),
             $this->getBiasedAngularDistanceExceptFor(+180)
         ]));
@@ -147,7 +147,7 @@ class StrategyTestCase extends TestCase
      */
     protected function getNonThirdQuarterRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date, $this->getBiasedAngularDistanceExceptFor(-90));
+        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(-90));
     }
 
     /**

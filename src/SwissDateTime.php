@@ -147,8 +147,13 @@ class SwissDateTime extends Carbon
         return static::rawCreateFromFormat(self::JULIAN_TT, $date, $timezone);
     }
 
+    /**
+     * Format the instance as a string using the set format
+     *
+     * @return string
+     */
     public function __toString()
     {
-        parent::__toString();
+        return parent::__toString();
     }
 }

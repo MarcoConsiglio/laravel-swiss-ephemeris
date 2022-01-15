@@ -3,11 +3,12 @@ namespace MarcoConsiglio\Ephemeris\Rhythms;
 
 use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType;
+use MarcoConsiglio\Ephemeris\SwissDateTime;
 use MarcoConsiglio\Trigonometry\Angle;
 
 /**
  * A single snapshot of the Moon synodic rhythm.
- * @property-read \Carbon\Carbon $timestamp The timestamp of this record.
+ * @property-read \MarcoConsiglio\Ephemeris\SwissDateTime $timestamp The timestamp of this record.
  * @property-read \MarcoConsiglio\Trigonometry\Angle $angular_distance Angular distance percentage.
  * @property-read float $percentage The angular distance percentage.
  */
@@ -18,7 +19,7 @@ class SynodicRhythmRecord
      *
      * @var \Carbon\Carbon
      */
-    protected Carbon $timestamp;
+    protected SwissDateTime $timestamp;
 
     /**
      * The angular distance between the Moon and the Sun.
@@ -37,19 +38,25 @@ class SynodicRhythmRecord
     /**
      * Instantiate a SynodicRhythmRecord from Swiss Ephemeris.
      *
-     * @param string|\Carbon\Carbon $timestamp The string timestamp must match the pattern "d.m.Y H:m:i UT".
+     * @param string $timestamp The string timestamp must match one of the following patterns:
+     * SwissDateTime::GREGORIAN_UT, SwissDateTime::GREGORIAN_TT, SwissDateTime::JULIAN_UT, SwissDateTime::JULIAN_TT.
      * @param float $angular_distance
      */
-    public function __construct(string|Carbon $timestamp, float $angular_distance)
+    public function __construct(string $timestamp, float $angular_distance)
     {
         if (is_string($timestamp)) {
-            $this->timestamp = Carbon::createFromFormat(
-                "d.m.Y H:m:i", 
-                trim(str_replace("UT", "", $timestamp))
-            );
-        }
-        if ($timestamp instanceof Carbon) {
-            $this->timestamp = $timestamp;
+            $formats = [
+                SwissDateTime::GREGORIAN_UT,
+                SwissDateTime::GREGORIAN_TT,
+                SwissDateTime::JULIAN_UT,
+                SwissDateTime::JULIAN_TT
+            ];
+            foreach ($formats as $format) {
+                if (SwissDateTime::canBeCreatedFromFormat($timestamp, $format)) {
+                    $this->timestamp = SwissDateTime::rawCreateFromFormat($format, $timestamp,);
+                }
+            }
+            $ciao = "hello";
         }
         $this->angular_distance = Angle::createFromDecimal($angular_distance);
         $this->percentage = round($this->angular_distance->toDecimal() / 180, 2);

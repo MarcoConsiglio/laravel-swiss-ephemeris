@@ -14,6 +14,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhases;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\SwissDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Trigonometry\Angle;
 use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
@@ -34,19 +35,19 @@ class FromSynodicRhythmTest extends TestCase
         $full_moon_record = $this->getMocked(SynodicRhythmRecord::class);
         $third_quarter_record = $this->getMocked(SynodicRhythmRecord::class);
         $this->setObjectProperties($new_moon_record, [
-            "timestamp" => new Carbon("2021-10-06 11:00:00"),
+            "timestamp" => new SwissDateTime("2021-10-06 11:00:00"),
             "angular_distance" => new Angle(new FromDecimal(-0.0614509))
         ]);
         $this->setObjectProperties($first_quarter_record, [
-            "timestamp" => new Carbon("2021-10-13 03:00:00"),
+            "timestamp" => new SwissDateTime("2021-10-13 03:00:00"),
             "angular_distance" => new Angle(new FromDecimal(89.7644741))
         ]);
         $this->setObjectProperties($full_moon_record, [
-            "timestamp" => new Carbon("2021-10-20 15:00:00"),
+            "timestamp" => new SwissDateTime("2021-10-20 15:00:00"),
             "angular_distance" => new Angle(new FromDecimal(-179.9831740))
         ]);
         $this->setObjectProperties($third_quarter_record, [
-            "timestamp" => new Carbon("2021-10-28 20:00:00"),
+            "timestamp" => new SwissDateTime("2021-10-28 20:00:00"),
             "angular_distance" => new Angle(new FromDecimal(-90.0499896))
         ]);
         $synodic_rhythm = $this->getMocked(SynodicRhythm::class);

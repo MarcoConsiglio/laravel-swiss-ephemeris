@@ -8,6 +8,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\SwissDateTime;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -36,15 +37,15 @@ class FromRecordsTest extends TestCase
     protected function setUp(): void
     {
         $this->faker = \Faker\Factory::create();
-        $t1 = (new Carbon())->hour(12)->minutes(0)->seconds(0);
+        $t1 = (new SwissDateTime())->minutes(0)->seconds(0);
         $t2 = $t1->copy()->addHour();
         $this->data = [
             0 => [
-                "timestamp" => $t1->format("d.m.Y H:m:i")." UT",
+                "timestamp" => $t1->toGregorianUT(),
                 "angular_distance" => $this->faker->randomFloat(1, -360, 360)
             ],
             1 => [
-                "timestamp" => $t2->format("d.m.Y H:m:i")." UT",
+                "timestamp" => $t2->toGregorianUT(),
                 "angular_distance" => $this->faker->randomFloat(1, -360, 360)
             ]
         ];
@@ -78,7 +79,7 @@ class FromRecordsTest extends TestCase
     public function test_from_records_builder_wants_array_data()
     {
         // Arrange
-        $data = new SynodicRhythmRecord("1.1.2000 00:00:00 UT", 90);
+        $data = new SynodicRhythmRecord($this->data[0]["timestamp"], 90);
 
         // Act & Assert
         $builder = new FromRecords($data);
