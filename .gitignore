@@ -7,7 +7,6 @@ public
 .phive
 tools
 .phpdoc
-docs/*
-!docs/classes.png
+docs/build
 .vscode
 clover.xml

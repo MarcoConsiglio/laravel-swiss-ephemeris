@@ -7,23 +7,23 @@ use MarcoConsiglio\Trigonometry\Angle;
 
 /**
  * A single snapshot of the Moon synodic rhythm.
- * @property-read \Carbon\Carbon $timestamp
- * @property-read \MarcoConsiglio\Trigonometry\Angle $angular_distance
- * @property-read float $percentage Angular distance percentage.
+ * @property-read \Carbon\Carbon $timestamp The timestamp of this record.
+ * @property-read \MarcoConsiglio\Trigonometry\Angle $angular_distance Angular distance percentage.
+ * @property-read float $percentage The angular distance percentage.
  */
 class SynodicRhythmRecord
 {
     /**
-     * Timestamp of this record.
+     * The timestamp of this record.
      *
-     * @var Carbon
+     * @var \Carbon\Carbon
      */
     protected Carbon $timestamp;
 
     /**
-     * Angular distance.
+     * The angular distance between the Moon and the Sun.
      *
-     * @var Angle
+     * @var \MarcoConsiglio\Trigonometry\Angle
      */
     protected Angle $angular_distance;
 

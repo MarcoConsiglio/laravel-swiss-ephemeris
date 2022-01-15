@@ -24,7 +24,7 @@ class SynodicRhythmTest extends TestCase
         // Arrange in setUp()
      
         // Act
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm((new Carbon())->format("d.m.Y"), $days = 1);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon, $days = 1);
         $record = $synodic_rhythm->get($this->faker->numberBetween(0, $synodic_rhythm->count() - 1));
 
         // Assert
@@ -56,7 +56,7 @@ class SynodicRhythmTest extends TestCase
     public function test_synodic_rhythm_has_first_and_last_getter()
     {
         // Arrange
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.2000", 1);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("2000-01-01"), 1);
 
         // Act
         $last = $synodic_rhythm->last();

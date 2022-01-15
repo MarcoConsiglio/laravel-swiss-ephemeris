@@ -1,6 +1,6 @@
 The Laravel Swiss Ephemeris
  [x] can show Synodic Rhythm.
- [x] throws the SwissEphemerisException if something went wrong.
+ [ ] throws the SwissEphemerisException if something went wrong.
 
 A MoonPeriods collection
  [x] consists of MoonPeriod instances.
@@ -58,8 +58,23 @@ A MoonPeriod
 A MoonPhaseRecord
  [x] Getters
 
+The SwissDateTime
+ [x] is a Carbon instance.
+ [x] can format a date to Universal Time format of the Gregorian calendar.
+ [x] can format a date to Universal Time format of the Gregorian calendar.
+ [x] can format a date to Terrestrial Time format of the Julian calendar.
+ [x] can format a date to Terrestrial Time format of the Julian calendar.
+ [x] can be created from a Gregorian date and Universal Time.
+ [x] can be created from a Gregorian date and Terrestrial Time.
+ [x] can be created from a Julian date and Universal Time.
+ [x] can be created from a Julian date and Terrestrial Time.
+
 A Synodic Rhythm Record
  [x] has read-only properties 'timestamp', 'angular_distance' and 'percentage'.
  [x] can tell if it is waxing moon period.
  [x] can tell if it is a waning moon period.
+
+With custom assertions
+ [x] you can asser a date is what you expect.
+ [x] Assert date exception
 

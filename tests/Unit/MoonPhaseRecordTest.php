@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
  */
 class MoonPhaseRecordTest extends TestCase
 {
-    use WithCustomAssertions, WithFailureMessage;
+    use WithCustomAssertions;
 
     public function test_getters()
     {

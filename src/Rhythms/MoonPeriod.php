@@ -36,12 +36,13 @@ class MoonPeriod
     /**
      * Constructs a MoonPeriod.
      *
-     * @param Carbon  $start
-     * @param Carbon  $end
-     * @param integer $type The type of the period: waning or waxing.
+     * @param \Carbon\Carbon                                         $start
+     * @param \Carbon\Carbon                                         $end
+     * @param \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType $type
      */
     public function __construct(Carbon $start, Carbon $end, MoonPeriodType $type)
     {
+        
         $this->start = $start;
         $this->end = $end;
         $this->type = $type;

@@ -13,7 +13,7 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
  */
 class MoonPeriodTest extends TestCase
 {
-    use WithFailureMessage, WithCustomAssertions;
+    use WithCustomAssertions;
 
     /**
      * @testdox has read-only properties 'start' and 'end'.

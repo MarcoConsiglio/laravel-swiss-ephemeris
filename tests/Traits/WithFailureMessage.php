@@ -12,7 +12,7 @@ trait WithFailureMessage
      * @param string $property
      * @return string
      */
-    protected function typeFail(string $property): string
+    protected static function typeFail(string $property): string
     {
         return "'$property' type not expected.";
     }
@@ -23,7 +23,7 @@ trait WithFailureMessage
      * @param string $property
      * @return string
      */
-    protected function getterFail(string $property): string
+    protected static function getterFail(string $property): string
     {
         return "'$property' property is not working properly.";
     }
@@ -34,7 +34,7 @@ trait WithFailureMessage
      * @param string $name
      * @return string
      */
-    protected function functionFail(string $name): string
+    protected static function functionFail(string $name): string
     {
         return "'$name()' method is not working properly.";
     }

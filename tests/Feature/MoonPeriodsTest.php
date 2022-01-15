@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods;
-
+use Illuminate\Support\Carbon;
 /**
  * @testdox A MoonPeriods collection
  */
@@ -19,7 +19,7 @@ class MoonPeriodsTest extends TestCase
     public function test_moon_periods_is_a_collection()
     {
         // Arrange
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("6.10.2021", 59);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("2021-10-06"), 59);
 
         // Act
         $moon_periods = $synodic_rhythm->getPeriods();
@@ -30,6 +30,13 @@ class MoonPeriodsTest extends TestCase
         $this->assertContainsOnlyInstancesOf(MoonPeriod::class, $moon_periods, 
             "A MoonPeriods collection must contains only MoonPeriod instances.");
         $failure_message = "Something is wrong in finding the expected MoonPeriod(s).";
+        foreach ($moon_periods as $period) {
+            /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod $period */
+            $start = $period->start->toDateTimeString("minute");
+            $end = $period->end->toDateTimeString("minute");
+            $type = $period->type->name;
+            echo "From $start to $end is a $type period.\n";
+        }
         $this->assertTrue($moon_periods->get(0)->isWaning(), $failure_message);
         $this->assertTrue($moon_periods->get(1)->isWaxing(), $failure_message);
         $this->assertTrue($moon_periods->get(2)->isWaning(), $failure_message);
@@ -42,7 +49,7 @@ class MoonPeriodsTest extends TestCase
     public function test_moon_periods_has_getter()
     {
         // Arrange
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm("1.1.2000");
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("2000-01-01"));
         $moon_periods = $synodic_rhythm->getPeriods();
 
         // Act

@@ -1,8 +1,14 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
+use Carbon\CarbonInterface;
+use MarcoConsiglio\Ephemeris\Tests\Constraints\IsDateEqual;
+use PHPUnit\Framework\Assert;
+
 trait WithCustomAssertions
 {
+    use WithFailureMessage;
+
     /**
      * Asserts type and value of a variable.
      *
@@ -12,25 +18,41 @@ trait WithCustomAssertions
      * @param mixed $actual_value
      * @return void
      */
-    public function assertProperty(string $name, mixed $expected_value, string $expected_type, mixed $actual_value)
+    public static function assertProperty(string $name, mixed $expected_value, string $expected_type, mixed $actual_value)
     {
         switch ($expected_type) {
             case 'string':
-                $this->assertIsString($actual_value, $this->typeFail($name));
+                Assert::assertIsString($actual_value, self::typeFail($name));
                 break;
             case 'float':
-                $this->assertIsFloat($actual_value, $this->typeFail($name));
+                Assert::assertIsFloat($actual_value, self::typeFail($name));
                 break;
             case 'array':
-                $this->assertIsArray($actual_value, $this->typeFail($name));
+                Assert::assertIsArray($actual_value, self::typeFail($name));
                 break;
             case 'integer':
-                $this->assertIsInt($actual_value, $this->typeFail($name));
+                Assert::assertIsInt($actual_value, self::typeFail($name));
                 break;
             default:
-                $this->assertInstanceOf($expected_type, $actual_value, $this->typeFail($name));
+                Assert::assertInstanceOf($expected_type, $actual_value, self::typeFail($name));
                 break;
         }
-        $this->assertEquals($expected_value, $actual_value, $this->getterFail($name));
+        Assert::assertEquals($expected_value, $actual_value, self::getterFail($name));
+    }
+
+    public static function assertDate(
+        CarbonInterface $date, 
+        int $year = 1, 
+        int $month = 1, 
+        int $day = 1, 
+        int $hour = 0, 
+        int $minute = 0, 
+        int $second = 0, 
+        string $timezone = "",
+        string $message = ""
+    ) {
+        $constraint = new IsDateEqual($year, $month, $day, $hour, $minute, $second, $timezone);
+
+        Assert::assertThat($date, $constraint, $message);
     }
 }

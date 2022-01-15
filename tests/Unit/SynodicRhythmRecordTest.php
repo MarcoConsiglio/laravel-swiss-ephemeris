@@ -14,7 +14,7 @@ use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
  */
 class SynodicRhythmRecordTest extends TestCase
 {
-    use WithFailureMessage, WithCustomAssertions;
+    use WithCustomAssertions;
     
 
     /**

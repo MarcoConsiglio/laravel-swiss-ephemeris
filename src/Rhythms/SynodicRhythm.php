@@ -1,15 +1,10 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms;
 
-use Carbon\Carbon;
-use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use InvalidArgumentException;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\WaxingMoonPeriods;
-use MarcoConsiglio\Trigonometry\Angle;
 
 /**
  * Represents the rhythm of the Moon over a period of time.
