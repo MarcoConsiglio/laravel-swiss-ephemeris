@@ -15,12 +15,17 @@ class SwissDateTimeTest extends TestCase
     /**
      * The Gregorian calendar date time format.
      */
-    protected const GREGORIAN_CALENDAR = "d.m.Y G:i:s";
+    public const GREGORIAN_DATE = "d.m.Y";
 
     /**
      * The Julian calendar date time format.
      */
-    protected const JULIAN_CALENDAR = "d.m.Y\j G:i:s";
+    public const JULIAN_DATE = "d.m.Y\j";
+    
+    /**
+     * The time format.
+     */
+    public const TIME_FORMAT = "G:i:s";
 
     /**
      * The wording that says time is in Universal Time format.
@@ -36,25 +41,25 @@ class SwissDateTimeTest extends TestCase
      * The format of a Gregorian calendar date expressed in 
      * the Universal Time (UT) aka Greenwich Mean Time (GMT).
      */
-    protected const GREGORIAN_UT = self::GREGORIAN_CALENDAR." ".self::UT;
+    public const GREGORIAN_UT = self::GREGORIAN_DATE." ".self::TIME_FORMAT." ".self::UT;
 
     /**
      * The format of a Gregorian calendar date expressed in the
      * Terrestrial Time (TT).
      */
-    protected const GREGORIAN_TT = self::GREGORIAN_CALENDAR." ".self::TT;
+    public const GREGORIAN_TT = self::GREGORIAN_DATE." ".self::TIME_FORMAT." ".self::TT;
 
     /**
      * The format of a Julian calendar date expressed in the 
      * Terrestrial Time (TT).
      */
-    protected const JULIAN_TT = self::JULIAN_CALENDAR." ".self::TT;
+    public const JULIAN_TT = self::JULIAN_DATE." ".self::TIME_FORMAT." ".self::TT;
 
     /**
      * The format of a Julian calendar date expressed in the 
      * Universal Time (UT) aka Greenwich Mean Time (GMT).
      */
-    protected const JULIAN_UT = self::JULIAN_CALENDAR." ".self::UT;
+    public const JULIAN_UT = self::JULIAN_DATE." ".self::TIME_FORMAT." ".self::UT;
 
     /**
      * @testdox is a Carbon instance.
@@ -152,6 +157,42 @@ class SwissDateTimeTest extends TestCase
     }
 
     /**
+     * @testdox can format a date to the Gregorian calendar.
+     */
+    public function test_gregorian_date()
+    {
+        // Arrange
+        $expected_format = self::GREGORIAN_DATE;
+        $expected_date_string = "01.01.2000";
+        $date = $this->getMockedSwissDateTime(2000);
+
+        // Act
+        $formatted_date = $date->toGregorianDate();
+
+        // Assert
+        $this->assertEquals($expected_format, SwissDateTime::GREGORIAN_DATE, 
+            "The Gregorian format is $expected_format.");
+        $this->assertEquals($expected_date_string, $formatted_date, 
+            "The date is bad formatted. It must equals $expected_date_string.");
+    }
+
+    public function test_julian_date()
+    {
+        // Arrange
+        $expected_format = self::JULIAN_DATE;
+        $expected_date_string = "01.01.2000j";
+        $date = $this->getMockedSwissDateTime(2000);
+
+        // Act
+        $formatted_date = $date->toJulianDate();
+
+        // Assert
+        $this->assertEquals($expected_format, SwissDateTime::JULIAN_DATE);
+        $this->assertEquals($expected_date_string, $formatted_date, 
+            "The date is bad formatted. It must equals $expected_date_string");
+    }
+
+    /**
      * @testdox can be created from a Gregorian date and Universal Time.
      */
     public function test_can_create_from_gregorian_ut()
@@ -161,10 +202,16 @@ class SwissDateTimeTest extends TestCase
 
         // Act
         $ephemeris_date = SwissDateTime::createFromGregorianUT($date);
+        $is_universal_time = $ephemeris_date->isUT();
+        $is_gregorian_date = $ephemeris_date->isGregorianDate();
 
         // Assert
         $this->assertInstanceOf(SwissDateTime::class, $ephemeris_date);
         $this->assertDate($ephemeris_date, 2000);
+        $this->assertTrue($is_universal_time, 
+            "A SwissDateTime createdFromGregorianUT() must have Universal Time.");
+        $this->assertTrue($is_gregorian_date, 
+            "A SwissDateTime createdFromGregorianUT() must have a Gregorian calendar date.");
     }
 
     /**
@@ -177,10 +224,16 @@ class SwissDateTimeTest extends TestCase
 
         // Act
         $ephemeris_date = SwissDateTime::createFromGregorianTT($date);
+        $is_terrestrial_time = $ephemeris_date->isTT();
+        $is_gregorian_date = $ephemeris_date->isGregorianDate();
 
         // Assert
         $this->assertInstanceOf(SwissDateTime::class, $ephemeris_date);
         $this->assertDate($ephemeris_date, 2000);
+        $this->assertTrue($is_terrestrial_time, 
+            "A SwissDateTime createdFromGregorianTT() must have Terrestrial Time.");
+        $this->assertTrue($is_gregorian_date, 
+            "A SwissDateTime createdFromGregorianTT() must have a Gregorian calendar date.");
     }
 
     /**
@@ -193,10 +246,16 @@ class SwissDateTimeTest extends TestCase
 
         // Act
         $ephemeris_date = SwissDateTime::createFromJulianUT($date);
+        $is_universal_time = $ephemeris_date->isUT();
+        $is_julian_date = $ephemeris_date->isJulianDate();
 
         // Assert
         $this->assertInstanceOf(SwissDateTime::class, $ephemeris_date);
         $this->assertDate($ephemeris_date, 2000);
+        $this->assertTrue($is_universal_time, 
+            "A SwissDateTime createFromJulianUT() must have Universal Time.");
+        $this->assertTrue($is_julian_date, 
+            "A SwissDateTime createFromJulianUT() must have a Julian calendar date.");
     }
 
     /**
@@ -209,10 +268,16 @@ class SwissDateTimeTest extends TestCase
 
         // Act
         $ephemeris_date = SwissDateTime::createFromJulianTT($date);
+        $is_terrestrial_time = $ephemeris_date->isTT();
+        $is_julian_date = $ephemeris_date->isJulianDate();
 
         // Assert
         $this->assertInstanceOf(SwissDateTime::class, $ephemeris_date);
         $this->assertDate($ephemeris_date, 2000);
+        $this->assertTrue($is_terrestrial_time, 
+            "A SwissDateTime createFromJulianTT() must have Terrestrial Time.");
+        $this->assertTrue($is_julian_date, 
+            "A SwissDateTime createFromJulianUT() must have a Julian calendar date.");
     }
 
 

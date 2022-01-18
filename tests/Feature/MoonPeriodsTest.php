@@ -30,13 +30,18 @@ class MoonPeriodsTest extends TestCase
         $this->assertContainsOnlyInstancesOf(MoonPeriod::class, $moon_periods, 
             "A MoonPeriods collection must contains only MoonPeriod instances.");
         $failure_message = "Something is wrong in finding the expected MoonPeriod(s).";
-        foreach ($moon_periods as $period) {
-            /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod $period */
-            $start = $period->start->toDateTimeString("minute");
-            $end = $period->end->toDateTimeString("minute");
-            $type = $period->type->name;
-            echo "From $start to $end is a $type period.\n";
-        }
+        // foreach ($moon_periods as $period) {
+        //     /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod $period */
+        //     $start = $period->start->toDateTimeString("minute");
+        //     $end = $period->end->toDateTimeString("minute");
+        //     $type = $period->type->name;
+        //     $start_dst = $period->start->isDST() ? "(DST)" : "";
+        //     $end_dst = $period->end->isDST() ? "(DST)" : "";
+        //     echo "From $start_dst$start to $end_dst$end is a $type period.\n";
+        // }
+        // foreach ($this->ephemeris->getOutput() as $index => $row) {
+        //     echo $row[0]."\t".$row[1]."\n";
+        // }
         $this->assertTrue($moon_periods->get(0)->isWaning(), $failure_message);
         $this->assertTrue($moon_periods->get(1)->isWaxing(), $failure_message);
         $this->assertTrue($moon_periods->get(2)->isWaning(), $failure_message);

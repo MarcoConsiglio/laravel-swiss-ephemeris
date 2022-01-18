@@ -2,23 +2,30 @@
 namespace MarcoConsiglio\Ephemeris;
 use App\SwissEphemeris\Repository\SwissEphemerisRepository;
 use App\SwissEphemeris\SwissEphemeris;
-use App\SwissEphemeris\SwissEphemerisException;
 use Carbon\Carbon;
+use Carbon\CarbonInterface;
+use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Trigonometry\Angle;
 
 class LaravelSwissEphemeris extends SwissEphemeris
 {
     /**
+     * The header of the Swiss Ephemeris response.
+     *
+     * @var array
+     */
+    protected array $header;
+
+    /**
      * Construct di ephemeris based on a location and timezone.
      *
-     * @param string $latitute
-     * @param string $longitude
+     * @param string $latitute in decimal format.
+     * @param string $longitude in decimal format.
      * @param string $timezone
+     * @param float $altitude in meters.
      */
-    public function __construct(float $latitute, float $longitude, string $timezone)
+    public function __construct(float $latitute, float $longitude, string $timezone, float $altitude = 0.0)
     {
         parent::__construct();
         $this->setLatitude($latitute);
@@ -39,7 +46,8 @@ class LaravelSwissEphemeris extends SwissEphemeris
     public function getMoonSynodicRhythm(Carbon $start_date, int $days = 30, int $step_size = 60)
     {
         $steps = $days * 24;
-        $this->query([
+        $this->setDebugHeader(false);
+        $this->query($parameters = [
             // Moon
             "p" => "1",
             // Sun
@@ -51,13 +59,10 @@ class LaravelSwissEphemeris extends SwissEphemeris
             "n" => $steps,
             // Each step during 1 hour
             "s" => $step_size. "m",
-            "f" => "Tl",
-            "head"
+            "f" => "Tl"
         ]);
         $this->execute();
-        /**
-         * @var array
-         */
+        /** @var array */
         $output = $this->getOutput();
         $output = $this->filterUnwantedRows($output, $steps);
         $output = $this->reMapColumns($output, [
@@ -70,18 +75,35 @@ class LaravelSwissEphemeris extends SwissEphemeris
         return new SynodicRhythm($builder->fetchCollection());
     }
 
+    protected function getHeader(CarbonInterface $date)
+    {
+        $this->setDebugHeader(true);
+        $output = $this->query([
+            "b" => $date->toGregorianDate(),
+            "ut" => $date->toTimeString(),
+            "f" => "",
+            "p" => ""
+        ])->execute()->getOutput();
+        return $output;
+    }
+
     /**
      * Filter unwanted rows.
      *
-     * @param array $output
+     * @param array|\Illuminate\Support\Collection $output
      * @param int $steps
-     * @return array
+     * @return array|\Illuminate\Support\Collection
      */
-    protected function filterUnwantedRows(array $output, int $steps): array 
+    protected function filterUnwantedRows(array|Collection $output, int $steps): array|Collection 
     {
-        return array_filter($output, function ($key) use ($steps) {
-            return $key < $steps;
-        }, ARRAY_FILTER_USE_KEY);
+        if (is_array($output)) {
+            return array_filter($output, function ($key) use ($steps) {
+                return $key < $steps;
+            }, ARRAY_FILTER_USE_KEY);
+        }
+        if ($output instanceof Collection) {
+           return $output->take($steps);
+        }
     }
 
     /**
