@@ -104,7 +104,7 @@ class FromSynodicRhythmTest extends TestCase
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The FromSynodicRhythm MoonPhases builder needs at least of one MoonPhaseStrategy class.");
+        $this->expectExceptionMessage("The FromSynodicRhythm MoonPhases builder needs at least a MoonPhaseType.");
         
         // Act
         /** @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm $synodic_rhythm */
@@ -121,7 +121,7 @@ class FromSynodicRhythmTest extends TestCase
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The FromSynodicRhythm MoonPhases builder needs only MoonPhaseStrategy classes.");
+        $this->expectExceptionMessage("Parameter 2 must be an array of MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType but found string inside.");
 
         // Act
         /** @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm $synodic_rhythm */

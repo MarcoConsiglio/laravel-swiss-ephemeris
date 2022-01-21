@@ -1,7 +1,11 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Enums;
 
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FirstQuarter;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FullMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\NewMoon;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\ThirdQuarter;
 
 /**
  * A moon phase.
@@ -55,5 +59,32 @@ enum MoonPhaseType
             }
         }
         return null;
+    }
+
+    /**
+     * Gets the corresponsing strategy used to find a MoonPhaseType.
+     *
+     * @param MoonPhaseType $type
+     * @return string|null
+     */
+    public static function getCorrespondingStrategy(MoonPhaseType $type): ?string
+    {
+        switch ($type) {
+            case MoonPhaseType::NewMoon:
+                return NewMoon::class;
+                break;
+            case MoonPhaseType::FirstQuarter:
+                return FirstQuarter::class;
+                break;
+            case MoonPhaseType::FullMoon:
+                return FullMoon::class;
+                break;
+            case MoonPhaseType::ThirdQuarter:
+                return ThirdQuarter::class;
+                break;
+            default:
+                return null;
+                break;
+        }
     }
 }

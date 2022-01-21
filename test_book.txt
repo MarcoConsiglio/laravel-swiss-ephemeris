@@ -5,6 +5,9 @@ A MoonPeriods collection
  [x] consists of MoonPeriod instances.
  [x] has a getter that return a specific MoonPeriod.
 
+A MoonPhases collection
+ [x] contains MoonPhaseRecord(s).
+
 The SynodicRhythm collection
  [x] consists of SynodicRhythmRecord instances.
  [x] cannot be constructed with empty records.
@@ -14,7 +17,7 @@ The MoonPeriods/FromSynodicRhythm builder
  [x] can build a MoonPeriods collection starting from a SynodicRhythm.
 
 A MoonPeriods\FromSynodicRhythm builder
- [x] can build a MoonPhases collection from the SynodicRhythm.
+ [ ] can build a MoonPhases collection from the SynodicRhythm.
  [x] needs at least one MoonPhaseStrategy class.
  [x] needs only MoonPhaseStrategy classes.
 
@@ -47,7 +50,7 @@ The MoonPhase enumeration
  [x] maps the first quarter type to the FirstQuarter BuilderStrategy.
  [x] maps the full moon type to the FullMoon BuilderStrategy.
  [x] maps the third quarter type to the ThirdQuarter BuilderStrategy.
- [x] Cant map unknown moon phase type
+ [x] can't map unregistered MoonPhaseStrategy.
 
 A MoonPeriod
  [x] has read-only properties 'start' and 'end'.
@@ -55,7 +58,7 @@ A MoonPeriod
  [x] can be a waning one.
 
 A MoonPhaseRecord
- [x] Getters
+ [x] has read-only properties 'type' and 'timestamp'.
 
 The SwissDateTime
  [x] is a Carbon instance.

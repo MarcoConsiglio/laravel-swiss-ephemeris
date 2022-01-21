@@ -5,7 +5,8 @@ use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType;
 
 /**
- * A waxing or waning Moon period.
+ * A Waxing or Waning Moon period.
+ * 
  * @property-read \Carbon\Carbon $start The period start.
  * @property-read \Carbon\Carbon $end The period end.
  * @property-read \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType $type The period type, waxing or waning.

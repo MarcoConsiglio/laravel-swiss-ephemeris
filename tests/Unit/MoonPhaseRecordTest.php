@@ -14,6 +14,9 @@ class MoonPhaseRecordTest extends TestCase
 {
     use WithCustomAssertions;
 
+    /**
+     * @testdox has read-only properties 'type' and 'timestamp'.
+     */
     public function test_getters()
     {
         // Arrange

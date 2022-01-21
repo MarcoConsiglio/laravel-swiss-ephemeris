@@ -9,8 +9,5 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
  */
 class MoonPhases extends Collection
 {
-    public function __construct(Builder $builder)
-    {
-        $this->items = $builder->fetchCollection();
-    }
+    
 }

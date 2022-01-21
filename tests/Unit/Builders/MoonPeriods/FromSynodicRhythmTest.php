@@ -34,8 +34,6 @@ class FromSynodicRhythmTest extends BuilderTestCase
 
         // Act
         /** @var \MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm $builder */
-        $builder->validateData();
-        $builder->buildRecords();
         $moon_periods = $builder->fetchCollection();
 
         // Assert

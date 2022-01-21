@@ -98,9 +98,7 @@ class MoonPhaseTest extends TestCase
     }
 
     /**
-     * Undocumented function
-     *
-     * @return void
+     * @testdox can't map unregistered MoonPhaseStrategy.
      */
     public function test_cant_map_unknown_moon_phase_type()
     {

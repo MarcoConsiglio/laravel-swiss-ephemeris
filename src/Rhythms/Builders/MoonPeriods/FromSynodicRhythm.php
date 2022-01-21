@@ -92,6 +92,7 @@ class FromSynodicRhythm implements Builder
      */
     public function fetchCollection(): array
     {
+        $this->buildRecords();
         return $this->items;
     }
 }

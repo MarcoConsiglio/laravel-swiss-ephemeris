@@ -4,7 +4,9 @@ namespace MarcoConsiglio\Ephemeris\Rhythms;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use InvalidArgumentException;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm as MoonPeriodBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm as MoonPhasesBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
 
 /**
  * Represents the rhythm of the Moon over a period of time.
@@ -43,10 +45,20 @@ class SynodicRhythm extends Collection
      */
     public function getPeriods(): MoonPeriods
     {
-        $builder = new FromSynodicRhythm($this);
-        $builder->validateData();
-        $builder->buildRecords();
+        $builder = new MoonPeriodBuilder($this);
         return new MoonPeriods($builder->fetchCollection());
+    }
+
+    /**
+     * Gets a collection of MoonPhases.
+     *
+     * @param array $moon_phase_types
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonPhases
+     */
+    public function getPhases(array $moon_phase_types): MoonPhases
+    {
+        $builder = new MoonPhasesBuilder($this, $moon_phase_types);
+        return new MoonPhases($builder->fetchCollection());
     }
 
     /**
