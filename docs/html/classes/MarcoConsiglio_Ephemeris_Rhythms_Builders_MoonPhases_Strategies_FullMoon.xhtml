@@ -59,7 +59,13 @@
             <a href="#hierarchy">Hierarchy</a>
           </li>
           <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
             <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
           </li>
           <li>
             <a href="../source/Rhythms/Builders/MoonPhases/Strategies/FullMoon.php.xhtml#line11">Source</a>
@@ -74,10 +80,13 @@
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class FullMoon
                 extends <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_Strategies_MoonPhaseStrategy.xhtml">MoonPhaseStrategy</a>
-            {<br/><ul class="none"><li>// methods</li><li>public void <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FullMoon" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_Strategies_FullMoon/__construct.xhtml">__construct</a>()
+            {<br/><ul class="none"><li>// members</li><li>protected <span title="\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord">SynodicRhythmRecord</span> <a href="#members">$record</a>;
+                    </li></ul><ul class="none"><li>// Inherited members from <span title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy">MoonPhaseStrategy</span></li><li>protected static float <a href="#members">$delta</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FullMoon" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_Strategies_FullMoon/__construct.xhtml">__construct</a>()
                     </li><li>public ?<span title="SynodicRhythmRecord">SynodicRhythmRecord</span> <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FullMoon" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_Strategies_FullMoon/found.xhtml">found</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy">MoonPhaseStrategy</span></li><li>public abstract mixed <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_Strategies_MoonPhaseStrategy/found.xhtml">found</a>()
                         </li><li>public static float <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_Strategies_MoonPhaseStrategy/getDelta.xhtml">getDelta</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition">WithFuzzyCondition</span></li><li>protected boolean <a title="MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition" href="../traits/MarcoConsiglio_Ephemeris_Traits_WithFuzzyCondition/isAbout.xhtml">isAbout</a>()
                         </li></ul>
 
             }<br/></div>
@@ -94,6 +103,18 @@
             <li>
               <a title="MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition" href="../traits/MarcoConsiglio_Ephemeris_Traits_WithFuzzyCondition.xhtml">MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition</a>
             </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="delta"><strong>$delta</strong>
+                —
+                float<br/><span class="indent">Angular distance delta: It is used for an error biased search.</span></li>
+            <li id="record"><strong>$record</strong>
+                —
+                <a title="\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord" href="../classes/_MarcoConsiglio_Ephemeris_Rhythms_SynodicRhythmRecord.xhtml">\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord</a><br/><span class="indent">The record to inspect.</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
@@ -113,7 +134,15 @@
             <li id="getDelta"><a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_Strategies_MoonPhaseStrategy/getDelta.xhtml">getDelta()</a>
                 — Gets the delta specified by the strategy.</li>
           </ul>
+          <h3>Inherited from <a title="MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition" href="../traits/MarcoConsiglio_Ephemeris_Traits_WithFuzzyCondition.xhtml">MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="isAbout"><a title="MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition" href="../traits/MarcoConsiglio_Ephemeris_Traits_WithFuzzyCondition/isAbout.xhtml">isAbout()</a>
+                — Check if a $number is about $expected.</li>
+          </ul>
         </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history"/>
       </section>
     </div>
     <footer>

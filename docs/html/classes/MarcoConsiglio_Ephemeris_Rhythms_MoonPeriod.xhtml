@@ -56,7 +56,13 @@
             <a href="#synopsis">Synopsis</a>
           </li>
           <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
             <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
           </li>
           <li>
             <a href="../source/Rhythms/MoonPeriod.php.xhtml#line13">Source</a>
@@ -70,13 +76,31 @@
         <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class MoonPeriod
-            {<br/><ul class="none"><li>// methods</li><li>public void <a title="MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_MoonPeriod/__construct.xhtml">__construct</a>()
+            {<br/><ul class="none"><li>// members</li><li>protected <span title="\Carbon\Carbon">Carbon</span> <a href="#members">$start</a>;
+                    </li><li>protected <span title="\Carbon\Carbon">Carbon</span> <a href="#members">$end</a>;
+                    </li><li>protected <span title="\MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType">MoonPeriodType</span> <a href="#members">$type</a>;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_MoonPeriod/__construct.xhtml">__construct</a>()
                     </li><li>public boolean <a title="MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_MoonPeriod/isWaxing.xhtml">isWaxing</a>()
                     </li><li>public boolean <a title="MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_MoonPeriod/isWaning.xhtml">isWaning</a>()
                     </li><li>public void <a title="MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_MoonPeriod/__get.xhtml">__get</a>()
                     </li></ul>
 
             }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="end"><strong>$end</strong>
+                —
+                <a title="\Carbon\Carbon" href="../classes/_Carbon_Carbon.xhtml">\Carbon\Carbon</a><br/><span class="indent">End timestamp of this period.</span></li>
+            <li id="start"><strong>$start</strong>
+                —
+                <a title="\Carbon\Carbon" href="../classes/_Carbon_Carbon.xhtml">\Carbon\Carbon</a><br/><span class="indent">Start timestamp of this period.</span></li>
+            <li id="type"><strong>$type</strong>
+                —
+                <a title="\MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType" href="../classes/_MarcoConsiglio_Ephemeris_Rhythms_Enums_MoonPeriodType.xhtml">\MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType</a><br/><span class="indent">The type of this period (waning or waxing).</span></li>
+          </ul>
+        </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
           <h4>public</h4>
@@ -91,6 +115,8 @@
                 — Tells if this period is waxing.</li>
           </ul>
         </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history"/>
       </section>
     </div>
     <footer>

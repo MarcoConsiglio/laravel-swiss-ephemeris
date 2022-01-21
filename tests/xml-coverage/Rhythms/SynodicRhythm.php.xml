@@ -1,0 +1,597 @@
+<?xml version="1.0"?>
+<phpunit xmlns="https://schema.phpunit.de/coverage/1.0">
+  <file name="SynodicRhythm.php" path="/Rhythms">
+    <totals>
+      <lines total="81" comments="34" code="47" executable="14" executed="14" percent="100.00"/>
+      <methods count="5" tested="5" percent="100.00"/>
+      <functions count="0" tested="0" percent="0"/>
+      <classes count="1" tested="1" percent="100.00"/>
+      <traits count="0" tested="0" percent="0"/>
+    </totals>
+    <class name="MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm" start="12" executable="14" executed="14" crap="7">
+      <namespace name="MarcoConsiglio\Ephemeris\Rhythms"/>
+      <method name="__construct" signature="__construct($items)" start="19" end="25" crap="2" executable="4" executed="4" coverage="100"/>
+      <method name="get" signature="get($key, $default): MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord" start="34" end="37" crap="1" executable="1" executed="1" coverage="100"/>
+      <method name="getPeriods" signature="getPeriods(): MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods" start="44" end="50" crap="1" executable="4" executed="4" coverage="100"/>
+      <method name="first" signature="first(?callable $callback, $default): MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord" start="59" end="62" crap="1" executable="1" executed="1" coverage="100"/>
+      <method name="last" signature="last(?callable $callback, $default): MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord" start="71" end="81" crap="2" executable="4" executed="4" coverage="100"/>
+    </class>
+    <coverage>
+      <line nr="21">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\LaravelSwissEphemerisTest::test_synodic_rhythm"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_has_records"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_throw_exception_if_records_are_empty"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_has_first_and_last_getter"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\FromSynodicRhythmTest::test_build_moon_phases_from_synodic_rhythm"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Unit\Builders\SynodicRhythm\FromRecordsTest::test_build_synodic_rhythm_from_records"/>
+      </line>
+      <line nr="22">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_throw_exception_if_records_are_empty"/>
+      </line>
+      <line nr="24">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\LaravelSwissEphemerisTest::test_synodic_rhythm"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_has_records"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_has_first_and_last_getter"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\FromSynodicRhythmTest::test_build_moon_phases_from_synodic_rhythm"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Unit\Builders\SynodicRhythm\FromRecordsTest::test_build_synodic_rhythm_from_records"/>
+      </line>
+      <line nr="25">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\LaravelSwissEphemerisTest::test_synodic_rhythm"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_has_records"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_has_first_and_last_getter"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\FromSynodicRhythmTest::test_build_moon_phases_from_synodic_rhythm"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Unit\Builders\SynodicRhythm\FromRecordsTest::test_build_synodic_rhythm_from_records"/>
+      </line>
+      <line nr="36">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_has_records"/>
+      </line>
+      <line nr="46">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+      </line>
+      <line nr="47">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+      </line>
+      <line nr="48">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+      </line>
+      <line nr="49">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+      </line>
+      <line nr="61">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+      </line>
+      <line nr="73">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_has_first_and_last_getter"/>
+      </line>
+      <line nr="77">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+      </line>
+      <line nr="78">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_is_a_collection"/>
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\MoonPeriodsTest::test_moon_periods_has_getter"/>
+      </line>
+      <line nr="80">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\SynodicRhythmTest::test_synodic_rhythm_has_first_and_last_getter"/>
+      </line>
+      <line nr="82">
+        <covered by="MarcoConsiglio\Ephemeris\Tests\Feature\LaravelSwissEphemerisTest::test_synodic_rhythm"/>
+      </line>
+    </coverage>
+    <source>
+      <line no="1">
+        <token name="T_OPEN_TAG">&lt;?php</token>
+      </line>
+      <line no="2">
+        <token name="T_NAMESPACE">namespace</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_NAME_QUALIFIED">MarcoConsiglio\Ephemeris\Rhythms</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="3"/>
+      <line no="4">
+        <token name="T_USE">use</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_NAME_QUALIFIED">Illuminate\Support\Collection</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="5">
+        <token name="T_USE">use</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_NAME_QUALIFIED">Illuminate\Support\LazyCollection</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="6">
+        <token name="T_USE">use</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">InvalidArgumentException</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="7">
+        <token name="T_USE">use</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_NAME_QUALIFIED">MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPeriods\FromSynodicRhythm</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="8"/>
+      <line no="9">
+        <token name="T_DOC_COMMENT">/**</token>
+      </line>
+      <line no="10">
+        <token name="T_DOC_COMMENT"> * Represents the rhythm of the Moon over a period of time.</token>
+      </line>
+      <line no="11">
+        <token name="T_DOC_COMMENT"> */</token>
+      </line>
+      <line no="12">
+        <token name="T_CLASS">class</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">SynodicRhythm</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EXTENDS">extends</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">Collection</token>
+      </line>
+      <line no="13">
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="14">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_DOC_COMMENT">/**</token>
+      </line>
+      <line no="15">
+        <token name="T_DOC_COMMENT">     * Create a new SynodicRhythm.</token>
+      </line>
+      <line no="16">
+        <token name="T_DOC_COMMENT">     *</token>
+      </line>
+      <line no="17">
+        <token name="T_DOC_COMMENT">     * @param mixed $items</token>
+      </line>
+      <line no="18">
+        <token name="T_DOC_COMMENT">     */</token>
+      </line>
+      <line no="19">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">__construct</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$items</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="20">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="21">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_EMPTY">empty</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$items</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="22">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_THROW">throw</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_NEW">new</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">InvalidArgumentException</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"The SynodicRhythm must be constructed with SynodicRhythmRecord(s) or an array with 'timestamp' and 'angular_distance' setted."</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="23">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="24">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">items</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$items</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="25">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="26"/>
+      <line no="27">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_DOC_COMMENT">/**</token>
+      </line>
+      <line no="28">
+        <token name="T_DOC_COMMENT">     * Gets a SynodicRhythmRecord from the collection by key.</token>
+      </line>
+      <line no="29">
+        <token name="T_DOC_COMMENT">     *</token>
+      </line>
+      <line no="30">
+        <token name="T_DOC_COMMENT">     * @param  mixed  $key</token>
+      </line>
+      <line no="31">
+        <token name="T_DOC_COMMENT">     * @param  mixed  $default</token>
+      </line>
+      <line no="32">
+        <token name="T_DOC_COMMENT">     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord</token>
+      </line>
+      <line no="33">
+        <token name="T_DOC_COMMENT">     */</token>
+      </line>
+      <line no="34">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">get</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$key</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$default</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">null</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_COLON">:</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">SynodicRhythmRecord</token>
+      </line>
+      <line no="35">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="36">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">parent</token>
+        <token name="T_DOUBLE_COLON">::</token>
+        <token name="T_STRING">get</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$key</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$default</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">null</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="37">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="38"/>
+      <line no="39">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_DOC_COMMENT">/**</token>
+      </line>
+      <line no="40">
+        <token name="T_DOC_COMMENT">     * Gets a collection of MoonPeriods.</token>
+      </line>
+      <line no="41">
+        <token name="T_DOC_COMMENT">     *</token>
+      </line>
+      <line no="42">
+        <token name="T_DOC_COMMENT">     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods</token>
+      </line>
+      <line no="43">
+        <token name="T_DOC_COMMENT">     */</token>
+      </line>
+      <line no="44">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">getPeriods</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_COLON">:</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">MoonPeriods</token>
+      </line>
+      <line no="45">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="46">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$builder</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_NEW">new</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">FromSynodicRhythm</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="47">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$builder</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">validateData</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="48">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$builder</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">buildRecords</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="49">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_NEW">new</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">MoonPeriods</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$builder</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchCollection</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="50">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="51"/>
+      <line no="52">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_DOC_COMMENT">/**</token>
+      </line>
+      <line no="53">
+        <token name="T_DOC_COMMENT">     * Gets the first SynodicRhythmRecord.</token>
+      </line>
+      <line no="54">
+        <token name="T_DOC_COMMENT">     *</token>
+      </line>
+      <line no="55">
+        <token name="T_DOC_COMMENT">     * @param callable|null $callback</token>
+      </line>
+      <line no="56">
+        <token name="T_DOC_COMMENT">     * @param mixed $default</token>
+      </line>
+      <line no="57">
+        <token name="T_DOC_COMMENT">     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord</token>
+      </line>
+      <line no="58">
+        <token name="T_DOC_COMMENT">     */</token>
+      </line>
+      <line no="59">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">first</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_QUESTION_MARK">?</token>
+        <token name="T_CALLABLE">callable</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$callback</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">null</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$default</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">null</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_COLON">:</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">SynodicRhythmRecord</token>
+      </line>
+      <line no="60">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="61">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">parent</token>
+        <token name="T_DOUBLE_COLON">::</token>
+        <token name="T_STRING">first</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$callback</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$default</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="62">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="63"/>
+      <line no="64">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_DOC_COMMENT">/**</token>
+      </line>
+      <line no="65">
+        <token name="T_DOC_COMMENT">     * Gets the last SynodicRhythmRecord.</token>
+      </line>
+      <line no="66">
+        <token name="T_DOC_COMMENT">     *</token>
+      </line>
+      <line no="67">
+        <token name="T_DOC_COMMENT">     * @param callable|null $callback</token>
+      </line>
+      <line no="68">
+        <token name="T_DOC_COMMENT">     * @param mixed        $default</token>
+      </line>
+      <line no="69">
+        <token name="T_DOC_COMMENT">     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord</token>
+      </line>
+      <line no="70">
+        <token name="T_DOC_COMMENT">     */</token>
+      </line>
+      <line no="71">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">last</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_QUESTION_MARK">?</token>
+        <token name="T_CALLABLE">callable</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$callback</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">null</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$default</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">null</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_COLON">:</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">SynodicRhythmRecord</token>
+      </line>
+      <line no="72">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="73">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">items</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_INSTANCEOF">instanceof</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">LazyCollection</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="74">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_DOC_COMMENT">/**</token>
+      </line>
+      <line no="75">
+        <token name="T_DOC_COMMENT">             * @var \Illuminate\Support\LazyCollection</token>
+      </line>
+      <line no="76">
+        <token name="T_DOC_COMMENT">             */</token>
+      </line>
+      <line no="77">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$lazy_collection</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">items</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="78">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$lazy_collection</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">last</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$callback</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$default</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="79">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="80">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">parent</token>
+        <token name="T_DOUBLE_COLON">::</token>
+        <token name="T_STRING">last</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$callback</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$default</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="81">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="82">
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+    </source>
+  </file>
+</phpunit>

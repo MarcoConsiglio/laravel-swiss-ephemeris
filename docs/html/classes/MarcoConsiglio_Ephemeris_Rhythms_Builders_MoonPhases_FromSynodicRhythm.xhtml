@@ -59,7 +59,13 @@
             <a href="#hierarchy">Hierarchy</a>
           </li>
           <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
             <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
           </li>
           <li>
             <a href="../source/Rhythms/Builders/MoonPhases/FromSynodicRhythm.php.xhtml#line17">Source</a>
@@ -74,7 +80,10 @@
         <div class="synopsis">class FromSynodicRhythm
                 implements
                 <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder" href="../interfaces/MarcoConsiglio_Ephemeris_Rhythms_Builders_Interfaces_Builder.xhtml">Builder</a>
-            {<br/><ul class="none"><li>// methods</li><li>public void <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_FromSynodicRhythm/__construct.xhtml">__construct</a>()
+            {<br/><ul class="none"><li>// members</li><li>protected <span title="\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm">SynodicRhythm</span> <a href="#members">$data</a>;
+                    </li><li>protected  <a href="#members">$moon_phase_strategies</a>;
+                    </li><li>protected  <a href="#members">$records</a>;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_FromSynodicRhythm/__construct.xhtml">__construct</a>()
                     </li><li>public void <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_FromSynodicRhythm/validateData.xhtml">validateData</a>()
                     </li><li>public void <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_FromSynodicRhythm/buildRecords.xhtml">buildRecords</a>()
                     </li><li>public array <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm" href="../classes/MarcoConsiglio_Ephemeris_Rhythms_Builders_MoonPhases_FromSynodicRhythm/fetchCollection.xhtml">fetchCollection</a>()
@@ -88,6 +97,21 @@
             <li>
               <a title="MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder" href="../interfaces/MarcoConsiglio_Ephemeris_Rhythms_Builders_Interfaces_Builder.xhtml">MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder</a>
             </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="data"><strong>$data</strong>
+                —
+                <a title="\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm" href="../classes/_MarcoConsiglio_Ephemeris_Rhythms_SynodicRhythm.xhtml">\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm</a><br/><span class="indent">The data used to create the MoonPhases collection.</span></li>
+            <li id="moon_phase_strategies"><strong>$moon_phase_strategies</strong>
+                —
+                array<br/><span class="indent">The list of strategies used to find a MoonPhaseRecord.</span></li>
+            <li id="records"><strong>$records</strong>
+                —
+                array<br/><span class="indent">The MoonPhasesRecord(s).</span></li>
           </ul>
         </div>
         <h2 id="methods">Methods</h2>
@@ -104,6 +128,8 @@
                 — Validates the list of MoonPhaseStrategy classes.</li>
           </ul>
         </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history"/>
       </section>
     </div>
     <footer>

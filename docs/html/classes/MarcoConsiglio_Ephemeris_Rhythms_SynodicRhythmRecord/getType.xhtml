@@ -2,7 +2,7 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <title>phpDox - MarcoConsiglio\Ephemeris\LaravelSwissEphemeris::getMoonSynodicRhythm</title>
+    <title>phpDox - MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord::getType</title>
     <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   </head>
@@ -42,12 +42,12 @@
             <a href="../../classes.xhtml">Classes</a>
           </li>
           <li class="separator">
-            <a href="../../classes.xhtml#MarcoConsiglio_Ephemeris">MarcoConsiglio\Ephemeris</a>
+            <a href="../../classes.xhtml#MarcoConsiglio_Ephemeris_Rhythms">MarcoConsiglio\Ephemeris\Rhythms</a>
           </li>
           <li class="separator">
-            <a title="MarcoConsiglio\Ephemeris\LaravelSwissEphemeris" href="../../classes/MarcoConsiglio_Ephemeris_LaravelSwissEphemeris.xhtml">LaravelSwissEphemeris</a>
+            <a title="MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord" href="../../classes/MarcoConsiglio_Ephemeris_Rhythms_SynodicRhythmRecord.xhtml">SynodicRhythmRecord</a>
           </li>
-          <li class="separator">getMoonSynodicRhythm</li>
+          <li class="separator">getType</li>
         </ul>
       </div>
       <nav class="box">
@@ -59,49 +59,26 @@
             <a href="#synopsis">Synopsis</a>
           </li>
           <li>
-            <a href="#parameter">Parameter</a>
-          </li>
-          <li>
             <a href="#return">Return</a>
           </li>
           <li>
-            <a href="../../source/LaravelSwissEphemeris.php.xhtml#line39">Source</a>
+            <a href="../../source/Rhythms/SynodicRhythmRecord.php.xhtml#line108">Source</a>
           </li>
         </ul>
       </nav>
       <section>
-        <h1><small>MarcoConsiglio\Ephemeris\LaravelSwissEphemeris::</small>getMoonSynodicRhythm</h1>
-        <h4>Get the Moon synodic rhythm starting from $start_date up until a specified number of $days. Each step is long $step_size minutes.</h4>
+        <h1><small>MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord::</small>getType</h1>
+        <h4>Get the type of the Moon period in this SynodicRhythmRecord.</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>public function getMoonSynodicRhythm(<a title="Carbon\Carbon" href="../../classes/Carbon_Carbon.xhtml">Carbon</a>
-        $start_date,
-            [integer
-        $days = 30,
-            [integer
-        $step_size = 60]] )
+          <code>public function getType()
             </code>
         </div>
-        <h2 id="parameterlist">Parameters</h2>
-        <dl class="styled">
-          <dt><code>$start_date</code>
-                —
-                <a title="\Carbon\Carbon" href="../../classes/_Carbon_Carbon.xhtml">\Carbon\Carbon</a></dt>
-          <dd><br/><br/><br/>      </dd>
-          <dt><code>$days</code>
-                —
-                integer</dt>
-          <dd/>
-          <dt><code>$step_size</code>
-                —
-                integer</dt>
-          <dd>The duration in minutes of each step in the ephemeris.</dd>
-        </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
-          <dt>SynodicRhythm</dt>
+          <dt>MoonPeriodType</dt>
           <dd><br/>
         </dd>
         </dl>
