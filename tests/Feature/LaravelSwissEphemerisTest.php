@@ -36,21 +36,21 @@ class LaravelSwissEphemerisTest extends TestCase
     /**
      * @testdox can obtain the Swiss Ephemeris header.
      */
-    public function test_header()
-    {
-        // Arrange
-        $ephemeris_class = new ReflectionClass($this->ephemeris);
-        $get_header_method = $ephemeris_class->getMethod("getHeader");
-        $get_header_method->setAccessible(true);
-        $date = (new SwissDateTime)->roundDays();
+    // public function test_every_header()
+    // {
+    //     // Arrange
+    //     $ephemeris_class = new ReflectionClass($this->ephemeris);
+    //     $get_header_method = $ephemeris_class->getMethod("getHeader");
+    //     $get_header_method->setAccessible(true);
+    //     $date = (new SwissDateTime)->roundDays();
         
-        // Act
-        $header = $get_header_method->invokeArgs($this->ephemeris, [$date]);
+    //     // Act
+    //     $header = $get_header_method->invokeArgs($this->ephemeris, [$date]);
 
-        // Assert
-        $this->assertIsArray($header);
-        $this->assertCount(7, $header, "The header should be 7 rows. Is it changed?");
-    }
+    //     // Assert
+    //     $this->assertIsArray($header);
+    //     $this->assertCount(7, $header, "The header should be 7 rows. Is it changed?");
+    // }
 
     // /**
     //  * @testdox throws the SwissEphemerisException if something went wrong.

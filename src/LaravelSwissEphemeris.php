@@ -10,12 +10,6 @@ use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 
 class LaravelSwissEphemeris extends SwissEphemeris
 {
-    /**
-     * The header of the Swiss Ephemeris response.
-     *
-     * @var array
-     */
-    protected array $header;
 
     /**
      * Construct di ephemeris based on a location and timezone.
@@ -54,7 +48,7 @@ class LaravelSwissEphemeris extends SwissEphemeris
             "d" => "0",
             // Starting from
             "b" => $start_date->format("d.m.Y"),
-            "ut" => $start_date->format("H:i:s"),
+            "t" => $start_date->format("H:i:s"),
             // No. steps
             "n" => $steps,
             // Each step during 1 hour
@@ -75,17 +69,17 @@ class LaravelSwissEphemeris extends SwissEphemeris
         return new SynodicRhythm($builder->fetchCollection());
     }
 
-    protected function getHeader(CarbonInterface $date)
-    {
-        $this->setDebugHeader(true);
-        $output = $this->query([
-            "b" => $date->toGregorianDate(),
-            "ut" => $date->toTimeString(),
-            "f" => "",
-            "p" => ""
-        ])->execute()->getOutput();
-        return $output;
-    }
+    // protected function getHeader(CarbonInterface $date)
+    // {
+    //     $this->setDebugHeader(true);
+    //     $output = $this->query([
+    //         "b" => $date->toGregorianDate(),
+    //         "ut" => $date->toTimeString(),
+    //         "f" => "",
+    //         "p" => ""
+    //     ])->execute()->getOutput();
+    //     return $output;
+    // }
 
     /**
      * Filter unwanted rows.

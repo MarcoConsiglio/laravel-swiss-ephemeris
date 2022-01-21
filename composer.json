@@ -5,12 +5,12 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "MarcoConsiglio\\Ephemeris\\": "./src/",
-            "MarcoConsiglio\\Ephemeris\\Tests\\": "./tests/"
+            "MarcoConsiglio\\Ephemeris\\": "./src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "MarcoConsiglio\\Ephemeris\\Tests\\": "./tests/"
         }
     },
     "authors": [

@@ -26,12 +26,12 @@ class SynodicRhythmRecordTest extends TestCase
         // Arrange
         $timestamp = (new SwissDateTime)->minutes(0)->seconds(0)->round();
         $angular_distance = Angle::createFromDecimal($this->faker->randomFloat(1, -180, 180));
+        
+        // Act
         $synodic_rhythm_record = new SynodicRhythmRecord(
             $timestamp->toGregorianUT(),
             $angular_distance->toDecimal()
         );
-
-        // Act
         $actual_timestamp = $synodic_rhythm_record->timestamp;
         $actual_angular_distance = $synodic_rhythm_record->angular_distance;
         $actual_percentage = $synodic_rhythm_record->percentage;

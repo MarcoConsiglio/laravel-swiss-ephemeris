@@ -53,10 +53,9 @@ class SynodicRhythmRecord
             ];
             foreach ($formats as $format) {
                 if (SwissDateTime::canBeCreatedFromFormat($timestamp, $format)) {
-                    $this->timestamp = SwissDateTime::rawCreateFromFormat($format, $timestamp,);
+                    $this->timestamp = SwissDateTime::rawCreateFromFormat($format, $timestamp);
                 }
             }
-            $ciao = "hello";
         }
         $this->angular_distance = Angle::createFromDecimal($angular_distance);
         $this->percentage = round($this->angular_distance->toDecimal() / 180, 2);

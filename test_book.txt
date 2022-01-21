@@ -1,3 +1,81 @@
+The Laravel Swiss Ephemeris
+ [x] can show Synodic Rhythm.
+
+A MoonPeriods collection
+ [x] consists of MoonPeriod instances.
+ [x] has a getter that return a specific MoonPeriod.
+
+The SynodicRhythm collection
+ [x] consists of SynodicRhythmRecord instances.
+ [x] cannot be constructed with empty records.
+ [x] can give you the first and last SynodicRhythmRecord.
+
+The MoonPeriods/FromSynodicRhythm builder
+ [x] can build a MoonPeriods collection starting from a SynodicRhythm.
+
+A MoonPeriods\FromSynodicRhythm builder
+ [x] can build a MoonPhases collection from the SynodicRhythm.
+ [x] needs at least one MoonPhaseStrategy class.
+ [x] needs only MoonPhaseStrategy classes.
+
+The FirstQuarter strategy
+ [x] can find a SynodicRhythmRecord whose 'angular_distance' is about 90.
+
+A FullMoon strategy
+ [x] can find a SynodicRhythmRecord whose 'angular_distance' is about -/+180°.
+
+The NewMoon strategy
+ [x] can find a SyndicRhythmRecord whose 'angular_distance' is about zero.
+
+The ThirdQuarter strategy
+ [x] can find a SynodicRhythmRecord whose 'angular_distance' is about -90°.
+
+The SynodicRhythm/FromArray builder
+ [x] can build an array of SynodicRhythmRecords starting from an array of raw ephemeris data.
+ [x] require the 'timestamp' ephemeris column.
+ [x] require the 'angular_distance' ephemeris column.
+ [x] cannot build a SynodicRhythm with an empty array.
+
+The SynodicRhythm/FromRecords builder
+ [x] can build a SynodicRhythm starting from SynodicRhythmRecord(s).
+ [x] cannot build a SynodicRhythm without an array.
+ [x] cannot build a SynodicRhythm without SynodicRhythmRecord(s).
+
+The MoonPhase enumeration
+ [x] consists of NewMoon, FirstQuarter, FullMoon, ThirdQuarter.
+ [x] maps the new moon type to the NewMoon BuilderStrategy.
+ [x] maps the first quarter type to the FirstQuarter BuilderStrategy.
+ [x] maps the full moon type to the FullMoon BuilderStrategy.
+ [x] maps the third quarter type to the ThirdQuarter BuilderStrategy.
+ [x] Cant map unknown moon phase type
+
+A MoonPeriod
+ [x] has read-only properties 'start' and 'end'.
+ [x] can be a waxing one.
+ [x] can be a waning one.
+
+A MoonPhaseRecord
+ [x] Getters
+
 The SwissDateTime
+ [x] is a Carbon instance.
+ [x] can format a date to Universal Time format of the Gregorian calendar.
+ [x] can format a date to Universal Time format of the Gregorian calendar.
+ [x] can format a date to Terrestrial Time format of the Julian calendar.
+ [x] can format a date to Terrestrial Time format of the Julian calendar.
+ [x] can format a date to the Gregorian calendar.
+ [x] Julian date
+ [x] can be created from a Gregorian date and Universal Time.
+ [x] can be created from a Gregorian date and Terrestrial Time.
+ [x] can be created from a Julian date and Universal Time.
  [x] can be created from a Julian date and Terrestrial Time.
+
+A Synodic Rhythm Record
+ [x] has read-only properties 'timestamp', 'angular_distance' and 'percentage'.
+ [x] can tell if it is waxing moon period.
+ [x] can tell if it is a waning moon period.
+
+With custom assertions
+ [x] you can asser a date is what you expect.
+ [x] Assert date exception
 

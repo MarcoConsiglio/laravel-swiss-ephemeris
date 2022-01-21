@@ -19,7 +19,7 @@ class MoonPeriodsTest extends TestCase
     public function test_moon_periods_is_a_collection()
     {
         // Arrange
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("2021-10-06"), 59);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("2022-01-03"), 27);
 
         // Act
         $moon_periods = $synodic_rhythm->getPeriods();
@@ -42,10 +42,8 @@ class MoonPeriodsTest extends TestCase
         // foreach ($this->ephemeris->getOutput() as $index => $row) {
         //     echo $row[0]."\t".$row[1]."\n";
         // }
-        $this->assertTrue($moon_periods->get(0)->isWaning(), $failure_message);
-        $this->assertTrue($moon_periods->get(1)->isWaxing(), $failure_message);
-        $this->assertTrue($moon_periods->get(2)->isWaning(), $failure_message);
-        $this->assertTrue($moon_periods->get(3)->isWaxing(), $failure_message);
+        $this->assertTrue($moon_periods->get(0)->isWaxing(), $failure_message);
+        $this->assertTrue($moon_periods->get(1)->isWaning(), $failure_message);
     }
 
     /**
@@ -54,7 +52,7 @@ class MoonPeriodsTest extends TestCase
     public function test_moon_periods_has_getter()
     {
         // Arrange
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("2000-01-01"));
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("2000-01-01"), 15);
         $moon_periods = $synodic_rhythm->getPeriods();
 
         // Act
