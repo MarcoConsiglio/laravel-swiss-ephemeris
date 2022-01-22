@@ -1,1 +1,13 @@
 vendor
+tests/coverage_report
+tests/xml-coverage
+tests/cache
+.phpunit.result.cache
+public
+*.log
+.phive
+tools
+.phpdoc
+docs/build
+.vscode
+clover.xml
