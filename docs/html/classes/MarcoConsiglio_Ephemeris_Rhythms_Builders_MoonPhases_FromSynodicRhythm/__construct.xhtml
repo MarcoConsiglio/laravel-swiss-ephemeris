@@ -71,7 +71,7 @@
       </nav>
       <section>
         <h1><small>MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm::</small>__construct</h1>
-        <h4>Constructs the builder with a SynodicRhythm and a list of MoonPhaseStrategy concrete classes.</h4>
+        <h4>Constructs the builder with a SynodicRhythm and a list of MoonPhaseType(s).</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
@@ -79,7 +79,7 @@
           <code>public function __construct(<a title="MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm" href="../../classes/MarcoConsiglio_Ephemeris_Rhythms_SynodicRhythm.xhtml">SynodicRhythm</a>
         $synodic_rhythm,
             array
-        $moon_phase_strategies )
+        $moon_phase_types )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
@@ -88,10 +88,10 @@
                 —
                 <a title="\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm" href="../../classes/_MarcoConsiglio_Ephemeris_Rhythms_SynodicRhythm.xhtml">\MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm</a></dt>
           <dd><br/><br/><br/>      </dd>
-          <dt><code>$moon_phase_strategies</code>
+          <dt><code>$moon_phase_types</code>
                 —
                 array</dt>
-          <dd>The list of MoonPhaseStrategy classes filters<br/>the result of the builder. The builder needs at least one strategy.</dd>
+          <dd>The list of MoonPhaseType used to filter the<br/>the result of the builder. The builder needs at least one MoonPhaseType.</dd>
         </dl>
         <h2 id="throws">Errors/Exceptions</h2>
         <dl class="styled">
@@ -100,7 +100,7 @@
               <a title="\InvalidArgumentException" href="../../classes/_InvalidArgumentException.xhtml">InvalidArgumentException</a>
             </code>
           </dt>
-          <dd>when there is no moon phase strategies or an unxpected class.</dd>
+          <dd>when at least one element of $moon_phase_types is not a MoonPhaseType.</dd>
         </dl>
       </section>
     </div>
