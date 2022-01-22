@@ -29,21 +29,23 @@ $ephemeris = new LaravelSwissEphemeris(
 ```
 If something went wrong (e.g. like uncorrect permission for the files placed in the folder `/lib`, outbound quering date, ect.) it will throw a `App\SwissEphemeris\SwissEphemerisException` exception.
 
+## Premise
+When using the word *collection*, it is meant that the class extends the [Laravel Collection](https://laravel.com/docs/8.x/collections), so you can treat it [*like any other collection*](https://laravel.com/docs/8.x/collections#available-methods).
+
 # Moon
 ## SynodicRhythm
-The synodic rhythm is the cycle that the Moon completes with respect to the position of the Sun. It determines the four phases of the moon and the periods of waxing and waning moons.
+The synodic rhythm is the cycle that the Moon completes with respect to the position of the Sun. It determines several Moon phases and the periods of waxing and waning Moon.
 
-You can obtain a `SynodicRhythm` object, representing the Moon synodic rhythm over a period of time.
+You can obtain a `SynodicRhythm` collection, representing the Moon synodic rhythm over a period of time.
 ```php
 /** @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm $synodic_rhythm */
 $synodic_rhythm = $ephemeris->getMoonSynodicRhythm(
-    new Carbon, // * Starting date and time.
+    new Carbon, // Starting date and time. Required
     7,          // The duration in days of the synodic rhythm. Default: 30
     30          // The duration in minutes of each step in the ephemeris. Default: 60
 );
 ```
 
-You can treat a `SynodicRhythm` as a normal [`Collection`](https://laravel.com/docs/8.x/collections#available-methods). It contains [`SynodicRhythmRecord`](#synodicrhythmrecord)(s).
 
 ```php
 /** @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm $synodic_rhythm */
@@ -100,7 +102,7 @@ You can obtain a `MoonPeriods` collection from a `SynodicRhythm` object. It cont
 $moon_periods = $synodic_rhythm->getPeriods();
 ```
 ### MoonPeriod
-A MoonPeriod object cant tell you when the period start, stop and if it is waning or waxing.
+A `MoonPeriod` object can tell you when the period start, stop and if it is waning or waxing.
 ```php
 foreach($moon_periods as $period) {
     $type = "unknown";
@@ -111,5 +113,58 @@ foreach($moon_periods as $period) {
         $type = "waning";
     }
     echo "There is a $type moon period starting from {$period->start} to {$period->end}.\n";
+}
+```
+
+## MoonPhases
+In the synodic rhythm, the Moon goes through four phases, repeatedly: *New Moon*, *First Quarter*, *Full Moon*, *Third Quarter*.
+The `MoonPhases` collection contains [`MoonPhaseRecord`](#moonphaserecord) objects.
+
+You can obtain the `MoonPhases` collection from a [`SynodicRhythm`](#synodicrhythm), specifing which [`MoonPhaseType`(s)](#moonphasetype) you are interested in.
+```php
+/** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods $moon_phases */
+$moon_phases = $synodic_rhythm->getPeriods([
+    MoonPhaseType::NewMoon,
+    MoonPhaseType::FirstQuarter,
+    MoonPhaseType::FullMoon,
+    MoonPhaseType::ThirdQuarter
+]);
+$only_full_moons = $synodic_rhythm->getPeriods([MoonPhaseType::FullMoon]);
+```
+### MoonPhaseRecord
+It represents a moment in which the Moon takes a precise angle with respect to the Sun, from the perspective of the Earth. It has two properties:
+```php
+/**
+ * A Moon phase.
+ * 
+ * @var \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType 
+ */
+$record->type
+
+/**
+ * The exact moment of the Moon phase.
+ * 
+ * @var \Carbon\Carbon
+ */
+$record->timestamp
+```
+Casting the [`MoonPhaseType`](#moonphasetype) enum to string is a little bit tricky.
+```php
+foreach ($moon_phases => $phase) {
+    /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord $phase */
+    $type = ((array) $phase->type)["name"];
+    echo "{$type} is on {$phase->timestamp}.\n";
+}
+```
+
+## MoonPhaseType
+This is a pure enum for the following Moon phases.
+```php
+enum MoonPhaseType
+{
+    case NewMoon;
+    case FirstQuarter;
+    case FullMoon;
+    case ThirdQuarter;
 }
 ```

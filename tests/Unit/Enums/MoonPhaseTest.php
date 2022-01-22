@@ -6,7 +6,6 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FirstQuarter
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\NewMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\ThirdQuarter;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType as MoonPhase;
-use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 /**
@@ -37,6 +36,22 @@ class MoonPhaseTest extends TestCase
         $this->assertEquals($enum_values[2]->name, $full_moon->name, $failure_message("full moon"));
         $this->assertEquals($enum_values[3]->name, $third_quarter->name, $failure_message("third quarter"));
     }
+
+    /**
+     * @testdox can be casted to string with a trick.
+     */
+    public function test_cast_to_string()
+    {
+        // Arrange
+        $moon_phase = $this->faker->randomElement(MoonPhase::cases());
+
+        // Act
+        $string = ((array) $moon_phase)["name"];
+
+        // Assert
+        $this->assertIsString($string, "I say it should be a string.");
+    }
+
     /**
      * @testdox maps the new moon type to the NewMoon BuilderStrategy.
      */
@@ -46,10 +61,10 @@ class MoonPhaseTest extends TestCase
         $strategy = NewMoon::class;
 
         // Act 
-        $moon_phase = MoonPhaseType::getCorrespondingType($strategy);
+        $moon_phase = MoonPhase::getCorrespondingType($strategy);
 
         // Assert
-        $this->assertEquals(MoonPhaseType::NewMoon, $moon_phase, "The NewMoon BuilderStrategy corresponds to MoonPhaseType::NewMoon.");
+        $this->assertEquals(MoonPhase::NewMoon, $moon_phase, "The NewMoon BuilderStrategy corresponds to MoonPhase::NewMoon.");
     }
 
     /**
@@ -61,10 +76,10 @@ class MoonPhaseTest extends TestCase
         $strategy = FirstQuarter::class;
 
         // Act 
-        $moon_phase = MoonPhaseType::getCorrespondingType($strategy);
+        $moon_phase = MoonPhase::getCorrespondingType($strategy);
 
         // Assert
-        $this->assertEquals(MoonPhaseType::FirstQuarter, $moon_phase, "The NewMoon BuilderStrategy corresponds to MoonPhaseType::NewMoon.");
+        $this->assertEquals(MoonPhase::FirstQuarter, $moon_phase, "The NewMoon BuilderStrategy corresponds to MoonPhase::NewMoon.");
     }
 
     /**
@@ -76,10 +91,10 @@ class MoonPhaseTest extends TestCase
         $strategy = FullMoon::class;
 
         // Act 
-        $moon_phase = MoonPhaseType::getCorrespondingType($strategy);
+        $moon_phase = MoonPhase::getCorrespondingType($strategy);
 
         // Assert
-        $this->assertEquals(MoonPhaseType::FullMoon, $moon_phase, "The NewMoon BuilderStrategy corresponds to MoonPhaseType::NewMoon.");
+        $this->assertEquals(MoonPhase::FullMoon, $moon_phase, "The NewMoon BuilderStrategy corresponds to MoonPhase::NewMoon.");
     }
 
     /**
@@ -91,10 +106,10 @@ class MoonPhaseTest extends TestCase
         $strategy = ThirdQuarter::class;
 
         // Act 
-        $moon_phase = MoonPhaseType::getCorrespondingType($strategy);
+        $moon_phase = MoonPhase::getCorrespondingType($strategy);
 
         // Assert
-        $this->assertEquals(MoonPhaseType::ThirdQuarter, $moon_phase, "The NewMoon BuilderStrategy corresponds to MoonPhaseType::NewMoon.");
+        $this->assertEquals(MoonPhase::ThirdQuarter, $moon_phase, "The NewMoon BuilderStrategy corresponds to MoonPhase::NewMoon.");
     }
 
     /**
@@ -106,7 +121,7 @@ class MoonPhaseTest extends TestCase
         $fake_strategy = Angle::class;
 
         // Act
-        $moon_phase = MoonPhaseType::getCorrespondingType($fake_strategy);
+        $moon_phase = MoonPhase::getCorrespondingType($fake_strategy);
 
         // Assert
         $this->assertNull($moon_phase, "If the strategy is not registered within the getCorrespondinType method, it must return null.");

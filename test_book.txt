@@ -17,9 +17,9 @@ The MoonPeriods/FromSynodicRhythm builder
  [x] can build a MoonPeriods collection starting from a SynodicRhythm.
 
 A MoonPeriods\FromSynodicRhythm builder
- [ ] can build a MoonPhases collection from the SynodicRhythm.
- [x] needs at least one MoonPhaseStrategy class.
- [x] needs only MoonPhaseStrategy classes.
+ [x] can build a MoonPhases collection from the SynodicRhythm.
+ [x] needs at least one MoonPhaseType.
+ [x] needs only MoonPhaseType.
 
 The FirstQuarter strategy
  [x] can find a SynodicRhythmRecord whose 'angular_distance' is about 90.
@@ -46,6 +46,7 @@ The SynodicRhythm/FromRecords builder
 
 The MoonPhase enumeration
  [x] consists of NewMoon, FirstQuarter, FullMoon, ThirdQuarter.
+ [x] can be casted to string with a trick.
  [x] maps the new moon type to the NewMoon BuilderStrategy.
  [x] maps the first quarter type to the FirstQuarter BuilderStrategy.
  [x] maps the full moon type to the FullMoon BuilderStrategy.

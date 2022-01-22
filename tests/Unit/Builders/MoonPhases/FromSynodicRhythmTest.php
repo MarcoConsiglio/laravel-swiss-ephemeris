@@ -9,9 +9,8 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FirstQuarter
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FullMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\NewMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\ThirdQuarter;
-use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
+use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType as MoonPhase;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPhases;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissDateTime;
@@ -60,31 +59,24 @@ class FromSynodicRhythmTest extends TestCase
         $third_quarter_phase = $this->getMocked(MoonPhaseRecord::class);
         $this->setObjectProperties($new_moon_phase, [
             "timestamp" => new Carbon("2021-10-06 11:00:00"),
-            "type" => MoonPhaseType::NewMoon
+            "type" => MoonPhase::NewMoon
         ]);
         $this->setObjectProperties($first_quarter_phase, [
             "timestamp" => new Carbon("2021-10-13 03:00:00"),
-            "type" => MoonPhaseType::FirstQuarter
+            "type" => MoonPhase::FirstQuarter
         ]);
         $this->setObjectProperties($full_moon_phase, [
             "timestamp" => new Carbon("2021-10-20 15:00:00"),
-            "type" => MoonPhaseType::FullMoon
+            "type" => MoonPhase::FullMoon
         ]);
         $this->setObjectProperties($third_quarter_phase, [
             "timestamp" => new Carbon("2021-10-28 20:00:00"),
-            "type" => MoonPhaseType::ThirdQuarter
+            "type" => MoonPhase::ThirdQuarter
         ]);
-        // $builder = $this->getMocked(FromSynodicRhythm::class, ["buildRecords"],
-        //     original_constructor: true,
-        //     constructor_arguments: [$synodic_rhythm, [NewMoon::class, FirstQuarter::class, FullMoon::class, ThirdQuarter::class]]
-        // );
-        // $builder->expects($this->once())->method("buildRecords");
-        // $this->setObjectProperty($builder, "records", [$new_moon_phase, $first_quarter_phase, $full_moon_phase, $third_quarter_phase]);
         
         // Act
-        // /** @var \MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromSynodicRhythm $builder */
         /** @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm $synodic_rhythm */
-        $builder = new FromSynodicRhythm($synodic_rhythm, [NewMoon::class, FirstQuarter::class, FullMoon::class, ThirdQuarter::class]);
+        $builder = new FromSynodicRhythm($synodic_rhythm, [MoonPhase::NewMoon, MoonPhase::FirstQuarter, MoonPhase::FullMoon, MoonPhase::ThirdQuarter]);
         $this->assertInstanceOf(Builder::class, $builder, // Guard Assertion
             "The FromSynodicRhythm builder must implement the rhythm Builder interface.");
         $moon_phases = $builder->fetchCollection();
@@ -95,9 +87,9 @@ class FromSynodicRhythmTest extends TestCase
     }
 
     /**
-     * @testdox needs at least one MoonPhaseStrategy class.
+     * @testdox needs at least one MoonPhaseType.
      */
-    public function test_needs_at_least_one_strategy()
+    public function test_needs_at_least_one_moon_phase_type()
     {
         // Arrange
         $synodic_rhythm = $this->getMocked(SynodicRhythm::class);
@@ -112,9 +104,9 @@ class FromSynodicRhythmTest extends TestCase
     }
 
     /**
-     * @testdox needs only MoonPhaseStrategy classes.
+     * @testdox needs only MoonPhaseType.
      */
-    public function test_needs_only_strategies()
+    public function test_needs_only_moon_phase_type()
     {
         // Arrange
         $synodic_rhythm = $this->getMocked(SynodicRhythm::class);

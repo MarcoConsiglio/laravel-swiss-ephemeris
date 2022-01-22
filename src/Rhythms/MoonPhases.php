@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms;
 
 use Illuminate\Support\Collection;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 
 /**
  * A collection of MoonPhaseRecord(s) over a period of time.
