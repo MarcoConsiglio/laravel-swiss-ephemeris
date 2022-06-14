@@ -52,7 +52,8 @@ class SynodicRhythm extends Collection
     /**
      * Gets a collection of MoonPhases.
      *
-     * @param array $moon_phase_types
+     * @param array $moon_phase_types An array ofMoonPhaseType
+     * items representing which moon phases you want to extract.
      * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonPhases
      */
     public function getPhases(array $moon_phase_types): MoonPhases

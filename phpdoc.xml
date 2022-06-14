@@ -6,7 +6,7 @@
 >
     <title>phpDocumentor</title>
     <paths>
-        <output>docs/.build</output>
+        <output>docs/html</output>
     </paths>
     <version number="0.2.0-alpha">
         <api>
@@ -15,7 +15,7 @@
             </source>
             <visibility>public</visibility>
             <default-package-name>Laravel Swiss Ephemeris</default-package-name>
-            <include-source>false</include-source>
+            <include-source>true</include-source>
         </api>
     </version>
 </phpdocumentor>
