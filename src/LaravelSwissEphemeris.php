@@ -24,12 +24,12 @@ class LaravelSwissEphemeris extends SwissEphemeris
         parent::__construct();
         $this->setLatitude($latitute);
         $this->setLongitude($longitude);
-        $this->setTimezone($timezone); 
+        $this->setTimezone($timezone);
         $this->setLibPhat(__DIR__."/../lib/");
     }
 
     /**
-     * Get the Moon synodic rhythm starting from $start_date up until a specified number 
+     * Get the Moon synodic rhythm starting from $start_date up until a specified number
      * of $days. Each step is long $step_size minutes.
      *
      * @param \Carbon\Carbon $start_date
@@ -37,7 +37,7 @@ class LaravelSwissEphemeris extends SwissEphemeris
      * @param integer $step_size The duration in minutes of each step in the ephemeris.
      * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm
      */
-    public function getMoonSynodicRhythm(Carbon $start_date, int $days = 30, int $step_size = 60)
+    public function getMoonSynodicRhythm(Carbon $start_date, int $days = 30, int $step_size = 30)
     {
         $steps = $days * 24;
         $this->setDebugHeader(false);
@@ -62,7 +62,7 @@ class LaravelSwissEphemeris extends SwissEphemeris
         $output = $this->reMapColumns($output, [
             0 => "timestamp",
             1 => "angular_distance"
-        ]);      
+        ]);
         $builder = new FromArray($output);
         $builder->validateData();
         $builder->buildRecords();
@@ -88,7 +88,7 @@ class LaravelSwissEphemeris extends SwissEphemeris
      * @param int $steps
      * @return array|\Illuminate\Support\Collection
      */
-    protected function filterUnwantedRows(array|Collection $output, int $steps): array|Collection 
+    protected function filterUnwantedRows(array|Collection $output, int $steps): array|Collection
     {
         if (is_array($output)) {
             return array_filter($output, function ($key) use ($steps) {

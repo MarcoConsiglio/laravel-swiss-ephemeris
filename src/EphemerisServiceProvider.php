@@ -3,6 +3,7 @@
 namespace MarcoConsiglio\Ephemeris;
 
 use Illuminate\Support\ServiceProvider;
+use MarcoConsiglio\Ephemeris\Console\MoonCommand;
 
 class EphemerisServiceProvider extends ServiceProvider
 {
@@ -11,6 +12,10 @@ class EphemerisServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Registering commands.
+        if ($this->app->runningInConsole()) {
+            $this->commands([MoonCommand::class]);
+        }
         /*
          * Optional methods to load your package assets
          */
@@ -22,22 +27,22 @@ class EphemerisServiceProvider extends ServiceProvider
         // $this->publishes([
         //     __DIR__.'/../config/config.php' => config_path('ephemeris.php'),
         // ], 'config');
-        
+
         // Publishing the views.
         /*$this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/ephemeris'),
         ], 'views');*/
-        
+
         // Publishing assets.
         /*$this->publishes([
             __DIR__.'/../resources/assets' => public_path('vendor/ephemeris'),
         ], 'assets');*/
-        
+
         // Publishing the translation files.
         /*$this->publishes([
             __DIR__.'/../resources/lang' => resource_path('lang/vendor/ephemeris'),
         ], 'lang');*/
-        
+
         // if ($this->app->runningInConsole()) {
             // Registering package commands.
             // $this->commands([

@@ -34,9 +34,14 @@ When using the word *collection*, it is meant that the class extends the [Larave
 
 # Index
 ## Moon
+Ephemeris data relative to the Moon.
 - [Synodic rhythm](docs/md/SynodicRhythm.md)
 - [Moon periods](docs/md/MoonPeriods.md)
 - [Moon phases](docs/md/MoonPhases.md)
+
+## Artisan Console
+You can query the swetest executable with an artisan command shipped with this package.
+- [Moon commands](docs/md/Commands/MoonCommands.md)
 
 
 
