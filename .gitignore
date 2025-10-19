@@ -14,4 +14,3 @@ docs/build
 .vscode
 clover.xml
 *.dump
-docs/html
