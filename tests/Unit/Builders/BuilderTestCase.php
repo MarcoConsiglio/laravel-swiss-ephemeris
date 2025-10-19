@@ -1,11 +1,14 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders;
 
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithMockedSwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
 abstract class BuilderTestCase extends TestCase
 {
+    use WithMockedSwissEphemerisDateTime;
+    
     /**
      * Implemented in a concrete BuilderTestCase, returns the
      * concrete rhythm builder to test.

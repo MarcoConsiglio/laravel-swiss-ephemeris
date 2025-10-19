@@ -1,0 +1,2 @@
+providers:
+  - MarcoConsiglio\Ephemeris\SwissEphemerisServiceProvider

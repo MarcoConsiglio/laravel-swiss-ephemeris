@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="./vendor/autoload.php"
          colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="false">
+         cacheDirectory=".phpunit.cache"
+         executionOrder="depends,defects"
+         shortenArraysForExportThreshold="10"
+         requireCoverageMetadata="true"
+         beStrictAboutCoverageMetadata="false"
+         beStrictAboutOutputDuringTests="true"
+         displayDetailsOnPhpunitDeprecations="true"
+         failOnPhpunitDeprecation="true"
+         failOnRisky="true"
+         failOnWarning="true">
     <testsuites>
         <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+            <directory>tests/Feature</directory>
         </testsuite>
         <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+            <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
     </php>
     <logging>
-        <testdoxText outputFile="test_book.txt"/>
+        <testdoxText outputFile="testbook.txt"/>
+        <testdoxHtml outputFile="testbook.html"/>
     </logging>
-    <coverage
-        cacheDirectory="tests/cache"
-        includeUncoveredFiles="true"
-        processUncoveredFiles="true"
-        pathCoverage="true">
+
+    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
         <include>
-            <directory suffix=".php">src</directory>
+            <directory>src</directory>
         </include>
-        <report>
-            <html outputDirectory="tests/coverage_report" lowUpperBound="50" highLowerBound="90"/>
-            <clover outputFile="clover.xml"/>
-            <xml outputDirectory="tests/xml-coverage"/>
-        </report>
-    </coverage>
+    </source>
+        <coverage
+            includeUncoveredFiles="true"
+            pathCoverage="true">
+            <report>
+                <html outputDirectory="tests/coverage_report" lowUpperBound="50" highLowerBound="90"/>
+            </report>
+        </coverage>
 </phpunit>

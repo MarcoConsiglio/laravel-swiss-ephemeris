@@ -1,13 +1,13 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\Strategies;
 
-use Carbon\Carbon;
-use MarcoConsiglio\Ephemeris\Tests\TestCase;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\NewMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
-/**
- * @testdox The NewMoon strategy
- */
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+
+#[TestDox("The NewMoon strategy")]
+#[CoversClass(NewMoon::class)]
 class NewMoonTest extends StrategyTestCase
 {
     /**
@@ -21,9 +21,7 @@ class NewMoonTest extends StrategyTestCase
         parent::setUp();
     }
 
-    /**
-     * @testdox can find a SyndicRhythmRecord whose 'angular_distance' is about zero.
-     */
+    #[TestDox("can find a SyndicRhythmRecord whose 'angular_distance' is about zero.")]
     public function test_can_find_new_moon_if_angular_distance_is_about_zero()
     {
         // Arrange in setUp()

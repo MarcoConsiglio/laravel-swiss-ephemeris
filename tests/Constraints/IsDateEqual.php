@@ -4,6 +4,9 @@ namespace MarcoConsiglio\Ephemeris\Tests\Constraints;
 use Carbon\Carbon;
 use PHPUnit\Framework\Constraint\Constraint;
 
+/**
+ * This Constraint is used to assert that a date is equal to another.
+ */
 class IsDateEqual extends Constraint
 {
     protected int $year = 1;

@@ -3,8 +3,8 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\Strategies;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\SwissDateTime;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
@@ -39,9 +39,9 @@ class StrategyTestCase extends TestCase
     /**
      * A testing date.
      *
-     * @var \MarcoConsiglio\Ephemeris\SwissDateTime
+     * @var \MarcoConsiglio\Ephemeris\SwissEphemerisDateTime
      */
-    protected SwissDateTime $date;
+    protected SwissEphemerisDateTime $date;
 
     /**
      * A delta bias used for fuzzy conditions.
@@ -58,7 +58,7 @@ class StrategyTestCase extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->date = (new SwissDateTime)->minutes(0)->seconds(0);
+        $this->date = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
         $this->strategy_name = class_basename($this->tested_class);
         $this->delta = MoonPhaseStrategy::getDelta();
     }
@@ -66,75 +66,75 @@ class StrategyTestCase extends TestCase
     /**
      * Get a new moon record.
      *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
      */
-    protected function getNewMoonRecord(): SynodicRhythmRecord
+    protected function getNewMoonRecord(): MoonSynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(0));
+        return new MoonSynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(0));
     }
 
     /**
      * Get a first quarter record.
      *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
      */
-    protected function getFirstQuarterRecord(): SynodicRhythmRecord
+    protected function getFirstQuarterRecord(): MoonSynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(90));
+        return new MoonSynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(90));
     }
 
     /**
      * Get a full moon record.
      *
      * @param bool $positive Specify this if the record should be positive or negative.
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
      */
-    protected function getFullMoonRecord($positive = true): SynodicRhythmRecord
+    protected function getFullMoonRecord($positive = true): MoonSynodicRhythmRecord
     {
         if ($positive) {
-            return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(180));
+            return new MoonSynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(180));
         }
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(-180));
+        return new MoonSynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(-180));
     }
 
     /**
      * Get any record except for third quarter moon.
      *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
      */
-    protected function getThirdQuarterRecord(): SynodicRhythmRecord
+    protected function getThirdQuarterRecord(): MoonSynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(-90));
+        return new MoonSynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(-90));
     }
 
     /**
      * Get any record except for new moon.
      *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
      */
-    protected function getNonNewMoonRecord(): SynodicRhythmRecord
+    protected function getNonNewMoonRecord(): MoonSynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(0));
+        return new MoonSynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(0));
     }
 
     /**
      * Get any record except for first quarter.
      *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
      */
-    protected function getNonFirstQuarterRecord(): SynodicRhythmRecord
+    protected function getNonFirstQuarterRecord(): MoonSynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(90));
+        return new MoonSynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(90));
     }
 
     /**
      * Get any record except for full moon.
      *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
      */
-    protected function getNonFullMoonRecord(): SynodicRhythmRecord
+    protected function getNonFullMoonRecord(): MoonSynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->faker->randomElement([
+        return new MoonSynodicRhythmRecord($this->date->toGregorianUT(), fake()->randomElement([
             $this->getBiasedAngularDistanceExceptFor(-180),
             $this->getBiasedAngularDistanceExceptFor(+180)
         ]));
@@ -143,11 +143,11 @@ class StrategyTestCase extends TestCase
     /**
      * Get any record except for third quarter moon.
      *
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
      */
-    protected function getNonThirdQuarterRecord(): SynodicRhythmRecord
+    protected function getNonThirdQuarterRecord(): MoonSynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(-90));
+        return new MoonSynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(-90));
     }
 
     /**
@@ -159,7 +159,7 @@ class StrategyTestCase extends TestCase
     protected function getBiasedAngularDistance(float $angular_distance): float
     {
         [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
-        return $this->faker->randomFloat(1, $min, $max);
+        return fake()->randomFloat(1, $min, $max);
     }
 
     /**
@@ -173,14 +173,14 @@ class StrategyTestCase extends TestCase
         $error = 0.1;
         [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
         if ($max > 180) {
-            return $this->faker->randomFloat(1, -180 + abs($this->delta), $min - $error);
+            return fake()->randomFloat(1, -180 + abs($this->delta), $min - $error);
         }
         if ($min < -180) {
-            return $this->faker->randomFloat(1, $max + $error, 180 - abs($this->delta));
+            return fake()->randomFloat(1, $max + $error, 180 - abs($this->delta));
         }
-        return $this->faker->randomElement([
-            $this->faker->randomFloat(1, -180, $min - $error),
-            $this->faker->randomFloat(1, $max - 0.1, 180)
+        return fake()->randomElement([
+            fake()->randomFloat(1, -180, $min - $error),
+            fake()->randomFloat(1, $max - 0.1, 180)
         ]);
     }
 
@@ -193,7 +193,7 @@ class StrategyTestCase extends TestCase
      */
     protected function assertRecordFound($expected_record, $actual_record)
     {
-        $this->assertInstanceOf(SynodicRhythmRecord::class, $actual_record, "The {$this->strategy_name} strategy must find a SynodicRhythmRecord.");
+        $this->assertInstanceOf(MoonSynodicRhythmRecord::class, $actual_record, "The {$this->strategy_name} strategy must find a MoonSynodicRhythmRecord.");
         $this->assertObjectEquals($expected_record, $actual_record, "equals", "The {$this->strategy_name} strategy failed to find the correct record.");
     }
 
@@ -235,10 +235,10 @@ class StrategyTestCase extends TestCase
      * Constructs the strategy to test.
      *
      * @param string                                                $strategy
-     * @param \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord $record
+     * @param \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord $record
      * @return \MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy
      */
-    protected function makeStrategy(SynodicRhythmRecord $record): BuilderStrategy
+    protected function makeStrategy(MoonSynodicRhythmRecord $record): BuilderStrategy
     {
         $class = $this->tested_class;
         return new $class($record);

@@ -1,122 +1,232 @@
 <?php
 namespace MarcoConsiglio\Ephemeris;
-use App\SwissEphemeris\Repository\SwissEphemerisRepository;
-use App\SwissEphemeris\SwissEphemeris;
+
+use AdamBrett\ShellWrapper\Command;
+use AdamBrett\ShellWrapper\Command\Param;
+use AdamBrett\ShellWrapper\Runners\Exec;
+use AdamBrett\ShellWrapper\Runners\DryRunner;
+use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
-use Illuminate\Support\Collection;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromArray;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonSynodicRhythm\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
+use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
+use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
+use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
+use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
+use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
+use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
+use MarcoConsiglio\Ephemeris\Templates\MoonSynodicRhythmTemplate;
 
-class LaravelSwissEphemeris extends SwissEphemeris
+class LaravelSwissEphemeris
 {
+    /**
+     * The shell used to query the Swiss Ephemeris.
+     *
+     * @var \AdamBrett\ShellWrapper\Runners\Exec
+     */
+    protected Exec|DryRunner|FakeRunner $shell;
 
     /**
-     * Construct di ephemeris based on a location and timezone.
+     * The reference to the Swiss Ephemeris executable.
      *
-     * @param string $latitute in decimal format.
-     * @param string $longitude in decimal format.
-     * @param string $timezone
-     * @param float $altitude in meters.
+     * @var \AdamBrett\ShellWrapper\Command
      */
-    public function __construct(float $latitute, float $longitude, string $timezone, float $altitude = 0.0)
-    {
-        parent::__construct();
-        $this->setLatitude($latitute);
-        $this->setLongitude($longitude);
-        $this->setTimezone($timezone); 
-        $this->setLibPhat(__DIR__."/../lib/");
+    protected Command $command;
+
+    /**
+     * The name of the Swiss Ephemeris executable.
+     */
+    const SWISS_EPHEMERIS_EXECUTABLE = "swetest";
+
+    /**
+     * The resource folder where are placed Swiss Ephemeris resources.
+     */
+    const SWISS_EPHEMERIS_PATH = "swiss_ephemeris";
+
+    /**
+     * The latitude coordinate used to query the Swiss Ephemeris.
+     *
+     * @var float
+     */
+    protected float $latitude;
+
+    /**
+     * The longitude coordinate used to query the Swiss Ephemeris.
+     *
+     * @var float
+     */
+    protected float $longitude;
+
+    /**
+     * The timezone used to calculate the local time for The time zone used to convert local time to universal time, 
+     * to obtain a precise moment in which to consult the Swiss Ephemeris.
+     *
+     * @var string
+     */
+    protected string $timezone;
+
+    /**
+     * The altitude above sea level in meters of the observation point for which the ephemeris is queried.
+     *
+     * @var float
+     */
+    protected float $altitude;
+
+    /**
+     * Construct di ephemeris query based on a location and timezone.
+     *
+     * @param string $latitude in decimal format.
+     * @param string $longitude in decimal format.
+     * @param string $timezone like "Europe/London"
+     * @param float $altitude in meters.
+     * @param Exec|DryRunner|FakeRunner|null $shell The shell wrapper used to execute the command. 
+     * Use this only for testing purposes, not in production environment.
+     * @param ?Command $command The command to execute. 
+     * Use this only for testing purposes, not in production environment.
+     */
+    public function __construct(
+        float $latitude, 
+        float $longitude, 
+        string $timezone, 
+        float $altitude = 0.0, 
+        Exec|DryRunner|FakeRunner|null $shell = null, 
+        ?Command $command = null
+    ) {
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+        $this->timezone = $timezone; 
+        $this->altitude = $altitude;
+        $this->shell = $shell ?? new Exec();
+        $this->command = $command ?? new Command(
+            resource_path('swiss_ephemeris') . DIRECTORY_SEPARATOR . self::SWISS_EPHEMERIS_EXECUTABLE
+        );
     }
 
     /**
      * Get the Moon synodic rhythm starting from $start_date up until a specified number 
      * of $days. Each step is long $step_size minutes.
      *
-     * @param \Carbon\Carbon $start_date
-     * @param integer $days
-     * @param integer $step_size The duration in minutes of each step in the ephemeris.
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm
+     * @param \Carbon\CarbonInterface $start_date The starting date of the response.
+     * @param integer $days The number of days included in the response.
+     * @param integer $step_size Duration in minutes of each step of the response.
+     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm
+     * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
      */
-    public function getMoonSynodicRhythm(Carbon $start_date, int $days = 30, int $step_size = 60)
+    public function getMoonSynodicRhythm(CarbonInterface $start_date, int $days = 30, int $step_size = 60)
     {
-        $steps = $days * 24;
-        $this->setDebugHeader(false);
-        $this->query($parameters = [
-            // Moon
-            "p" => "1",
-            // Sun
-            "d" => "0",
-            // Starting from
-            "b" => $start_date->format("d.m.Y"),
-            "t" => $start_date->format("H:i:s"),
-            // No. steps
-            "n" => $steps,
-            // Each step during 1 hour
-            "s" => $step_size. "m",
-            "f" => "Tl"
-        ]);
-        $this->execute();
-        /** @var array */
-        $output = $this->getOutput();
-        $output = $this->filterUnwantedRows($output, $steps);
-        $output = $this->reMapColumns($output, [
-            0 => "timestamp",
-            1 => "angular_distance"
-        ]);      
-        $builder = new FromArray($output);
-        $builder->validateData();
-        $builder->buildRecords();
-        return new SynodicRhythm($builder->fetchCollection());
+        $query = new MoonSynodicRhythmTemplate($start_date, $days, $step_size, $this->shell, $this->command);
+        return $query->getResult();
+        // // $this->setDebugHeader(false);
+        // foreach ($this->prepareFlagsForMoonSynodicRhythm($start_date, $days, $step_size) as $flag) {
+        //     $this->command->addFlag($flag);
+        // }
+        // // We don't want the header while parsing the response.
+        // $this->command->addArgument($this->noHeaderPlease());
+
+        // // Run the command.
+        // $this->shell->run($this->command);
+        // $output = $this->shell->getOutput();
+
+        // // Check for errors within the output.
+        // $this->checkErrors($output);
+
+        // // Parse the output.
+        // foreach ($output as $index => $row) {
+        //     $datetime = '';
+        //     $decimal_number = 0.0;
+        //     preg_match(RegExPattern::UniversalAndTerrestrialDateTime->value, $row, $datetime);
+        //     preg_match(RegExPattern::RelativeDecimalNumber->value, $row, $decimal_number);
+        //     $output[$index] = [$datetime[0], $decimal_number[0]];
+        // }
+
+        // // Add labels to parsed values so the builder accesses the correct value.
+        // $output = $this->reMapColumns($output, [
+        //     0 => "timestamp",
+        //     1 => "angular_distance"
+        // ]);
+
+        // // Build the rhythm.
+        // return new MoonSynodicRhythm(new FromArray($output)->fetchCollection());
     }
 
-    // protected function getHeader(CarbonInterface $date)
+    // /**
+    //  * Prepare the flags used to request the synodic rhythm of the moon.
+    //  *
+    //  * @param CarbonInterface $start_date
+    //  * @param integer $days
+    //  * @param integer $step_size
+    //  * @return array{SwissEphemerisFlag}
+    //  */
+    // protected function prepareFlagsForMoonSynodicRhythm(
+    //     CarbonInterface $start_date, 
+    //     int $days = 30, 
+    //     int $step_size = 60
+    // ): array
     // {
-    //     $this->setDebugHeader(true);
-    //     $output = $this->query([
-    //         "b" => $date->toGregorianDate(),
-    //         "ut" => $date->toTimeString(),
-    //         "f" => "",
-    //         "p" => ""
-    //     ])->execute()->getOutput();
-    //     return $output;
+    //     $start_date = new SwissEphemerisDateTime($start_date);
+    //     $steps = $days * 24;
+    //     // Warning! Changing the response format will cause errors in getMoonSynodicRhythm() method.
+    //     $response_format = OutputFormat::GregorianDateFormat->value.OutputFormat::LongitudeDecimal->value;
+    //     return [
+    //         new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value),
+    //         new SwissEphemerisFlag(CommandFlag::DifferentialObjectSelection->value, SinglePlanet::Sun->value),
+    //         new SwissEphemerisFlag(CommandFlag::BeginDate->value, $start_date->toGregorianDate()),
+    //         new SwissEphemerisFlag(CommandFlag::InputTerrestrialTime->value, $start_date->toTimeString()),
+    //         new SwissEphemerisFlag(CommandFlag::StepsNumber->value, $steps),
+    //         new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $step_size.TimeSteps::MinuteSteps->value),
+    //         new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $response_format)
+    //     ];
     // }
 
-    /**
-     * Filter unwanted rows.
-     *
-     * @param array|\Illuminate\Support\Collection $output
-     * @param int $steps
-     * @return array|\Illuminate\Support\Collection
-     */
-    protected function filterUnwantedRows(array|Collection $output, int $steps): array|Collection 
-    {
-        if (is_array($output)) {
-            return array_filter($output, function ($key) use ($steps) {
-                return $key < $steps;
-            }, ARRAY_FILTER_USE_KEY);
-        }
-        if ($output instanceof Collection) {
-           return $output->take($steps);
-        }
-    }
+    // /**
+    //  * Change columns in a readable format
+    //  *
+    //  * @param array<string> $output
+    //  * @param array<int,string> $columns Columns with their based zero position as key and their name as value.
+    //  * @return array
+    //  */
+    // protected function reMapColumns(array $output, array $columns)
+    // {
+    //     return collect($output)->map(function ($record) use ($columns) {
+    //         foreach ($columns as $column_position => $column_name) {
+    //             $transformed_record[$column_name] = $record[$column_position];
+    //         }
+    //         return $transformed_record;
+    //     })->all();
+    // }
 
-    /**
-     * Change columns in a readable format
-     *
-     * @param array $output
-     * @param array $columns Columns with number as key and name as value.
-     * @return array
-     */
-    protected function reMapColumns(array $output, array $columns)
-    {
-        return collect($output)->transform(function ($record) use ($columns) {
-            foreach ($columns as $number => $column) {
-                if ($column) {
-                    $record[$column] = $record[$number];
-                }
-                unset($record[$number]);
-            }
-            return $record;
-        })->all();
-    }
+    // /**
+    //  * Prepare the argument to remove the header of the response.
+    //  *
+    //  * @return SwissEphemerisArgument
+    //  */
+    // protected function noHeaderPlease(): SwissEphemerisArgument
+    // {
+    //     return new SwissEphemerisArgument(CommandFlag::NoHeader->value);
+    // }
+
+    // /**
+    //  * Search for errors in the swetest executable output.
+    //  *
+    //  * @param array $output
+    //  * @return void
+    //  * @throws SwissEphemerisError if at least one error found.
+    //  */
+    // protected function checkErrors(array &$output)
+    // {
+    //     $error_match = '';
+    //     $errors_list = [];
+    //     foreach ($output as $row) {
+    //         if (preg_match(RegExPattern::SwetestError->value, $output[0], $error_match) == 1) {
+    //             array_push($errors_list, $error_match[1]);
+    //         }
+    //     }
+    //     if (!empty($errors_list)) {
+    //         throw new SwissEphemerisError($errors_list);
+    //     }
+    // }
 }

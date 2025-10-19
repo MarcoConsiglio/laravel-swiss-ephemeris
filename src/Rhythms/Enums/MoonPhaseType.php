@@ -34,14 +34,14 @@ enum MoonPhaseType
 
     /**
      * Gets the corresponding type associated to a MoonPhaseStrategy concrete class.
-     * Every MoonPhaseStrategy must have the same name of the corresponding MoonPhaseType value.
+     * Every MoonPhaseStrategy must have the same name of the corresponding MoonPhaseType constant.
      *
      * @param string $strategy_class
      * @return \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType
      */
     public static function getCorrespondingType(string $strategy_class): ?MoonPhaseType
     {
-        if (class_exists($strategy_class) && get_parent_class($strategy_class) == MoonPhaseStrategy::class) {
+        if (get_parent_class($strategy_class) == MoonPhaseStrategy::class) {
             $value = class_basename($strategy_class);
             switch ($value) {
                 case "NewMoon":
@@ -55,6 +55,9 @@ enum MoonPhaseType
                     break;
                 case "ThirdQuarter":
                     return self::ThirdQuarter;
+                    break;
+                default:
+                    return null;
                     break;
             }
         }
@@ -72,19 +75,17 @@ enum MoonPhaseType
         switch ($type) {
             case MoonPhaseType::NewMoon:
                 return NewMoon::class;
-                break;
+                break; // @codeCoverageIgnore
             case MoonPhaseType::FirstQuarter:
                 return FirstQuarter::class;
-                break;
+                break; // @codeCoverageIgnore
             case MoonPhaseType::FullMoon:
                 return FullMoon::class;
-                break;
+                break; // @codeCoverageIgnore
             case MoonPhaseType::ThirdQuarter:
                 return ThirdQuarter::class;
-                break;
-            default:
-                return null;
-                break;
+                break; // @codeCoverageIgnore
         }
+        return null; // @codeCoverageIgnore
     }
 }

@@ -16,14 +16,14 @@ class MoonPhaseRecord
      *
      * @var \Carbon\Carbon
      */
-    protected Carbon $timestamp;
+    public protected(set) Carbon $timestamp;
 
     /**
      * The type of this moon phase.
      *
      * @var \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType
      */
-    protected MoonPhaseType $type;
+    public protected(set) MoonPhaseType $type;
 
     /**
      * Constructs a MoonPhaseRecord with a moon phase type and a timestamp.
@@ -35,18 +35,5 @@ class MoonPhaseRecord
     {
         $this->timestamp = $timestamp;
         $this->type = $type;
-    }
-
-    /**
-     * Getters.
-     *
-     * @param string $property
-     * @return mixed
-     */
-    public function __get(string $property)
-    {
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
     }
 }

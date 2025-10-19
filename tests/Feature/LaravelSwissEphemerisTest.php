@@ -2,23 +2,19 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
-use App\SwissEphemeris\SwissEphemerisException;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\SwissDateTime;
-use ReflectionClass;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
+use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 
-/**
- * @testdox The Laravel Swiss Ephemeris
- */
+#[TestDox("The Laravel Swiss Ephemeris")]
+#[CoversClass(LaravelSwissEphemeris::class)]
 class LaravelSwissEphemerisTest extends TestCase
 {
-    /**
-     * @testdox can show Synodic Rhythm.
-     */
+    #[TestDox("can show the Moon Synodic Rhythm.")]
     public function test_synodic_rhythm()
     {
         // Arrange in setUp()
@@ -27,41 +23,20 @@ class LaravelSwissEphemerisTest extends TestCase
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon, 1);
 
         // Assert
-        $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm, 
+        $this->assertInstanceOf(MoonSynodicRhythm::class, $synodic_rhythm, 
             "The synodic_rhythm should be a Collection instance, but ".gettype($synodic_rhythm)." found.");
-        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm, 
-            "A SynodicRhythm must contains only SynodicRhythmRecord(s).");
+        $this->assertContainsOnlyInstancesOf(MoonSynodicRhythmRecord::class, $synodic_rhythm, 
+            "A MoonSynodicRhythm must contains only MoonSynodicRhythmRecord(s).");
     }
 
-    /**
-     * @testdox can obtain the Swiss Ephemeris header.
-     */
-    // public function test_every_header()
-    // {
-    //     // Arrange
-    //     $ephemeris_class = new ReflectionClass($this->ephemeris);
-    //     $get_header_method = $ephemeris_class->getMethod("getHeader");
-    //     $get_header_method->setAccessible(true);
-    //     $date = (new SwissDateTime)->roundDays();
-        
-    //     // Act
-    //     $header = $get_header_method->invokeArgs($this->ephemeris, [$date]);
+    #[TestDox("throw Exception if the query is outbound the available time range.")]
+    public function test_outbound_time_range_throw_exception()
+    {
+        // Arrange in setUp()
+        // Assert
+        $this->expectException(SwissEphemerisError::class);
 
-    //     // Assert
-    //     $this->assertIsArray($header);
-    //     $this->assertCount(7, $header, "The header should be 7 rows. Is it changed?");
-    // }
-
-    // /**
-    //  * @testdox throws the SwissEphemerisException if something went wrong.
-    //  */
-    // public function test_synodic_rhythm_error()
-    // {
-    //     // Arrange
-
-    //     // Act & Assert
-    //     $this->expectException(SwissEphemerisException::class);
-    //     $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("1801-01-01"));
-    // }
-
+        // Act
+        $this->ephemeris->getMoonSynodicRhythm(new Carbon("-6000-01-01"));
+    }
 }

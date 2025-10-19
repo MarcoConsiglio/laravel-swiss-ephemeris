@@ -2,15 +2,19 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Faker\Factory;
+use Faker\Generator;
 use InvalidArgumentException;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithMockedSwissEphemerisDateTime;
+use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
-use PHPUnit\Framework\TestCase as FrameworkTestCase;
 use ReflectionClass;
-use Faker\Generator;
 
-abstract class TestCase extends FrameworkTestCase
+abstract class TestCase extends TestbenchTestCase
 {
+    use WithMockedSwissEphemerisDateTime, WithCustomAssertions;
+
     /**
      * The faker instance.
      *
@@ -49,8 +53,10 @@ abstract class TestCase extends FrameworkTestCase
             throw new InvalidArgumentException("The class $class does not exist.");
         }
         $builder = $this->getMockBuilder($class)
-                        ->onlyMethods($mocked_methods)
                         ->disableOriginalConstructor();
+        if (!empty($mocked_methods)) {
+            $builder->onlyMethods($mocked_methods);
+        }
         if ($original_constructor) {
             $builder->enableOriginalConstructor()
                     ->setConstructorArgs($constructor_arguments);
@@ -85,15 +91,5 @@ abstract class TestCase extends FrameworkTestCase
         foreach ($properties as $property => $value) {
             $this->setObjectProperty($object, $property, $value);
         }
-    }
-
-    /**
-     * Alias for any method.
-     *
-     * @return \PHPUnit\Framework\MockObject\Rule\AnyInvokedCount
-     */
-    public function anyTime(): AnyInvokedCount
-    {
-        return $this->any();
     }
 }

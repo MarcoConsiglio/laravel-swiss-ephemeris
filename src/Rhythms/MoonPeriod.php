@@ -18,21 +18,21 @@ class MoonPeriod
      *
      * @var \Carbon\Carbon
      */
-    protected Carbon $start;
+    public protected(set) Carbon $start;
 
     /**
      * End timestamp of this period.
      *
      * @var \Carbon\Carbon
      */
-    protected Carbon $end;
+    public protected(set) Carbon $end;
 
     /**
      * The type of this period (waning or waxing).
      *
      * @var \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType
      */
-    protected MoonPeriodType $type;
+    public protected(set) MoonPeriodType $type;
 
     /**
      * Constructs a MoonPeriod.
@@ -68,18 +68,4 @@ class MoonPeriod
     {
         return $this->type == MoonPeriodType::Waning;
     }
-
-    /**
-     * Getters.
-     *
-     * @param string $property
-     * @return void
-     */
-    public function __get(string $property)
-    {
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
-    }
-
 }

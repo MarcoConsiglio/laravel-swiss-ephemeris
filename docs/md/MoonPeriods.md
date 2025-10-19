@@ -1,9 +1,9 @@
 # MoonPeriods
 A Moon period is the period when the angular distance between the Moon and the Sun (with the vertex being the Earth) is positive or negative. When it is negative it is called a **Waning Moon** period (from *Full Moon* to *New Moon*), when it is positive it is called a **Waxing Moon** period (from *New Moon* to *Full Moon*).
 
-You can obtain a `MoonPeriods` collection from a `SynodicRhythm` object. It contains [`MoonPeriod`](#moonperiod) instances.
+You can obtain a `MoonPeriods` collection from a `MoonSynodicRhythm` object. It contains [`MoonPeriod`](#moonperiod) instances.
 ```php
-/** @var \MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm $synodic_rhythm */
+/** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm $synodic_rhythm */
 /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods $moon_periods */
 $moon_periods = $synodic_rhythm->getPeriods();
 ```

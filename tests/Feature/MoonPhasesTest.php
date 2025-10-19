@@ -1,23 +1,28 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Feature;
 
-use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhases;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @testdox A MoonPhases collection
- */
+#[TestDox("A MoonPhases collection")]
+#[CoversClass(MoonPhases::class)]
 class MoonPhasesTest extends TestCase
 {
-    /**
-     * @testdox contains MoonPhaseRecord(s).
-     */
+    #[TestDox("is a Collection containing MoonPhaseRecord(s).")]
     public function test_moon_phases()
     {
         // Arrange
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("2022-01-02"), 24);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new SwissEphemerisDateTime("now"), 24);
+        $rhythm_class = MoonSynodicRhythm::class;
+        $laravel_collection_class = Collection::class;
+        $collection_class = MoonPhases::class;
+        $collection_record_class = MoonPhaseRecord::class;
 
         // Act
         $moon_phases = $synodic_rhythm->getPhases([
@@ -28,9 +33,12 @@ class MoonPhasesTest extends TestCase
         ]);
 
         // Assert
-        $this->assertInstanceOf(MoonPhases::class, $moon_phases, 
-            "The SynodicRhythm::getPhases method must return a MoonPhases collection.");
-        $this->assertContainsOnlyInstancesOf(MoonPhaseRecord::class, $moon_phases, 
-            "The MoonPhases collection must contains only MoonPhaseRecord(s).");
+        $this->assertInstanceOf($laravel_collection_class, $moon_phases, 
+            "The $collection_class class must extend $laravel_collection_class."
+        );
+        $this->assertInstanceOf($collection_class, $moon_phases, 
+            "The $rhythm_class::getPhases() method must return a $collection_class collection instance.");
+        $this->assertContainsOnlyInstancesOf($collection_record_class, $moon_phases, 
+            "The $collection_class collection class must contains only $collection_record_class instances.");
     }
 }

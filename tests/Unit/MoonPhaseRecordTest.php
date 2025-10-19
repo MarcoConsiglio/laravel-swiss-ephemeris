@@ -1,27 +1,25 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
-use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 
-/**
- * @testdox A MoonPhaseRecord
- */
+#[TestDox("A MoonPhaseRecord")]
+#[CoversClass(MoonPhaseRecord::class)]
 class MoonPhaseRecordTest extends TestCase
 {
     use WithCustomAssertions;
 
-    /**
-     * @testdox has read-only properties 'type' and 'timestamp'.
-     */
+    #[TestDox("has read-only properties 'type' and 'timestamp'.")]
     public function test_getters()
     {
         // Arrange
-        $moon_phase_type = $this->faker->randomElement(MoonPhaseType::cases());
-        $timestamp = (new Carbon)->minutes(0)->seconds(0);
+        $moon_phase_type = fake()->randomElement(MoonPhaseType::cases());
+        $timestamp = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
         $moon_phase_record = new MoonPhaseRecord($timestamp, $moon_phase_type);
 
         // Act
@@ -30,7 +28,6 @@ class MoonPhaseRecordTest extends TestCase
 
         // Assert
         $this->assertProperty("type", $moon_phase_type, MoonPhaseType::class, $actual_moon_phase_type);
-        $this->assertProperty("timestamp", $timestamp, Carbon::class, $actual_timestamp);
-        $this->assertNull($moon_phase_record->sghidibudi, "What da fuck? A non existing property should be null.");
+        $this->assertProperty("timestamp", $timestamp, SwissEphemerisDateTime::class, $actual_timestamp);
     }
 }

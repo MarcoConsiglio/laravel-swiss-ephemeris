@@ -1,8 +1,8 @@
 # MoonPhases
-In the synodic rhythm, the Moon goes through four phases, repeatedly: *New Moon*, *First Quarter*, *Full Moon*, *Third Quarter*.
+In the Moon synodic rhythm, the Moon goes through four phases, repeatedly: *New Moon*, *First Quarter*, *Full Moon*, *Third Quarter*.
 The `MoonPhases` collection contains [`MoonPhaseRecord`](#moonphaserecord) objects.
 
-You can obtain the `MoonPhases` collection from a [`SynodicRhythm`](#synodicrhythm), specifing which [`MoonPhaseType`(s)](#moonphasetype) you are interested in.
+You can obtain the `MoonPhases` collection from a [`MoonSynodicRhythm`](#moonsynodicrhythm), specifing which [`MoonPhaseType`(s)](#moonphasetype) you are interested in.
 ```php
 /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods $moon_phases */
 $moon_phases = $synodic_rhythm->getPhases([

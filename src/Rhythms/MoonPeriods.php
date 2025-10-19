@@ -5,7 +5,7 @@ use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 
 /**
- * A collection of lunar periods of the Moon synodic Rhythm.
+ * A collection of lunar periods of the Moon synodic rhythm.
  */
 class MoonPeriods extends Collection
 {

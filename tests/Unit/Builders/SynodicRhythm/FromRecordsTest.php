@@ -1,20 +1,20 @@
 <?php
 
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\SynodicRhythm;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonSynodicRhythm;
 
-use Carbon\Carbon;
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\SynodicRhythm\FromRecords;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\SwissDateTime;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonSynodicRhythm\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use PHPUnit\Framework\Attributes\TestDox;
 
-/**
- * @testdox The SynodicRhythm/FromRecords builder
- */
+#[TestDox("The MoonSynodicRhythm/FromRecords builder")]
+#[CoversClass(FromRecords::class)]
 class FromRecordsTest extends TestCase
 {
     /**
@@ -37,7 +37,7 @@ class FromRecordsTest extends TestCase
     protected function setUp(): void
     {
         $this->faker = \Faker\Factory::create();
-        $t1 = (new SwissDateTime())->minutes(0)->seconds(0);
+        $t1 = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
         $t2 = $t1->copy()->addHour();
         $this->data = [
             0 => [
@@ -51,15 +51,13 @@ class FromRecordsTest extends TestCase
         ];
     }
 
-    /**
-     * @testdox can build a SynodicRhythm starting from SynodicRhythmRecord(s).
-     */
+    #[TestDox("can build a MoonSynodicRhythm starting from MoonSynodicRhythmRecord(s).")]
     public function test_build_synodic_rhythm_from_records()
     {
         // Arrange in setUp()
         $records = [];
         foreach ($this->data as $index => $item) {
-            $records[] = new SynodicRhythmRecord($item["timestamp"], $item["angular_distance"]);
+            $records[] = new MoonSynodicRhythmRecord($item["timestamp"], $item["angular_distance"]);
         }
         
         // Act
@@ -68,18 +66,16 @@ class FromRecordsTest extends TestCase
         $builder->buildRecords();
 
         // Assert
-        $this->assertInstanceOf(Builder::class, $builder, "The FromRecords builder must realize the SynodicRhythmBuilder interface.");
-        $this->assertInstanceOf(SynodicRhythm::class, $collection = $builder->fetchCollection(), "A SynodicRhythmBuilder must produce a SynodicRhythm.");       
-        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $collection, "The SynodicRhythm must consists of SynodicRhythmRecord(s)."); 
+        $this->assertInstanceOf(Builder::class, $builder, "The FromRecords builder must realize the MoonSynodicRhythmBuilder interface.");
+        $this->assertInstanceOf(MoonSynodicRhythm::class, $collection = $builder->fetchCollection(), "A MoonSynodicRhythmBuilder must produce a MoonSynodicRhythm.");       
+        $this->assertContainsOnlyInstancesOf(MoonSynodicRhythmRecord::class, $collection, "The MoonSynodicRhythm must consists of MoonSynodicRhythmRecord(s)."); 
     }
 
-    /**
-     * @testdox cannot build a SynodicRhythm without an array.
-     */
+    #[TestDox("cannot build a MoonSynodicRhythm without an array.")]
     public function test_from_records_builder_wants_array_data()
     {
         // Arrange
-        $data = new SynodicRhythmRecord($this->data[0]["timestamp"], 90);
+        $data = new MoonSynodicRhythmRecord($this->data[0]["timestamp"], 90);
 
         // Act & Assert
         $builder = new FromRecords($data);
@@ -87,9 +83,7 @@ class FromRecordsTest extends TestCase
         $builder->validateData();
     }
 
-    /**
-     * @testdox cannot build a SynodicRhythm without SynodicRhythmRecord(s).
-     */
+    #[TestDox("cannot build a MoonSynodicRhythm without MoonSynodicRhythmRecord(s).")]
     public function test_from_records_builder_wants_synodic_rhythm_records()
     {
         // Arrange

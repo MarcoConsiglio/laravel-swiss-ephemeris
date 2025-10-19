@@ -1,15 +1,13 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\Strategies;
 
-use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\ThirdQuarter;
-use MarcoConsiglio\Ephemeris\Rhythms\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 
-/**
- * @testdox The ThirdQuarter strategy
- */
+#[TestDox("The ThirdQuarter strategy")]
+#[CoversClass(ThirdQuarter::class)]
 class ThirdQuarterTest extends StrategyTestCase
 {
     /**
@@ -23,9 +21,7 @@ class ThirdQuarterTest extends StrategyTestCase
         parent::setUp();
     }
 
-    /**
-     * @testdox can find a SynodicRhythmRecord whose 'angular_distance' is about -90°.
-     */
+    #[TestDox("can find a MoonSynodicRhythmRecord whose 'angular_distance' is about -90°.")]
     public function test_can_find_third_quarter_if_angular_distance_is_about_minus_90()
     {
         // Arrange

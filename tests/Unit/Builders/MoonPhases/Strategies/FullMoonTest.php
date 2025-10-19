@@ -1,13 +1,13 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\Strategies;
 
-use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\FullMoon;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 
-/**
- * @testdox A FullMoon strategy
- */
+#[TestDox("A FullMoon strategy")]
+#[CoversClass(FullMoon::class)]
 class FullMoonTest extends StrategyTestCase
 {
     /**
@@ -21,9 +21,7 @@ class FullMoonTest extends StrategyTestCase
         parent::setUp();
     }
 
-    /**
-     * @testdox can find a SynodicRhythmRecord whose 'angular_distance' is about -/+180°.
-     */
+    #[TestDox("can find a MoonSynodicRhythmRecord whose 'angular_distance' is about -/+180°.")]
     public function test_can_find_full_moon_if_angular_distance_is_minus_or_plus_180()
     {
         // Arrange in setUp()
