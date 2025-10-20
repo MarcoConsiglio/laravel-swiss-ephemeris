@@ -62,12 +62,7 @@ class MoonSynodicRhythmTest extends TestCase
 
         // Act
         $moon_synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new SwissEphemerisDateTime("now"));
-        $moon_phases = $moon_synodic_rhythm->getPhases([
-            MoonPhaseType::NewMoon,
-            MoonPhaseType::FirstQuarter,
-            MoonPhaseType::FullMoon,
-            MoonPhaseType::ThirdQuarter
-        ]);
+        $moon_phases = $moon_synodic_rhythm->getPhases(MoonPhaseType::cases());
 
         // Assert
         $actual_class = $moon_phases::class;

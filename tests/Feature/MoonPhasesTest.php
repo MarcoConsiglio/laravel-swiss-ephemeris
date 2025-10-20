@@ -25,12 +25,7 @@ class MoonPhasesTest extends TestCase
         $collection_record_class = MoonPhaseRecord::class;
 
         // Act
-        $moon_phases = $synodic_rhythm->getPhases([
-            MoonPhaseType::NewMoon,
-            MoonPhaseType::FirstQuarter,
-            MoonPhaseType::FullMoon,
-            MoonPhaseType::ThirdQuarter
-        ]);
+        $moon_phases = $synodic_rhythm->getPhases(MoonPhaseType::cases());
 
         // Assert
         $this->assertInstanceOf($laravel_collection_class, $moon_phases, 
