@@ -7,14 +7,17 @@ use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\MoonSynodicRhythmTemplate;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 
 #[CoversClass(MoonSynodicRhythmTemplate::class)]
 #[UsesClass(Command::class)]
 #[UsesClass(MoonSynodicRhythm::class)]
+#[TestDox("The MoonSynodicRhythmTemplate")]
 class MoonSynodicRhythmTemplateTest extends TestCase
 {
+    #[TestDox("is the template used to build a MoonSynodicRhythm.")]
     public function test_query_template()
     {
         // Arrange
