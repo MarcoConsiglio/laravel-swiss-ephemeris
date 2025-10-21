@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Dummy;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\MoonPhaseStrategy;
 
 /**
  * A class Stub used in MoonPhaseTest.

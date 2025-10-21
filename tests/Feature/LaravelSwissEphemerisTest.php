@@ -9,6 +9,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 
 #[TestDox("The Laravel Swiss Ephemeris")]
 #[CoversClass(LaravelSwissEphemeris::class)]
@@ -23,9 +25,9 @@ class LaravelSwissEphemerisTest extends TestCase
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon, 1);
 
         // Assert
-        $this->assertInstanceOf(MoonSynodicRhythm::class, $synodic_rhythm, 
+        $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm, 
             "The synodic_rhythm should be a Collection instance, but ".gettype($synodic_rhythm)." found.");
-        $this->assertContainsOnlyInstancesOf(MoonSynodicRhythmRecord::class, $synodic_rhythm, 
+        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm, 
             "A MoonSynodicRhythm must contains only MoonSynodicRhythmRecord(s).");
     }
 

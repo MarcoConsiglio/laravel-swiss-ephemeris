@@ -3,15 +3,16 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonSynodicRhythm;
 
 use InvalidArgumentException;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonSynodicRhythm\FromRecords;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use TypeError;
 
 #[TestDox("The MoonSynodicRhythm/FromRecords builder")]
 #[CoversClass(FromRecords::class)]
@@ -57,29 +58,28 @@ class FromRecordsTest extends TestCase
         // Arrange in setUp()
         $records = [];
         foreach ($this->data as $index => $item) {
-            $records[] = new MoonSynodicRhythmRecord($item["timestamp"], $item["angular_distance"]);
+            $records[] = new SynodicRhythmRecord($item["timestamp"], $item["angular_distance"]);
         }
         
         // Act
         $builder = new FromRecords($records);
-        $builder->validateData();
         $builder->buildRecords();
 
         // Assert
         $this->assertInstanceOf(Builder::class, $builder, "The FromRecords builder must realize the MoonSynodicRhythmBuilder interface.");
-        $this->assertInstanceOf(MoonSynodicRhythm::class, $collection = $builder->fetchCollection(), "A MoonSynodicRhythmBuilder must produce a MoonSynodicRhythm.");       
-        $this->assertContainsOnlyInstancesOf(MoonSynodicRhythmRecord::class, $collection, "The MoonSynodicRhythm must consists of MoonSynodicRhythmRecord(s)."); 
+        $this->assertInstanceOf(SynodicRhythm::class, $collection = $builder->fetchCollection(), "A MoonSynodicRhythmBuilder must produce a MoonSynodicRhythm.");       
+        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $collection, "The MoonSynodicRhythm must consists of MoonSynodicRhythmRecord(s)."); 
     }
 
     #[TestDox("cannot build a MoonSynodicRhythm without an array.")]
     public function test_from_records_builder_wants_array_data()
     {
         // Arrange
-        $data = new MoonSynodicRhythmRecord($this->data[0]["timestamp"], 90);
+        $data = new SynodicRhythmRecord($this->data[0]["timestamp"], 90);
 
         // Act & Assert
+        $this->expectException(TypeError::class);
         $builder = new FromRecords($data);
-        $this->expectException(InvalidArgumentException::class);
         $builder->validateData();
     }
 
@@ -90,8 +90,7 @@ class FromRecordsTest extends TestCase
         $data = [new stdClass, new stdClass];
 
         // Act & Assert
-        $builder = new FromRecords($data);
         $this->expectException(InvalidArgumentException::class);
-        $builder->validateData();
+        $builder = new FromRecords($data);
     }
 }

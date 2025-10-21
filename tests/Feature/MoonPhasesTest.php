@@ -2,16 +2,16 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Feature;
 
 use Illuminate\Support\Collection;
-use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPhases;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
+use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[TestDox("A MoonPhases collection")]
-#[CoversClass(MoonPhases::class)]
+#[CoversClass(Phases::class)]
 class MoonPhasesTest extends TestCase
 {
     #[TestDox("is a Collection containing MoonPhaseRecord(s).")]
@@ -19,13 +19,13 @@ class MoonPhasesTest extends TestCase
     {
         // Arrange
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new SwissEphemerisDateTime("now"), 24);
-        $rhythm_class = MoonSynodicRhythm::class;
+        $rhythm_class = SynodicRhythm::class;
         $laravel_collection_class = Collection::class;
-        $collection_class = MoonPhases::class;
-        $collection_record_class = MoonPhaseRecord::class;
+        $collection_class = Phases::class;
+        $collection_record_class = PhaseRecord::class;
 
         // Act
-        $moon_phases = $synodic_rhythm->getPhases(MoonPhaseType::cases());
+        $moon_phases = $synodic_rhythm->getPhases(Phase::cases());
 
         // Assert
         $this->assertInstanceOf($laravel_collection_class, $moon_phases, 

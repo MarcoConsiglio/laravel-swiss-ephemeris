@@ -2,7 +2,9 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
+use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Period;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
@@ -10,7 +12,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("A MoonPeriod")]
-#[CoversClass(MoonPeriod::class)]
+#[CoversClass(Period::class)]
 class MoonPeriodTest extends TestCase
 {
     use WithCustomAssertions;
@@ -21,7 +23,7 @@ class MoonPeriodTest extends TestCase
         // Arrange
         $start = new SwissEphemerisDateTime("2021-06-10 13:00:00");
         $end = new SwissEphemerisDateTime("2021-06-24 21:00:00");
-        $moon_period = new MoonPeriod($start, $end, MoonPeriodType::Waxing);
+        $moon_period = new Period($start, $end, PeriodType::Waxing);
 
         // Act
         $actual_start = $moon_period->start;
@@ -39,7 +41,7 @@ class MoonPeriodTest extends TestCase
         // That's a waxing moon period.
         $start = new SwissEphemerisDateTime("2021-06-10 13:00:00");
         $end = new SwissEphemerisDateTime("2021-06-24 21:00:00");
-        $moon_period = new MoonPeriod($start, $end, MoonPeriodType::Waxing);
+        $moon_period = new Period($start, $end, PeriodType::Waxing);
 
         // Act & Assert
         $this->assertTrue($moon_period->isWaxing(), "The testing moon period should be a waxing one but found the opposite.");
@@ -53,7 +55,7 @@ class MoonPeriodTest extends TestCase
         // That's a waning moon period.
         $start = new SwissEphemerisDateTime("2021-06-24 22:00:00");
         $end = new SwissEphemerisDateTime("2021-07-10 03:00:00");
-        $moon_period = new MoonPeriod($start, $end, MoonPeriodType::Waning);
+        $moon_period = new Period($start, $end, PeriodType::Waning);
 
         // Act & Assert
         $this->assertTrue($moon_period->isWaning(), "The testing moon period should be a waning one but found the opposite.");

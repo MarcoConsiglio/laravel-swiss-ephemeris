@@ -1,0 +1,81 @@
+<?php
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm;
+
+use InvalidArgumentException;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
+
+/**
+ * Builds a MoonSynodicRhythm from an array of MoonSynodicRhythmRecord(s).
+ */
+class FromRecords extends Builder
+{
+    /**
+     * The data used to create the MoonSynodicRhythm collection.
+     *
+     * @var mixed
+     */
+    protected $data;
+
+    /**
+     * The records of the MoonSynodicRhythm.
+     *
+     * @var array
+     */
+    protected array $records = [];
+
+    /**
+     * Constructs the builder.
+     *
+     * @param array $data A list of MoonSynodicRecord(s).
+     */
+    public function __construct(array $data)
+    {
+        $this->data = $data;
+        $this->validateData();
+    }
+
+    /**
+     * Validates data.
+     *
+     * @return void
+     * @throws \InvalidArgumentException
+     */
+    public function validateData()
+    {
+        if (!is_array($this->data)) {
+            throw new InvalidArgumentException("The builder ".self::class." must have array data.");
+        }
+        $collection = collect($this->data);
+        $collection->filter(function ($item, $key) {
+            if (!$item instanceof SynodicRhythmRecord) {
+                throw new InvalidArgumentException(
+                    "The builder ".self::class." must have an array of ".SynodicRhythmRecord::class."."
+                );
+            }
+        });
+    }
+
+    /**
+     * Build records.
+     *
+     * @return void
+     */
+    public function buildRecords()
+    {
+        // $this->data contains already MoonSynodicRhythmRecord(s).
+    }
+
+    /**
+     * Fetch the builded MoonSynodicRhythm collection.
+     *
+     * @return SynodicRhythm
+     */
+    public function fetchCollection(): SynodicRhythm
+    {
+        return new SynodicRhythm($this->data);
+    }
+}

@@ -1,6 +1,8 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
+use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
+use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -9,7 +11,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("A MoonPhaseRecord")]
-#[CoversClass(MoonPhaseRecord::class)]
+#[CoversClass(PhaseRecord::class)]
 class MoonPhaseRecordTest extends TestCase
 {
     use WithCustomAssertions;
@@ -18,16 +20,16 @@ class MoonPhaseRecordTest extends TestCase
     public function test_getters()
     {
         // Arrange
-        $moon_phase_type = fake()->randomElement(MoonPhaseType::cases());
+        $moon_phase_type = fake()->randomElement(Phase::cases());
         $timestamp = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
-        $moon_phase_record = new MoonPhaseRecord($timestamp, $moon_phase_type);
+        $moon_phase_record = new PhaseRecord($timestamp, $moon_phase_type);
 
         // Act
         $actual_timestamp = $moon_phase_record->timestamp;
         $actual_moon_phase_type = $moon_phase_record->type;
 
         // Assert
-        $this->assertProperty("type", $moon_phase_type, MoonPhaseType::class, $actual_moon_phase_type);
+        $this->assertProperty("type", $moon_phase_type, Phase::class, $actual_moon_phase_type);
         $this->assertProperty("timestamp", $timestamp, SwissEphemerisDateTime::class, $actual_timestamp);
     }
 }

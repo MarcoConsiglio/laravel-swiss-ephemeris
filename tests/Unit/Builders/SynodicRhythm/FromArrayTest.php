@@ -4,8 +4,8 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonSynodicRhythm;
 
 use Carbon\Carbon;
 use InvalidArgumentException;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonSynodicRhythm\FromArray;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithReflection;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -59,7 +59,7 @@ class FromArrayTest extends BuilderTestCase
         // Assert
         $this->assertIsArray($synodic_rhythm_records, 
             "The FromArray builder must produce an array.");
-        $this->assertContainsOnlyInstancesOf(MoonSynodicRhythmRecord::class, $synodic_rhythm_records, 
+        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm_records, 
             "The FromArray builder must contains only MoonSynodicRhythmRecord(s).");
         $this->assertCount(count($this->data), $synodic_rhythm_records, 
             "The FromArray builder must produce the same ammount of records as the input.");

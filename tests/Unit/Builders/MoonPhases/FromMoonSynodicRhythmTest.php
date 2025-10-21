@@ -2,8 +2,13 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases;
 
 use InvalidArgumentException;
+use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
+use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\FromMoonSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType as MoonPhase;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonPhases;
 use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
@@ -26,23 +31,23 @@ class FromMoonSynodicRhythmTest extends TestCase
         $date_2 = new SwissEphemerisDateTime("2021-10-13 03:00:00");
         $date_3 = new SwissEphemerisDateTime("2021-10-20 15:00:00");
         $date_4 = new SwissEphemerisDateTime("2021-10-28 20:00:00");
-        $new_moon_record = new MoonSynodicRhythmRecord(
+        $new_moon_record = new SynodicRhythmRecord(
             $date_1->toGregorianTT(),
             -0.0614509
         );
-        $first_quarter_record = new MoonSynodicRhythmRecord(
+        $first_quarter_record = new SynodicRhythmRecord(
             $date_2->toGregorianTT(),
             89.7644741
         );
-        $full_moon_record = new MoonSynodicRhythmRecord(
+        $full_moon_record = new SynodicRhythmRecord(
             $date_3->toGregorianTT(),
             -179.9831740
         );
-        $third_quarter_record = new MoonSynodicRhythmRecord(
+        $third_quarter_record = new SynodicRhythmRecord(
             $date_4->toGregorianTT(),
             -90.0499896
         );
-        $synodic_rhythm = new MoonSynodicRhythm([
+        $synodic_rhythm = new SynodicRhythm([
             $new_moon_record,
             $first_quarter_record,
             $full_moon_record,
@@ -51,13 +56,13 @@ class FromMoonSynodicRhythmTest extends TestCase
 
         // Act
         /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm $synodic_rhythm */
-        $builder = new FromMoonSynodicRhythm($synodic_rhythm, MoonPhase::cases());
+        $builder = new FromSynodicRhythm($synodic_rhythm, Phase::cases());
         $moon_phases = $builder->fetchCollection();
         
         // Assert
         $this->assertIsArray($moon_phases,
             "The collection must be an array");
-        $this->assertContainsOnlyInstancesOf(MoonPhaseRecord::class, $moon_phases, 
+        $this->assertContainsOnlyInstancesOf(PhaseRecord::class, $moon_phases, 
             "The collection must contain only MoonPhaseRecord(s).");
     }
 
@@ -65,7 +70,7 @@ class FromMoonSynodicRhythmTest extends TestCase
     public function test_needs_at_least_one_moon_phase_type()
     {
         // Arrange
-        $synodic_rhythm = $this->getMocked(MoonSynodicRhythm::class);
+        $synodic_rhythm = $this->getMocked(SynodicRhythm::class);
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
@@ -73,21 +78,21 @@ class FromMoonSynodicRhythmTest extends TestCase
         
         // Act
         /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm $synodic_rhythm */
-        new FromMoonSynodicRhythm($synodic_rhythm, []);
+        new FromSynodicRhythm($synodic_rhythm, []);
     }
 
     #[TestDox("needs only MoonPhaseType.")]
     public function test_needs_only_moon_phase_type()
     {
         // Arrange
-        $synodic_rhythm = $this->getMocked(MoonSynodicRhythm::class);
+        $synodic_rhythm = $this->getMocked(SynodicRhythm::class);
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Parameter 2 must be an array of ".MoonPhase::class." but found string inside.");
+        $this->expectExceptionMessage("Parameter 2 must be an array of ".Phase::class." but found string inside.");
 
         // Act
         /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm $synodic_rhythm */
-        new FromMoonSynodicRhythm($synodic_rhythm, [Angle::class]);
+        new FromSynodicRhythm($synodic_rhythm, ["NonExistentClass"]);
     }
 }

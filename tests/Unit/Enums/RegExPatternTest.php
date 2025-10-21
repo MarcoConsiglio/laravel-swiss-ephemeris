@@ -17,10 +17,29 @@ class RegExPatternTest extends TestCase
     public function test_regex_patterns()
     {
         // Arrange
-        $cases = [
-            [RegExPattern::RegExDelimiter."\d{1,2}\.\d{1,2}\.\d{1,4}j?[[:space:]]{1}\d{1,2}\:\d{2}\:\d{2}[[:space:]](?:(?:TT)|(?:UT)){1}".RegExPattern::RegExDelimiter, RegExPattern::UniversalAndTerrestrialDateTime],
-            [RegExPattern::RegExDelimiter."(?<=\s)-?\d+\.\d+\b".RegExPattern::RegExDelimiter, RegExPattern::RelativeDecimalNumber],
-            [RegExPattern::RegExDelimiter."(?:error)(.+)".RegExPattern::RegExDelimiter, RegExPattern::SwetestError]
+        $delimiter = '/';
+        $cases = [[
+            // Expected
+            $delimiter
+            ."\d{1,2}\.\d{1,2}\.\d{1,4}j?\s{1}\d{1,2}\:\d{2}\:\d{2}\s(?:(?:TT)|(?:UT)){1}"
+            .$delimiter,
+            // Actual 
+            RegExPattern::UniversalAndTerrestrialDateTime
+        ], [
+            // Expected
+            $delimiter.'(?:'
+            .RegExPattern::OneSpaceDelimeter.'|'
+            .RegExPattern::TwoSpaceDelimiter.'|'
+            .RegExPattern::ThreeSpaceDelimiter
+            .')-?\d+\.\d+\b'
+            .$delimiter, 
+            // Actual
+            RegExPattern::RelativeDecimalNumber
+        ], [
+            // Expected
+            $delimiter."(?:error)(.+)".$delimiter,
+            // Actual 
+            RegExPattern::SwetestError]
         ];
 
         // Act & Assert

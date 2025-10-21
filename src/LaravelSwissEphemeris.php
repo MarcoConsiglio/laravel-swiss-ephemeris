@@ -8,18 +8,10 @@ use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonSynodicRhythm\FromArray;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
-use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
-use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
-use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
-use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
-use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\Templates\MoonSynodicRhythmTemplate;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 
 class LaravelSwissEphemeris
 {
@@ -113,12 +105,12 @@ class LaravelSwissEphemeris
      * @param \Carbon\CarbonInterface $start_date The starting date of the response.
      * @param integer $days The number of days included in the response.
      * @param integer $step_size Duration in minutes of each step of the response.
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm
+     * @return SynodicRhythm
      * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
      */
     public function getMoonSynodicRhythm(CarbonInterface $start_date, int $days = 30, int $step_size = 60)
     {
-        $query = new MoonSynodicRhythmTemplate($start_date, $days, $step_size, $this->shell, $this->command);
+        $query = new SynodicRhythmTemplate($start_date, $days, $step_size, $this->shell, $this->command);
         return $query->getResult();
         // // $this->setDebugHeader(false);
         // foreach ($this->prepareFlagsForMoonSynodicRhythm($start_date, $days, $step_size) as $flag) {

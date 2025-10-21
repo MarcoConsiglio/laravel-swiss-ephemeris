@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\Strategies;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\NewMoon;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\NewMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;

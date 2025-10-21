@@ -107,4 +107,14 @@ abstract class QueryBuilder
     abstract protected function buildObject(): void;
 
     abstract public function getResult();
+
+    protected function remapColumnsBy(array $columns)
+    {
+        $this->output = collect($this->output)->map(function ($record) use ($columns) {
+            foreach ($columns as $column_position => $column_name) {
+                $transformed_record[$column_name] = $record[$column_position];
+            }
+            return $transformed_record;
+        })->all();        
+    }
 }
