@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Feature;
+namespace MarcoConsiglio\Ephemeris\Tests\Feature\Moon;
 
 use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
@@ -7,12 +7,13 @@ use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[TestDox("A MoonPhases collection")]
 #[CoversClass(Phases::class)]
-class MoonPhasesTest extends TestCase
+class PhasesTest extends TestCase
 {
     #[TestDox("is a Collection containing MoonPhaseRecord(s).")]
     public function test_moon_phases()

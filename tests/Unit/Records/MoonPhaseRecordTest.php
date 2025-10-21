@@ -1,12 +1,11 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records;
 
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPhaseRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
+use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 

@@ -1,25 +1,27 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates\Moon;
 
 use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Templates\Moon\ApogeeTemplate;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\MockObject\MockObject;
 
-#[CoversClass(SynodicRhythmTemplate::class)]
+#[TestDox("The MoonAnomalisticRhythm")]
+#[CoversClass(ApogeeTemplate::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
+#[UsesClass(FakeRunner::class)]
 #[UsesClass(Command::class)]
-#[UsesClass(SynodicRhythm::class)]
-#[TestDox("The MoonSynodicRhythmTemplate")]
-class MoonSynodicRhythmTemplateTest extends TestCase
+#[UsesClass(Apogees::class)]
+class ApogeeTemplateTest extends TestCase
 {
-    protected const RESPONSE_FILE = "./tests/Unit/Templates/SwissEphemerisResponses/Moon/synodic_rhythm.txt";
-
-    #[TestDox("is the template used to build a MoonSynodicRhythm.")]
+    protected const RESPONSE_FILE = "./tests/SwissEphemerisResponses/Moon/anomalistic_rhythm.txt";
+    #[TestDox("is the template used to build a MoonAnomalisticRhythm.")]
     public function test_query_template()
     {
         // Arrange
@@ -30,13 +32,13 @@ class MoonSynodicRhythmTemplateTest extends TestCase
         $command = $this->getMocked(Command::class);
         $command->expects($this->any())->method("addFlag");
         $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
-        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $runner, $command);
+        $template = new ApogeeTemplate($start_date, $days, $step_size, $runner, $command);
 
         // Act
         $object = $template->getResult();
 
         // Assert
-        $this->assertInstanceOf(SynodicRhythm::class, $object);
+        $this->assertInstanceOf(Apogees::class, $object);
     }
 
     protected function getFakeSwetestResponse(): string

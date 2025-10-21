@@ -1,22 +1,18 @@
 <?php
 
-namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
+namespace MarcoConsiglio\Ephemeris\Tests\Feature\Moon;
 
-use Carbon\Carbon;
-use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Period;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
+use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("A Moon\Periods collection")]
 #[CoversClass(Periods::class)]
-class MoonPeriodsTest extends TestCase
+class PeriodsTest extends TestCase
 {
     #[TestDox("consists of Moon\Period instances.")]
     public function test_moon_periods_is_a_collection()

@@ -1,27 +1,23 @@
 <?php
 
-namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
+namespace MarcoConsiglio\Ephemeris\Tests\Feature\Moon;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\WithFaker;
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriods;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPhases;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("The Moon\SynodicRhythm collection")]
 #[CoversClass(SynodicRhythm::class)]
-class MoonSynodicRhythmTest extends TestCase
+class SynodicRhythmTest extends TestCase
 {
     use WithFaker;
 

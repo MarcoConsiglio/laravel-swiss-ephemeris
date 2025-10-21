@@ -1,12 +1,13 @@
 <?php
 
-namespace MarcoConsiglio\Ephemeris\Tests\Unit;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records;
 
 use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
+use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use PHPUnit\Framework\Attributes\CoversClass;

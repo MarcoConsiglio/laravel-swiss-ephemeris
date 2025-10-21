@@ -1,10 +1,9 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonPhases\Strategies;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\MoonPhaseStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
@@ -88,7 +87,7 @@ class StrategyTestCase extends TestCase
      * Get a full moon record.
      *
      * @param bool $positive Specify this if the record should be positive or negative.
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
+     * @return SynodicRhythmRecord
      */
     protected function getFullMoonRecord($positive = true): SynodicRhythmRecord
     {

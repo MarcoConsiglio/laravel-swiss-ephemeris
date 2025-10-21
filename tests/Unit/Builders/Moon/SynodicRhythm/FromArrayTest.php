@@ -1,6 +1,6 @@
 <?php
 
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\MoonSynodicRhythm;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\SynodicRhythm;
 
 use Carbon\Carbon;
 use InvalidArgumentException;
