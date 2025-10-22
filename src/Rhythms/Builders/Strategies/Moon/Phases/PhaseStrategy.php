@@ -1,12 +1,17 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 
-abstract class AnomalisticStrategy implements BuilderStrategy
+/**
+ * Describe a strategy used to find a moon phase.
+ * 
+ * @property-read float $delta Angular distance delta: It is used for an error biased search. 
+ */
+abstract class PhaseStrategy implements BuilderStrategy
 {
     /**
-     * Longitude delta: It is used for an error biased search. 
+     * Angular distance delta: It is used for an error biased search. 
      *
      * @var float $delta
      */

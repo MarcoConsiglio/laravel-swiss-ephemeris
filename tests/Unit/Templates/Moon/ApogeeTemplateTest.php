@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\Moon\ApogeeTemplate;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -18,10 +19,11 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(FakeRunner::class)]
 #[UsesClass(Command::class)]
 #[UsesClass(Apogees::class)]
-class ApogeeTemplateTest extends TestCase
+class ApogeeTemplateTest extends TemplateTestCase
 {
-    protected const RESPONSE_FILE = "./tests/SwissEphemerisResponses/Moon/anomalistic_rhythm.txt";
-    #[TestDox("is the template used to build a MoonAnomalisticRhythm.")]
+    protected string $response_file = "./tests/SwissEphemerisResponses/Moon/apogees.txt";
+
+    #[TestDox("is the template used to build a Moon\Apogees collection.")]
     public function test_query_template()
     {
         // Arrange
@@ -39,11 +41,5 @@ class ApogeeTemplateTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(Apogees::class, $object);
-    }
-
-    protected function getFakeSwetestResponse(): string
-    {
-        $content = file_get_contents(static::RESPONSE_FILE);
-        return $content === false ? "" : $content;
     }
 }

@@ -6,7 +6,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FirstQuarte
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
-#[TestDox("The FirstQuarter strategy")]
+#[TestDox("The FirstQuarter PhaseStrategy")]
 #[CoversClass(FirstQuarter::class)]
 class FirstQuarterTest extends StrategyTestCase
 {
@@ -21,7 +21,7 @@ class FirstQuarterTest extends StrategyTestCase
         parent::setUp();
     }
 
-    #[TestDox("can find a MoonSynodicRhythmRecord whose 'angular_distance' is about 90.")]
+    #[TestDox("can find a Moon\SynodicRhythmRecord whose \"angular_distance\" is about 90°.")]
     public function test_can_find_first_quarter_moon_if_angular_distance_is_about_90()
     {
         // Arrange in setUp()

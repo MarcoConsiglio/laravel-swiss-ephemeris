@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(OutputFormat::class)]
 class OutputFormatTest extends TestCase
 {
-    #[TestDox("consists of several column type used to format response data.")]   
+    #[TestDox("consists of several column type used to format the response data.")]   
     public function test_output_formats(): void
     {
         // Arrange

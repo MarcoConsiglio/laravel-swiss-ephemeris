@@ -6,7 +6,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
-#[TestDox("The NewMoon strategy")]
+#[TestDox("The NewMoon PhaseStrategy")]
 #[CoversClass(NewMoon::class)]
 class NewMoonTest extends StrategyTestCase
 {
@@ -21,7 +21,7 @@ class NewMoonTest extends StrategyTestCase
         parent::setUp();
     }
 
-    #[TestDox("can find a SyndicRhythmRecord whose 'angular_distance' is about zero.")]
+    #[TestDox("can find a Moon\SyndicRhythmRecord whose \"angular_distance\" is about 0°.")]
     public function test_can_find_new_moon_if_angular_distance_is_about_zero()
     {
         // Arrange in setUp()

@@ -93,7 +93,7 @@ class FromSynodicRhythm extends Builder
                 /** @var \MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy $a_strategy */
                 $a_strategy = new $strategy($record);
                 if ($record_found = $a_strategy->found()) {
-                    return new PhaseRecord($record_found->timestamp, Phase::getCorrespondingType($strategy));
+                    return new PhaseRecord($record_found->timestamp, Phase::getCorrespondingPhase($strategy));
                 }
             }
             // return $moon_phase_records->first();

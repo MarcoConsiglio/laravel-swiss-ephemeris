@@ -11,6 +11,9 @@ use Orchestra\Testbench\Console\Kernel as TestbenchConsoleKernel;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Orchestra\Workbench\WorkbenchServiceProvider;
 
+/**
+ * Feature custom TestCase.
+ */
 abstract class TestCase extends OrchestraTestCase
 {
     use WithFailureMessage;

@@ -10,8 +10,7 @@ abstract class BuilderTestCase extends TestCase
     use WithMockedSwissEphemerisDateTime;
     
     /**
-     * Implemented in a concrete BuilderTestCase, returns the
-     * concrete rhythm builder to test.
+     * Get the current SUT class.
      * 
      * @return string
      */
@@ -28,14 +27,5 @@ abstract class BuilderTestCase extends TestCase
     protected function getMockedRhythmBuilder(array $mocked_methods = [], $original_constructor = false, mixed $constructor_arguments = []): MockObject
     {
         return $this->getMocked($this->getBuilderClass(), $mocked_methods, $original_constructor, $constructor_arguments);
-    }
-
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    public function setUp(): void {
-        parent::setUp();
     }
 }

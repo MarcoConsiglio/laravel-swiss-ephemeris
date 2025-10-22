@@ -15,13 +15,13 @@ use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
-#[TestDox("The Moon\SynodicRhythm collection")]
+#[TestDox("The Moon\SynodicRhythm")]
 #[CoversClass(SynodicRhythm::class)]
 class SynodicRhythmTest extends TestCase
 {
     use WithFaker;
 
-    #[TestDox("consists of Moon\SynodicRhythmRecord instances.")]
+    #[TestDox("is a collection of Moon\SynodicRhythmRecord instances.")]
     public function test_synodic_rhythm_has_records()
     {
         // Arrange in setUp()
@@ -39,7 +39,7 @@ class SynodicRhythmTest extends TestCase
         $this->assertInstanceOf(SynodicRhythmRecord::class, $record, "The getter must return a MoonSynodicRhythmRecord.");
     }
 
-    #[TestDox("can return a MoonPeriods collection.")]
+    #[TestDox("can return a Moon\Periods collection.")]
     public function test_return_moon_periods_collection()
     {
         // Arrange in setUp()
@@ -55,7 +55,7 @@ class SynodicRhythmTest extends TestCase
         $this->assertInstanceOf($moon_periods_collection_class, $moon_periods, $failure_message);
     }
 
-    #[TestDox("can return a MoonPhases collection.")]
+    #[TestDox("can return a Moon\Phases collection.")]
     public function test_return_moon_phases_collection()
     {
         // Arrange in setUp()
@@ -83,11 +83,12 @@ class SynodicRhythmTest extends TestCase
         new SynodicRhythm($empty_records);
     }
 
-    #[TestDox("can give you the first and last MoonSynodicRhythmRecord.")]
+    #[TestDox("can return the first and last Moon\SynodicRhythmRecord.")]
     public function test_synodic_rhythm_has_first_and_last_getter()
     {
         // Arrange
         $moon_synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("now"));
+        $rhythm_class = SynodicRhythm::class;
         $expected_class = SynodicRhythmRecord::class;
 
         // Act
@@ -97,9 +98,11 @@ class SynodicRhythmTest extends TestCase
         // Assert
         $class_of_first_record = $first::class;
         $class_of_last_record = $last::class;
-        $this->assertInstanceOf(SynodicRhythmRecord::class, $first, 
-            $this->instanceTypeFail($expected_class, $class_of_first_record));
-        $this->assertInstanceOf(SynodicRhythmRecord ::class, $last, 
-            $this->instanceTypeFail($expected_class, $class_of_last_record));
+        $this->assertInstanceOf(SynodicRhythmRecord::class, $first,
+            $this->methodMustReturn($rhythm_class, "first", $expected_class)
+        );
+        $this->assertInstanceOf(SynodicRhythmRecord ::class, $last,
+            $this->methodMustReturn($rhythm_class, "last", $expected_class)
+        );
     }
 }

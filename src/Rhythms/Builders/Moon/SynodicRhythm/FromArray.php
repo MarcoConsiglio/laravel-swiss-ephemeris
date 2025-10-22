@@ -42,17 +42,18 @@ class FromArray extends Builder
      */
     public function validateData()
     {
+        $this_class = self::class;
         if (empty($this->data)) {
-            throw new InvalidArgumentException("The FromArray builder cannot work with an empty array.");
+            throw new InvalidArgumentException("The $this_class builder cannot work with an empty array.");
         }
 
         $records = collect($this->data);
-        $records->filter(function ($value, $key) {
+        $records->filter(function ($value, $key) use ($this_class) {
             if(!isset($value["timestamp"])) {
-                throw new InvalidArgumentException("The FromArray builder must have 'timestamp' column.");    
+                throw new InvalidArgumentException("The $this_class builder must have \"timestamp\" column.");    
             }
             if(!isset($value["angular_distance"])) {
-                throw new InvalidArgumentException("The FromArray builder must have 'angular_distance' column.");
+                throw new InvalidArgumentException("The $this_class builder must have \"angular_distance\" column.");
             }
             return $value;
         });

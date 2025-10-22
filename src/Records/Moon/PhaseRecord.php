@@ -20,7 +20,7 @@ class PhaseRecord
     public protected(set) CarbonInterface $timestamp;
 
     /**
-     * The type of this moon phase.
+     * The phase of the Moon it refers to.
      *
      * @var Phase $type
      */

@@ -5,6 +5,7 @@ use ReflectionClass;
 
 /**
  * Provides support to reflection in order to test unaccessible methods.
+ * @deprecated v1.0.0-alpha
  */
 trait WithReflection
 {
@@ -15,6 +16,7 @@ trait WithReflection
      * @param array $parameters
      * @return mixed
      * @throws \ReflectionException
+     * @deprecated v1.0.0-alpha
      */
     protected function callMethod(object $object, string $method , ...$parameters)
     {
@@ -30,6 +32,7 @@ trait WithReflection
      * @param object $object
      * @param string $property
      * @return mixed
+     * @deprecated v1.0.0-alpha
      */
     protected function getProperty(object $object, string $property)
     {
@@ -42,6 +45,7 @@ trait WithReflection
      *
      * @param object $instance
      * @return \ReflectionClass
+     * @deprecated v1.0.0-alpha
      */
     private function getReflectionClass(object $instance)
     {

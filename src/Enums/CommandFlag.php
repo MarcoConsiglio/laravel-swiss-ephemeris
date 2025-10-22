@@ -20,9 +20,13 @@ enum CommandFlag: string {
      */
     case DifferentialHeliocentricalObjectSelection = "dh";
     /**
-     * The starting date of the requested ephemeris.
+     * The starting Gregorian date of the requested ephemeris.
      */
     case BeginDate = "b";
+    /**
+     * The starting Julian date of the requested ephemeris.
+     */
+    case JulianBeginDate = "bj";
     /**
      * The starting time of the requested ephemeris expressed in Terrestrial Time 
      * (former Ephemeris Time).

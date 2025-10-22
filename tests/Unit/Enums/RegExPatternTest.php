@@ -13,7 +13,7 @@ class RegExPatternTest extends TestCase
 {
     use WithFailureMessage;
 
-    #[TestDox("have several regural expression to match portions of the Swiss Ephemeris output.")]
+    #[TestDox("has several regular expression to match portions of the Swiss Ephemeris output.")]
     public function test_regex_patterns()
     {
         // Arrange

@@ -3,8 +3,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithMockedSwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
@@ -12,8 +10,6 @@ use PHPUnit\Framework\Attributes\TestDox;
 #[CoversClass(SwissEphemerisDateTime::class)]
 class SwissEphemerisDateTimeTest extends TestCase
 {
-    use WithCustomAssertions, WithMockedSwissEphemerisDateTime;
-
     /**
      * The Gregorian calendar date time format.
      */
@@ -83,13 +79,15 @@ class SwissEphemerisDateTimeTest extends TestCase
         $expected_format = self::GREGORIAN_UT;
         $expected_date_string = "01.01.2000 0:00:00 UT";
         $date =  $this->getMockedSwissEphemerisDateTime(2000);
-
+        
         // Act
+        $actual_format = SwissEphemerisDateTime::GREGORIAN_UT;
         $formatted_date = $date->toGregorianUT();
 
         // Assert
-        $this->assertEquals($expected_format, SwissEphemerisDateTime::GREGORIAN_UT, 
-            "The Gregorian Universal Time format is $expected_format.");
+        $this->assertEquals($expected_format, $actual_format,
+            $this->incorrectDateTimeFormat($expected_format, "Gregorian Universal Time", $actual_format)
+        );
         $this->assertEquals($expected_date_string, $formatted_date, 
             "The date is bad formatted. It must equals $expected_date_string.");
     }
@@ -103,11 +101,13 @@ class SwissEphemerisDateTimeTest extends TestCase
         $date = $this->getMockedSwissEphemerisDateTime(2000);
         
         // Act
+        $actual_format = SwissEphemerisDateTime::GREGORIAN_TT;
         $formatted_date = $date->toGregorianTT();
 
         // Assert
-        $this->assertEquals($expected_format, SwissEphemerisDateTime::GREGORIAN_TT, 
-            "The Gregorian Universal Time format is $expected_format.");
+        $this->assertEquals($expected_format, $actual_format,
+            $this->incorrectDateTimeFormat($expected_format, "Gregoria Terrestrial Time", $actual_format)
+        );
         $this->assertEquals($expected_date_string, $formatted_date,
             "The date is bad formatted. It must equals $expected_date_string");
     }
@@ -121,13 +121,16 @@ class SwissEphemerisDateTimeTest extends TestCase
         $date = $this->getMockedSwissEphemerisDateTime(2000);
 
         // Act
+        $actual_format = SwissEphemerisDateTime::JULIAN_TT;
         $formatted_date = $date->toJulianTT();
 
         // Assert
-        $this->assertEquals($expected_format, SwissEphemerisDateTime::JULIAN_TT,
-            "The Julian Terrestrial Time format is $expected_format.");
+        $this->assertEquals($expected_format, $actual_format,
+            $this->incorrectDateTimeFormat($expected_format, "Julian Terrestrial Time", $actual_format)
+        );
         $this->assertEquals($expected_date_string, $formatted_date, 
-            "The date is bad formatted. It must equals $expected_date_string");
+            "The date is bad formatted. It must equals $expected_date_string"
+        );
     }
 
     #[TestDox("can format a datetime to Terrestrial Time format of the Julian calendar.")]
@@ -139,11 +142,13 @@ class SwissEphemerisDateTimeTest extends TestCase
         $date = $this->getMockedSwissEphemerisDateTime(2000);
 
         // Act
+        $actual_format = SwissEphemerisDateTime::JULIAN_UT;
         $formatted_date = $date->toJulianUT();
 
         // Assert
-        $this->assertEquals($expected_format, SwissEphemerisDateTime::JULIAN_UT,
-            "The Julian Universal Time format is $expected_format.");
+        $this->assertEquals($expected_format, $actual_format,
+            $this->incorrectDateTimeFormat($expected_format, "Julian Universal Time", $actual_format)
+        );
         $this->assertEquals($expected_date_string, $formatted_date,
             "The date is bad formatted. It must equals $expected_date_string.");
     }
@@ -157,11 +162,13 @@ class SwissEphemerisDateTimeTest extends TestCase
         $date = $this->getMockedSwissEphemerisDateTime(2000);
 
         // Act
+        $actual_format = SwissEphemerisDateTime::GREGORIAN_DATE;
         $formatted_date = $date->toGregorianDate();
 
         // Assert
-        $this->assertEquals($expected_format, SwissEphemerisDateTime::GREGORIAN_DATE, 
-            "The Gregorian format is $expected_format.");
+        $this->assertEquals($expected_format, $actual_format, 
+            $this->incorrectDateTimeFormat($expected_format, "Gregorian", $actual_format)
+        );
         $this->assertEquals($expected_date_string, $formatted_date, 
             "The date is bad formatted. It must equals $expected_date_string.");
     }
@@ -175,10 +182,13 @@ class SwissEphemerisDateTimeTest extends TestCase
         $date = $this->getMockedSwissEphemerisDateTime(2000);
 
         // Act
+        $actual_format = SwissEphemerisDateTime::JULIAN_DATE;
         $formatted_date = $date->toJulianDate();
 
         // Assert
-        $this->assertEquals($expected_format, SwissEphemerisDateTime::JULIAN_DATE);
+        $this->assertEquals($expected_format, $actual_format,
+            $this->incorrectDateTimeFormat($expected_format, "Julian", $actual_format)
+        );
         $this->assertEquals($expected_date_string, $formatted_date, 
             "The date is bad formatted. It must equals $expected_date_string");
     }
@@ -198,9 +208,9 @@ class SwissEphemerisDateTimeTest extends TestCase
         $this->assertInstanceOf(SwissEphemerisDateTime::class, $ephemeris_date);
         $this->assertDate($ephemeris_date, Carbon::create(2000));
         $this->assertTrue($is_universal_time, 
-            "A SwissEphemerisDateTime createdFromGregorianUT() must have Universal Time.");
+            "A SwissEphemerisDateTime::createdFromGregorianUT() must be a Universal Time datetime.");
         $this->assertTrue($is_gregorian_date, 
-            "A SwissEphemerisDateTime createdFromGregorianUT() must have a Gregorian calendar date.");
+            "A SwissEphemerisDateTime::createdFromGregorianUT() must be a Gregorian calendar datetime.");
     }
 
     #[TestDox("can be created from a Gregorian date and Terrestrial Time.")]
@@ -218,9 +228,9 @@ class SwissEphemerisDateTimeTest extends TestCase
         $this->assertInstanceOf(SwissEphemerisDateTime::class, $ephemeris_date);
         $this->assertDate($ephemeris_date, Carbon::create(2000));
         $this->assertTrue($is_terrestrial_time, 
-            "A SwissEphemerisDateTime createdFromGregorianTT() must have Terrestrial Time.");
+            "A SwissEphemerisDateTime::createdFromGregorianTT() must be a Terrestrial Time datetime.");
         $this->assertTrue($is_gregorian_date, 
-            "A SwissEphemerisDateTime createdFromGregorianTT() must have a Gregorian calendar date.");
+            "A SwissEphemerisDateTime::createdFromGregorianTT() must be a Gregorian calendar datetime.");
     }
 
     #[TestDox("can be created from a Julian date and Universal Time.")]
@@ -238,9 +248,9 @@ class SwissEphemerisDateTimeTest extends TestCase
         $this->assertInstanceOf(SwissEphemerisDateTime::class, $ephemeris_date);
         $this->assertDate($ephemeris_date, Carbon::create(2000));
         $this->assertTrue($is_universal_time, 
-            "A SwissEphemerisDateTime createFromJulianUT() must have Universal Time.");
+            "A SwissEphemerisDateTime::createFromJulianUT() must be a Universal Time datetime.");
         $this->assertTrue($is_julian_date, 
-            "A SwissEphemerisDateTime createFromJulianUT() must have a Julian calendar date.");
+            "A SwissEphemerisDateTime::createFromJulianUT() must be a Julian calendar datetime.");
     }
 
     #[TestDox("can be created from a Julian date and Terrestrial Time.")]
@@ -258,9 +268,9 @@ class SwissEphemerisDateTimeTest extends TestCase
         $this->assertInstanceOf(SwissEphemerisDateTime::class, $ephemeris_date);
         $this->assertDate($ephemeris_date, Carbon::create(2000));
         $this->assertTrue($is_terrestrial_time, 
-            "A SwissEphemerisDateTime createFromJulianTT() must have Terrestrial Time.");
+            "A SwissEphemerisDateTime::createFromJulianTT() must be a Terrestrial Time datetime.");
         $this->assertTrue($is_julian_date, 
-            "A SwissEphemerisDateTime createFromJulianUT() must have a Julian calendar date.");
+            "A SwissEphemerisDateTime::createFromJulianUT() must be a Julian calendar datetime.");
     }
 
     #[TestDox("can return all available datetime formats used by the Swiss Ephemeris.")]

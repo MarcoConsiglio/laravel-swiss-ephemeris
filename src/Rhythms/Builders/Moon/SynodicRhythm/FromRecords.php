@@ -66,7 +66,7 @@ class FromRecords extends Builder
      */
     public function buildRecords()
     {
-        // $this->data contains already MoonSynodicRhythmRecord(s).
+        // $this->data contains already the builded records.
     }
 
     /**

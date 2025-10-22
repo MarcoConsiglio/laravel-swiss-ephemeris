@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\PhaseStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\MoonPhaseStrategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
@@ -32,14 +33,14 @@ class StrategyTestCase extends TestCase
     /**
      * The strategy being tested.
      *
-     * @var \MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy
+     * @var BuilderStrategy
      */
     protected BuilderStrategy $strategy;
 
     /**
      * A testing date.
      *
-     * @var \MarcoConsiglio\Ephemeris\SwissEphemerisDateTime
+     * @var SwissEphemerisDateTime
      */
     protected SwissEphemerisDateTime $date;
 
@@ -60,7 +61,7 @@ class StrategyTestCase extends TestCase
         parent::setUp();
         $this->date = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
         $this->strategy_name = class_basename($this->tested_class);
-        $this->delta = MoonPhaseStrategy::getDelta();
+        $this->delta = PhaseStrategy::getDelta();
     }
 
     /**
@@ -86,7 +87,8 @@ class StrategyTestCase extends TestCase
     /**
      * Get a full moon record.
      *
-     * @param bool $positive Specify this if the record should be positive or negative.
+     * @param bool $positive Specify this if the record should be positive or negative, 
+     * because the angular distance between Sun and Moon tend to +/-180°.
      * @return SynodicRhythmRecord
      */
     protected function getFullMoonRecord($positive = true): SynodicRhythmRecord
@@ -98,7 +100,7 @@ class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get any record except for third quarter moon.
+     * Get a third quarter record.
      *
      * @return SynodicRhythmRecord
      */
@@ -108,7 +110,7 @@ class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get any record except for new moon.
+     * Get any random record except for new moon.
      *
      * @return SynodicRhythmRecord
      */
@@ -118,7 +120,7 @@ class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get any record except for first quarter.
+     * Get any random record except for first quarter.
      *
      * @return SynodicRhythmRecord
      */
@@ -128,7 +130,7 @@ class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get any record except for full moon.
+     * Get any random record except for full moon.
      *
      * @return SynodicRhythmRecord
      */
@@ -141,7 +143,7 @@ class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get any record except for third quarter moon.
+     * Get any random record except for third quarter moon.
      *
      * @return SynodicRhythmRecord
      */
@@ -151,7 +153,7 @@ class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get an unprecise angular distance biased by a delta.
+     * Get a random unprecise angular distance biased by a delta.
      *
      * @param float $angular_distancce
      * @return float
@@ -163,7 +165,7 @@ class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get an unprecise angular distance except for another biased $angular_distance. 
+     * Get a random unprecise angular distance except for another biased $angular_distance. 
      *
      * @param float $angular_distance
      * @return float
@@ -185,7 +187,7 @@ class StrategyTestCase extends TestCase
     }
 
     /**
-     * Assert expected record equals the actual record.
+     * Assert $expected_record equals the $actual_record.
      *
      * @param mixed $expected_record
      * @param mixed $actual_record
@@ -193,7 +195,8 @@ class StrategyTestCase extends TestCase
      */
     protected function assertRecordFound($expected_record, $actual_record)
     {
-        $this->assertInstanceOf(SynodicRhythmRecord::class, $actual_record, "The {$this->strategy_name} strategy must find a MoonSynodicRhythmRecord.");
+        $record_class = get_class($expected_record);
+        $this->assertInstanceOf($record_class, $actual_record, "The {$this->strategy_name} strategy must find an instance of type $record_class.");
         $this->assertObjectEquals($expected_record, $actual_record, "equals", "The {$this->strategy_name} strategy failed to find the correct record.");
     }
 
@@ -209,34 +212,11 @@ class StrategyTestCase extends TestCase
     }
 
     /**
-     * Calculates the min and max extremes for a fuzzy condition.
-     *
-     * @param float $delta
-     * @param float $number
-     * @return array The first element is the minimum, the second element is the maximum.
-     */
-    protected function getDeltaExtremes(float $delta, float $number): array
-    {
-        $min = $number - abs($delta);
-        $max = $number + abs($delta);
-        if ($min < -180) {
-            $min = -180;
-        } 
-        if ($max > 180) {
-            $max = 180;
-        }
-        return [
-            $number - abs($delta), 
-            $number + abs($delta)
-        ];
-    }
-
-    /**
      * Constructs the strategy to test.
      *
-     * @param string                                                $strategy
+     * @param string $strategy
      * @param SynodicRhythmRecord $record
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy
+     * @return BuilderStrategy
      */
     protected function makeStrategy(SynodicRhythmRecord $record): BuilderStrategy
     {

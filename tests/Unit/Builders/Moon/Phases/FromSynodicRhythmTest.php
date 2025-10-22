@@ -12,14 +12,15 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
-#[TestDox("A Moon\Phases\FromMoonSynodicRhythm builder")]
+#[TestDox("The Moon\Phases\FromMoonSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
 class FromSynodicRhythmTest extends TestCase
 {
-    #[TestDox("can build a MoonPhases collection from the MoonSynodicRhythm.")]
+    #[TestDox("can build a Moon\Phases collection from the Moon\SynodicRhythm.")]
     public function test_build_moon_phases_from_synodic_rhythm()
     {
         // Arrange
+        $record_class = PhaseRecord::class;
         $date_1 = new SwissEphemerisDateTime("2021-10-06 11:00:00");
         $date_2 = new SwissEphemerisDateTime("2021-10-13 03:00:00");
         $date_3 = new SwissEphemerisDateTime("2021-10-20 15:00:00");
@@ -54,12 +55,14 @@ class FromSynodicRhythmTest extends TestCase
         
         // Assert
         $this->assertIsArray($moon_phases,
-            "The collection must be an array");
-        $this->assertContainsOnlyInstancesOf(PhaseRecord::class, $moon_phases, 
-            "The collection must contain only MoonPhaseRecord(s).");
+            "The collection must be an array"
+        );
+        $this->assertContainsOnlyInstancesOf($record_class, $moon_phases,
+            $this->iterableMustContains("array", $record_class)
+        );
     }
 
-    #[TestDox("needs at least one MoonPhaseType.")]
+    #[TestDox("cannot build without Moon\Phase constants.")]
     public function test_needs_at_least_one_moon_phase_type()
     {
         // Arrange
@@ -74,7 +77,7 @@ class FromSynodicRhythmTest extends TestCase
         new FromSynodicRhythm($synodic_rhythm, []);
     }
 
-    #[TestDox("needs only MoonPhaseType.")]
+    #[TestDox("can build only with Moon\Phase constants.")]
     public function test_needs_only_moon_phase_type()
     {
         // Arrange

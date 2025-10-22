@@ -4,11 +4,11 @@ namespace MarcoConsiglio\Ephemeris\Enums\Moon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FirstQuarter as FirstQuarterStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FullMoon as FullMoonStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\NewMoon as NewMoonStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\PhaseStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\ThirdQuarter as ThirdQuarterStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\MoonPhaseStrategy;
 
 /**
- * A moon phase.
+ * Moon phases definitions.
  */
 enum Phase
 {
@@ -33,15 +33,15 @@ enum Phase
     case ThirdQuarter;
 
     /**
-     * Gets the corresponding type associated to a MoonPhaseStrategy concrete class.
-     * Every MoonPhaseStrategy must have the same name of the corresponding MoonPhaseType constant.
+     * Gets the corresponding type associated to a Moon PhaseStrategy concrete class.
+     * Every Moon PhaseStrategy must have the same name of the corresponding Moon Phase constant.
      *
      * @param string $strategy_class
      * @return Phase
      */
-    public static function getCorrespondingType(string $strategy_class): ?Phase
+    public static function getCorrespondingPhase(string $strategy_class): ?Phase
     {
-        if (get_parent_class($strategy_class) == MoonPhaseStrategy::class) {
+        if (get_parent_class($strategy_class) == PhaseStrategy::class) {
             $value = class_basename($strategy_class);
             switch ($value) {
                 case "NewMoon":

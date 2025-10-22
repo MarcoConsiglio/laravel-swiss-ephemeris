@@ -2,13 +2,12 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\MoonPhaseStrategy;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
 /**
  * Check if a MoonSynodicRhythmRecord is a full moon phase.
  */
-class FullMoon extends MoonPhaseStrategy
+class FullMoon extends PhaseStrategy
 {
     use WithFuzzyCondition;
 

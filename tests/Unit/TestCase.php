@@ -11,6 +11,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
 use ReflectionClass;
 
+/**
+ * Unit custom TestCase.
+ */
 abstract class TestCase extends TestbenchTestCase
 {
     use WithMockedSwissEphemerisDateTime, WithCustomAssertions;

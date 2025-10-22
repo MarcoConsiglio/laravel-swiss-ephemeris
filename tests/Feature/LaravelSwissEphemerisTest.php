@@ -3,8 +3,6 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
 use Carbon\Carbon;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
@@ -16,7 +14,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 #[CoversClass(LaravelSwissEphemeris::class)]
 class LaravelSwissEphemerisTest extends TestCase
 {
-    #[TestDox("can show the Moon Synodic Rhythm.")]
+    #[TestDox("can query the Moon synodic rhythm.")]
     public function test_synodic_rhythm()
     {
         // Arrange in setUp()
@@ -31,7 +29,7 @@ class LaravelSwissEphemerisTest extends TestCase
             "A MoonSynodicRhythm must contains only MoonSynodicRhythmRecord(s).");
     }
 
-    #[TestDox("throw Exception if the query is outbound the available time range.")]
+    #[TestDox("throw an Exception if the query is outbound the available time range.")]
     public function test_outbound_time_range_throw_exception()
     {
         // Arrange in setUp()

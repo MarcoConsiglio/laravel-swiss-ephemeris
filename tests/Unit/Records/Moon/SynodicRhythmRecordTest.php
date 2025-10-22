@@ -1,6 +1,6 @@
 <?php
 
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
 use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
@@ -14,13 +14,13 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use RoundingMode;
 
-#[TestDox("A MoonSynodicRhythmRecord")]
+#[TestDox("The Moon\SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]
 class SynodicRhythmRecordTest extends TestCase
 {
     use WithCustomAssertions;
 
-    #[TestDox("has read-only properties 'timestamp' which is a SwissEphemerisDateTime.")]
+    #[TestDox("has read-only properties \"timestamp\" which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property()
     {
         // Arrange

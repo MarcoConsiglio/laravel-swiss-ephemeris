@@ -3,12 +3,11 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\MoonPhaseStrategy;
 
 /**
  * Check if a MoonSynodicRhythmRecord is a first quarter moon phase.
  */
-class FirstQuarter extends MoonPhaseStrategy
+class FirstQuarter extends PhaseStrategy
 {
     use WithFuzzyCondition;
 

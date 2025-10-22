@@ -6,7 +6,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\ThirdQuarte
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
-#[TestDox("The ThirdQuarter strategy")]
+#[TestDox("The ThirdQuarter PhaseStrategy")]
 #[CoversClass(ThirdQuarter::class)]
 class ThirdQuarterTest extends StrategyTestCase
 {
@@ -21,17 +21,20 @@ class ThirdQuarterTest extends StrategyTestCase
         parent::setUp();
     }
 
-    #[TestDox("can find a MoonSynodicRhythmRecord whose 'angular_distance' is about -90°.")]
+    #[TestDox("can find a Moon\SynodicRhythmRecord whose \"angular_distance\" is about -90°.")]
     public function test_can_find_third_quarter_if_angular_distance_is_about_minus_90()
     {
         // Arrange
+        $interface = BuilderStrategy::class;
         // Generate two records, one has -90 and the other has non-90 angular distance.
         $record_90 = $this->getThirdQuarterRecord();
         $record_non_90 = $this->getNonThirdQuarterRecord();
 
         // Act
         $strategy = $this->makeStrategy($record_90);
-        $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->strategy_name} strategy must realize BuilderStrategy interface.");
+        $this->assertInstanceOf($interface, $strategy, 
+            "The {$this->strategy_name} strategy must implement $interface interface."
+        );
         $actual_record_90 = $strategy->found();
         $strategy = $this->makeStrategy($record_non_90);
         $actual_record_non_90 = $strategy->found();

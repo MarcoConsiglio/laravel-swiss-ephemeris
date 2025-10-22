@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(SinglePlanet::class)]
 class SinglePlanetTest extends TestCase
 {
-    #[TestDox("consists of several reference to a single planet.")]   
+    #[TestDox("consists of several reference to a single planet or object.")]   
     public function test_output_formats(): void
     {
         // Arrange

@@ -3,15 +3,13 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
-use MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPeriodType;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Period;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
-#[TestDox("A MoonPeriod")]
+#[TestDox("The Moon\Period")]
 #[CoversClass(Period::class)]
 class MoonPeriodTest extends TestCase
 {

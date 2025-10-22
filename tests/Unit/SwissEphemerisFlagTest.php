@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 #[TestDox("The SwissEphemerisFlag")]
 class SwissEphemerisFlagTest extends TestCase
 {
-    #[TestDox("can cast the flag to string in the proper format for Swiss Ephemeris executable.")]
+    #[TestDox("can cast the flag to string in the proper format acepted by the Swiss Ephemeris executable.")]
     public function test_cast_a_flag_to_string()
     {
         // Arrange

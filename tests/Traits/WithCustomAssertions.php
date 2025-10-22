@@ -6,6 +6,9 @@ use MarcoConsiglio\Ephemeris\Tests\Constraints\IsDateEqual;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
 
+/**
+ * Provides Custom Assertions for tests.
+ */
 trait WithCustomAssertions
 {
     use WithFailureMessage;
