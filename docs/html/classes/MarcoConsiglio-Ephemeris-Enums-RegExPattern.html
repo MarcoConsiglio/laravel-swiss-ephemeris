@@ -152,7 +152,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -case -">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#enumcase_RelativeDecimalNumber">RelativeDecimalNumber</a>
     <span>
-                &nbsp;= self::RegExDelimiter . &#039;(?&lt;=\s)-?\d+\.\d+\b&#039; . self::RegExDelimiter                    </span>
+                &nbsp;= self::RegExDelimiter . &#039;(?:&#039; . self::OneSpaceDelimeter . &#039;|&#039; . self::TwoSpaceDelimiter . &#039;|&#039; . self::ThreeSpaceDelimiter . &#039;)-?\d+\.\d+\b&#039; . self::RegExDelimiter                    </span>
 </dt>
 <dd>Matches a negative or positive decimal number.</dd>
 
@@ -166,13 +166,26 @@
             <dt class="phpdocumentor-table-of-contents__entry -case -">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#enumcase_UniversalAndTerrestrialDateTime">UniversalAndTerrestrialDateTime</a>
     <span>
-                &nbsp;= self::RegExDelimiter . &quot;\\d{1,2}\\.\\d{1,2}\\.\\d{1,4}j?[[:space:]]{1}\\d{1,2}\\:\\d{2}\\:\\d{2}[[:space:]](?:(?:TT)|(?:UT)){1}&quot; . self::RegExDelimiter                    </span>
+                &nbsp;= self::RegExDelimiter . &quot;\\d{1,2}\\.\\d{1,2}\\.\\d{1,4}j?\\s{1}\\d{1,2}\\:\\d{2}\\:\\d{2}\\s(?:(?:TT)|(?:UT)){1}&quot; . self::RegExDelimiter                    </span>
 </dt>
 <dd>Matches a datetime of the Gregorian or Julian calendar, Universal Time or Terrestrial Time.</dd>
 
     </dl>
 
 
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#method_getObjectNamesRegex">getObjectNamesRegex()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+
+    </dl>
 
 
 
@@ -268,7 +281,62 @@
 </article>
             </section>
 
-        
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getObjectNamesRegex">
+        getObjectNamesRegex()
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#method_getObjectNamesRegex" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/RegExPattern.php"><a href="files/src-enums-regexpattern.html"><abbr title="src/Enums/RegExPattern.php">RegExPattern.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">42</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getObjectNamesRegex</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$partial_regex</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$partial_regex</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+            </section>
+
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
@@ -375,7 +443,8 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#toc-cases">Cases</a></li>
-                                                        </ul>
+                                                                <li><a href="classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
                             <li class="phpdocumentor-on-this-page-section__title">Cases</li>
                 <li>
@@ -386,6 +455,12 @@
                                             </ul>
                 </li>
             
+                            <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#method_getObjectNamesRegex">getObjectNamesRegex()</a></li>
+                                            </ul>
+                </li>
                     </ul>
     </section>
 
