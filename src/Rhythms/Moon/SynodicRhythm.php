@@ -2,11 +2,16 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 
 use Illuminate\Support\Collection;
+use UnexpectedValueException;
 use Illuminate\Support\LazyCollection;
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods\FromSynodicRhythm as MoonPeriodBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm as MoonPhasesBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
+use stdClass;
 
 /**
  * A collection of SynodicRhythmRecord instances.
@@ -21,22 +26,19 @@ class SynodicRhythm extends Collection
     /**
      * Create a new MoonSynodicRhythm.
      *
-     * @param mixed $items
+     * @param FromArray|FromRecords $items
      */
-    public function __construct($items = [])
+    public function __construct(FromArray|FromRecords $builder)
     {
-        if (empty($items)) {
-            throw new InvalidArgumentException("The MoonSynodicRhythm must be constructed with MoonSynodicRhythmRecord(s) or an array with 'timestamp' and 'angular_distance' setted.");
-        }
-        $this->items = $items;
+        $this->items = $builder->fetchCollection(); 
     }
 
     /**
-     * Gets a MoonSynodicRhythmRecord from the collection by key.
+     * Gets a Moon SynodicRhythmRecord from the collection by key.
      *
      * @param  mixed  $key
      * @param  mixed  $default
-     * @return \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord
+     * @return SynodicRhythmRecord
      */
     public function get($key, $default = null): SynodicRhythmRecord
     {
@@ -44,14 +46,13 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Gets a collection of MoonPeriods.
+     * Gets a collection of Moon Periods.
      *
      * @return Periods
      */
     public function getPeriods(): Periods
     {
-        $builder = new MoonPeriodBuilder($this);
-        return new Periods($builder->fetchCollection());
+        return new Periods(new MoonPeriodBuilder($this));
     }
 
     /**
@@ -63,8 +64,7 @@ class SynodicRhythm extends Collection
      */
     public function getPhases(array $moon_phase_types): Phases
     {
-        $builder = new MoonPhasesBuilder($this, $moon_phase_types);
-        return new Phases($builder->fetchCollection());
+        return new Phases(new MoonPhasesBuilder($this, $moon_phase_types));
     }
 
     /**
@@ -76,6 +76,9 @@ class SynodicRhythm extends Collection
      */
     public function first(?callable $callback = null, $default = null): SynodicRhythmRecord
     {
+        if ($this->items instanceof LazyCollection) {
+            return $this->items->first($callback, $default);
+        }
         return parent::first($callback, $default);
     }
 
@@ -89,12 +92,32 @@ class SynodicRhythm extends Collection
     public function last(?callable $callback = null, $default = null): SynodicRhythmRecord
     {
         if ($this->items instanceof LazyCollection) {
-            /**
-             * @var \Illuminate\Support\LazyCollection
-             */
-            $lazy_collection = $this->items;
-            return $lazy_collection->last($callback, $default);
+            return $this->items->last($callback, $default);
         }
         return parent::last($callback, $default);
+    }
+
+    /**
+     * Check that all items in $array are instances of type
+     * SynodicRhythmRecord.
+     *
+     * @param array $array
+     * @return void
+     * @throws UnexpectedValueException
+     */
+    protected function arrayContainsType(array $array, string $type): void
+    {
+        collect($array)->ensure($type);        
+    }
+
+    /**
+     * Check that all items in $array are of type string.
+     *
+     * @param array $array
+     * @return void
+     */
+    protected function arrayContainsString(array $array): void
+    {
+        collect($array)->ensure("string");
     }
 }

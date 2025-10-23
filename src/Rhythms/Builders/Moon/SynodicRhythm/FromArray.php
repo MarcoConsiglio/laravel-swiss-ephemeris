@@ -37,7 +37,7 @@ class FromArray extends Builder
 
     /**
      * @return void
-     * @throws \InvalidArgumentException if passed data is not array with 'timestamp' and 'angular_distance' keys.
+     * @throws \InvalidArgumentException if passed data is not array with "timestamp" and "angular_distance" keys.
      */
     public function validateData()
     {
@@ -75,7 +75,7 @@ class FromArray extends Builder
     /**
      * Fetch the builded Moon SynodicRhythm collection.
      *
-     * @return array
+     * @return SynodicRhythmRecord[]
      */
     public function fetchCollection(): array
     {

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
@@ -14,6 +15,7 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use TypeError;
 
 #[TestDox("The Moon\SynodicRhythm")]
 #[CoversClass(SynodicRhythm::class)]
@@ -71,15 +73,16 @@ class SynodicRhythmTest extends TestCase
         $this->assertInstanceOf($moon_phases_collection_class, $moon_phases, $failure_message);
     }
 
-    #[TestDox("cannot be constructed with empty records.")]
+    #[TestDox("cannot be constructed with an array.")]
     public function test_synodic_rhythm_throw_exception_if_records_are_empty()
     {
         // Arrange
         $empty_records = [];
 
-        // Act & Assert
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The MoonSynodicRhythm must be constructed with MoonSynodicRhythmRecord(s) or an array with 'timestamp' and 'angular_distance' setted.");
+        // Assert
+        $this->expectException(TypeError::class);
+
+        // Act
         new SynodicRhythm($empty_records);
     }
 

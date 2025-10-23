@@ -1,7 +1,6 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
+namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
-use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
 
@@ -39,8 +38,8 @@ class Period
     /**
      * Constructs a Moon period.
      *
-     * @param CarbonInterface                                         $start
-     * @param CarbonInterface                                         $end
+     * @param CarbonInterface $start
+     * @param CarbonInterface $end
      * @param PeriodType $type
      */
     public function __construct(CarbonInterface $start, CarbonInterface $end, PeriodType $type)

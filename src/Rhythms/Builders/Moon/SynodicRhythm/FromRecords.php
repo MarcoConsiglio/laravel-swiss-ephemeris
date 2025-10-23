@@ -14,14 +14,14 @@ class FromRecords extends Builder
     /**
      * The data used to create the Moon SynodicRhythm collection.
      *
-     * @var mixed
+     * @var array
      */
     protected $data;
 
     /**
-     * The records of the MoonSynodicRhythm.
+     * A list of SynodicRhythmRecord instances.
      *
-     * @var array
+     * @var SynodicRhythmRecord[]
      */
     protected array $records = [];
 
@@ -34,24 +34,26 @@ class FromRecords extends Builder
     {
         $this->data = $data;
         $this->validateData();
+        $this->records = $this->data;
     }
 
     /**
      * Validates data.
      *
      * @return void
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException if at least one item is different than SynodicRhythmRecord.
      */
     public function validateData()
     {
+        $this_class = self::class;
         if (!is_array($this->data)) {
-            throw new InvalidArgumentException("The builder ".self::class." must have array data.");
+            throw new InvalidArgumentException("The builder $this_class must have array data.");
         }
         $collection = collect($this->data);
-        $collection->filter(function ($item, $key) {
+        $collection->filter(function ($item, $key) use ($this_class){
             if (!$item instanceof SynodicRhythmRecord) {
                 throw new InvalidArgumentException(
-                    "The builder ".self::class." must have an array of ".SynodicRhythmRecord::class."."
+                    "The builder $this_class must have an array of ".SynodicRhythmRecord::class."."
                 );
             }
         });
@@ -69,12 +71,12 @@ class FromRecords extends Builder
     }
 
     /**
-     * Fetch the builded Moon SynodicRhythm collection.
+     * Fetch the builded Moon SynodicRhythmRecord instances.
      *
-     * @return SynodicRhythm
+     * @return SynodicRhythmRecord[]
      */
-    public function fetchCollection(): SynodicRhythm
+    public function fetchCollection(): array
     {
-        return new SynodicRhythm($this->data);
+        return $this->records;
     }
 }

@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Period;
+use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 
@@ -24,7 +24,7 @@ class FromSynodicRhythm extends Builder
      *
      * @var Period[]
      */
-    protected array $items = [];
+    protected array $records = [];
 
     /**
      * Constructs the builder with the Moon SynodicRhythm.
@@ -52,16 +52,16 @@ class FromSynodicRhythm extends Builder
      */
     public function buildRecords()
     {
-        /** @var \Illuminate\Support\LazyCollection $periods */
+        /** @var \Illuminate\Support\LazyCollection $records */
         // Divide the Moon synodic rhythm in waxing and waning Moon periods.
-        $periods = $this->data->chunkWhile(function ($record, $key, $chunk) {
+        $collection = collect($this->data->all());
+        $this->records = $collection->chunkWhile(function ($record, $key, $chunk) {
             /** @var SynodicRhythmRecord $record */
+            /** @var SynodicRhythm $chunk */
             // Separate all records in chunks of only waxing records and chunks of only waning records.
             return $record->isWaxing() === $chunk->last()->isWaxing();
-        })->all();
-
-        // For each period...
-        $this->items = $periods->map(function ($period, $key) {
+        })->map(function ($period) {
+            // Foreach period...
             /**
              * @var \Illuminate\Support\LazyCollection $period
              * @var SynodicRhythmRecord $first_record
@@ -71,7 +71,7 @@ class FromSynodicRhythm extends Builder
             $last_record = $period->last();
             // ...take the first and the last timestamp to build a MoonPeriod.
             return new Period($first_record->timestamp, $last_record->timestamp, $first_record->getPeriodType());
-        })->all();    
+        })->all();
     }
 
     /**
@@ -82,6 +82,6 @@ class FromSynodicRhythm extends Builder
     public function fetchCollection(): array
     {
         $this->buildRecords();
-        return $this->items;
+        return $this->records;
     }
 }

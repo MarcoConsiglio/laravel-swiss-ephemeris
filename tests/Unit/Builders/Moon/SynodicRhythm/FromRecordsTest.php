@@ -51,7 +51,6 @@ class FromRecordsTest extends BuilderTestCase
         // Arrange in setUp()
         $builder_class = $this->getBuilderClass();
         $builder_interface = Builder::class;
-        $collection_class = SynodicRhythm::class;
         $record_class = SynodicRhythmRecord::class;
         $records = [];
         foreach ($this->data as $item) {
@@ -64,11 +63,11 @@ class FromRecordsTest extends BuilderTestCase
 
         // Assert
         $this->assertInstanceOf($builder_interface, $builder, "The $builder_class builder must implement the $builder_interface interface.");
-        $this->assertInstanceOf($collection_class, $collection,
-            $this->methodMustReturn($builder_class, "fetchCollection", $collection_class)
+        $this->assertIsArray($collection,
+            $this->methodMustReturn($builder_class, "fetchCollection", "array")
         );       
         $this->assertContainsOnlyInstancesOf($record_class, $collection,
-            $this->iterableMustContains($collection_class, $record_class)
+            $this->iterableMustContains("array", $record_class)
         ); 
     }
 

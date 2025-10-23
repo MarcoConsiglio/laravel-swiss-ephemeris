@@ -2,7 +2,7 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Feature\Moon;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Period;
+use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;

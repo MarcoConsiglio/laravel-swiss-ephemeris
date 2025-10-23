@@ -9,7 +9,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\Moon\ApogeeTemplate;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 

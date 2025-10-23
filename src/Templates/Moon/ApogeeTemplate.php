@@ -14,7 +14,7 @@ use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\QueryBuilder;
@@ -139,7 +139,7 @@ class ApogeeTemplate extends QueryBuilder
 
     protected function buildObject(): void
     {
-        $this->object = new Apogees(new FromRecords($this->output)->fetchCollection());
+        $this->object = new Apogees(new FromArray($this->output));
     }
 
     public function getResult(): ?Apogees

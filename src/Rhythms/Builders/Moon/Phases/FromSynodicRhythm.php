@@ -7,6 +7,7 @@ use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\PhaseStrategy;
 
 /**
@@ -54,7 +55,7 @@ class FromSynodicRhythm extends Builder
      * Validates the list of Phase enum constants.
      *
      * @return void
-     * @throws \InvalidArgumentException when at least one element of $moon_phase_types is not a MoonPhaseType.
+     * @throws \InvalidArgumentException when at least one element of $moon_phase_types is not a Moon Phase.
      */
     public function validateData()
     {
@@ -72,14 +73,15 @@ class FromSynodicRhythm extends Builder
     }
 
     /**
-     * Builds the MoonPhasesRecord(s).
+     * Builds the MoonPhasesRecord instances.
      *
      * @return void
      */
     public function buildRecords()
     {
-        $this->records = $this->data->transform(function ($record, $key) {
-            /** @var SynodicRhythm $record */
+        $collection = collect($this->data->all());
+        $this->records = $collection->transform(function ($record, $key) {
+            /** @var SynodicRhythmRecord $record */
 
             // Obtain all the strategies necessaries to filter the records, based upon
             // the $moon_phase_types passed into the constructur of this builder. This means 
@@ -108,7 +110,7 @@ class FromSynodicRhythm extends Builder
     }
 
     /**
-     * Returns an array of PhaseRecord(s).
+     * Returns an array of PhaseRecord instances.
      *
      * @return PhaseRecord[]
      */

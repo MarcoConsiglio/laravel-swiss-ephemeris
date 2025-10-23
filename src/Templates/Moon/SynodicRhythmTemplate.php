@@ -18,6 +18,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\QueryBuilder;
+use RoundingMode;
 
 class SynodicRhythmTemplate extends QueryBuilder
 {
@@ -108,7 +109,7 @@ class SynodicRhythmTemplate extends QueryBuilder
     protected function prepareFlags(): void
     {
         $start_date = new SwissEphemerisDateTime($this->start_date);
-        $steps = $this->days * 24; // This is a problem when setting step_size different than 60 minutes.
+        $steps = round(($this->days * 24 * 60) / $this->step_size, 0, RoundingMode::HalfTowardsZero);
         // Warning! Changing the object format will cause errors in getMoonSynodicRhythm() method.
         $object_format = OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value));
@@ -165,7 +166,7 @@ class SynodicRhythmTemplate extends QueryBuilder
      */
     protected function buildObject(): void
     {
-        $this->object = new SynodicRhythm(new FromArray($this->output)->fetchCollection());           
+        $this->object = new SynodicRhythm(new FromArray($this->output));           
     }
 
     /**

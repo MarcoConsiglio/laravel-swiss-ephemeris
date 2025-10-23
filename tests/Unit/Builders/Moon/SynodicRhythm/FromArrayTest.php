@@ -111,14 +111,13 @@ class FromArrayTest extends BuilderTestCase
     {
         // Act
         $builder_class = $this->getBuilderClass();
-        $builder = new $builder_class([]);
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("The $builder_class builder cannot work with an empty array.");
         
         // Arrange
-        $builder->validateData();
+        $builder = new $builder_class([]);
     }
 
     /**

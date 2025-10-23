@@ -10,14 +10,14 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * Builds a Moon Apogees collection from ApogeeRecords instances.
+ * Builds a Moon Apogees collection from raw ephemeris response.
  */
-class FromRecords extends Builder
+class FromArray extends Builder
 {
     /**
-     * The data used to create the Moon Apogees collection.
+     * The raw data used to create the Moon Apogees collection.
      *
-     * @var mixed
+     * @var array
      */
     protected $data;
 
@@ -40,14 +40,29 @@ class FromRecords extends Builder
     }
 
     /**
+     * Validates data.
+     * 
      * @return void
-     * @throws \InvalidArgumentException if at least one item is not a Moon ApogeeRecord.
+     * @throws \InvalidArgumentException if at least one 
+     * item do not have the "timestamp" or "longitude" array key
      */
     protected function validateData()
     {
+        $this_class = self::class;
         if (!is_array($this->data)) {
             throw new InvalidArgumentException("The builder ".self::class." must have array data.");
         }
+
+        $data = collect($this->data);
+        $data->filter(function ($value, $key) use ($this_class) {
+            if(!isset($value["timestamp"])) {
+                throw new InvalidArgumentException("The $this_class builder must have \"timestamp\" column.");    
+            }
+            if(!isset($value["longitude"])) {
+                throw new InvalidArgumentException("The $this_class builder must have \"longitude\" column.");
+            }
+            return $value;
+        });
     }
 
     /**
@@ -68,7 +83,7 @@ class FromRecords extends Builder
         })->all();
         $this->data = $moon_and_apogee_raw_records;
 
-        // Transform raw data in MoonApogeeRecord(s).
+        // Transform raw data in Moon ApogeeRecord instances.
         $timestamp_index = 0;
         $moon_longitude_index = 1;
         $apogee_longitude_index = 2;
@@ -80,18 +95,17 @@ class FromRecords extends Builder
                     Angle::createFromDecimal((float) $item[$apogee_longitude_index])
                 );
         })->all();
-        $stop_here = "";
         // Select the correct MoonApogeeRecord where the Moon is close to its apogee.
     }
 
     /**
-     * Fetch the builded Moon Apogees collection.
+     * Fetch the builded Moon ApogeeRecord instances.
      *
-     * @return Apogees
+     * @return ApogeeRecord[]
      */
-    public function fetchCollection(): Apogees
+    public function fetchCollection(): array
     {
         $this->buildRecords();
-        return new Apogees($this->data);
+        return $this->data;
     }
 }

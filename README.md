@@ -1,7 +1,7 @@
 ![GitHub License](https://img.shields.io/github/license/MarcoConsiglio/laravel-swiss-ephemeris)<br>
-![Static Badge](https://img.shields.io/badge/98%25-rgb(40%2C167%2C69)?label=Line%20coverage&labelColor=rgb(255%2C255%2C255))
-![Static Badge](https://img.shields.io/badge/95%25-rgb(40%2C167%2C69)?label=Branch%20coverage&labelColor=rgb(255%2C255%2C255))
-![Static Badge](https://img.shields.io/badge/74%25-rgb(255%2C193%2C7)?label=Path%20coverage&labelColor=rgb(255%2C255%2C255))
+![Static Badge](https://img.shields.io/badge/85%25-rgb(255%2C193%2C7)?label=Line%20coverage&labelColor=rgb(255%2C255%2C255))
+![Static Badge](https://img.shields.io/badge/88%25-rgb(255%2C193%2C7)?label=Branch%20coverage&labelColor=rgb(255%2C255%2C255))
+![Static Badge](https://img.shields.io/badge/67%25-rgb(255%2C193%2C7)?label=Path%20coverage&labelColor=rgb(255%2C255%2C255))
 
 
 # Laravel Swiss Ephemeris

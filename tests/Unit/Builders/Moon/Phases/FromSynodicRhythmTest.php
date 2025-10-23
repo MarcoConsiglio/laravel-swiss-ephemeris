@@ -6,6 +6,8 @@ use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -41,12 +43,13 @@ class FromSynodicRhythmTest extends TestCase
             $date_4->toGregorianTT(),
             -90.0499896
         );
-        $synodic_rhythm = new SynodicRhythm([
+        $synodic_rhythm_builder = new FromRecords([
             $new_moon_record,
             $first_quarter_record,
             $full_moon_record,
             $third_quarter_record
         ]);
+        $synodic_rhythm = new SynodicRhythm($synodic_rhythm_builder);
 
         // Act
         /** @var SynodicRhythm $synodic_rhythm */
@@ -66,11 +69,16 @@ class FromSynodicRhythmTest extends TestCase
     public function test_needs_at_least_one_moon_phase_type()
     {
         // Arrange
+        $builder_class = FromSynodicRhythm::class;
+        $phase_enum = Phase::class;
+        $collection_class = Phases::class;
         $synodic_rhythm = $this->getMocked(SynodicRhythm::class);
-        
+        // 'The FromSynodicRhythm builder needs at least a Phase enum constant to construct a Phases collection.
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The FromMoonSynodicRhythm MoonPhases builder needs at least a MoonPhaseType.");
+        $this->expectExceptionMessage(
+            "The $builder_class builder needs at least a $phase_enum enum constant to construct a $collection_class collection."
+        );
         
         // Act
         /** @var SynodicRhythm $synodic_rhythm */
