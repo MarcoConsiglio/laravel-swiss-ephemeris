@@ -48,21 +48,16 @@ class SynodicRhythmRecord
      */
     public function __construct(string $timestamp, float $angular_distance)
     {
-        if (is_string($timestamp)) {
-            $formats = [
-                SwissEphemerisDateTime::GREGORIAN_UT,
-                SwissEphemerisDateTime::GREGORIAN_TT,
-                SwissEphemerisDateTime::JULIAN_UT,
-                SwissEphemerisDateTime::JULIAN_TT
-            ];
-            foreach ($formats as $format) {
-                if (SwissEphemerisDateTime::canBeCreatedFromFormat($timestamp, $format)) {
-                    $this->timestamp = SwissEphemerisDateTime::rawCreateFromFormat($format, $timestamp);
-                }
+        foreach (SwissEphemerisDateTime::availableFormats() as $format) {
+            if (SwissEphemerisDateTime::canBeCreatedFromFormat($timestamp, $format)) {
+                $this->timestamp = SwissEphemerisDateTime::rawCreateFromFormat($format, $timestamp);
             }
         }
         $this->angular_distance = Angle::createFromDecimal($angular_distance);
-        $this->percentage = round($this->angular_distance->toDecimal() / 180, 2, RoundingMode::HalfTowardsZero);
+        $this->percentage = round(
+            $this->angular_distance->toDecimal() / 180, 2, 
+            RoundingMode::HalfTowardsZero
+        );
     }
 
     /**

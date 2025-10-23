@@ -19,4 +19,5 @@
             <include-source>false</include-source>
         </api>
     </version>
+    <setting name="graphs.enabled" value="true"/>
 </phpdocumentor>

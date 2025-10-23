@@ -77,6 +77,7 @@
             
     <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="graphs/classes.html">Class Diagram</a></h3>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
@@ -123,7 +124,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Moon/SynodicRhythm.php"><a href="files/src-rhythms-moon-synodicrhythm.html"><abbr title="src/Rhythms/Moon/SynodicRhythm.php">SynodicRhythm.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -180,16 +181,16 @@ relative to the Sun, as seen from the Earth.</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-SynodicRhythm.html#method_get">get()</a>
     <span>
-                                &nbsp;: <abbr title="\MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord">MoonSynodicRhythmRecord</abbr>    </span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-SynodicRhythmRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord">SynodicRhythmRecord</abbr></a>    </span>
 </dt>
-<dd>Gets a MoonSynodicRhythmRecord from the collection by key.</dd>
+<dd>Gets a Moon SynodicRhythmRecord from the collection by key.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-SynodicRhythm.html#method_getPeriods">getPeriods()</a>
     <span>
                                 &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-Periods.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods">Periods</abbr></a>    </span>
 </dt>
-<dd>Gets a collection of MoonPeriods.</dd>
+<dd>Gets a collection of Moon Periods.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-SynodicRhythm.html#method_getPhases">getPhases()</a>
@@ -233,7 +234,7 @@ relative to the Sun, as seen from the Earth.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Moon/SynodicRhythm.php"><a href="files/src-rhythms-moon-synodicrhythm.html"><abbr title="src/Rhythms/Moon/SynodicRhythm.php">SynodicRhythm.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -241,7 +242,7 @@ relative to the Sun, as seen from the Earth.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$items</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromArray.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray">FromArray</abbr></a>|<a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromRecords.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords">FromRecords</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$builder</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -250,9 +251,9 @@ relative to the Sun, as seen from the Earth.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$items</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+                <span class="phpdocumentor-signature__argument__name">$builder</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromArray.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray">FromArray</abbr></a>|<a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromRecords.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords">FromRecords</abbr></a></span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
@@ -334,15 +335,15 @@ relative to the Sun, as seen from the Earth.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Moon/SynodicRhythm.php"><a href="files/src-rhythms-moon-synodicrhythm.html"><abbr title="src/Rhythms/Moon/SynodicRhythm.php">SynodicRhythm.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Gets a MoonSynodicRhythmRecord from the collection by key.</p>
+        <p class="phpdocumentor-summary">Gets a Moon SynodicRhythmRecord from the collection by key.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord">MoonSynodicRhythmRecord</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-SynodicRhythmRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord">SynodicRhythmRecord</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -372,7 +373,7 @@ relative to the Sun, as seen from the Earth.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord">MoonSynodicRhythmRecord</abbr></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-SynodicRhythmRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord">SynodicRhythmRecord</abbr></a></span>
             </section>
 
 </article>
@@ -390,11 +391,11 @@ relative to the Sun, as seen from the Earth.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Moon/SynodicRhythm.php"><a href="files/src-rhythms-moon-synodicrhythm.html"><abbr title="src/Rhythms/Moon/SynodicRhythm.php">SynodicRhythm.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Gets a collection of MoonPeriods.</p>
+        <p class="phpdocumentor-summary">Gets a collection of Moon Periods.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -429,7 +430,7 @@ relative to the Sun, as seen from the Earth.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Moon/SynodicRhythm.php"><a href="files/src-rhythms-moon-synodicrhythm.html"><abbr title="src/Rhythms/Moon/SynodicRhythm.php">SynodicRhythm.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -481,7 +482,7 @@ items representing which moon phases you want to extract.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Moon/SynodicRhythm.php"><a href="files/src-rhythms-moon-synodicrhythm.html"><abbr title="src/Rhythms/Moon/SynodicRhythm.php">SynodicRhythm.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 

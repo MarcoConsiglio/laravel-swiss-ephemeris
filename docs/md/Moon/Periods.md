@@ -4,14 +4,14 @@ A Moon period is the period when the angular distance between the Moon and the S
 You can obtain Moon `Periods` collection from a [`SynodicRhythm`](SynodicRhythm.md) object. It contains [`Period`](#period) instances.
 ```php
 /** @var \MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm $synodic_rhythm */
-/** @var \MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods $moon_periods */
+/** @var \MarcoConsiglio\Ephemeris\Records\Moon\Periods $moon_periods */
 $moon_periods = $synodic_rhythm->getPeriods();
 ```
 # Period
 A `Period` object can tell you when the period start, end and if it is waning or waxing.
 ```php
 /** @var \MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods $moon_periods */
-/** @var \MarcoConsiglio\Ephemeris\Rhythms\Moon\Period $period */
+/** @var \MarcoConsiglio\Ephemeris\Records\Moon\Period $period */
 foreach($moon_periods as $period) {
     $type = "unknown";
     if ($period->isWaxing()) {
