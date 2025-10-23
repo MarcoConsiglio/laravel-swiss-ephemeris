@@ -49,11 +49,11 @@ For more information, see the API documentation at `./docs/html`.
 
 # Index
 ## Datetime
-- [Swiss Ephemeris datetime](docs/md/SwissEphemerisDateTime.md)
+- [Swiss Ephemeris datetime](SwissEphemerisDateTime.md)
 ## Moon Ephemeris
-- [Synodic rhythm](docs/md/Moon/SynodicRhythm.md)
-- [Moon periods](docs/md/Moon/Periods.md)
-- [Moon phases](docs/md/Moon/Phases.md)
+- [Synodic rhythm](./SwissEphemerisDateTime.md)
+- [Moon periods](./Moon/Periods.md)
+- [Moon phases](./Moon/Phases.md)
 
 
 

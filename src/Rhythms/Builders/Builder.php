@@ -6,6 +6,8 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder as BuilderInter
 /**
  * A builder constructs ephemeris object from a specific
  * type of input.
+ * 
+ * The specific type of input determines the concrete builder class.
  */
 abstract class Builder implements BuilderInterface
 {

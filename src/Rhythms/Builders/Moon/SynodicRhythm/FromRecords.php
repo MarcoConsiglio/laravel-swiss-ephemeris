@@ -7,13 +7,12 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 
 /**
- * @inheritDoc
  * Builds a Moon SynodicRhythm from an array of Moon SynodicRhythmRecord instances.
  */
 class FromRecords extends Builder
 {
     /**
-     * The data used to create the MoonSynodicRhythm collection.
+     * The data used to create the Moon SynodicRhythm collection.
      *
      * @var mixed
      */
@@ -62,6 +61,7 @@ class FromRecords extends Builder
      * Build records.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     public function buildRecords()
     {
@@ -69,7 +69,7 @@ class FromRecords extends Builder
     }
 
     /**
-     * Fetch the builded MoonSynodicRhythm collection.
+     * Fetch the builded Moon SynodicRhythm collection.
      *
      * @return SynodicRhythm
      */

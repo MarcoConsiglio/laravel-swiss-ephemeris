@@ -5,7 +5,8 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
 /**
- * Check if a MoonSynodicRhythmRecord is a full moon phase.
+ * The strategy is used to find a Moon SynodicRhythmRecord 
+ * matching the full Moon phase.
  */
 class FullMoon extends PhaseStrategy
 {

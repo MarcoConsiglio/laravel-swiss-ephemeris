@@ -5,7 +5,8 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
 /**
- * Check if a MoonSynodicRhythmRecord is a new moon phase.
+ * The strategy is used to find a Moon SynodicRhythmRecord 
+ * matching the new Moon phase.
  */
 class NewMoon extends PhaseStrategy
 {

@@ -3,7 +3,8 @@
         configVersion="3"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="https://www.phpdoc.org"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/phpDocumentor/phpDocumentor/master/data/xsd/phpdoc.xsd">
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/phpDocumentor/phpDocumentor/master/data/xsd/phpdoc.xsd"
+>
     <title>Laravel Swiss Ephemeris Documentation</title>
     <paths>
         <output>docs/html</output>
@@ -18,6 +19,4 @@
             <include-source>false</include-source>
         </api>
     </version>
-    <setting name="graphs.enabled" value="true"/>
-    <setting name="guides.enabled" value="true"/>
 </phpdocumentor>

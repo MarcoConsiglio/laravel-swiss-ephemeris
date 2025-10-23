@@ -10,8 +10,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\PhaseStrategy;
 
 /**
- * @inheritDoc
- * Builds a Phase collection from a Moon SynodicRhythm.
+ * Builds a Phases collection from a Moon SynodicRhythm collection.
  */
 class FromSynodicRhythm extends Builder
 {

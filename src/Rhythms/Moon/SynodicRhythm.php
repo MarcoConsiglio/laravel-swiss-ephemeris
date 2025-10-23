@@ -9,10 +9,12 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods\FromSynodicRhythm as 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm as MoonPhasesBuilder;
 
 /**
- * Represents the Moon's Synodic Rhythm over a time range.
+ * A collection of SynodicRhythmRecord instances.
+ * 
+ * Represents the Moon's synodic rhythm over a time range. 
  * A Moon synodic rhythm, or synodic period, is the time it takes 
  * for a celestial object to return to the same position 
- * relative to the Sun, as seen from Earth.
+ * relative to the Sun, as seen from the Earth.
  */
 class SynodicRhythm extends Collection
 {

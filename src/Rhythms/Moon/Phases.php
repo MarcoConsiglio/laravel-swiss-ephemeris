@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 use Illuminate\Support\Collection;
 
 /**
- * A collection of MoonPhaseRecord(s) over a period of time.
+ * A collection of Moon PhaseRecord(s).
  */
 class Phases extends Collection
 {

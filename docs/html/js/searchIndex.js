@@ -743,7 +743,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Apogees\\FromRecords",
             "name": "FromRecords",
-            "summary": "A\u0020builder\u0020constructs\u0020ephemeris\u0020object\u0020from\u0020a\u0020specific\ntype\u0020of\u0020input.",
+            "summary": "Builds\u0020a\u0020Moon\u0020Apogees\u0020collection\u0020from\u0020ApogeeRecords\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-Apogees-FromRecords.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Apogees\\FromRecords\u003A\u003A__construct\u0028\u0029",
@@ -753,12 +753,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Apogees\\FromRecords\u003A\u003AfetchCollection\u0028\u0029",
             "name": "fetchCollection",
-            "summary": "Fetches\u0020the\u0020result.",
+            "summary": "Fetch\u0020the\u0020builded\u0020Moon\u0020Apogees\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-Apogees-FromRecords.html#method_fetchCollection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Periods\\FromSynodicRhythm",
             "name": "FromSynodicRhythm",
-            "summary": "A\u0020builder\u0020constructs\u0020ephemeris\u0020object\u0020from\u0020a\u0020specific\ntype\u0020of\u0020input.",
+            "summary": "Build\u0020a\u0020Moon\u0020Periods\u0020collection\nfrom\u0020the\u0020Moon\u0020SynodicRhythm\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-Periods-FromSynodicRhythm.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Periods\\FromSynodicRhythm\u003A\u003A__construct\u0028\u0029",
@@ -768,17 +768,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Periods\\FromSynodicRhythm\u003A\u003AbuildRecords\u0028\u0029",
             "name": "buildRecords",
-            "summary": "",
+            "summary": "Builds\u0020records\u0020of\u0020the\u0020MoonPeriods\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-Periods-FromSynodicRhythm.html#method_buildRecords"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Periods\\FromSynodicRhythm\u003A\u003AfetchCollection\u0028\u0029",
             "name": "fetchCollection",
-            "summary": "Fetches\u0020the\u0020result.",
+            "summary": "Fetch\u0020the\u0020builded\u0020array\u0020of\u0020MoonPeriod\u0028s\u0029.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-Periods-FromSynodicRhythm.html#method_fetchCollection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Phases\\FromSynodicRhythm",
             "name": "FromSynodicRhythm",
-            "summary": "A\u0020builder\u0020constructs\u0020ephemeris\u0020object\u0020from\u0020a\u0020specific\ntype\u0020of\u0020input.",
+            "summary": "Builds\u0020a\u0020Phases\u0020collection\u0020from\u0020a\u0020Moon\u0020SynodicRhythm\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-Phases-FromSynodicRhythm.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Phases\\FromSynodicRhythm\u003A\u003A__construct\u0028\u0029",
@@ -803,7 +803,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromArray",
             "name": "FromArray",
-            "summary": "A\u0020builder\u0020constructs\u0020ephemeris\u0020object\u0020from\u0020a\u0020specific\ntype\u0020of\u0020input.",
+            "summary": "Builds\u0020a\u0020Moon\u0020SynodicRhythm\u0020starting\u0020from\u0020an\u0020array\u0020of\u0020raw\u0020ephemeris\u0020response.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromArray.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromArray\u003A\u003A__construct\u0028\u0029",
@@ -818,7 +818,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromArray\u003A\u003AbuildRecords\u0028\u0029",
             "name": "buildRecords",
-            "summary": "",
+            "summary": "Build\u0020SynodicRhythmRecord\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromArray.html#method_buildRecords"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromArray\u003A\u003AfetchCollection\u0028\u0029",
@@ -828,7 +828,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromRecords",
             "name": "FromRecords",
-            "summary": "A\u0020builder\u0020constructs\u0020ephemeris\u0020object\u0020from\u0020a\u0020specific\ntype\u0020of\u0020input.",
+            "summary": "Builds\u0020a\u0020Moon\u0020SynodicRhythm\u0020from\u0020an\u0020array\u0020of\u0020Moon\u0020SynodicRhythmRecord\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromRecords.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromRecords\u003A\u003A__construct\u0028\u0029",
@@ -848,7 +848,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromRecords\u003A\u003AfetchCollection\u0028\u0029",
             "name": "fetchCollection",
-            "summary": "Fetch\u0020the\u0020builded\u0020MoonSynodicRhythm\u0020collection.",
+            "summary": "Fetch\u0020the\u0020builded\u0020Moon\u0020SynodicRhythm\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromRecords.html#method_fetchCollection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Anomalies\\AnomalisticStrategy",
@@ -868,7 +868,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\FirstQuarter",
             "name": "FirstQuarter",
-            "summary": "Describe\u0020a\u0020strategy\u0020used\u0020to\u0020find\u0020a\u0020moon\u0020phase.",
+            "summary": "The\u0020strategy\u0020is\u0020used\u0020to\u0020find\u0020a\u0020Moon\u0020SynodicRhythmRecord\u0020matching\u0020the\u0020first\u0020quarter\u0020Moon\u0020phase.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-FirstQuarter.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\FirstQuarter\u003A\u003A__construct\u0028\u0029",
@@ -883,7 +883,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\FullMoon",
             "name": "FullMoon",
-            "summary": "Check\u0020if\u0020a\u0020MoonSynodicRhythmRecord\u0020is\u0020a\u0020full\u0020moon\u0020phase.",
+            "summary": "The\u0020strategy\u0020is\u0020used\u0020to\u0020find\u0020a\u0020Moon\u0020SynodicRhythmRecord\nmatching\u0020the\u0020full\u0020Moon\u0020phase.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-FullMoon.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\FullMoon\u003A\u003A__construct\u0028\u0029",
@@ -898,7 +898,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\NewMoon",
             "name": "NewMoon",
-            "summary": "Check\u0020if\u0020a\u0020MoonSynodicRhythmRecord\u0020is\u0020a\u0020new\u0020moon\u0020phase.",
+            "summary": "The\u0020strategy\u0020is\u0020used\u0020to\u0020find\u0020a\u0020Moon\u0020SynodicRhythmRecord\nmatching\u0020the\u0020new\u0020Moon\u0020phase.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-NewMoon.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\NewMoon\u003A\u003A__construct\u0028\u0029",
@@ -913,7 +913,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\PhaseStrategy",
             "name": "PhaseStrategy",
-            "summary": "Describe\u0020a\u0020strategy\u0020used\u0020to\u0020find\u0020a\u0020moon\u0020phase.",
+            "summary": "Describe\u0020a\u0020strategy\u0020used\u0020to\u0020find\u0020a\u0020Moon\u0020phase.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-PhaseStrategy.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\PhaseStrategy\u003A\u003Afound\u0028\u0029",
@@ -928,7 +928,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\ThirdQuarter",
             "name": "ThirdQuarter",
-            "summary": "Check\u0020if\u0020a\u0020MoonSynodicRhythmRecord\u0020is\u0020a\u0020third\u0020quarter\u0020moon\u0020phase.",
+            "summary": "The\u0020strategy\u0020is\u0020used\u0020to\u0020find\u0020a\u0020Moon\u0020SynodicRhythmRecord\u0020matching\nthe\u0020third\u0020quarter\u0020Moon\u0020phase.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-ThirdQuarter.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategies\\Moon\\Phases\\ThirdQuarter\u003A\u003A__construct\u0028\u0029",
@@ -943,17 +943,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\AnomalisticRhythm",
             "name": "AnomalisticRhythm",
-            "summary": "",
+            "summary": "A\u0020collection\u0020of\u0020the\u0020Moon\u0020AnomalisticRecord\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-AnomalisticRhythm.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\Apogees",
             "name": "Apogees",
-            "summary": "",
+            "summary": "A\u0020collection\u0020of\u0020Moon\u0020Apogee\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-Apogees.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\Period",
             "name": "Period",
-            "summary": "Represents\u0020a\u0020fraction\u0020of\u0020the\u0020Moon\u0020phase\u0020cicle,\ni.e.\u0020waxing\u0020or\u0020waning\u0020Moon\u0020period.",
+            "summary": "Represents\u0020a\u0020fraction\u0020of\u0020the\u0020Moon\u0020phase\u0020cicle,\ni.e.\u0020a\u0020waxing\u0020or\u0020a\u0020waning\u0020Moon\u0020period.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-Period.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\Period\u003A\u003A__construct\u0028\u0029",
@@ -988,17 +988,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\Periods",
             "name": "Periods",
-            "summary": "A\u0020collection\u0020of\u0020lunar\u0020periods\u0020of\u0020the\u0020Moon\u0020synodic\u0020rhythm.",
+            "summary": "A\u0020collection\u0020of\u0020Moon\u0020Period\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-Periods.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\Phases",
             "name": "Phases",
-            "summary": "A\u0020collection\u0020of\u0020MoonPhaseRecord\u0028s\u0029\u0020over\u0020a\u0020period\u0020of\u0020time.",
+            "summary": "A\u0020collection\u0020of\u0020Moon\u0020PhaseRecord\u0028s\u0029.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-Phases.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\SynodicRhythm",
             "name": "SynodicRhythm",
-            "summary": "Represents\u0020the\u0020Moon\u0027s\u0020Synodic\u0020Rhythm\u0020over\u0020a\u0020time\u0020range.",
+            "summary": "A\u0020collection\u0020of\u0020SynodicRhythmRecord\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-SynodicRhythm.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\SynodicRhythm\u003A\u003A__construct\u0028\u0029",

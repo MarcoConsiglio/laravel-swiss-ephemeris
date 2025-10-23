@@ -6,7 +6,8 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
 /**
- * Check if a MoonSynodicRhythmRecord is a third quarter moon phase.
+ * The strategy is used to find a Moon SynodicRhythmRecord matching
+ * the third quarter Moon phase.
  */
 class ThirdQuarter extends PhaseStrategy
 {

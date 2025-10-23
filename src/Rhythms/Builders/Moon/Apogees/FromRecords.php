@@ -10,7 +10,6 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * @inheritDoc
  * Builds a Moon Apogees collection from ApogeeRecords instances.
  */
 class FromRecords extends Builder
@@ -41,8 +40,6 @@ class FromRecords extends Builder
     }
 
     /**
-     * @inheritDoc
-     *
      * @return void
      * @throws \InvalidArgumentException if at least one item is not a Moon ApogeeRecord.
      */
@@ -54,8 +51,6 @@ class FromRecords extends Builder
     }
 
     /**
-     * @inheritDoc
-     *
      * @return void
      */
     protected function buildRecords()
@@ -90,8 +85,7 @@ class FromRecords extends Builder
     }
 
     /**
-     * @inheritDoc
-     * Fetch the builded MoonApogees collection.
+     * Fetch the builded Moon Apogees collection.
      *
      * @return Apogees
      */

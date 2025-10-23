@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 
 /**
- * Describe a strategy used to find a moon phase.
+ * Describe a strategy used to find a Moon phase.
  * 
  * @property-read float $delta Angular distance delta: It is used for an error biased search. 
  */

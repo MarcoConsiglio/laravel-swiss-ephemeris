@@ -2,14 +2,15 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 
 use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
 
 /**
  * Represents a fraction of the Moon phase cicle, 
- * i.e. waxing or waning Moon period.
+ * i.e. a waxing or a waning Moon period.
  * 
- * @property-read \Carbon\Carbon $start The period start.
- * @property-read \Carbon\Carbon $end The period end.
+ * @property-read CarbonInterface $start The period start.
+ * @property-read CarbonInterface $end The period end.
  * @property-read Period $type The period type, waxing or waning.
  */
 class Period
@@ -17,16 +18,16 @@ class Period
     /**
      * Start timestamp of this period.
      *
-     * @var \Carbon\Carbon
+     * @var CarbonInterface
      */
-    public protected(set) Carbon $start;
+    public protected(set) CarbonInterface $start;
 
     /**
      * End timestamp of this period.
      *
-     * @var \Carbon\Carbon
+     * @var CarbonInterface
      */
-    public protected(set) Carbon $end;
+    public protected(set) CarbonInterface $end;
 
     /**
      * The type of this period (waning or waxing).
@@ -38,13 +39,12 @@ class Period
     /**
      * Constructs a Moon period.
      *
-     * @param \Carbon\Carbon                                         $start
-     * @param \Carbon\Carbon                                         $end
+     * @param CarbonInterface                                         $start
+     * @param CarbonInterface                                         $end
      * @param PeriodType $type
      */
-    public function __construct(Carbon $start, Carbon $end, PeriodType $type)
+    public function __construct(CarbonInterface $start, CarbonInterface $end, PeriodType $type)
     {
-        
         $this->start = $start;
         $this->end = $end;
         $this->type = $type;
@@ -55,7 +55,7 @@ class Period
      *
      * @return boolean
      */
-    public function isWaxing()
+    public function isWaxing(): bool
     {
         return $this->type == PeriodType::Waxing;
     }
@@ -65,7 +65,7 @@ class Period
      *
      * @return boolean
      */
-    public function isWaning()
+    public function isWaning(): bool
     {
         return $this->type == PeriodType::Waning;
     }

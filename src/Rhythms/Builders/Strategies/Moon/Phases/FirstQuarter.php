@@ -5,7 +5,6 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
 /**
- * @inheritDoc
  * The strategy is used to find a Moon SynodicRhythmRecord matching the first quarter Moon phase.
  */
 class FirstQuarter extends PhaseStrategy

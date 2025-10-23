@@ -6,20 +6,19 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 
 /**
- * @inheritDoc
  * Builds a Moon SynodicRhythm starting from an array of raw ephemeris response.
  */
 class FromArray extends Builder
 {
     /**
-     * The data used to create the MoonSynodicRhythm collection.
+     * The data used to create the Moon SynodicRhythm collection.
      *
      * @var array
      */
     protected array $data;
 
     /**
-     * The records of the MoonSynodicRhythm.
+     * The raw ephemeris response.
      *
      * @var array
      */
@@ -37,8 +36,6 @@ class FromArray extends Builder
     }
 
     /**
-     * @inheritDoc
-     *
      * @return void
      * @throws \InvalidArgumentException if passed data is not array with 'timestamp' and 'angular_distance' keys.
      */
@@ -62,8 +59,7 @@ class FromArray extends Builder
     }
 
     /**
-     * @inheritDoc
-     * Build SynodicRhythmRecord(s).
+     * Build SynodicRhythmRecord instances.
      *
      * @return void
      */
