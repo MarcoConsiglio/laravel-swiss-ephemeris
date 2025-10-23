@@ -10,18 +10,20 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 #[TestDox("The Moon\Phases\FromMoonSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
-class FromSynodicRhythmTest extends TestCase
+class FromSynodicRhythmTest extends BuilderTestCase
 {
     #[TestDox("can build a Moon\Phases collection from the Moon\SynodicRhythm.")]
     public function test_build_moon_phases_from_synodic_rhythm()
     {
         // Arrange
+        $builder_class = $this->getBuilderClass();
         $record_class = PhaseRecord::class;
         $date_1 = new SwissEphemerisDateTime("2021-10-06 11:00:00");
         $date_2 = new SwissEphemerisDateTime("2021-10-13 03:00:00");
@@ -53,7 +55,7 @@ class FromSynodicRhythmTest extends TestCase
 
         // Act
         /** @var SynodicRhythm $synodic_rhythm */
-        $builder = new FromSynodicRhythm($synodic_rhythm, Phase::cases());
+        $builder = new $builder_class($synodic_rhythm, Phase::cases());
         $moon_phases = $builder->fetchCollection();
         
         // Assert
@@ -69,7 +71,7 @@ class FromSynodicRhythmTest extends TestCase
     public function test_needs_at_least_one_moon_phase_type()
     {
         // Arrange
-        $builder_class = FromSynodicRhythm::class;
+        $builder_class = $this->getBuilderClass();
         $phase_enum = Phase::class;
         $collection_class = Phases::class;
         $synodic_rhythm = $this->getMocked(SynodicRhythm::class);
@@ -98,5 +100,15 @@ class FromSynodicRhythmTest extends TestCase
         // Act
         /** @var SynodicRhythm $synodic_rhythm */
         new FromSynodicRhythm($synodic_rhythm, ["NonExistentClass"]);
+    }
+
+    /**
+     * Get the current SUT class.
+     * 
+     * @return string
+     */
+    protected function getBuilderClass(): string
+    {
+        return FromSynodicRhythm::class;  
     }
 }

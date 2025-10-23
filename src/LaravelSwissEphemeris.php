@@ -9,7 +9,6 @@ use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
-use MarcoConsiglio\Ephemeris\Templates\MoonSynodicRhythmTemplate;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 

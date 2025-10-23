@@ -55,8 +55,8 @@ class FromSynodicRhythmTest extends BuilderTestCase
     }
 
     /**
-     * Gets the correct Builder class to test.
-     *
+     * Get the current SUT class.
+     * 
      * @return string
      */
     protected function getBuilderClass(): string

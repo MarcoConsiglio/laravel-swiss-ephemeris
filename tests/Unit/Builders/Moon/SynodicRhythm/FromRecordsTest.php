@@ -75,7 +75,7 @@ class FromRecordsTest extends BuilderTestCase
     public function test_from_records_builder_wants_array_data()
     {
         // Arrange
-        $data = new SynodicRhythmRecord($this->data[0]["timestamp"], 90);
+        $data = new stdClass;
 
         // Assert
         $this->expectException(TypeError::class);

@@ -6,9 +6,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
 abstract class BuilderTestCase extends TestCase
-{
-    use WithMockedSwissEphemerisDateTime;
-    
+{    
     /**
      * Get the current SUT class.
      * 

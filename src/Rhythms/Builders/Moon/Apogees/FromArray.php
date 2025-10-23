@@ -20,7 +20,7 @@ class FromArray extends Builder
     protected $data;
 
     /**
-     * The list of Moon ApogeeRecord(s).
+     * The list of Moon ApogeeRecord instances.
      *
      * @var ApogeeRecord[]
      */
@@ -42,17 +42,13 @@ class FromArray extends Builder
      * 
      * @return void
      * @throws \InvalidArgumentException if at least one 
-     * item do not have the "timestamp" or "longitude" array key
+     * item do not have the "timestamp" or "longitude" array key.
      */
     protected function validateData()
     {
         $this_class = self::class;
-        if (!is_array($this->data)) {
-            throw new InvalidArgumentException("The builder ".self::class." must have array data.");
-        }
-
         $data = collect($this->data);
-        $data->filter(function ($value, $key) use ($this_class) {
+        $data->filter(function ($value) use ($this_class) {
             if(!isset($value["timestamp"])) {
                 throw new InvalidArgumentException("The $this_class builder must have \"timestamp\" column.");    
             }
@@ -64,6 +60,8 @@ class FromArray extends Builder
     }
 
     /**
+     * Builds records.
+     *
      * @return void
      */
     protected function buildRecords()

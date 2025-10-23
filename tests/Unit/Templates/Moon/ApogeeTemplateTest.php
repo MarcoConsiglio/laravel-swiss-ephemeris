@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The MoonAnomalisticRhythm")]
+#[TestDox("The ApogeeTemplate")]
 #[CoversClass(ApogeeTemplate::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(FakeRunner::class)]
