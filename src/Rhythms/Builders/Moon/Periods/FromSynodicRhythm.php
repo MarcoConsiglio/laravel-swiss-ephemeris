@@ -4,30 +4,30 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Period;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonPeriod;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 
 /**
- * Build a MoonPeriods collection starting from the MoonSynodicRhythm.
+ * @inheritDoc
+ * Build a Moon Periods collection from the Moon SynodicRhythm.
  */
 class FromSynodicRhythm extends Builder
 {
     /**
      * The data used to create the collection.
      *
-     * @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm
+     * @var SynodicRhythm
      */
     protected $data;
 
     /**
      * The builded records.
      *
-     * @var array
+     * @var Period[]
      */
     protected array $items = [];
 
     /**
-     * Constructs the builder with the MoonSynodicRhythm.
+     * Constructs the builder with the Moon SynodicRhythm.
      *
      * @param SynodicRhythm $data
      */
@@ -37,7 +37,7 @@ class FromSynodicRhythm extends Builder
     }
 
     /**
-     * Validates data.
+     * @inheritDoc
      *
      * @return void
      * @codeCoverageIgnore
@@ -48,6 +48,7 @@ class FromSynodicRhythm extends Builder
     }
 
     /**
+     * @inheritDoc
      * Builds records of the MoonPeriods collection.
      *
      * @return void
@@ -55,9 +56,9 @@ class FromSynodicRhythm extends Builder
     public function buildRecords()
     {
         /** @var \Illuminate\Support\LazyCollection $periods */
-        // Divide MoonSynodicRhythm in waxing and waning moon periods.
+        // Divide the Moon synodic rhythm in waxing and waning Moon periods.
         $periods = $this->data->chunkWhile(function ($record, $key, $chunk) {
-            /** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord $record */
+            /** @var SynodicRhythmRecord $record */
             // Separate all records in chunks of only waxing records and chunks of only waning records.
             return $record->isWaxing() === $chunk->last()->isWaxing();
         })->all();
@@ -66,8 +67,8 @@ class FromSynodicRhythm extends Builder
         $this->items = $periods->map(function ($period, $key) {
             /**
              * @var \Illuminate\Support\LazyCollection $period
-             * @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord $first_record
-             * @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord $last_record
+             * @var SynodicRhythmRecord $first_record
+             * @var SynodicRhythmRecord $last_record
              */
             $first_record = $period->first();
             $last_record = $period->last();
@@ -77,9 +78,10 @@ class FromSynodicRhythm extends Builder
     }
 
     /**
+     * @inheritDoc
      * Fetch the builded array of MoonPeriod(s).
      *
-     * @return array
+     * @return Period[]
      */
     public function fetchCollection(): array
     {

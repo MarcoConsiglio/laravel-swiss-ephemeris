@@ -5,11 +5,10 @@ use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord;
 
 /**
- * Builds a MoonSynodicRhythm from an array of MoonSynodicRhythmRecord(s).
+ * @inheritDoc
+ * Builds a Moon SynodicRhythm from an array of Moon SynodicRhythmRecord instances.
  */
 class FromRecords extends Builder
 {

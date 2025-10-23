@@ -6,16 +6,16 @@ use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 
 /**
- * A Moon phase in a precise timestamp.
- * @property-read \Carbon\Carbon $timestamp
- * @property-read \MarcoConsiglio\Ephemeris\Rhythms\Enums\MoonPhaseType $type
+ * A Moon phase in a precise moment.
+ * @property-read Carbon $timestamp
+ * @property-read Phase $type
  */
 class PhaseRecord
 {
     /**
      * The timestamp this record refers to.
      *
-     * @var \Carbon\CarbonInterface
+     * @var CarbonInterface
      */
     public protected(set) CarbonInterface $timestamp;
 
@@ -29,8 +29,8 @@ class PhaseRecord
     /**
      * Constructs a MoonPhaseRecord with a moon phase type and a timestamp.
      *
-     * @param \Carbon\CarbonInterface        $timestamp
-     * @param MoonPhaseType $type
+     * @param CarbonInterface        $timestamp
+     * @param Phase $type
      */
     public function __construct(CarbonInterface $timestamp, Phase $type)
     {

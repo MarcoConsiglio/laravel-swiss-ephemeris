@@ -10,4 +10,4 @@ Available formats are:
 
 All available formats are obtainable by the method `SwissEphemerisDateTime::availableFormats()`.
 
-For more information, see the API documentation.
+For more information, see the API documentation inside `./docs/html/index.html`.

@@ -3,6 +3,10 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder as BuilderInterface;
 
+/**
+ * A builder constructs ephemeris object from a specific
+ * type of input.
+ */
 abstract class Builder implements BuilderInterface
 {
     /**

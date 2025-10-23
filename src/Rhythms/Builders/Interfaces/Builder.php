@@ -6,20 +6,6 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces;
  */
 interface Builder
 {
-    // /**
-    //  * 1°, validates raw data.
-    //  *
-    //  * @return void
-    //  */
-    // public function validateData();
-
-    // /**
-    //  * 2°, builds records of the rhythm.
-    //  *
-    //  * @return void
-    //  */
-    // public function buildRecords();
-
     /**
      * Fetch the builded collection.
      *

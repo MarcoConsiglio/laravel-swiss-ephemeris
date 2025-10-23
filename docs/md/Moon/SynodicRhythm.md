@@ -1,10 +1,10 @@
-# MoonSynodicRhythm
+# Moon Synodic Rhythm
 The Moon synodic rhythm is the cycle that the Moon completes with respect to the position of the Sun. It determines several Moon phases and the periods of waxing and waning Moon.
 
-You can obtain a `MoonSynodicRhythm` collection, representing the Moon synodic rhythm over a period of time.
+You can obtain a `SynodicRhythm` collection, representing the Moon synodic rhythm over a period of time.
 ```php
-/** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm $synodic_rhythm */
-$synodic_rhythm = $ephemeris->getMoonMoonSynodicRhythm(
+/** @var \MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm $synodic_rhythm */
+$synodic_rhythm = $ephemeris->getMoonSynodicRhythm(
     new Carbon, // Starting date and time implementing the Carbon\CarbonInterface. Required.
     7,          // The duration in days of the Moon synodic rhythm. Default: 30 days.
     30          // The duration in minutes of each step in the ephemeris. Default: 60 minutes.
@@ -12,26 +12,26 @@ $synodic_rhythm = $ephemeris->getMoonMoonSynodicRhythm(
 ```
 Behind the scenes, the datetime is converted to `SwissEphemerisDateTime`, which implements `CarbonInterface`.
 
-In this example below, the Moon synodic rhythm of the Moon is obtained starting from December 1, 2022, for the duration of 7 days, recorded every hour. This means the collection will have 168 `MoonSynodicRhythmRecord`.
+In this example below, the Moon synodic rhythm is obtained starting from December 1, 2022, for the duration of 7 days, recorded every hour. This means the collection will have 168 `MoonSynodicRhythmRecord`.
 ```php
-/** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm $synodic_rhythm */
+/** @var \MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm $synodic_rhythm */
 $synodic_rhythm = $ephemeris->getMoonMoonSynodicRhythm(new Carbon("2022-01-12"), 7); 
 ```
 You can use it as a normal LaravelCollection.
 
 ```php
-/** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord $record */
+/** @var \MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord $record */
 $record = $synodic_rhythm->first();
 
 $total_record = $synodic_rhythm->count(); // 168
 ```
-# MoonSynodicRhythmRecord
-It is a snapshot contained in the [`MoonSynodicRhythm`](#moonsynodicrhythm). It has some read-only properties that represents some raw values of a MoonSynodicRhythm.
+# Moon Synodic Rhythm Record
+It is a snapshot contained in the [`Moon Synodic Rhythm`](#moon-synodic-rhythm). It has some read-only properties that represents some raw values of records found in `SynodicRhythm` collection.
 ```php
 /** 
  * The timestamp of the record.
  * 
- * @var \Carbon\Carbon 
+ * @var \MarcoConsiglio\Ephemeris\SwissEphemerisDateTime
  */
 $record->timestamp;
 
@@ -53,10 +53,10 @@ $record->percentage;
 ```
 This is an example usage.
 ```php
-/** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm $synodic_rhythm */
-/** @var \MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythmRecord $record */
+/** @var \MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm $synodic_rhythm */
+/** @var \MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord $record */
 foreach($synodic_rhythm as $record) { 
-    echo $record->timestamp."\t".$record->angular_distance."\t".($record->percentage * 100)."%\n"; 
+    echo $record->timestamp."\t".$record->angular_distance."\t".$record->percentage."%\n"; 
     // 2021-12-12 10:00:00     119° 24' 7.5"    66%
 };
 ```
