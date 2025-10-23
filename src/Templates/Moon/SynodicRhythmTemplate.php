@@ -17,10 +17,13 @@ use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Templates\QueryBuilder;
-use RoundingMode;
+use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
-class SynodicRhythmTemplate extends QueryBuilder
+/**
+ * A template for an ephemeris query to obtain 
+ * the synodic rhythm of the Moon.
+ */
+class SynodicRhythmTemplate extends QueryTemplate
 {
     /**
      * The query start date.
@@ -28,21 +31,6 @@ class SynodicRhythmTemplate extends QueryBuilder
      * @var CarbonInterface
      */
     protected CarbonInterface $start_date;
-
-    /**
-     * How many days of ephemeris to request.
-     *
-     * @var integer
-     */
-    protected int $days;
-
-    /**
-     * How much time elapses between each step of the 
-     * ephemeris expressed in minutes.
-     *
-     * @var integer
-     */
-    protected int $step_size;
 
     /**
      * The column names to be given to the columns of 
@@ -92,8 +80,9 @@ class SynodicRhythmTemplate extends QueryBuilder
     }
 
     /**
-     * Prepare the executable arguments.
+     * Prepares arguments for the swetest executable.
      *
+     * @codeCoverageIgnore
      * @return void
      */
     protected function prepareArguments(): void
@@ -102,14 +91,15 @@ class SynodicRhythmTemplate extends QueryBuilder
     }
 
     /**
-     * Prepare the executable flags.
+    /**
+     * Prepares flags for the swetest executable.
      *
      * @return void
      */
     protected function prepareFlags(): void
     {
         $start_date = new SwissEphemerisDateTime($this->start_date);
-        $steps = round(($this->days * 24 * 60) / $this->step_size, 0, RoundingMode::HalfTowardsZero);
+        $steps = $this->getStepsNumber();
         // Warning! Changing the object format will cause errors in getMoonSynodicRhythm() method.
         $object_format = OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value));
@@ -134,7 +124,7 @@ class SynodicRhythmTemplate extends QueryBuilder
     }
 
     /**
-     * Analyze the output of the ephemeris request.
+     * Parse the response.
      *
      * @return void
      */
@@ -150,7 +140,8 @@ class SynodicRhythmTemplate extends QueryBuilder
     }
 
     /**
-     * Remaps the ephemeris output columns.
+     * Remap the output in an associative array,
+     * with the columns name as the key.
      *
      * @return void
      */
@@ -160,7 +151,7 @@ class SynodicRhythmTemplate extends QueryBuilder
     }
 
     /**
-     * Constructs the template result object.
+     * Constructs the SynodicRhythm collection.
      *
      * @return void
      */
@@ -170,7 +161,7 @@ class SynodicRhythmTemplate extends QueryBuilder
     }
 
     /**
-     * Gets the template result object.
+     * Gets the builded SynodicRhythm collection.
      *
      * @return SynodicRhythm
      */
