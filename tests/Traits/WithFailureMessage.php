@@ -123,4 +123,28 @@ trait WithFailureMessage
     {
         return "The $expected_type format must be $expected_format but found $actual_format.";
     }
+
+    /**
+     * Produces a failure message when $class don't implements $interface.
+     *
+     * @param string $class
+     * @param string $interface
+     * @return string
+     */
+    protected static function mustImplement(string $class, string $interface): string
+    {
+        return "The $class class must implement $interface interface.";
+    }
+
+    /**
+     * Produces a failure message when $class don't extends $parent_class.
+     *
+     * @param string $class
+     * @param string $parent_class
+     * @return string
+     */
+    protected static function mustExtend(string $class, string $parent_class): string
+    {
+        return "The $class class must extends $parent_class class.";
+    }
 }

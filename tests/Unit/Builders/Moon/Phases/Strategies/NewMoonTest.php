@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\NewMoon;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\StrategyTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
@@ -31,7 +31,12 @@ class NewMoonTest extends StrategyTestCase
 
         // Act
         $strategy = $this->makeStrategy($record_zero);
-        $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->strategy_name} strategy must realize BuilderStrategy interface.");
+        $this->assertInstanceOf($this->strategy_interface, $strategy, 
+            $this->mustImplement($this->tested_class, $this->strategy_interface)
+        );
+        $this->assertInstanceOf($this->abstract_strategy, $strategy,
+            $this->mustExtend($this->tested_class, $this->abstract_strategy)
+        );
         $actual_record_zero = $strategy->found();
         $strategy = $this->makeStrategy($record_non_zero);
         $actual_record_non_zero = $strategy->found();

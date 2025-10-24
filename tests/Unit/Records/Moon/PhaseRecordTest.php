@@ -13,7 +13,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 #[CoversClass(PhaseRecord::class)]
 class PhaseRecordTest extends TestCase
 {
-    #[TestDox("has read-only property \"type\" which is a Phase")]
+    #[TestDox("has read-only property \"type\" which is a Phase.")]
     public function test_type_property()
     {
         // Arrange
@@ -30,7 +30,7 @@ class PhaseRecordTest extends TestCase
         $this->assertProperty("type", $moon_phase_type, Phase::class, $actual_phase_type);
     }
 
-    #[TestDox("has read-only property \"timestamp\" which is a SwissEphemerisDateTime")]
+    #[TestDox("has read-only property \"timestamp\" which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property()
     {
         // Arrange

@@ -11,15 +11,6 @@ use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
  */
 class ThirdQuarter extends PhaseStrategy
 {
-    use WithFuzzyCondition;
-
-    /**
-     * The record to inspect.
-     *
-     * @var SynodicRhythmRecord
-     */
-    protected SynodicRhythmRecord $record;
-
     /**
      * Constructs a ThirdQuarter strategy with a MoonSynodicRhythmRecord.
      *
@@ -37,9 +28,19 @@ class ThirdQuarter extends PhaseStrategy
      */
     public function found(): ?SynodicRhythmRecord
     {
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), -90, $this->getDelta())) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), -90, $this->delta)) {
             return $this->record;
         }
         return null;
+    }
+
+    /**
+     * Gets the delta specified by the strategy.
+     *
+     * @return float
+     */
+    public function getDelta(): float
+    {
+        return $this->delta;
     }
 }

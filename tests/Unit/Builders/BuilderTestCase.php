@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders;
 
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithMockedSwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 

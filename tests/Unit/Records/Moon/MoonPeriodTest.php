@@ -16,7 +16,7 @@ class MoonPeriodTest extends TestCase
 {
     use WithCustomAssertions;
 
-    #[TestDox("has read-only properties 'start' and 'end'.")]
+    #[TestDox("has read-only properties 'start' and 'end' which are SwissEphemerisDateTime.")]
     public function test_getters()
     {
         // Arrange

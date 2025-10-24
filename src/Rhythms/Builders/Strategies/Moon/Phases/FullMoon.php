@@ -10,15 +10,6 @@ use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
  */
 class FullMoon extends PhaseStrategy
 {
-    use WithFuzzyCondition;
-
-    /**
-     * The record to inspect.
-     *
-     * @var SynodicRhythmRecord
-     */
-    protected SynodicRhythmRecord $record;
-
     /**
      * Construct a FullMoon strategy with a MoonSynodicRhythmRecord.
      *
@@ -36,12 +27,22 @@ class FullMoon extends PhaseStrategy
      */
     public function found(): ?SynodicRhythmRecord
     {
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), -180, $this->getDelta())) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), -180, $this->delta)) {
             return $this->record;
         }
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), 180, $this->getDelta())) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), 180, $this->delta)) {
             return $this->record;
         }
         return null;
+    }
+
+    /**
+     * Gets the delta specified by the strategy.
+     *
+     * @return float
+     */
+    public function getDelta(): float
+    {
+        return $this->delta;
     }
 }

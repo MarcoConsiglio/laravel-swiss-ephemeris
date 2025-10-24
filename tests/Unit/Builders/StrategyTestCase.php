@@ -1,10 +1,9 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\PhaseStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\MoonPhaseStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
@@ -28,7 +27,21 @@ class StrategyTestCase extends TestCase
      *
      * @var string
      */
-    protected string $strategy_name;
+    protected string $strategy_basename;
+
+    /**
+     * The interface implemented in concrete strategies.
+     *
+     * @var string
+     */
+    protected string $strategy_interface = BuilderStrategy::class;
+
+    /**
+     * The abstract class extended by a concrete strategy.
+     *
+     * @var string
+     */
+    protected string $abstract_strategy = Strategy::class;
 
     /**
      * The strategy being tested.
@@ -60,8 +73,8 @@ class StrategyTestCase extends TestCase
     {
         parent::setUp();
         $this->date = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
-        $this->strategy_name = class_basename($this->tested_class);
-        $this->delta = PhaseStrategy::getDelta();
+        $this->strategy_basename = class_basename($this->tested_class);
+        $this->delta = 0.25;
     }
 
     /**
@@ -196,8 +209,12 @@ class StrategyTestCase extends TestCase
     protected function assertRecordFound($expected_record, $actual_record)
     {
         $record_class = get_class($expected_record);
-        $this->assertInstanceOf($record_class, $actual_record, "The {$this->strategy_name} strategy must find an instance of type $record_class.");
-        $this->assertObjectEquals($expected_record, $actual_record, "equals", "The {$this->strategy_name} strategy failed to find the correct record.");
+        $this->assertInstanceOf($record_class, $actual_record, 
+            "The {$this->strategy_basename} strategy must find an instance of type $record_class."
+        );
+        $this->assertObjectEquals($expected_record, $actual_record, "equals", 
+            "The {$this->strategy_basename} strategy failed to find the correct record."
+        );
     }
 
     /**
@@ -208,7 +225,9 @@ class StrategyTestCase extends TestCase
      */
     protected function assertRecordNotFound($actual_record)
     {
-        $this->assertNull($actual_record, "The {$this->strategy_name} strategy accepted a record that must be rejected.");
+        $this->assertNull($actual_record, 
+            "The {$this->strategy_basename} strategy accepted a record that must be rejected."
+        );
     }
 
     /**

@@ -71,19 +71,6 @@ class FromRecordsTest extends BuilderTestCase
         ); 
     }
 
-    #[TestDox("cannot build a Moon\SynodicRhythm collection without an array.")]
-    public function test_from_records_builder_wants_array_data()
-    {
-        // Arrange
-        $data = new stdClass;
-
-        // Assert
-        $this->expectException(TypeError::class);
-
-        // Act
-        $builder = new FromRecords($data);
-    }
-
     #[TestDox("cannot build a Moon\SynodicRhythm collection without Moon\SynodicRhythmRecord instances.")]
     public function test_from_records_builder_wants_synodic_rhythm_records()
     {

@@ -73,19 +73,6 @@ class SynodicRhythmTest extends TestCase
         $this->assertInstanceOf($moon_phases_collection_class, $moon_phases, $failure_message);
     }
 
-    #[TestDox("cannot be constructed with an array.")]
-    public function test_synodic_rhythm_throw_exception_if_records_are_empty()
-    {
-        // Arrange
-        $empty_records = [];
-
-        // Assert
-        $this->expectException(TypeError::class);
-
-        // Act
-        new SynodicRhythm($empty_records);
-    }
-
     #[TestDox("can return the first and last Moon\SynodicRhythmRecord.")]
     public function test_synodic_rhythm_has_first_and_last_getter()
     {

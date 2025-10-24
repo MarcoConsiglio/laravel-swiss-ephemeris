@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\StrategyTestCase;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FullMoon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -32,7 +32,9 @@ class FullMoonTest extends StrategyTestCase
 
         // Act
         $strategy = $this->makeStrategy($positive_record_180);
-        $this->assertInstanceOf(BuilderStrategy::class, $strategy, "The {$this->strategy_name} strategy must realize BuilderStrategy interface.");
+        $this->assertInstanceOf($this->strategy_interface, $strategy, 
+            $this->mustImplement($this->tested_class, $this->strategy_interface)
+        );
         $actual_positive_record_180 = $strategy->found();
         $strategy = $this->makeStrategy($negative_record_180);
         $actual_negative_record_180 = $strategy->found();

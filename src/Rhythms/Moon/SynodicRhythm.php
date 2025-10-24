@@ -76,9 +76,6 @@ class SynodicRhythm extends Collection
      */
     public function first(?callable $callback = null, $default = null): SynodicRhythmRecord
     {
-        if ($this->items instanceof LazyCollection) {
-            return $this->items->first($callback, $default);
-        }
         return parent::first($callback, $default);
     }
 
@@ -91,33 +88,6 @@ class SynodicRhythm extends Collection
      */
     public function last(?callable $callback = null, $default = null): SynodicRhythmRecord
     {
-        if ($this->items instanceof LazyCollection) {
-            return $this->items->last($callback, $default);
-        }
         return parent::last($callback, $default);
-    }
-
-    /**
-     * Check that all items in $array are instances of type
-     * SynodicRhythmRecord.
-     *
-     * @param array $array
-     * @return void
-     * @throws UnexpectedValueException
-     */
-    protected function arrayContainsType(array $array, string $type): void
-    {
-        collect($array)->ensure($type);        
-    }
-
-    /**
-     * Check that all items in $array are of type string.
-     *
-     * @param array $array
-     * @return void
-     */
-    protected function arrayContainsString(array $array): void
-    {
-        collect($array)->ensure("string");
     }
 }

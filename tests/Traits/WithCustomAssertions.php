@@ -14,7 +14,7 @@ trait WithCustomAssertions
     use WithFailureMessage;
 
     /**
-     * Asserts type and value of a variable.
+     * Asserts type and value of an object property.
      *
      * @param string $name
      * @param mixed  $expected_value

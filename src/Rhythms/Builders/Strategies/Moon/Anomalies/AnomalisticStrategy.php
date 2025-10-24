@@ -2,25 +2,19 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
 
 /**
  * The strategy used to found a record of the Moon anomalistic rhythm.
  */
-abstract class AnomalisticStrategy implements BuilderStrategy
+abstract class AnomalisticStrategy extends Strategy
 {
-    /**
-     * Delta used for an error biased search. 
-     *
-     * @var float $delta
-     */
-    protected static float $delta = 0.25;
-
     /**
      * Find an exact record.
      *
      * @return mixed
      */
-    public abstract function found();
+    abstract public function found();
 
     /**
      * Gets the delta specified by the strategy.

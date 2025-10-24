@@ -1,21 +1,22 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
 
 /**
  * Describe a strategy used to find a Moon phase.
  * 
  * @property-read float $delta Angular distance delta: It is used for an error biased search. 
  */
-abstract class PhaseStrategy implements BuilderStrategy
+abstract class PhaseStrategy extends Strategy
 {
     /**
-     * Angular distance delta: It is used for an error biased search. 
+     * The record to inspect.
      *
-     * @var float $delta
+     * @var SynodicRhythmRecord
      */
-    protected static float $delta = 0.25;
+    protected SynodicRhythmRecord $record;
 
     /**
      * Find an exact record.
@@ -23,14 +24,4 @@ abstract class PhaseStrategy implements BuilderStrategy
      * @return mixed
      */
     public abstract function found();
-
-    /**
-     * Gets the delta specified by the strategy.
-     *
-     * @return float
-     */
-    public static function getDelta(): float
-    {
-        return self::$delta;
-    }
 }

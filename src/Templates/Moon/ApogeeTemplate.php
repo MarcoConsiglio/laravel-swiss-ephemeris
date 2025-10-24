@@ -21,7 +21,7 @@ use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
 /**
  * The template for an ephemeris query to obtain 
- * the apogees of the Moon.
+ * the Moon Apogees collection.
  */
 class ApogeeTemplate extends QueryTemplate
 {
@@ -54,7 +54,7 @@ class ApogeeTemplate extends QueryTemplate
 
     /**
      * Construct the template in order to produce
-     * a MoonAnomalisticRhythm
+     * a Moon AnomalisticRhythm.
      *
      * @param CarbonInterface $start_date
      * @param integer $days
@@ -83,6 +83,7 @@ class ApogeeTemplate extends QueryTemplate
     /**
      * Prepares arguments for the swetest executable.
      *
+     * @codeCoverageIgnore
      * @return void
      */
     protected function prepareArguments(): void

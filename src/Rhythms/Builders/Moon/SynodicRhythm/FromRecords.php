@@ -46,9 +46,6 @@ class FromRecords extends Builder
     public function validateData()
     {
         $this_class = self::class;
-        if (!is_array($this->data)) {
-            throw new InvalidArgumentException("The builder $this_class must have array data.");
-        }
         $collection = collect($this->data);
         $collection->filter(function ($item, $key) use ($this_class){
             if (!$item instanceof SynodicRhythmRecord) {
