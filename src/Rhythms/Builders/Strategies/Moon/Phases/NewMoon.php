@@ -5,7 +5,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
 /**
- * The strategy is used to find a Moon SynodicRhythmRecord 
+ * This strategy is used to find a Moon SynodicRhythmRecord 
  * matching the new Moon phase.
  */
 class NewMoon extends PhaseStrategy
@@ -31,15 +31,5 @@ class NewMoon extends PhaseStrategy
             return $this->record;
         }
         return null;
-    }
-
-    /**
-     * Gets the delta specified by the strategy.
-     *
-     * @return float
-     */
-    public function getDelta(): float
-    {
-        return $this->delta;
     }
 }

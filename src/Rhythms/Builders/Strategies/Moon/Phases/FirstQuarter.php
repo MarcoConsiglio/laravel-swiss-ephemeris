@@ -5,12 +5,13 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
 /**
- * The strategy is used to find a Moon SynodicRhythmRecord matching the first quarter Moon phase.
+ * This strategy is used to find a Moon SynodicRhythmRecord
+ * matching the first quarter Moon phase.
  */
 class FirstQuarter extends PhaseStrategy
 {
     /**
-     * Constructs a FirstQuarter strategy with a MoonSynodicRhythmRecord.
+     * Constructs a FirstQuarter strategy with a Moon SynodicRhythmRecord.
      *
      * @param SynodicRhythmRecord $record
      */
@@ -30,15 +31,5 @@ class FirstQuarter extends PhaseStrategy
             return $this->record;
         }
         return null;
-    }
-
-    /**
-     * Gets the delta specified by the strategy.
-     *
-     * @return float
-     */
-    public function getDelta(): float
-    {
-        return $this->delta;
     }
 }

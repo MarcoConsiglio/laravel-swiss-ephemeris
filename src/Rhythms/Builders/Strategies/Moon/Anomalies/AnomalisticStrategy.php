@@ -1,14 +1,16 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
 
 /**
- * The strategy used to found a record of the Moon anomalistic rhythm.
+ * Describes a strategy used to found a record of the Moon anomalistic rhythm.
  */
 abstract class AnomalisticStrategy extends Strategy
 {
+    protected ApogeeRecord $record;
+
     /**
      * Find an exact record.
      *

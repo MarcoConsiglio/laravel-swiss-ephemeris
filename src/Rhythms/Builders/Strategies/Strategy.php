@@ -10,6 +10,8 @@ use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
  * Implemented in a concrete strategy defines the algorithm
  * used to choose which record would be part of the rhythm,
  * and which not.
+ * 
+ * @property float $delta The error bias used to accept the correct record.
  */
 abstract class Strategy implements BuilderStrategy
 {

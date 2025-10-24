@@ -2,13 +2,12 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\NewMoon;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\StrategyTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("The NewMoon PhaseStrategy")]
 #[CoversClass(NewMoon::class)]
-class NewMoonTest extends StrategyTestCase
+class NewMoonTest extends PhaseStrategyTestCase
 {
     /**
      * Setup the test environment.

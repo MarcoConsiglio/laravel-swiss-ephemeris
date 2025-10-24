@@ -2,13 +2,12 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FirstQuarter;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\StrategyTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("The FirstQuarter PhaseStrategy")]
 #[CoversClass(FirstQuarter::class)]
-class FirstQuarterTest extends StrategyTestCase
+class FirstQuarterTest extends PhaseStrategyTestCase
 {
     /**
      * Setup the test environment.
