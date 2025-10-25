@@ -47,4 +47,17 @@ class RegExPatternTest extends TestCase
             $this->assertEquals($case[0], $case[1]->value, $this->enumFail($case[1]->name));
         }
     }
+
+    #[TestDox("can produce a regular expression to match ephemeris object names.")]
+    public function test_get_object_name_regex()
+    {
+        // Arrange
+        $expected_regex = '/(Moon)/';
+        
+        // Act
+        $actual_regex = RegExPattern::getObjectNamesRegex(RegExPattern::Moon);
+
+        // Assert
+        $this->assertEquals($expected_regex, $actual_regex);
+    }
 }

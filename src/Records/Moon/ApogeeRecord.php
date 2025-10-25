@@ -41,4 +41,18 @@ class ApogeeRecord extends AnomalisticRecord
         $this->moon_longitude = $moon_longitude;
         $this->apogee_longitude = $apogee_longitude;
     }
+
+    /**
+     * Check if this record is equal to $another_record.
+     *
+     * @param ApogeeRecord $another_record
+     * @return boolean
+     */
+    public function equals(ApogeeRecord $another_record): bool
+    {
+        $a = $this->timestamp == $another_record->timestamp;
+        $b = $this->moon_longitude == $another_record->moon_longitude;
+        $c = $this->apogee_longitude == $another_record->apogee_longitude;
+        return $a && $b && $c;
+    }
 }

@@ -7,7 +7,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
  * This strategy is used to find an ApogeeRecord
  * representing the Moon in its apogee.
  */
-class ApogeeStrategy extends AnomalisticStrategy
+class Apogee extends AnomalisticStrategy
 {
     /**
      * Constructs the ApogeeStrategy with an ApogeeRecord.
@@ -27,8 +27,8 @@ class ApogeeStrategy extends AnomalisticStrategy
     public function found(): ?ApogeeRecord
     {
         if($this->isAbout(
-            $this->record->moon_longitude->toDecimal(), 
-            $this->record->apogee_longitude->toDecimal(), 
+            $this->record->moon_longitude->toDecimal(2), 
+            $this->record->apogee_longitude->toDecimal(2), 
             $this->delta)
         ) {
             return $this->record;

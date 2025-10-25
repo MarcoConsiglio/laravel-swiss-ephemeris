@@ -12,6 +12,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\MockObject\MockObject;
 use RoundingMode;
 
 #[TestDox("The Moon\SynodicRhythmRecord")]
@@ -113,19 +114,32 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_equal()
     {
         // Arrange
-        $record_A1 = new SynodicRhythmRecord(
-            (new SwissEphemerisDateTime)->toGregorianTT(), 
-            Angle::createFromDecimal(0.0)->toDecimal()
-        ); 
-        $record_A2 = $record_A1;
-        $record_B = new SynodicRhythmRecord(
-            (new SwissEphemerisDateTime)->toGregorianTT(), 
-            Angle::createFromDecimal(90)->toDecimal()
-        );
+        $d1 = $this->getMockedSwissEphemerisDateTime(2000);
+        $d2 = clone $d1;
+        $d2->hour = 2;
+        $d2 = $d2->toGregorianTT();
+        $d1 = $d1->toGregorianTT();
+        $a1 = 180.0;
+        $a2 = 90.0;
+        $record_A1 = new SynodicRhythmRecord($d1, $a1);
+        $record_A2 = new SynodicRhythmRecord($d1, $a1);
+        $record_B1 = new SynodicRhythmRecord($d1, $a1);
+        $record_B2 = new SynodicRhythmRecord($d2, $a2);
+        $record_C1 = new SynodicRhythmRecord($d1, $a1);
+        $record_C2 = new SynodicRhythmRecord($d2, $a1);
+        $record_D1 = new SynodicRhythmRecord($d1, $a1);
+        $record_D2 = new SynodicRhythmRecord($d1, $a2);
 
         // Act & Assert
+        //      0 means not equal, 1 means equal
+        //      A = 1   B = 1
         $this->assertTrue($record_A1->equals($record_A2));
-        $this->assertFalse($record_A1->equals($record_B));
+        //      A = 0   B = 0
+        $this->assertFalse($record_B1->equals($record_B2));
+        //      A = 0   B = 1
+        $this->assertFalse($record_C1->equals($record_C2));
+        //      A = 1   B = 0
+        $this->assertFalse($record_D1->equals($record_D2));
     }
 
     #[TestDox("can determine which moon period it belongs to.")]
@@ -133,11 +147,11 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $record_A = new SynodicRhythmRecord(
-            (new SwissEphemerisDateTime)->toGregorianTT(), 
+            $this->getMockedSwissEphemerisDateTime()->toGregorianTT(), 
             Angle::createFromDecimal(fake()->randomFloat(1, -180, 0))->toDecimal()
         );
         $record_B = new SynodicRhythmRecord(
-            (new SwissEphemerisDateTime)->toGregorianTT(),
+            $this->getMockedSwissEphemerisDateTime()->toGregorianTT(),
             Angle::createFromDecimal(fake()->randomFloat(1, 0, 180))->toDecimal()
         );
 

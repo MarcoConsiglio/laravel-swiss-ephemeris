@@ -71,9 +71,8 @@ class StrategyTestCase extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->date = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
+        $this->date = $this->getMockedSwissEphemerisDateTime();
         $this->strategy_basename = class_basename($this->tested_class);
-        $this->delta = 0.25;
     }
 
 
@@ -107,4 +106,39 @@ class StrategyTestCase extends TestCase
             "The {$this->strategy_basename} strategy accepted a record that must be rejected."
         );
     }
+
+/**
+     * Get a random unprecise angular distance biased by a delta.
+     *
+     * @param float $angular_distancce
+     * @return float
+     */
+    protected function getBiasedAngularDistance(float $angular_distance): float
+    {
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
+        return fake()->randomFloat(1, $min, $max);
+    }
+
+    /**
+     * Get a random unprecise angular distance except for another biased $angular_distance. 
+     *
+     * @param float $angular_distance
+     * @return float
+     */
+    protected function getBiasedAngularDistanceExceptFor(float $angular_distance): float
+    {
+        $error = 0.1;
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
+        if ($max > 180) {
+            return fake()->randomFloat(1, -180 + abs($this->delta), $min - $error);
+        }
+        if ($min < -180) {
+            return fake()->randomFloat(1, $max + $error, 180 - abs($this->delta));
+        }
+        return fake()->randomElement([
+            fake()->randomFloat(1, -180, $min - $error),
+            fake()->randomFloat(1, $max - 0.1, 180)
+        ]);
+    }
+
 }

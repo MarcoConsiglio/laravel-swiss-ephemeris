@@ -9,7 +9,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
 {
 
     /**
-     * Get a new moon record.
+     * Gets a new moon record.
      *
      * @return SynodicRhythmRecord
      */
@@ -19,7 +19,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Get a first quarter record.
+     * Gets a first quarter record.
      *
      * @return SynodicRhythmRecord
      */
@@ -29,7 +29,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Get a full moon record.
+     * Gets a full moon record.
      *
      * @param bool $positive Specify this if the record should be positive or negative, 
      * because the angular distance between Sun and Moon tend to +/-180°.
@@ -44,7 +44,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Get a third quarter record.
+     * Gets a third quarter record.
      *
      * @return SynodicRhythmRecord
      */
@@ -54,7 +54,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Get any random record except for new moon.
+     * Gets any random record except for new moon.
      *
      * @return SynodicRhythmRecord
      */
@@ -64,7 +64,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Get any random record except for first quarter.
+     * Gets any random record except for first quarter.
      *
      * @return SynodicRhythmRecord
      */
@@ -74,7 +74,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Get any random record except for full moon.
+     * Gets any random record except for full moon.
      *
      * @return SynodicRhythmRecord
      */
@@ -87,47 +87,13 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Get any random record except for third quarter moon.
+     * Gets any random record except for third quarter moon.
      *
      * @return SynodicRhythmRecord
      */
     protected function getNonThirdQuarterRecord(): SynodicRhythmRecord
     {
         return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(-90));
-    }
-
-    /**
-     * Get a random unprecise angular distance biased by a delta.
-     *
-     * @param float $angular_distancce
-     * @return float
-     */
-    protected function getBiasedAngularDistance(float $angular_distance): float
-    {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
-        return fake()->randomFloat(1, $min, $max);
-    }
-
-    /**
-     * Get a random unprecise angular distance except for another biased $angular_distance. 
-     *
-     * @param float $angular_distance
-     * @return float
-     */
-    protected function getBiasedAngularDistanceExceptFor(float $angular_distance): float
-    {
-        $error = 0.1;
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
-        if ($max > 180) {
-            return fake()->randomFloat(1, -180 + abs($this->delta), $min - $error);
-        }
-        if ($min < -180) {
-            return fake()->randomFloat(1, $max + $error, 180 - abs($this->delta));
-        }
-        return fake()->randomElement([
-            fake()->randomFloat(1, -180, $min - $error),
-            fake()->randomFloat(1, $max - 0.1, 180)
-        ]);
     }
 
     /**

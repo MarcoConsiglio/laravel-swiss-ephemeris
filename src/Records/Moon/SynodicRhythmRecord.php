@@ -33,9 +33,11 @@ class SynodicRhythmRecord
      *
      * @var int|float
      */
-    public protected(set) int|float $percentage {
-        get => (int) round($this->percentage * 100, 0, RoundingMode::HalfTowardsZero);
-        set => $this->percentage = $value;
+    public int|float $percentage {
+        get => (int) round(
+            $this->angular_distance->toDecimal() / 180 * 100, 
+            0, RoundingMode::HalfTowardsZero
+        );
     }
 
     /**
@@ -54,10 +56,6 @@ class SynodicRhythmRecord
             }
         }
         $this->angular_distance = Angle::createFromDecimal($angular_distance);
-        $this->percentage = round(
-            $this->angular_distance->toDecimal() / 180, 2, 
-            RoundingMode::HalfTowardsZero
-        );
     }
 
     /**
@@ -97,16 +95,15 @@ class SynodicRhythmRecord
     }
 
     /**
-     * Check if this record is equal to another.
+     * Check if this record is equal to $another_record.
      *
-     * @param SynodicRhythmRecord $object
+     * @param SynodicRhythmRecord $another_record
      * @return boolean
      */
-    public function equals(SynodicRhythmRecord $object): bool
+    public function equals(SynodicRhythmRecord $another_record): bool
     {
-        $a = $object->timestamp === $this->timestamp;
-        $b = $object->angular_distance === $this->angular_distance;
-        $c = $object->percentage === $this->percentage;
-        return $a && $b && $c; 
+        $a = $another_record->timestamp == $this->timestamp;
+        $b = $another_record->angular_distance == $this->angular_distance;
+        return $a && $b; 
     }
 }

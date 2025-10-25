@@ -18,16 +18,16 @@ class Period
     /**
      * Start timestamp of this period.
      *
-     * @var SwissEphemerisDateTime
+     * @var CarbonInterface
      */
-    public protected(set) SwissEphemerisDateTime $start;
+    public protected(set) CarbonInterface $start;
 
     /**
      * End timestamp of this period.
      *
-     * @var SwissEphemerisDateTime
+     * @var CarbonInterface
      */
-    public protected(set) SwissEphemerisDateTime $end;
+    public protected(set) CarbonInterface $end;
 
     /**
      * The type of this period (waning or waxing).

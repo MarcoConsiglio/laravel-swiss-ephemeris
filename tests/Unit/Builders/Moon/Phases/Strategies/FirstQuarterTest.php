@@ -30,6 +30,7 @@ class FirstQuarterTest extends PhaseStrategyTestCase
 
         // Act
         $strategy = $this->makeStrategy($record_90);
+        //      Guard Assertions
         $this->assertInstanceOf($this->strategy_interface, $strategy, 
             $this->mustImplement($this->tested_class, $this->strategy_interface)
         );

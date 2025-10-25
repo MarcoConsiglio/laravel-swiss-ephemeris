@@ -17,14 +17,4 @@ abstract class AnomalisticStrategy extends Strategy
      * @return mixed
      */
     abstract public function found();
-
-    /**
-     * Gets the delta specified by the strategy.
-     *
-     * @return float
-     */
-    public static function getDelta(): float
-    {
-        return self::$delta;
-    }
 }
