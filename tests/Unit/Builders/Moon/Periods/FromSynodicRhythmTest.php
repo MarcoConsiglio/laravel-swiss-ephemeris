@@ -8,6 +8,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
+use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
@@ -24,13 +25,13 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $collection_class = Periods::class;
         $items_type = Period::class;
         //      Mock building
-        $fake_date = $this->getMockedSwissEphemerisDateTime(2000)->toGregorianTT();
-        $record_1 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, 0.0]);
-        $record_2 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, 90.0]);
-        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, 179.0]);
-        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, -179.0]);
-        $record_4 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, -90]);
-        $record_5 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, -0.0]);
+        $fake_date = $this->getMockedSwissEphemerisDateTime(2000);
+        $record_1 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(0.0)]);
+        $record_2 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(90.0)]);
+        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(179.0)]);
+        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(-179.0)]);
+        $record_4 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(-90)]);
+        $record_5 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(-0.0)]);
         //      Mock configuration
         $record_1->expects($this->any())->method("isWaxing")->willReturn(true);
         $record_2->expects($this->any())->method("isWaxing")->willReturn(true);

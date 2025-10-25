@@ -14,6 +14,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
+use MarcoConsiglio\Goniometry\Angle;
 
 #[TestDox("The Moon\Phases\FromMoonSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
@@ -29,22 +30,14 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $date_2 = new SwissEphemerisDateTime("2021-10-13 03:00:00");
         $date_3 = new SwissEphemerisDateTime("2021-10-20 15:00:00");
         $date_4 = new SwissEphemerisDateTime("2021-10-28 20:00:00");
-        $new_moon_record = new SynodicRhythmRecord(
-            $date_1->toGregorianTT(),
-            -0.0614509
-        );
-        $first_quarter_record = new SynodicRhythmRecord(
-            $date_2->toGregorianTT(),
-            89.7644741
-        );
-        $full_moon_record = new SynodicRhythmRecord(
-            $date_3->toGregorianTT(),
-            -179.9831740
-        );
-        $third_quarter_record = new SynodicRhythmRecord(
-            $date_4->toGregorianTT(),
-            -90.0499896
-        );
+        $angle_1 = Angle::createFromDecimal(-0.0614509);
+        $angle_2 = Angle::createFromDecimal(89.7644741);
+        $angle_3 = Angle::createFromDecimal(-179.9831740);
+        $angle_4 = Angle::createFromDecimal(-90.0499896);
+        $new_moon_record = new SynodicRhythmRecord($date_1, $angle_1);
+        $first_quarter_record = new SynodicRhythmRecord($date_2, $angle_2);
+        $full_moon_record = new SynodicRhythmRecord($date_3, $angle_3);
+        $third_quarter_record = new SynodicRhythmRecord($date_4, $angle_4);
         $synodic_rhythm_builder = new FromRecords([
             $new_moon_record,
             $first_quarter_record,

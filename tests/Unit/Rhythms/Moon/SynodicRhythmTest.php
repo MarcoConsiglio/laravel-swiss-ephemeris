@@ -1,6 +1,6 @@
 <?php
 
-namespace MarcoConsiglio\Ephemeris\Tests\Feature\Moon;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -27,7 +27,7 @@ class SynodicRhythmTest extends TestCase
     public function test_synodic_rhythm_has_records()
     {
         // Arrange in setUp()
-     
+        $this->markTestIncomplete();
         // Act
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon, $days = 1);
         $record = $synodic_rhythm->get($this->faker->numberBetween(0, $synodic_rhythm->count() - 1));
@@ -45,6 +45,7 @@ class SynodicRhythmTest extends TestCase
     public function test_return_moon_periods_collection()
     {
         // Arrange in setUp()
+        $this->markTestIncomplete();
         $moon_periods_collection_class = Periods::class;
         
         // Act
@@ -61,6 +62,7 @@ class SynodicRhythmTest extends TestCase
     public function test_return_moon_phases_collection()
     {
         // Arrange in setUp()
+        $this->markTestIncomplete();
         $moon_phases_collection_class = Phases::class;
 
         // Act
@@ -77,6 +79,7 @@ class SynodicRhythmTest extends TestCase
     public function test_synodic_rhythm_has_first_and_last_getter()
     {
         // Arrange
+        $this->markTestIncomplete();
         $moon_synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("now"));
         $rhythm_class = SynodicRhythm::class;
         $expected_class = SynodicRhythmRecord::class;

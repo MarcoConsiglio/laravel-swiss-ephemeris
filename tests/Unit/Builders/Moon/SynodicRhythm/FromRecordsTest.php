@@ -9,6 +9,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
+use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use stdClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -54,7 +55,10 @@ class FromRecordsTest extends BuilderTestCase
         $record_class = SynodicRhythmRecord::class;
         $records = [];
         foreach ($this->data as $item) {
-            $records[] = new SynodicRhythmRecord($item["timestamp"], $item["angular_distance"]);
+            $records[] = new SynodicRhythmRecord(
+                SwissEphemerisDateTime::createFromSwissEphemerisFormat($item["timestamp"]),
+                Angle::createFromDecimal((float) $item["angular_distance"])
+            );
         }
         
         // Act

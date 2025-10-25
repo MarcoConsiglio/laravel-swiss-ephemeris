@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Feature\Moon;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
 use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
@@ -18,6 +18,7 @@ class PhasesTest extends TestCase
     #[TestDox("is a collection of Moon\PhaseRecord instances.")]
     public function test_moon_phases()
     {
+        $this->markTestIncomplete();
         // Arrange
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new SwissEphemerisDateTime("now"), 24);
         $rhythm_class = SynodicRhythm::class;

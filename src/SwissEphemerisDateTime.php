@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Ephemeris;
 
 use Carbon\Carbon;
+use Carbon\Exceptions\InvalidFormatException;
 use DateTimeZone;
 use Illuminate\Support\Facades\Date;
 
@@ -284,6 +285,28 @@ class SwissEphemerisDateTime extends Carbon
     public function isJulianDate(): bool
     {
         return ! $this->isGregorianDate;
+    }
+
+    /**
+     * Creates a SwissEphemerisDateTime with one of the
+     * available Swiss Ephemeris formats.
+     * 
+     * If $timestamp came from Swiss Ephemeris, you can 
+     * build this class instance without know what format
+     * $timestamp has.
+     *
+     * @param string $timestamp
+     * @return SwissEphemerisDateTime
+     */
+    public static function createFromSwissEphemerisFormat(string $timestamp): SwissEphemerisDateTime
+    {
+        $datetime_class = SwissEphemerisDateTime::class;
+        foreach (SwissEphemerisDateTime::availableFormats() as $format) {
+            if (SwissEphemerisDateTime::canBeCreatedFromFormat($timestamp, $format)) {
+                return SwissEphemerisDateTime::rawCreateFromFormat($format, $timestamp);
+            }
+        }
+        throw new InvalidFormatException("The string $timestamp doesn't match any of the available formats in $datetime_class class.");
     }
 
     /**

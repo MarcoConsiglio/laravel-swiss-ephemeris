@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\StrategyTestCase;
+use MarcoConsiglio\Goniometry\Angle;
 
 class PhaseStrategyTestCase extends StrategyTestCase
 {
@@ -15,7 +16,10 @@ class PhaseStrategyTestCase extends StrategyTestCase
      */
     protected function getNewMoonRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(0));
+        return new SynodicRhythmRecord(
+            $this->date, 
+            Angle::createFromDecimal($this->getBiasedAngularDistance(0))
+        );
     }
 
     /**
@@ -25,7 +29,10 @@ class PhaseStrategyTestCase extends StrategyTestCase
      */
     protected function getFirstQuarterRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(90));
+        return new SynodicRhythmRecord(
+            $this->date, 
+            Angle::createFromDecimal($this->getBiasedAngularDistance(90))
+        );
     }
 
     /**
@@ -38,9 +45,15 @@ class PhaseStrategyTestCase extends StrategyTestCase
     protected function getFullMoonRecord($positive = true): SynodicRhythmRecord
     {
         if ($positive) {
-            return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(180));
+            return new SynodicRhythmRecord(
+                $this->date, 
+                Angle::createFromDecimal($this->getBiasedAngularDistance(180))
+            );
         }
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(-180));
+        return new SynodicRhythmRecord(
+            $this->date, 
+            Angle::createFromDecimal($this->getBiasedAngularDistance(-180))
+        );
     }
 
     /**
@@ -50,7 +63,10 @@ class PhaseStrategyTestCase extends StrategyTestCase
      */
     protected function getThirdQuarterRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistance(-90));
+        return new SynodicRhythmRecord(
+            $this->date, 
+            Angle::createFromDecimal($this->getBiasedAngularDistance(-90))
+        );
     }
 
     /**
@@ -60,7 +76,10 @@ class PhaseStrategyTestCase extends StrategyTestCase
      */
     protected function getNonNewMoonRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(0));
+        return new SynodicRhythmRecord(
+            $this->date, 
+            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(0))
+        );
     }
 
     /**
@@ -70,7 +89,10 @@ class PhaseStrategyTestCase extends StrategyTestCase
      */
     protected function getNonFirstQuarterRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(90));
+        return new SynodicRhythmRecord(
+            $this->date, 
+            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(90))
+        );
     }
 
     /**
@@ -80,10 +102,11 @@ class PhaseStrategyTestCase extends StrategyTestCase
      */
     protected function getNonFullMoonRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), fake()->randomElement([
-            $this->getBiasedAngularDistanceExceptFor(-180),
-            $this->getBiasedAngularDistanceExceptFor(+180)
-        ]));
+        $angle_value = $this->faker->randomElement([-180, +180]);
+        return new SynodicRhythmRecord(
+            $this->date, 
+            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor($angle_value))
+        );
     }
 
     /**
@@ -93,7 +116,10 @@ class PhaseStrategyTestCase extends StrategyTestCase
      */
     protected function getNonThirdQuarterRecord(): SynodicRhythmRecord
     {
-        return new SynodicRhythmRecord($this->date->toGregorianUT(), $this->getBiasedAngularDistanceExceptFor(-90));
+        return new SynodicRhythmRecord(
+            $this->date, 
+            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(-90))
+        );
     }
 
     /**

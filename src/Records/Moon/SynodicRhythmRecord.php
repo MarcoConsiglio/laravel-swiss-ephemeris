@@ -41,21 +41,15 @@ class SynodicRhythmRecord
     }
 
     /**
-     * Instantiate a MoonSynodicRhythmRecord from Swiss Ephemeris.
+     * Constructs a Moon SynodicRhythmRecord.
      *
-     * @param string $timestamp The string timestamp must match one of the following patterns:
-     * SwissEphemerisDateTime::GREGORIAN_UT, SwissEphemerisDateTime::GREGORIAN_TT, 
-     * SwissEphemerisDateTime::JULIAN_UT, SwissEphemerisDateTime::JULIAN_TT.
-     * @param float $angular_distance The angular distance between Sun and Moon.
+     * @param SwissEphemerisDateTime $timestamp
+     * @param Angle $angular_distance
      */
-    public function __construct(string $timestamp, float $angular_distance)
+    public function __construct(SwissEphemerisDateTime $timestamp, Angle $angular_distance)
     {
-        foreach (SwissEphemerisDateTime::availableFormats() as $format) {
-            if (SwissEphemerisDateTime::canBeCreatedFromFormat($timestamp, $format)) {
-                $this->timestamp = SwissEphemerisDateTime::rawCreateFromFormat($format, $timestamp);
-            }
-        }
-        $this->angular_distance = Angle::createFromDecimal($angular_distance);
+        $this->timestamp = $timestamp;
+        $this->angular_distance = $angular_distance;
     }
 
     /**

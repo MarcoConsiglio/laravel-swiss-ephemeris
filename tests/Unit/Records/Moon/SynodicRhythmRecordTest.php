@@ -29,7 +29,7 @@ class SynodicRhythmRecordTest extends TestCase
         $angular_distance = Angle::createFromDecimal(fake()->randomFloat(1, -180, 180));
 
         // Act
-        $record = new SynodicRhythmRecord($timestamp->toGregorianUT(), $angular_distance->toDecimal());
+        $record = new SynodicRhythmRecord($timestamp, $angular_distance);
         $actual_timestamp = $record->timestamp;
 
         // Assert
@@ -44,7 +44,7 @@ class SynodicRhythmRecordTest extends TestCase
         $angular_distance = Angle::createFromDecimal(fake()->randomFloat(1, -180, 180));
 
         // Act
-        $record = new SynodicRhythmRecord($timestamp->toGregorianUT(), $angular_distance->toDecimal());
+        $record = new SynodicRhythmRecord($timestamp, $angular_distance);
         $actual_angular_distance = $record->angular_distance;
 
         // Assert
@@ -61,7 +61,7 @@ class SynodicRhythmRecordTest extends TestCase
         $expected_percentage = (int) round($raw_percentage * 100, 0, RoundingMode::HalfTowardsZero);
 
         // Act
-        $record = new SynodicRhythmRecord($timestamp->toGregorianUT(), $angular_distance->toDecimal());
+        $record = new SynodicRhythmRecord($timestamp, $angular_distance);
         $actual_percentage = $record->percentage;
 
         // Assert
@@ -72,12 +72,9 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waxing()
     {
         // Arrange
-        $timestamp = (new SwissEphemerisDateTime)->minutes(0)->seconds(0)->toGregorianUT();
+        $timestamp = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
         $angular_distance = Angle::createFromDecimal(fake()->randomFloat(1, 0, 180));
-        $synodic_rhythm_record = new SynodicRhythmRecord(
-            $timestamp,
-            $angular_distance->toDecimal()
-        );
+        $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance);
 
         // Act
         $is_waxing = $synodic_rhythm_record->isWaxing();
@@ -93,12 +90,9 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waning()
     {
         // Arrange
-        $timestamp = (new SwissEphemerisDateTime)->minutes(0)->seconds(0)->toGregorianUT();
+        $timestamp = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
         $angular_distance = Angle::createFromDecimal(fake()->randomFloat(1, -180, -0));
-        $synodic_rhythm_record = new SynodicRhythmRecord(
-            $timestamp,
-            $angular_distance->toDecimal()
-        );
+        $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance);
 
         // Act
         $is_waning = $synodic_rhythm_record->isWaning();
@@ -117,10 +111,8 @@ class SynodicRhythmRecordTest extends TestCase
         $d1 = $this->getMockedSwissEphemerisDateTime(2000);
         $d2 = clone $d1;
         $d2->hour = 2;
-        $d2 = $d2->toGregorianTT();
-        $d1 = $d1->toGregorianTT();
-        $a1 = 180.0;
-        $a2 = 90.0;
+        $a1 = Angle::createFromDecimal(180.0);
+        $a2 = Angle::createFromDecimal(90.0);
         $record_A1 = new SynodicRhythmRecord($d1, $a1);
         $record_A2 = new SynodicRhythmRecord($d1, $a1);
         $record_B1 = new SynodicRhythmRecord($d1, $a1);
@@ -147,12 +139,12 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $record_A = new SynodicRhythmRecord(
-            $this->getMockedSwissEphemerisDateTime()->toGregorianTT(), 
-            Angle::createFromDecimal(fake()->randomFloat(1, -180, 0))->toDecimal()
+            $this->getMockedSwissEphemerisDateTime(), 
+            Angle::createFromDecimal(fake()->randomFloat(1, -180, 0))
         );
         $record_B = new SynodicRhythmRecord(
-            $this->getMockedSwissEphemerisDateTime()->toGregorianTT(),
-            Angle::createFromDecimal(fake()->randomFloat(1, 0, 180))->toDecimal()
+            $this->getMockedSwissEphemerisDateTime(),
+            Angle::createFromDecimal(fake()->randomFloat(1, 0, 180))
         );
 
         // Act

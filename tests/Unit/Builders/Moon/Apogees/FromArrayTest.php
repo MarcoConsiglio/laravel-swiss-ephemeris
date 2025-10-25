@@ -39,6 +39,7 @@ class FromArrayTest extends BuilderTestCase
 
         // Assert
         $this->assertContainsOnlyInstancesOf(ApogeeRecord::class, $collection);
+        $this->assertCount(1, $collection);
     }
 
     protected function getBuilderClass(): string

@@ -1,9 +1,13 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm;
 
+use Carbon\Exceptions\InvalidFormatException;
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 
 /**
  * Builds a Moon SynodicRhythm starting from an array of raw ephemeris response.
@@ -66,8 +70,10 @@ class FromArray extends Builder
     public function buildRecords()
     {
         $records = collect($this->data);
-        $records->transform(function ($item, $key) {
-            return new SynodicRhythmRecord($item["timestamp"], (float) trim($item["angular_distance"]));
+        $records->transform(function ($item) {
+            $datetime = SwissEphemerisDateTime::createFromSwissEphemerisFormat($item["timestamp"]);
+            $angle = Angle::createFromDecimal((float) trim($item["angular_distance"]));
+            return new SynodicRhythmRecord($datetime, $angle);
         });
         $this->records = $records->all();
     }
