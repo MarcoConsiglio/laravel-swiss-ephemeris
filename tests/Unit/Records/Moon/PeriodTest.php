@@ -12,11 +12,11 @@ use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("The Moon\Period")]
 #[CoversClass(Period::class)]
-class MoonPeriodTest extends TestCase
+class PeriodTest extends TestCase
 {
     use WithCustomAssertions;
 
-    #[TestDox("has read-only properties 'start' and 'end' which are SwissEphemerisDateTime.")]
+    #[TestDox("has read-only properties \"start\" and '\"end\" which are SwissEphemerisDateTime.")]
     public function test_getters()
     {
         // Arrange

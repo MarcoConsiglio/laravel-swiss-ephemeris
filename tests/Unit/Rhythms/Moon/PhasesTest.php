@@ -1,41 +1,66 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
-use Illuminate\Support\Collection;
-use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
+use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The Moon\Phases")]
 #[CoversClass(Phases::class)]
-class PhasesTest extends TestCase
+class PhasesTest extends RhythmTestCase
 {
     #[TestDox("is a collection of Moon\PhaseRecord instances.")]
     public function test_moon_phases()
     {
-        $this->markTestIncomplete();
         // Arrange
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new SwissEphemerisDateTime("now"), 24);
-        $rhythm_class = SynodicRhythm::class;
-        $laravel_collection_class = Collection::class;
-        $collection_class = Phases::class;
-        $collection_record_class = PhaseRecord::class;
+        $date = $this->getSwissEphemerisDateTime(2000);
+        /** @var FromSynodicRhythm&MockObject */
+        $phases_builder = $this->getMocked(FromSynodicRhythm::class);
+        $phases_builder->expects($this->once())->method("fetchCollection")->willReturn([
+            new PhaseRecord($date, Phase::NewMoon),
+            new PhaseRecord($date, Phase::FirstQuarter),
+            new PhaseRecord($date, Phase::FullMoon),
+            new PhaseRecord($date, Phase::ThirdQuarter)
+        ]);
 
         // Act
-        $moon_phases = $synodic_rhythm->getPhases(Phase::cases());
+        $phases = new Phases($phases_builder);
 
         // Assert
-        $this->assertInstanceOf($laravel_collection_class, $moon_phases, 
-            "The $collection_class class must extend $laravel_collection_class."
+        $this->assertContainsOnlyInstancesOf(PhaseRecord::class, $phases);
+    }
+
+    #[TestDox("can return a specific Moon\PhaseRecord instance.")]
+    public function test_getters()
+    {
+        // Arrange
+        $synodic_rhythm = $this->getSynodicRhythm();
+        $phases_builder = new FromSynodicRhythm($synodic_rhythm, Phase::cases());
+        $phases = new Phases($phases_builder);
+
+        // Act
+        $first_record = $phases->first();
+        $last_record = $phases->last();
+        $a_record = $phases->get(1);
+
+        // Assert
+        $this->assertInstanceOf(PhaseRecord::class, $first_record,
+            $this->methodMustReturn(Phases::class, "first", PhaseRecord::class)
         );
-        $this->assertInstanceOf($collection_class, $moon_phases, 
-            "The $rhythm_class::getPhases() method must return a $collection_class instance.");
-        $this->assertContainsOnlyInstancesOf($collection_record_class, $moon_phases, 
-            "The $collection_class collection class must contains only $collection_record_class instances.");
+        $this->assertInstanceOf(PhaseRecord::class, $last_record,
+            $this->methodMustReturn(Phases::class, "last", PhaseRecord::class)
+        );
+        $this->assertInstanceOf(PhaseRecord::class, $a_record,
+            $this->methodMustReturn(Phases::class, "get", PhaseRecord::class)
+        );
     }
 }

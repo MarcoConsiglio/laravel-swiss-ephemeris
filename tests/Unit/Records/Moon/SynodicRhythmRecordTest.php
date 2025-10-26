@@ -108,7 +108,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_equal()
     {
         // Arrange
-        $d1 = $this->getMockedSwissEphemerisDateTime(2000);
+        $d1 = $this->getSwissEphemerisDateTime(2000);
         $d2 = clone $d1;
         $d2->hour = 2;
         $a1 = Angle::createFromDecimal(180.0);
@@ -139,11 +139,11 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $record_A = new SynodicRhythmRecord(
-            $this->getMockedSwissEphemerisDateTime(), 
+            $this->getSwissEphemerisDateTime(), 
             Angle::createFromDecimal(fake()->randomFloat(1, -180, 0))
         );
         $record_B = new SynodicRhythmRecord(
-            $this->getMockedSwissEphemerisDateTime(),
+            $this->getSwissEphemerisDateTime(),
             Angle::createFromDecimal(fake()->randomFloat(1, 0, 180))
         );
 

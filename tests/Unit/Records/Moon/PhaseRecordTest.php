@@ -18,7 +18,7 @@ class PhaseRecordTest extends TestCase
     {
         // Arrange
         $moon_phase_type = $this->faker->randomElement(Phase::cases());
-        $timestamp = $this->getMockedSwissEphemerisDateTime();
+        $timestamp = $this->getSwissEphemerisDateTime();
 
         // Act
         $moon_phase_record = new PhaseRecord($timestamp, $moon_phase_type);
@@ -35,7 +35,7 @@ class PhaseRecordTest extends TestCase
     {
         // Arrange
         $moon_phase_type = $this->faker->randomElement(Phase::cases());
-        $timestamp = $this->getMockedSwissEphemerisDateTime();
+        $timestamp = $this->getSwissEphemerisDateTime();
 
         // Act
         $moon_phase_record = new PhaseRecord($timestamp, $moon_phase_type);

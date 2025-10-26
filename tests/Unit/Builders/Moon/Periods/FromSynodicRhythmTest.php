@@ -25,7 +25,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $collection_class = Periods::class;
         $items_type = Period::class;
         //      Mock building
-        $fake_date = $this->getMockedSwissEphemerisDateTime(2000);
+        $fake_date = $this->getSwissEphemerisDateTime(2000);
         $record_1 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(0.0)]);
         $record_2 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(90.0)]);
         $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(179.0)]);

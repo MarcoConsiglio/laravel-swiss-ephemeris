@@ -68,7 +68,7 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Gets the first MoonSynodicRhythmRecord.
+     * Gets the first Moon SynodicRhythmRecord.
      *
      * @param callable|null $callback
      * @param mixed $default
@@ -80,7 +80,7 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Gets the last MoonSynodicRhythmRecord.
+     * Gets the last Moon SynodicRhythmRecord.
      *
      * @param callable|null $callback
      * @param mixed        $default

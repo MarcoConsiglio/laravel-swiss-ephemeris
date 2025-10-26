@@ -30,7 +30,7 @@ class FromArrayTest extends BuilderTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $t1 = $this->getMockedSwissEphemerisDateTime();
+        $t1 = $this->getSwissEphemerisDateTime();
         $t2 = $t1->copy()->addHour();
         $this->data = [
             0 => [

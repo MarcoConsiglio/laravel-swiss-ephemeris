@@ -2,7 +2,9 @@
 namespace MarcoConsiglio\Ephemeris;
 
 use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Carbon\Exceptions\InvalidFormatException;
+use Closure;
 use DateTimeZone;
 use Illuminate\Support\Facades\Date;
 

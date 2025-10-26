@@ -2,100 +2,111 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
-use Carbon\Carbon;
-use Illuminate\Foundation\Testing\WithFaker;
-use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
+use MarcoConsiglio\Ephemeris\Records\Moon\Period;
+use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
+use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use TypeError;
+use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The Moon\SynodicRhythm")]
 #[CoversClass(SynodicRhythm::class)]
-class SynodicRhythmTest extends TestCase
+#[UsesClass(Periods::class)]
+class SynodicRhythmTest extends RhythmTestCase
 {
-    use WithFaker;
-
     #[TestDox("is a collection of Moon\SynodicRhythmRecord instances.")]
     public function test_synodic_rhythm_has_records()
     {
-        // Arrange in setUp()
-        $this->markTestIncomplete();
+        // Arrange
+        $record_1 = $this->getMocked(SynodicRhythmRecord::class);
+        $record_2 = $this->getMocked(SynodicRhythmRecord::class);
+        $record_3 = $this->getMocked(SynodicRhythmRecord::class);
+        $record_4 = $this->getMocked(SynodicRhythmRecord::class);
+        /** @var FromArray&MockObject $from_array_builder */
+        $from_array_builder = $this->getMocked(FromArray::class);
+        $from_array_builder->expects($this->once())->method("fetchCollection")->willReturn([
+            $record_1, $record_2, $record_3, $record_4
+        ]);
+        /** @var FromRecords&MockObject $from_records_builder */
+        $from_records_builder = $this->getMocked(FromRecords::class);
+        $from_records_builder->expects($this->once())->method("fetchCollection")->willReturn([
+            $record_1, $record_2, $record_3, $record_4
+        ]);
+
         // Act
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon, $days = 1);
-        $record = $synodic_rhythm->get($this->faker->numberBetween(0, $synodic_rhythm->count() - 1));
+        $synodic_rhythm_from_raw_ephemeris = new SynodicRhythm($from_array_builder);
+        $synodic_rhythm_from_records = new SynodicRhythm($from_records_builder);
 
         // Assert
-        $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm);
-        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm, 
-            "MoonSynodicRhythm must contain MoonSynodicRhythmRecords.");
-        $this->assertEquals(24 * $days, $count = count($synodic_rhythm), 
-            "The total of records must be 24 x $days = ".(24*$days).". Found $count records.");
-        $this->assertInstanceOf(SynodicRhythmRecord::class, $record, "The getter must return a MoonSynodicRhythmRecord.");
+        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm_from_raw_ephemeris);
+        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm_from_records);
     }
 
     #[TestDox("can return a Moon\Periods collection.")]
-    public function test_return_moon_periods_collection()
+    public function test_get_periods()
     {
-        // Arrange in setUp()
-        $this->markTestIncomplete();
-        $moon_periods_collection_class = Periods::class;
-        
+        // Arrange
+        $synodic_rhythm = $this->getSynodicRhythm();
+
         // Act
-        $moon_synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new SwissEphemerisDateTime("now"));
-        $moon_periods = $moon_synodic_rhythm->getPeriods();
-        
+        $periods = $synodic_rhythm->getPeriods();
+
         // Assert
-        $actual_class = $moon_periods::class;
-        $failure_message = $this->instanceTypeFail($moon_periods_collection_class, $actual_class);
-        $this->assertInstanceOf($moon_periods_collection_class, $moon_periods, $failure_message);
+        $this->assertInstanceOf(Periods::class, $periods,
+            $this->methodMustReturn(SynodicRhythm::class, "getPeriods", Periods::class)
+        );
+        $this->assertContainsOnlyInstancesOf(Period::class, $periods,
+            $this->iterableMustContains(Periods::class, Period::class)
+        );
     }
 
     #[TestDox("can return a Moon\Phases collection.")]
-    public function test_return_moon_phases_collection()
-    {
-        // Arrange in setUp()
-        $this->markTestIncomplete();
-        $moon_phases_collection_class = Phases::class;
-
-        // Act
-        $moon_synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new SwissEphemerisDateTime("now"));
-        $moon_phases = $moon_synodic_rhythm->getPhases(Phase::cases());
-
-        // Assert
-        $actual_class = $moon_phases::class;
-        $failure_message = $this->instanceTypeFail($moon_phases_collection_class, $actual_class);
-        $this->assertInstanceOf($moon_phases_collection_class, $moon_phases, $failure_message);
-    }
-
-    #[TestDox("can return the first and last Moon\SynodicRhythmRecord.")]
-    public function test_synodic_rhythm_has_first_and_last_getter()
+    public function test_get_phases()
     {
         // Arrange
-        $this->markTestIncomplete();
-        $moon_synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(new Carbon("now"));
-        $rhythm_class = SynodicRhythm::class;
-        $expected_class = SynodicRhythmRecord::class;
-
+        $synodic_rhythm = $this->getSynodicRhythm();   
+        
         // Act
-        $first = $moon_synodic_rhythm->first();
-        $last = $moon_synodic_rhythm->last();
+        $phases = $synodic_rhythm->getPhases(Phase::cases());
 
         // Assert
-        $class_of_first_record = $first::class;
-        $class_of_last_record = $last::class;
-        $this->assertInstanceOf(SynodicRhythmRecord::class, $first,
-            $this->methodMustReturn($rhythm_class, "first", $expected_class)
+        $this->assertInstanceOf(Phases::class, $phases,
+            $this->methodMustReturn(SynodicRhythm::class, "getPhases", Phases::class)
         );
-        $this->assertInstanceOf(SynodicRhythmRecord ::class, $last,
-            $this->methodMustReturn($rhythm_class, "last", $expected_class)
+        $this->assertContainsOnlyInstancesOf(PhaseRecord::class, $phases,
+            $this->iterableMustContains(Phases::class, PhaseRecord::class)
+        );
+    }
+
+    #[TestDox("can return a specific Moon\SynodicRhythmRecord instance.")]
+    public function test_getters()
+    {
+        // Arrange
+        $synodic_rhythm = $this->getSynodicRhythm();
+        
+        // Act
+        $first_record = $synodic_rhythm->first();
+        $last_record = $synodic_rhythm->last();
+        $a_record = $synodic_rhythm->get(1);
+
+        // Assert
+        $this->assertInstanceOf(SynodicRhythmRecord::class, $first_record,
+            $this->methodMustReturn(SynodicRhythm::class, "first", SynodicRhythmRecord::class)
+        );
+        $this->assertInstanceOf(SynodicRhythmRecord::class, $last_record,
+            $this->methodMustReturn(SynodicRhythm::class, "last", SynodicRhythmRecord::class)
+        );
+        $this->assertInstanceOf(SynodicRhythmRecord::class, $a_record,
+            $this->methodMustReturn(SynodicRhythm::class, "get", SynodicRhythmRecord::class)
         );
     }
 }

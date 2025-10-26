@@ -24,7 +24,7 @@ class SynodicRhythmTemplateTest extends TemplateTestCase
     public function test_query_template()
     {
         // Arrange
-        $start_date = $this->getMockedSwissEphemerisDateTime(2000);
+        $start_date = $this->getSwissEphemerisDateTime(2000);
         $days = 30;
         $step_size = 60;
         /** @var Command&MockObject $command */

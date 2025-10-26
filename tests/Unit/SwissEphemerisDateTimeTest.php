@@ -79,7 +79,7 @@ class SwissEphemerisDateTimeTest extends TestCase
         // Arrange
         $expected_format = self::GREGORIAN_UT;
         $expected_date_string = "01.01.2000 0:00:00 UT";
-        $date =  $this->getMockedSwissEphemerisDateTime(2000);
+        $date =  $this->getSwissEphemerisDateTime(2000);
         
         // Act
         $actual_format = SwissEphemerisDateTime::GREGORIAN_UT;
@@ -99,7 +99,7 @@ class SwissEphemerisDateTimeTest extends TestCase
         // Arrange
         $expected_format = self::GREGORIAN_TT;
         $expected_date_string = "01.01.2000 0:00:00 TT";
-        $date = $this->getMockedSwissEphemerisDateTime(2000);
+        $date = $this->getSwissEphemerisDateTime(2000);
         
         // Act
         $actual_format = SwissEphemerisDateTime::GREGORIAN_TT;
@@ -119,7 +119,7 @@ class SwissEphemerisDateTimeTest extends TestCase
         // Arrange
         $expected_format = self::JULIAN_TT;
         $expected_date_string = "01.01.2000j 0:00:00 TT";
-        $date = $this->getMockedSwissEphemerisDateTime(2000);
+        $date = $this->getSwissEphemerisDateTime(2000);
 
         // Act
         $actual_format = SwissEphemerisDateTime::JULIAN_TT;
@@ -140,7 +140,7 @@ class SwissEphemerisDateTimeTest extends TestCase
         // Arrange
         $expected_format = self::JULIAN_UT;
         $expected_date_string = "01.01.2000j 0:00:00 UT";
-        $date = $this->getMockedSwissEphemerisDateTime(2000);
+        $date = $this->getSwissEphemerisDateTime(2000);
 
         // Act
         $actual_format = SwissEphemerisDateTime::JULIAN_UT;
@@ -160,7 +160,7 @@ class SwissEphemerisDateTimeTest extends TestCase
         // Arrange
         $expected_format = self::GREGORIAN_DATE;
         $expected_date_string = "01.01.2000";
-        $date = $this->getMockedSwissEphemerisDateTime(2000);
+        $date = $this->getSwissEphemerisDateTime(2000);
 
         // Act
         $actual_format = SwissEphemerisDateTime::GREGORIAN_DATE;
@@ -180,7 +180,7 @@ class SwissEphemerisDateTimeTest extends TestCase
         // Arrange
         $expected_format = self::JULIAN_DATE;
         $expected_date_string = "01.01.2000j";
-        $date = $this->getMockedSwissEphemerisDateTime(2000);
+        $date = $this->getSwissEphemerisDateTime(2000);
 
         // Act
         $actual_format = SwissEphemerisDateTime::JULIAN_DATE;
