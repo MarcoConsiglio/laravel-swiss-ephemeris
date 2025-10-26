@@ -20,7 +20,12 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The Moon\SynodicRhythm")]
 #[CoversClass(SynodicRhythm::class)]
+#[UsesClass(SynodicRhythmRecord::class)]
+#[UsesClass(Period::class)]
 #[UsesClass(Periods::class)]
+#[UsesClass(Phase::class)]
+#[UsesClass(PhaseRecord::class)]
+#[UsesClass(Phases::class)]
 class SynodicRhythmTest extends RhythmTestCase
 {
     #[TestDox("is a collection of Moon\SynodicRhythmRecord instances.")]
@@ -47,8 +52,16 @@ class SynodicRhythmTest extends RhythmTestCase
         $synodic_rhythm_from_records = new SynodicRhythm($from_records_builder);
 
         // Assert
-        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm_from_raw_ephemeris);
-        $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm_from_records);
+        $this->assertContainsOnlyInstancesOf(
+            SynodicRhythmRecord::class, 
+            $synodic_rhythm_from_raw_ephemeris,
+            $this->iterableMustContains(SynodicRhythm::class, SynodicRhythmRecord::class)    
+        );
+        $this->assertContainsOnlyInstancesOf(
+            SynodicRhythmRecord::class, 
+            $synodic_rhythm_from_records,
+            $this->iterableMustContains(SynodicRhythm::class, SynodicRhythmRecord::class)    
+        );
     }
 
     #[TestDox("can return a Moon\Periods collection.")]

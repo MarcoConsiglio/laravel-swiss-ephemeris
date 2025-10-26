@@ -97,12 +97,13 @@ abstract class QueryTemplate
      *
      * @return void
      */
-    protected function setHeader(): void {}
+    abstract protected function setHeader(): void;
 
     /**
      * Sets whether to include debug information in the response.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function debug(): void {}
 

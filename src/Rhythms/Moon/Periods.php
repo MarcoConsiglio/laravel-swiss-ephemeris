@@ -45,7 +45,7 @@ class Periods extends Collection
     }
 
     /**
-     * Gets a Period from the collection by key.
+     * Gets a Moon Period from the collection by key.
      *
      * @param [type] $key
      * @param [type] $default

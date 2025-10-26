@@ -12,10 +12,13 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The Moon\Phases")]
 #[CoversClass(Phases::class)]
+#[UsesClass(PhaseRecord::class)]
+#[UsesClass(Phase::class)]
 class PhasesTest extends RhythmTestCase
 {
     #[TestDox("is a collection of Moon\PhaseRecord instances.")]
