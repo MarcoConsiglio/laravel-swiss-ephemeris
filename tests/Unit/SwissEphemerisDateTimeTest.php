@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Carbon\Carbon;
+use Carbon\Exceptions\InvalidFormatException;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -271,6 +272,65 @@ class SwissEphemerisDateTimeTest extends TestCase
             "A SwissEphemerisDateTime::createFromJulianTT() must be a Terrestrial Time datetime.");
         $this->assertTrue($is_julian_date, 
             "A SwissEphemerisDateTime::createFromJulianUT() must be a Julian calendar datetime.");
+    }
+
+    #[TestDox("can be created from any available format.")]
+    public function test_can_create_from_any_available_format()
+    {
+        // Arrange
+        $gregorianTT_date = "01.01.2000 0:00:00 TT";
+        $expected_date_1 = SwissEphemerisDateTime::createFromGregorianTT($gregorianTT_date);
+        $gregorianUT_date = "01.01.2000 0:00:00 UT";
+        $expected_date_2 = SwissEphemerisDateTime::createFromGregorianUT($gregorianUT_date);
+        $julianTT_date = "01.01.2000j 0:00:00 TT";
+        $expected_date_3 = SwissEphemerisDateTime::createFromJulianTT($julianTT_date);
+        $julianUT_date = "01.01.2000j 0:00:00 UT";
+        $expected_date_4 = SwissEphemerisDateTime::createFromJulianUT($julianUT_date);
+
+        // Act
+        try {
+            $date_1 = SwissEphemerisDateTime::createFromSwissEphemerisFormat($gregorianTT_date);
+            $date_2 = SwissEphemerisDateTime::createFromSwissEphemerisFormat($gregorianUT_date);
+            $date_3 = SwissEphemerisDateTime::createFromSwissEphemerisFormat($julianTT_date);
+            $date_4 = SwissEphemerisDateTime::createFromSwissEphemerisFormat($julianUT_date);
+        } catch (InvalidFormatException $exception) {
+            $this->fail($exception->getMessage());
+        }
+
+        $this->assertDate($date_1, $expected_date_1);
+        $this->assertDate($date_2, $expected_date_2);
+        $this->assertDate($date_3, $expected_date_3);
+        $this->assertDate($date_4, $expected_date_4);
+    }
+
+    #[TestDox("cannot be created from unavailable format.")]
+    public function test_cannot_create_from_unavailable_format()
+    {
+        // Arrange
+        $datetime_class = SwissEphemerisDateTime::class;
+        $unknown_date = "01!01!2000 0-00-00 KFC";
+        
+        // Assert
+        $this->expectException(InvalidFormatException::class);
+        $this->expectExceptionMessage("The string $unknown_date doesn't match any of the available formats in $datetime_class class.");
+
+        // Act
+        SwissEphemerisDateTime::createFromSwissEphemerisFormat($unknown_date);
+
+    }
+
+    public function test_can_be_casted_to_string()
+    {
+        // Arrange
+        $timestamp = "01.01.2000 0:00:00 TT";
+        $expected_string = "2000-01-01 00:00:00";
+        $datetime = SwissEphemerisDateTime::createFromGregorianTT($timestamp);
+
+        // Act
+        $string = (string) $datetime;
+
+        // Assert
+        $this->assertEquals($expected_string, $string);
     }
 
     #[TestDox("can return all available datetime formats used by the Swiss Ephemeris.")]

@@ -16,10 +16,31 @@ class SwissEphemerisError extends ErrorException
     public function __construct(array $errors) 
     {
         // $this->removeNonStringElements($errors);    
-        // Check for duplicates and merge all errors in one message.
-        $unique_errors = array_unique($errors);
-        $this->message = implode(PHP_EOL, $unique_errors);
+        $unique_errors = $this->unique($errors);
+        $this->message = $this->makeMessage($unique_errors);
         $this->severity = E_RECOVERABLE_ERROR;
+    }
+
+    /**
+     * Removes duplicates errors.
+     *
+     * @param array $errors
+     * @return array
+     */
+    protected function unique(array $errors): array
+    {
+        return array_unique($errors);
+    }
+
+    /**
+     * Makes a string error message.
+     *
+     * @param array $errors
+     * @return string
+     */
+    protected function makeMessage(array $errors): string
+    {
+        return implode(PHP_EOL, $errors);
     }
 
     // /**

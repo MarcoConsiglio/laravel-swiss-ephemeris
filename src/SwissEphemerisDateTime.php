@@ -297,6 +297,7 @@ class SwissEphemerisDateTime extends Carbon
      *
      * @param string $timestamp
      * @return SwissEphemerisDateTime
+     * @throws InvalidFormatException if $timestamp doesn't match any of the available formats.
      */
     public static function createFromSwissEphemerisFormat(string $timestamp): SwissEphemerisDateTime
     {
