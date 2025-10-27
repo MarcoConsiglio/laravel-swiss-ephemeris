@@ -1,12 +1,15 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\ThirdQuarter;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\ThirdQuarter;
 
 #[TestDox("The ThirdQuarter PhaseStrategy")]
 #[CoversClass(ThirdQuarter::class)]
+#[UsesClass(SynodicRhythmRecord::class)]
 class ThirdQuarterTest extends PhaseStrategyTestCase
 {
     /**

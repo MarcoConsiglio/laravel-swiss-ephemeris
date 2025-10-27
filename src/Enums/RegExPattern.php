@@ -9,7 +9,7 @@ enum RegExPattern: string {
     /**
      * Matches a datetime of the Gregorian or Julian calendar, Universal Time or Terrestrial Time.
      */
-    case UniversalAndTerrestrialDateTime = self::RegExDelimiter."\d{1,2}\.\d{1,2}\.\d{1,4}j?\s{1}\d{1,2}\:\d{2}\:\d{2}\s(?:(?:TT)|(?:UT)){1}".self::RegExDelimiter;
+    case UniversalAndTerrestrialDateTime = self::RegExDelimiter."\d{1,2}\.\d{1,2}\.-?\d{1,4}j?\s{1}\d{1,2}\:\d{2}\:\d{2}\s(?:(?:TT)|(?:UT)){1}".self::RegExDelimiter;
     /**
      * Matches a negative or positive decimal number.
      */

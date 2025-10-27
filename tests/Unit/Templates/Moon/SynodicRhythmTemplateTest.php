@@ -6,7 +6,7 @@ use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -15,6 +15,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[CoversClass(SynodicRhythmTemplate::class)]
 #[UsesClass(Command::class)]
 #[UsesClass(SynodicRhythm::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon\SynodicRhythmTemplate")]
 class SynodicRhythmTemplateTest extends TemplateTestCase
 {
@@ -24,7 +25,7 @@ class SynodicRhythmTemplateTest extends TemplateTestCase
     public function test_query_template()
     {
         // Arrange
-        $start_date = $this->getSwissEphemerisDateTime(2000);
+        $start_date = SwissEphemerisDateTime::create(2000);
         $days = 30;
         $step_size = 60;
         /** @var Command&MockObject $command */

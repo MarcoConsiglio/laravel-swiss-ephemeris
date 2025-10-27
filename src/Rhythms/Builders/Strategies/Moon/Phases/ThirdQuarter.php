@@ -1,9 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\MoonPhaseStrategy;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
 
 /**
  * This strategy is used to find a Moon SynodicRhythmRecord matching

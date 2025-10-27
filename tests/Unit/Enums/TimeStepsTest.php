@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums;
 
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\TestCase;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 
 #[TestDox("The TimeSteps enumeration")]

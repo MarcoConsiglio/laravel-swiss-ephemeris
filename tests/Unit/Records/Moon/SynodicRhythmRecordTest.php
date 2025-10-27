@@ -25,7 +25,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_timestamp_property()
     {
         // Arrange
-        $timestamp = (new SwissEphemerisDateTime())->minutes(0)->seconds(0)->round();
+        $timestamp = (SwissEphemerisDateTime::create())->minutes(0)->seconds(0)->round();
         $angular_distance = Angle::createFromDecimal(fake()->randomFloat(1, -180, 180));
 
         // Act
@@ -40,7 +40,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_angular_distance_property()
     {
         // Arrange
-        $timestamp = (new SwissEphemerisDateTime())->minutes(0)->seconds(0)->round();
+        $timestamp = (SwissEphemerisDateTime::create())->minutes(0)->seconds(0)->round();
         $angular_distance = Angle::createFromDecimal(fake()->randomFloat(1, -180, 180));
 
         // Act
@@ -55,7 +55,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_percentage_property()
     {
         // Arrange
-        $timestamp = (new SwissEphemerisDateTime())->minutes(0)->seconds(0)->round();
+        $timestamp = (SwissEphemerisDateTime::create())->minutes(0)->seconds(0)->round();
         $angular_distance = Angle::createFromDecimal(fake()->randomFloat(1, -180, 180));
         $raw_percentage = round($angular_distance->toDecimal() / 180, 2, RoundingMode::HalfTowardsZero);
         $expected_percentage = (int) round($raw_percentage * 100, 0, RoundingMode::HalfTowardsZero);
@@ -108,7 +108,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_equal()
     {
         // Arrange
-        $d1 = $this->getSwissEphemerisDateTime(2000);
+        $d1 = SwissEphemerisDateTime::create(2000);
         $d2 = clone $d1;
         $d2->hour = 2;
         $a1 = Angle::createFromDecimal(180.0);
@@ -139,11 +139,11 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $record_A = new SynodicRhythmRecord(
-            $this->getSwissEphemerisDateTime(), 
+            SwissEphemerisDateTime::create(), 
             Angle::createFromDecimal(fake()->randomFloat(1, -180, 0))
         );
         $record_B = new SynodicRhythmRecord(
-            $this->getSwissEphemerisDateTime(),
+            SwissEphemerisDateTime::create(),
             Angle::createFromDecimal(fake()->randomFloat(1, 0, 180))
         );
 

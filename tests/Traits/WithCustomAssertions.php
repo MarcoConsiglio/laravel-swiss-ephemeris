@@ -2,9 +2,9 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
 use Carbon\CarbonInterface;
-use MarcoConsiglio\Ephemeris\Tests\Constraints\IsDateEqual;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
+use MarcoConsiglio\Ephemeris\Tests\Constraints\IsDateEqual;
 
 /**
  * Provides Custom Assertions for tests.

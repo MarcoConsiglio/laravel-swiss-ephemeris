@@ -1,8 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
-use Illuminate\Support\Enumerable;
-
 /**
  * Provides testing failure message helpers.
  */

@@ -42,19 +42,4 @@ class SwissEphemerisError extends ErrorException
     {
         return implode(PHP_EOL, $errors);
     }
-
-    // /**
-    //  * Check the errors are all strings. Remove the non-string elements.
-    //  *
-    //  * @param array $errors The errors list.
-    //  * @return void
-    //  */
-    // protected function removeNonStringElements(array &$errors)
-    // {
-    //     foreach ($errors as $index => $error) {
-    //         if(!is_string($error)) {
-    //             unset($errors[$index]);
-    //         }
-    //     }
-    // }
 }

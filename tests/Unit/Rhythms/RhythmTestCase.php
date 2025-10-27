@@ -6,6 +6,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 class RhythmTestCase extends TestCase
 {
@@ -19,19 +20,19 @@ class RhythmTestCase extends TestCase
         return new SynodicRhythm(
             new FromRecords([
                 new SynodicRhythmRecord(
-                    $this->getSwissEphemerisDateTime(2000, 1, 1),
+                    SwissEphemerisDateTime::create(2000, 1, 1),
                     Angle::createFromDecimal(0.0)
                 ),
                 new SynodicRhythmRecord(
-                    $this->getSwissEphemerisDateTime(2000, 1, 8),
+                    SwissEphemerisDateTime::create(2000, 1, 8),
                     Angle::createFromDecimal(90.0)
                 ),
                 new SynodicRhythmRecord(
-                    $this->getSwissEphemerisDateTime(2000, 1, 15),
+                    SwissEphemerisDateTime::create(2000, 1, 15),
                     Angle::createFromDecimal(180.0)
                 ),
                 new SynodicRhythmRecord(
-                    $this->getSwissEphemerisDateTime(2000, 1, 22),
+                    SwissEphemerisDateTime::create(2000, 1, 22),
                     Angle::createFromDecimal(-90)
                 )
             ])

@@ -5,7 +5,6 @@ use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument as Argument;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag as Flag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
@@ -28,9 +27,9 @@ class ApogeeTemplate extends QueryTemplate
     /**
      * The query start date.
      *
-     * @var CarbonInterface
+     * @var SwissEphemerisDateTime
      */
-    protected CarbonInterface $start_date;
+    protected SwissEphemerisDateTime $start_date;
 
     /**
      * The column names to be given to the columns of 
@@ -56,14 +55,14 @@ class ApogeeTemplate extends QueryTemplate
      * Construct the template in order to produce
      * a Moon AnomalisticRhythm.
      *
-     * @param CarbonInterface $start_date
+     * @param SwissEphemerisDateTime $start_date
      * @param integer $days
      * @param integer $step_size
      * @param Exec|DryRunner|FakeRunner|null|null $shell
      * @param Command|null $command
      */
     public function __construct(
-        CarbonInterface $start_date,
+        SwissEphemerisDateTime $start_date,
         int $days = 30,
         int $step_size = 60,
         Exec|DryRunner|FakeRunner|null $shell = null, 
@@ -99,7 +98,7 @@ class ApogeeTemplate extends QueryTemplate
     protected function prepareFlags(): void
     {
         if (! $this->start_date instanceof SwissEphemerisDateTime) {
-            $start_date = new SwissEphemerisDateTime($this->start_date);
+            $start_date = SwissEphemerisDateTime::create($this->start_date);
         } else $start_date = $this->start_date;
         $steps = $this->getStepsNumber();
         $this->command->addFlag(new Flag(CommandFlag::BeginDate->value, $start_date->toGregorianDate()));

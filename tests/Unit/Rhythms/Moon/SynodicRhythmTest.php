@@ -17,6 +17,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 #[TestDox("The Moon\SynodicRhythm")]
 #[CoversClass(SynodicRhythm::class)]
@@ -26,6 +27,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[UsesClass(Phase::class)]
 #[UsesClass(PhaseRecord::class)]
 #[UsesClass(Phases::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
 class SynodicRhythmTest extends RhythmTestCase
 {
     #[TestDox("is a collection of Moon\SynodicRhythmRecord instances.")]

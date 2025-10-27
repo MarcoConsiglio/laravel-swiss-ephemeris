@@ -1,14 +1,14 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\TestCase;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
-use PHPUnit\Framework\Attributes\CoversNothing;
 
 #[TestDox("The CommandFlag enumeration")]
-#[CoversNothing]
+#[CoversClass(CommandFlag::class)]
 class CommandFlagTest extends TestCase
 {
     use WithFailureMessage;

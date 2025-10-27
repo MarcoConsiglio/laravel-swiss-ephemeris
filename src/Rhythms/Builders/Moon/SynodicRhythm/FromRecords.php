@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm;
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 
 /**
  * Builds a Moon SynodicRhythm from an array of Moon SynodicRhythmRecord instances.
@@ -19,7 +18,7 @@ class FromRecords extends Builder
     protected $data;
 
     /**
-     * A list of SynodicRhythmRecord instances.
+     * A list of Moon SynodicRhythmRecord instances.
      *
      * @var SynodicRhythmRecord[]
      */
@@ -29,12 +28,12 @@ class FromRecords extends Builder
      * Constructs the builder.
      *
      * @param array $data A list of MoonSynodicRecord(s).
+     * @throws \InvalidArgumentException if at least one item is not a Moon SynodicRhythmRecord.
      */
     public function __construct(array $data)
     {
         $this->data = $data;
         $this->validateData();
-        $this->records = $this->data;
     }
 
     /**
@@ -43,7 +42,7 @@ class FromRecords extends Builder
      * @return void
      * @throws \InvalidArgumentException if at least one item is different than SynodicRhythmRecord.
      */
-    public function validateData()
+    protected function validateData()
     {
         $this_class = self::class;
         $collection = collect($this->data);
@@ -60,11 +59,10 @@ class FromRecords extends Builder
      * Build records.
      *
      * @return void
-     * @codeCoverageIgnore
      */
-    public function buildRecords()
+    protected function buildRecords()
     {
-        // $this->data contains already the builded records.
+        $this->records = $this->data;
     }
 
     /**
@@ -74,6 +72,7 @@ class FromRecords extends Builder
      */
     public function fetchCollection(): array
     {
+        $this->buildRecords();
         return $this->records;
     }
 }

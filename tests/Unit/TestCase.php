@@ -59,35 +59,6 @@ abstract class TestCase extends TestbenchTestCase
     }
 
     /**
-     * Sets a $property $value in $object.
-     *
-     * @param object $object
-     * @param string $property
-     * @param mixed  $value
-     * @return void
-     */
-    protected function setObjectProperty(object $object, string $property, mixed $value)
-    {
-        $ref_class = new ReflectionClass($object);
-        $ref_property = $ref_class->getProperty($property);
-        $ref_property->setValue($object, $value);
-    }
-
-    /**
-     * Sets $properties to $object.
-     *
-     * @param object $object
-     * @param array  $properties
-     * @return void
-     */
-    protected function setObjectProperties(object $object, array $properties)
-    {
-        foreach ($properties as $property => $value) {
-            $this->setObjectProperty($object, $property, $value);
-        }
-    }
-
-    /**
      * Creates a mocked SwissEphemerisDateTime.
      *
      * @param integer $year

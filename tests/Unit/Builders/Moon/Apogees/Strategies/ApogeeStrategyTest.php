@@ -1,12 +1,11 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Apogees\Strategies;
 
-use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies\Apogee;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\StrategyTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies\Apogee;
 
 #[CoversClass(Apogee::class)]
 #[UsesClass(ApogeeRecord::class)]

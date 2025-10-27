@@ -1,13 +1,12 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
-use Carbon\Carbon;
-use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
  * A Moon phase in a precise moment.
- * @property-read Carbon $timestamp
+ * @property-read SwissEphemerisDateTime $timestamp
  * @property-read Phase $type
  */
 class PhaseRecord
@@ -15,9 +14,9 @@ class PhaseRecord
     /**
      * The timestamp this record refers to.
      *
-     * @var CarbonInterface
+     * @var SwissEphemerisDateTime
      */
-    public protected(set) CarbonInterface $timestamp;
+    public protected(set) SwissEphemerisDateTime $timestamp;
 
     /**
      * The phase of the Moon it refers to.
@@ -29,10 +28,10 @@ class PhaseRecord
     /**
      * Constructs a MoonPhaseRecord with a moon phase type and a timestamp.
      *
-     * @param CarbonInterface        $timestamp
+     * @param SwissEphemerisDateTime        $timestamp
      * @param Phase $type
      */
-    public function __construct(CarbonInterface $timestamp, Phase $type)
+    public function __construct(SwissEphemerisDateTime $timestamp, Phase $type)
     {
         $this->timestamp = $timestamp;
         $this->type = $type;

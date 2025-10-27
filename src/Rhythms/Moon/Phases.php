@@ -48,7 +48,7 @@ class Phases extends Collection
      * Gets the last Moon PhaseRecord.
      *
      * @param callable|null $callback
-     * @param [type] $default
+     * @param mixed $default
      * @return PhaseRecord
      */
     public function last(?callable $callback = null, $default = null): PhaseRecord

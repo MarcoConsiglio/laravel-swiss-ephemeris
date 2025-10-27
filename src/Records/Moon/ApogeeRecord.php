@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
-use Carbon\CarbonInterface;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Interfaces\Angle;
 
 /**
@@ -12,9 +12,9 @@ class ApogeeRecord extends AnomalisticRecord
     /**
      * The timestamp this record refers to.
      *
-     * @var \Carbon\CarbonInterface
+     * @var SwissEphemerisDateTime
      */
-    public protected(set) CarbonInterface $timestamp;
+    public protected(set) SwissEphemerisDateTime $timestamp;
 
     /**
      * The current Moon longitude. It represents the
@@ -31,11 +31,17 @@ class ApogeeRecord extends AnomalisticRecord
     public protected(set) Angle $apogee_longitude;
 
     /**
-     * Constructs the record.
+     * Constructs a Moon ApogeeRecord.
+     * 
+     * It can be that $moon_longitude and $apogee_longitute are not close enough
+     * to be considered a Moon apogee. In order to have real apogees you should
+     * instantiate a Moon Apogees collection.
      *
-     * @param CarbonInterface $timestamp The moment to which the record refers.
+     * @param SwissEphemerisDateTime $timestamp
+     * @param Angle $moon_longitude
+     * @param Angle $apogee_longitude
      */
-    public function __construct(CarbonInterface $timestamp, Angle $moon_longitude, Angle $apogee_longitude)
+    public function __construct(SwissEphemerisDateTime $timestamp, Angle $moon_longitude, Angle $apogee_longitude)
     {
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;

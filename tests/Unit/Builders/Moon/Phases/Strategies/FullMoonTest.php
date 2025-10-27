@@ -1,12 +1,15 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases\Strategies;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FullMoon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FullMoon;
 
 #[TestDox("The FullMoon PhaseStrategy")]
 #[CoversClass(FullMoon::class)]
+#[UsesClass(SynodicRhythmRecord::class)]
 class FullMoonTest extends PhaseStrategyTestCase
 {
     /**

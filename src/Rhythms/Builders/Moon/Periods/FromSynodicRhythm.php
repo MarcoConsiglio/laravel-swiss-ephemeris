@@ -1,10 +1,10 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Records\Moon\Period;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 
 /**
  * Build a Moon Periods collection 

@@ -2,6 +2,9 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Phases;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
@@ -11,13 +14,16 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
 #[TestDox("The Moon\Phases\FromMoonSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
+#[UsesClass(Angle::class)]
+#[UsesClass(FromRecords::class)]
+#[UsesClass(Phases::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
+#[UsesClass(SynodicRhythm::class)]
+#[UsesClass(SynodicRhythmRecord::class)]
 class FromSynodicRhythmTest extends BuilderTestCase
 {
     #[TestDox("can build a Moon\Phases collection from the Moon\SynodicRhythm.")]
@@ -26,10 +32,10 @@ class FromSynodicRhythmTest extends BuilderTestCase
         // Arrange
         $builder_class = $this->getBuilderClass();
         $record_class = PhaseRecord::class;
-        $date_1 = new SwissEphemerisDateTime("2021-10-06 11:00:00");
-        $date_2 = new SwissEphemerisDateTime("2021-10-13 03:00:00");
-        $date_3 = new SwissEphemerisDateTime("2021-10-20 15:00:00");
-        $date_4 = new SwissEphemerisDateTime("2021-10-28 20:00:00");
+        $date_1 = SwissEphemerisDateTime::create("2021-10-06 11:00:00");
+        $date_2 = SwissEphemerisDateTime::create("2021-10-13 03:00:00");
+        $date_3 = SwissEphemerisDateTime::create("2021-10-20 15:00:00");
+        $date_4 = SwissEphemerisDateTime::create("2021-10-28 20:00:00");
         $angle_1 = Angle::createFromDecimal(-0.0614509);
         $angle_2 = Angle::createFromDecimal(89.7644741);
         $angle_3 = Angle::createFromDecimal(-179.9831740);

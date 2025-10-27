@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Ephemeris\Enums\Moon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FirstQuarter as FirstQuarterStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FullMoon as FullMoonStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\NewMoon as NewMoonStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\PhaseStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\ThirdQuarter as ThirdQuarterStrategy;
 
 /**
@@ -41,25 +40,19 @@ enum Phase
      */
     public static function getCorrespondingPhase(string $strategy_class): ?Phase
     {
-        if (get_parent_class($strategy_class) == PhaseStrategy::class) {
-            $value = class_basename($strategy_class);
-            switch ($value) {
-                case "NewMoon":
-                    return self::NewMoon;
-                    break;
-                case "FirstQuarter":
-                    return self::FirstQuarter;
-                    break;
-                case "FullMoon":
-                    return self::FullMoon;
-                    break;
-                case "ThirdQuarter":
-                    return self::ThirdQuarter;
-                    break;
-                default:
-                    return null;
-                    break;
-            }
+        switch ($strategy_class) {
+            case NewMoonStrategy::class:
+                return self::NewMoon;
+                break; // @codeCoverageIgnore
+            case FirstQuarterStrategy::class:
+                return self::FirstQuarter;
+                break; // @codeCoverageIgnore
+            case FullMoonStrategy::class:
+                return self::FullMoon;
+                break; // @codeCoverageIgnore
+            case ThirdQuarterStrategy::class:
+                return self::ThirdQuarter;
+                break; // @codeCoverageIgnore
         }
         return null;
     }
@@ -86,6 +79,6 @@ enum Phase
                 return ThirdQuarterStrategy::class;
                 break; // @codeCoverageIgnore
         }
-        return null; // @codeCoverageIgnore
+        return null;
     }
 }

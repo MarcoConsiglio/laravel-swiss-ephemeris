@@ -1,19 +1,26 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Periods;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
+use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
-use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("The Moon\Periods\FromSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
+#[UsesClass(FromRecords::class)]
+#[UsesClass(Period::class)]
+#[UsesClass(Periods::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
+#[UsesClass(SynodicRhythm::class)]
 class FromSynodicRhythmTest extends BuilderTestCase
 {
     #[TestDox("can build a Moon\Periods collection starting from a Moon\SynodicRhythm.")]
@@ -25,7 +32,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $collection_class = Periods::class;
         $items_type = Period::class;
         //      Mock building
-        $fake_date = $this->getSwissEphemerisDateTime(2000);
+        $fake_date = SwissEphemerisDateTime::create(2000);
         $record_1 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(0.0)]);
         $record_2 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(90.0)]);
         $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(179.0)]);

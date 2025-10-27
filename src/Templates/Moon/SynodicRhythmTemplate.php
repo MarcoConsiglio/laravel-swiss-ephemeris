@@ -5,7 +5,6 @@ use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
@@ -28,9 +27,9 @@ class SynodicRhythmTemplate extends QueryTemplate
     /**
      * The query start date.
      *
-     * @var CarbonInterface
+     * @var SwissEphemerisDateTime
      */
-    protected CarbonInterface $start_date;
+    protected SwissEphemerisDateTime $start_date;
 
     /**
      * The column names to be given to the columns of 
@@ -55,14 +54,14 @@ class SynodicRhythmTemplate extends QueryTemplate
      * Construct the template in order to produce
      * a MoonSynodicRhythm object.
      *
-     * @param CarbonInterface $start_date
+     * @param SwissEphemerisDateTime $start_date
      * @param integer $days
      * @param integer $step_size
      * @param Exec|DryRunner|FakeRunner|null|null $shell
      * @param Command|null $command
      */
     public function __construct(
-        CarbonInterface $start_date, 
+        SwissEphemerisDateTime $start_date, 
         int $days = 30, 
         int $step_size = 60,
         Exec|DryRunner|FakeRunner|null $shell = null, 
@@ -98,7 +97,7 @@ class SynodicRhythmTemplate extends QueryTemplate
      */
     protected function prepareFlags(): void
     {
-        $start_date = new SwissEphemerisDateTime($this->start_date);
+        $start_date = SwissEphemerisDateTime::create($this->start_date);
         $steps = $this->getStepsNumber();
         // Warning! Changing the object format will cause errors in getMoonSynodicRhythm() method.
         $object_format = OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
@@ -131,11 +130,23 @@ class SynodicRhythmTemplate extends QueryTemplate
     protected function parseOutput(): void
     {
         foreach ($this->output as $index => $row) {
+            // Remove empty lines.
+            if (strlen(trim($row)) === 0) {
+                unset($this->output[$index]);
+                continue;
+            }
             $datetime = '';
             $decimal_number = 0.0;
             preg_match(RegExPattern::UniversalAndTerrestrialDateTime->value, $row, $datetime);
             preg_match(RegExPattern::RelativeDecimalNumber->value, $row, $decimal_number);
-            $this->output[$index] = [$datetime[0], $decimal_number[0]];
+            if (isset($datetime[0]) && $decimal_number[0]) {
+                $this->output[$index] = [$datetime[0], $decimal_number[0]];
+            } else {
+                // This is dangerous and temporary.
+                // Use SwissEphemerisError or SwissEphemerisWarning instead.
+                // Need to add SwissEphemerisDateTime format for BCE years (i.e. -2000).
+                unset($this->output[$index]);
+            }
         }
     }
 

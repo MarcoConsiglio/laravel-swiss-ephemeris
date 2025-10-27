@@ -2,17 +2,20 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\SynodicRhythm;
 
-use Carbon\Carbon;
 use InvalidArgumentException;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
-use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithReflection;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 
 #[TestDox("The Moon\SynodicRhythm\FromArray builder")]
 #[CoversClass(FromArray::class)]
+#[UsesClass(InvalidArgumentException::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
+#[UsesClass(SynodicRhythmRecord::class)]
 class FromArrayTest extends BuilderTestCase
 {
     /**
@@ -30,7 +33,7 @@ class FromArrayTest extends BuilderTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $t1 = $this->getSwissEphemerisDateTime();
+        $t1 = SwissEphemerisDateTime::create();
         $t2 = $t1->copy()->addHour();
         $this->data = [
             0 => [

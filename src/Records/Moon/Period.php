@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
-use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
@@ -18,16 +17,16 @@ class Period
     /**
      * Start timestamp of this period.
      *
-     * @var CarbonInterface
+     * @var SwissEphemerisDateTime
      */
-    public protected(set) CarbonInterface $start;
+    public protected(set) SwissEphemerisDateTime $start;
 
     /**
      * End timestamp of this period.
      *
-     * @var CarbonInterface
+     * @var SwissEphemerisDateTime
      */
-    public protected(set) CarbonInterface $end;
+    public protected(set) SwissEphemerisDateTime $end;
 
     /**
      * The type of this period (waning or waxing).
@@ -39,11 +38,11 @@ class Period
     /**
      * Constructs a Moon period.
      *
-     * @param CarbonInterface $start
-     * @param CarbonInterface $end
+     * @param SwissEphemerisDateTime $start
+     * @param SwissEphemerisDateTime $end
      * @param PeriodType $type
      */
-    public function __construct(CarbonInterface $start, CarbonInterface $end, PeriodType $type)
+    public function __construct(SwissEphemerisDateTime $start, SwissEphemerisDateTime $end, PeriodType $type)
     {
         $this->start = $start;
         $this->end = $end;

@@ -3,20 +3,25 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\SynodicRhythm;
 
 use InvalidArgumentException;
+use stdClass;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
-use PHPUnit\Framework\Attributes\CoversClass;
-use stdClass;
-use PHPUnit\Framework\Attributes\TestDox;
-use TypeError;
 
 #[TestDox("The Moon\SynodicRhythm\FromRecords builder")]
 #[CoversClass(FromRecords::class)]
+#[UsesClass(Angle::class)]
+#[UsesClass(Builder::class)]
+#[UsesClass(InvalidArgumentException::class)]
+#[UsesClass(stdClass::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
+#[UsesClass(SynodicRhythmRecord::class)]
 class FromRecordsTest extends BuilderTestCase
 {
     /**

@@ -11,12 +11,14 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 #[TestDox("The Moon\Periods")]
 #[CoversClass(Periods::class)]
 #[UsesClass(Period::class)]
 #[UsesClass(PeriodType::class)]
 #[UsesClass(FromSynodicRhythm::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
 class PeriodsTest extends RhythmTestCase
 {
     #[TestDox("is a collection of Moon\Period instances.")]
@@ -24,8 +26,8 @@ class PeriodsTest extends RhythmTestCase
     {
         // Arrange
         $periods_builder = $this->getMocked(FromSynodicRhythm::class);
-        $d1 = $this->getSwissEphemerisDateTime(2000);
-        $d2 = $this->getSwissEphemerisDateTime(2000);
+        $d1 = SwissEphemerisDateTime::create(2000);
+        $d2 = SwissEphemerisDateTime::create(2000);
         /** @var FromSynodicRhythm&MockObject $periods_builder */
         $periods_builder->expects($this->once())->method("fetchCollection")->willReturn([
             new Period($d1, $d2, PeriodType::Waxing),

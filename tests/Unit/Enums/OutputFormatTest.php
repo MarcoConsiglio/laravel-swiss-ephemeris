@@ -4,8 +4,8 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use PHPUnit\Framework\Attributes\CoversClass;
+use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 
 #[TestDox("The OutputFormat enumeration")]
 #[CoversClass(OutputFormat::class)]

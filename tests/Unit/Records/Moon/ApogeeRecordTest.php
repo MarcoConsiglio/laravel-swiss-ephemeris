@@ -1,17 +1,17 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
-use Carbon\CarbonInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(ApogeeRecord::class)]
 #[UsesClass(Angle::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon\ApogeeRecord")]
 class ApogeeRecordTest extends TestCase
 {
@@ -19,7 +19,7 @@ class ApogeeRecordTest extends TestCase
     public function test_timestamp_property()
     {
         // Arrange
-        $timestamp = $this->getSwissEphemerisDateTime();
+        $timestamp = SwissEphemerisDateTime::create();
         $moon_longitude = Angle::createFromDecimal(179.0);
         $apogee_longitude= Angle::createFromDecimal(180.0);
 
@@ -34,7 +34,7 @@ class ApogeeRecordTest extends TestCase
     public function test_moon_and_apogee_longitude_properties()
     {
         // Arrange
-        $timestamp = $this->getSwissEphemerisDateTime();
+        $timestamp = SwissEphemerisDateTime::create();
         $moon_longitude = Angle::createFromDecimal(179.0);
         $apogee_longitude= Angle::createFromDecimal(180.0);
 
@@ -52,7 +52,7 @@ class ApogeeRecordTest extends TestCase
         // Arrange
         $a1 = Angle::createFromDecimal(90.0);
         $a2 = Angle::createFromDecimal(180.0);
-        $d1 = $this->getSwissEphemerisDateTime(2000);
+        $d1 = SwissEphemerisDateTime::create(2000);
         $d2 = clone $d1;
         $d2->hour = 2;
         $record_A1 = new ApogeeRecord($d1, $a1, $a1);

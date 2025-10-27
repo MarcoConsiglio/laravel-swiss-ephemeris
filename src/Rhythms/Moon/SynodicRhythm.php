@@ -2,19 +2,14 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 
 use Illuminate\Support\Collection;
-use UnexpectedValueException;
-use Illuminate\Support\LazyCollection;
-use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods\FromSynodicRhythm as MoonPeriodBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm as MoonPhasesBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
-use stdClass;
 
 /**
- * A collection of SynodicRhythmRecord instances.
+ * A collection of Moon SynodicRhythmRecord instances.
  * 
  * Represents the Moon's synodic rhythm over a time range. 
  * A Moon synodic rhythm, or synodic period, is the time it takes 
@@ -24,7 +19,7 @@ use stdClass;
 class SynodicRhythm extends Collection
 {
     /**
-     * Create a new MoonSynodicRhythm.
+     * Constructs a Moon SynodicRhythm.
      *
      * @param FromArray|FromRecords $items
      */
@@ -56,7 +51,7 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Gets a collection of MoonPhases.
+     * Gets a collection of Moon Phases.
      *
      * @param array $moon_phase_types An array ofMoonPhaseType
      * items representing which moon phases you want to extract.

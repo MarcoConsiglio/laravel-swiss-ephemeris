@@ -2,10 +2,10 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees;
 
 use InvalidArgumentException;
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * Builds a Moon Apogees collection from raw ephemeris response.

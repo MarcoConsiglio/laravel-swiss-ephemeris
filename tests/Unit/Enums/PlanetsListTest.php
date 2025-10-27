@@ -2,10 +2,10 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums;
 
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Enums\PlanetsList;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\TestCase;
+use MarcoConsiglio\Ephemeris\Enums\PlanetsList;
 
 #[TestDox("The PlanetsList enumeration")]
 #[CoversClass(PlanetsList::class)]
