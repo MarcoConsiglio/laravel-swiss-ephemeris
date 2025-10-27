@@ -105,6 +105,9 @@
         <h2 class="phpdocumentor-content__title">
     PhaseStrategy
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Strategy.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy">Strategy</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -113,9 +116,6 @@
                             </ul>
         </div>
     
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Interfaces-BuilderStrategy.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy">BuilderStrategy</abbr></a>                    </span>
     
     </h2>
 
@@ -129,7 +129,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Builders/Strategies/Moon/Phases/PhaseStrategy.php"><a href="files/src-rhythms-builders-strategies-moon-phases-phasestrategy.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Phases/PhaseStrategy.php">PhaseStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -151,13 +151,6 @@
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-PhaseStrategy.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Interfaces-BuilderStrategy.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy">BuilderStrategy</abbr></a></dt><dd>The behavior of a strategy for rhythm builders.</dd>    </dl>
 
 
 
@@ -171,7 +164,7 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-PhaseStrategy.html#property_delta">$delta</a>
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Strategy.html#property_delta">$delta</a>
     <span>
                         &nbsp;: float            </span>
 </dt>
@@ -191,13 +184,6 @@
 </dt>
 <dd>Find an exact record.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-PhaseStrategy.html#method_getDelta">getDelta()</a>
-    <span>
-                                &nbsp;: float    </span>
-</dt>
-<dd>Gets the delta specified by the strategy.</dd>
-
     </dl>
 
 
@@ -216,17 +202,17 @@
             phpdocumentor-element
             -property
             -public
-                                                -read-only                    "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_delta">
         $delta
-        <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-PhaseStrategy.html#property_delta" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Strategy.html#property_delta" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Builders/Strategies/Moon/Phases/PhaseStrategy.php"><a href="files/src-rhythms-builders-strategies-moon-phases-phasestrategy.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Phases/PhaseStrategy.php">PhaseStrategy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Builders/Strategies/Strategy.php"><a href="files/src-rhythms-builders-strategies-strategy.html"><abbr title="src/Rhythms/Builders/Strategies/Strategy.php">Strategy.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">0</span>
 
@@ -240,7 +226,7 @@
     <span class="phpdocumentor-signature__name">$delta</span>
     </code>
 
-        <section class="phpdocumentor-description"><p>Angular distance delta: It is used for an error biased search.</p>
+        <section class="phpdocumentor-description"><p>The error bias used to accept the correct record.</p>
 </section>
 
     
@@ -273,7 +259,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Builders/Strategies/Moon/Phases/PhaseStrategy.php"><a href="files/src-rhythms-builders-strategies-moon-phases-phasestrategy.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Phases/PhaseStrategy.php">PhaseStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -293,45 +279,6 @@
     
 
     
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_getDelta">
-        getDelta()
-        <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-PhaseStrategy.html#method_getDelta" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Builders/Strategies/Moon/Phases/PhaseStrategy.php"><a href="files/src-rhythms-builders-strategies-moon-phases-phasestrategy.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Phases/PhaseStrategy.php">PhaseStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">32</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Gets the delta specified by the strategy.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getDelta</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">float</span>
-            </section>
-
 </article>
             </section>
 
@@ -448,7 +395,7 @@
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-PhaseStrategy.html#property_delta">$delta</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Strategy.html#property_delta">$delta</a></li>
                                             </ul>
                 </li>
             
@@ -456,7 +403,6 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-PhaseStrategy.html#method_found">found()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Phases-PhaseStrategy.html#method_getDelta">getDelta()</a></li>
                                     </ul>
             </li>
                     </ul>
