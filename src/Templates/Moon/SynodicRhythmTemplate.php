@@ -25,13 +25,6 @@ use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 class SynodicRhythmTemplate extends QueryTemplate
 {
     /**
-     * The query start date.
-     *
-     * @var SwissEphemerisDateTime
-     */
-    protected SwissEphemerisDateTime $start_date;
-
-    /**
      * The column names to be given to the columns of 
      * the ephemeris answer.
      *
@@ -49,34 +42,6 @@ class SynodicRhythmTemplate extends QueryTemplate
      * @var SynodicRhythm
      */
     protected SynodicRhythm $object;
-
-    /**
-     * Construct the template in order to produce
-     * a MoonSynodicRhythm object.
-     *
-     * @param SwissEphemerisDateTime $start_date
-     * @param integer $days
-     * @param integer $step_size
-     * @param Exec|DryRunner|FakeRunner|null|null $shell
-     * @param Command|null $command
-     */
-    public function __construct(
-        SwissEphemerisDateTime $start_date, 
-        int $days = 30, 
-        int $step_size = 60,
-        Exec|DryRunner|FakeRunner|null $shell = null, 
-        ?Command $command = null
-    ) {
-        $this->shell = $shell ?? new Exec();
-        $this->command = $command ?? new Command(
-            resource_path(LaravelSwissEphemeris::SWISS_EPHEMERIS_PATH) . 
-            DIRECTORY_SEPARATOR . 
-            LaravelSwissEphemeris::SWISS_EPHEMERIS_EXECUTABLE
-        );     
-        $this->start_date = $start_date;
-        $this->days = $days;
-        $this->step_size = $step_size;   
-    }
 
     /**
      * Prepares arguments for the swetest executable.

@@ -37,7 +37,7 @@ class LaravelSwissEphemerisTest extends TestCase
     public function test_outbound_time_range_throw_exception()
     {
         // Arrange in setUp()
-        $this->markTestSkipped("Need to better checks errors and warning in the raw output.");
+        $this->markTestSkipped("Need better checks errors and warning in the raw output.");
         // Assert
         $this->expectException(SwissEphemerisError::class);
 

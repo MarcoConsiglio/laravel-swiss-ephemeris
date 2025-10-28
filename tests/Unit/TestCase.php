@@ -16,8 +16,8 @@ abstract class TestCase extends TestbenchTestCase
     use WithCustomAssertions, WithFaker;
 
     /**
-     * This method is called before each test.
-     * 
+     * Setup the test environment.
+     *
      * @return void
      */
     protected function setUp(): void
@@ -55,37 +55,5 @@ abstract class TestCase extends TestbenchTestCase
                     ->setConstructorArgs($constructor_arguments);
         }
         return $builder->getMock();
-    }
-
-    /**
-     * Creates a mocked SwissEphemerisDateTime.
-     *
-     * @param integer $year
-     * @param integer $month
-     * @param integer $day
-     * @param integer $hour
-     * @param integer $minute
-     * @param integer $second
-     * @param ?string|null $tz
-     * @return SwissEphemerisDateTime
-     */
-    protected function getSwissEphemerisDateTime(
-        int $year = 0, 
-        int $month = 1, 
-        int $day = 1, 
-        int $hour = 0, 
-        int $minute = 0, 
-        int $second = 0, 
-        ?string $tz = null): SwissEphemerisDateTime
-    {
-        return SwissEphemerisDateTime::create(
-            $year,
-            $month,
-            $day,
-            $hour,
-            $minute,
-            $second,
-            $tz
-        );
     }
 }

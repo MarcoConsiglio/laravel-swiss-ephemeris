@@ -9,7 +9,10 @@ use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use MarcoConsiglio\Ephemeris\Parsers\Strategies\Error;
 use MarcoConsiglio\Ephemeris\Parsers\Strategies\Warning;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
+use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Parsers\Strategies\EmptyLine;
+use MarcoConsiglio\Ephemeris\Parsers\Strategies\Using;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
  * The template for an ephemeris query.
@@ -25,6 +28,13 @@ abstract class QueryTemplate
      * The number of minutes in a hour.
      */
     protected const MINUTES_IN_A_HOUR = 60;
+
+    /**
+     * The query start date.
+     *
+     * @var SwissEphemerisDateTime
+     */
+    protected SwissEphemerisDateTime $start_date;
 
     /**
      * How many days of ephemeris to request.
@@ -48,11 +58,18 @@ abstract class QueryTemplate
     protected Exec|DryRunner|FakeRunner|null $shell = null;
 
     /**
-     * Undocumented variable
+     * The command to be executed.
      *
-     * @var ?Command $command The command to execute.
+     * @var ?Command
      */
     protected ?Command $command = null;
+
+    /**
+     * The return value from the command.
+     *
+     * @var integer
+     */
+    public protected(set) int $return_value;
 
     /**
      * The output from the swetest executable.
@@ -76,6 +93,41 @@ abstract class QueryTemplate
     public protected(set) array $warnings;
 
     /**
+     * The notices list found in the output.
+     * 
+     * @var string[]
+     */
+    public protected(set) array $notices;
+
+    /**
+     * Construct the template in order to produce
+     * a MoonSynodicRhythm object.
+     *
+     * @param SwissEphemerisDateTime $start_date
+     * @param integer $days
+     * @param integer $step_size
+     * @param Exec|DryRunner|FakeRunner|null|null $shell
+     * @param Command|null $command
+     */
+    public function __construct(
+        SwissEphemerisDateTime $start_date, 
+        int $days = 30, 
+        int $step_size = 60,
+        Exec|DryRunner|FakeRunner|null $shell = null, 
+        ?Command $command = null
+    ) {
+        $this->shell = $shell ?? new Exec();
+        $this->command = $command ?? new Command(
+            resource_path(LaravelSwissEphemeris::SWISS_EPHEMERIS_PATH) . 
+            DIRECTORY_SEPARATOR . 
+            LaravelSwissEphemeris::SWISS_EPHEMERIS_EXECUTABLE
+        );     
+        $this->start_date = $start_date;
+        $this->days = $days;
+        $this->step_size = $step_size;   
+    }
+
+    /**
      * The template of a query to the Swiss Ephemeris executable.
      *
      * @return void
@@ -86,6 +138,7 @@ abstract class QueryTemplate
         $this->runCommand();
         $this->checkErrors();
         $this->checkWarnings();
+        $this->checkNotices();
         $this->removeEmptyLines();
         $this->parseOutput();
         $this->remapColumns();
@@ -139,21 +192,21 @@ abstract class QueryTemplate
      * Run the swetest executable.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function runCommand(): void 
     {
         if ($this->shell instanceof Exec) {
             $this->shell->run($this->command);
+            $this->return_value = $this->shell->getReturnValue();
             $this->output = $this->shell->getOutput();
         } 
 
-        // @codeCoverageIgnoreStart
         // Used for testing purposes.
         if ($this->shell instanceof FakeRunner) {
             $fake_output = $this->shell->getStandardOut();
             $this->output = explode(PHP_EOL, $fake_output);
         }
-        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -166,11 +219,11 @@ abstract class QueryTemplate
     protected function checkErrors(): void 
     {
         $errors_list = [];
-        foreach ($this->output as $row) {
+        foreach ($this->output as $index => $row) {
             $error_parser = new Error($row);
             if ($error = $error_parser->found()) {
-                array_push($errors_list, $error);
-                unset($row);
+                $errors_list[] = $error;
+                $this->removeLine($index);
             } 
         }
         if (!empty($errors_list)) throw new SwissEphemerisError($errors_list);
@@ -184,14 +237,32 @@ abstract class QueryTemplate
     protected function checkWarnings(): void
     {
         $warning_list = [];
-        foreach ($this->output as $row) {
+        foreach ($this->output as $index => $row) {
             $warning_parser = new Warning($row);
             if ($warning = $warning_parser->found()) {
-                array_push($warning_list, $warning);
-                unset($row);
+                $warning_list[] = $warning;
+                $this->removeLine($index);
             }
         }
         $this->warnings = $warning_list;
+    }
+
+    /**
+     * Search for notices in the swetest executable output.
+     *
+     * @return void
+     */
+    protected function checkNotices(): void
+    {
+        $notices_list = [];
+        foreach ($this->output as $index => $row) {
+            $using_line = new Using($row);
+            if ($notice = $using_line->found()) {
+                $warning_list[] = $notice;
+                $this->removeLine($index);
+            }
+        }
+        $this->notices = $notices_list;
     }
 
     /**
@@ -201,9 +272,9 @@ abstract class QueryTemplate
      */
     protected function removeEmptyLines()
     {
-        foreach ($this->output as $row) {
+        foreach ($this->output as $index => $row) {
             $empty_line = new EmptyLine($row);
-            if ($empty_line->found()) unset($row);
+            if ($empty_line->found()) $this->removeLine($index);
         }
     }
 

@@ -22,6 +22,10 @@ enum RegExPattern: string {
     */
     case SwetestWarning = self::RegExDelimiter."(?:warning:)(.+)".self::RegExDelimiter;
     /**
+     * Matches a "using" notice within the Swiss Ephemeris output.
+     */
+    case SwetestUsing = self::RegExDelimiter."(?:using)(.+)".self::RegExDelimiter;
+    /**
      * Matches an empty line within the Swiss Ephemeris output.
      */
     case EmptyLine = self::RegExDelimiter."^\s*$".self::RegExDelimiter;
@@ -29,10 +33,6 @@ enum RegExPattern: string {
      * The regular expression delimiter.
      */
     protected const RegExDelimiter = '/';
-    /**
-     * Single line option for regular expressions.
-     */
-    public const SingleLine = "s";
     /**
      * Matches the string "Moon".
      */

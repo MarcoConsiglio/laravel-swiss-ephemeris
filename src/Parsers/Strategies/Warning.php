@@ -17,7 +17,7 @@ class Warning extends ParsingStrategy
     public function found(): ?string
     {
         if (preg_match(
-            RegExPattern::SwetestWarning->value.RegExPattern::SingleLine, 
+            RegExPattern::SwetestWarning->value, 
             $this->text, $warning_match) == 1) 
         return trim($warning_match[1]); 
         else return null;

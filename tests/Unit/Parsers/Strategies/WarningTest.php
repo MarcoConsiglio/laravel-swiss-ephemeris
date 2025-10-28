@@ -16,8 +16,7 @@ class WarningTest extends TestCase
         // Arrange
         $warning = "warning:";
         $warning_text = <<<HERE
- SwissEph file 'sepl_18.se1' not found in PATH '.;/my/path/laravel/resources/swiss_ephemeris;.:/users/ephe2/:/users/ephe/' 
-using Moshier eph.; "
+ SwissEph file 'sepl_18.se1' not found in PATH '.;/my/path/laravel/resources/swiss_ephemeris;.:/users/ephe2/:/users/ephe/'
 HERE;
         $non_worning = "Ephemeris output.";
         $strategy_1 = new Warning($warning.$warning_text);

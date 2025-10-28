@@ -13,7 +13,6 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 
 #[TestDox("The Moon\SynodicRhythm\FromArray builder")]
 #[CoversClass(FromArray::class)]
-#[UsesClass(InvalidArgumentException::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
 class FromArrayTest extends BuilderTestCase
@@ -26,8 +25,8 @@ class FromArrayTest extends BuilderTestCase
     protected array $data;
 
     /**
-     * This method is called before each test.
-     * 
+     * Setup the test environment.
+     *
      * @return void
      */
     public function setUp(): void

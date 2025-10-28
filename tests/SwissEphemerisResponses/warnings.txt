@@ -1,0 +1,3 @@
+
+warning: SwissEph file 'sepl_18.se1' not found in PATH '.;/my/path/laravel-swiss-ephemeris/vendor/orchestra/testbench-core/laravel/resources/swiss_ephemeris;.:/users/ephe2/:/users/ephe/'
+using Moshier eph.;

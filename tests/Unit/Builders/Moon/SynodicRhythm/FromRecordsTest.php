@@ -17,9 +17,6 @@ use MarcoConsiglio\Goniometry\Angle;
 #[TestDox("The Moon\SynodicRhythm\FromRecords builder")]
 #[CoversClass(FromRecords::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(Builder::class)]
-#[UsesClass(InvalidArgumentException::class)]
-#[UsesClass(stdClass::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
 class FromRecordsTest extends BuilderTestCase
@@ -32,7 +29,9 @@ class FromRecordsTest extends BuilderTestCase
     protected array $data;
 
     /**
-     * This method is called before each test.
+     * Setup the test environment.
+     *
+     * @return void
      */
     protected function setUp(): void
     {
