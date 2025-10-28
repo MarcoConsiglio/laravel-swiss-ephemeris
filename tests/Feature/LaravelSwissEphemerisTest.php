@@ -42,6 +42,6 @@ class LaravelSwissEphemerisTest extends TestCase
         $this->expectException(SwissEphemerisError::class);
 
         // Act
-        $this->ephemeris->getMoonSynodicRhythm(SwissEphemerisDateTime::create(3000), 1);
+        $this->ephemeris->getMoonSynodicRhythm(SwissEphemerisDateTime::create(0), -1, -5);
     }
 }

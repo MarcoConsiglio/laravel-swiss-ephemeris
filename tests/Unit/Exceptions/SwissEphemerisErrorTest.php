@@ -1,13 +1,10 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Exceptions;
 
-use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\MockObject\MockBuilder;
-use ReflectionClass;
+use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
+use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 #[CoversClass(SwissEphemerisError::class)]
 #[TestDox("The SwissEphemerisError")]

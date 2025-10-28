@@ -6,8 +6,10 @@ use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
+use MarcoConsiglio\Ephemeris\Parsers\Strategies\Error;
+use MarcoConsiglio\Ephemeris\Parsers\Strategies\Warning;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
+use MarcoConsiglio\Ephemeris\Parsers\Strategies\EmptyLine;
 
 /**
  * The template for an ephemeris query.
@@ -66,11 +68,25 @@ abstract class QueryTemplate
      */
     protected bool $completed = false;
 
+    /**
+     * The warnings list found in the output.
+     * 
+     * @var string[]
+     */
+    public protected(set) array $warnings;
+
+    /**
+     * The template of a query to the Swiss Ephemeris executable.
+     *
+     * @return void
+     */
     final protected function query(): void
     {
         $this->buildCommand();
         $this->runCommand();
         $this->checkErrors();
+        $this->checkWarnings();
+        $this->removeEmptyLines();
         $this->parseOutput();
         $this->remapColumns();
         $this->buildObject();
@@ -127,12 +143,17 @@ abstract class QueryTemplate
     protected function runCommand(): void 
     {
         $this->shell->run($this->command);
-        if ($this->shell instanceof Exec) $this->output = $this->shell->getOutput();
+        if ($this->shell instanceof Exec) {
+            $this->output = $this->shell->getOutput();
+        } 
+
+        // @codeCoverageIgnoreStart
         // Used for testing purposes.
         if ($this->shell instanceof FakeRunner) {
             $fake_output = $this->shell->getStandardOut();
             $this->output = explode(PHP_EOL, $fake_output);
         }
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -140,19 +161,49 @@ abstract class QueryTemplate
      *
      * @param array $output
      * @return void
-     * @throws SwissEphemerisError if at least one error found.
+     * @throws SwissEphemerisError if at least one error have been found.
      */
     protected function checkErrors(): void 
     {
-        $error_match = '';
         $errors_list = [];
         foreach ($this->output as $row) {
-            if (preg_match(RegExPattern::SwetestError->value, $this->output[0], $error_match) == 1) {
-                array_push($errors_list, $error_match[1]);
+            $error_parser = new Error($row);
+            if ($error = $error_parser->found()) {
+                array_push($errors_list, $error);
+                unset($row);
+            } 
+        }
+        if (!empty($errors_list)) throw new SwissEphemerisError($errors_list);
+    }
+
+    /**
+     * Search for warnings in the swetest executable output.
+     *
+     * @return void
+     */
+    protected function checkWarnings(): void
+    {
+        $warning_list = [];
+        foreach ($this->output as $row) {
+            $warning_parser = new Warning($row);
+            if ($warning = $warning_parser->found()) {
+                array_push($warning_list, $warning);
+                unset($row);
             }
         }
-        if (!empty($errors_list)) {
-            throw new SwissEphemerisError($errors_list);
+        $this->warnings = $warning_list;
+    }
+
+    /**
+     * Removes empty line in the swetest executable output.
+     *
+     * @return void
+     */
+    protected function removeEmptyLines()
+    {
+        foreach ($this->output as $row) {
+            $empty_line = new EmptyLine($row);
+            if ($empty_line->found()) unset($row);
         }
     }
 
