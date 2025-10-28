@@ -20,6 +20,7 @@ class FirstQuarterTest extends PhaseStrategyTestCase
     public function setUp(): void
     {
         $this->tested_class = FirstQuarter::class;
+        $this->record_class = SynodicRhythmRecord::class;
         parent::setUp();
     }
 

@@ -22,6 +22,14 @@ class StrategyTestCase extends TestCase
     protected string $tested_class;
 
     /**
+     * The record type that the
+     * strategy accept.
+     *
+     * @var string
+     */
+    protected string $record_class;
+
+    /**
      * The strategy name.
      *
      * @var string
@@ -75,7 +83,6 @@ class StrategyTestCase extends TestCase
         $this->strategy_basename = class_basename($this->tested_class);
     }
 
-
     /**
      * Assert $expected_record equals the $actual_record.
      *
@@ -85,12 +92,11 @@ class StrategyTestCase extends TestCase
      */
     protected function assertRecordFound($expected_record, $actual_record)
     {
-        $record_class = get_class($expected_record);
-        $this->assertInstanceOf($record_class, $actual_record, 
-            "The {$this->strategy_basename} strategy must find an instance of type $record_class."
+        $this->assertInstanceOf($this->record_class, $actual_record, 
+            "The $this->strategy_basename strategy must find an instance of type $this->record_class."
         );
         $this->assertObjectEquals($expected_record, $actual_record, "equals", 
-            "The {$this->strategy_basename} strategy failed to find the correct record."
+            "The $this->strategy_basename strategy failed to find the correct record."
         );
     }
 
@@ -107,7 +113,7 @@ class StrategyTestCase extends TestCase
         );
     }
 
-/**
+    /**
      * Get a random unprecise angular distance biased by a delta.
      *
      * @param float $angular_distancce

@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Unit\Parsers\Strategies;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Parsers\Strategies;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;

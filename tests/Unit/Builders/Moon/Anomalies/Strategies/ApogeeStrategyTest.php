@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Apogees\Strategies;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Anomalies\Strategies;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -20,15 +20,17 @@ class ApogeeStrategyTest extends AnomalisticStrategyTestCase
     public function setUp(): void
     {
         $this->tested_class = Apogee::class;
+        $this->record_class = ApogeeRecord::class;
         $this->delta = 0.1;
         parent::setUp();
     }
 
+    #[TestDox("can find a Moon apogee.")]
     public function test_can_find_moon_apogees()
     {
         // Arrange
         $apogee_record = $this->getApogeeRecord();
-        $non_apogee_record = $this->getNonApogeeRecord($this->getBiasedAngularDistanceExceptFor(180.0));
+        $non_apogee_record = $this->getNonApogeeRecord(90.0);
         $strategy_1 = $this->makeStrategy($apogee_record);
         $strategy_2 = $this->makeStrategy($non_apogee_record);
         //      Guard Assertions

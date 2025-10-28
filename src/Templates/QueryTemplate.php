@@ -142,8 +142,8 @@ abstract class QueryTemplate
      */
     protected function runCommand(): void 
     {
-        $this->shell->run($this->command);
         if ($this->shell instanceof Exec) {
+            $this->shell->run($this->command);
             $this->output = $this->shell->getOutput();
         } 
 
@@ -253,5 +253,16 @@ abstract class QueryTemplate
             0, 
             RoundingMode::HalfTowardsZero
         );
+    }
+
+    /**
+     * Remove the line number $index.
+     *
+     * @param integer $index Zero-based line number.
+     * @return void
+     */
+    private function removeLine(int $index): void
+    {
+        unset($this->output[$index]);
     }
 }

@@ -20,6 +20,7 @@ class FullMoonTest extends PhaseStrategyTestCase
     public function setUp(): void
     {
         $this->tested_class = FullMoon::class;
+        $this->record_class = SynodicRhythmRecord::class;
         parent::setUp();
     }
 

@@ -1,29 +1,29 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees;
 
 use InvalidArgumentException;
-use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
+use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies\Apogee;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies\Perigee;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * Builds a Moon Apogees collection from raw ephemeris response.
+ * Builds a Moon Perigees collection from raw ephemeris response.
  */
 class FromArray extends Builder
 {
     /**
-     * The raw data used to create the Moon Apogees collection.
+     * The raw data used to create the Moon Perigees collection.
      *
      * @var array
      */
     protected $data;
 
     /**
-     * The list of Moon ApogeeRecord instances.
+     * The list of Moon PerigeeRecord instances.
      *
-     * @var ApogeeRecord[]
+     * @var PerigeeRecord[]
      */
     protected array $records = [];
     
@@ -67,7 +67,7 @@ class FromArray extends Builder
      */
     protected function buildRecords()
     {
-        // Take the rows two by two and transform them in one row.
+        // Take the rows two by two.
         $two_rows_collection = collect($this->data)->sliding(2, 2)->toArray();
         $moon_and_apogee_raw_records = collect($two_rows_collection)->map(function ($row) {
                 $first_row = reset($row);
@@ -75,35 +75,36 @@ class FromArray extends Builder
             return [
                 $first_row["timestamp"] /* timestamp */, 
                 $first_row["longitude"], /* Moon longitude */
-                $last_row["longitude"] /* apogee longitude */
+                $last_row["longitude"] /* perigee longitude */
             ];
         })->all();
         $this->data = $moon_and_apogee_raw_records;
 
-        // Transform raw data in Moon ApogeeRecord instances.
+        // Transform raw data in Moon PerigeeRecord instances.
         $timestamp_index = 0;
         $moon_longitude_index = 1;
         $apogee_longitude_index = 2;
         $this->data = collect($this->data)->transform(function($item) 
             use ($timestamp_index, $moon_longitude_index, $apogee_longitude_index){
-                return new ApogeeRecord(
+                return new PerigeeRecord(
                     SwissEphemerisDateTime::createFromGregorianTT($item[$timestamp_index]),
                     Angle::createFromDecimal((float) $item[$moon_longitude_index]),
                     Angle::createFromDecimal((float) $item[$apogee_longitude_index])
                 );
         })->all();
 
-        // Select the correct Moon ApogeeRecord where the Moon is close to its apogee.
+
+        // Select the correct Moon PerigeeRecord where the Moon is close to its perigee.
         $this->data = collect($this->data)->transform(function ($record) {
-            $apogee = new Apogee($record);
-            return $apogee->found();
+            $perigee = new Perigee($record);
+            return $perigee->found();
         })->filter()->all();
     }
 
     /**
-     * Fetch the builded Moon ApogeeRecord instances.
+     * Fetch the builded Moon PerigeeRecord instances.
      *
-     * @return ApogeeRecord[]
+     * @return PerigeeRecord[]
      */
     public function fetchCollection(): array
     {

@@ -1,21 +1,21 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Apogees;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Anomalies\Perigees;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromArray;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
+use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
 
 #[CoversClass(FromArray::class)]
-#[UsesClass(Apogees::class)]
-#[UsesClass(ApogeeRecord::class)]
-#[TestDox("The Moon\Apogees\FromArray builder")]
+#[UsesClass(Perigees::class)]
+#[UsesClass(PerigeeRecord::class)]
+#[TestDox("The Moon\Perigees\FromArray builder")]
 class FromArrayTest extends BuilderTestCase
 {
-    #[TestDox("can build Apogees collection from an array.")]
+    #[TestDox("can build Perigees collection from an array of raw ephemeris.")]
     public function test_build_apogees_from_array()
     {
         // Arrange
@@ -35,13 +35,18 @@ class FromArrayTest extends BuilderTestCase
 
         // Act
         $builder = new $builder_class($output);
-        $collection = new Apogees($builder);
+        $collection = new Perigees($builder);
 
         // Assert
-        $this->assertContainsOnlyInstancesOf(ApogeeRecord::class, $collection);
+        $this->assertContainsOnlyInstancesOf(PerigeeRecord::class, $collection);
         $this->assertCount(1, $collection);
     }
 
+    /**
+     * Get the current SUT class.
+     * 
+     * @return string
+     */
     protected function getBuilderClass(): string
     {
         return FromArray::class;

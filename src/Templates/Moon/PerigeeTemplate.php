@@ -8,23 +8,23 @@ use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromArray;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
  * The template for an ephemeris query to obtain 
- * the Moon Apogees collection.
+ * the Moon Perigees collection.
  */
-class ApogeeTemplate extends AnomalisticTemplate
+class PerigeeTemplate extends AnomalisticTemplate
 {
     /**
      * The astral_object that will be built with the requested 
      * ephemeris.
      *
-     * @var Apogees
+     * @var Perigees
      */
-    protected Apogees $object;
+    protected Perigees $object;
 
     /**
      * Prepares arguments for the swetest executable.
@@ -49,7 +49,7 @@ class ApogeeTemplate extends AnomalisticTemplate
         $this->command->addFlag(new Flag(CommandFlag::StepsNumber->value, $steps));
         $this->command->addFlag(new Flag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
         $this->command->addFlag(new Flag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
-        $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarApogee->value));
+        $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarPerigee->value));
         // Warning! Changing the output format will cause errors in getMoonAnomalisticRhythm() method.
         $object_format = OutputFormat::PlanetName->value.OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $object_format));
@@ -78,7 +78,7 @@ class ApogeeTemplate extends AnomalisticTemplate
             $astral_object = '';
             $datetime = '';
             $decimal_number = 0.0;
-            $row_name_regex = RegExPattern::getObjectNamesRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedApogee);
+            $row_name_regex = RegExPattern::getObjectNamesRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedPerigee);
             preg_match($row_name_regex, $row, $astral_object);
             preg_match(RegExPattern::UniversalAndTerrestrialDateTime->value, $row, $datetime);
             preg_match(RegExPattern::RelativeDecimalNumber->value, $row, $decimal_number);
@@ -93,15 +93,15 @@ class ApogeeTemplate extends AnomalisticTemplate
      */
     protected function buildObject(): void
     {
-        $this->object = new Apogees(new FromArray($this->output));
+        $this->object = new Perigees(new FromArray($this->output));
     }
 
     /**
      * Gets the builded SynodicRhythm collection.
      *
-     * @return Apogees
+     * @return Perigees
      */
-    public function getResult(): Apogees
+    public function getResult(): Perigees
     {
         if (!$this->completed) $this->query();
         return $this->object;

@@ -1,8 +1,9 @@
 <?php
-
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
-use Carbon\Carbon;
+use RoundingMode;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -10,10 +11,6 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\MockObject\MockObject;
-use RoundingMode;
 
 #[TestDox("The Moon\SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]
@@ -125,13 +122,13 @@ class SynodicRhythmRecordTest extends TestCase
         // Act & Assert
         //      0 means not equal, 1 means equal
         //      A = 1   B = 1
-        $this->assertTrue($record_A1->equals($record_A2));
+        $this->assertObjectEquals($record_A1, $record_A2);
         //      A = 0   B = 0
-        $this->assertFalse($record_B1->equals($record_B2));
+        $this->assertObjectNotEquals($record_B1, $record_B2);
         //      A = 0   B = 1
-        $this->assertFalse($record_C1->equals($record_C2));
+        $this->assertObjectNotEquals($record_C1, $record_C2);
         //      A = 1   B = 0
-        $this->assertFalse($record_D1->equals($record_D2));
+        $this->assertObjectNotEquals($record_D1, $record_D2);
     }
 
     #[TestDox("can determine which moon period it belongs to.")]

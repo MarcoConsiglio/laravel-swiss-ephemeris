@@ -3,11 +3,10 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use InvalidArgumentException;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use ReflectionClass;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 
 /**
  * Unit custom TestCase.

@@ -3,14 +3,14 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates\Moon;
 
 use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 
 #[CoversClass(SynodicRhythmTemplate::class)]
 #[UsesClass(Command::class)]

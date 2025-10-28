@@ -130,11 +130,6 @@ class SynodicRhythmTemplate extends QueryTemplate
     protected function parseOutput(): void
     {
         foreach ($this->output as $index => $row) {
-            // Remove empty lines.
-            if (strlen(trim($row)) === 0) {
-                unset($this->output[$index]);
-                continue;
-            }
             $datetime = '';
             $decimal_number = 0.0;
             preg_match(RegExPattern::UniversalAndTerrestrialDateTime->value, $row, $datetime);
@@ -143,9 +138,8 @@ class SynodicRhythmTemplate extends QueryTemplate
                 $this->output[$index] = [$datetime[0], $decimal_number[0]];
             } else {
                 // This is dangerous and temporary.
-                // Use SwissEphemerisError or SwissEphemerisWarning instead.
                 // Need to add SwissEphemerisDateTime format for BCE years (i.e. -2000).
-                unset($this->output[$index]);
+                // unset($this->output[$index]);
             }
         }
     }

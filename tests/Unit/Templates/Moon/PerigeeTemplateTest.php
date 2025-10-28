@@ -7,22 +7,22 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Templates\Moon\ApogeeTemplate;
+use MarcoConsiglio\Ephemeris\Templates\Moon\PerigeeTemplate;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 
-#[CoversClass(ApogeeTemplate::class)]
+#[CoversClass(PerigeeTemplate::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(FakeRunner::class)]
 #[UsesClass(Command::class)]
-#[UsesClass(Apogees::class)]
-#[TestDox("The Moon\ApogeeTemplate")]
-class ApogeeTemplateTest extends TemplateTestCase
+#[UsesClass(Perigees::class)]
+#[TestDox("The Moon\PerigeeTemplate")]
+class PerigeeTemplateTest extends TemplateTestCase
 {
-    protected string $response_file = "./tests/SwissEphemerisResponses/Moon/apogees.txt";
+    protected string $response_file = "./tests/SwissEphemerisResponses/Moon/perigees.txt";
 
-    #[TestDox("is the template used to build a Moon\Apogees collection.")]
+    #[TestDox("is the template used to build a Moon\Perigees collection.")]
     public function test_query_template()
     {
         // Arrange
@@ -33,12 +33,12 @@ class ApogeeTemplateTest extends TemplateTestCase
         $command = $this->getMocked(Command::class);
         $command->expects($this->any())->method("addFlag");
         $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
-        $template = new ApogeeTemplate($start_date, $days, $step_size, $runner, $command);
+        $template = new PerigeeTemplate($start_date, $days, $step_size, $runner, $command);
 
         // Act
         $object = $template->getResult();
 
         // Assert
-        $this->assertInstanceOf(Apogees::class, $object);
+        $this->assertInstanceOf(Perigees::class, $object);
     }
 }

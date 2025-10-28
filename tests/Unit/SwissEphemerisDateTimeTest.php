@@ -3,12 +3,14 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Carbon\Carbon;
 use Carbon\Exceptions\InvalidFormatException;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 #[TestDox("The SwissEphemerisDateTime")]
 #[CoversClass(SwissEphemerisDateTime::class)]
+#[UsesClass(Carbon::class)]
 class SwissEphemerisDateTimeTest extends TestCase
 {
     /**

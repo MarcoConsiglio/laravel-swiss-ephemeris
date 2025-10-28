@@ -1,15 +1,12 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Traits;
 
+use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\ExpectationFailedException;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use Mockery\Expectation;
-use PHPUnit\Framework\AssertionFailedError;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversTrait;
-use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("With custom assertions")]
 #[CoversTrait(WithCustomAssertions::class)]

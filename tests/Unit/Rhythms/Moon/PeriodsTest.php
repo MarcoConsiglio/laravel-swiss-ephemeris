@@ -1,5 +1,4 @@
 <?php
-
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;

@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
-use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 
 #[CoversClass(SwissEphemerisFlag::class)]
 #[TestDox("The SwissEphemerisFlag")]
