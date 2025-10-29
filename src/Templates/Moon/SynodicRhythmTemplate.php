@@ -131,6 +131,16 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
+     * Returns the builded object.
+     *
+     * @return SynodicRhythm
+     */
+    protected function fetchObject(): SynodicRhythm
+    {
+        return $this->object;
+    }
+
+    /**
      * Gets the builded SynodicRhythm collection.
      *
      * @return SynodicRhythm
@@ -138,6 +148,6 @@ class SynodicRhythmTemplate extends QueryTemplate
     public function getResult(): SynodicRhythm
     {
         if (!$this->completed) $this->query();
-        return $this->object;
+        return $this->fetchObject();
     }
 }

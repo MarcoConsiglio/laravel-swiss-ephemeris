@@ -67,14 +67,6 @@ trait WithCustomAssertions
      * @return \PHPUnit\Framework\Constraint\Constraint
      */
     protected static function isDateEqual(CarbonInterface $expected_date): Constraint {
-        return new IsDateEqual(
-            $expected_date->year, 
-            $expected_date->month, 
-            $expected_date->day, 
-            $expected_date->hour, 
-            $expected_date->minute, 
-            $expected_date->second, 
-            $expected_date->timezone
-        );
+        return new IsDateEqual($expected_date);
     }
 }

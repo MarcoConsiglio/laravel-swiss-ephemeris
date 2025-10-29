@@ -331,9 +331,17 @@ abstract class QueryTemplate
      *
      * @param integer $index Zero-based line number.
      * @return void
+     * @codeCoverageIgnore
      */
-    private function removeLine(int $index): void
+    protected function removeLine(int $index): void
     {
         unset($this->output[$index]);
     }
+
+    /**
+     * Returns the builded object.
+     *
+     * @return mixed
+     */
+    abstract protected function fetchObject();
 }

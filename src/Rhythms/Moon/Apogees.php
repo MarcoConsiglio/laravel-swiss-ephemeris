@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromRecords;
 
 /**
  * A collection of Moon Apogee instances.
@@ -13,9 +14,9 @@ class Apogees extends Collection
     /**
      * Constructs a Moon Apogees collection from an array of raw ephemeris.
      *
-     * @param FromArray $builder
+     * @param FromArray|FromRecords $builder
      */
-    public function __construct(FromArray $builder)
+    public function __construct(FromArray|FromRecords $builder)
     {
         $this->items = $builder->fetchCollection();
     }

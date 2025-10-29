@@ -97,6 +97,16 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
+     * Returns the builded object.
+     *
+     * @return Perigees
+     */
+    protected function fetchObject(): Perigees
+    {
+        return $this->object;
+    }
+
+    /**
      * Gets the builded SynodicRhythm collection.
      *
      * @return Perigees
@@ -104,6 +114,6 @@ class PerigeeTemplate extends AnomalisticTemplate
     public function getResult(): Perigees
     {
         if (!$this->completed) $this->query();
-        return $this->object;
+        return $this->fetchObject();
     }
 }

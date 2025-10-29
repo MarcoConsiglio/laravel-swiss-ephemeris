@@ -97,6 +97,16 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
+     * Returns the builded object.
+     *
+     * @return Apogees
+     */
+    protected function fetchObject(): Apogees
+    {
+        return $this->object;
+    }
+
+    /**
      * Gets the builded SynodicRhythm collection.
      *
      * @return Apogees
@@ -104,6 +114,6 @@ class ApogeeTemplate extends AnomalisticTemplate
     public function getResult(): Apogees
     {
         if (!$this->completed) $this->query();
-        return $this->object;
+        return $this->fetchObject();
     }
 }

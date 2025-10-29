@@ -79,6 +79,6 @@ enum Phase
                 return ThirdQuarterStrategy::class;
                 break; // @codeCoverageIgnore
         }
-        return null;
+        return null; // @codeCoverageIgnore
     }
 }

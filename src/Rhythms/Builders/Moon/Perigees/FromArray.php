@@ -108,7 +108,7 @@ class FromArray extends Builder
      */
     public function fetchCollection(): array
     {
-        $this->buildRecords();
+        if (!$this->builded) $this->buildRecords();
         return $this->data;
     }
 }

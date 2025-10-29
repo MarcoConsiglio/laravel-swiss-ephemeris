@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Anomalies\Apogees;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Anomalistic\Apogees;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;

@@ -11,18 +11,11 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 class FromRecords extends Builder
 {
     /**
-     * The data used to create the Moon SynodicRhythm collection.
-     *
-     * @var array
-     */
-    protected $data;
-
-    /**
      * A list of Moon SynodicRhythmRecord instances.
      *
      * @var SynodicRhythmRecord[]
      */
-    protected array $records = [];
+    protected array $data;
 
     /**
      * Constructs the builder.
@@ -46,7 +39,7 @@ class FromRecords extends Builder
     {
         $this_class = self::class;
         $collection = collect($this->data);
-        $collection->filter(function ($item, $key) use ($this_class){
+        $collection->filter(function ($item) use ($this_class){
             if (!$item instanceof SynodicRhythmRecord) {
                 throw new InvalidArgumentException(
                     "The builder $this_class must have an array of ".SynodicRhythmRecord::class."."
@@ -59,10 +52,11 @@ class FromRecords extends Builder
      * Build records.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function buildRecords()
     {
-        $this->records = $this->data;
+        // No need to build records.
     }
 
     /**
@@ -72,7 +66,6 @@ class FromRecords extends Builder
      */
     public function fetchCollection(): array
     {
-        $this->buildRecords();
-        return $this->records;
+        return $this->data;
     }
 }

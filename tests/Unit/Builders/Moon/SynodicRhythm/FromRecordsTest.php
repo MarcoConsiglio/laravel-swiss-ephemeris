@@ -50,7 +50,7 @@ class FromRecordsTest extends BuilderTestCase
         ];
     }
 
-    #[TestDox("can build a Moon\SynodicRhythm collection starting from Moon\SynodicRhythmRecord instances.")]
+    #[TestDox("can build a Moon\SynodicRhythm collection from Moon\SynodicRhythmRecord instances.")]
     public function test_build_synodic_rhythm_from_records()
     {
         // Arrange in setUp()

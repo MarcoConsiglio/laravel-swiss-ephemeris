@@ -12,6 +12,14 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder as BuilderInter
 abstract class Builder implements BuilderInterface
 {
     /**
+     * Indicates wheather the builder completed
+     * its work or not.
+     *
+     * @var boolean
+     */
+    protected bool $builded = false;
+
+    /**
      * Validates data.
      *
      * @return void

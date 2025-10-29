@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Anomalies\Strategies;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Anomalistic\Strategies;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
