@@ -167,19 +167,19 @@
 the apogee position.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#property_moon_longitude">$moon_longitude</a>
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_moon_longitude">$moon_longitude</a>
     <span>
-                        &nbsp;: <abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr>            </span>
+                        &nbsp;: <abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr>            </span>
 </dt>
 <dd>The current Moon longitude. It represents the
 Moon position.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#property_timestamp">$timestamp</a>
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_timestamp">$timestamp</a>
     <span>
                         &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>            </span>
 </dt>
-<dd>The timestamp this record refers to.</dd>
+<dd>The timestamp of this MoonAnomalistcRecord.</dd>
 
     </dl>
 
@@ -202,6 +202,20 @@ Moon position.</dd>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Check if this record is equal to $another_record.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isApogee">isApogee()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Checks if this record is an Apogee.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isPerigee">isPerigee()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Checks if this record is an Perigee.</dd>
 
     </dl>
 
@@ -233,7 +247,7 @@ Moon position.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/ApogeeRecord.php"><a href="files/src-records-moon-apogeerecord.html"><abbr title="src/Records/Moon/ApogeeRecord.php">ApogeeRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -265,15 +279,15 @@ the apogee position.</p>
 >
     <h4 class="phpdocumentor-element__name" id="property_moon_longitude">
         $moon_longitude
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#property_moon_longitude" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_moon_longitude" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/ApogeeRecord.php"><a href="files/src-records-moon-apogeerecord.html"><abbr title="src/Records/Moon/ApogeeRecord.php">ApogeeRecord.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/AnomalisticRecord.php"><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -283,7 +297,7 @@ Moon position.</p>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
             <span class="phpdocumentor-signature__visibility">public protected(set)</span>
-            <span class="phpdocumentor-signature__type"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></span>
+            <span class="phpdocumentor-signature__type"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></span>
     <span class="phpdocumentor-signature__name">$moon_longitude</span>
     </code>
 
@@ -305,19 +319,19 @@ Moon position.</p>
 >
     <h4 class="phpdocumentor-element__name" id="property_timestamp">
         $timestamp
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#property_timestamp" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_timestamp" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/ApogeeRecord.php"><a href="files/src-records-moon-apogeerecord.html"><abbr title="src/Records/Moon/ApogeeRecord.php">ApogeeRecord.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/AnomalisticRecord.php"><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The timestamp this record refers to.</p>
+        <p class="phpdocumentor-summary">The timestamp of this MoonAnomalistcRecord.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
@@ -357,7 +371,7 @@ Moon position.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/ApogeeRecord.php"><a href="files/src-records-moon-apogeerecord.html"><abbr title="src/Records/Moon/ApogeeRecord.php">ApogeeRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -420,7 +434,7 @@ instantiate a Moon Apogees collection.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/ApogeeRecord.php"><a href="files/src-records-moon-apogeerecord.html"><abbr title="src/Records/Moon/ApogeeRecord.php">ApogeeRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -445,6 +459,84 @@ instantiate a Moon Apogees collection.</p>
             </dd>
             </dl>
 
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_isApogee">
+        isApogee()
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isApogee" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/AnomalisticRecord.php"><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">30</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Checks if this record is an Apogee.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">isApogee</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_isPerigee">
+        isPerigee()
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isPerigee" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/AnomalisticRecord.php"><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">40</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Checks if this record is an Perigee.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">isPerigee</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
     
 
     
@@ -571,8 +663,8 @@ instantiate a Moon Apogees collection.</p>
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#property_apogee_longitude">$apogee_longitude</a></li>
-                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#property_moon_longitude">$moon_longitude</a></li>
-                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#property_timestamp">$timestamp</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_moon_longitude">$moon_longitude</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_timestamp">$timestamp</a></li>
                                             </ul>
                 </li>
             
@@ -581,6 +673,8 @@ instantiate a Moon Apogees collection.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#method_equals">equals()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isApogee">isApogee()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isPerigee">isPerigee()</a></li>
                                     </ul>
             </li>
                     </ul>

@@ -23,6 +23,7 @@ To extend the ephemeris data, download the [ephemeris files](https://github.com/
 First of all, to query ephemeris data you need to instantiate the 'LaravelSwissEphemeris' class. You need to pass latitude, longitude and timezone to the constructor.
 
 ```php
+/** @var \MarcoConsiglio\Ephemeris\LaraverlSwissEphemeris $ephemeris */
 $ephemeris = new LaravelSwissEphemeris(
     $this->config->get("ephemeris.latitude"), 
     $this->config->get("ephemeris.longitude"),
@@ -33,6 +34,7 @@ $ephemeris = new LaravelSwissEphemeris(
 or instead
 
 ```php
+/** @var \MarcoConsiglio\Ephemeris\LaraverlSwissEphemeris $ephemeris */
 $ephemeris = new LaravelSwissEphemeris(
     41.902782,      // Decimal latitude
     12.496366,      // Decimal longitude

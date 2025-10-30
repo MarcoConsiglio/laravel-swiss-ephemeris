@@ -6,8 +6,6 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
  * A Moon phase in a precise moment.
- * @property-read SwissEphemerisDateTime $timestamp
- * @property-read Phase $type
  */
 class PhaseRecord
 {

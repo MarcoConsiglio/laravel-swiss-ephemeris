@@ -7,10 +7,6 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 /**
  * Represents a fraction of the Moon phase cicle, 
  * i.e. a waxing or a waning Moon period.
- * 
- * @property-read SwissEphemerisDateTime $start The period start.
- * @property-read SwissEphemerisDateTime $end The period end.
- * @property-read Period $type The period type, waxing or waning.
  */
 class Period
 {

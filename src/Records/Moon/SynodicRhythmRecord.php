@@ -7,10 +7,7 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * A single snapshot of the Moon synodic rhythm.
- * @property-read \MarcoConsiglio\Ephemeris\SwissEphemerisDateTime $timestamp The timestamp of this record.
- * @property-read \MarcoConsiglio\Goniometry\Angle $angular_distance Angular distance percentage.
- * @property-read int $percentage The angular distance percentage.
+ * It represent a moment of the Moon synodic rhythm.
  */
 class SynodicRhythmRecord
 {

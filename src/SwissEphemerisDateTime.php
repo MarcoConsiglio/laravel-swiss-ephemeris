@@ -310,6 +310,26 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
+     * Create a SwissEphemerisDateTime instance
+     * from a Carbon $datetime.
+     *
+     * @param Carbon $datetime
+     * @return SwissEphemerisDateTime
+     */
+    public static function createFromCarbon(Carbon $datetime): SwissEphemerisDateTime
+    {
+        return SwissEphemerisDateTime::create(
+            $datetime->year,
+            $datetime->month,
+            $datetime->day,
+            $datetime->hour,
+            $datetime->minute,
+            $datetime->seconds,
+            $datetime->timezone
+        );
+    }
+
+    /**
      * Format the instance as a string using the set format
      *
      * @return string

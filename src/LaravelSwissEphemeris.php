@@ -105,18 +105,24 @@ class LaravelSwissEphemeris
      * Gets the Moon synodic rhythm starting from $start_date up until a specified number 
      * of $days. Each step is long $step_size minutes.
      *
-     * @param SwissEphemerisDateTime $start_date The starting date of the response.
+     * @param CarbonInterface $start_date The starting date of the response.
      * @param integer $days The number of days included in the response.
      * @param integer $step_size Duration in minutes of each step of the response.
      * @return SynodicRhythm
      * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
      */
     public function getMoonSynodicRhythm(
-        SwissEphemerisDateTime $start_date, 
+        CarbonInterface $start_date, 
         int $days = 30, 
         int $step_size = 60): SynodicRhythm
     {
-        $query = new SynodicRhythmTemplate($start_date, $days, $step_size, $this->shell, $this->command);
+        $query = new SynodicRhythmTemplate(
+            $this->normalizeDatetime($start_date), 
+            $days, 
+            $step_size, 
+            $this->shell, 
+            $this->command
+        );
         return $query->getResult();
     }
 
@@ -124,20 +130,59 @@ class LaravelSwissEphemeris
      * Gets the Moon anomalistic rhythm starting from $start_date up until a specified number
      * of $days. Each step is long $step_size minutes.
      *
-     * @param SwissEphemerisDateTime $start_date The starting date of the response.
+     * @param CarbonInterface $start_date The starting date of the response.
      * @param integer $days The number of days included in the response.
      * @param integer $step_size Duration in minutes of each step of the response.
      * @return AnomalisticRhythm
+     * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
      */
     public function getMoonAnomalisticRhythm(
         SwissEphemerisDateTime $start_date,
         $days = 30,
         int $step_size = 60): AnomalisticRhythm 
     {
-        $apogees_query = new ApogeeTemplate($start_date, $days, $step_size, $this->shell, $this->command);
-        $perigees_query = new PerigeeTemplate($start_date, $days, $step_size, $this->shell, $this->command);
+        $start_date = $this->normalizeDatetime($start_date);
+        $apogees_query = new ApogeeTemplate(
+            $start_date, 
+            $days, $step_size, 
+            $this->shell, 
+            $this->command
+        );
+        $perigees_query = new PerigeeTemplate(
+            $start_date, 
+            $days, 
+            $step_size, 
+            $this->shell, 
+            $this->command
+        );
         $apogees = $apogees_query->getResult();
         $perigees = $perigees_query->getResult();
         return new AnomalisticRhythm(new FromCollections($apogees, $perigees));
+    }
+
+    /**
+     * Transforms a Carbon instance into a
+     * SwissEphemerisDateTime instance.
+     *
+     * @param CarbonInterface $datetime
+     * @return SwissEphemerisDateTime
+     */
+    protected function transformDatetime(CarbonInterface $datetime): SwissEphemerisDateTime
+    {
+        return SwissEphemerisDateTime::createFromCarbon($datetime);
+    }
+
+    /**
+     * Normalizes the $datetime to a
+     * SwissEphemerisDateTime instance.
+     *
+     * @param CarbonInterface $datetime
+     * @return SwissEphemerisDateTime
+     */
+    protected function normalizeDatetime(CarbonInterface $datetime): SwissEphemerisDateTime
+    {
+        if (! $datetime instanceof SwissEphemerisDateTime) 
+            return $this->transformDatetime($datetime);
+        else return $datetime;
     }
 }
