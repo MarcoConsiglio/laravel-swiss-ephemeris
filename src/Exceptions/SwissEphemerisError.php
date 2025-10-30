@@ -9,40 +9,37 @@ use ErrorException;
 class SwissEphemerisError extends ErrorException
 {
     /**
-     * The list of errors found in the Swiss Ephemeris output.
-     *
-     * @var array
-     */
-    public array $errors_list = [];
-
-    /**
      * Construct the exception with a list of errors found in the Swiss Ephemeris executable output.
      *
      * @param array $errors The errors list.
      */
     public function __construct(array $errors) 
     {
-        $this->removeNonStringElements($errors);    
-
-        // Check for duplicates and then push the errors into the errors list.
-        $unique_errors = array_unique($errors);
-        $this->errors_list = $unique_errors;
-        $this->message = implode(PHP_EOL, $this->errors_list);
+        // $this->removeNonStringElements($errors);    
+        $unique_errors = $this->unique($errors);
+        $this->message = $this->makeMessage($unique_errors);
         $this->severity = E_RECOVERABLE_ERROR;
     }
 
     /**
-     * Check the errors are all strings. Remove the non-string elements.
+     * Removes duplicates errors.
      *
-     * @param array $errors The errors list.
-     * @return void
+     * @param array $errors
+     * @return array
      */
-    protected function removeNonStringElements(array &$errors)
+    protected function unique(array $errors): array
     {
-        foreach ($errors as $index => $error) {
-            if(!is_string($error)) {
-                unset($errors[$index]);
-            }
-        }
+        return array_unique($errors);
+    }
+
+    /**
+     * Makes a string error message.
+     *
+     * @param array $errors
+     * @return string
+     */
+    protected function makeMessage(array $errors): string
+    {
+        return implode(PHP_EOL, $errors);
     }
 }

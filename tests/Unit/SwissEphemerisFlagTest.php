@@ -1,15 +1,15 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
-use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 
 #[CoversClass(SwissEphemerisFlag::class)]
 #[TestDox("The SwissEphemerisFlag")]
 class SwissEphemerisFlagTest extends TestCase
 {
-    #[TestDox("can cast the flag to string in the proper format for Swiss Ephemeris executable.")]
+    #[TestDox("can cast the flag to string in the proper format acepted by the Swiss Ephemeris executable.")]
     public function test_cast_a_flag_to_string()
     {
         // Arrange

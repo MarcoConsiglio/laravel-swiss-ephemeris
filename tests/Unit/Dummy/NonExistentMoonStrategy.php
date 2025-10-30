@@ -1,15 +1,15 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Dummy;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\MoonPhases\Strategies\MoonPhaseStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\PhaseStrategy;
 
 /**
- * A class Stub used in MoonPhaseTest.
+ * A class Stub refering to an incorrect PhaseStrategy.
  */
-class NonExistentMoonStrategy extends MoonPhaseStrategy
+class NonExistentMoonStrategy extends PhaseStrategy
 {
     /**
-     * Non-existent implementation of the parent abrstract method.
+     * Non-existent implementation of the parent abstract method.
      *
      * @return void
      */

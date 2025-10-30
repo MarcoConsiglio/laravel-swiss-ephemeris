@@ -119,7 +119,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/LaravelSwissEphemeris.php"><a href="files/src-laravelswissephemeris.html"><abbr title="src/LaravelSwissEphemeris.php">LaravelSwissEphemeris.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -179,14 +179,22 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Construct di ephemeris query based on a location and timezone.</dd>
+<dd>Constructs di ephemeris query based on a location and timezone.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonAnomalisticRhythm">getMoonAnomalisticRhythm()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-AnomalisticRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm">AnomalisticRhythm</abbr></a>    </span>
+</dt>
+<dd>Gets the Moon anomalistic rhythm starting from $start_date up until a specified number
+of $days. Each step is long $step_size minutes.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonSynodicRhythm">getMoonSynodicRhythm()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-MoonSynodicRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm">MoonSynodicRhythm</abbr></a>    </span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-SynodicRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm">SynodicRhythm</abbr></a>    </span>
 </dt>
-<dd>Get the Moon synodic rhythm starting from $start_date up until a specified number
+<dd>Gets the Moon synodic rhythm starting from $start_date up until a specified number
 of $days. Each step is long $step_size minutes.</dd>
 
     </dl>
@@ -210,7 +218,7 @@ of $days. Each step is long $step_size minutes.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/LaravelSwissEphemeris.php"><a href="files/src-laravelswissephemeris.html"><abbr title="src/LaravelSwissEphemeris.php">LaravelSwissEphemeris.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -242,7 +250,7 @@ of $days. Each step is long $step_size minutes.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/LaravelSwissEphemeris.php"><a href="files/src-laravelswissephemeris.html"><abbr title="src/LaravelSwissEphemeris.php">LaravelSwissEphemeris.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
@@ -288,11 +296,11 @@ of $days. Each step is long $step_size minutes.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/LaravelSwissEphemeris.php"><a href="files/src-laravelswissephemeris.html"><abbr title="src/LaravelSwissEphemeris.php">LaravelSwissEphemeris.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">91</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Construct di ephemeris query based on a location and timezone.</p>
+        <p class="phpdocumentor-summary">Constructs di ephemeris query based on a location and timezone.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -374,6 +382,93 @@ Use this only for testing purposes, not in production environment.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getMoonAnomalisticRhythm">
+        getMoonAnomalisticRhythm()
+        <a href="classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonAnomalisticRhythm" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/LaravelSwissEphemeris.php"><a href="files/src-laravelswissephemeris.html"><abbr title="src/LaravelSwissEphemeris.php">LaravelSwissEphemeris.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">139</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Gets the Moon anomalistic rhythm starting from $start_date up until a specified number
+of $days. Each step is long $step_size minutes.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMoonAnomalisticRhythm</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start_date</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$days</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">30</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$step_size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">60</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-AnomalisticRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm">AnomalisticRhythm</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$start_date</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The starting date of the response.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$days</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">30</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The number of days included in the response.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$step_size</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">60</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Duration in minutes of each step of the response.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonAnomalisticRhythm#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Ephemeris-Exceptions-SwissEphemerisError.html"><abbr title="\MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError">SwissEphemerisError</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>in case the swetest executable returns errors in its own output.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-AnomalisticRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm">AnomalisticRhythm</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getMoonSynodicRhythm">
         getMoonSynodicRhythm()
         <a href="classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonSynodicRhythm" class="headerlink"><i class="fas fa-link"></i></a>
@@ -382,16 +477,16 @@ Use this only for testing purposes, not in production environment.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/LaravelSwissEphemeris.php"><a href="files/src-laravelswissephemeris.html"><abbr title="src/LaravelSwissEphemeris.php">LaravelSwissEphemeris.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">114</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Get the Moon synodic rhythm starting from $start_date up until a specified number
+        <p class="phpdocumentor-summary">Gets the Moon synodic rhythm starting from $start_date up until a specified number
 of $days. Each step is long $step_size minutes.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getMoonSynodicRhythm</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start_date</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$days</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">30</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$step_size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">60</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-MoonSynodicRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm">MoonSynodicRhythm</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getMoonSynodicRhythm</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start_date</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$days</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">30</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$step_size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">60</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-SynodicRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm">SynodicRhythm</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -451,7 +546,7 @@ of $days. Each step is long $step_size minutes.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-MoonSynodicRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\MoonSynodicRhythm">MoonSynodicRhythm</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-SynodicRhythm.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm">SynodicRhythm</abbr></a></span>
             </section>
 
 </article>
@@ -579,6 +674,7 @@ of $days. Each step is long $step_size minutes.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonAnomalisticRhythm">getMoonAnomalisticRhythm()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonSynodicRhythm">getMoonSynodicRhythm()</a></li>
                                     </ul>
             </li>

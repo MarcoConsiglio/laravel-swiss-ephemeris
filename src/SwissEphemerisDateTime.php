@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris;
 
-use Carbon\Carbon;
 use DateTimeZone;
-use Illuminate\Support\Facades\Date;
+use Carbon\Carbon;
+use Carbon\Exceptions\InvalidFormatException;
 
 /**
  * A Carbon class capable to represent the Swiss Ephemeris date formats.
@@ -284,6 +284,49 @@ class SwissEphemerisDateTime extends Carbon
     public function isJulianDate(): bool
     {
         return ! $this->isGregorianDate;
+    }
+
+    /**
+     * Creates a SwissEphemerisDateTime with one of the
+     * available Swiss Ephemeris formats.
+     * 
+     * If $timestamp came from Swiss Ephemeris, you can 
+     * build this class instance without know what format
+     * $timestamp has.
+     *
+     * @param string $timestamp
+     * @return SwissEphemerisDateTime
+     * @throws InvalidFormatException if $timestamp doesn't match any of the available formats.
+     */
+    public static function createFromSwissEphemerisFormat(string $timestamp): SwissEphemerisDateTime
+    {
+        $datetime_class = SwissEphemerisDateTime::class;
+        foreach (SwissEphemerisDateTime::availableFormats() as $format) {
+            if (SwissEphemerisDateTime::canBeCreatedFromFormat($timestamp, $format)) {
+                return SwissEphemerisDateTime::rawCreateFromFormat($format, $timestamp);
+            }
+        }
+        throw new InvalidFormatException("The string $timestamp doesn't match any of the available formats in $datetime_class class.");
+    }
+
+    /**
+     * Create a SwissEphemerisDateTime instance
+     * from a Carbon $datetime.
+     *
+     * @param Carbon $datetime
+     * @return SwissEphemerisDateTime
+     */
+    public static function createFromCarbon(Carbon $datetime): SwissEphemerisDateTime
+    {
+        return SwissEphemerisDateTime::create(
+            $datetime->year,
+            $datetime->month,
+            $datetime->day,
+            $datetime->hour,
+            $datetime->minute,
+            $datetime->second,
+            $datetime->timezone
+        );
     }
 
     /**

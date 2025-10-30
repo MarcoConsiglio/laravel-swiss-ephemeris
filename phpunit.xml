@@ -34,11 +34,11 @@
             <directory>src</directory>
         </include>
     </source>
-        <coverage
-            includeUncoveredFiles="true"
-            pathCoverage="true">
-            <report>
-                <html outputDirectory="tests/coverage_report" lowUpperBound="50" highLowerBound="90"/>
-            </report>
-        </coverage>
+    <coverage
+        includeUncoveredFiles="true"
+        pathCoverage="true">
+        <report>
+            <html outputDirectory="tests/coverage_report" lowUpperBound="50" highLowerBound="90"/>
+        </report>
+    </coverage>
 </phpunit>

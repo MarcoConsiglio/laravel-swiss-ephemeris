@@ -1,14 +1,14 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\TestCase;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
-use PHPUnit\Framework\Attributes\CoversNothing;
 
 #[TestDox("The CommandFlag enumeration")]
-#[CoversNothing]
+#[CoversClass(CommandFlag::class)]
 class CommandFlagTest extends TestCase
 {
     use WithFailureMessage;
@@ -49,7 +49,7 @@ class CommandFlagTest extends TestCase
         $this->assertIsString($constant_value, "The enumeration $constant_name must be a string.");
     }
 
-    #[TestDox("has a flag to set the start date of the query.")]
+    #[TestDox("has a flag to set the Gregorian start date of the query.")]
     public function test_begin_date_flag()
     {
         // Arrange & Act
@@ -61,7 +61,19 @@ class CommandFlagTest extends TestCase
         $this->assertIsString($constant_value, "The enumeration $constant_name must be a string.");
     }
 
-    #[TestDox("has a flag to set the start terrestrial time of the query.")]
+    #[TestDox("has a flag to set the Julian start date of the query.")]
+    public function test_julian_begin_date_flag()
+    {
+         // Arrange & Act
+        $constant_value = CommandFlag::JulianBeginDate->value;
+        $constant_name = CommandFlag::JulianBeginDate->name;
+
+        // Assert
+        $this->assertEquals("bj", $constant_value, $this->enumFail($constant_name));
+        $this->assertIsString($constant_value, "The enumeration $constant_name must be a string.");       
+    }
+
+    #[TestDox("has a flag to set the start Terrestrial Time (TT) of the query.")]
     public function test_terrestrial_time_flag()
     {
         // Arrange & Act
@@ -73,7 +85,7 @@ class CommandFlagTest extends TestCase
         $this->assertIsString($constant_value, "The enumeration $constant_name must be a string.");
     }
 
-    #[TestDox("has a flag to set the start universal time of the query.")]
+    #[TestDox("has a flag to set the start Universal Time (UT) of the query.")]
     public function test_universal_time_flag()
     {
         // Arrange & Act
@@ -85,7 +97,7 @@ class CommandFlagTest extends TestCase
         $this->assertIsString($constant_value, "The enumeration $constant_name must be a string.");
     }
 
-    #[TestDox("has a flag to set the start coordinated universal time of the query.")]
+    #[TestDox("has a flag to set the start Universal Time Coordinated (UTC) of the query.")]
     public function test_universal_coordinated_time_flag()
     {
         // Arrange & Act
@@ -121,7 +133,7 @@ class CommandFlagTest extends TestCase
         $this->assertIsString($constant_value, "The enumeration $constant_name must be a string.");
     }
 
-    #[TestDox("has a flag to specify what data will be present in the ephemeris response.")]
+    #[TestDox("has a flag to specify the output format of the ephemeris response.")]
     public function test_response_format_flag()
     {
         // Arrange & Act

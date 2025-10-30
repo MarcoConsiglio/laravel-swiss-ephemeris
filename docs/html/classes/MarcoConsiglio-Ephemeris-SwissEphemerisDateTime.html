@@ -255,6 +255,14 @@ otherwise with Terrestrial Time.</dd>
 <dd>Returns all available formats.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromCarbon">createFromCarbon()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>    </span>
+</dt>
+<dd>Create a SwissEphemerisDateTime instance
+from a Carbon $datetime.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromGregorianTT">createFromGregorianTT()</a>
     <span>
                                 &nbsp;: static    </span>
@@ -281,6 +289,14 @@ otherwise with Terrestrial Time.</dd>
                                 &nbsp;: static    </span>
 </dt>
 <dd>Creates a SwissDateTime from a Julian calendar date and a Universal Time.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromSwissEphemerisFormat">createFromSwissEphemerisFormat()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>    </span>
+</dt>
+<dd>Creates a SwissEphemerisDateTime with one of the
+available Swiss Ephemeris formats.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_isGregorianDate">isGregorianDate()</a>
@@ -776,7 +792,7 @@ otherwise with Terrestrial Time.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SwissEphemerisDateTime.php"><a href="files/src-swissephemerisdatetime.html"><abbr title="src/SwissEphemerisDateTime.php">SwissEphemerisDateTime.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">294</span>
+    <span class="phpdocumentor-element-found-in__line">337</span>
 
     </aside>
 
@@ -837,6 +853,56 @@ otherwise with Terrestrial Time.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_createFromCarbon">
+        createFromCarbon()
+        <a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromCarbon" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/SwissEphemerisDateTime.php"><a href="files/src-swissephemerisdatetime.html"><abbr title="src/SwissEphemerisDateTime.php">SwissEphemerisDateTime.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">319</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Create a SwissEphemerisDateTime instance
+from a Carbon $datetime.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromCarbon</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Carbon\Carbon">Carbon</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$datetime</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$datetime</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Carbon\Carbon">Carbon</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span>
             </section>
 
 </article>
@@ -1061,6 +1127,77 @@ otherwise with Terrestrial Time.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_createFromSwissEphemerisFormat">
+        createFromSwissEphemerisFormat()
+        <a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromSwissEphemerisFormat" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/SwissEphemerisDateTime.php"><a href="files/src-swissephemerisdatetime.html"><abbr title="src/SwissEphemerisDateTime.php">SwissEphemerisDateTime.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">301</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Creates a SwissEphemerisDateTime with one of the
+available Swiss Ephemeris formats.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromSwissEphemerisFormat</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$timestamp</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>If $timestamp came from Swiss Ephemeris, you can
+build this class instance without know what format
+$timestamp has.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$timestamp</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromSwissEphemerisFormat#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Carbon\Exceptions\InvalidFormatException">InvalidFormatException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>if $timestamp doesn't match any of the available formats.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span>
             </section>
 
 </article>
@@ -1678,10 +1815,12 @@ Universal Time.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method___toString">__toString()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_availableFormats">availableFormats()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromCarbon">createFromCarbon()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromGregorianTT">createFromGregorianTT()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromGregorianUT">createFromGregorianUT()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromJulianTT">createFromJulianTT()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromJulianUT">createFromJulianUT()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_createFromSwissEphemerisFormat">createFromSwissEphemerisFormat()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_isGregorianDate">isGregorianDate()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_isJulianDate">isJulianDate()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html#method_isTerrestrialTime">isTerrestrialTime()</a></li>

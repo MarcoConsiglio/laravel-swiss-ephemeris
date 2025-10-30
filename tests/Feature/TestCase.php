@@ -4,13 +4,16 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\Config;
-use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
-use MarcoConsiglio\Ephemeris\SwissEphemerisServiceProvider;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 use Orchestra\Testbench\Console\Kernel as TestbenchConsoleKernel;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Orchestra\Workbench\WorkbenchServiceProvider;
+use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
+use MarcoConsiglio\Ephemeris\SwissEphemerisServiceProvider;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 
+/**
+ * Feature custom TestCase.
+ */
 abstract class TestCase extends OrchestraTestCase
 {
     use WithFailureMessage;

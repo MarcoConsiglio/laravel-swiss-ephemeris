@@ -2,16 +2,16 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums;
 
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\TestCase;
+use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 
 #[TestDox("The SinglePlanet enumeration")]
 #[CoversClass(SinglePlanet::class)]
 class SinglePlanetTest extends TestCase
 {
-    #[TestDox("consists of several reference to a single planet.")]   
+    #[TestDox("consists of several reference to a single planet or object.")]   
     public function test_output_formats(): void
     {
         // Arrange

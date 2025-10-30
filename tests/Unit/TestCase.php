@@ -1,36 +1,29 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
-use Faker\Factory;
-use Faker\Generator;
+use Illuminate\Foundation\Testing\WithFaker;
 use InvalidArgumentException;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithMockedSwissEphemerisDateTime;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
-use ReflectionClass;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 
+/**
+ * Unit custom TestCase.
+ */
 abstract class TestCase extends TestbenchTestCase
 {
-    use WithMockedSwissEphemerisDateTime, WithCustomAssertions;
+    use WithCustomAssertions, WithFaker;
 
     /**
-     * The faker instance.
+     * Setup the test environment.
      *
-     * @var \Faker\Generator
-     */
-    protected Generator $faker;
-
-    /**
-     * This method is called before each test.
-     * 
      * @return void
      */
     protected function setUp(): void
     {
         parent::setUp();
-        $this->faker = Factory::create();
+        $this->setUpFaker();
     }
     
     /**
@@ -62,34 +55,5 @@ abstract class TestCase extends TestbenchTestCase
                     ->setConstructorArgs($constructor_arguments);
         }
         return $builder->getMock();
-    }
-
-    /**
-     * Sets a $property $value in $object.
-     *
-     * @param object $object
-     * @param string $property
-     * @param mixed  $value
-     * @return void
-     */
-    protected function setObjectProperty(object $object, string $property, mixed $value)
-    {
-        $ref_class = new ReflectionClass($object);
-        $ref_property = $ref_class->getProperty($property);
-        $ref_property->setValue($object, $value);
-    }
-
-    /**
-     * Sets $properties to $object.
-     *
-     * @param object $object
-     * @param array  $properties
-     * @return void
-     */
-    protected function setObjectProperties(object $object, array $properties)
-    {
-        foreach ($properties as $property => $value) {
-            $this->setObjectProperty($object, $property, $value);
-        }
     }
 }

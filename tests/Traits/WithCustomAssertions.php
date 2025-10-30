@@ -2,16 +2,19 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
 use Carbon\CarbonInterface;
-use MarcoConsiglio\Ephemeris\Tests\Constraints\IsDateEqual;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
+use MarcoConsiglio\Ephemeris\Tests\Constraints\IsDateEqual;
 
+/**
+ * Provides Custom Assertions for tests.
+ */
 trait WithCustomAssertions
 {
     use WithFailureMessage;
 
     /**
-     * Asserts type and value of a variable.
+     * Asserts type and value of an object property.
      *
      * @param string $name
      * @param mixed  $expected_value
@@ -64,14 +67,6 @@ trait WithCustomAssertions
      * @return \PHPUnit\Framework\Constraint\Constraint
      */
     protected static function isDateEqual(CarbonInterface $expected_date): Constraint {
-        return new IsDateEqual(
-            $expected_date->year, 
-            $expected_date->month, 
-            $expected_date->day, 
-            $expected_date->hour, 
-            $expected_date->minute, 
-            $expected_date->second, 
-            $expected_date->timezone
-        );
+        return new IsDateEqual($expected_date);
     }
 }

@@ -1,7 +1,7 @@
 ![GitHub License](https://img.shields.io/github/license/MarcoConsiglio/laravel-swiss-ephemeris)<br>
-![Static Badge](https://img.shields.io/badge/98%25-rgb(40%2C167%2C69)?label=Line%20coverage&labelColor=rgb(255%2C255%2C255))
-![Static Badge](https://img.shields.io/badge/95%25-rgb(40%2C167%2C69)?label=Branch%20coverage&labelColor=rgb(255%2C255%2C255))
-![Static Badge](https://img.shields.io/badge/74%25-rgb(255%2C193%2C7)?label=Path%20coverage&labelColor=rgb(255%2C255%2C255))
+![Static Badge](https://img.shields.io/badge/99%25-rgb(40%2C%20167%2C%2069)?label=Line%20coverage&labelColor=rgb(255%2C255%2C255))
+![Static Badge](https://img.shields.io/badge/98%25-rgb(40%2C%20167%2C%2069)?label=Branch%20coverage&labelColor=rgb(255%2C255%2C255))
+![Static Badge](https://img.shields.io/badge/79%25-rgb(255%2C193%2C7)?label=Path%20coverage&labelColor=rgb(255%2C255%2C255))
 
 
 # Laravel Swiss Ephemeris
@@ -23,6 +23,7 @@ To extend the ephemeris data, download the [ephemeris files](https://github.com/
 First of all, to query ephemeris data you need to instantiate the 'LaravelSwissEphemeris' class. You need to pass latitude, longitude and timezone to the constructor.
 
 ```php
+/** @var \MarcoConsiglio\Ephemeris\LaraverlSwissEphemeris $ephemeris */
 $ephemeris = new LaravelSwissEphemeris(
     $this->config->get("ephemeris.latitude"), 
     $this->config->get("ephemeris.longitude"),
@@ -33,13 +34,14 @@ $ephemeris = new LaravelSwissEphemeris(
 or instead
 
 ```php
+/** @var \MarcoConsiglio\Ephemeris\LaraverlSwissEphemeris $ephemeris */
 $ephemeris = new LaravelSwissEphemeris(
     41.902782,      // Decimal latitude
     12.496366,      // Decimal longitude
     "Europe/London" // Timezone
 );
 ```
-If something went wrong (e.g. like uncorrect permission for the files placed in the folder `resources/swiss_ephemeris`, outbound quering date, ect.) it will throw a `App\SwissEphemeris\SwissEphemerisException` exception.
+If something went wrong (e.g. like uncorrect permission for the files placed in the folder `resources/swiss_ephemeris`, outbound quering date, ect.) it will throw a `MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisException` exception.
 
 ## Premise
 When using the word *collection*, it is meant that the class extends the [Illuminate\Support\Collection](https://laravel.com/docs/12.x/collections), so you can treat it like [*any other collection*](https://laravel.com/docs/12.x/collections).
@@ -51,9 +53,10 @@ For more information, see the API documentation at `./docs/html`.
 ## Datetime
 - [Swiss Ephemeris datetime](docs/md/SwissEphemerisDateTime.md)
 ## Moon Ephemeris
-- [Synodic rhythm](docs/md/MoonSynodicRhythm.md)
-- [Moon periods](docs/md/MoonPeriods.md)
-- [Moon phases](docs/md/MoonPhases.md)
+- [Synodic rhythm](docs/md/Moon/SynodicRhythm.md)
+- [Moon periods](docs/md/Moon/Periods.md)
+- [Moon phases](docs/md/Moon/Phases.md)
+- [Moon anomalistic rhythm](docs/md/Moon/AnomalisticRhythm.md)
 
 
 

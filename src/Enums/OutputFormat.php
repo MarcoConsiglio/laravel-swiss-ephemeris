@@ -11,12 +11,12 @@ enum OutputFormat: string {
     case YearFraction = 'Y';
     case PlanetIndex = 'p';
     case PlanetName = 'P';
-    case JulianDateFormat = 'J';
+    case JulianDateTimeFormat = 'J';
     /**
      * Date formatted like 23.02.1992 (meaning the 23th 
      * of February, 1992).
      */
-    case GregorianDateFormat = 'T';
+    case GregorianDateTimeFormat = 'T';
     /**
      * Date formatted like 920223 (meaning the 23th of 
      * February, 1992).

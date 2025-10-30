@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces;
 
 /**
- * The behavior of a strategy for rhythm builders.
+ * The behavior of a strategy used to build a rhythm.
  */
 interface BuilderStrategy
 {

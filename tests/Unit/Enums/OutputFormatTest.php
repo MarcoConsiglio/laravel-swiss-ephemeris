@@ -4,14 +4,14 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use PHPUnit\Framework\Attributes\CoversClass;
+use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 
 #[TestDox("The OutputFormat enumeration")]
 #[CoversClass(OutputFormat::class)]
 class OutputFormatTest extends TestCase
 {
-    #[TestDox("consists of several column type used to format response data.")]   
+    #[TestDox("consists of several column type used to format the response data.")]   
     public function test_output_formats(): void
     {
         // Arrange
@@ -23,8 +23,8 @@ class OutputFormatTest extends TestCase
             ["Y",   OutputFormat::YearFraction],
             ["p",   OutputFormat::PlanetIndex],
             ["P",   OutputFormat::PlanetName],
-            ["J",   OutputFormat::JulianDateFormat],
-            ["T",   OutputFormat::GregorianDateFormat],
+            ["J",   OutputFormat::JulianDateTimeFormat],
+            ["T",   OutputFormat::GregorianDateTimeFormat],
             ["t",   OutputFormat::IntegerDateFormat],
             ["L",   OutputFormat::LongitudeDegree],
             ["l",   OutputFormat::LongitudeDecimal],

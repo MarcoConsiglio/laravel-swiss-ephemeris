@@ -1,6 +1,6 @@
 {
     "name": "marcoconsiglio/ephemeris",
-    "description": "A Laravel package that query the Swiss Ephemeris executable, in order to get planets position for astrology purposes.",
+    "description": "A Laravel package that query the Swiss Ephemeris executable, in order to get planets position for astronomy/astrology purposes.",
     "type": "library",
     "minimum-stability": "stable",
     "autoload": {
