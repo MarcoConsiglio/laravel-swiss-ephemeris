@@ -3,16 +3,20 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Testing\WithFaker;
-use MarcoConsiglio\Ephemeris\EphemerisServiceProvider;
-use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
+use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\Console\Kernel as TestbenchConsoleKernel;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Orchestra\Workbench\WorkbenchServiceProvider;
+use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
+use MarcoConsiglio\Ephemeris\SwissEphemerisServiceProvider;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 
+/**
+ * Feature custom TestCase.
+ */
 abstract class TestCase extends OrchestraTestCase
 {
-    use WithFaker, WithFailureMessage;
+    use WithFailureMessage;
     
     /**
      * The application configs.
@@ -36,16 +40,38 @@ abstract class TestCase extends OrchestraTestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->createApplication();
         $this->ephemeris = new LaravelSwissEphemeris(
-            $this->app['config']->get("ephemeris.latitude"), 
-            $this->app['config']->get("ephemeris.longitude"),
-            $this->app['config']->get("ephemeris.timezone")
+            Config::get("ephemeris.latitude"), 
+            Config::get("ephemeris.longitude"),
+            Config::get("ephemeris.timezone")
         );
+    }
+
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    protected function defineEnvironment($app) 
+    {
+        // Setup default database to use sqlite :memory:
+        tap($app['config'], function (Repository $config) { 
+            $config->set('ephemeris', [
+                'latitude' => 51.47783333,
+                'longitude' => 0.0,
+                'timezone' => 'Europe/London'
+            ]);
+        });
     }
 
     protected function getPackageProviders($app)
     {
-        return [EphemerisServiceProvider::class];
+        return [
+            SwissEphemerisServiceProvider::class,
+            WorkbenchServiceProvider::class
+        ];
     } 
 
     /**
@@ -56,13 +82,7 @@ abstract class TestCase extends OrchestraTestCase
      */
     protected function getApplicationTimezone($app)
     {
-        return 'Europe/Rome';
-    }
-
-
-    protected function getEnvironmentSetUp($app)
-    {
-        $this->config = $app['config'];
+        return 'Europe/London';
     }
 
     /**

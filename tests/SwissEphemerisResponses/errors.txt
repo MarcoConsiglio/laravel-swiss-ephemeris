@@ -1,0 +1,1 @@
+error swetest executable returned an error

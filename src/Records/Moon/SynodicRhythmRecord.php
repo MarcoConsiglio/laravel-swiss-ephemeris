@@ -1,0 +1,100 @@
+<?php
+namespace MarcoConsiglio\Ephemeris\Records\Moon;
+
+use RoundingMode;
+use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Goniometry\Angle;
+
+/**
+ * It represent a moment of the Moon synodic rhythm.
+ */
+class SynodicRhythmRecord
+{
+    /**
+     * The timestamp of this record.
+     *
+     * @var \MarcoConsiglio\Ephemeris\SwissEphemerisDateTime
+     */
+    public protected(set) SwissEphemerisDateTime $timestamp;
+
+    /**
+     * The angular distance between the Moon and the Sun.
+     *
+     * @var \MarcoConsiglio\Goniometry\Angle
+     */
+    public protected(set) Angle $angular_distance;
+
+    /**
+     * Angular distance percentage.
+     *
+     * @var int|float
+     */
+    public int|float $percentage {
+        get => (int) round(
+            $this->angular_distance->toDecimal() / 180 * 100, 
+            0, RoundingMode::HalfTowardsZero
+        );
+    }
+
+    /**
+     * Constructs a Moon SynodicRhythmRecord.
+     *
+     * @param SwissEphemerisDateTime $timestamp
+     * @param Angle $angular_distance
+     */
+    public function __construct(SwissEphemerisDateTime $timestamp, Angle $angular_distance)
+    {
+        $this->timestamp = $timestamp;
+        $this->angular_distance = $angular_distance;
+    }
+
+    /**
+     * Check if this record refers to a waxing moon period.
+     *
+     * @return boolean
+     */
+    public function isWaxing(): bool
+    {
+        if ($this->angular_distance->isCounterClockwise()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check if this record refers to a waning moon period.
+     *
+     * @return boolean
+     */
+    public function isWaning(): bool
+    {
+        if ($this->angular_distance->isClockwise()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get the type of the Moon period in this MoonSynodicRhythmRecord.
+     *
+     * @return Period
+     */
+    public function getPeriodType(): Period
+    {
+        return $this->isWaxing() ? Period::Waxing : Period::Waning;
+    }
+
+    /**
+     * Check if this record is equal to $another_record.
+     *
+     * @param SynodicRhythmRecord $another_record
+     * @return boolean
+     */
+    public function equals(SynodicRhythmRecord $another_record): bool
+    {
+        $a = $another_record->timestamp == $this->timestamp;
+        $b = $another_record->angular_distance == $this->angular_distance;
+        return $a && $b; 
+    }
+}

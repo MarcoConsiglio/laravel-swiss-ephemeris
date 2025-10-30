@@ -2,7 +2,9 @@ vendor
 tests/coverage_report
 tests/xml-coverage
 tests/cache
+testbook.*
 .phpunit.result.cache
+.phpunit.cache
 public
 *.log
 .phive
@@ -11,3 +13,4 @@ tools
 docs/build
 .vscode
 clover.xml
+*.dump

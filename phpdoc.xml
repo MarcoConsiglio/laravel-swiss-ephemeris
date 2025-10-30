@@ -3,19 +3,21 @@
         configVersion="3"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="https://www.phpdoc.org"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/phpDocumentor/phpDocumentor/master/data/xsd/phpdoc.xsd"
 >
-    <title>phpDocumentor</title>
+    <title>Laravel Swiss Ephemeris Documentation</title>
     <paths>
         <output>docs/html</output>
     </paths>
-    <version number="0.2.0-alpha">
+    <version number="1.0.0-alpha">
         <api>
             <source dsn=".">
                 <path>src</path>
             </source>
             <visibility>public</visibility>
-            <default-package-name>Laravel Swiss Ephemeris</default-package-name>
-            <include-source>true</include-source>
+            <default-package-name>Ephemeris</default-package-name>
+            <include-source>false</include-source>
         </api>
     </version>
+    <setting name="graphs.enabled" value="true"/>
 </phpdocumentor>

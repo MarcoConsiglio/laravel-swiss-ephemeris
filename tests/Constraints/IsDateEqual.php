@@ -2,53 +2,42 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Constraints;
 
 use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use PHPUnit\Framework\Constraint\Constraint;
 
+/**
+ * This Constraint is used to assert that a date is equal to another.
+ */
 class IsDateEqual extends Constraint
 {
-    protected int $year = 1;
+    /**
+     * The date to be compared with an $other date.
+     *
+     * @var CarbonInterface
+     */
+    protected CarbonInterface $date;
 
-    protected int $month = 1;
-
-    protected int $day = 1;
-
-    protected int $hour = 0;
-    
-    protected int $minute = 0;
-
-    protected int $second = 0;
-
-    public function __construct($year, $month, $day, $hour, $minute, $second)
+    /**
+     * Construct the constraint with a $date.
+     *
+     * @param CarbonInterface $date
+     */
+    public function __construct(CarbonInterface $date)
     {
-        $this->year = $year;
-        $this->month = $month;
-        $this->day = $day;
-        $this->hour = $hour;
-        $this->minute = $minute;
-        $this->second = $second;
+        $this->date = $date;
     }
     
+    /**
+     * Evaluates the constraint for parameter $other. Returns true if the
+     * constraint is met, false otherwise.
+     *
+     * This method can be overridden to implement the evaluation algorithm.
+     * 
+     * @return bool
+     */
     protected function matches($other): bool
     {
-        if ($other->year != $this->year) {
-            return false;
-        }
-        if ($other->month != $this->month) {
-            return false;
-        }
-        if ($other->day != $this->day) {
-            return false;
-        }
-        if ($other->hour != $this->hour) {
-            return false;
-        }
-        if ($other->minute != $this->minute) {
-            return false;
-        }
-        if ($other->second != $this->second) {
-            return false;
-        }
-        return true;
+        return $this->date->equalTo($other);
     }
 
     /**
@@ -69,16 +58,13 @@ class IsDateEqual extends Constraint
        return parent::failureDescription($other->toDateTimeString());
     }
 
+    /**
+     * Returns a string representation of the object.
+     * 
+     * @return string
+     */
     public function toString(): string
     {
-        $expected_date = Carbon::create(
-            $this->year,
-            $this->month, 
-            $this->day,
-            $this->hour,
-            $this->minute,
-            $this->second
-        );
-        return "equals '$expected_date'";
+        return "equals '$this->date'";
     }
 }

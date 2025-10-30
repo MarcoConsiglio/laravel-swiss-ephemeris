@@ -1,32 +1,29 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
-use Faker\Factory;
+use Illuminate\Foundation\Testing\WithFaker;
 use InvalidArgumentException;
+use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
-use PHPUnit\Framework\TestCase as FrameworkTestCase;
-use ReflectionClass;
-use Faker\Generator;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 
-abstract class TestCase extends FrameworkTestCase
+/**
+ * Unit custom TestCase.
+ */
+abstract class TestCase extends TestbenchTestCase
 {
-    /**
-     * The faker instance.
-     *
-     * @var \Faker\Generator
-     */
-    protected Generator $faker;
+    use WithCustomAssertions, WithFaker;
 
     /**
-     * This method is called before each test.
-     * 
+     * Setup the test environment.
+     *
      * @return void
      */
     protected function setUp(): void
     {
         parent::setUp();
-        $this->faker = Factory::create();
+        $this->setUpFaker();
     }
     
     /**
@@ -49,51 +46,14 @@ abstract class TestCase extends FrameworkTestCase
             throw new InvalidArgumentException("The class $class does not exist.");
         }
         $builder = $this->getMockBuilder($class)
-                        ->onlyMethods($mocked_methods)
                         ->disableOriginalConstructor();
+        if (!empty($mocked_methods)) {
+            $builder->onlyMethods($mocked_methods);
+        }
         if ($original_constructor) {
             $builder->enableOriginalConstructor()
                     ->setConstructorArgs($constructor_arguments);
         }
         return $builder->getMock();
-    }
-
-    /**
-     * Sets a $property $value in $object.
-     *
-     * @param object $object
-     * @param string $property
-     * @param mixed  $value
-     * @return void
-     */
-    protected function setObjectProperty(object $object, string $property, mixed $value)
-    {
-        $ref_class = new ReflectionClass($object);
-        $ref_property = $ref_class->getProperty($property);
-        $ref_property->setValue($object, $value);
-    }
-
-    /**
-     * Sets $properties to $object.
-     *
-     * @param object $object
-     * @param array  $properties
-     * @return void
-     */
-    protected function setObjectProperties(object $object, array $properties)
-    {
-        foreach ($properties as $property => $value) {
-            $this->setObjectProperty($object, $property, $value);
-        }
-    }
-
-    /**
-     * Alias for any method.
-     *
-     * @return \PHPUnit\Framework\MockObject\Rule\AnyInvokedCount
-     */
-    public function anyTime(): AnyInvokedCount
-    {
-        return $this->any();
     }
 }

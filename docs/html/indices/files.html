@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-            <title>phpDocumentor</title>
+            <title>Laravel Swiss Ephemeris Documentation</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -19,12 +19,13 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
 <body id="top">
     <header class="phpdocumentor-header phpdocumentor-section">
-    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">phpDocumentor</a></h1>
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">Laravel Swiss Ephemeris Documentation</a></h1>
     <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
     <label class="phpdocumentor-header__menu-icon" for="menu-button">
         <i class="fas fa-bars"></i>
@@ -52,8 +53,8 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/marcoconsiglio.html" class="">MarcoConsiglio</a>
@@ -66,81 +67,140 @@
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/LaravelSwissEphemeris.html" class="">LaravelSwissEphemeris</a>
+    <a href="packages/Ephemeris.html" class="">Ephemeris</a>
 </h4>
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="graphs/classes.html">Class Diagram</a></h3>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    
-    <h2 class="phpdocumentor-content__title">Files</h2>
-                                                <h3>B</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-rhythms-builders-interfaces-builder.html"><abbr title="src/Rhythms/Builders/Interfaces/Builder.php">Builder.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-builders-interfaces-builderstrategy.html"><abbr title="src/Rhythms/Builders/Interfaces/BuilderStrategy.php">BuilderStrategy.php</abbr></a></li>
-                </ul>
-                                                                            <h3>E</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-ephemerisserviceprovider.html"><abbr title="src/EphemerisServiceProvider.php">EphemerisServiceProvider.php</abbr></a></li>
-                </ul>
-                                    <h3>F</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-rhythms-builders-moonphases-strategies-firstquarter.html"><abbr title="src/Rhythms/Builders/MoonPhases/Strategies/FirstQuarter.php">FirstQuarter.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-builders-synodicrhythm-fromarray.html"><abbr title="src/Rhythms/Builders/SynodicRhythm/FromArray.php">FromArray.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-builders-synodicrhythm-fromrecords.html"><abbr title="src/Rhythms/Builders/SynodicRhythm/FromRecords.php">FromRecords.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-builders-moonperiods-fromsynodicrhythm.html"><abbr title="src/Rhythms/Builders/MoonPeriods/FromSynodicRhythm.php">FromSynodicRhythm.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-builders-moonphases-fromsynodicrhythm.html"><abbr title="src/Rhythms/Builders/MoonPhases/FromSynodicRhythm.php">FromSynodicRhythm.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-builders-moonphases-strategies-fullmoon.html"><abbr title="src/Rhythms/Builders/MoonPhases/Strategies/FullMoon.php">FullMoon.php</abbr></a></li>
-                </ul>
-                                                                                                                                        <h3>L</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-laravelswissephemeris.html"><abbr title="src/LaravelSwissEphemeris.php">LaravelSwissEphemeris.php</abbr></a></li>
-                </ul>
-                                    <h3>M</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-rhythms-moonperiod.html"><abbr title="src/Rhythms/MoonPeriod.php">MoonPeriod.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-enums-moonperiodtype.html"><abbr title="src/Rhythms/Enums/MoonPeriodType.php">MoonPeriodType.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-moonperiods.html"><abbr title="src/Rhythms/MoonPeriods.php">MoonPeriods.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-moonphaserecord.html"><abbr title="src/Rhythms/MoonPhaseRecord.php">MoonPhaseRecord.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-builders-moonphases-strategies-moonphasestrategy.html"><abbr title="src/Rhythms/Builders/MoonPhases/Strategies/MoonPhaseStrategy.php">MoonPhaseStrategy.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-enums-moonphasetype.html"><abbr title="src/Rhythms/Enums/MoonPhaseType.php">MoonPhaseType.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-moonphases.html"><abbr title="src/Rhythms/MoonPhases.php">MoonPhases.php</abbr></a></li>
-                </ul>
-                                    <h3>N</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-rhythms-builders-moonphases-strategies-newmoon.html"><abbr title="src/Rhythms/Builders/MoonPhases/Strategies/NewMoon.php">NewMoon.php</abbr></a></li>
-                </ul>
-                                                                                                                    <h3>S</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-swissdatetime.html"><abbr title="src/SwissDateTime.php">SwissDateTime.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-synodicrhythm.html"><abbr title="src/Rhythms/SynodicRhythm.php">SynodicRhythm.php</abbr></a></li>
-                    <li><a href="files/src-rhythms-synodicrhythmrecord.html"><abbr title="src/Rhythms/SynodicRhythmRecord.php">SynodicRhythmRecord.php</abbr></a></li>
-                </ul>
-                                    <h3>T</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-rhythms-builders-moonphases-strategies-thirdquarter.html"><abbr title="src/Rhythms/Builders/MoonPhases/Strategies/ThirdQuarter.php">ThirdQuarter.php</abbr></a></li>
-                </ul>
-                                                                            <h3>W</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-traits-withfuzzycondition.html"><abbr title="src/Traits/WithFuzzyCondition.php">WithFuzzyCondition.php</abbr></a></li>
-                </ul>
-                                                                                        <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                        <section>
+        
+        <h2 class="phpdocumentor-content__title">Files</h2>
+                                            <h3>A</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-moon-anomalisticrhythm.html"><abbr title="src/Rhythms/Moon/AnomalisticRhythm.php">AnomalisticRhythm.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-strategies-moon-anomalies-anomalisticstrategy.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Anomalies/AnomalisticStrategy.php">AnomalisticStrategy.php</abbr></a></li>
+                            <li><a href="files/src-templates-moon-anomalistictemplate.html"><abbr title="src/Templates/Moon/AnomalisticTemplate.php">AnomalisticTemplate.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-strategies-moon-anomalies-apogee.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Anomalies/Apogee.php">Apogee.php</abbr></a></li>
+                            <li><a href="files/src-records-moon-apogeerecord.html"><abbr title="src/Records/Moon/ApogeeRecord.php">ApogeeRecord.php</abbr></a></li>
+                            <li><a href="files/src-templates-moon-apogeetemplate.html"><abbr title="src/Templates/Moon/ApogeeTemplate.php">ApogeeTemplate.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-moon-apogees.html"><abbr title="src/Rhythms/Moon/Apogees.php">Apogees.php</abbr></a></li>
+                        </ul>
+                                                        <h3>B</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-rhythms-builders-builder.html"><abbr title="src/Rhythms/Builders/Builder.php">Builder.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-interfaces-builder.html"><abbr title="src/Rhythms/Builders/Interfaces/Builder.php">Builder.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-interfaces-builderstrategy.html"><abbr title="src/Rhythms/Builders/Interfaces/BuilderStrategy.php">BuilderStrategy.php</abbr></a></li>
+                        </ul>
+                                                        <h3>C</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-enums-commandflag.html"><abbr title="src/Enums/CommandFlag.php">CommandFlag.php</abbr></a></li>
+                        </ul>
+                                                                                        <h3>E</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-parsers-strategies-emptyline.html"><abbr title="src/Parsers/Strategies/EmptyLine.php">EmptyLine.php</abbr></a></li>
+                            <li><a href="files/src-parsers-strategies-error.html"><abbr title="src/Parsers/Strategies/Error.php">Error.php</abbr></a></li>
+                        </ul>
+                                                        <h3>F</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-rhythms-builders-strategies-moon-phases-firstquarter.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Phases/FirstQuarter.php">FirstQuarter.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-moon-apogees-fromarray.html"><abbr title="src/Rhythms/Builders/Moon/Apogees/FromArray.php">FromArray.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-moon-perigees-fromarray.html"><abbr title="src/Rhythms/Builders/Moon/Perigees/FromArray.php">FromArray.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-moon-synodicrhythm-fromarray.html"><abbr title="src/Rhythms/Builders/Moon/SynodicRhythm/FromArray.php">FromArray.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-moon-anomalisticrhythm-fromcollections.html"><abbr title="src/Rhythms/Builders/Moon/AnomalisticRhythm/FromCollections.php">FromCollections.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-moon-apogees-fromrecords.html"><abbr title="src/Rhythms/Builders/Moon/Apogees/FromRecords.php">FromRecords.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-moon-perigees-fromrecords.html"><abbr title="src/Rhythms/Builders/Moon/Perigees/FromRecords.php">FromRecords.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-moon-synodicrhythm-fromrecords.html"><abbr title="src/Rhythms/Builders/Moon/SynodicRhythm/FromRecords.php">FromRecords.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-moon-periods-fromsynodicrhythm.html"><abbr title="src/Rhythms/Builders/Moon/Periods/FromSynodicRhythm.php">FromSynodicRhythm.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-moon-phases-fromsynodicrhythm.html"><abbr title="src/Rhythms/Builders/Moon/Phases/FromSynodicRhythm.php">FromSynodicRhythm.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-strategies-moon-phases-fullmoon.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Phases/FullMoon.php">FullMoon.php</abbr></a></li>
+                        </ul>
+                                                                                                                                                                                                                        <h3>L</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-laravelswissephemeris.html"><abbr title="src/LaravelSwissEphemeris.php">LaravelSwissEphemeris.php</abbr></a></li>
+                        </ul>
+                                                                                        <h3>N</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-rhythms-builders-strategies-moon-phases-newmoon.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Phases/NewMoon.php">NewMoon.php</abbr></a></li>
+                        </ul>
+                                                        <h3>O</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></li>
+                        </ul>
+                                                        <h3>P</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-parsers-strategies-parsingstrategy.html"><abbr title="src/Parsers/Strategies/ParsingStrategy.php">ParsingStrategy.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-strategies-moon-anomalies-perigee.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Anomalies/Perigee.php">Perigee.php</abbr></a></li>
+                            <li><a href="files/src-records-moon-perigeerecord.html"><abbr title="src/Records/Moon/PerigeeRecord.php">PerigeeRecord.php</abbr></a></li>
+                            <li><a href="files/src-templates-moon-perigeetemplate.html"><abbr title="src/Templates/Moon/PerigeeTemplate.php">PerigeeTemplate.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-moon-perigees.html"><abbr title="src/Rhythms/Moon/Perigees.php">Perigees.php</abbr></a></li>
+                            <li><a href="files/src-enums-moon-period.html"><abbr title="src/Enums/Moon/Period.php">Period.php</abbr></a></li>
+                            <li><a href="files/src-records-moon-period.html"><abbr title="src/Records/Moon/Period.php">Period.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-moon-periods.html"><abbr title="src/Rhythms/Moon/Periods.php">Periods.php</abbr></a></li>
+                            <li><a href="files/src-enums-moon-phase.html"><abbr title="src/Enums/Moon/Phase.php">Phase.php</abbr></a></li>
+                            <li><a href="files/src-records-moon-phaserecord.html"><abbr title="src/Records/Moon/PhaseRecord.php">PhaseRecord.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-strategies-moon-phases-phasestrategy.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Phases/PhaseStrategy.php">PhaseStrategy.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-moon-phases.html"><abbr title="src/Rhythms/Moon/Phases.php">Phases.php</abbr></a></li>
+                            <li><a href="files/src-enums-planetslist.html"><abbr title="src/Enums/PlanetsList.php">PlanetsList.php</abbr></a></li>
+                        </ul>
+                                                        <h3>Q</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-templates-querytemplate.html"><abbr title="src/Templates/QueryTemplate.php">QueryTemplate.php</abbr></a></li>
+                        </ul>
+                                                        <h3>R</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-enums-regexpattern.html"><abbr title="src/Enums/RegExPattern.php">RegExPattern.php</abbr></a></li>
+                        </ul>
+                                                        <h3>S</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-enums-singlefictiousobject.html"><abbr title="src/Enums/SingleFictiousObject.php">SingleFictiousObject.php</abbr></a></li>
+                            <li><a href="files/src-enums-singleplanet.html"><abbr title="src/Enums/SinglePlanet.php">SinglePlanet.php</abbr></a></li>
+                            <li><a href="files/src-parsers-strategies-strategy.html"><abbr title="src/Parsers/Strategies/Strategy.php">Strategy.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-builders-strategies-strategy.html"><abbr title="src/Rhythms/Builders/Strategies/Strategy.php">Strategy.php</abbr></a></li>
+                            <li><a href="files/src-command-swissephemerisargument.html"><abbr title="src/Command/SwissEphemerisArgument.php">SwissEphemerisArgument.php</abbr></a></li>
+                            <li><a href="files/src-swissephemerisdatetime.html"><abbr title="src/SwissEphemerisDateTime.php">SwissEphemerisDateTime.php</abbr></a></li>
+                            <li><a href="files/src-exceptions-swissephemeriserror.html"><abbr title="src/Exceptions/SwissEphemerisError.php">SwissEphemerisError.php</abbr></a></li>
+                            <li><a href="files/src-command-swissephemerisflag.html"><abbr title="src/Command/SwissEphemerisFlag.php">SwissEphemerisFlag.php</abbr></a></li>
+                            <li><a href="files/src-swissephemerisserviceprovider.html"><abbr title="src/SwissEphemerisServiceProvider.php">SwissEphemerisServiceProvider.php</abbr></a></li>
+                            <li><a href="files/src-rhythms-moon-synodicrhythm.html"><abbr title="src/Rhythms/Moon/SynodicRhythm.php">SynodicRhythm.php</abbr></a></li>
+                            <li><a href="files/src-records-moon-synodicrhythmrecord.html"><abbr title="src/Records/Moon/SynodicRhythmRecord.php">SynodicRhythmRecord.php</abbr></a></li>
+                            <li><a href="files/src-templates-moon-synodicrhythmtemplate.html"><abbr title="src/Templates/Moon/SynodicRhythmTemplate.php">SynodicRhythmTemplate.php</abbr></a></li>
+                        </ul>
+                                                        <h3>T</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-rhythms-builders-strategies-moon-phases-thirdquarter.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Phases/ThirdQuarter.php">ThirdQuarter.php</abbr></a></li>
+                            <li><a href="files/src-enums-timesteps.html"><abbr title="src/Enums/TimeSteps.php">TimeSteps.php</abbr></a></li>
+                        </ul>
+                                                        <h3>U</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-parsers-strategies-using.html"><abbr title="src/Parsers/Strategies/Using.php">Using.php</abbr></a></li>
+                        </ul>
+                                                                                        <h3>W</h3>
+            <ul class="phpdocumentor-list">
+                            <li><a href="files/src-parsers-strategies-warning.html"><abbr title="src/Parsers/Strategies/Warning.php">Warning.php</abbr></a></li>
+                            <li><a href="files/src-traits-withfuzzycondition.html"><abbr title="src/Traits/WithFuzzyCondition.php">WithFuzzyCondition.php</abbr></a></li>
+                        </ul>
+                                                                                                                        </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -151,7 +211,6 @@
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="indices/files.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 

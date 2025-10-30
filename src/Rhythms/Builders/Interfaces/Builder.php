@@ -3,25 +3,13 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces;
 
 /**
  * The behaviour of a rhythm builder.
+ * 
+ * It constructs a collection from diverse type of inputs.
  */
 interface Builder
 {
     /**
-     * 1°, validates raw data.
-     *
-     * @return void
-     */
-    public function validateData();
-
-    /**
-     * 2°, builds records of the rhythm.
-     *
-     * @return void
-     */
-    public function buildRecords();
-
-    /**
-     * 3°, produce a rhythm collection.
+     * Fetch the builded collection.
      *
      * @return mixed
      */

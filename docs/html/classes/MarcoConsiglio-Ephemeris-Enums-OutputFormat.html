@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+            <title>Laravel Swiss Ephemeris Documentation</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <link rel="icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
+        <script src="js/search.js"></script>
+        <script defer src="js/searchIndex.js"></script>
+    </head>
+<body id="top">
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">Laravel Swiss Ephemeris Documentation</a></h1>
+    <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
+    <label class="phpdocumentor-header__menu-icon" for="menu-button">
+        <i class="fas fa-bars"></i>
+    </label>
+    <section data-search-form class="phpdocumentor-search">
+    <label>
+        <span class="visually-hidden">Search for</span>
+        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
+            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+    </label>
+</section>
+
+    <nav class="phpdocumentor-topnav">
+    <ul class="phpdocumentor-topnav__menu">
+        </ul>
+</nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <input class="phpdocumentor-sidebar__menu-button" type="checkbox" id="sidebar-button" name="sidebar-button" />
+<label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
+    Menu
+</label>
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
+            <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/marcoconsiglio.html" class="">MarcoConsiglio</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/marcoconsiglio-ephemeris.html" class="">Ephemeris</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category -packages">
+            <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Ephemeris.html" class="">Ephemeris</a>
+</h4>
+
+                        </section>
+            
+    <section class="phpdocumentor-sidebar__category -reports">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="graphs/classes.html">Class Diagram</a></h3>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category -indices">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio.html">MarcoConsiglio</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-ephemeris.html">Ephemeris</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-ephemeris-enums.html">Enums</a></li>
+    </ul>
+
+    <article class="phpdocumentor-element -class">
+        <h2 class="phpdocumentor-content__title">
+    OutputFormat
+
+            <span class="phpdocumentor-element__extends">
+        : string
+    </span>
+    
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Ephemeris.html">Ephemeris</a></li>
+                            </ul>
+        </div>
+    
+    
+    </h2>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">9</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">The Swiss ephemeris responses are formatted with the
+following codes. Each code corresponds to a column of
+a data type.</p>
+
+        
+        
+        
+
+
+        
+<h3 id="toc">
+    Table of Contents
+    <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h3>
+
+
+
+
+
+
+
+
+<h4 id="toc-cases">
+    Cases
+    <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#toc-cases" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AltitudeDecimals">AltitudeDecimals</a>
+    <span>
+                &nbsp;= &#039;h&#039;                    </span>
+</dt>
+<dd>The altitude in decimals.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AltitudeDegree">AltitudeDegree</a>
+    <span>
+                &nbsp;= &#039;H&#039;                    </span>
+</dt>
+<dd>The altitude in degrees.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AppearentDiscDiameter">AppearentDiscDiameter</a>
+    <span>
+                &nbsp;= &#039;/&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AzimuthDecimal">AzimuthDecimal</a>
+    <span>
+                &nbsp;= &#039;i&#039;                    </span>
+</dt>
+<dd>The Azimuth in decimals.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AzimuthDegree">AzimuthDegree</a>
+    <span>
+                &nbsp;= &#039;I&#039;                    </span>
+</dt>
+<dd>The Azimuth in degrees.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DailyLongitudinalSpeedDecimal">DailyLongitudinalSpeedDecimal</a>
+    <span>
+                &nbsp;= &#039;s&#039;                    </span>
+</dt>
+<dd>The longitudinal speed in decimals per day.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DailyLongitudinalSpeedDegree">DailyLongitudinalSpeedDegree</a>
+    <span>
+                &nbsp;= &#039;S&#039;                    </span>
+</dt>
+<dd>The longitudinal speed in degrees, minutes and seconds
+per day.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DeclinationDecimal">DeclinationDecimal</a>
+    <span>
+                &nbsp;= &#039;d&#039;                    </span>
+</dt>
+<dd>The declination in decimals.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DeclinationDegree">DeclinationDegree</a>
+    <span>
+                &nbsp;= &#039;D&#039;                    </span>
+</dt>
+<dd>The declination in degrees.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DistanceAU">DistanceAU</a>
+    <span>
+                &nbsp;= &#039;R&#039;                    </span>
+</dt>
+<dd>The decimal distance in Astronomical Units.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DistanceKilometers">DistanceKilometers</a>
+    <span>
+                &nbsp;= &#039;w&#039;                    </span>
+</dt>
+<dd>The decimal distance in kilometers.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DistanceLightYears">DistanceLightYears</a>
+    <span>
+                &nbsp;= &#039;W&#039;                    </span>
+</dt>
+<dd>The decimal distance in light years.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_EclipticalCoordinates">EclipticalCoordinates</a>
+    <span>
+                &nbsp;= &#039;X&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Elongation">Elongation</a>
+    <span>
+                &nbsp;= &#039;*&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_EquatorialCoordinates">EquatorialCoordinates</a>
+    <span>
+                &nbsp;= &#039;x&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_GregorianDateTimeFormat">GregorianDateTimeFormat</a>
+    <span>
+                &nbsp;= &#039;T&#039;                    </span>
+</dt>
+<dd>Date formatted like 23.02.1992 (meaning the 23th
+of February, 1992).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_HouseNumber">HouseNumber</a>
+    <span>
+                &nbsp;= &#039;j&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_HousePositionDegree">HousePositionDegree</a>
+    <span>
+                &nbsp;= &#039;G&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_HousePositionDegreeDecimals">HousePositionDegreeDecimals</a>
+    <span>
+                &nbsp;= &#039;g&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_IntegerDateFormat">IntegerDateFormat</a>
+    <span>
+                &nbsp;= &#039;t&#039;                    </span>
+</dt>
+<dd>Date formatted like 920223 (meaning the 23th of
+February, 1992).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_JulianDateTimeFormat">JulianDateTimeFormat</a>
+    <span>
+                &nbsp;= &#039;J&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LatitudeDecimal">LatitudeDecimal</a>
+    <span>
+                &nbsp;= &#039;b&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LatitudeDegree">LatitudeDegree</a>
+    <span>
+                &nbsp;= &#039;B&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LongitudeDecimal">LongitudeDecimal</a>
+    <span>
+                &nbsp;= &#039;l&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LongitudeDegree">LongitudeDegree</a>
+    <span>
+                &nbsp;= &#039;L&#039;                    </span>
+</dt>
+<dd>Longitude formatted in degrees, minutes and seconds.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Magnitude">Magnitude</a>
+    <span>
+                &nbsp;= &#039;=&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_MeanApsides">MeanApsides</a>
+    <span>
+                &nbsp;= &#039;f&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_MeanNodes">MeanNodes</a>
+    <span>
+                &nbsp;= &#039;n&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_OsculatingApsides">OsculatingApsides</a>
+    <span>
+                &nbsp;= &#039;F&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_OsculatingNodes">OsculatingNodes</a>
+    <span>
+                &nbsp;= &#039;N&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Phase">Phase</a>
+    <span>
+                &nbsp;= &#039;-&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_PhaseAngle">PhaseAngle</a>
+    <span>
+                &nbsp;= &#039;+&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_PlanetIndex">PlanetIndex</a>
+    <span>
+                &nbsp;= &#039;p&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_PlanetName">PlanetName</a>
+    <span>
+                &nbsp;= &#039;P&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_RelativeLongitudeDegree">RelativeLongitudeDegree</a>
+    <span>
+                &nbsp;= &#039;Z&#039;                    </span>
+</dt>
+<dd>Longitude formatted in degrees, minutes and seconds,
+East of Greenwich (with a minus sign) or West of
+Greenwich (with a plus sign).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_RightAscensionDegree">RightAscensionDegree</a>
+    <span>
+                &nbsp;= &#039;A&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_RightAscensionHoursDecimal">RightAscensionHoursDecimal</a>
+    <span>
+                &nbsp;= &#039;a&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Year">Year</a>
+    <span>
+                &nbsp;= &#039;y&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_YearFraction">YearFraction</a>
+    <span>
+                &nbsp;= &#039;Y&#039;                    </span>
+</dt>
+
+    </dl>
+
+
+
+
+
+            <section class="phpdocumentor-cases">
+        <h3 class="phpdocumentor-elements__header" id="cases">
+            Cases
+            <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#cases" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_Year">
+        Year
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Year" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">10</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_YearFraction">
+        YearFraction
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_YearFraction" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">11</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_PlanetIndex">
+        PlanetIndex
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_PlanetIndex" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">12</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_PlanetName">
+        PlanetName
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_PlanetName" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_JulianDateTimeFormat">
+        JulianDateTimeFormat
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_JulianDateTimeFormat" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">14</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_GregorianDateTimeFormat">
+        GregorianDateTimeFormat
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_GregorianDateTimeFormat" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">19</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Date formatted like 23.02.1992 (meaning the 23th
+of February, 1992).</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_IntegerDateFormat">
+        IntegerDateFormat
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_IntegerDateFormat" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Date formatted like 920223 (meaning the 23th of
+February, 1992).</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_LongitudeDegree">
+        LongitudeDegree
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LongitudeDegree" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">28</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Longitude formatted in degrees, minutes and seconds.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_LongitudeDecimal">
+        LongitudeDecimal
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LongitudeDecimal" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">29</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_RelativeLongitudeDegree">
+        RelativeLongitudeDegree
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_RelativeLongitudeDegree" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">35</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Longitude formatted in degrees, minutes and seconds,
+East of Greenwich (with a minus sign) or West of
+Greenwich (with a plus sign).</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_DailyLongitudinalSpeedDegree">
+        DailyLongitudinalSpeedDegree
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DailyLongitudinalSpeedDegree" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">40</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The longitudinal speed in degrees, minutes and seconds
+per day.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_DailyLongitudinalSpeedDecimal">
+        DailyLongitudinalSpeedDecimal
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DailyLongitudinalSpeedDecimal" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">44</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The longitudinal speed in decimals per day.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_LatitudeDegree">
+        LatitudeDegree
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LatitudeDegree" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_LatitudeDecimal">
+        LatitudeDecimal
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LatitudeDecimal" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">46</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_DistanceAU">
+        DistanceAU
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DistanceAU" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">50</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The decimal distance in Astronomical Units.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_DistanceLightYears">
+        DistanceLightYears
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DistanceLightYears" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">54</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The decimal distance in light years.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_DistanceKilometers">
+        DistanceKilometers
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DistanceKilometers" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">58</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The decimal distance in kilometers.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_DeclinationDegree">
+        DeclinationDegree
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DeclinationDegree" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">62</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The declination in degrees.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_DeclinationDecimal">
+        DeclinationDecimal
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DeclinationDecimal" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">66</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The declination in decimals.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_AzimuthDegree">
+        AzimuthDegree
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AzimuthDegree" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">70</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The Azimuth in degrees.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_AzimuthDecimal">
+        AzimuthDecimal
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AzimuthDecimal" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">74</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The Azimuth in decimals.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_AltitudeDegree">
+        AltitudeDegree
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AltitudeDegree" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">78</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The altitude in degrees.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_AltitudeDecimals">
+        AltitudeDecimals
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AltitudeDecimals" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">82</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The altitude in decimals.</p>
+
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_RightAscensionDegree">
+        RightAscensionDegree
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_RightAscensionDegree" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">83</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_RightAscensionHoursDecimal">
+        RightAscensionHoursDecimal
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_RightAscensionHoursDecimal" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">84</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_HousePositionDegree">
+        HousePositionDegree
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_HousePositionDegree" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">85</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_HousePositionDegreeDecimals">
+        HousePositionDegreeDecimals
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_HousePositionDegreeDecimals" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">86</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_HouseNumber">
+        HouseNumber
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_HouseNumber" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">87</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_EclipticalCoordinates">
+        EclipticalCoordinates
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_EclipticalCoordinates" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">88</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_EquatorialCoordinates">
+        EquatorialCoordinates
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_EquatorialCoordinates" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">89</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_MeanNodes">
+        MeanNodes
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_MeanNodes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">90</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_OsculatingNodes">
+        OsculatingNodes
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_OsculatingNodes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">91</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_MeanApsides">
+        MeanApsides
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_MeanApsides" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">92</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_OsculatingApsides">
+        OsculatingApsides
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_OsculatingApsides" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">93</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_PhaseAngle">
+        PhaseAngle
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_PhaseAngle" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">94</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_Phase">
+        Phase
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Phase" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">95</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_Elongation">
+        Elongation
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Elongation" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">96</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_AppearentDiscDiameter">
+        AppearentDiscDiameter
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AppearentDiscDiameter" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">97</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_Magnitude">
+        Magnitude
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Magnitude" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Enums/OutputFormat.php"><a href="files/src-enums-outputformat.html"><abbr title="src/Enums/OutputFormat.php">OutputFormat.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">98</span>
+
+    </aside>
+
+    
+    
+    
+    
+    
+
+    
+
+</article>
+            </section>
+
+        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Enums/OutputFormat.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
+
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('GET', src, true);
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+                            Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
+                            return;
+                        }
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
+                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
+                    }
+                    modal.classList.add("phpdocumentor-modal__open");
+
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
+                    });
+                });
+            });
+        })();
+    </script>
+
+    </article>
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                            
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#toc-cases">Cases</a></li>
+                                                        </ul>
+            </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Cases</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Year">Year</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_YearFraction">YearFraction</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_PlanetIndex">PlanetIndex</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_PlanetName">PlanetName</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_JulianDateTimeFormat">JulianDateTimeFormat</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_GregorianDateTimeFormat">GregorianDateTimeFormat</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_IntegerDateFormat">IntegerDateFormat</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LongitudeDegree">LongitudeDegree</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LongitudeDecimal">LongitudeDecimal</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_RelativeLongitudeDegree">RelativeLongitudeDegree</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DailyLongitudinalSpeedDegree">DailyLongitudinalSpeedDegree</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DailyLongitudinalSpeedDecimal">DailyLongitudinalSpeedDecimal</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LatitudeDegree">LatitudeDegree</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_LatitudeDecimal">LatitudeDecimal</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DistanceAU">DistanceAU</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DistanceLightYears">DistanceLightYears</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DistanceKilometers">DistanceKilometers</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DeclinationDegree">DeclinationDegree</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_DeclinationDecimal">DeclinationDecimal</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AzimuthDegree">AzimuthDegree</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AzimuthDecimal">AzimuthDecimal</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AltitudeDegree">AltitudeDegree</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AltitudeDecimals">AltitudeDecimals</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_RightAscensionDegree">RightAscensionDegree</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_RightAscensionHoursDecimal">RightAscensionHoursDecimal</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_HousePositionDegree">HousePositionDegree</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_HousePositionDegreeDecimals">HousePositionDegreeDecimals</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_HouseNumber">HouseNumber</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_EclipticalCoordinates">EclipticalCoordinates</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_EquatorialCoordinates">EquatorialCoordinates</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_MeanNodes">MeanNodes</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_OsculatingNodes">OsculatingNodes</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_MeanApsides">MeanApsides</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_OsculatingApsides">OsculatingApsides</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_PhaseAngle">PhaseAngle</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Phase">Phase</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Elongation">Elongation</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_AppearentDiscDiameter">AppearentDiscDiameter</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#enumcase_Magnitude">Magnitude</a></li>
+                                            </ul>
+                </li>
+            
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+    <section class="phpdocumentor-search-results__dialog">
+        <header class="phpdocumentor-search-results__header">
+            <h2 class="phpdocumentor-search-results__title">Search results</h2>
+            <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
+        </header>
+        <section class="phpdocumentor-search-results__body">
+            <ul class="phpdocumentor-search-results__entries"></ul>
+        </section>
+    </section>
+</section>
+        </div>
+        <a href="classes/MarcoConsiglio-Ephemeris-Enums-OutputFormat.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+
+    </main>
+
+    <script>
+        cssVars({});
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+</body>
+</html>
