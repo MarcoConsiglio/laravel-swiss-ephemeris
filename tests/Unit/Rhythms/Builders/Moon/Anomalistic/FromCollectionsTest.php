@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders\Moon\Anomalistic;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -14,7 +14,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromRecords as Perig
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Builders\BuilderTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
 #[CoversClass(FromCollections::class)]

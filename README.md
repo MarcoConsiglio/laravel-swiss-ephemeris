@@ -54,6 +54,7 @@ For more information, see the API documentation at `./docs/html`.
 - [Synodic rhythm](docs/md/Moon/SynodicRhythm.md)
 - [Moon periods](docs/md/Moon/Periods.md)
 - [Moon phases](docs/md/Moon/Phases.md)
+- [Moon anomalistic rhythm](docs/md/Moon/AnomalisticRhythm.md)
 
 
 

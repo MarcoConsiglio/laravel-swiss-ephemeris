@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -19,7 +20,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class LaravelSwissEphemerisTest extends TestCase
 {
     #[TestDox("can query the Moon synodic rhythm.")]
-    public function test_synodic_rhythm()
+    public function test_moon_synodic_rhythm()
     {
         // Arrange in setUp()
 
@@ -28,9 +29,30 @@ class LaravelSwissEphemerisTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm, 
-            "The synodic_rhythm should be a Collection instance, but ".gettype($synodic_rhythm)." found.");
+            $this->methodMustReturn(
+                LaravelSwissEphemeris::class, 
+                "getMoonSynodicRhythm", 
+                SynodicRhythm::class
+        ));
         $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm, 
             "A MoonSynodicRhythm must contains only MoonSynodicRhythmRecord(s).");
+    }
+
+    #[TestDox("can query the Moon anomalistic rhythm.")]
+    public function test_moon_anomalistic_rhythm()
+    {
+        // Arrange in setUp()
+
+        // Act
+        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm(SwissEphemerisDateTime::create(2000));
+
+        // Assert
+        $this->assertInstanceOf(AnomalisticRhythm::class, $anomalistic_rhythm,
+            $this->methodMustReturn(
+                LaravelSwissEphemeris::class, 
+                "getMoonAnomalisticRhythm", 
+                AnomalisticRhythm::class
+        ));
     }
 
     #[TestDox("throw an Exception if the query is outbound the available time range.")]

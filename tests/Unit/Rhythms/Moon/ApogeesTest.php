@@ -10,7 +10,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The Moon\Apogees")]
+#[TestDox("The Moon\Apogees collection")]
 #[CoversClass(Apogees::class)]
 #[UsesClass(FromArray::class)]
 #[UsesClass(ApogeeRecord::class)]

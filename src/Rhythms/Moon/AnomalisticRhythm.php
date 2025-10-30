@@ -11,12 +11,11 @@ use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 class AnomalisticRhythm extends Collection
 {
     /**
-     * The items contained in the collection.
+     * Constructs the collection starting from
+     * Moon Apogees and Moon Perigees collections.
      *
-     * @var AnomalisticRecord[]
+     * @param FromCollections $builder
      */
-    protected array $items;
-
     public function __construct(FromCollections $builder)
     {
         $this->items = $builder->fetchCollection();

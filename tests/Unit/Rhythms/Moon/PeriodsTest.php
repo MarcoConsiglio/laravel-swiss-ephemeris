@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
-#[TestDox("The Moon\Periods")]
+#[TestDox("The Moon\Periods collection")]
 #[CoversClass(Periods::class)]
 #[UsesClass(Period::class)]
 #[UsesClass(PeriodType::class)]

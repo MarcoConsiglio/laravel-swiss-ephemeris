@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 
-#[TestDox("The Moon\Perigees")]
+#[TestDox("The Moon\Perigees collection")]
 #[CoversClass(Perigees::class)]
 #[UsesClass(FromArray::class)]
 #[UsesClass(PerigeeRecord::class)]

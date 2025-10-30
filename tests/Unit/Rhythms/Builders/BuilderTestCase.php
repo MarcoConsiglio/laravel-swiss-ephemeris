@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Builders;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
