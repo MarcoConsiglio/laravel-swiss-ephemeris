@@ -321,6 +321,7 @@ class SwissEphemerisDateTimeTest extends TestCase
 
     }
 
+    #[TestDox("can be casted to string.")]
     public function test_can_be_casted_to_string()
     {
         // Arrange
@@ -333,6 +334,30 @@ class SwissEphemerisDateTimeTest extends TestCase
 
         // Assert
         $this->assertEquals($expected_string, $string);
+    }
+
+    public function test_can_be_create_from_carbon_instance()
+    {
+        // Arrange
+        $carbon = Carbon::create(2000);
+
+        // Act
+        $datetime = SwissEphemerisDateTime::createFromCarbon($carbon);
+
+        // Assert
+        $this->assertInstanceOf(SwissEphemerisDateTime::class, $datetime,
+            $this->methodMustReturn(
+                SwissEphemerisDateTime::class, 
+                "createFromCarbon", 
+                SwissEphemerisDateTime::class
+        ));
+        $this->assertEquals($carbon->year, $datetime->year);
+        $this->assertEquals($carbon->month, $datetime->month);
+        $this->assertEquals($carbon->day, $datetime->day);
+        $this->assertEquals($carbon->hour, $datetime->hour);
+        $this->assertEquals($carbon->minute, $datetime->minute);
+        $this->assertEquals($carbon->second, $datetime->second);
+        $this->assertEquals($carbon->timezone, $datetime->timezone);
     }
 
     #[TestDox("can return all available datetime formats used by the Swiss Ephemeris.")]

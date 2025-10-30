@@ -324,7 +324,7 @@ class SwissEphemerisDateTime extends Carbon
             $datetime->day,
             $datetime->hour,
             $datetime->minute,
-            $datetime->seconds,
+            $datetime->second,
             $datetime->timezone
         );
     }

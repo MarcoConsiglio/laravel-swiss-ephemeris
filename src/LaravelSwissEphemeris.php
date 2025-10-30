@@ -166,6 +166,7 @@ class LaravelSwissEphemeris
      *
      * @param CarbonInterface $datetime
      * @return SwissEphemerisDateTime
+     * @codeCoverageIgnore
      */
     protected function transformDatetime(CarbonInterface $datetime): SwissEphemerisDateTime
     {
@@ -182,7 +183,7 @@ class LaravelSwissEphemeris
     protected function normalizeDatetime(CarbonInterface $datetime): SwissEphemerisDateTime
     {
         if (! $datetime instanceof SwissEphemerisDateTime) 
-            return $this->transformDatetime($datetime);
+            return $this->transformDatetime($datetime); // @codeCoverageIgnore
         else return $datetime;
     }
 }
