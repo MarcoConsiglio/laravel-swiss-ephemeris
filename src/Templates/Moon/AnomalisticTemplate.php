@@ -13,7 +13,7 @@ use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
  * The template for an ephemeris query to obtain 
  * the Moon anomalistic rhythm.
  * 
- * @deprecated 1.0.0
+ * 
  */
 abstract class AnomalisticTemplate extends QueryTemplate
 {
