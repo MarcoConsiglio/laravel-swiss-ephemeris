@@ -626,6 +626,11 @@ Search.appendIndex(
             "summary": "The\u0020resource\u0020folder\u0020where\u0020are\u0020placed\u0020Swiss\u0020Ephemeris\u0020resources.",
             "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#constant_SWISS_EPHEMERIS_PATH"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Output",
+            "name": "Output",
+            "summary": "The\u0020output\u0020of\u0020the\u0020swetest\u0020executable.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Output.html"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\EmptyLine",
             "name": "EmptyLine",
             "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020find\u0020an\u0020empty\u0020line\nin\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
