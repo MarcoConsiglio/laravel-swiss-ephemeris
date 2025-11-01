@@ -1,18 +1,12 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 
-use AdamBrett\ShellWrapper\Command;
-use AdamBrett\ShellWrapper\Runners\DryRunner;
-use AdamBrett\ShellWrapper\Runners\Exec;
-use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
-use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;

@@ -85,7 +85,7 @@ class ApogeeTemplate extends AnomalisticTemplate
      */
     protected function parse(string $text): array|null
     {
-        $object_name_regex = RegExPattern::getObjectNamesRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedApogee);
+        $object_name_regex = RegExPattern::getRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedApogee);
         if (
             $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
             $this->datetimeFound($text, $datetime) &&

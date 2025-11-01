@@ -10,7 +10,6 @@ use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
  * The template for an ephemeris query to obtain 
@@ -86,7 +85,7 @@ class PerigeeTemplate extends AnomalisticTemplate
      */
     protected function parse(string $text): array|null
     {
-        $object_name_regex = RegExPattern::getObjectNamesRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedPerigee);
+        $object_name_regex = RegExPattern::getRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedPerigee);
         if (
             $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
             $this->datetimeFound($text, $datetime) &&
