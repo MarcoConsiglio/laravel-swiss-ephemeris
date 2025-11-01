@@ -74,16 +74,25 @@ class PerigeeTemplate extends AnomalisticTemplate
      */
     protected function parseOutput(): void
     {
-        foreach ($this->output as $index => $row) {
-            $astral_object = '';
-            $datetime = '';
-            $decimal_number = 0.0;
-            $row_name_regex = RegExPattern::getObjectNamesRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedPerigee);
-            preg_match($row_name_regex, $row, $astral_object);
-            preg_match(RegExPattern::UniversalAndTerrestrialDateTime->value, $row, $datetime);
-            preg_match(RegExPattern::RelativeDecimalNumber->value, $row, $decimal_number);
-            $this->output[$index] = [$astral_object[0], $datetime[0], $decimal_number[0]];
-        }       
+        $this->output->transform(function($row) {
+            return $this->parse($row);
+        });     
+    }
+
+    /**
+     * Parse a line of the raw ephemeris output.
+     * 
+     * @return array|null
+     */
+    protected function parse(string $text): array|null
+    {
+        $object_name_regex = RegExPattern::getObjectNamesRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedPerigee);
+        if (
+            $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
+            $this->datetimeFound($text, $datetime) &&
+            $this->decimalNumberFound($text, $decimal_number)
+        ) return [$astral_object[0], $datetime[0], $decimal_number[0]];
+        else return null;
     }
 
     /**
@@ -93,7 +102,7 @@ class PerigeeTemplate extends AnomalisticTemplate
      */
     protected function buildObject(): void
     {
-        $this->object = new Perigees(new FromArray($this->output));
+        $this->object = new Perigees(new FromArray($this->output->all()));
     }
 
     /**
