@@ -16,7 +16,7 @@ class PerigeeRecord extends AnomalisticRecord
     public protected(set) Angle $perigee_longitude;
 
     /**
-     * Constructs a Moon PerigeeRecord.
+     * It constructs a Moon PerigeeRecord.
      * 
      * It can be that $moon_longitude and $apogee_longitute are not close enough
      * to be considered a Moon perigee. In order to have real perigee you should
