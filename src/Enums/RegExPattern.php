@@ -58,7 +58,13 @@ enum RegExPattern: string {
      */
     public const ThreeSpaceDelimiter = '(?<=\b\s\s\s)';
 
-    static public function getObjectNamesRegex(string $partial_regex): string
+    /**
+     * Constructs a regular expression adding delimiters.
+     *
+     * @param string $partial_regex
+     * @return string
+     */
+    static public function getRegex(string $partial_regex): string
     {
         return static::RegExDelimiter . $partial_regex . static::RegExDelimiter;
     }

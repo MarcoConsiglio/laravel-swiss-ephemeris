@@ -1,5 +1,10 @@
 # Changelog
-
+## [1.0.1-alpha] 2025-11-01
+## Updated
+- API Documentation.
+## Removed
+- Unused code and tests.
+  
 ## [1.0.0-alpha] 2025-10-30
 ### Added
 - `SwissEphemerisDateTime::availableFormats()` static method that returns all available date time format used by the Swiss Ephemeris.

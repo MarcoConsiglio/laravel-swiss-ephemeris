@@ -24,35 +24,6 @@ class QueryTemplateTest extends TemplateTestCase
     protected string $response_file;
 
     #[TestDox("removes warning lines when it encounters them.")]
-    public function test_check_errors_removes_errors_lines()
-    {
-        // Arrange
-        $this->response_file = "./tests/SwissEphemerisResponses/errors.txt";
-        /** @var SwissEphemerisDateTime&MockObject $date*/
-        $date = $this->getMocked(SwissEphemerisDateTime::class);
-        $shell = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
-        /** @var Command&MockObject $command */
-        $command = $this->getMocked(Command::class);
-        /** @var SynodicRhythmTemplate&MockObject $template */
-        $template = $this->getMocked(
-            SynodicRhythmTemplate::class, [
-                "prepareFlags", "prepareArguments", "setHeader", "checkWarnings", "checkNotices",
-                "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "removeLine",
-                "fetchObject"
-            ],
-            original_constructor: true,
-            constructor_arguments: [$date, 30, 60, $shell, $command]
-        );
-
-        // Assert
-        $template->expects($this->once())->method("removeLine")->with($this->equalTo(0));
-        $this->expectException(SwissEphemerisError::class);
-
-        // Act
-        $template->getResult();
-    }
-
-    #[TestDox("removes warning lines when it encounters them.")]
     public function test_check_warnings_removes_warnings_lines()
     {
         // Arrange
@@ -66,16 +37,17 @@ class QueryTemplateTest extends TemplateTestCase
         $template = $this->getMocked(
             SynodicRhythmTemplate::class, [
                 "prepareFlags", "prepareArguments", "setHeader", "checkErrors", "checkNotices",
-                "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "removeLine",
-                "fetchObject"
+                "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
             constructor_arguments: [$date, 30, 60, $shell, $command]
         );
-        $template->expects($this->once())->method("removeLine")->with($this->equalTo(1));
 
         // Act
         $template->getResult();
+
+        // Assert
+        $this->assertCount(1, $template->warnings);
     }
 
     #[TestDox("removes notices lines when it encounters them.")]
@@ -92,15 +64,16 @@ class QueryTemplateTest extends TemplateTestCase
         $template = $this->getMocked(
             SynodicRhythmTemplate::class, [
                 "prepareFlags", "prepareArguments", "setHeader", "checkErrors", "checkWarnings",
-                "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "removeLine",
-                "fetchObject"
+                "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
             constructor_arguments: [$date, 30, 60, $shell, $command]
         );
-        $template->expects($this->once())->method("removeLine")->with($this->equalTo(2));
 
         // Act
         $template->getResult();
+
+        // Assert
+        $this->assertCount(1, $template->notices);
     }
 }

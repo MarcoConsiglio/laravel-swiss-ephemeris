@@ -55,7 +55,7 @@ class RegExPatternTest extends TestCase
         $expected_regex = '/(Moon)/';
         
         // Act
-        $actual_regex = RegExPattern::getObjectNamesRegex(RegExPattern::Moon);
+        $actual_regex = RegExPattern::getRegex(RegExPattern::Moon);
 
         // Assert
         $this->assertEquals($expected_regex, $actual_regex);

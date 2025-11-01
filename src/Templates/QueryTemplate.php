@@ -6,12 +6,10 @@ use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use MarcoConsiglio\Ephemeris\Parsers\Strategies\Error;
-use MarcoConsiglio\Ephemeris\Parsers\Strategies\Warning;
+use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
-use MarcoConsiglio\Ephemeris\Parsers\Strategies\EmptyLine;
-use MarcoConsiglio\Ephemeris\Parsers\Strategies\Using;
+use MarcoConsiglio\Ephemeris\Output;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
@@ -74,9 +72,9 @@ abstract class QueryTemplate
     /**
      * The output from the swetest executable.
      *
-     * @var array
+     * @var Output
      */
-    protected array $output;
+    protected Output $output;
 
     /**
      * Indicates whether the template is completed or not.
@@ -199,13 +197,13 @@ abstract class QueryTemplate
         if ($this->shell instanceof Exec) {
             $this->shell->run($this->command);
             $this->return_value = $this->shell->getReturnValue();
-            $this->output = $this->shell->getOutput();
+            $this->output = new Output($this->shell->getOutput());
         } 
 
         // Used for testing purposes.
         if ($this->shell instanceof FakeRunner) {
             $fake_output = $this->shell->getStandardOut();
-            $this->output = explode(PHP_EOL, $fake_output);
+            $this->output = new Output(explode(PHP_EOL, $fake_output));
         }
     }
 
@@ -219,13 +217,15 @@ abstract class QueryTemplate
     protected function checkErrors(): void 
     {
         $errors_list = [];
-        foreach ($this->output as $index => $row) {
-            $error_parser = new Error($row);
-            if ($error = $error_parser->found()) {
-                $errors_list[] = $error;
-                $this->removeLine($index);
+        $this->output->each(function($row) use(&$errors_list) {
+            if (preg_match(
+                    RegExPattern::SwetestError->value, 
+                    $row, 
+                    $error_match)) 
+            {
+                $errors_list[] = $error_match[1];
             } 
-        }
+        });
         if (!empty($errors_list)) throw new SwissEphemerisError($errors_list);
     }
 
@@ -237,13 +237,15 @@ abstract class QueryTemplate
     protected function checkWarnings(): void
     {
         $warning_list = [];
-        foreach ($this->output as $index => $row) {
-            $warning_parser = new Warning($row);
-            if ($warning = $warning_parser->found()) {
-                $warning_list[] = $warning;
-                $this->removeLine($index);
-            }
-        }
+        $this->output->reject(function($row) use(&$warning_list) {
+            if (preg_match(
+                RegExPattern::SwetestWarning->value, 
+                $row, $warning_match)) 
+            {
+                $warning_list[] = $warning_match[1];
+                return true;
+            } else return false;
+        });
         $this->warnings = $warning_list;
     }
 
@@ -255,13 +257,16 @@ abstract class QueryTemplate
     protected function checkNotices(): void
     {
         $notices_list = [];
-        foreach ($this->output as $index => $row) {
-            $using_line = new Using($row);
-            if ($notice = $using_line->found()) {
-                $warning_list[] = $notice;
-                $this->removeLine($index);
-            }
-        }
+        $this->output = $this->output->reject(function($row) use(&$notices_list) {
+            if (preg_match(
+                RegExPattern::SwetestUsing->value, 
+                $row, 
+                $notice_match)) 
+            {
+                $notices_list[] = $notice_match[0];
+                return true;
+            } else return false;
+        });
         $this->notices = $notices_list;
     }
 
@@ -272,10 +277,12 @@ abstract class QueryTemplate
      */
     protected function removeEmptyLines()
     {
-        foreach ($this->output as $index => $row) {
-            $empty_line = new EmptyLine($row);
-            if ($empty_line->found()) $this->removeLine($index);
-        }
+        $this->output = $this->output->reject(function($row) {
+            return preg_match(
+                RegExPattern::EmptyLine->value, 
+                $row, $empty_line_match
+            );
+        });
     }
 
     /**
@@ -304,12 +311,12 @@ abstract class QueryTemplate
 
     protected function remapColumnsBy(array $columns)
     {
-        $this->output = collect($this->output)->map(function ($record) use ($columns) {
+        $this->output->transform(function ($record) use ($columns) {
             foreach ($columns as $column_position => $column_name) {
                 $transformed_record[$column_name] = $record[$column_position];
             }
             return $transformed_record;
-        })->all();        
+        });        
     }
 
     /**
@@ -344,4 +351,49 @@ abstract class QueryTemplate
      * @return mixed
      */
     abstract protected function fetchObject();
+
+    /**
+     * Parse a line of the raw ephemeris output.
+     * 
+     * @return array|null
+     */
+    abstract protected function parse(string $text): array|null;
+
+    /**
+     * Parse a datetime.
+     *
+     * @param string $text
+     * @param mixed $match
+     * @return integer|false
+     */
+    protected function datetimeFound(string $text, &$match): int|false
+    {
+        return preg_match(RegExPattern::UniversalAndTerrestrialDateTime->value, $text, $match);
+    }
+
+    /**
+     * Parse a decimal number.
+     *
+     * @param string $text
+     * @param mixed $match
+     * @return integer|false
+     */
+    protected function decimalNumberFound(string $text, &$match): int|false
+    {
+        return preg_match(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
+    }
+
+    /**
+     * Parse an astral object name.
+     *
+     * @param string $text
+     * @param string $regex
+     * @param mixed $match
+     * @return integer|false
+     */
+    protected function astralObjectFound(string $text, string $regex, &$match): int|false
+    {
+        return preg_match($regex, $text, $match);       
+    }
+
 }

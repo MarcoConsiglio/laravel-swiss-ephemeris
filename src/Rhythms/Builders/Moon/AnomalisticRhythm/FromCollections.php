@@ -1,10 +1,10 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm;
 
+use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
-use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 
 /**
  * Builds a Moon AnomalisticRhythm collection from

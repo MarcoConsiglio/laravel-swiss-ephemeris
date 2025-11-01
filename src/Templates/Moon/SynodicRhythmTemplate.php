@@ -1,18 +1,12 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 
-use AdamBrett\ShellWrapper\Command;
-use AdamBrett\ShellWrapper\Runners\DryRunner;
-use AdamBrett\ShellWrapper\Runners\Exec;
-use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
-use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -94,19 +88,23 @@ class SynodicRhythmTemplate extends QueryTemplate
      */
     protected function parseOutput(): void
     {
-        foreach ($this->output as $index => $row) {
-            $datetime = '';
-            $decimal_number = 0.0;
-            preg_match(RegExPattern::UniversalAndTerrestrialDateTime->value, $row, $datetime);
-            preg_match(RegExPattern::RelativeDecimalNumber->value, $row, $decimal_number);
-            if (isset($datetime[0]) && $decimal_number[0]) {
-                $this->output[$index] = [$datetime[0], $decimal_number[0]];
-            } else {
-                // This is dangerous and temporary.
-                // Need to add SwissEphemerisDateTime format for BCE years (i.e. -2000).
-                // unset($this->output[$index]);
-            }
-        }
+        $this->output->transform(function($row) {
+            return $this->parse($row);
+        });
+    }
+
+    /**
+     * Parse a line of the raw ephemeris output.
+     * 
+     * @return array|null
+     */
+    protected function parse(string $text): array|null
+    {
+        if (
+            $this->datetimeFound($text, $datetime) &&
+            $this->decimalNumberFound($text, $decimal_number)
+        ) return [$datetime[0], $decimal_number[0]];
+        else return null;
     }
 
     /**
@@ -127,7 +125,7 @@ class SynodicRhythmTemplate extends QueryTemplate
      */
     protected function buildObject(): void
     {
-        $this->object = new SynodicRhythm(new FromArray($this->output));           
+        $this->object = new SynodicRhythm(new FromArray($this->output->all()));           
     }
 
     /**

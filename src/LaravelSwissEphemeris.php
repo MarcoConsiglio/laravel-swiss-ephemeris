@@ -3,10 +3,9 @@ namespace MarcoConsiglio\Ephemeris;
 
 use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Command\Param;
-use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
+use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollections;
@@ -16,6 +15,9 @@ use MarcoConsiglio\Ephemeris\Templates\Moon\ApogeeTemplate;
 use MarcoConsiglio\Ephemeris\Templates\Moon\PerigeeTemplate;
 use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 
+/**
+ * The main endpoint to obtain Swiss Ephemeris data.
+ */
 class LaravelSwissEphemeris
 {
     /**

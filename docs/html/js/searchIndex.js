@@ -356,10 +356,10 @@ Search.appendIndex(
             "summary": "A\u0020list\u0020of\u0020regular\u0020expressions\u0020used\u0020to\u0020match\u0020the\u0020Swiss\u0020Ephemeris\u0020response.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern\u003A\u003AgetObjectNamesRegex\u0028\u0029",
-            "name": "getObjectNamesRegex",
-            "summary": "",
-            "url": "classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#method_getObjectNamesRegex"
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern\u003A\u003AgetRegex\u0028\u0029",
+            "name": "getRegex",
+            "summary": "Constructs\u0020a\u0020regular\u0020expression\u0020adding\u0020delimiters.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#method_getRegex"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern\u003A\u003AUniversalAndTerrestrialDateTime",
             "name": "UniversalAndTerrestrialDateTime",
@@ -598,7 +598,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris",
             "name": "LaravelSwissEphemeris",
-            "summary": "",
+            "summary": "The\u0020main\u0020endpoint\u0020to\u0020obtain\u0020Swiss\u0020Ephemeris\u0020data.",
             "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003A__construct\u0028\u0029",
@@ -626,65 +626,10 @@ Search.appendIndex(
             "summary": "The\u0020resource\u0020folder\u0020where\u0020are\u0020placed\u0020Swiss\u0020Ephemeris\u0020resources.",
             "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#constant_SWISS_EPHEMERIS_PATH"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\EmptyLine",
-            "name": "EmptyLine",
-            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020find\u0020an\u0020empty\u0020line\nin\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-EmptyLine.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\EmptyLine\u003A\u003Afound\u0028\u0029",
-            "name": "found",
-            "summary": "Find\u0020an\u0020empty\u0020line\u0020in\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-EmptyLine.html#method_found"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Error",
-            "name": "Error",
-            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020find\u0020an\u0020error\nin\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Error.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Error\u003A\u003Afound\u0028\u0029",
-            "name": "found",
-            "summary": "Find\u0020an\u0020error\u0020row\u0020in\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Error.html#method_found"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\ParsingStrategy",
-            "name": "ParsingStrategy",
-            "summary": "",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-ParsingStrategy.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\ParsingStrategy\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Construct\u0020the\u0020Error\u0020ParsingStrategy\nwith\u0020the\u0020\u0024text\u0020to\u0020be\u0020examined.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-ParsingStrategy.html#method___construct"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Strategy",
-            "name": "Strategy",
-            "summary": "The\u0020behaviour\u0020of\u0020a\u0020raw\u0020swiss\u0020ephemeris\u0020output\u0020parsing\u0020strategy.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Strategy.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Strategy\u003A\u003Afound\u0028\u0029",
-            "name": "found",
-            "summary": "Find\u0020an\u0020exact\u0020row\u0020in\u0020the\u0020raw\u0020swiss\u0020ephemeris\u0020output.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Strategy.html#method_found"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Using",
-            "name": "Using",
-            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020find\u0020a\u0020\u0022using\u0022\u0020notice\nin\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Using.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Using\u003A\u003Afound\u0028\u0029",
-            "name": "found",
-            "summary": "Find\u0020a\u0020\u0022using\u0022\u0020notice\u0020row\u0020in\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Using.html#method_found"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Warning",
-            "name": "Warning",
-            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020find\u0020a\u0020warning\nin\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Warning.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Warning\u003A\u003Afound\u0028\u0029",
-            "name": "found",
-            "summary": "Find\u0020an\u0020warning\u0020row\u0020in\u0020the\u0020raw\u0020swiss\u0020ephemeris\u0020output.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Warning.html#method_found"
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Output",
+            "name": "Output",
+            "summary": "The\u0020output\u0020of\u0020the\u0020swetest\u0020executable.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Output.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\AnomalisticRecord",
             "name": "AnomalisticRecord",
@@ -1580,16 +1525,6 @@ Search.appendIndex(
             "name": "MarcoConsiglio",
             "summary": "",
             "url": "namespaces/marcoconsiglio.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies",
-            "name": "Strategies",
-            "summary": "",
-            "url": "namespaces/marcoconsiglio-ephemeris-parsers-strategies.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers",
-            "name": "Parsers",
-            "summary": "",
-            "url": "namespaces/marcoconsiglio-ephemeris-parsers.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon",
             "name": "Moon",
