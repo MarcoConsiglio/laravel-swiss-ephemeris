@@ -5,7 +5,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
 

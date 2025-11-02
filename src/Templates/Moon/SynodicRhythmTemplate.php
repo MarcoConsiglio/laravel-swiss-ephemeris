@@ -119,7 +119,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * Constructs the SynodicRhythm collection.
+     * It constructs the SynodicRhythm collection.
      *
      * @return void
      */

@@ -175,7 +175,7 @@ abstract class QueryTemplate
     protected function debug(): void {}
 
     /**
-     * Constructs the swetest command with the correct inputs.
+     * It constructs the swetest command with the correct inputs.
      *
      * @return void
      */

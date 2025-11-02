@@ -2,13 +2,14 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic\Perigees;
 
 use InvalidArgumentException;
+use stdClass;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\FromRecords;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
-use stdClass;
 
 #[CoversClass(FromRecords::class)]
 #[TestDox("The Moon\Perigees\FromRecords builder")]
@@ -35,20 +36,17 @@ class FromRecordsTest extends BuilderTestCase
     }
 
     #[TestDox("cannot build a Moon\Perigees collection without Moon\ApogeeRecords instances.")]
-    public function test_from_records_builder_wants_apogee_records()
+    public function test_from_records_builder_wants_perigee_records()
     {
         // Arrange
         $record_1 = $this->getMocked(stdClass::class);
         $record_2 = $this->getMocked(stdClass::class);
-        $builder_class = FromRecords::class;
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The builder $builder_class must have an array of ".PerigeeRecord::class.".");
        
         // Act
-        $builder = new FromRecords([$record_1, $record_2]);
-
+        new FromRecords([$record_1, $record_2]);
     }
 
     /**

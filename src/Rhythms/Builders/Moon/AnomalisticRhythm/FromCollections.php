@@ -28,15 +28,7 @@ class FromCollections extends Builder
     protected Perigees $perigees;
 
     /**
-     * The ordered records of both
-     * Perigees and Apogees collections.
-     *
-     * @var array
-     */
-    protected array $data;
-
-    /**
-     * Constructs the builder with 
+     * It constructs the builder with 
      * the two necessary collections.
      *
      * @param Apogees $apogees

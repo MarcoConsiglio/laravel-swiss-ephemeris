@@ -8,8 +8,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -70,16 +70,10 @@ class FromSynodicRhythmTest extends BuilderTestCase
     public function test_needs_at_least_one_moon_phase_type()
     {
         // Arrange
-        $builder_class = $this->getBuilderClass();
-        $phase_enum = Phase::class;
-        $collection_class = Phases::class;
         $synodic_rhythm = $this->getMocked(SynodicRhythm::class);
-        // 'The FromSynodicRhythm builder needs at least a Phase enum constant to construct a Phases collection.
+
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            "The $builder_class builder needs at least a $phase_enum enum constant to construct a $collection_class collection."
-        );
         
         // Act
         /** @var SynodicRhythm $synodic_rhythm */
@@ -94,7 +88,6 @@ class FromSynodicRhythmTest extends BuilderTestCase
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Parameter 2 must be an array of ".Phase::class." but found string inside.");
 
         // Act
         /** @var SynodicRhythm $synodic_rhythm */

@@ -3,8 +3,8 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 
 use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods\FromSynodicRhythm as MoonPeriodBuilder;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm as MoonPhasesBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm as MoonPeriodBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSynodicRhythm as MoonPhasesBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 
@@ -19,7 +19,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 class SynodicRhythm extends Collection
 {
     /**
-     * Constructs a Moon SynodicRhythm.
+     * It constructs a Moon SynodicRhythm.
      *
      * @param FromArray|FromRecords $items
      */

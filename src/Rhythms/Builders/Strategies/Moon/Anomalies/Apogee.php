@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 class Apogee extends AnomalisticStrategy
 {
     /**
-     * Constructs the ApogeeStrategy with an ApogeeRecord.
+     * It constructs the ApogeeStrategy with an ApogeeRecord.
      *
      * @param ApogeeRecord $record
      */

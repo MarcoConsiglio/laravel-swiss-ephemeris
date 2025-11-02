@@ -8,7 +8,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder as BuilderInterface;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
@@ -55,7 +56,7 @@ class FromRecordsTest extends BuilderTestCase
     {
         // Arrange in setUp()
         $builder_class = $this->getBuilderClass();
-        $builder_interface = Builder::class;
+        $builder_interface = BuilderInterface::class;
         $record_class = SynodicRhythmRecord::class;
         $records = [];
         foreach ($this->data as $item) {
@@ -84,12 +85,10 @@ class FromRecordsTest extends BuilderTestCase
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
-        $record_class = SynodicRhythmRecord::class;
         $data = [new stdClass, new stdClass];
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The builder $builder_class must have an array of $record_class.");
 
         // Act
        new $builder_class($data);

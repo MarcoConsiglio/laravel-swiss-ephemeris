@@ -59,7 +59,7 @@ enum RegExPattern: string {
     public const ThreeSpaceDelimiter = '(?<=\b\s\s\s)';
 
     /**
-     * Constructs a regular expression adding delimiters.
+     * It constructs a regular expression adding delimiters.
      *
      * @param string $partial_regex
      * @return string

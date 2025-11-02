@@ -26,6 +26,14 @@ class DraconicRecord
     public protected(set) Angle $moon_longitude;
 
     /**
+     * The current Moon latitude. It represents the
+     * Moon position.
+     * 
+     * @var Angle
+     */
+    public protected(set) Angle $moon_latitude;
+
+    /**
      * The current node longitude. It represents the
      * node position.
      * 
@@ -34,15 +42,7 @@ class DraconicRecord
     public protected(set) Angle $node_longitude;
 
     /**
-     * The current node declination. It represents the
-     * node position above or under the ecliptic plane.
-     * 
-     * @var Angle
-     */
-    public protected(set) Angle $node_declination;
-
-    /**
-     * It construct the Moon DraconicRecord. 
+     * It constructs the Moon DraconicRecord. 
      *
      * @param SwissEphemerisDateTime $timestamp
      * @param Angle $moon_longitude
@@ -52,13 +52,13 @@ class DraconicRecord
     public function __construct(
         SwissEphemerisDateTime $timestamp,
         Angle $moon_longitude,
+        Angle $moon_latitude,
         Angle $node_longitude,
-        Angle $node_declination
     ) {
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;
+        $this->moon_latitude = $moon_latitude;
         $this->node_longitude = $node_longitude;
-        $this->node_declination = $node_declination;
     }
 
     /**
@@ -68,7 +68,8 @@ class DraconicRecord
      */
     public function isNorthNode(): bool
     {
-        return $this->node_declination->gte(Angle::createFromValues(0));
+        // This is a serious problem.
+        return false;
     }
 
     /**
@@ -78,6 +79,7 @@ class DraconicRecord
      */
     public function isSouthNode(): bool
     {
-        return $this->node_declination->isLessThan(Angle::createFromDecimal(0));
+        // This is a serious problem. 
+        return false;
     }
 }

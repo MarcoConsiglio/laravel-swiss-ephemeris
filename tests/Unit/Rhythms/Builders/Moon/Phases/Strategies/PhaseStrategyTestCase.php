@@ -123,7 +123,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Constructs the strategy to test.
+     * It constructs the strategy to test.
      *
      * @param string $strategy
      * @param SynodicRhythmRecord $record

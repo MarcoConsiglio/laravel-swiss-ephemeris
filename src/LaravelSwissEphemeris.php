@@ -74,7 +74,7 @@ class LaravelSwissEphemeris
     protected float $altitude;
 
     /**
-     * Constructs di ephemeris query based on a location and timezone.
+     * It constructs di ephemeris query based on a location and timezone.
      *
      * @param string $latitude in decimal format.
      * @param string $longitude in decimal format.

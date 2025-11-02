@@ -2,7 +2,6 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
-use Carbon\Carbon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;

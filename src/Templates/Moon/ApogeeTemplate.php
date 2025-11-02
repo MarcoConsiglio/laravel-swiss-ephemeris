@@ -8,7 +8,7 @@ use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 
 /**
@@ -95,7 +95,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Constructs the Apogee collection.
+     * It constructs the Apogee collection.
      *
      * @return void
      */

@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 class Perigee extends AnomalisticStrategy
 {
     /**
-     * Constructs the PerigeeStrategy with a PerigeeRecord.
+     * It constructs the PerigeeStrategy with a PerigeeRecord.
      *
      * @param PerigeeRecord $record
      */

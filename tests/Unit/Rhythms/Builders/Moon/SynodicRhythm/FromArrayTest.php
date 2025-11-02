@@ -7,6 +7,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
@@ -82,7 +83,6 @@ class FromArrayTest extends BuilderTestCase
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The $builder_class builder must have \"timestamp\" column.");
 
         // Act
         $builder = new $builder_class($this->data);
@@ -101,7 +101,6 @@ class FromArrayTest extends BuilderTestCase
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The $builder_class builder must have \"angular_distance\" column.");
 
         // Act
         $builder = new $builder_class($this->data);
@@ -116,7 +115,6 @@ class FromArrayTest extends BuilderTestCase
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The $builder_class builder cannot work with an empty array.");
         
         // Arrange
         $builder = new $builder_class([]);

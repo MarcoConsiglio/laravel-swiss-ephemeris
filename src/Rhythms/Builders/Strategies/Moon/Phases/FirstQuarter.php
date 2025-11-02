@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 class FirstQuarter extends PhaseStrategy
 {
     /**
-     * Constructs a FirstQuarter strategy with a Moon SynodicRhythmRecord.
+     * It constructs a FirstQuarter strategy with a Moon SynodicRhythmRecord.
      *
      * @param SynodicRhythmRecord $record
      */

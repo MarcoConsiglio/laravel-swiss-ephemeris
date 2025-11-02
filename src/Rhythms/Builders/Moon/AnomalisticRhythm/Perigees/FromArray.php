@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees;
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
@@ -14,23 +14,21 @@ use MarcoConsiglio\Goniometry\Angle;
 class FromArray extends Builder
 {
     /**
-     * The raw data used to create the Moon Perigees collection.
+     * The keys the array data must have.
      *
      * @var array
      */
-    protected $data;
-
-    /**
-     * The list of Moon PerigeeRecord instances.
-     *
-     * @var PerigeeRecord[]
-     */
-    protected array $records = [];
+    protected array $columns = [
+        "timestamp",
+        "longitude"
+    ];
     
     /**
-     * Construct the builder.
+     * It constructs the builder with raw data.
      *
-     * @param $data The raw ephemeris response.
+     * @param array $data
+     * @throws InvalidArgumentException if the array data does not 
+     * have keys "timestamp" and "longitude" or if the array is empty.
      */
     public function __construct(array $data)
     {
@@ -42,22 +40,13 @@ class FromArray extends Builder
      * Validates data.
      * 
      * @return void
-     * @throws \InvalidArgumentException if at least one 
-     * item do not have the "timestamp" or "longitude" array key.
+     * @throws InvalidArgumentException if the array data does not 
+     * have keys "timestamp" and "longitude" or if the array is empty.
      */
     protected function validateData()
     {
-        $this_class = self::class;
-        $data = collect($this->data);
-        $data->filter(function ($value) use ($this_class) {
-            if(!isset($value["timestamp"])) {
-                throw new InvalidArgumentException("The $this_class builder must have \"timestamp\" column.");    
-            }
-            if(!isset($value["longitude"])) {
-                throw new InvalidArgumentException("The $this_class builder must have \"longitude\" column.");
-            }
-            return $value;
-        });
+        $this->checkEmptyData();
+        $this->validateArrayData($this->columns);
     }
 
     /**

@@ -5,7 +5,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
 

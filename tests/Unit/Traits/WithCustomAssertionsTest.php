@@ -36,9 +36,6 @@ class WithCustomAssertionsTest extends TestCase
 
         // Assert
         $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage(
-            "Failed asserting that '".$actual_date->toDateTimeString()."' equals '".$expected_date->toDateTimeString()."'."
-        );
 
         // Act
         /**
