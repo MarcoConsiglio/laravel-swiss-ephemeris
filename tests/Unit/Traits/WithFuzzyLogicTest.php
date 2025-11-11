@@ -1,0 +1,192 @@
+<?php
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Traits;
+
+use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
+use MarcoConsiglio\Goniometry\Angle;
+use PHPUnit\Framework\Attributes\UsesClass;
+
+#[TestDox("The trait WithFuzzyLogic")]
+#[CoversClass(WithFuzzyLogic::class)]
+#[UsesClass(Angle::class)]
+class WithFuzzyLogicTest extends TestCase
+{
+    use WithFuzzyLogic;
+
+    #[TestDox("has isAbout() method that checks if a number is almost equal to another number.")]
+    public function test_isAbout_method()
+    {
+        // Arrange
+        $delta = 1;
+        $epsilon = $delta / 2;
+        $expected = 10;
+
+        // Act & Assert
+        //      Out of $delta returns false.
+        $this->testIsAboutMethod($expected - $delta, $expected, $delta, false);
+        $this->testIsAboutMethod($expected + $delta, $expected, $delta, false);
+        //      Inside $delta including its limits returns true.
+        $this->testIsAboutMethod($expected, $expected, $delta, true);
+        $this->testIsAboutMethod($expected - $epsilon, $expected, $delta, true);
+        $this->testIsAboutMethod($expected + $epsilon, $expected, $delta, true);
+    }
+    
+    #[TestDox("has isAboutAngle() method that checks if an angle is nearly equal to another angle.")]
+    public function test_isAboutAngle_method()
+    {
+        // Arrange
+        $delta_value = 2;
+        $expected_value = 180;
+        $epsilon_value = $delta_value / 2;
+        $delta = Angle::createFromValues($delta_value);
+        $expected = Angle::createFromValues($expected_value);
+
+        // Act & Assert
+        //      Out of $delta is false.
+        $this->testIsAboutAngleMethod(
+            Angle::createFromValues($expected_value - $delta_value), 
+            $expected, $delta, false
+        );
+        $this->testIsAboutAngleMethod(
+            Angle::createFromValues($expected_value + $delta_value), 
+            $expected, $delta, false
+        );
+        //      Inside $delta including its limits returns true.  
+        $this->testIsAboutAngleMethod(
+            Angle::createFromValues($expected_value),
+            $expected, $delta, true
+        );
+        $this->testIsAboutAngleMethod(
+            Angle::createFromDecimal($expected_value + $epsilon_value), 
+            $expected, $delta, true
+        );
+        $this->testIsAboutAngleMethod(
+            Angle::createFromValues($expected_value - $epsilon_value), 
+            $expected, $delta, true
+        );
+    }
+    
+    #[TestDox("has getDeltaExtremes method that calculates the min and max extremes for a fuzzy condition.")]
+    public function test_getDeltaExtremes_method()
+    {
+        // Arrange
+        $delta = 2;
+        $epsilon = $delta / 2;
+        $center = 180;
+        $limit = 180;
+
+        // Act & Assert
+        //      Without limits.
+        $this->testGetDeltaExtremesMethod($delta, $center, null, 
+            ($center - $epsilon), // Expected min
+            ($center + $epsilon)  // Expected max
+        );
+        $this->testGetDeltaExtremesMethod($delta, -$center, null, 
+            (-$center - $epsilon), // Expected min
+            (-$center + $epsilon)  // Expected max
+        );
+        $this->testGetDeltaExtremesMethod(-$delta, $center, null, 
+            ($center - $epsilon), // Expected min
+            ($center + $epsilon)  // Expected max
+        );
+        $this->testGetDeltaExtremesMethod(-$delta, -$center, null, 
+            (-$center - $epsilon), // Expected min
+            (-$center + $epsilon)  // Expected max
+        );
+        $this->testGetDeltaExtremesMethod(361, $center, null, 
+            0, // Expected min
+            360  // Expected max
+        );
+        $this->testGetDeltaExtremesMethod(360, 271, null, 
+            91, // Expected min
+            360  // Expected max
+        );
+        $this->testGetDeltaExtremesMethod(360, -271, null, 
+            -360, // Expected min
+            -91  // Expected max
+        );
+        //      With limits.
+        $center = -179.5;
+        $this->testGetDeltaExtremesMethod($delta, $center, $limit, -$limit, $center + $epsilon);
+        $center = 179.5;
+        $this->testGetDeltaExtremesMethod($delta, $center, $limit, $center - $epsilon, $limit);
+        $delta = 2; $center = 180; $epsilon = $delta / 2;
+        $this->testGetDeltaExtremesMethod($delta, $center, $limit, $center - $epsilon, $limit);
+        $center = -180;
+        $this->testGetDeltaExtremesMethod($delta, $center, $limit, -$limit, -179);
+    }
+
+    /**
+     * This is a Parameterized Test.
+     * 
+     * It tests isAbout method present in 
+     * the WithFuzzyLogic trait.
+     *
+     * @param float $first_nuber
+     * @param float $second_number
+     * @param integer $delta
+     * @param boolean $boolean_assertion
+     * @return void
+     */
+    protected function testIsAboutMethod(
+        float $first_nuber, 
+        float $second_number, 
+        float $delta = 1,
+        bool $boolean_assertion = true,
+        string $error_message = "")
+    {
+        $result = $this->isAbout($first_nuber, $second_number, $delta);
+        $this->assertSame($boolean_assertion, $result, $error_message);
+    }
+
+    /**
+     * This is a Parameterized Test.
+     * 
+     * It tests isAboutAngle method present in 
+     * the WithFuzzyLogic trait.
+     *
+     * @param Angle $alfa
+     * @param Angle $beta
+     * @param Angle $delta
+     * @param boolean $boolean_assertion
+     * @param string $error_message
+     * @return void
+     */
+    protected function testIsAboutAngleMethod(
+        Angle $alfa,
+        Angle $beta,
+        Angle $delta,
+        bool $boolean_assertion = true,
+        string $error_message = ""
+    ) {
+        $result = $this->isAboutAngle($alfa, $beta, $delta);
+        $this->assertSame($boolean_assertion, $result, $error_message);
+    }
+
+    /**
+     * This is a Parameterized Test.
+     * It tests getDeltaExtremes method present in
+     * the WithFuzzyLogic trait.
+     *
+     * @param float $delta
+     * @param float $number
+     * @param float|null|null $limit
+     * @param boolean $bolean_assertion
+     * @param string $error_message
+     * @return void
+     */
+    protected function testGetDeltaExtremesMethod(
+        float $delta,
+        float $number,
+        float|null $limit = null,
+        float $expected_min,
+        float $expected_max,
+        string $error_message = ""
+    ) {
+        [$actual_min, $actual_max] = $this->getDeltaExtremes($delta, $number, $limit);
+        $this->assertEquals($expected_min, $actual_min, $error_message);
+        $this->assertEquals($expected_max, $actual_max, $error_message);
+    }
+}
