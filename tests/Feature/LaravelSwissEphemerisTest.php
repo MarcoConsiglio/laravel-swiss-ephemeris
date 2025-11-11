@@ -34,7 +34,11 @@ class LaravelSwissEphemerisTest extends TestCase
                 SynodicRhythm::class
         ));
         $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm, 
-            "A MoonSynodicRhythm must contains only MoonSynodicRhythmRecord(s).");
+            $this->iterableMustContains(SynodicRhythm::class, SynodicRhythmRecord::class)    
+        );
+        $this->assertCount(720, $synodic_rhythm, 
+            "In this test, the SynodicRhythm must contain 720 SynodicRhythmRecord instances."
+        );
     }
 
     #[TestDox("can query the Moon anomalistic rhythm.")]

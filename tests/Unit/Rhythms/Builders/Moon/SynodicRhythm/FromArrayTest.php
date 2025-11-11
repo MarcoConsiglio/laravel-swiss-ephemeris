@@ -117,7 +117,7 @@ class FromArrayTest extends BuilderTestCase
         $this->expectException(InvalidArgumentException::class);
         
         // Arrange
-        $builder = new $builder_class([]);
+        new $builder_class([]);
     }
 
     /**

@@ -31,10 +31,7 @@ class PerigeeTemplate extends AnomalisticTemplate
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void
-    {
-
-    }
+    protected function prepareArguments(): void {}
 
     /**
      * Prepares flags for the swetest executable.
@@ -50,7 +47,7 @@ class PerigeeTemplate extends AnomalisticTemplate
         $this->command->addFlag(new Flag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarPerigee->value));
         // Warning! Changing the output format will cause errors in getMoonAnomalisticRhythm() method.
-        $object_format = OutputFormat::PlanetName->value.OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
+        $object_format = OutputFormat::PlanetName->value.OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDegree->value;
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $object_format));
     }
 
@@ -64,6 +61,19 @@ class PerigeeTemplate extends AnomalisticTemplate
     {
         // No header.
         $this->command->addArgument(new Argument(CommandFlag::NoHeader->value));
+    }
+
+    /**
+     * It formats the output before parsing it, if necessary.
+     *
+     * @return void
+     */
+    protected function formatHook(): void
+    {
+        // The output miss seconds sign.
+        $this->output->transform(function($row) {
+            return $row."\"";
+        });
     }
 
     /**
@@ -89,8 +99,8 @@ class PerigeeTemplate extends AnomalisticTemplate
         if (
             $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
             $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal_number)
-        ) return [$astral_object[0], $datetime[0], $decimal_number[0]];
+            $this->angularValuesFound($text, $angle)
+        ) return [$astral_object[0], $datetime[0], $angle];
         else return null;
     }
 

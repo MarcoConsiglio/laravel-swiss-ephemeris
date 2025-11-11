@@ -26,10 +26,10 @@ class Perigee extends AnomalisticStrategy
      */
     public function found(): ?PerigeeRecord
     {
-        if($this->isAbout(
-            $this->record->moon_longitude->toDecimal(2), 
-            $this->record->perigee_longitude->toDecimal(2), 
-            $this->delta)
+        if($this->isAboutAngle(
+            $this->record->moon_longitude, 
+            $this->record->perigee_longitude, 
+            $this->angular_delta)
         ) {
             return $this->record;
         }

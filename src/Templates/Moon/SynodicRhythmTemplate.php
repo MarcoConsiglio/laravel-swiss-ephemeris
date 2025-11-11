@@ -8,6 +8,7 @@ use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
@@ -43,10 +44,7 @@ class SynodicRhythmTemplate extends QueryTemplate
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void
-    {
-
-    }
+    protected function prepareArguments(): void {}
 
     /**
     /**
@@ -59,7 +57,7 @@ class SynodicRhythmTemplate extends QueryTemplate
         $start_date = SwissEphemerisDateTime::create($this->start_date);
         $steps = $this->getStepsNumber();
         // Warning! Changing the object format will cause errors in getMoonSynodicRhythm() method.
-        $object_format = OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
+        $object_format = OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDegree->value;
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::DifferentialObjectSelection->value, SinglePlanet::Sun->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::BeginDate->value, $start_date->toGregorianDate()));
@@ -79,6 +77,19 @@ class SynodicRhythmTemplate extends QueryTemplate
     {
         // No header.
         $this->command->addArgument(new SwissEphemerisArgument(CommandFlag::NoHeader->value));
+    }
+
+    /**
+     * It formats the output before parsing it, if necessary.
+     *
+     * @return void
+     */
+    protected function formatHook(): void
+    {
+        // The output miss seconds sign.
+        $this->output->transform(function($row) {
+            return $row."\"";
+        });
     }
 
     /**
@@ -102,8 +113,8 @@ class SynodicRhythmTemplate extends QueryTemplate
     {
         if (
             $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal_number)
-        ) return [$datetime[0], $decimal_number[0]];
+            $this->angularValuesFound($text, $string_angle)
+        ) return [$datetime[0], $string_angle];
         else return null;
     }
 
@@ -112,10 +123,11 @@ class SynodicRhythmTemplate extends QueryTemplate
      * with the columns name as the key.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function remapColumns(): void
     {
-        $this->remapColumnsBy($this->columns);           
+        $this->remapColumnsBy($this->columns);    
     }
 
     /**

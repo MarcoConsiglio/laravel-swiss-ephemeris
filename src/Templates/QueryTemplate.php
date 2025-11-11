@@ -11,6 +11,9 @@ use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Output;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
+use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 
 /**
  * The template for an ephemeris query.
@@ -138,6 +141,7 @@ abstract class QueryTemplate
         $this->checkWarnings();
         $this->checkNotices();
         $this->removeEmptyLines();
+        $this->formatHook();
         $this->parseOutput();
         $this->remapColumns();
         $this->buildObject();
@@ -165,6 +169,13 @@ abstract class QueryTemplate
      * @return void
      */
     abstract protected function setHeader(): void;
+
+    /**
+     * It formats the output before parsing it, if necessary.
+     *
+     * @return void
+     */
+    abstract protected function formatHook(): void;
 
     /**
      * Sets whether to include debug information in the response.
@@ -381,6 +392,27 @@ abstract class QueryTemplate
     protected function decimalNumberFound(string $text, &$match): int|false
     {
         return preg_match(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
+    }
+
+    /**
+     * Parse a string angle measure.
+     *
+     * @param string $text
+     * @param mixed $match
+     * @return integer
+     */
+    protected function angularValuesFound(string $text, &$match): int
+    {
+        $degrees_match = null;
+        $degrees_result = preg_match(Angle::DEGREES_REGEX, $text, $degrees_match);
+        $minutes_match = null;
+        $minutes_result = preg_match(Angle::MINUTES_REGEX, $text, $minutes_match);
+        $seconds_match = null;
+        $seconds_result = preg_match(Angle::SECONDS_REGEX, $text, $seconds_match);
+        if ($degrees_result == 1 && $minutes_result == 1 && $seconds_result == 1) {
+            $match = $degrees_match[0]." ".$minutes_match[0]." ".$seconds_match[0];
+            return 1;
+        } else return 0;
     }
 
     /**

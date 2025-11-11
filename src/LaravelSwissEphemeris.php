@@ -141,7 +141,8 @@ class LaravelSwissEphemeris
     public function getMoonAnomalisticRhythm(
         SwissEphemerisDateTime $start_date,
         $days = 30,
-        int $step_size = 60): AnomalisticRhythm 
+        $step_size = 60
+    ): AnomalisticRhythm 
     {
         $start_date = $this->normalizeDatetime($start_date);
         $apogees_query = new ApogeeTemplate(

@@ -22,7 +22,7 @@ abstract class Strategy implements BuilderStrategy
      *
      * @var float $delta
      */
-    public float $delta = 0.25 {
+    public protected(set) float $delta = 0.25 {
         get { return $this->delta; }
         set(float $value) { $this->delta = abs($value); }
     }

@@ -1,4 +1,8 @@
 # Changelog
+## Unreleased
+### Added
+- The properties `AnomalisticStrategy::$angular_delta`.
+
 ## [1.0.1-alpha] 2025-11-01
 ## Updated
 - API Documentation.

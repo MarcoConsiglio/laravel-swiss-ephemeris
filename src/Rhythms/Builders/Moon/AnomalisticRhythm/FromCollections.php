@@ -29,7 +29,7 @@ class FromCollections extends Builder
 
     /**
      * It constructs the builder with 
-     * the two necessary collections.
+     * the two apogee and perigee collections.
      *
      * @param Apogees $apogees
      * @param Perigees $perigees
