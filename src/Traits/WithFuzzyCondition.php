@@ -60,12 +60,12 @@ trait WithFuzzyCondition
             if ($max > $limit) {
                 $max = $limit;
             }
-
         }
-        return [
-            $number - abs($epsilon), 
-            $number + abs($epsilon)
-        ];
+        if ($limit == null) {
+            if ($min < 0) return [360 + $min, $max];
+            if ($max > 360) return [$min, $max - 360];
+        }
+        return [$min, $max];
     }
 
     /**

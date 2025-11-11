@@ -57,28 +57,27 @@ class FromArray extends Builder
     protected function buildRecords()
     {
         // Take the rows two by two and transform them in one row.
-        $two_rows_collection = collect($this->data)->sliding(2, 2)->toArray();
-        $moon_and_apogee_raw_records = collect($two_rows_collection)->map(function ($row) {
-                $first_row = reset($row);
-                $last_row = end($row);
+        $this->data = collect($this->data)->sliding(2, 2)->map(function ($pair) {
+                $lines = $pair->all();
+                $first_row = reset($lines);
+                $last_row = end($lines);
             return [
                 $first_row["timestamp"] /* timestamp */, 
                 $first_row["longitude"], /* Moon longitude */
                 $last_row["longitude"] /* apogee longitude */
             ];
         })->all();
-        $this->data = $moon_and_apogee_raw_records;
 
         // Transform raw data in Moon ApogeeRecord instances.
-        $timestamp_index = 0;
-        $moon_longitude_index = 1;
-        $apogee_longitude_index = 2;
+        $timestamp = 0;
+        $moon_longitude = 1;
+        $apogee_longitude = 2;
         $this->data = collect($this->data)->transform(function($item) 
-            use ($timestamp_index, $moon_longitude_index, $apogee_longitude_index){
+            use ($timestamp, $moon_longitude, $apogee_longitude){
                 return new ApogeeRecord(
-                    SwissEphemerisDateTime::createFromGregorianTT($item[$timestamp_index]),
-                    Angle::createFromDecimal((float) $item[$moon_longitude_index]),
-                    Angle::createFromDecimal((float) $item[$apogee_longitude_index])
+                    SwissEphemerisDateTime::createFromGregorianTT($item[$timestamp]),
+                    Angle::createFromDecimal((float) $item[$moon_longitude]),
+                    Angle::createFromDecimal((float) $item[$apogee_longitude])
                 );
         })->all();
 

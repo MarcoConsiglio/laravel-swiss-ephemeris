@@ -29,7 +29,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
      */
     private function getLongitude(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getBiasedAngularDistance($longitude));
+        return Angle::createFromDecimal($this->getBiasedLongitude($longitude));
     }
 
     /**
@@ -40,7 +40,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
      */
     private function getLongitudeExceptFor(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor($longitude));
+        return Angle::createFromDecimal($this->getBiasedLongitudeExceptFor($longitude));
     }
 
     /**

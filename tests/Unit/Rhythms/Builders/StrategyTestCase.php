@@ -121,29 +121,63 @@ class StrategyTestCase extends TestCase
      */
     protected function getBiasedAngularDistance(float $angular_distance): float
     {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
-        return $this->faker->randomFloat(4, $min, $max);
+        [$min, $max] = $this->getDeltaExtremes(abs($this->delta), $angular_distance, limit: 180);
+        return $this->faker->randomFloat(7, $min, $max);
     }
 
     /**
-     * Get a random unprecise angular distance except for another biased $angular_distance. 
+     * Get a random unprecise longitude biased by a delta.
+     *
+     * @param float $longitude
+     * @return float
+     */
+    protected function getBiasedLongitude(float $longitude): float
+    {
+        [$min, $max] = $this->getDeltaExtremes(abs($this->delta), $longitude);
+        return $this->faker->randomFloat(7, $min, $max);
+    }
+
+    /**
+     * Get a random unprecise angular distance except for $angular_distance. 
      *
      * @param float $angular_distance
      * @return float
      */
     protected function getBiasedAngularDistanceExceptFor(float $angular_distance): float
     {
-        $error = 0.1;
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
-        if ($max > 180) {
-            return fake()->randomFloat(1, -180 + abs($this->delta), $min - $error);
+        $limit = 180;
+        $max_excluded = 0.0000001;
+        $min_excluded = -$max_excluded;
+        $limit_excluded = $max_excluded;
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, $limit);
+        $lower_limits = [-$limit + $limit_excluded, $min - $min_excluded];
+        return $this->faker->randomElement([
+            $this->faker->randomFloat(7, -$limit + $limit_excluded, $min + $min_excluded),
+            $this->faker->randomFloat(7, $max + $max_excluded, $limit)
+        ]);
+    }
+
+    /**
+     * Get a random unprecise longitude except for $longitude. 
+     *
+     * @param float $longitude
+     * @return float
+     */
+    protected function getBiasedLongitudeExceptFor(float $longitude): float
+    {
+        $max_excluded = 0.0000001;
+        $min_excluded = -$max_excluded;
+        $full_angle_excluded = $max_excluded;
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
+        if ($max == 360) {
+            return $this->faker->randomFloat(7, 0, $min + $min_excluded);
         }
-        if ($min < -180) {
-            return fake()->randomFloat(1, $max + $error, 180 - abs($this->delta));
+        if ($min == 0) {
+            return $this->faker->randomFloat(7, $max + $max_excluded, 360 - $full_angle_excluded);
         }
-        return fake()->randomElement([
-            fake()->randomFloat(1, -180, $min - $error),
-            fake()->randomFloat(1, $max - 0.1, 180)
+        return $this->faker->randomElement([
+            $this->faker->randomFloat(7, 0, $min + $min_excluded),
+            $this->faker->randomFloat(7, $max + $max_excluded, 360 - $full_angle_excluded)
         ]);
     }
 

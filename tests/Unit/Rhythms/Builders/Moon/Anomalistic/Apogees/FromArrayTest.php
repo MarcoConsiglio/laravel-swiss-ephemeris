@@ -9,6 +9,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\Fro
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use SplFileObject;
 
 #[CoversClass(FromArray::class)]
 #[UsesClass(Apogees::class)]
@@ -16,6 +17,13 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[TestDox("The Moon\Apogees\FromArray builder")]
 class FromArrayTest extends BuilderTestCase
 {
+    /**
+     * The file with a raw ephemeris response.
+     *
+     * @var string
+     */
+    protected string $response_file = "./tests/SwissEphemerisResponses/Moon/apogees_decimal.txt";
+
     #[TestDox("can build Apogees collection from an array of raw ephemeris.")]
     public function test_build_apogees_from_array()
     {
@@ -29,7 +37,7 @@ class FromArrayTest extends BuilderTestCase
         
         // Assert
         $this->assertContainsOnlyInstancesOf(ApogeeRecord::class, $collection);
-        $this->assertCount(2, $collection);
+        $this->assertCount(3, $collection);
     }  
     
     /**
@@ -47,103 +55,105 @@ class FromArrayTest extends BuilderTestCase
      *
      * @return array
      */
-    public  function getRawData(): array
+    public function getRawData(): array
     {
         // There are 3 apogees here.
         return [
             0 => [
                 "astral_object" => "Moon",
                 "timestamp" => "18.02.2025 0:00:00 TT", 
-                "longitude" => "209°50'10.7909\""
+                "longitude" => "209.8363308"
             ],
             1 => [
                 "astral_object" => "intp. Apogee",
                 "timestamp" => "18.02.2025 0:00:00 TT", 
-                "longitude" => "210°25' 9.9291\""
+                "longitude" => "210.4194248"
             ],
             // This is to be selected
             2 => [
                 "astral_object" => "Moon",
                 "timestamp" => "18.02.2025 1:00:00 TT", 
-                "longitude" => "210°19'41.5793\""               
+                "longitude" => "210.3282165"               
             ],
             3 => [
                 "astral_object" => "intp. Apogee",
                 "timestamp" => "18.02.2025 1:00:00 TT", 
-                "longitude" => "210°25'38.8519\""
+                "longitude" => "210.4274589"
             ],
             // End selection
             4 => [
                 "astral_object" => "Moon",
                 "timestamp" => "18.02.2025 2:00:00 TT", 
-                "longitude" => "210°49'12.3401\""               
+                "longitude" => "210.8200945"               
             ],
             5 => [
                 "astral_object" => "intp. Apogee",
                 "timestamp" => "18.02.2025 2:00:00 TT", 
-                "longitude" => "210°26' 7.7593\""
+                "longitude" => "210.4354887"
             ],
             6 => [
                 "astral_object" => "Moon",
                 "timestamp" => "17.03.2025 16:00:00 TT", 
-                "longitude" => "214°10'18.5209\""               
+                "longitude" => "214.1718114"               
             ],
             7 => [
                 "astral_object" => "intp. Apogee",
                 "timestamp" => "17.03.2025 16:00:00 TT", 
-                "longitude" => "214°29' 0.5395\""
+                "longitude" => "214.4834832"
             ],
+            // This is to be selected.
             8 => [
                 "astral_object" => "Moon",
                 "timestamp" => "17.03.2025 17:00:00 TT", 
-                "longitude" => "214°39'50.6116\""               
+                "longitude" => "214.6640588"               
             ],
             9 => [
                 "astral_object" => "intp. Apogee",
                 "timestamp" => "17.03.2025 17:00:00 TT", 
-                "longitude" => "214°29'13.0823\""
+                "longitude" => "214.4869673"
             ],
+            // End selection.
             10 => [
                 "astral_object" => "Moon",
                 "timestamp" => "17.03.2025 18:00:00 TT", 
-                "longitude" => "215° 9'22.6778\""
+                "longitude" => "215.1562994"
             ],
             11 => [
                 "astral_object" => "intp. Apogee",
                 "timestamp" => "17.03.2025 18:00:00 TT", 
-                "longitude" => "214°23'51.8415\""
+                "longitude" => "214.4904413"
             ],
             12 => [
                 "astral_object" => "Moon",
                 "timestamp" => "13.04.2025 22:00:00 TT", 
-                "longitude" => "213°58'50.3968\""
+                "longitude" => "213.9806658"
             ],
             13 => [
                 "astral_object" => "intp. Apogee",
                 "timestamp" => "13.04.2025 22:00:00 TT", 
-                "longitude" => "214°23'39.0107\""
+                "longitude" => "214.3941696"
             ],
             // This is to be selected
             14 => [
                 "astral_object" => "Moon",
                 "timestamp" => "13.04.2025 23:00:00 TT", 
-                "longitude" => "214°28'24.2021\""
+                "longitude" => "214.4733895"
             ],
             15 => [
                 "astral_object" => "intp. Apogee",
                 "timestamp" => "13.04.2025 23:00:00 TT", 
-                "longitude" => "214°23'26.1555\""
+                "longitude" => "214.3905987"
             ],
             // End selection
             16 => [
                 "astral_object" => "Moon",
                 "timestamp" => "14.04.2025 0:00:00 TT", 
-                "longitude" => "214°57'58.0768\""
+                "longitude" => "214.9661325"
             ],
             17 => [
                 "astral_object" => "intp. Apogee",
                 "timestamp" => "14.04.2025 0:00:00 TT", 
-                "longitude" => "214°23'13.2758\""
+                "longitude" => "214.3870211"
             ],
         ];
     }

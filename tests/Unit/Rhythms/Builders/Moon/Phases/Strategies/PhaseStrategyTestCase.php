@@ -49,7 +49,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
                 $this->date, 
                 Angle::createFromDecimal($this->getBiasedAngularDistance(180))
             );
-        }
+        } else
         return new SynodicRhythmRecord(
             $this->date, 
             Angle::createFromDecimal($this->getBiasedAngularDistance(-180))
