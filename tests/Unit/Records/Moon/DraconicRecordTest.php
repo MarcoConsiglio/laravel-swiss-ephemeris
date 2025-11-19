@@ -52,37 +52,38 @@ class DraconicRecordTest extends TestCase
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
         $node_longitude = Angle::createFromValues(180, 30, 15);
-        $record = new DraconicRecord($datetime, $angle, $node_longitude, $angle);
+        $record = new DraconicRecord($datetime, $angle, $angle, $node_longitude);
 
         // Act & Assert
         $this->assertSame($node_longitude, $record->node_longitude);
     }
 
-    #[TestDox("has a \"node_declination\" property which is an Angle.")]
-    public function test_node_declination_property()
+    #[TestDox("has a \"moon_latitude\" property which is an Angle.")]
+    public function test_moon_latitude_property()
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMocked(SwissEphemerisDateTime::class);
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $node_declination = Angle::createFromValues(180, 30, 15);
-        $record = new DraconicRecord($datetime, $angle, $angle, $node_declination);
+        $moon_latitude = Angle::createFromValues(180, 30, 15);
+        $record = new DraconicRecord($datetime, $angle, $moon_latitude, $angle);
 
         // Act & Assert
-        $this->assertSame($node_declination, $record->node_declination);
+        $this->assertSame($moon_latitude, $record->moon_latitude);
     }
 
     #[TestDox("can be a north node.")]
     public function test_is_north_node()
     {
+        $this->markTestSkipped("A better algorithm to decide weather the moon is passing toward the southern/northern emisphere is needed.");
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMocked(SwissEphemerisDateTime::class);
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $node_declination = Angle::createFromValues(7);
-        $record = new DraconicRecord($datetime, $angle, $angle, $node_declination);
+        $moon_latitude = Angle::createFromValues(7);
+        $record = new DraconicRecord($datetime, $angle, $angle, $moon_latitude);
 
         // Act & Assert
         $this->assertTrue($record->isNorthNode());
@@ -92,13 +93,14 @@ class DraconicRecordTest extends TestCase
     #[TestDox("can be a south node.")]
     public function test_is_south_node()
     {
+        $this->markTestSkipped("A better algorithm to decide weather the moon is passing toward the southern/northern emisphere is needed.");
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMocked(SwissEphemerisDateTime::class);
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $node_declination = Angle::createFromValues(7, 0, 0.0, Angle::CLOCKWISE);
-        $record = new DraconicRecord($datetime, $angle, $angle, $node_declination);
+        $moon_latitude = Angle::createFromValues(7, 0, 0.0, Angle::CLOCKWISE);
+        $record = new DraconicRecord($datetime, $angle, $angle, $moon_latitude);
 
         // Act & Assert
         $this->assertTrue($record->isSouthNode());

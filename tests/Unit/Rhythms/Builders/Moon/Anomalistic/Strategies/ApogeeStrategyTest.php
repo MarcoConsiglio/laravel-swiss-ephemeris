@@ -21,7 +21,8 @@ class ApogeeStrategyTest extends AnomalisticStrategyTestCase
     {
         $this->tested_class = Apogee::class;
         $this->record_class = ApogeeRecord::class;
-        $this->delta = 0.1;
+        $strategy = new $this->tested_class($this->getMocked($this->record_class));
+        $this->delta = $strategy->delta;
         parent::setUp();
     }
 

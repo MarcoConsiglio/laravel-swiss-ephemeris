@@ -47,7 +47,7 @@ class ApogeeTemplate extends AnomalisticTemplate
         $this->command->addFlag(new Flag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarApogee->value));
         // Warning! Changing the output format will cause errors in getMoonAnomalisticRhythm() method.
-        $object_format = OutputFormat::PlanetName->value.OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDegree->value;
+        $object_format = OutputFormat::PlanetName->value.OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $object_format));
     }
 
@@ -68,13 +68,7 @@ class ApogeeTemplate extends AnomalisticTemplate
      *
      * @return void
      */
-    protected function formatHook(): void
-    {
-        // The output miss seconds sign.
-        $this->output->transform(function($row) {
-            return $row."\"";
-        });
-    }
+    protected function formatHook(): void {}
 
     /**
      * Parse the response.
@@ -99,8 +93,8 @@ class ApogeeTemplate extends AnomalisticTemplate
         if (
             $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
             $this->datetimeFound($text, $datetime) &&
-            $this->angularValuesFound($text, $angle)
-        ) return [$astral_object[0], $datetime[0], $angle];
+            $this->decimalNumberFound($text, $decimal)
+        ) return [$astral_object[0], $datetime[0], $decimal[0]];
         else return null;
     }
 

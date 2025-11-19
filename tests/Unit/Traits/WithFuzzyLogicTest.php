@@ -79,43 +79,43 @@ class WithFuzzyLogicTest extends TestCase
 
         // Act & Assert
         //      Without limits.
-        $this->testGetDeltaExtremesMethod($delta, $center, null, 
+        $this->testGetDeltaExtremesMethod($delta, $center, 
             ($center - $epsilon), // Expected min
             ($center + $epsilon)  // Expected max
         );
-        $this->testGetDeltaExtremesMethod($delta, -$center, null, 
+        $this->testGetDeltaExtremesMethod($delta, -$center, 
             (-$center - $epsilon), // Expected min
             (-$center + $epsilon)  // Expected max
         );
-        $this->testGetDeltaExtremesMethod(-$delta, $center, null, 
+        $this->testGetDeltaExtremesMethod(-$delta, $center, 
             ($center - $epsilon), // Expected min
             ($center + $epsilon)  // Expected max
         );
-        $this->testGetDeltaExtremesMethod(-$delta, -$center, null, 
+        $this->testGetDeltaExtremesMethod(-$delta, -$center, 
             (-$center - $epsilon), // Expected min
             (-$center + $epsilon)  // Expected max
         );
-        $this->testGetDeltaExtremesMethod(361, $center, null, 
+        $this->testGetDeltaExtremesMethod(361, $center, 
             0, // Expected min
             360  // Expected max
         );
-        $this->testGetDeltaExtremesMethod(360, 271, null, 
+        $this->testGetDeltaExtremesMethod(360, 271, 
             91, // Expected min
             360  // Expected max
         );
-        $this->testGetDeltaExtremesMethod(360, -271, null, 
+        $this->testGetDeltaExtremesMethod(360, -271, 
             -360, // Expected min
             -91  // Expected max
         );
         //      With limits.
         $center = -179.5;
-        $this->testGetDeltaExtremesMethod($delta, $center, $limit, -$limit, $center + $epsilon);
+        $this->testGetDeltaExtremesMethod($delta, $center, -$limit, $center + $epsilon, $limit);
         $center = 179.5;
-        $this->testGetDeltaExtremesMethod($delta, $center, $limit, $center - $epsilon, $limit);
+        $this->testGetDeltaExtremesMethod($delta, $center, $center - $epsilon, $limit, $limit);
         $delta = 2; $center = 180; $epsilon = $delta / 2;
-        $this->testGetDeltaExtremesMethod($delta, $center, $limit, $center - $epsilon, $limit);
+        $this->testGetDeltaExtremesMethod($delta, $center, $center - $epsilon, $limit, $limit);
         $center = -180;
-        $this->testGetDeltaExtremesMethod($delta, $center, $limit, -$limit, -179);
+        $this->testGetDeltaExtremesMethod($delta, $center, -$limit, -179, $limit);
     }
 
     /**
@@ -180,9 +180,9 @@ class WithFuzzyLogicTest extends TestCase
     protected function testGetDeltaExtremesMethod(
         float $delta,
         float $number,
-        float|null $limit = null,
         float $expected_min,
         float $expected_max,
+        float|null $limit = null,
         string $error_message = ""
     ) {
         [$actual_min, $actual_max] = $this->getDeltaExtremes($delta, $number, $limit);

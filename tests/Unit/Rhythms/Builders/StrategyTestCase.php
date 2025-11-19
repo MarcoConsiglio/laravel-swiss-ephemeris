@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
 
+use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -69,7 +70,7 @@ class StrategyTestCase extends TestCase
      *
      * @var float
      */
-    protected float $delta = 0.25;
+    protected float $delta;
 
     /**
      * Setup the test environment.
@@ -147,13 +148,18 @@ class StrategyTestCase extends TestCase
     {
         $limit = 180;
         $max_excluded = 0.0000001;
-        $min_excluded = -$max_excluded;
+        $min_excluded = $max_excluded;
         $limit_excluded = $max_excluded;
         [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, $limit);
-        $lower_limits = [-$limit + $limit_excluded, $min - $min_excluded];
+        if ($min == -180) {
+            return $this->faker->randomFloat(7, $max + $max_excluded, $limit - $limit_excluded);
+        }
+        if ($max == 180) {
+            return $this->faker->randomFloat(7, -$limit + $limit_excluded, $min - $min_excluded);
+        }
         return $this->faker->randomElement([
-            $this->faker->randomFloat(7, -$limit + $limit_excluded, $min + $min_excluded),
-            $this->faker->randomFloat(7, $max + $max_excluded, $limit)
+            $this->faker->randomFloat(7, -$limit + $limit_excluded, $min - $min_excluded),
+            $this->faker->randomFloat(7, $max + $max_excluded, $limit - $limit_excluded)
         ]);
     }
 
@@ -181,4 +187,14 @@ class StrategyTestCase extends TestCase
         ]);
     }
 
+    /**
+     * It returns the delta used by the strategy being tested.
+     *
+     * @return float
+     */
+    protected function getDelta(): float
+    {
+        $strategy = new $this->tested_class($this->getMocked($this->record_class));
+        return $strategy->delta;
+    }
 }

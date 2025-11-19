@@ -7,6 +7,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies\Apogee;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase;
 use MarcoConsiglio\Goniometry\Angle;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class AnomalisticStrategyTestCase extends StrategyTestCase
 {
@@ -18,7 +19,6 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->delta = new Apogee($this->getMocked(ApogeeRecord::class))->delta;
     }
 
     /**

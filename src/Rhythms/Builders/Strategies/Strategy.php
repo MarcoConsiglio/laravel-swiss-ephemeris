@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
-use MarcoConsiglio\Goniometry\Interfaces\Angle;
+use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * The abstract strategy used to build a rhythm.

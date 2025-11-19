@@ -82,12 +82,6 @@ abstract class AnomalisticTemplate extends QueryTemplate
      * @return void
      * @codeCoverageIgnore
      */
-    protected function formatHook(): void
-    {
-        // The output miss seconds sign.
-        $this->output->transform(function($row) {
-            return $row."\"";
-        });
-    }
+    protected function formatHook(): void {}
 
 }

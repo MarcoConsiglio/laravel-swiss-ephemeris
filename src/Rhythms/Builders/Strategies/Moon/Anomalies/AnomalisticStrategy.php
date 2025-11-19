@@ -29,7 +29,7 @@ abstract class AnomalisticStrategy extends Strategy
      *
      * @var float $delta
      */
-    public protected(set) float $delta = 0.36 {
+    public protected(set) float $delta = 0.5 {
         get { return $this->delta; }
         set(float $value) { $this->delta = abs($value); }
     }

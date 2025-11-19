@@ -57,7 +57,7 @@ class SynodicRhythmTemplate extends QueryTemplate
         $start_date = SwissEphemerisDateTime::create($this->start_date);
         $steps = $this->getStepsNumber();
         // Warning! Changing the object format will cause errors in getMoonSynodicRhythm() method.
-        $object_format = OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDegree->value;
+        $object_format = OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::DifferentialObjectSelection->value, SinglePlanet::Sun->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::BeginDate->value, $start_date->toGregorianDate()));
@@ -84,13 +84,7 @@ class SynodicRhythmTemplate extends QueryTemplate
      *
      * @return void
      */
-    protected function formatHook(): void
-    {
-        // The output miss seconds sign.
-        $this->output->transform(function($row) {
-            return $row."\"";
-        });
-    }
+    protected function formatHook(): void {}
 
     /**
      * Parse the response.
@@ -113,8 +107,8 @@ class SynodicRhythmTemplate extends QueryTemplate
     {
         if (
             $this->datetimeFound($text, $datetime) &&
-            $this->angularValuesFound($text, $string_angle)
-        ) return [$datetime[0], $string_angle];
+            $this->decimalNumberFound($text, $decimal)
+        ) return [$datetime[0], $decimal[0]];
         else return null;
     }
 

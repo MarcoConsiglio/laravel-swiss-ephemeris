@@ -83,8 +83,9 @@ class FromArray extends Builder
 
         // Select the correct Moon ApogeeRecord where the Moon is close to its apogee.
         $this->data = collect($this->data)->filter(function ($record) {
+            /** @var ApogeeRecord $record */
             return new Apogee($record)->found();
-        })->all();
+        })->values()->all();
     }
 
     /**
