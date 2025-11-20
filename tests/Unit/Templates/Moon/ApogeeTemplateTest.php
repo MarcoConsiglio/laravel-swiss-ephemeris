@@ -20,7 +20,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 #[TestDox("The Moon\ApogeeTemplate")]
 class ApogeeTemplateTest extends TemplateTestCase
 {
-    protected string $response_file = "./tests/SwissEphemerisResponses/Moon/apogees.txt";
+    protected string $response_file = "./tests/SwissEphemerisResponses/Moon/apogees_decimal.txt";
 
     #[TestDox("is the template used to build a Moon\Apogees collection.")]
     public function test_query_template()

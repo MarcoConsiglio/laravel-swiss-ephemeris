@@ -23,9 +23,12 @@ enum OutputFormat: string {
      */
     case IntegerDateFormat = 't';
     /**
-     * Longitude formatted in degrees, minutes and seconds.
+     * Longitude formatted as degrees, minutes and seconds.
      */
     case LongitudeDegree = 'L';
+    /**
+     * Longitude formatted as decimal degrees.
+     */
     case LongitudeDecimal = 'l';
     /**
      * Longitude formatted in degrees, minutes and seconds, 
@@ -42,7 +45,13 @@ enum OutputFormat: string {
      * The longitudinal speed in decimals per day.
      */
     case DailyLongitudinalSpeedDecimal = 's';
+    /**
+     * Latitude formatted as degrees, minutes and seconds.
+     */
     case LatitudeDegree = 'B';
+    /**
+     * Latitude formatted as decimal degrees.
+     */
     case LatitudeDecimal = 'b';
     /**
      * The decimal distance in Astronomical Units.

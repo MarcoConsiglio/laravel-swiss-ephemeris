@@ -21,6 +21,7 @@ class ThirdQuarterTest extends PhaseStrategyTestCase
     {
         $this->tested_class = ThirdQuarter::class;
         $this->record_class = SynodicRhythmRecord::class;
+        $this->delta = $this->getDelta();
         parent::setUp();
     }
 

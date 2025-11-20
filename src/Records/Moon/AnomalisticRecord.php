@@ -5,7 +5,8 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * It represents an instant when the Moon is at either apogee or perigee.
+ * It represents an instant when the Moon 
+ * is at either apogee or perigee.
  */
 abstract class AnomalisticRecord
 {

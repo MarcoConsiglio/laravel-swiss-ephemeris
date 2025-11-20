@@ -38,7 +38,7 @@ class SynodicRhythmRecord
     }
 
     /**
-     * Constructs a Moon SynodicRhythmRecord.
+     * It constructs a Moon SynodicRhythmRecord.
      *
      * @param SwissEphemerisDateTime $timestamp
      * @param Angle $angular_distance

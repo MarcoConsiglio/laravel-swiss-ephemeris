@@ -32,7 +32,7 @@ class Period
     public protected(set) PeriodType $type;
 
     /**
-     * Constructs a Moon period.
+     * It constructs a Moon period.
      *
      * @param SwissEphemerisDateTime $start
      * @param SwissEphemerisDateTime $end

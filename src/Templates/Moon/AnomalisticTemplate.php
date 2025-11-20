@@ -69,9 +69,19 @@ abstract class AnomalisticTemplate extends QueryTemplate
      * with the columns name as the key.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function remapColumns(): void
     {
         $this->remapColumnsBy($this->columns);
     }
+
+    /**
+     * It formats the output before parsing it, if necessary.
+     *
+     * @return void
+     * @codeCoverageIgnore
+     */
+    protected function formatHook(): void {}
+
 }

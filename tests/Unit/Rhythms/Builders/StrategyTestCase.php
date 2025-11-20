@@ -1,18 +1,19 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
 
+use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
+use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
 
 /**
  * Test case for builder strategies.
  */
 class StrategyTestCase extends TestCase
 {
-    use WithFuzzyCondition;
+    use WithFuzzyLogic;
 
     /**
      * The strategy class name.
@@ -69,7 +70,7 @@ class StrategyTestCase extends TestCase
      *
      * @var float
      */
-    protected float $delta = 0.25;
+    protected float $delta;
 
     /**
      * Setup the test environment.
@@ -121,30 +122,79 @@ class StrategyTestCase extends TestCase
      */
     protected function getBiasedAngularDistance(float $angular_distance): float
     {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
-        return fake()->randomFloat(1, $min, $max);
+        [$min, $max] = $this->getDeltaExtremes(abs($this->delta), $angular_distance, limit: 180);
+        return $this->faker->randomFloat(7, $min, $max);
     }
 
     /**
-     * Get a random unprecise angular distance except for another biased $angular_distance. 
+     * Get a random unprecise longitude biased by a delta.
+     *
+     * @param float $longitude
+     * @return float
+     */
+    protected function getBiasedLongitude(float $longitude): float
+    {
+        [$min, $max] = $this->getDeltaExtremes(abs($this->delta), $longitude);
+        return $this->faker->randomFloat(7, $min, $max);
+    }
+
+    /**
+     * Get a random unprecise angular distance except for $angular_distance. 
      *
      * @param float $angular_distance
      * @return float
      */
     protected function getBiasedAngularDistanceExceptFor(float $angular_distance): float
     {
-        $error = 0.1;
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
-        if ($max > 180) {
-            return fake()->randomFloat(1, -180 + abs($this->delta), $min - $error);
+        $limit = 180;
+        $max_excluded = 0.0000001;
+        $min_excluded = $max_excluded;
+        $limit_excluded = $max_excluded;
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, $limit);
+        if ($min == -180) {
+            return $this->faker->randomFloat(7, $max + $max_excluded, $limit - $limit_excluded);
         }
-        if ($min < -180) {
-            return fake()->randomFloat(1, $max + $error, 180 - abs($this->delta));
+        if ($max == 180) {
+            return $this->faker->randomFloat(7, -$limit + $limit_excluded, $min - $min_excluded);
         }
-        return fake()->randomElement([
-            fake()->randomFloat(1, -180, $min - $error),
-            fake()->randomFloat(1, $max - 0.1, 180)
+        return $this->faker->randomElement([
+            $this->faker->randomFloat(7, -$limit + $limit_excluded, $min - $min_excluded),
+            $this->faker->randomFloat(7, $max + $max_excluded, $limit - $limit_excluded)
         ]);
     }
 
+    /**
+     * Get a random unprecise longitude except for $longitude. 
+     *
+     * @param float $longitude
+     * @return float
+     */
+    protected function getBiasedLongitudeExceptFor(float $longitude): float
+    {
+        $max_excluded = 0.0000001;
+        $min_excluded = -$max_excluded;
+        $full_angle_excluded = $max_excluded;
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
+        if ($max == 360) {
+            return $this->faker->randomFloat(7, 0, $min + $min_excluded);
+        }
+        if ($min == 0) {
+            return $this->faker->randomFloat(7, $max + $max_excluded, 360 - $full_angle_excluded);
+        }
+        return $this->faker->randomElement([
+            $this->faker->randomFloat(7, 0, $min + $min_excluded),
+            $this->faker->randomFloat(7, $max + $max_excluded, 360 - $full_angle_excluded)
+        ]);
+    }
+
+    /**
+     * It returns the delta used by the strategy being tested.
+     *
+     * @return float
+     */
+    protected function getDelta(): float
+    {
+        $strategy = new $this->tested_class($this->getMocked($this->record_class));
+        return $strategy->delta;
+    }
 }

@@ -74,7 +74,7 @@ class LaravelSwissEphemeris
     protected float $altitude;
 
     /**
-     * Constructs di ephemeris query based on a location and timezone.
+     * It constructs di ephemeris query based on a location and timezone.
      *
      * @param string $latitude in decimal format.
      * @param string $longitude in decimal format.
@@ -141,7 +141,8 @@ class LaravelSwissEphemeris
     public function getMoonAnomalisticRhythm(
         SwissEphemerisDateTime $start_date,
         $days = 30,
-        int $step_size = 60): AnomalisticRhythm 
+        $step_size = 60
+    ): AnomalisticRhythm 
     {
         $start_date = $this->normalizeDatetime($start_date);
         $apogees_query = new ApogeeTemplate(

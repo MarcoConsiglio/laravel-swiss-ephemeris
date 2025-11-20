@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 class Apogee extends AnomalisticStrategy
 {
     /**
-     * Constructs the ApogeeStrategy with an ApogeeRecord.
+     * It constructs the ApogeeStrategy with an ApogeeRecord.
      *
      * @param ApogeeRecord $record
      */
@@ -26,10 +26,10 @@ class Apogee extends AnomalisticStrategy
      */
     public function found(): ?ApogeeRecord
     {
-        if($this->isAbout(
-            $this->record->moon_longitude->toDecimal(2), 
-            $this->record->apogee_longitude->toDecimal(2), 
-            $this->delta)
+        if($this->isAboutAngle(
+            $this->record->moon_longitude, 
+            $this->record->apogee_longitude, 
+            $this->angular_delta)
         ) {
             return $this->record;
         }

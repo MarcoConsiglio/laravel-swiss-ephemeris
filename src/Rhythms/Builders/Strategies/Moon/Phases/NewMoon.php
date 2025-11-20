@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 class NewMoon extends PhaseStrategy
 {
     /**
-     * Constructs a NewMoon strategy with a MoonSynodicRhythmRecord.
+     * It constructs a NewMoon strategy with a MoonSynodicRhythmRecord.
      *
      * @param SynodicRhythmRecord $record
      */

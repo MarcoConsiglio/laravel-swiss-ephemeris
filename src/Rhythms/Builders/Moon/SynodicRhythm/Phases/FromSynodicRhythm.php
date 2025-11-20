@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases;
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
@@ -16,13 +16,6 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 class FromSynodicRhythm extends Builder
 {
     /**
-     * The data used to create the Phases collection.
-     *
-     * @var SynodicRhythm
-     */
-    protected SynodicRhythm $data;
-
-    /**
      * The list of Phase(s) used to filter the result.
      *
      * @var Phase[]
@@ -37,7 +30,7 @@ class FromSynodicRhythm extends Builder
     protected array $records;
     
     /**
-     * Constructs the builder with a MoonSynodicRhythm and a list of MoonPhaseType(s).
+     * It constructs the builder with a MoonSynodicRhythm and a list of MoonPhaseType(s).
      *
      * @param SynodicRhythm $synodic_rhythm
      * @param Phase[] $moon_phase_types The list of MoonPhaseType used to filter the 
@@ -79,8 +72,8 @@ class FromSynodicRhythm extends Builder
      */
     public function buildRecords()
     {
-        $collection = collect($this->data->all());
-        $this->records = $collection->transform(function ($record, $key) {
+        $collection = collect($this->data); // This prevents the original collection to extend LazyCollection.
+        $this->records = $collection->transform(function ($record) {
             /** @var SynodicRhythmRecord $record */
 
             // Obtain all the strategies necessaries to filter the records, based upon
@@ -107,6 +100,7 @@ class FromSynodicRhythm extends Builder
                 }
             }
         })->filter()->all();
+        $this->data = null; // Erase the original collection.
     }
 
     /**

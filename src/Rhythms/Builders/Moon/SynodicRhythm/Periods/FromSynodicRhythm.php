@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
@@ -13,13 +13,6 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 class FromSynodicRhythm extends Builder
 {
     /**
-     * The data used to create the collection.
-     *
-     * @var SynodicRhythm
-     */
-    protected $data;
-
-    /**
      * The builded records.
      *
      * @var Period[]
@@ -27,7 +20,7 @@ class FromSynodicRhythm extends Builder
     protected array $records = [];
 
     /**
-     * Constructs the builder with the Moon SynodicRhythm.
+     * It constructs the builder with the Moon SynodicRhythm.
      *
      * @param SynodicRhythm $data
      */
@@ -52,9 +45,8 @@ class FromSynodicRhythm extends Builder
      */
     public function buildRecords()
     {
-        /** @var \Illuminate\Support\LazyCollection $records */
+        $collection = collect($this->data->all()); // This prevents the original collection to extend LazyCollection.
         // Divide the Moon synodic rhythm in waxing and waning Moon periods.
-        $collection = collect($this->data->all());
         $this->records = $collection->chunkWhile(function ($record, $key, $chunk) {
             /** @var SynodicRhythmRecord $record */
             /** @var SynodicRhythm $chunk */

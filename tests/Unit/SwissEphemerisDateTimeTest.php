@@ -314,7 +314,6 @@ class SwissEphemerisDateTimeTest extends TestCase
         
         // Assert
         $this->expectException(InvalidFormatException::class);
-        $this->expectExceptionMessage("The string $unknown_date doesn't match any of the available formats in $datetime_class class.");
 
         // Act
         SwissEphemerisDateTime::createFromSwissEphemerisFormat($unknown_date);

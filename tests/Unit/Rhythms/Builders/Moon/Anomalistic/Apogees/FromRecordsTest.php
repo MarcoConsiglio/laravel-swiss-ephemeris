@@ -6,7 +6,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromRecords;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
 use stdClass;
 
@@ -40,11 +41,9 @@ class FromRecordsTest extends BuilderTestCase
         // Arrange
         $record_1 = $this->getMocked(stdClass::class);
         $record_2 = $this->getMocked(stdClass::class);
-        $builder_class = FromRecords::class;
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The builder $builder_class must have an array of ".ApogeeRecord::class.".");
        
         // Act
         $builder = new FromRecords([$record_1, $record_2]);

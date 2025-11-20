@@ -16,7 +16,7 @@ class ApogeeRecord extends AnomalisticRecord
     public protected(set) Angle $apogee_longitude;
 
     /**
-     * Constructs a Moon ApogeeRecord.
+     * It constructs a Moon ApogeeRecord.
      * 
      * It can be that $moon_longitude and $apogee_longitute are not close enough
      * to be considered a Moon apogee. In order to have real apogees you should

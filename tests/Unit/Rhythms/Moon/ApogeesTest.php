@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;

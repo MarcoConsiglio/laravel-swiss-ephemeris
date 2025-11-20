@@ -8,7 +8,7 @@ use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 
 /**
@@ -31,10 +31,7 @@ class PerigeeTemplate extends AnomalisticTemplate
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void
-    {
-
-    }
+    protected function prepareArguments(): void {}
 
     /**
      * Prepares flags for the swetest executable.
@@ -67,6 +64,13 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
+     * It formats the output before parsing it, if necessary.
+     *
+     * @return void
+     */
+    protected function formatHook(): void {}
+
+    /**
      * Parse the response.
      *
      * @return void
@@ -89,13 +93,13 @@ class PerigeeTemplate extends AnomalisticTemplate
         if (
             $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
             $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal_number)
-        ) return [$astral_object[0], $datetime[0], $decimal_number[0]];
+            $this->decimalNumberFound($text, $decimal)
+        ) return [$astral_object[0], $datetime[0], $decimal[0]];
         else return null;
     }
 
     /**
-     * Constructs the Apogee collection.
+     * It constructs the Apogee collection.
      *
      * @return void
      */

@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 class Perigee extends AnomalisticStrategy
 {
     /**
-     * Constructs the PerigeeStrategy with a PerigeeRecord.
+     * It constructs the PerigeeStrategy with a PerigeeRecord.
      *
      * @param PerigeeRecord $record
      */
@@ -26,10 +26,10 @@ class Perigee extends AnomalisticStrategy
      */
     public function found(): ?PerigeeRecord
     {
-        if($this->isAbout(
-            $this->record->moon_longitude->toDecimal(2), 
-            $this->record->perigee_longitude->toDecimal(2), 
-            $this->delta)
+        if($this->isAboutAngle(
+            $this->record->moon_longitude, 
+            $this->record->perigee_longitude, 
+            $this->angular_delta)
         ) {
             return $this->record;
         }

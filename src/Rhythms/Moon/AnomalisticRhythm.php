@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollect
 class AnomalisticRhythm extends Collection
 {
     /**
-     * Constructs the collection starting from
+     * It constructs the collection starting from
      * Moon Apogees and Moon Perigees collections.
      *
      * @param FromCollections $builder

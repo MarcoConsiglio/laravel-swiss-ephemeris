@@ -8,6 +8,7 @@ use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
@@ -43,10 +44,7 @@ class SynodicRhythmTemplate extends QueryTemplate
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void
-    {
-
-    }
+    protected function prepareArguments(): void {}
 
     /**
     /**
@@ -82,6 +80,13 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
+     * It formats the output before parsing it, if necessary.
+     *
+     * @return void
+     */
+    protected function formatHook(): void {}
+
+    /**
      * Parse the response.
      *
      * @return void
@@ -102,8 +107,8 @@ class SynodicRhythmTemplate extends QueryTemplate
     {
         if (
             $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal_number)
-        ) return [$datetime[0], $decimal_number[0]];
+            $this->decimalNumberFound($text, $decimal)
+        ) return [$datetime[0], $decimal[0]];
         else return null;
     }
 
@@ -112,14 +117,15 @@ class SynodicRhythmTemplate extends QueryTemplate
      * with the columns name as the key.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function remapColumns(): void
     {
-        $this->remapColumnsBy($this->columns);           
+        $this->remapColumnsBy($this->columns);    
     }
 
     /**
-     * Constructs the SynodicRhythm collection.
+     * It constructs the SynodicRhythm collection.
      *
      * @return void
      */

@@ -4,11 +4,23 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic\
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies\Apogee;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase;
 use MarcoConsiglio\Goniometry\Angle;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class AnomalisticStrategyTestCase extends StrategyTestCase
 {
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
     /**
      * Gets a biased Angle with $longitude.
      *
@@ -17,7 +29,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
      */
     private function getLongitude(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getBiasedAngularDistance($longitude));
+        return Angle::createFromDecimal($this->getBiasedLongitude($longitude));
     }
 
     /**
@@ -28,7 +40,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
      */
     private function getLongitudeExceptFor(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor($longitude));
+        return Angle::createFromDecimal($this->getBiasedLongitudeExceptFor($longitude));
     }
 
     /**
@@ -100,7 +112,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Constructs the strategy to test.
+     * It constructs the strategy to test.
      *
      * @param string $strategy
      * @param ApogeeRecord|PerigeeRecord $record

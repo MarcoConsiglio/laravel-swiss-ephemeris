@@ -3,8 +3,8 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 
 use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromArray;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\FromRecords;
 
 /**
  * A collection of Moon ApogeeRecord instances.
@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromRecords;
 class Perigees extends Collection
 {
     /**
-     * Constructs a Moon Perigees collection from an array of raw ephemeris.
+     * It constructs a Moon Perigees collection from an array of raw ephemeris.
      *
      * @param FromArray|FromRecords $builder
      */

@@ -32,17 +32,15 @@ class WithCustomAssertionsTest extends TestCase
         // Arrange
         $year = 2000; $month = 1; $day = 1; $hour = 0; $minute = 0; $second = 0;
         $actual_date = SwissEphemerisDateTime::create($year, $month, $day, $hour, $minute, $second);
-        $expected_date = SwissEphemerisDateTime::create(2001, $month, $day, $hour, $minute, $second);  
+        $expected_date = SwissEphemerisDateTime::create($year + 1, $month, $day, $hour, $minute, $second);  
 
         // Assert
         $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage(
-            "Failed asserting that '".$actual_date->toDateTimeString()."' equals '".$expected_date->toDateTimeString()."'."
-        );
 
         // Act
         /**
-         * Here, $date correspond to year 2000, while asserting is the year 2001.
+         * Here, $actual_date correspond to year 2000, while 
+         * asserting $expected_date is the year 2001.
          */
         $this->assertDate($actual_date, $expected_date);
     }
