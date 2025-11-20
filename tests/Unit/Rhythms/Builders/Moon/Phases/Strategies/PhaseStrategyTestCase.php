@@ -18,7 +18,8 @@ class PhaseStrategyTestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistance(0))
+            Angle::createFromDecimal($this->getBiasedAngularDistance(0)),
+            60
         );
     }
 
@@ -31,7 +32,8 @@ class PhaseStrategyTestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistance(90))
+            Angle::createFromDecimal($this->getBiasedAngularDistance(90)),
+            60
         );
     }
 
@@ -47,12 +49,14 @@ class PhaseStrategyTestCase extends StrategyTestCase
         if ($positive) {
             return new SynodicRhythmRecord(
                 $this->date, 
-                Angle::createFromDecimal($this->getBiasedAngularDistance(180))
+                Angle::createFromDecimal($this->getBiasedAngularDistance(180)),
+                60
             );
         } else
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistance(-180))
+            Angle::createFromDecimal($this->getBiasedAngularDistance(-180)),
+            60
         );
     }
 
@@ -65,7 +69,8 @@ class PhaseStrategyTestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistance(-90))
+            Angle::createFromDecimal($this->getBiasedAngularDistance(-90)),
+            60
         );
     }
 
@@ -78,7 +83,8 @@ class PhaseStrategyTestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(0))
+            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(0)),
+            60
         );
     }
 
@@ -91,7 +97,8 @@ class PhaseStrategyTestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(90))
+            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(90)),
+            60
         );
     }
 
@@ -105,7 +112,8 @@ class PhaseStrategyTestCase extends StrategyTestCase
         $angle_value = $this->faker->randomElement([-180, +180]);
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor($angle_value))
+            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor($angle_value)),
+            60
         );
     }
 
@@ -118,7 +126,8 @@ class PhaseStrategyTestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(-90))
+            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(-90)),
+            60
         );
     }
 
@@ -132,6 +141,6 @@ class PhaseStrategyTestCase extends StrategyTestCase
     protected function makeStrategy(SynodicRhythmRecord $record): BuilderStrategy
     {
         $class = $this->tested_class;
-        return new $class($record);
+        return new $class($record, 60);
     }
 }

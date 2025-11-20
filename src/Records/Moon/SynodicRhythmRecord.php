@@ -26,6 +26,14 @@ class SynodicRhythmRecord
     public protected(set) Angle $angular_distance;
 
     /**
+     * The daily speed of the difference between the Moon and the Sun
+     * expressed in decimal degrees.
+     * 
+     * @var float
+     */
+    public protected(set) float $daily_speed;
+
+    /**
      * Angular distance percentage.
      *
      * @var int|float
@@ -41,12 +49,14 @@ class SynodicRhythmRecord
      * It constructs a Moon SynodicRhythmRecord.
      *
      * @param SwissEphemerisDateTime $timestamp
-     * @param Angle $angular_distance
+     * @param Angle $angular_distance The angular difference between the Moon and the Sun.
+     * @param float $daily_speed The daily speed expressed in decimal degrees.
      */
-    public function __construct(SwissEphemerisDateTime $timestamp, Angle $angular_distance)
+    public function __construct(SwissEphemerisDateTime $timestamp, Angle $angular_distance, float $daily_speed)
     {
         $this->timestamp = $timestamp;
         $this->angular_distance = $angular_distance;
+        $this->daily_speed = $daily_speed;
     }
 
     /**

@@ -35,14 +35,17 @@ class FromArrayTest extends BuilderTestCase
         parent::setUp();
         $t1 = SwissEphemerisDateTime::create();
         $t2 = $t1->copy()->addHour();
+        $limit = 180;
         $this->data = [
             0 => [
                 "timestamp" => $t1->toGregorianTT(),
-                "angular_distance" => fake()->randomFloat(1, -360, 360)
+                "angular_distance" => $this->faker->randomFloat(7, -$limit, $limit),
+                "daily_speed" => $this->faker->randomFloat(7, 10, 13.3333333)
             ],
             1 => [
                 "timestamp" => $t2->toGregorianTT(),
-                "angular_distance" => fake()->randomFloat(1, -360, 360)
+                "angular_distance" => $this->faker->randomFloat(7, -$limit, $limit),
+                "daily_speed" => $this->faker->randomFloat(7, 10, 13.3333333)
             ]
         ];
     }
@@ -67,7 +70,7 @@ class FromArrayTest extends BuilderTestCase
             $this->iterableMustContains("array", $record_class)
         );
         $this->assertCount(count($this->data), $synodic_rhythm_records, 
-            "The $builder_class builder must produce the same ammount of records as the input."
+            "The $builder_class builder must produce the same ammount of records as the array input."
         );
     }
 
@@ -97,6 +100,24 @@ class FromArrayTest extends BuilderTestCase
          */
         // Arrange
         unset($this->data[0]["angular_distance"]);
+        $builder_class = $this->getBuilderClass();
+
+        // Assert
+        $this->expectException(InvalidArgumentException::class);
+
+        // Act
+        $builder = new $builder_class($this->data);
+        $builder->validateData();
+    }
+
+    #[TestDox("require the \"daily_speed\" column")]
+    public function test_from_array_builder_wants_daily_speed_column()
+    {   
+        /**
+         * Missing key "angular_distance"
+         */
+        // Arrange
+        unset($this->data[0]["daily_speed"]);
         $builder_class = $this->getBuilderClass();
 
         // Assert

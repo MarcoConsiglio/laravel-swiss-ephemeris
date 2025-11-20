@@ -26,10 +26,10 @@ class FullMoon extends PhaseStrategy
      */
     public function found(): ?SynodicRhythmRecord
     {
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), -180, $this->delta)) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), -180, $this->calculateDelta())) {
             return $this->record;
         }
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), 180, $this->delta)) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), 180, $this->calculateDelta())) {
             return $this->record;
         }
         return null;

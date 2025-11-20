@@ -19,13 +19,22 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 class SynodicRhythm extends Collection
 {
     /**
+     * The sampling rate of the ephemeris expressed in minutes.
+     * 
+     * @var int
+     */
+    public protected(set) int $sampling_rate;
+
+    /**
      * It constructs a Moon SynodicRhythm.
      *
      * @param FromArray|FromRecords $items
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
      */
-    public function __construct(FromArray|FromRecords $builder)
+    public function __construct(FromArray|FromRecords $builder, int $sampling_rate)
     {
         $this->items = $builder->fetchCollection(); 
+        $this->sampling_rate = $sampling_rate;
     }
 
     /**

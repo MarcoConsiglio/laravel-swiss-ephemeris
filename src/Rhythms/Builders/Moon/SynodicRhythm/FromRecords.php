@@ -27,7 +27,7 @@ class FromRecords extends Builder
      *
      * @return void
      * @throws \InvalidArgumentException if at least one item is 
-     * different than SynodicRhythmRecord or no record is present.
+     * different than SynodicRhythmRecord type or no record is present.
      */
     protected function validateData()
     {

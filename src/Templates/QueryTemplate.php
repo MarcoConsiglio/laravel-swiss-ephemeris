@@ -105,10 +105,12 @@ abstract class QueryTemplate
      * a MoonSynodicRhythm object.
      *
      * @param SwissEphemerisDateTime $start_date
-     * @param integer $days
-     * @param integer $step_size
-     * @param Exec|DryRunner|FakeRunner|null|null $shell
-     * @param Command|null $command
+     * @param integer $days The length of the requested ephemeris interval.
+     * @param integer $step_size The sampling rate of the ephemeris expressed in minutes.
+     * @param Exec|DryRunner|FakeRunner|null $shell The shell used to call the "swetest" executable.
+     * Do not use this parameter unless for testing purposes.
+     * @param Command|null $command The command to be executed.
+     * This parameter is useless and it will be deprecated.
      */
     public function __construct(
         SwissEphemerisDateTime $start_date, 
@@ -427,5 +429,10 @@ abstract class QueryTemplate
     {
         return preg_match($regex, $text, $match);       
     }
+
+    /**
+     * It returns the columns names used by the concrete template.
+     */
+    abstract static public function getColumns(): array;
 
 }

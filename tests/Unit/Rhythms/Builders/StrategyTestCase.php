@@ -66,13 +66,6 @@ class StrategyTestCase extends TestCase
     protected SwissEphemerisDateTime $date;
 
     /**
-     * A delta bias used for fuzzy conditions.
-     *
-     * @var float
-     */
-    protected float $delta;
-
-    /**
      * Setup the test environment.
      *
      * @return void
@@ -185,16 +178,5 @@ class StrategyTestCase extends TestCase
             $this->faker->randomFloat(7, 0, $min + $min_excluded),
             $this->faker->randomFloat(7, $max + $max_excluded, 360 - $full_angle_excluded)
         ]);
-    }
-
-    /**
-     * It returns the delta used by the strategy being tested.
-     *
-     * @return float
-     */
-    protected function getDelta(): float
-    {
-        $strategy = new $this->tested_class($this->getMocked($this->record_class));
-        return $strategy->delta;
     }
 }

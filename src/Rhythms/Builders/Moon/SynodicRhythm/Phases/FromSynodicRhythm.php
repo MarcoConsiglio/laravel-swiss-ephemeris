@@ -72,8 +72,9 @@ class FromSynodicRhythm extends Builder
      */
     public function buildRecords()
     {
+        $sampling_rate = $this->data->sampling_rate;
         $collection = collect($this->data); // This prevents the original collection to extend LazyCollection.
-        $this->records = $collection->transform(function ($record) {
+        $this->data = $collection->transform(function ($record) use ($sampling_rate) {
             /** @var SynodicRhythmRecord $record */
 
             // Obtain all the strategies necessaries to filter the records, based upon
@@ -94,13 +95,12 @@ class FromSynodicRhythm extends Builder
             /** @var string $strategy */
             foreach ($strategies as $strategy) {
                 /** @var PhaseStrategy $a_strategy */
-                $a_strategy = new $strategy($record);
+                $a_strategy = new $strategy($record, $sampling_rate);
                 if ($record_found = $a_strategy->found()) {
                     return new PhaseRecord($record_found->timestamp, Phase::getCorrespondingPhase($strategy));
                 }
             }
         })->filter()->all();
-        $this->data = null; // Erase the original collection.
     }
 
     /**
@@ -111,6 +111,6 @@ class FromSynodicRhythm extends Builder
     public function fetchCollection(): array
     {
         if (!$this->builded) $this->buildRecords();
-        return $this->records;
+        return $this->data;
     }
 }
