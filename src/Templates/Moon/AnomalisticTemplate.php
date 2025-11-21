@@ -26,11 +26,11 @@ abstract class AnomalisticTemplate extends QueryTemplate
 
     /**
      * The column names to be given to the columns of 
-     * the ephemeris answer.
+     * the ephemeris response.
      *
      * @var array
      */
-    protected array $columns = [
+    protected static array $columns = [
         0 => "astral_object",
         1 => "timestamp",
         2 => "longitude"
@@ -69,12 +69,8 @@ abstract class AnomalisticTemplate extends QueryTemplate
      * with the columns name as the key.
      *
      * @return void
-     * @codeCoverageIgnore
      */
-    protected function remapColumns(): void
-    {
-        $this->remapColumnsBy($this->columns);
-    }
+    abstract protected function remapColumns(): void;
 
     /**
      * It formats the output before parsing it, if necessary.
@@ -83,5 +79,14 @@ abstract class AnomalisticTemplate extends QueryTemplate
      * @codeCoverageIgnore
      */
     protected function formatHook(): void {}
+
+
+    /**
+     * It returns the columns names used by the Moon AnomalisticTemplate.
+     */
+    static public function getColumns(): array
+    {
+        return static::$columns;
+    }
 
 }

@@ -8,7 +8,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder as BuilderInterface;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -42,11 +41,13 @@ class FromRecordsTest extends BuilderTestCase
         $this->data = [
             0 => [
                 "timestamp" => $t1->toGregorianTT(),
-                "angular_distance" => $this->faker->randomFloat(1, -360, 360)
+                "angular_distance" => (string) $this->faker->randomFloat(7, -180, 180),
+                "daily_speed" => (string) $this->faker->randomFloat(7, 10, 14)
             ],
             1 => [
                 "timestamp" => $t2->toGregorianTT(),
-                "angular_distance" => $this->faker->randomFloat(1, -360, 360)
+                "angular_distance" => (string) $this->faker->randomFloat(7, -180, 180),
+                "daily_speed" => (string) $this->faker->randomFloat(7, 10, 14)
             ]
         ];
     }
@@ -62,7 +63,8 @@ class FromRecordsTest extends BuilderTestCase
         foreach ($this->data as $item) {
             $records[] = new SynodicRhythmRecord(
                 SwissEphemerisDateTime::createFromSwissEphemerisFormat($item["timestamp"]),
-                Angle::createFromDecimal((float) $item["angular_distance"])
+                Angle::createFromDecimal((float) $item["angular_distance"]),
+                (float) $item["daily_speed"]
             );
         }
         

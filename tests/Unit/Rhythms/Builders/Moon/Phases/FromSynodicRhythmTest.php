@@ -40,17 +40,21 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $angle_2 = Angle::createFromDecimal(89.7644741);
         $angle_3 = Angle::createFromDecimal(-179.9831740);
         $angle_4 = Angle::createFromDecimal(-90.0499896);
-        $new_moon_record = new SynodicRhythmRecord($date_1, $angle_1);
-        $first_quarter_record = new SynodicRhythmRecord($date_2, $angle_2);
-        $full_moon_record = new SynodicRhythmRecord($date_3, $angle_3);
-        $third_quarter_record = new SynodicRhythmRecord($date_4, $angle_4);
+        $daily_speed_1 = $this->faker->randomFloat(7, 10, 14);
+        $daily_speed_2 = $this->faker->randomFloat(7, 10, 14);
+        $daily_speed_3 = $this->faker->randomFloat(7, 10, 14);
+        $daily_speed_4 = $this->faker->randomFloat(7, 10, 14);
+        $new_moon_record = new SynodicRhythmRecord($date_1, $angle_1, $daily_speed_1);
+        $first_quarter_record = new SynodicRhythmRecord($date_2, $angle_2, $daily_speed_2);
+        $full_moon_record = new SynodicRhythmRecord($date_3, $angle_3, $daily_speed_3);
+        $third_quarter_record = new SynodicRhythmRecord($date_4, $angle_4, $daily_speed_4);
         $synodic_rhythm_builder = new FromRecords([
             $new_moon_record,
             $first_quarter_record,
             $full_moon_record,
             $third_quarter_record
         ]);
-        $synodic_rhythm = new SynodicRhythm($synodic_rhythm_builder);
+        $synodic_rhythm = new SynodicRhythm($synodic_rhythm_builder, 60 /* minutes */);
 
         // Act
         /** @var SynodicRhythm $synodic_rhythm */

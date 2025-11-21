@@ -8,6 +8,33 @@ use MarcoConsiglio\Goniometry\Angle;
 
 class PhaseStrategyTestCase extends StrategyTestCase
 {
+    /**
+     * The angular neighborhood within which to accept a record.
+     *
+     * @var float
+     */
+    protected float $delta;
+
+    /**
+     * A fake daily speed of the Moon expressed in decimal degrees.
+     *
+     * @var float
+     */
+    protected float $daily_speed;
+
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+        // Fake daily speed of the Moon.
+        $this->daily_speed = $this->faker->randomFloat(7, 10, 14);
+        // Hourly speed is used as an angle to decide if accept or discard the record.
+        $this->delta = $this->daily_speed / 24;
+    }
 
     /**
      * Gets a new moon record.
@@ -19,7 +46,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
         return new SynodicRhythmRecord(
             $this->date, 
             Angle::createFromDecimal($this->getBiasedAngularDistance(0)),
-            60
+            $this->daily_speed
         );
     }
 
@@ -33,7 +60,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
         return new SynodicRhythmRecord(
             $this->date, 
             Angle::createFromDecimal($this->getBiasedAngularDistance(90)),
-            60
+            $this->daily_speed
         );
     }
 
@@ -50,13 +77,13 @@ class PhaseStrategyTestCase extends StrategyTestCase
             return new SynodicRhythmRecord(
                 $this->date, 
                 Angle::createFromDecimal($this->getBiasedAngularDistance(180)),
-                60
+                $this->daily_speed
             );
         } else
         return new SynodicRhythmRecord(
             $this->date, 
             Angle::createFromDecimal($this->getBiasedAngularDistance(-180)),
-            60
+            $this->daily_speed
         );
     }
 
@@ -70,7 +97,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
         return new SynodicRhythmRecord(
             $this->date, 
             Angle::createFromDecimal($this->getBiasedAngularDistance(-90)),
-            60
+            $this->daily_speed
         );
     }
 
@@ -84,7 +111,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
         return new SynodicRhythmRecord(
             $this->date, 
             Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(0)),
-            60
+            $this->daily_speed
         );
     }
 
@@ -98,7 +125,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
         return new SynodicRhythmRecord(
             $this->date, 
             Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(90)),
-            60
+            $this->daily_speed
         );
     }
 
@@ -113,7 +140,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
         return new SynodicRhythmRecord(
             $this->date, 
             Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor($angle_value)),
-            60
+            $this->daily_speed
         );
     }
 
@@ -127,7 +154,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
         return new SynodicRhythmRecord(
             $this->date, 
             Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(-90)),
-            60
+            $this->daily_speed
         );
     }
 
@@ -141,6 +168,6 @@ class PhaseStrategyTestCase extends StrategyTestCase
     protected function makeStrategy(SynodicRhythmRecord $record): BuilderStrategy
     {
         $class = $this->tested_class;
-        return new $class($record, 60);
+        return new $class($record, 60 /* minutes */);
     }
 }

@@ -24,6 +24,13 @@ abstract class PhaseStrategy extends Strategy
     protected int $sampling_rate;
 
     /**
+     * The angular neighborhood within which to accept a record.
+     *
+     * @var float
+     */
+    public protected(set) float $delta;
+
+    /**
      * It constructs a FirstQuarter strategy with a Moon SynodicRhythmRecord.
      *
      * @param SynodicRhythmRecord $record
@@ -33,6 +40,7 @@ abstract class PhaseStrategy extends Strategy
     {
         $this->record = $record;
         $this->sampling_rate = $sampling_rate;
+        $this->delta = $this->calculateDelta();
     }
 
     /**
@@ -53,6 +61,6 @@ abstract class PhaseStrategy extends Strategy
      */
     protected function calculateDelta(): float
     {
-        return ($this->record->daily_speed / (1440 /* minutes */ / $this->sampling_rate)) / 2;
+        return ($this->record->daily_speed / (1440 /* minutes */ / $this->sampling_rate));
     }
 }

@@ -21,7 +21,7 @@ class SynodicRhythmTemplate extends QueryTemplate
 {
     /**
      * The column names to be given to the columns of 
-     * the ephemeris answer.
+     * the ephemeris response.
      *
      * @var array
      */
@@ -118,11 +118,14 @@ class SynodicRhythmTemplate extends QueryTemplate
     {
         $differential_longitude = 0;
         $daily_speed = 1;
+        $decimal = [];
         if (
             $this->datetimeFound($text, $datetime) &&
             $this->decimalNumberFound($text, $decimal)
-        ) return [$datetime[0], $decimal[$differential_longitude], $decimal[$daily_speed]];
-        else return null;
+        ) {
+            $decimal = $decimal[0]; 
+            return [$datetime[0], $decimal[$differential_longitude], $decimal[$daily_speed]];
+        } else return null;
     }
 
     /**
@@ -134,7 +137,7 @@ class SynodicRhythmTemplate extends QueryTemplate
      */
     protected function remapColumns(): void
     {
-        $this->remapColumnsBy($this->columns);    
+        $this->remapColumnsBy($this->getColumns());    
     }
 
     /**

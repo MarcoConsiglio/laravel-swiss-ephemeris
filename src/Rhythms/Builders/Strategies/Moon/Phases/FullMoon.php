@@ -10,16 +10,6 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 class FullMoon extends PhaseStrategy
 {
     /**
-     * Construct a FullMoon strategy with a MoonSynodicRhythmRecord.
-     *
-     * @param SynodicRhythmRecord $record
-     */
-    public function __construct(SynodicRhythmRecord $record)
-    {
-        $this->record = $record;
-    }
-
-    /**
      * Return the record only if its angular_distance is about +/-180°.
      *
      * @return SynodicRhythmRecord|null

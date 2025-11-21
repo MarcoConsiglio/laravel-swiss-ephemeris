@@ -19,11 +19,9 @@ class PerigeeStrategyTest extends AnomalisticStrategyTestCase
      */
     public function setUp(): void
     {
+        parent::setUp();
         $this->tested_class = Perigee::class;
         $this->record_class = PerigeeRecord::class;
-        $strategy = new $this->tested_class($this->getMocked($this->record_class));
-        $this->delta = $strategy->delta;
-        parent::setUp();
     }
 
     #[TestDox("can find a Moon perigee.")]

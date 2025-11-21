@@ -17,14 +17,28 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
  */
 class ApogeeTemplate extends AnomalisticTemplate
 {
+    
     /**
      * The astral_object that will be built with the requested 
      * ephemeris.
-     *
-     * @var Apogees
-     */
+    *
+    * @var Apogees
+    */
     protected Apogees $object;
-
+    
+    // /**
+    //  * The column names to be given to the columns of 
+    //  * the ephemeris response.
+    //  *
+    //  * @var array
+    //  */
+    // protected static array $columns = [
+    //     0 => "astral_object",
+    //     1 => "moon_longitude",
+    //     2 => "apogee_longitude",
+    //     // 2 => "daily_speed"
+    // ];
+    
     /**
      * Prepares arguments for the swetest executable.
      *
@@ -127,5 +141,16 @@ class ApogeeTemplate extends AnomalisticTemplate
     {
         if (!$this->completed) $this->query();
         return $this->fetchObject();
+    }
+
+    /**
+     * Remap the output in an associative array, 
+     * with the columns name as the key.
+     *
+     * @return void
+     */
+    protected function remapColumns(): void
+    {
+        $this->remapColumnsBy($this->getColumns());
     }
 }

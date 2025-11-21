@@ -393,7 +393,7 @@ abstract class QueryTemplate
      */
     protected function decimalNumberFound(string $text, &$match): int|false
     {
-        return preg_match(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
+        return preg_match_all(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
     }
 
     /**

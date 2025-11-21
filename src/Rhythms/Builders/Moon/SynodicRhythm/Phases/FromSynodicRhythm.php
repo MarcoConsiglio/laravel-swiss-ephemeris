@@ -28,6 +28,13 @@ class FromSynodicRhythm extends Builder
      * @var array
      */
     protected array $records;
+
+    /**
+     * The sampling rate of the ephemeris expressed in minutes.
+     *
+     * @var integer
+     */
+    protected int $sampling_rate;
     
     /**
      * It constructs the builder with a MoonSynodicRhythm and a list of MoonPhaseType(s).
@@ -35,12 +42,14 @@ class FromSynodicRhythm extends Builder
      * @param SynodicRhythm $synodic_rhythm
      * @param Phase[] $moon_phase_types The list of MoonPhaseType used to filter the 
      * the result of the builder. The builder needs at least one MoonPhaseType.
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
      * @throws \InvalidArgumentException when at least one element of $moon_phase_types is not a MoonPhaseType.
      */
-    public function __construct(SynodicRhythm $synodic_rhythm, array $moon_phases)
+    public function __construct(SynodicRhythm $synodic_rhythm, array $moon_phases, int $sampling_rate)
     {
         $this->data = $synodic_rhythm;  
         $this->moon_phases = $moon_phases;
+        $this->sampling_rate = $sampling_rate;
         $this->validateData();
     }
 

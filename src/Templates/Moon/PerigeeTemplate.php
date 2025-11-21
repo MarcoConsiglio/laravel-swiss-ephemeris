@@ -25,6 +25,19 @@ class PerigeeTemplate extends AnomalisticTemplate
      */
     protected Perigees $object;
 
+    // /**
+    //  * The column names to be given to the columns of 
+    //  * the ephemeris response.
+    //  *
+    //  * @var array
+    //  */
+    // protected static array $columns = [
+    //     0 => "astral_object",
+    //     1 => "moon_longitude",
+    //     2 => "perigee_longitude",
+    //     // 2 => "daily_speed"
+    // ];
+
     /**
      * Prepares arguments for the swetest executable.
      *
@@ -127,5 +140,16 @@ class PerigeeTemplate extends AnomalisticTemplate
     {
         if (!$this->completed) $this->query();
         return $this->fetchObject();
+    }
+
+    /**
+     * Remap the output in an associative array, 
+     * with the columns name as the key.
+     *
+     * @return void
+     */
+    protected function remapColumns(): void
+    {
+        $this->remapColumnsBy($this->getColumns());
     }
 }
