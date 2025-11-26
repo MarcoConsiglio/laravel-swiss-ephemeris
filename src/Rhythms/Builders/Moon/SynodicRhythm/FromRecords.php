@@ -11,14 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 class FromRecords extends Builder
 {
     /**
-     * A list of Moon SynodicRhythmRecord instances.
-     *
-     * @var SynodicRhythmRecord[]
-     */
-    protected array $data;
-
-    /**
-     * Constructs the builder.
+     * It constructs the builder.
      *
      * @param array $data A list of MoonSynodicRecord(s).
      * @throws \InvalidArgumentException if at least one item is not a Moon SynodicRhythmRecord.
@@ -33,19 +26,13 @@ class FromRecords extends Builder
      * Validates data.
      *
      * @return void
-     * @throws \InvalidArgumentException if at least one item is different than SynodicRhythmRecord.
+     * @throws \InvalidArgumentException if at least one item is 
+     * different than SynodicRhythmRecord type or no record is present.
      */
     protected function validateData()
     {
-        $this_class = self::class;
-        $collection = collect($this->data);
-        $collection->filter(function ($item) use ($this_class){
-            if (!$item instanceof SynodicRhythmRecord) {
-                throw new InvalidArgumentException(
-                    "The builder $this_class must have an array of ".SynodicRhythmRecord::class."."
-                );
-            }
-        });
+        $this->checkEmptyData();
+        $this->validateRecords(SynodicRhythmRecord::class);
     }
 
     /**

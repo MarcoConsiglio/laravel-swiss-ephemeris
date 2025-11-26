@@ -47,6 +47,6 @@ class FullMoonTest extends PhaseStrategyTestCase
         // Assert
         $this->assertRecordFound($positive_record_180, $actual_positive_record_180);
         $this->assertRecordFound($negative_record_180, $actual_negative_record_180);
-        $this->assertRecordNotFound($actual_record_non_180);
+        $this->assertRecordNotFound($actual_record_non_180); 
     }
 }

@@ -9,8 +9,8 @@ use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollections;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromRecords as ApogeesBuilder;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees\FromRecords as PerigeesBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromRecords as ApogeesBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\FromRecords as PerigeesBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -37,10 +37,10 @@ class FromCollectionsTest extends BuilderTestCase
         $d4 = $d3->copy()->addMonth(3);
         /** @var Angle&MockObject $a1 */
         $a1 = $this->getMocked(Angle::class);
-        $apogee_1 = new ApogeeRecord($d1, $a1, $a1);
-        $perigee_1 = new PerigeeRecord($d2, $a1, $a1);
-        $apogee_2 = new ApogeeRecord($d3, $a1, $a1);
-        $perigee_2 = new PerigeeRecord($d4, $a1, $a1);
+        $apogee_1 = new ApogeeRecord($d1, $a1, $a1, $this->getRandomDailySpeed());
+        $perigee_1 = new PerigeeRecord($d2, $a1, $a1, $this->getRandomDailySpeed());
+        $apogee_2 = new ApogeeRecord($d3, $a1, $a1, $this->getRandomDailySpeed());
+        $perigee_2 = new PerigeeRecord($d4, $a1, $a1, $this->getRandomDailySpeed());
         $apogees_collection = new Apogees(new ApogeesBuilder([$apogee_1, $apogee_2]));
         $perigees_collection = new Perigees(new PerigeesBuilder([$perigee_1, $perigee_2]));
         $builder = new FromCollections($apogees_collection, $perigees_collection);
@@ -66,5 +66,10 @@ class FromCollectionsTest extends BuilderTestCase
     protected function getBuilderClass(): string
     {
         return FromCollections::class;
+    }
+
+    protected function getRandomDailySpeed(): float
+    {
+        return $this->faker->randomFloat(7, 10, 14);
     }
 }

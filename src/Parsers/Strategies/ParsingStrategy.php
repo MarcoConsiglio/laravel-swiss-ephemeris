@@ -1,6 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Parsers\Strategies;
 
+/**
+ * It represents the parsing strategy of the raw Swiss Ephemeris output.
+ */
 abstract class ParsingStrategy implements Strategy
 {
     /**

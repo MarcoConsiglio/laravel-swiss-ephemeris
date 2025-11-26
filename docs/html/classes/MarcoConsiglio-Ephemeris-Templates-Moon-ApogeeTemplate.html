@@ -135,10 +135,8 @@ the Moon Apogees collection.</p>
 
 
 
-
-
-
-
+    
+    
 <h3 id="toc">
     Table of Contents
     <a href="classes/MarcoConsiglio-Ephemeris-Templates-Moon-ApogeeTemplate.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -189,12 +187,19 @@ the Moon Apogees collection.</p>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Templates-Moon-AnomalisticTemplate.html#method___construct">__construct()</a>
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Templates-QueryTemplate.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Construct the template in order to produce
-a Moon AnomalisticRhythm.</dd>
+a MoonSynodicRhythm object.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Templates-Moon-AnomalisticTemplate.html#method_getColumns">getColumns()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>It returns the columns names used by this template.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Templates-Moon-ApogeeTemplate.html#method_getResult">getResult()</a>
@@ -233,7 +238,7 @@ a Moon AnomalisticRhythm.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Templates/QueryTemplate.php"><a href="files/src-templates-querytemplate.html"><abbr title="src/Templates/QueryTemplate.php">QueryTemplate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">101</span>
 
     </aside>
 
@@ -250,9 +255,8 @@ a Moon AnomalisticRhythm.</dd>
     
     
 
-    
-
-    
+        
+        
 
 </article>
                     <article
@@ -272,7 +276,7 @@ a Moon AnomalisticRhythm.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Templates/QueryTemplate.php"><a href="files/src-templates-querytemplate.html"><abbr title="src/Templates/QueryTemplate.php">QueryTemplate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -289,9 +293,8 @@ a Moon AnomalisticRhythm.</dd>
     
     
 
-    
-
-    
+        
+        
 
 </article>
                     <article
@@ -311,7 +314,7 @@ a Moon AnomalisticRhythm.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Templates/QueryTemplate.php"><a href="files/src-templates-querytemplate.html"><abbr title="src/Templates/QueryTemplate.php">QueryTemplate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">91</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
@@ -328,9 +331,8 @@ a Moon AnomalisticRhythm.</dd>
     
     
 
-    
-
-    
+        
+        
 
 </article>
             </section>
@@ -349,22 +351,22 @@ a Moon AnomalisticRhythm.</dd>
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/MarcoConsiglio-Ephemeris-Templates-Moon-AnomalisticTemplate.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Ephemeris-Templates-QueryTemplate.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Templates/Moon/AnomalisticTemplate.php"><a href="files/src-templates-moon-anomalistictemplate.html"><abbr title="src/Templates/Moon/AnomalisticTemplate.php">AnomalisticTemplate.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Templates/QueryTemplate.php"><a href="files/src-templates-querytemplate.html"><abbr title="src/Templates/QueryTemplate.php">QueryTemplate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
         <p class="phpdocumentor-summary">Construct the template in order to produce
-a Moon AnomalisticRhythm.</p>
+a MoonSynodicRhythm object.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start_date</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$days</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">30</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$step_size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">60</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\AdamBrett\ShellWrapper\Runners\Exec">Exec</abbr>|<abbr title="\AdamBrett\ShellWrapper\Runners\DryRunner">DryRunner</abbr>|<abbr title="\AdamBrett\ShellWrapper\Runners\FakeRunner">FakeRunner</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$shell</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\AdamBrett\ShellWrapper\Command">Command</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$command</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start_date</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$days</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">30</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$step_size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">60</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\AdamBrett\ShellWrapper\Runners\Exec">Exec</abbr>|<abbr title="\AdamBrett\ShellWrapper\Runners\DryRunner">DryRunner</abbr>|<abbr title="\AdamBrett\ShellWrapper\Runners\FakeRunner">FakeRunner</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$shell</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\AdamBrett\ShellWrapper\Command">Command</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$command</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -373,47 +375,96 @@ a Moon AnomalisticRhythm.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$start_date</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$start_date</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$days</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">30</span>            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$days</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">30</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The length of the requested ephemeris interval.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$step_size</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">60</span>            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$step_size</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">60</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The sampling rate of the ephemeris expressed in minutes.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$shell</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\AdamBrett\ShellWrapper\Runners\Exec">Exec</abbr>|<abbr title="\AdamBrett\ShellWrapper\Runners\DryRunner">DryRunner</abbr>|<abbr title="\AdamBrett\ShellWrapper\Runners\FakeRunner">FakeRunner</abbr>|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$shell</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\AdamBrett\ShellWrapper\Runners\Exec">Exec</abbr>|<abbr title="\AdamBrett\ShellWrapper\Runners\DryRunner">DryRunner</abbr>|<abbr title="\AdamBrett\ShellWrapper\Runners\FakeRunner">FakeRunner</abbr>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The shell used to call the &quot;swetest&quot; executable.
+Do not use this parameter unless for testing purposes.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$command</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\AdamBrett\ShellWrapper\Command">Command</abbr>|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$command</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\AdamBrett\ShellWrapper\Command">Command</abbr>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The command to be executed.
+This parameter is useless and it will be deprecated.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getColumns">
+        getColumns()
+        <a href="classes/MarcoConsiglio-Ephemeris-Templates-Moon-AnomalisticTemplate.html#method_getColumns" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Templates/Moon/AnomalisticTemplate.php"><a href="files/src-templates-moon-anomalistictemplate.html"><abbr title="src/Templates/Moon/AnomalisticTemplate.php">AnomalisticTemplate.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">60</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">It returns the columns names used by this template.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getColumns</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
     
 
+        
     
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -429,7 +480,7 @@ a Moon AnomalisticRhythm.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Templates/Moon/ApogeeTemplate.php"><a href="files/src-templates-moon-apogeetemplate.html"><abbr title="src/Templates/Moon/ApogeeTemplate.php">ApogeeTemplate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">122</span>
+    <span class="phpdocumentor-element-found-in__line">137</span>
 
     </aside>
 
@@ -446,8 +497,8 @@ a Moon AnomalisticRhythm.</p>
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-Apogees.html"><abbr title="\MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees">Apogees</abbr></a></span>
@@ -578,7 +629,8 @@ a Moon AnomalisticRhythm.</p>
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Templates-Moon-AnomalisticTemplate.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Templates-QueryTemplate.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Templates-Moon-AnomalisticTemplate.html#method_getColumns">getColumns()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Templates-Moon-ApogeeTemplate.html#method_getResult">getResult()</a></li>
                                     </ul>
             </li>

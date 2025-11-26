@@ -3,14 +3,16 @@ namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use RoundingMode;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
+use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * It represent a moment of the Moon synodic rhythm.
  */
-class SynodicRhythmRecord
+class SynodicRhythmRecord extends Record
 {
+
     /**
      * The timestamp of this record.
      *
@@ -38,15 +40,17 @@ class SynodicRhythmRecord
     }
 
     /**
-     * Constructs a Moon SynodicRhythmRecord.
+     * It constructs a Moon SynodicRhythmRecord.
      *
      * @param SwissEphemerisDateTime $timestamp
-     * @param Angle $angular_distance
+     * @param Angle $angular_distance The angular difference between the Moon and the Sun.
+     * @param float $daily_speed The daily speed expressed in decimal degrees.
      */
-    public function __construct(SwissEphemerisDateTime $timestamp, Angle $angular_distance)
+    public function __construct(SwissEphemerisDateTime $timestamp, Angle $angular_distance, float $moon_daily_speed)
     {
         $this->timestamp = $timestamp;
         $this->angular_distance = $angular_distance;
+        $this->daily_speed = $moon_daily_speed;
     }
 
     /**
@@ -95,6 +99,21 @@ class SynodicRhythmRecord
     {
         $a = $another_record->timestamp == $this->timestamp;
         $b = $another_record->angular_distance == $this->angular_distance;
-        return $a && $b; 
+        $c = $another_record->daily_speed == $this->daily_speed;
+        return $a && $b && $c; 
+    }
+
+    /**
+     * It cast this record to string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return <<<TEXT
+timestamp: {$this->timestamp->toGregorianTT()}
+angular_distance: {$this->angular_distance->toDecimal()}°
+daily_speed: {$this->daily_speed}°/day
+TEXT;
     }
 }

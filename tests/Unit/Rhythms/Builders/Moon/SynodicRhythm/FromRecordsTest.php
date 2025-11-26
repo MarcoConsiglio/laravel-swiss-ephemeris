@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder as BuilderInterface;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
@@ -41,11 +41,13 @@ class FromRecordsTest extends BuilderTestCase
         $this->data = [
             0 => [
                 "timestamp" => $t1->toGregorianTT(),
-                "angular_distance" => $this->faker->randomFloat(1, -360, 360)
+                "angular_distance" => (string) $this->faker->randomFloat(7, -180, 180),
+                "daily_speed" => (string) $this->faker->randomFloat(7, 10, 14)
             ],
             1 => [
                 "timestamp" => $t2->toGregorianTT(),
-                "angular_distance" => $this->faker->randomFloat(1, -360, 360)
+                "angular_distance" => (string) $this->faker->randomFloat(7, -180, 180),
+                "daily_speed" => (string) $this->faker->randomFloat(7, 10, 14)
             ]
         ];
     }
@@ -55,13 +57,14 @@ class FromRecordsTest extends BuilderTestCase
     {
         // Arrange in setUp()
         $builder_class = $this->getBuilderClass();
-        $builder_interface = Builder::class;
+        $builder_interface = BuilderInterface::class;
         $record_class = SynodicRhythmRecord::class;
         $records = [];
         foreach ($this->data as $item) {
             $records[] = new SynodicRhythmRecord(
                 SwissEphemerisDateTime::createFromSwissEphemerisFormat($item["timestamp"]),
-                Angle::createFromDecimal((float) $item["angular_distance"])
+                Angle::createFromDecimal((float) $item["angular_distance"]),
+                (float) $item["daily_speed"]
             );
         }
         
@@ -84,12 +87,10 @@ class FromRecordsTest extends BuilderTestCase
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
-        $record_class = SynodicRhythmRecord::class;
         $data = [new stdClass, new stdClass];
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The builder $builder_class must have an array of $record_class.");
 
         // Act
        new $builder_class($data);

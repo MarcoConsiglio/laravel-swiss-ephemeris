@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
@@ -31,14 +31,15 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $record_class = SynodicRhythmRecord::class;
         $collection_class = Periods::class;
         $items_type = Period::class;
+        $daily_speed = 13.5;
         //      Mock building
         $fake_date = SwissEphemerisDateTime::create(2000);
-        $record_1 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(0.0)]);
-        $record_2 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(90.0)]);
-        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(179.0)]);
-        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(-179.0)]);
-        $record_4 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(-90)]);
-        $record_5 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(-0.0)]);
+        $record_1 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(0.0), $daily_speed]);
+        $record_2 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(90.0), $daily_speed]);
+        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(179.0), $daily_speed]);
+        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(-179.0), $daily_speed]);
+        $record_4 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(-90), $daily_speed]);
+        $record_5 = $this->getMocked($record_class, ["isWaxing"], true, [$fake_date, Angle::createFromDecimal(-0.0), $daily_speed]);
         //      Mock configuration
         $record_1->expects($this->any())->method("isWaxing")->willReturn(true);
         $record_2->expects($this->any())->method("isWaxing")->willReturn(true);
@@ -46,7 +47,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $record_4->expects($this->any())->method("isWaxing")->willReturn(false);
         $record_5->expects($this->any())->method("isWaxing")->willReturn(false);
         //      Arrange SUT
-        $rhythm = new SynodicRhythm(new FromRecords([$record_1, $record_2, $record_3, $record_4, $record_5]));
+        $rhythm = new SynodicRhythm(new FromRecords([$record_1, $record_2, $record_3, $record_4, $record_5]), 60 /* minutes */);
         
         // Act
         $builder = new $builder_class($rhythm);

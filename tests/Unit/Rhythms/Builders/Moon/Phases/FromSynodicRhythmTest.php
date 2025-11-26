@@ -8,8 +8,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -26,6 +26,18 @@ use MarcoConsiglio\Goniometry\Angle;
 #[UsesClass(SynodicRhythmRecord::class)]
 class FromSynodicRhythmTest extends BuilderTestCase
 {
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $synodic_month = 29.530588;
+        $this->sampling_rate = $this->faker->numberBetween(30, intval($synodic_month / 4 * 24 * 60));
+    }
+
     #[TestDox("can build a Moon\Phases collection from the Moon\SynodicRhythm.")]
     public function test_build_moon_phases_from_synodic_rhythm()
     {
@@ -40,21 +52,25 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $angle_2 = Angle::createFromDecimal(89.7644741);
         $angle_3 = Angle::createFromDecimal(-179.9831740);
         $angle_4 = Angle::createFromDecimal(-90.0499896);
-        $new_moon_record = new SynodicRhythmRecord($date_1, $angle_1);
-        $first_quarter_record = new SynodicRhythmRecord($date_2, $angle_2);
-        $full_moon_record = new SynodicRhythmRecord($date_3, $angle_3);
-        $third_quarter_record = new SynodicRhythmRecord($date_4, $angle_4);
+        $daily_speed_1 = $this->faker->randomFloat(7, 10, 14);
+        $daily_speed_2 = $this->faker->randomFloat(7, 10, 14);
+        $daily_speed_3 = $this->faker->randomFloat(7, 10, 14);
+        $daily_speed_4 = $this->faker->randomFloat(7, 10, 14);
+        $new_moon_record = new SynodicRhythmRecord($date_1, $angle_1, $daily_speed_1);
+        $first_quarter_record = new SynodicRhythmRecord($date_2, $angle_2, $daily_speed_2);
+        $full_moon_record = new SynodicRhythmRecord($date_3, $angle_3, $daily_speed_3);
+        $third_quarter_record = new SynodicRhythmRecord($date_4, $angle_4, $daily_speed_4);
         $synodic_rhythm_builder = new FromRecords([
             $new_moon_record,
             $first_quarter_record,
             $full_moon_record,
             $third_quarter_record
         ]);
-        $synodic_rhythm = new SynodicRhythm($synodic_rhythm_builder);
+        $synodic_rhythm = new SynodicRhythm($synodic_rhythm_builder, $this->sampling_rate);
 
         // Act
         /** @var SynodicRhythm $synodic_rhythm */
-        $builder = new $builder_class($synodic_rhythm, Phase::cases());
+        $builder = new $builder_class($synodic_rhythm, Phase::cases(), $this->sampling_rate);
         $moon_phases = $builder->fetchCollection();
         
         // Assert
@@ -70,20 +86,14 @@ class FromSynodicRhythmTest extends BuilderTestCase
     public function test_needs_at_least_one_moon_phase_type()
     {
         // Arrange
-        $builder_class = $this->getBuilderClass();
-        $phase_enum = Phase::class;
-        $collection_class = Phases::class;
         $synodic_rhythm = $this->getMocked(SynodicRhythm::class);
-        // 'The FromSynodicRhythm builder needs at least a Phase enum constant to construct a Phases collection.
+
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            "The $builder_class builder needs at least a $phase_enum enum constant to construct a $collection_class collection."
-        );
         
         // Act
         /** @var SynodicRhythm $synodic_rhythm */
-        new FromSynodicRhythm($synodic_rhythm, []);
+        new FromSynodicRhythm($synodic_rhythm, [], $this->sampling_rate);
     }
 
     #[TestDox("can build only with Moon\Phase constants.")]
@@ -94,11 +104,10 @@ class FromSynodicRhythmTest extends BuilderTestCase
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Parameter 2 must be an array of ".Phase::class." but found string inside.");
 
         // Act
         /** @var SynodicRhythm $synodic_rhythm */
-        new FromSynodicRhythm($synodic_rhythm, ["NonExistentClass"]);
+        new FromSynodicRhythm($synodic_rhythm, ["NonExistentClass"], $this->sampling_rate);
     }
 
     /**

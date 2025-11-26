@@ -2,7 +2,6 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
-use Carbon\Carbon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
@@ -25,7 +24,10 @@ class LaravelSwissEphemerisTest extends TestCase
         // Arrange in setUp()
 
         // Act
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(SwissEphemerisDateTime::create(2000));
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(SwissEphemerisDateTime::create(
+            $this->faker->numberBetween(2000, 2025),
+            $this->faker->numberBetween(1, 12)
+        ));
 
         // Assert
         $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm, 
@@ -35,7 +37,11 @@ class LaravelSwissEphemerisTest extends TestCase
                 SynodicRhythm::class
         ));
         $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm, 
-            "A MoonSynodicRhythm must contains only MoonSynodicRhythmRecord(s).");
+            $this->iterableMustContains(SynodicRhythm::class, SynodicRhythmRecord::class)    
+        );
+        $this->assertCount(720, $synodic_rhythm, 
+            "In this test, the SynodicRhythm must contain 720 SynodicRhythmRecord instances."
+        );
     }
 
     #[TestDox("can query the Moon anomalistic rhythm.")]
@@ -44,7 +50,10 @@ class LaravelSwissEphemerisTest extends TestCase
         // Arrange in setUp()
 
         // Act
-        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm(SwissEphemerisDateTime::create(2000));
+        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm(SwissEphemerisDateTime::create(
+            $this->faker->numberBetween(2000, 2025),
+            $this->faker->numberBetween(1, 12)
+        ));
 
         // Assert
         $this->assertInstanceOf(AnomalisticRhythm::class, $anomalistic_rhythm,

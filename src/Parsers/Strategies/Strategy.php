@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Parsers\Strategies;
 
 /**
- * The behaviour of a raw swiss ephemeris output parsing strategy.
+ * The behaviour of a raw Swiss Ephemeris output parsing strategy.
  */
 interface Strategy
 {

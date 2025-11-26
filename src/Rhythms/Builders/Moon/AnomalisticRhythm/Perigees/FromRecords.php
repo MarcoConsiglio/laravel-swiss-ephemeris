@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Perigees;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees;
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
@@ -11,42 +11,31 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 class FromRecords extends Builder
 {
     /**
-     * The data used to build an Apogees collection.
-     *
-     * @var array
-     */
-    protected array $data;
-
-    /**
-     * Constructs the builder with an array
+     * It constructs the builder with an array
      * of PerigeeRecord instances.
      *
-     * @param array $records
+     * @param array $data
      * @throws InvalidArgumentException if at least 
      * one element is not an PerigeeRecord.
      */
-    public function __construct(array $records)
+    public function __construct(array $data)
     {
-        $this->data = $records;
+        $this->data = $data;
         $this->validateData();
     }
+
 
     /**
      * Validates data.
      *
      * @return void
+     * @throws \InvalidArgumentException if at least one item is 
+     * different than PerigeeRecord or no record is present.
      */
     protected function validateData()
     {
-        $this_class = self::class;
-        $collection = collect($this->data);
-        $collection->filter(function ($item) use ($this_class){
-            if (!$item instanceof PerigeeRecord) {
-                throw new InvalidArgumentException(
-                    "The builder $this_class must have an array of ".PerigeeRecord::class."."
-                );
-            }
-        });
+        $this->checkEmptyData();
+        $this->validateRecords(PerigeeRecord::class);
     }
 
     /**

@@ -7,7 +7,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
@@ -45,7 +45,7 @@ class PhasesTest extends RhythmTestCase
     {
         // Arrange
         $synodic_rhythm = $this->getSynodicRhythm();
-        $phases_builder = new FromSynodicRhythm($synodic_rhythm, Phase::cases());
+        $phases_builder = new FromSynodicRhythm($synodic_rhythm, Phase::cases(), $this->sampling_rate);
         $phases = new Phases($phases_builder);
 
         // Act

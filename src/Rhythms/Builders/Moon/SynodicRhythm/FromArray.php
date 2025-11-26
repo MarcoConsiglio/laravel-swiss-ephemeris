@@ -5,6 +5,7 @@ use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
@@ -13,34 +14,30 @@ use MarcoConsiglio\Goniometry\Angle;
 class FromArray extends Builder
 {
     /**
-     * The data used to create the Moon SynodicRhythm collection.
+     * The keys the array data must have.
      *
      * @var array
      */
-    protected array $data;
+    protected array $columns;
 
     /**
-     * The raw ephemeris response.
-     *
-     * @var array
-     */
-    protected array $records = [];
-
-    /**
-     * Constructs the builder with raw data.
+     * It constructs the builder with raw data.
      *
      * @param mixed $data
-     * @throws \InvalidArgumentException if passed data is not array with "timestamp" and "angular_distance" keys.
+     * @throws InvalidArgumentException if the array data does not 
+     * have keys "timestamp" and "angular_distance" or if the array is empty.
      */
     public function __construct(array $data)
     {
         $this->data = $data;
+        $this->columns = SynodicRhythmTemplate::getColumns();
         $this->validateData();
     }
 
     /**
      * @return void
-     * @throws \InvalidArgumentException if passed data is not array with "timestamp" and "angular_distance" keys.
+     * @throws InvalidArgumentException if the array data does not 
+     * have keys "timestamp" and "angular_distance" or if the array is empty.
      */
     protected function validateData()
     {
@@ -48,14 +45,17 @@ class FromArray extends Builder
         if (empty($this->data)) {
             throw new InvalidArgumentException("The $this_class builder cannot work with an empty array.");
         }
-
+        $columns = $this->columns;
         $records = collect($this->data);
-        $records->filter(function ($value, $key) use ($this_class) {
-            if(!isset($value["timestamp"])) {
-                throw new InvalidArgumentException("The $this_class builder must have \"timestamp\" column.");    
+        $records->each(function ($value) use ($this_class, $columns) {
+            if(!isset($value[$columns[0]])) {
+                throw new InvalidArgumentException("The $this_class builder must have \"$columns[0]\" column.");    
             }
-            if(!isset($value["angular_distance"])) {
-                throw new InvalidArgumentException("The $this_class builder must have \"angular_distance\" column.");
+            if(!isset($value[$columns[1]])) {
+                throw new InvalidArgumentException("The $this_class builder must have \"$columns[1]\" column.");
+            }
+            if(!isset($value[$columns[2]])) {
+                throw new InvalidArgumentException("The $this_class builder must have \"$columns[2]\" column.");
             }
             return $value;
         });
@@ -68,13 +68,15 @@ class FromArray extends Builder
      */
     protected function buildRecords()
     {
+        $columns = $this->columns;
         $records = collect($this->data);
-        $records->transform(function ($item) {
-            $datetime = SwissEphemerisDateTime::createFromSwissEphemerisFormat($item["timestamp"]);
-            $angle = Angle::createFromDecimal((float) trim($item["angular_distance"]));
-            return new SynodicRhythmRecord($datetime, $angle);
+        $records->transform(function ($item) use ($columns) {
+            $datetime = SwissEphemerisDateTime::createFromSwissEphemerisFormat($item[$columns[0]]);
+            $angle = Angle::createFromDecimal((float) trim($item[$columns[1]]));
+            $daily_speed = (float) trim($item[$columns[2]]);
+            return new SynodicRhythmRecord($datetime, $angle, $daily_speed);
         });
-        $this->records = $records->all();
+        $this->data = $records->all();
     }
 
     /**
@@ -85,6 +87,6 @@ class FromArray extends Builder
     public function fetchCollection(): array
     {
         if (!$this->builded) $this->buildRecords();
-        return $this->records;
+        return $this->data;
     }
 }

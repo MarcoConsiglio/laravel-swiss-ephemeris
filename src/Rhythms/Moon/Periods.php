@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 
 use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Records\Moon\Period;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
 
 /**
  * A collection of Moon Period instances.
@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods\FromSynodicRhythm;
 class Periods extends Collection
 {
     /**
-     * Constructs a Periods collection from a SynodicRhythm collection.
+     * It constructs a Periods collection from a SynodicRhythm collection.
      *
      * @param FromSynodicRhythm $builder
      */

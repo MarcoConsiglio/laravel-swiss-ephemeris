@@ -1,4 +1,43 @@
 # Changelog
+## Unreleased [1.1.0-alpha] 2025-11-26
+### Added
+- The property `$daily_speed` to all classes extending `Record` class.
+- The parameter `$moon_daily_speed` in the constructor of `ApogeeRecord`, `PerigeeRecord`, `DraconicRecord` and `SynodicRhythmRecord` classes of the Moon.
+- The properties `AnomalisticStrategy::$angular_delta`.
+- The parameter `$sampling_rate` in the constructor of classes: 
+  - `MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\{`  
+&ensp;&ensp;&ensp;&ensp;`Apogees\FromArray,`  
+&ensp;&ensp;&ensp;&ensp;`Perigees\FromArray`  
+`}`
+  - `MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSynodicRhythm`
+  - `MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\{`  
+&ensp;&ensp;&ensp;&ensp;`Anomalies\Apogee`  
+&ensp;&ensp;&ensp;&ensp;`Anomalies\Perigee`  
+&ensp;&ensp;&ensp;&ensp;`Phases\PhaseStrategy`  
+`}`
+  - `MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm`
+- The method `getColumns()` to all classes extending `QueryTemplate`.
+### Changed
+- Namespace of classes 
+  `MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\{`  
+&ensp;&ensp;&ensp;&ensp;`Apogees\FromArray,`   
+&ensp;&ensp;&ensp;&ensp;`Perigees\FromArray`  
+`}` to  
+`MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\{`  
+&ensp;&ensp;&ensp;&ensp;`Apogees\FromArray,`  
+&ensp;&ensp;&ensp;&ensp;`Perigees\FromArray`  
+`}`, 
+of class  
+`MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\{`  
+&ensp;&ensp;&ensp;&ensp;`Periods\FromSynodicRhythm,`  
+&ensp;&ensp;&ensp;&ensp;`Phase\FromSynodicRhythm`  
+`}` to  
+`MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\{`  
+&ensp;&ensp;&ensp;&ensp;`Periods\FromSynodicRhythm,`  
+&ensp;&ensp;&ensp;&ensp;`Phase\FromSynodicRhythm`  
+`}`.
+- API Documentation
+
 ## [1.0.1-alpha] 2025-11-01
 ## Updated
 - API Documentation.

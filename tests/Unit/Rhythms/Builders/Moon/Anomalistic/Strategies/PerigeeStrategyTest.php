@@ -21,7 +21,6 @@ class PerigeeStrategyTest extends AnomalisticStrategyTestCase
     {
         $this->tested_class = Perigee::class;
         $this->record_class = PerigeeRecord::class;
-        $this->delta = 0.1;
         parent::setUp();
     }
 
@@ -30,7 +29,7 @@ class PerigeeStrategyTest extends AnomalisticStrategyTestCase
     {
         // Arrange
         $perigee_record = $this->getPerigeeRecord();
-        $non_perigee_record = $this->getNonPerigeeRecord(90.0);
+        $non_perigee_record = $this->getNonPerigeeRecord();
         $strategy_1 = $this->makeStrategy($perigee_record);
         $strategy_2 = $this->makeStrategy($non_perigee_record);
         //      Guard Assertions

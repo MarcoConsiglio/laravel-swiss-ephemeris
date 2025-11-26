@@ -21,7 +21,6 @@ class ApogeeStrategyTest extends AnomalisticStrategyTestCase
     {
         $this->tested_class = Apogee::class;
         $this->record_class = ApogeeRecord::class;
-        $this->delta = 0.1;
         parent::setUp();
     }
 
@@ -30,7 +29,7 @@ class ApogeeStrategyTest extends AnomalisticStrategyTestCase
     {
         // Arrange
         $apogee_record = $this->getApogeeRecord();
-        $non_apogee_record = $this->getNonApogeeRecord(90.0);
+        $non_apogee_record = $this->getNonApogeeRecord();
         $strategy_1 = $this->makeStrategy($apogee_record);
         $strategy_2 = $this->makeStrategy($non_apogee_record);
         //      Guard Assertions

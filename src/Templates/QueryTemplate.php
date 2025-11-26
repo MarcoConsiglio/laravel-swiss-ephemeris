@@ -11,6 +11,9 @@ use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Output;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
+use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 
 /**
  * The template for an ephemeris query.
@@ -102,10 +105,12 @@ abstract class QueryTemplate
      * a MoonSynodicRhythm object.
      *
      * @param SwissEphemerisDateTime $start_date
-     * @param integer $days
-     * @param integer $step_size
-     * @param Exec|DryRunner|FakeRunner|null|null $shell
-     * @param Command|null $command
+     * @param integer $days The length of the requested ephemeris interval.
+     * @param integer $step_size The sampling rate of the ephemeris expressed in minutes.
+     * @param Exec|DryRunner|FakeRunner|null $shell The shell used to call the "swetest" executable.
+     * Do not use this parameter unless for testing purposes.
+     * @param Command|null $command The command to be executed.
+     * This parameter is useless and it will be deprecated.
      */
     public function __construct(
         SwissEphemerisDateTime $start_date, 
@@ -138,6 +143,7 @@ abstract class QueryTemplate
         $this->checkWarnings();
         $this->checkNotices();
         $this->removeEmptyLines();
+        $this->formatHook();
         $this->parseOutput();
         $this->remapColumns();
         $this->buildObject();
@@ -167,6 +173,13 @@ abstract class QueryTemplate
     abstract protected function setHeader(): void;
 
     /**
+     * It formats the output before parsing it, if necessary.
+     *
+     * @return void
+     */
+    abstract protected function formatHook(): void;
+
+    /**
      * Sets whether to include debug information in the response.
      *
      * @return void
@@ -175,7 +188,7 @@ abstract class QueryTemplate
     protected function debug(): void {}
 
     /**
-     * Constructs the swetest command with the correct inputs.
+     * It constructs the swetest command with the correct inputs.
      *
      * @return void
      */
@@ -380,7 +393,30 @@ abstract class QueryTemplate
      */
     protected function decimalNumberFound(string $text, &$match): int|false
     {
-        return preg_match(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
+        $result = preg_match_all(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
+        $match = $match[0];
+        return $result;
+    }
+
+    /**
+     * Parse a string angle measure.
+     *
+     * @param string $text
+     * @param mixed $match
+     * @return integer
+     */
+    protected function angularValuesFound(string $text, &$match): int
+    {
+        $degrees_match = null;
+        $degrees_result = preg_match(Angle::DEGREES_REGEX, $text, $degrees_match);
+        $minutes_match = null;
+        $minutes_result = preg_match(Angle::MINUTES_REGEX, $text, $minutes_match);
+        $seconds_match = null;
+        $seconds_result = preg_match(Angle::SECONDS_REGEX, $text, $seconds_match);
+        if ($degrees_result == 1 && $minutes_result == 1 && $seconds_result == 1) {
+            $match = $degrees_match[0]." ".$minutes_match[0]." ".$seconds_match[0];
+            return 1;
+        } else return 0;
     }
 
     /**
@@ -395,5 +431,10 @@ abstract class QueryTemplate
     {
         return preg_match($regex, $text, $match);       
     }
+
+    /**
+     * It returns the columns names used by the concrete template.
+     */
+    abstract static public function getColumns(): array;
 
 }
