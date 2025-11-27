@@ -37,7 +37,6 @@ class PhaseRecord
         $this->type = $type;
     }
 
-
     /**
      * It cast this record to string.
      *
@@ -45,9 +44,11 @@ class PhaseRecord
      */
     public function __toString()
     {
+        $type = ((array) $this->type)["name"];
         return <<<TEXT
-timestamp: {$this->timestamp->toGregorianTT()}
-phase: {$this->type}
+Moon PhaseRecord
+timestamp: {$this->timestamp->toDateTimeString()}
+phase: {$type}
 TEXT;
     }
 }

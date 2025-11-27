@@ -220,4 +220,32 @@ TEXT
             RoundingMode::HalfTowardsZero
         );
     }
+
+    /**
+     * This Guard Assertion checks if the $strategy object
+     * implements the correct interface.
+     *
+     * @param object $strategy
+     * @return void
+     */
+    protected function checkStrategyImplementsInterface(object $strategy): void
+    {
+        $this->assertInstanceOf($this->strategy_interface, $strategy, 
+            $this->mustImplement($this->tested_class, $this->strategy_interface)
+        );
+    }
+
+    /**
+     * This Guard Assertion checks if the $strategy object
+     * extends the correct abstract strategy.
+     *
+     * @param object $strategy
+     * @return void
+     */
+    protected function checkStrategyExtendsAbstract(object $strategy): void
+    {
+        $this->assertInstanceOf($this->abstract_strategy, $strategy, 
+            $this->mustExtend($this->tested_class, $this->abstract_strategy)
+        );
+    }
 }

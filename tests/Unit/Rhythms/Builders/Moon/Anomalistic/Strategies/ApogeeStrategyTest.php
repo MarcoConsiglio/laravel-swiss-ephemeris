@@ -32,13 +32,8 @@ class ApogeeStrategyTest extends AnomalisticStrategyTestCase
         $non_apogee_record = $this->getNonApogeeRecord();
         $strategy_1 = $this->makeStrategy($apogee_record);
         $strategy_2 = $this->makeStrategy($non_apogee_record);
-        //      Guard Assertions
-        $this->assertInstanceOf($this->strategy_interface, $strategy_1, 
-            $this->mustImplement($this->tested_class, $this->strategy_interface)
-        );
-        $this->assertInstanceOf($this->abstract_strategy, $strategy_1, 
-            $this->mustExtend($this->tested_class, $this->abstract_strategy)
-        );
+        $this->checkStrategyImplementsInterface($strategy_1);
+        $this->checkStrategyExtendsAbstract($strategy_1);
 
         // Act
         $accepted_record = $strategy_1->found();

@@ -41,24 +41,8 @@ class FromArray extends Builder
      */
     protected function validateData()
     {
-        $this_class = self::class;
-        if (empty($this->data)) {
-            throw new InvalidArgumentException("The $this_class builder cannot work with an empty array.");
-        }
-        $columns = $this->columns;
-        $records = collect($this->data);
-        $records->each(function ($value) use ($this_class, $columns) {
-            if(!isset($value[$columns[0]])) {
-                throw new InvalidArgumentException("The $this_class builder must have \"$columns[0]\" column.");    
-            }
-            if(!isset($value[$columns[1]])) {
-                throw new InvalidArgumentException("The $this_class builder must have \"$columns[1]\" column.");
-            }
-            if(!isset($value[$columns[2]])) {
-                throw new InvalidArgumentException("The $this_class builder must have \"$columns[2]\" column.");
-            }
-            return $value;
-        });
+        $this->checkEmptyData();
+        $this->validateArrayData($this->columns);
     }
 
     /**

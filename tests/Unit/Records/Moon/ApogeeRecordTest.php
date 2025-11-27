@@ -128,10 +128,11 @@ class ApogeeRecordTest extends TestCase
         $failure_message = function (int $i, array $record_couple) {
             return <<<HEREDOC
 Checking the {$i}° case.
-"timestamp":\t\t{$record_couple[0]->timestamp->toGregorianTT()}\t\t{$record_couple[1]->timestamp->toGregorianTT()}
-"moon_longitude":\t\t{$record_couple[0]->moon_longitude->__toString()}\t\t{$record_couple[1]->moon_longitude->__toString()}
-"apogee_longitude":\t\t{$record_couple[0]->apogee_longitude->__toString()}\t\t{$record_couple[1]->apogee_longitude->__toString()}
-"daily_speed":\t\t{$record_couple[0]->daily_speed}\t\t{$record_couple[1]->daily_speed}
+First record
+$record_couple[0]
+
+Second record
+$record_couple[1]
 HEREDOC;
         };
         
@@ -150,4 +151,28 @@ HEREDOC;
             $failure_message($i, $records[$i])
         );
     }
+
+    public function test_casting_to_string()
+    {
+        // Arrange
+        $timestamp = new SwissEphemerisDateTime($this->faker->dateTimeAD());
+        $moon_longitude = Angle::createFromValues($this->faker->numberBetween(0, Angle::MAX_DEGREES));
+        $apogee_longitude = Angle::createFromValues($this->faker->numberBetween(0, Angle::MAX_DEGREES));
+        $moon_daily_speed = $this->faker->randomFloat(PHP_FLOAT_DIG, 10, 14);
+        $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
+        $timestamp = $timestamp->toDateTimeString();
+        $moon_longitude = $moon_longitude->toDecimal();
+        $apogee_longitude = $apogee_longitude->toDecimal();
+
+        // Act & Assert
+        $this->assertEquals(<<<TEXT
+Moon ApogeeRecord
+timestamp: $timestamp
+moon_longitude: {$moon_longitude}°
+apogee_longitude: {$apogee_longitude}°
+daily_speed: {$moon_daily_speed}°/day
+TEXT,
+            (string) $record
+        );
+    }      
 }

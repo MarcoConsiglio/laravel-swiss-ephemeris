@@ -18,8 +18,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
         parent::setUp();
         // Fake daily speed of the Moon.
         $this->daily_speed = $this->faker->randomFloat(7, 10, 14);
-        $synodic_month = 29.530588;
-        $this->sampling_rate = $this->faker->numberBetween(30, intval($synodic_month / 4 * 24 * 60));
+        $this->sampling_rate = $this->faker->numberBetween(30, 1440);
         $this->delta = $this->getDelta($this->daily_speed, $this->sampling_rate);
     }
 

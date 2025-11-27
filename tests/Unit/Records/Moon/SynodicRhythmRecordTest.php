@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
+use Dom\Text;
 use RoundingMode;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -11,22 +12,13 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use Illuminate\Support\Carbon;
 
 #[TestDox("The Moon\SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]
 class SynodicRhythmRecordTest extends TestCase
 {
     use WithCustomAssertions;
-
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
 
     #[TestDox("has read-only properties \"timestamp\" which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property()
@@ -172,6 +164,36 @@ class SynodicRhythmRecordTest extends TestCase
         // Assert
         $this->assertEquals(Period::Waning, $actual_period_type_A);
         $this->assertEquals(Period::Waxing, $actual_period_type_B);
+    }
+
+    #[TestDox("can be casted to string.")]
+    public function test_casting_to_string()
+    {
+        // Arrange
+        $timestamp = Carbon::create(2000, 12, 6, 3, 25, 11);
+        $angular_distance = $this->getRandomAngularDistance();
+        $daily_speed = $this->getRandomDailySpeed();
+        $percentage = round($angular_distance->toDecimal() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
+        $record = new SynodicRhythmRecord(
+            SwissEphemerisDateTime::createFromCarbon($timestamp),
+            $angular_distance,
+            $daily_speed
+        );
+        $period = ((array) $record->getPeriodType())["name"];
+        $angular_distance = $angular_distance->toDecimal();
+        $timestamp = $timestamp->toDateTimeString();
+
+        // Act & Assert
+        $this->assertEquals(<<<TEXT
+Moon SynodicRhythmRecord
+timestamp: $timestamp
+angular_distance: {$angular_distance}°
+phase_percentage: $percentage%
+period_type: $period
+daily_speed: {$daily_speed}°/day
+TEXT,
+            (string) $record
+        );
     }
 
     protected function getTestingTimestamp($year = 0, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0, $timezone = null): SwissEphemerisDateTime

@@ -56,4 +56,27 @@ class PeriodTest extends TestCase
         $this->assertTrue($moon_period->isWaning(), $failure_message);
         $this->assertFalse($moon_period->isWaxing(), $failure_message);
     }
+
+    #[TestDox("can be casted to string.")]
+    public function test_casting_to_string()
+    {
+        // Arrange
+        $start = new SwissEphemerisDateTime($this->faker->dateTimeAD());
+        $end = new SwissEphemerisDateTime($this->faker->dateTimeAD());
+        $type = $this->faker->randomElement(PeriodType::cases());
+        $record = new Period($start, $end, $type);
+        $start = $start->toDateTimeString();
+        $end = $end->toDateTimeString();
+        $type = ((array) $type)["name"];
+
+        // Act & Assert
+        $this->assertEquals(<<<TEXT
+Moon Period
+start: {$start}
+end: {$end}
+type: {$type}
+TEXT,
+            (string) $record    
+        );
+    }
 }

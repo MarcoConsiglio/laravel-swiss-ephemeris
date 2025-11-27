@@ -64,4 +64,20 @@ class Period
     {
         return $this->type == PeriodType::Waning;
     }
+
+    /**
+     * It cast this record to string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $type = ((array) $this->type)["name"];
+        return <<<TEXT
+Moon Period
+start: {$this->start->toDateTimeString()}
+end: {$this->end->toDateTimeString()}
+type: {$type}
+TEXT;
+    }
 }

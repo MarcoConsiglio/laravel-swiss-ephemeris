@@ -8,10 +8,10 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder as BuilderInterface;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonBuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
 #[TestDox("The Moon\SynodicRhythm\FromRecords builder")]
@@ -19,61 +19,28 @@ use MarcoConsiglio\Goniometry\Angle;
 #[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
-class FromRecordsTest extends BuilderTestCase
+class FromRecordsTest extends MoonBuilderTestCase
 {
-    /**
-     * Test data.
-     *
-     * @var array
-     */
-    protected array $data;
-
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $t1 = (new SwissEphemerisDateTime)->minutes(0)->seconds(0);
-        $t2 = $t1->copy()->addHour();
-        $this->data = [
-            0 => [
-                "timestamp" => $t1->toGregorianTT(),
-                "angular_distance" => (string) $this->faker->randomFloat(7, -180, 180),
-                "daily_speed" => (string) $this->faker->randomFloat(7, 10, 14)
-            ],
-            1 => [
-                "timestamp" => $t2->toGregorianTT(),
-                "angular_distance" => (string) $this->faker->randomFloat(7, -180, 180),
-                "daily_speed" => (string) $this->faker->randomFloat(7, 10, 14)
-            ]
-        ];
-    }
-
     #[TestDox("can build a Moon\SynodicRhythm collection from Moon\SynodicRhythmRecord instances.")]
     public function test_build_synodic_rhythm_from_records()
     {
         // Arrange in setUp()
         $builder_class = $this->getBuilderClass();
-        $builder_interface = BuilderInterface::class;
         $record_class = SynodicRhythmRecord::class;
-        $records = [];
-        foreach ($this->data as $item) {
-            $records[] = new SynodicRhythmRecord(
-                SwissEphemerisDateTime::createFromSwissEphemerisFormat($item["timestamp"]),
-                Angle::createFromDecimal((float) $item["angular_distance"]),
-                (float) $item["daily_speed"]
+        for ($i=0; $i < 2; $i++) { 
+            $records[$i] = new SynodicRhythmRecord(
+                $this->getRandomSwissEphemerisDateTime(),
+                $this->getRandomAngle(180),
+                $this->getRandomMoonDailySpeed()
             );
         }
         
         // Act
         $builder = new $builder_class($records);
+        $this->checkBuilderInterface(Builder::class, $builder);
         $collection = $builder->fetchCollection();
 
         // Assert
-        $this->assertInstanceOf($builder_interface, $builder, "The $builder_class builder must implement the $builder_interface interface.");
         $this->assertIsArray($collection,
             $this->methodMustReturn($builder_class, "fetchCollection", "array")
         );       
@@ -87,10 +54,12 @@ class FromRecordsTest extends BuilderTestCase
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
+        $record_class = SynodicRhythmRecord::class;
         $data = [new stdClass, new stdClass];
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("The $builder_class builder must have an array of $record_class instances.");
 
         // Act
        new $builder_class($data);

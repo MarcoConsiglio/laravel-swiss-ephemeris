@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
+use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -36,5 +37,24 @@ class PhaseRecordTest extends TestCase
 
         // Act & Assert
         $this->assertProperty("timestamp", $timestamp, SwissEphemerisDateTime::class, $moon_phase_record->timestamp);
+    }
+
+    #[TestDox("can be casted to string.")]
+    public function test_casting_to_string()
+    {
+        // Arrange
+        $timestamp = new SwissEphemerisDateTime($this->faker->dateTimeAD());
+        $type = $this->faker->randomElement(Phase::cases());
+        $record = new PhaseRecord($timestamp, $type);
+        $timestamp = $timestamp->toDateTimeString();
+        $type = ((array) $type)["name"];
+
+        // Act & Assert
+        $this->assertEquals(<<<TEXT
+Moon PhaseRecord
+timestamp: $timestamp
+phase: $type
+TEXT,
+            (string) $record);
     }
 }

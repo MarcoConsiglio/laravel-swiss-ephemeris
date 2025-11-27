@@ -7,16 +7,16 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonBuilderTestCase;
 
 #[TestDox("The Moon\SynodicRhythm\FromArray builder")]
 #[CoversClass(FromArray::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
-class FromArrayTest extends BuilderTestCase
+class FromArrayTest extends MoonBuilderTestCase
 {
     /**
      * Test data.
@@ -39,13 +39,13 @@ class FromArrayTest extends BuilderTestCase
         $this->data = [
             0 => [
                 "timestamp" => $t1->toGregorianTT(),
-                "angular_distance" => $this->faker->randomFloat(7, -$limit, $limit),
-                "daily_speed" => $this->faker->randomFloat(7, 10, 13.3333333)
+                "angular_distance" => $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit, $limit),
+                "daily_speed" => $this->getRandomMoonDailySpeed()
             ],
             1 => [
                 "timestamp" => $t2->toGregorianTT(),
-                "angular_distance" => $this->faker->randomFloat(7, -$limit, $limit),
-                "daily_speed" => $this->faker->randomFloat(7, 10, 13.3333333)
+                "angular_distance" => $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit, $limit),
+                "daily_speed" => $this->getRandomMoonDailySpeed()
             ]
         ];
     }
@@ -60,6 +60,7 @@ class FromArrayTest extends BuilderTestCase
         // Act
         /** @var FromArray $builder */
         $builder = new $builder_class($this->data);
+        $this->checkBuilderInterface(Builder::class, $builder);
         $synodic_rhythm_records = $builder->fetchCollection();
 
         // Assert
@@ -81,15 +82,16 @@ class FromArrayTest extends BuilderTestCase
          * Missing key "timestamp"
          */
         // Arrange
-        unset($this->data[0]["timestamp"]);
+        $column = "timestamp";
+        unset($this->data[0][$column]);
         $builder_class = $this->getBuilderClass();
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("The $builder_class builder must have \"$column\" key in its raw array data.");
 
         // Act
-        $builder = new $builder_class($this->data);
-        $builder->validateData();
+        new $builder_class($this->data);
     }
 
     #[TestDox("require the \"angular_distance\" column")]
@@ -99,33 +101,35 @@ class FromArrayTest extends BuilderTestCase
          * Missing key "angular_distance"
          */
         // Arrange
-        unset($this->data[0]["angular_distance"]);
+        $column = "angular_distance";
+        unset($this->data[0][$column]);
         $builder_class = $this->getBuilderClass();
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("The $builder_class builder must have \"$column\" key in its raw array data.");
 
         // Act
-        $builder = new $builder_class($this->data);
-        $builder->validateData();
+        new $builder_class($this->data);
     }
 
     #[TestDox("require the \"daily_speed\" column")]
     public function test_from_array_builder_wants_daily_speed_column()
     {   
         /**
-         * Missing key "angular_distance"
+         * Missing key "daily_speed"
          */
         // Arrange
-        unset($this->data[0]["daily_speed"]);
+        $column = "daily_speed";
+        unset($this->data[0][$column]);
         $builder_class = $this->getBuilderClass();
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("The $builder_class builder must have \"$column\" key in its raw array data.");
 
         // Act
-        $builder = new $builder_class($this->data);
-        $builder->validateData();
+        new $builder_class($this->data);
     }
 
     #[TestDox("cannot build a Moon\SynodicRhythm with an empty array.")]
@@ -136,6 +140,7 @@ class FromArrayTest extends BuilderTestCase
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("The $builder_class builder cannot work with empty array data.");
         
         // Arrange
         new $builder_class([]);

@@ -23,6 +23,8 @@ class FromArrayTest extends FromArrayTestCase
     protected function setUp(): void
     {
         parent::setUp();
+        // The sampling rate must be coherent with data obtained
+        // from the getRawData() method.
         $this->sampling_rate = 60;
     }
 

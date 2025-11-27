@@ -110,9 +110,13 @@ class SynodicRhythmRecord extends Record
      */
     public function __toString()
     {
+        $period = ((array) $this->getPeriodType())["name"];
         return <<<TEXT
-timestamp: {$this->timestamp->toGregorianTT()}
+Moon SynodicRhythmRecord
+timestamp: {$this->timestamp->toDateTimeString()}
 angular_distance: {$this->angular_distance->toDecimal()}°
+phase_percentage: {$this->percentage}%
+period_type: $period
 daily_speed: {$this->daily_speed}°/day
 TEXT;
     }

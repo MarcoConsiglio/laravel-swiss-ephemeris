@@ -24,7 +24,7 @@ class QueryTemplateTest extends TemplateTestCase
     protected string $response_file;
 
     #[TestDox("removes warning lines when it encounters them.")]
-    public function test_check_warnings_removes_warnings_lines()
+    public function test_checkWarnings_removes_warnings_lines()
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/warnings.txt";
@@ -51,7 +51,7 @@ class QueryTemplateTest extends TemplateTestCase
     }
 
     #[TestDox("removes notices lines when it encounters them.")]
-    public function test_check_notices_removes_notices_lines()
+    public function test_checkNotices_removes_notices_lines()
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/warnings.txt";
@@ -75,5 +75,31 @@ class QueryTemplateTest extends TemplateTestCase
 
         // Assert
         $this->assertCount(1, $template->notices);
+    }
+
+    public function test_checkErrors_catch_SwissEphemerisError()
+    {
+        // Arrange
+        $this->response_file = "./tests/SwissEphemerisResponses/errors.txt";
+        $date = $this->getMocked(SwissEphemerisDateTime::class);
+        $shell = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
+        $command = $this->getMocked(Command::class);
+        /** @var SynodicRhythmTemplate&MockObject $template */
+        $template = $this->getMocked(
+            SynodicRhythmTemplate::class, [
+                "prepareFlags", "prepareArguments", "setHeader", "checkWarnings", "checkNotices",
+                "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
+            ],
+            original_constructor: true,
+            constructor_arguments: [$date, 30, 60, $shell, $command]
+        );
+
+        // Assert
+        $this->expectException(SwissEphemerisError::class);
+        $this->expectExceptionMessage("swetest executable returned an error");
+
+        // Act
+        $template->getResult();
+
     }
 }

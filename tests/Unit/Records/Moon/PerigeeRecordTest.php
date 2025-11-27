@@ -8,6 +8,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
+use PHPUnit\Framework\MockObject\MockObject;
 
 #[CoversClass(PerigeeRecord::class)]
 #[UsesClass(Angle::class)]
@@ -22,7 +23,7 @@ class PerigeeRecordTest extends TestCase
         $timestamp = SwissEphemerisDateTime::create();
         /** @var Angle&MockObject $moon_longitude */
         $moon_longitude = $this->getMocked(Angle::class);
-        /** @var Angle&MockObject $apogee_longitude */
+        /** @var Angle&MockObject $perigee_longitude */
         $perigee_longitude= $this->getMocked(Angle::class);
         $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, 12.0);
 
@@ -111,10 +112,11 @@ class PerigeeRecordTest extends TestCase
         $failure_message = function (int $i, array $record_couple) {
             return <<<HEREDOC
 Checking the {$i}° case.
-"timestamp":\t\t{$record_couple[0]->timestamp->toGregorianTT()}\t\t{$record_couple[1]->timestamp->toGregorianTT()}
-"moon_longitude":\t\t{$record_couple[0]->moon_longitude->__toString()}\t\t{$record_couple[1]->moon_longitude->__toString()}
-"perigee_longitude":\t\t{$record_couple[0]->perigee_longitude->__toString()}\t\t{$record_couple[1]->perigee_longitude->__toString()}
-"daily_speed":\t\t{$record_couple[0]->daily_speed}\t\t{$record_couple[1]->daily_speed}
+First record
+$record_couple[0]
+
+Second record
+$record_couple[1]
 HEREDOC;
         };
         
@@ -131,6 +133,31 @@ HEREDOC;
             $records[$i][$second_record],
             "equals",
             $failure_message($i, $records[$i])
+        );
+    }
+
+    #[TestDox("can be casted to string.")]
+    public function test_casting_to_string()
+    {
+        // Arrange
+        $timestamp = new SwissEphemerisDateTime($this->faker->dateTimeAD());
+        $moon_longitude = Angle::createFromValues($this->faker->numberBetween(0, Angle::MAX_DEGREES));
+        $perigee_longitude = Angle::createFromValues($this->faker->numberBetween(0, Angle::MAX_DEGREES));
+        $moon_daily_speed = $this->faker->randomFloat(PHP_FLOAT_DIG, 10, 14);
+        $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, $moon_daily_speed);
+        $timestamp = $timestamp->toDateTimeString();
+        $moon_longitude = $moon_longitude->toDecimal();
+        $perigee_longitude = $perigee_longitude->toDecimal();
+
+        // Act & Assert
+        $this->assertEquals(<<<TEXT
+Moon PerigeeRecord
+timestamp: $timestamp
+moon_longitude: {$moon_longitude}°
+perigee_longitude: {$perigee_longitude}°
+daily_speed: {$moon_daily_speed}°/day
+TEXT,
+            (string) $record
         );
     }
 }

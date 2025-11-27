@@ -57,7 +57,8 @@ class PerigeeRecord extends AnomalisticRecord
     public function __toString()
     {
         return <<<TEXT
-timestamp: {$this->timestamp->toGregorianTT()}
+Moon PerigeeRecord
+timestamp: {$this->timestamp->toDateTimeString()}
 moon_longitude: {$this->moon_longitude->toDecimal()}°
 perigee_longitude: {$this->perigee_longitude->toDecimal()}°
 daily_speed: {$this->daily_speed}°/day
