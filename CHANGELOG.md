@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased [1.1.0-alpha] 2025-11-26
+## [1.1.0-alpha] 2025-11-26
 ### Added
 - The property `$daily_speed` to all classes extending `Record` class.
 - The parameter `$moon_daily_speed` in the constructor of `ApogeeRecord`, `PerigeeRecord`, `DraconicRecord` and `SynodicRhythmRecord` classes of the Moon.
