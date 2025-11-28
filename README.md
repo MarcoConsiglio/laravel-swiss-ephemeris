@@ -13,6 +13,9 @@ The aim of this project is to query ephemeris data to produce planetar positions
 
 In this software, only a fraction of the swiss ephemeris are used: you can query planets, Moon, and known asteroids from **1800** CE (AD) to **2399** CE (AD).
 
+# Development Roadmap
+Check the next features in the [development roadmap](./docs/md/Roadmap.md).
+
 # Installation
 ```bash
 composer require marcoconsiglio/ephemeris
