@@ -8,7 +8,7 @@ use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromArray;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 
 /**
@@ -17,24 +17,35 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
  */
 class ApogeeTemplate extends AnomalisticTemplate
 {
+    
     /**
      * The astral_object that will be built with the requested 
      * ephemeris.
-     *
-     * @var Apogees
-     */
+    *
+    * @var Apogees
+    */
     protected Apogees $object;
 
+    /**
+     * The output format of the ephemeris.
+     * 
+     * Warning! Changing the output format will cause errors in getMoonAnomalisticRhythm() method.
+     *
+     * @var string
+     */
+    protected string $output_format = 
+        OutputFormat::PlanetName->value.
+        OutputFormat::GregorianDateTimeFormat->value.
+        OutputFormat::LongitudeDecimal->value.
+        OutputFormat::DailyLongitudinalSpeedDecimal->value;
+    
     /**
      * Prepares arguments for the swetest executable.
      *
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void
-    {
-
-    }
+    protected function prepareArguments(): void {}
 
     /**
      * Prepares flags for the swetest executable.
@@ -43,15 +54,12 @@ class ApogeeTemplate extends AnomalisticTemplate
      */
     protected function prepareFlags(): void
     {
-        $steps = $this->getStepsNumber();
         $this->command->addFlag(new Flag(CommandFlag::BeginDate->value, $this->start_date->toGregorianDate()));
-        $this->command->addFlag(new Flag(CommandFlag::StepsNumber->value, $steps));
+        $this->command->addFlag(new Flag(CommandFlag::StepsNumber->value, $this->getStepsNumber()));
         $this->command->addFlag(new Flag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
         $this->command->addFlag(new Flag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarApogee->value));
-        // Warning! Changing the output format will cause errors in getMoonAnomalisticRhythm() method.
-        $object_format = OutputFormat::PlanetName->value.OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
-        $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $object_format));
+        $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $this->output_format));
     }
 
     /**
@@ -65,6 +73,13 @@ class ApogeeTemplate extends AnomalisticTemplate
         // No header.
         $this->command->addArgument(new Argument(CommandFlag::NoHeader->value));
     }
+    
+    /**
+     * It formats the output before parsing it, if necessary.
+     *
+     * @return void
+     */
+    protected function formatHook(): void {}
 
     /**
      * Parse the response.
@@ -89,19 +104,19 @@ class ApogeeTemplate extends AnomalisticTemplate
         if (
             $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
             $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal_number)
-        ) return [$astral_object[0], $datetime[0], $decimal_number[0]];
+            $this->decimalNumberFound($text, $decimal)
+        ) return [$astral_object[0], $datetime[0], $decimal[0], $decimal[1]];
         else return null;
     }
 
     /**
-     * Constructs the Apogee collection.
+     * It constructs the Apogee collection.
      *
      * @return void
      */
     protected function buildObject(): void
     {
-        $this->object = new Apogees(new FromArray($this->output->all()));
+        $this->object = new Apogees(new FromArray($this->output->all(), $this->step_size));
     }
 
     /**
@@ -123,5 +138,16 @@ class ApogeeTemplate extends AnomalisticTemplate
     {
         if (!$this->completed) $this->query();
         return $this->fetchObject();
+    }
+
+    /**
+     * Remap the output in an associative array, 
+     * with the columns name as the key.
+     *
+     * @return void
+     */
+    protected function remapColumns(): void
+    {
+        $this->remapColumnsBy($this->getColumns());
     }
 }

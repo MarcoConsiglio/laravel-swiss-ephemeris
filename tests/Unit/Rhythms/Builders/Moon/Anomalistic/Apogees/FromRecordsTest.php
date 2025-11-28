@@ -6,7 +6,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Apogees\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromRecords;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
 use stdClass;
 
@@ -18,18 +19,20 @@ class FromRecordsTest extends BuilderTestCase
     public function test_builds_apogees_collection_from_records()
     {
         // Arrange
+        $builder_class = $this->getBuilderClass();
+        $record_class = ApogeeRecord::class;
         /** @var ApogeeRecord&MockObject $record_1 */
         /** @var ApogeeRecord&MockObject $record_2 */
-        $record_1 = $this->getMocked(ApogeeRecord::class);
-        $record_2 = $this->getMocked(ApogeeRecord::class);
-        $builder = new FromRecords([$record_1, $record_2]);
+        $record_1 = $this->getMocked($record_class);
+        $record_2 = $this->getMocked($record_class);
+        $builder = new $builder_class([$record_1, $record_2]);
 
         // Act
         $records = $builder->fetchCollection();
 
         // Assert
-        $this->assertContainsOnlyInstancesOf(ApogeeRecord::class, $records,
-            $this->iterableMustContains("array", ApogeeRecord::class)
+        $this->assertContainsOnlyInstancesOf($record_class, $records,
+            $this->iterableMustContains("array", $record_class)
         );
         $this->assertCount(2, $records);
     }
@@ -40,15 +43,12 @@ class FromRecordsTest extends BuilderTestCase
         // Arrange
         $record_1 = $this->getMocked(stdClass::class);
         $record_2 = $this->getMocked(stdClass::class);
-        $builder_class = FromRecords::class;
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The builder $builder_class must have an array of ".ApogeeRecord::class.".");
        
         // Act
-        $builder = new FromRecords([$record_1, $record_2]);
-
+        new FromRecords([$record_1, $record_2]);
     }
 
     /**

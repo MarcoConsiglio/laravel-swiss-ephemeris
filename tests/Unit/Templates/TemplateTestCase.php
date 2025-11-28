@@ -11,7 +11,9 @@ abstract class TemplateTestCase extends TestCase
     /**
      * The file path containing an already generated response output 
      * of the swiss ephemeris executable.
+     * 
      * Use it to not trigger a call to the executable during tests. 
+     * @var string
      */
     abstract protected string $response_file {get; set;}
 

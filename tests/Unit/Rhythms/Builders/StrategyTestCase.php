@@ -1,18 +1,41 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
 
+use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use MarcoConsiglio\Ephemeris\Traits\WithFuzzyCondition;
+use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
+use RoundingMode;
 
 /**
  * Test case for builder strategies.
  */
 class StrategyTestCase extends TestCase
 {
-    use WithFuzzyCondition;
+    use WithFuzzyLogic;
+
+    /**
+     * The sampling rate of the ephemeris.
+     *
+     * @var integer
+     */
+    protected int $sampling_rate;
+
+    /**
+     * The angular neighborhood within which to accept a record.
+     *
+     * @var float
+     */
+    protected float $delta;
+
+    /**
+     * A fake daily speed of the Moon expressed in decimal degrees.
+     *
+     * @var float
+     */
+    protected float $daily_speed;
 
     /**
      * The strategy class name.
@@ -49,6 +72,7 @@ class StrategyTestCase extends TestCase
      * @var string
      */
     protected string $abstract_strategy = Strategy::class;
+    
 
     /**
      * The strategy being tested.
@@ -63,13 +87,6 @@ class StrategyTestCase extends TestCase
      * @var SwissEphemerisDateTime
      */
     protected SwissEphemerisDateTime $date;
-
-    /**
-     * A delta bias used for fuzzy conditions.
-     *
-     * @var float
-     */
-    protected float $delta = 0.25;
 
     /**
      * Setup the test environment.
@@ -92,10 +109,13 @@ class StrategyTestCase extends TestCase
      */
     protected function assertRecordFound($expected_record, $actual_record)
     {
-        $this->assertInstanceOf($this->record_class, $actual_record, 
-            "The $this->strategy_basename strategy must find an instance of type $this->record_class."
+        $this->assertInstanceOf($this->record_class, $actual_record, <<<TEXT
+The {$this->strategy_basename} strategy must find an instance of type {$this->record_class} with delta {$this->delta}° and sampling rate {$this->sampling_rate} min.
+The accepted record should be:
+$expected_record
+TEXT
         );
-        $this->assertObjectEquals($expected_record, $actual_record, "equals", 
+        $this->assertObjectEquals($expected_record, $actual_record, "equals",
             "The $this->strategy_basename strategy failed to find the correct record."
         );
     }
@@ -108,43 +128,124 @@ class StrategyTestCase extends TestCase
      */
     protected function assertRecordNotFound($actual_record)
     {
-        $this->assertNull($actual_record, 
-            "The {$this->strategy_basename} strategy accepted a record that must be rejected."
+        $this->assertNull($actual_record, <<<TEXT
+The {$this->strategy_basename} strategy accepted a record that must be rejected with delta {$this->delta}° and sampling rate {$this->sampling_rate} min.
+The record to be rejected is:
+$actual_record
+TEXT
         );
     }
 
     /**
      * Get a random unprecise angular distance biased by a delta.
      *
-     * @param float $angular_distancce
+     * @param float $angular_distance
+     * @param float $delta
      * @return float
      */
     protected function getBiasedAngularDistance(float $angular_distance): float
     {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
-        return fake()->randomFloat(1, $min, $max);
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, limit: 180);
+        return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
     }
 
     /**
-     * Get a random unprecise angular distance except for another biased $angular_distance. 
+     * Get a random unprecise longitude biased by a delta.
+     *
+     * @param float $longitude
+     * @param float $delta
+     * @return float
+     */
+    protected function getBiasedLongitude(float $longitude): float
+    {
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
+        return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
+    }
+
+    /**
+     * Get a random unprecise angular distance except for $angular_distance. 
      *
      * @param float $angular_distance
+     * @param float $delta
      * @return float
      */
     protected function getBiasedAngularDistanceExceptFor(float $angular_distance): float
     {
-        $error = 0.1;
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance);
-        if ($max > 180) {
-            return fake()->randomFloat(1, -180 + abs($this->delta), $min - $error);
+        $limit = 180;
+        $max_excluded = 0.00000000000001;
+        $min_excluded = $max_excluded;
+        $limit_excluded = $max_excluded;
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, $limit);
+        if ($min == -180) {
+            return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded);
         }
-        if ($min < -180) {
-            return fake()->randomFloat(1, $max + $error, 180 - abs($this->delta));
+        if ($max == 180) {
+            return $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded);
         }
-        return fake()->randomElement([
-            fake()->randomFloat(1, -180, $min - $error),
-            fake()->randomFloat(1, $max - 0.1, 180)
+        return $this->faker->randomElement([
+            $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded),
+            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded)
         ]);
     }
 
+    /**
+     * Get a random unprecise longitude except for $longitude. 
+     *
+     * @param float $longitude
+     * @param float $delta
+     * @return float
+     */
+    protected function getBiasedLongitudeExceptFor(float $longitude): float
+    {
+        $max_excluded = 0.00000000000001;
+        $min_excluded = -$max_excluded;
+        [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
+        if ($max == 360) {
+            return $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded);
+        }
+        if ($min == 0) {
+            return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, 360);
+        }
+        return $this->faker->randomElement([
+            $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded),
+            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, 360)
+        ]);
+    }
+
+    protected function getDelta(float $daily_speed, float $sampling_rate): float
+    {
+        return round(
+            $daily_speed * $sampling_rate / 1440 /* minutes */,
+            PHP_FLOAT_DIG,
+            RoundingMode::HalfTowardsZero
+        );
+    }
+
+    /**
+     * This Guard Assertion checks if the $strategy object
+     * implements the correct interface.
+     *
+     * @param object $strategy
+     * @return void
+     */
+    protected function checkStrategyImplementsInterface(object $strategy): void
+    {
+        $this->assertInstanceOf($this->strategy_interface, $strategy, 
+            $this->mustImplement($this->tested_class, $this->strategy_interface)
+        );
+    }
+
+    /**
+     * This Guard Assertion checks if the $strategy object
+     * extends the correct abstract strategy.
+     *
+     * @param object $strategy
+     * @return void
+     */
+    protected function checkStrategyExtendsAbstract(object $strategy): void
+    {
+        $this->assertInstanceOf($this->abstract_strategy, $strategy, 
+            $this->mustExtend($this->tested_class, $this->abstract_strategy)
+        );
+    }
 }

@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
 use MarcoConsiglio\Ephemeris\Records\Moon\Period;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Periods\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;

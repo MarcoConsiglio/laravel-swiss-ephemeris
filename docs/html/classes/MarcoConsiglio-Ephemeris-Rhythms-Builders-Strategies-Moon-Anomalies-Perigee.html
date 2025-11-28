@@ -138,10 +138,8 @@ representing the Moon in its perigee.</p>
 
 
 
-
-
-
-
+    
+    
 <h3 id="toc">
     Table of Contents
     <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Anomalies-Perigee.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -163,6 +161,13 @@ representing the Moon in its perigee.</p>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Strategy.html#property_angular_delta">$angular_delta</a>
+    <span>
+                        &nbsp;: <abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr>            </span>
+</dt>
+<dd>Angular distance delta: It is used for an error biased search.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Strategy.html#property_delta">$delta</a>
     <span>
                         &nbsp;: float            </span>
@@ -181,7 +186,7 @@ representing the Moon in its perigee.</p>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Constructs the PerigeeStrategy with a PerigeeRecord.</dd>
+<dd>It constructs the PerigeeStrategy with a PerigeeRecord.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Anomalies-Perigee.html#method_found">found()</a>
@@ -203,6 +208,60 @@ representing the Moon in its perigee.</p>
             <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Moon-Anomalies-Perigee.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                -read-only            -virtual        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_angular_delta">
+        $angular_delta
+        <a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Strategy.html#property_angular_delta" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>            <small class="phpdocumentor-element__modifier">virtual</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Builders/Strategies/Strategy.php"><a href="files/src-rhythms-builders-strategies-strategy.html"><abbr title="src/Rhythms/Builders/Strategies/Strategy.php">Strategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">36</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Angular distance delta: It is used for an error biased search.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></span>
+    <span class="phpdocumentor-signature__name">$angular_delta</span>
+    </code>
+
+    
+    
+    
+
+        
+            <h5>Hooks</h5>
+            <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></span>
+        <span class="phpdocumentor-signature__name">get</span>
+</code>
+
+
+
+
+
+
+    
+    
+
+
+    
+
+</article>
                     <article
         class="
             phpdocumentor-element
@@ -238,9 +297,8 @@ representing the Moon in its perigee.</p>
     
     
 
-    
-
-    
+        
+        
 
 </article>
             </section>
@@ -265,15 +323,15 @@ representing the Moon in its perigee.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Builders/Strategies/Moon/Anomalies/Perigee.php"><a href="files/src-rhythms-builders-strategies-moon-anomalies-perigee.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Anomalies/Perigee.php">Perigee.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Constructs the PerigeeStrategy with a PerigeeRecord.</p>
+        <p class="phpdocumentor-summary">It constructs the PerigeeStrategy with a PerigeeRecord.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord">PerigeeRecord</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$record</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord">PerigeeRecord</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$record</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sampling_rate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -282,18 +340,27 @@ representing the Moon in its perigee.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$record</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord">PerigeeRecord</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$record</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord">PerigeeRecord</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$sampling_rate</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The sampling rate of the ephemeris expressed in minutes.</p>
+</section>
+
             </dd>
             </dl>
 
     
 
+        
     
-
     
 </article>
                     <article
@@ -310,7 +377,7 @@ representing the Moon in its perigee.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Rhythms/Builders/Strategies/Moon/Anomalies/Perigee.php"><a href="files/src-rhythms-builders-strategies-moon-anomalies-perigee.html"><abbr title="src/Rhythms/Builders/Strategies/Moon/Anomalies/Perigee.php">Perigee.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
@@ -327,8 +394,8 @@ representing the Moon in its perigee.</p>
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord">PerigeeRecord</abbr></a>|null</span>
@@ -450,6 +517,7 @@ representing the Moon in its perigee.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Strategy.html#property_angular_delta">$angular_delta</a></li>
                                                     <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategies-Strategy.html#property_delta">$delta</a></li>
                                             </ul>
                 </li>

@@ -28,16 +28,14 @@ class FullMoonTest extends PhaseStrategyTestCase
     public function test_can_find_full_moon_if_angular_distance_is_minus_or_plus_180()
     {
         // Arrange in setUp()
-        // Generate two records, one tends to be +/-180°, the other wont. 
         $positive_record_180 = $this->getFullMoonRecord();
         $negative_record_180 = $this->getFullMoonRecord(false);
         $record_non_180 = $this->getNonFullMoonRecord();
 
         // Act
         $strategy = $this->makeStrategy($positive_record_180);
-        $this->assertInstanceOf($this->strategy_interface, $strategy, 
-            $this->mustImplement($this->tested_class, $this->strategy_interface)
-        );
+        $this->checkStrategyImplementsInterface($strategy);
+        $this->checkStrategyExtendsAbstract($strategy);
         $actual_positive_record_180 = $strategy->found();
         $strategy = $this->makeStrategy($negative_record_180);
         $actual_negative_record_180 = $strategy->found();
@@ -47,6 +45,6 @@ class FullMoonTest extends PhaseStrategyTestCase
         // Assert
         $this->assertRecordFound($positive_record_180, $actual_positive_record_180);
         $this->assertRecordFound($negative_record_180, $actual_negative_record_180);
-        $this->assertRecordNotFound($actual_record_non_180);
+        $this->assertRecordNotFound($actual_record_non_180); 
     }
 }

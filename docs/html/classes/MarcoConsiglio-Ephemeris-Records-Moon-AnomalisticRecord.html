@@ -102,6 +102,9 @@
         <h2 class="phpdocumentor-content__title">
     AnomalisticRecord
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Record">Record</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -123,20 +126,19 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/AnomalisticRecord.php"><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">It represents an instant when the Moon is at either apogee or perigee.</p>
+            <p class="phpdocumentor-summary">It represents an instant when the Moon
+is at either apogee or perigee.</p>
 
 
 
 
 
-
-
-
-
+    
+    
 <h3 id="toc">
     Table of Contents
     <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -158,6 +160,15 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed">$daily_speed</a>
+    <span>
+                        &nbsp;: float            </span>
+</dt>
+<dd>The daily speed of the celestial object at the
+time to which the record refers expressed in
+decimal degrees per day.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_moon_longitude">$moon_longitude</a>
     <span>
                         &nbsp;: <abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr>            </span>
@@ -170,7 +181,7 @@ Moon position.</dd>
     <span>
                         &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>            </span>
 </dt>
-<dd>The timestamp of this MoonAnomalistcRecord.</dd>
+<dd>The timestamp of this Moon AnomalistcRecord.</dd>
 
     </dl>
 
@@ -214,6 +225,46 @@ Moon position.</dd>
             -public
                                                                     "
 >
+    <h4 class="phpdocumentor-element__name" id="property_daily_speed">
+        $daily_speed
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Record.php"><a href="files/src-records-record.html"><abbr title="src/Records/Record.php">Record.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">17</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The daily speed of the celestial object at the
+time to which the record refers expressed in
+decimal degrees per day.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
+            <span class="phpdocumentor-signature__type">float</span>
+    <span class="phpdocumentor-signature__name">$daily_speed</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                                    "
+>
     <h4 class="phpdocumentor-element__name" id="property_moon_longitude">
         $moon_longitude
         <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_moon_longitude" class="headerlink"><i class="fas fa-link"></i></a>
@@ -224,7 +275,7 @@ Moon position.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/AnomalisticRecord.php"><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
@@ -242,9 +293,8 @@ Moon position.</p>
     
     
 
-    
-
-    
+        
+        
 
 </article>
                     <article
@@ -264,11 +314,11 @@ Moon position.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/AnomalisticRecord.php"><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The timestamp of this MoonAnomalistcRecord.</p>
+        <p class="phpdocumentor-summary">The timestamp of this Moon AnomalistcRecord.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
@@ -281,9 +331,8 @@ Moon position.</p>
     
     
 
-    
-
-    
+        
+        
 
 </article>
             </section>
@@ -308,7 +357,7 @@ Moon position.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/AnomalisticRecord.php"><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
@@ -325,8 +374,8 @@ Moon position.</p>
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
@@ -347,7 +396,7 @@ Moon position.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/AnomalisticRecord.php"><a href="files/src-records-moon-anomalisticrecord.html"><abbr title="src/Records/Moon/AnomalisticRecord.php">AnomalisticRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -364,8 +413,8 @@ Moon position.</p>
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
@@ -487,6 +536,7 @@ Moon position.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed">$daily_speed</a></li>
                                                     <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_moon_longitude">$moon_longitude</a></li>
                                                     <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_timestamp">$timestamp</a></li>
                                             </ul>

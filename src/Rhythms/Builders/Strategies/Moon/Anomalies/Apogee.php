@@ -10,13 +10,16 @@ use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 class Apogee extends AnomalisticStrategy
 {
     /**
-     * Constructs the ApogeeStrategy with an ApogeeRecord.
+     * It constructs the ApogeeStrategy with an ApogeeRecord.
      *
      * @param ApogeeRecord $record
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
      */
-    public function __construct(ApogeeRecord $record)
+    public function __construct(ApogeeRecord $record, int $sampling_rate)
     {
         $this->record = $record;
+        $this->sampling_rate = $sampling_rate;
+        $this->delta = $this->calculateDelta();
     }
     
     /**
@@ -27,12 +30,10 @@ class Apogee extends AnomalisticStrategy
     public function found(): ?ApogeeRecord
     {
         if($this->isAbout(
-            $this->record->moon_longitude->toDecimal(2), 
-            $this->record->apogee_longitude->toDecimal(2), 
-            $this->delta)
-        ) {
-            return $this->record;
-        }
-        return null;
+            $this->record->moon_longitude->toDecimal(),
+            $this->record->apogee_longitude->toDecimal(),
+            $this->delta
+        )) return $this->record;
+        else return null;
     }
 }

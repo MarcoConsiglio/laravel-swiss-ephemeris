@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases;
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
@@ -16,13 +16,6 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 class FromSynodicRhythm extends Builder
 {
     /**
-     * The data used to create the Phases collection.
-     *
-     * @var SynodicRhythm
-     */
-    protected SynodicRhythm $data;
-
-    /**
      * The list of Phase(s) used to filter the result.
      *
      * @var Phase[]
@@ -35,19 +28,29 @@ class FromSynodicRhythm extends Builder
      * @var array
      */
     protected array $records;
+
+    /**
+     * The sampling rate of the ephemeris expressed in minutes.
+     *
+     * @var integer
+     */
+    protected int $sampling_rate;
     
     /**
-     * Constructs the builder with a MoonSynodicRhythm and a list of MoonPhaseType(s).
+     * It constructs the builder with a MoonSynodicRhythm and a list of MoonPhaseType(s).
      *
      * @param SynodicRhythm $synodic_rhythm
-     * @param Phase[] $moon_phase_types The list of MoonPhaseType used to filter the 
-     * the result of the builder. The builder needs at least one MoonPhaseType.
-     * @throws \InvalidArgumentException when at least one element of $moon_phase_types is not a MoonPhaseType.
+     * @param Phase[] $moon_phase_types The list of Moon Phase(s) used to filter the 
+     * the result of the builder. The builder needs at least one Moon Phase.
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
+     * @throws \InvalidArgumentException when at least one element of $moon_phase is not a Moon Phase
+     * or $moon_phase array is empty.
      */
-    public function __construct(SynodicRhythm $synodic_rhythm, array $moon_phases)
+    public function __construct(SynodicRhythm $synodic_rhythm, array $moon_phases, int $sampling_rate)
     {
         $this->data = $synodic_rhythm;  
         $this->moon_phases = $moon_phases;
+        $this->sampling_rate = $sampling_rate;
         $this->validateData();
     }
 
@@ -55,7 +58,8 @@ class FromSynodicRhythm extends Builder
      * Validates the list of Phase enum constants.
      *
      * @return void
-     * @throws \InvalidArgumentException when at least one element of $moon_phase_types is not a Moon Phase.
+     * @throws \InvalidArgumentException when at least one element of $moon_phase is not a Moon Phase
+     * or $moon_phase array is empty.
      */
     public function validateData()
     {
@@ -67,7 +71,7 @@ class FromSynodicRhythm extends Builder
         }
         foreach ($this->moon_phases as $phase) {
             if (! $phase instanceof $phase_class) {
-                throw new InvalidArgumentException("Parameter 2 must be an array of $phase_class but found ".gettype($phase)." inside.");
+                throw new InvalidArgumentException("Parameter 2 must be an array of $phase_class but found ".get_class($phase)." inside.");
             }
         }
     }
@@ -79,8 +83,9 @@ class FromSynodicRhythm extends Builder
      */
     public function buildRecords()
     {
-        $collection = collect($this->data->all());
-        $this->records = $collection->transform(function ($record, $key) {
+        $sampling_rate = $this->data->sampling_rate;
+        $collection = collect($this->data); // This prevents the original collection to extend LazyCollection.
+        $this->data = $collection->transform(function ($record) use ($sampling_rate) {
             /** @var SynodicRhythmRecord $record */
 
             // Obtain all the strategies necessaries to filter the records, based upon
@@ -101,7 +106,7 @@ class FromSynodicRhythm extends Builder
             /** @var string $strategy */
             foreach ($strategies as $strategy) {
                 /** @var PhaseStrategy $a_strategy */
-                $a_strategy = new $strategy($record);
+                $a_strategy = new $strategy($record, $sampling_rate);
                 if ($record_found = $a_strategy->found()) {
                     return new PhaseRecord($record_found->timestamp, Phase::getCorrespondingPhase($strategy));
                 }
@@ -117,6 +122,6 @@ class FromSynodicRhythm extends Builder
     public function fetchCollection(): array
     {
         if (!$this->builded) $this->buildRecords();
-        return $this->records;
+        return $this->data;
     }
 }

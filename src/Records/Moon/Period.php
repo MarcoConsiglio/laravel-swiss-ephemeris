@@ -32,7 +32,7 @@ class Period
     public protected(set) PeriodType $type;
 
     /**
-     * Constructs a Moon period.
+     * It constructs a Moon period.
      *
      * @param SwissEphemerisDateTime $start
      * @param SwissEphemerisDateTime $end
@@ -63,5 +63,21 @@ class Period
     public function isWaning(): bool
     {
         return $this->type == PeriodType::Waning;
+    }
+
+    /**
+     * It cast this record to string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $type = ((array) $this->type)["name"];
+        return <<<TEXT
+Moon Period
+start: {$this->start->toDateTimeString()}
+end: {$this->end->toDateTimeString()}
+type: {$type}
+TEXT;
     }
 }

@@ -48,7 +48,7 @@ class AnomalisticRecordTest extends TestCase
     public function test_can_be_an_apogee()
     {
         // Arrange
-        $record = new ApogeeRecord($this->date, $this->angle, $this->angle);
+        $record = new ApogeeRecord($this->date, $this->angle, $this->angle, 12.0);
 
         // Act & Assert
         $this->assertTrue($record->isApogee());
@@ -59,7 +59,7 @@ class AnomalisticRecordTest extends TestCase
     public function test_can_be_a_perigee()
     {
         // Arrange
-        $record = new PerigeeRecord($this->date, $this->angle, $this->angle);
+        $record = new PerigeeRecord($this->date, $this->angle, $this->angle, 12.0);
 
         // Act & Assert
         $this->assertTrue($record->isPerigee());

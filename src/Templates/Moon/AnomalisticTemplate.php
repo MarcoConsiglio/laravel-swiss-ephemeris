@@ -26,43 +26,16 @@ abstract class AnomalisticTemplate extends QueryTemplate
 
     /**
      * The column names to be given to the columns of 
-     * the ephemeris answer.
+     * the ephemeris response.
      *
      * @var array
      */
-    protected array $columns = [
+    protected static array $columns = [
         0 => "astral_object",
         1 => "timestamp",
-        2 => "longitude"
+        2 => "longitude",
+        3 => "daily_speed"
     ];
-
-    /**
-     * Construct the template in order to produce
-     * a Moon AnomalisticRhythm.
-     *
-     * @param SwissEphemerisDateTime $start_date
-     * @param integer $days
-     * @param integer $step_size
-     * @param Exec|DryRunner|FakeRunner|null|null $shell
-     * @param Command|null $command
-     */
-    public function __construct(
-        SwissEphemerisDateTime $start_date,
-        int $days = 30,
-        int $step_size = 60,
-        Exec|DryRunner|FakeRunner|null $shell = null, 
-        ?Command $command = null
-    ) {
-        $this->shell = $shell ?? new Exec();
-        $this->command = $command ?? new Command(
-            resource_path(LaravelSwissEphemeris::SWISS_EPHEMERIS_PATH) . 
-            DIRECTORY_SEPARATOR . 
-            LaravelSwissEphemeris::SWISS_EPHEMERIS_EXECUTABLE
-        );     
-        $this->start_date = $start_date;
-        $this->days = $days;
-        $this->step_size = $step_size;         
-    }
 
     /**
      * Remap the output in an associative array,
@@ -70,8 +43,23 @@ abstract class AnomalisticTemplate extends QueryTemplate
      *
      * @return void
      */
-    protected function remapColumns(): void
+    abstract protected function remapColumns(): void;
+
+    /**
+     * It formats the output before parsing it, if necessary.
+     *
+     * @return void
+     * @codeCoverageIgnore
+     */
+    protected function formatHook(): void {}
+
+
+    /**
+     * It returns the columns names used by this template.
+     */
+    static public function getColumns(): array
     {
-        $this->remapColumnsBy($this->columns);
+        return static::$columns;
     }
+
 }

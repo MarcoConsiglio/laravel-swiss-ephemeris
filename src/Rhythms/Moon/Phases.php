@@ -3,15 +3,18 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 
 use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Phases\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSynodicRhythm;
 
 /**
  * A collection of Moon PhaseRecord instances.
+ * 
+ * It represents a collection of records of the 
+ * Moon's synodic rhythm that are at a precise angle to the sun.
  */
 class Phases extends Collection
 {
     /**
-     * Constructs a Phase collection from a SynodicRhythm collection.
+     * It constructs a Phase collection from a SynodicRhythm collection.
      *
      * @param FromSynodicRhythm $builder
      */
