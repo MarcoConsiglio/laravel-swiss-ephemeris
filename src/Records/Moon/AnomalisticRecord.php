@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
+use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
@@ -8,10 +9,10 @@ use MarcoConsiglio\Goniometry\Angle;
  * It represents an instant when the Moon 
  * is at either apogee or perigee.
  */
-abstract class AnomalisticRecord
+abstract class AnomalisticRecord extends Record
 {
     /**
-     * The timestamp of this MoonAnomalistcRecord.
+     * The timestamp of this Moon AnomalistcRecord.
      */
     public protected(set) SwissEphemerisDateTime $timestamp;
 

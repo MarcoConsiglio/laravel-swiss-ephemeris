@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates\Moon;
 
 use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
+use ErrorException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -39,5 +40,25 @@ class SynodicRhythmTemplateTest extends TemplateTestCase
 
         // Assert
         $this->assertInstanceOf(SynodicRhythm::class, $object);
+    }
+
+    public function test_parse_error()
+    {
+        // Arrange
+        $this->response_file = "./tests/SwissEphemerisResponses/Moon/synodic_rhythm_malformed.txt";
+        $start_date = SwissEphemerisDateTime::create(2000);
+        $days = 30;
+        $step_size = 60;
+        /** @var Command&MockObject $command */
+        $command = $this->getMocked(Command::class);
+        $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
+        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $runner, $command);
+
+        // Assert
+        $this->expectException(ErrorException::class);
+        
+        // Act
+        $template->getResult();   
+        
     }
 }

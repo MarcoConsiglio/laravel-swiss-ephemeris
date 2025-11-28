@@ -92,7 +92,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Produces a failure message when an iterable $collection_class has at least
+     * It produces a failure message when an iterable $collection_class has at least
      * one item different than $expected_items_type
      *
      * @param string $collection_class
@@ -105,7 +105,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Produces a failure message when the $expected_format
+     * It produces a failure message when the $expected_format
      * is not equal to the $actual_format.
      *
      * @param string $expected_format
@@ -123,7 +123,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Produces a failure message when $class don't implements $interface.
+     * It produces a failure message when $class don't implements $interface.
      *
      * @param string $class
      * @param string $interface
@@ -135,7 +135,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Produces a failure message when $class don't extends $parent_class.
+     * It produces a failure message when $class don't extends $parent_class.
      *
      * @param string $class
      * @param string $parent_class

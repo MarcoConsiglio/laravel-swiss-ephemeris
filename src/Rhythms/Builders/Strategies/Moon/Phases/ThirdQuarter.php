@@ -10,23 +10,13 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 class ThirdQuarter extends PhaseStrategy
 {
     /**
-     * It constructs a ThirdQuarter strategy with a MoonSynodicRhythmRecord.
-     *
-     * @param SynodicRhythmRecord $record
-     */
-    public function __construct(SynodicRhythmRecord $record)
-    {
-        $this->record = $record;
-    }
-
-    /**
      * Return the record only if its angular_distance is about -90°.
      *
      * @return SynodicRhythmRecord|null
      */
     public function found(): ?SynodicRhythmRecord
     {
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), -90, $this->delta)) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), -90, $this->calculateDelta())) {
             return $this->record;
         }
         return null;

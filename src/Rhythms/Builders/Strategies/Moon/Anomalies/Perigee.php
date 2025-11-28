@@ -13,10 +13,13 @@ class Perigee extends AnomalisticStrategy
      * It constructs the PerigeeStrategy with a PerigeeRecord.
      *
      * @param PerigeeRecord $record
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
      */
-    public function __construct(PerigeeRecord $record)
+    public function __construct(PerigeeRecord $record, int $sampling_rate)
     {
         $this->record = $record;
+        $this->sampling_rate = $sampling_rate;
+        $this->delta = $this->calculateDelta();
     }
     
     /**
@@ -26,13 +29,11 @@ class Perigee extends AnomalisticStrategy
      */
     public function found(): ?PerigeeRecord
     {
-        if($this->isAboutAngle(
-            $this->record->moon_longitude, 
-            $this->record->perigee_longitude, 
-            $this->angular_delta)
-        ) {
-            return $this->record;
-        }
-        return null;
+        if($this->isAbout(
+            $this->record->moon_longitude->toDecimal(),
+            $this->record->perigee_longitude->toDecimal(),
+            $this->delta
+        )) return $this->record;
+        else return null;
     }
 }

@@ -28,6 +28,13 @@ abstract class Builder implements BuilderInterface
     protected $data;
 
     /**
+     * The sampling rate of the ephemeris expressed in minutes.
+     *
+     * @var integer
+     */
+    protected int $sampling_rate;
+
+    /**
      * Validates data.
      *
      * @return void
@@ -115,7 +122,7 @@ abstract class Builder implements BuilderInterface
      * @param string $key
      * @return string
      */
-    public static function getMalformedArrayMessage(string $builder_class, string $key): string
+    protected function getMalformedArrayMessage(string $builder_class, string $key): string
     {
         return "The $builder_class builder must have \"$key\" key in its raw array data.";
     }
@@ -128,7 +135,7 @@ abstract class Builder implements BuilderInterface
      * @param string $record_class
      * @return string
      */
-    public static function getInvalidRecordTypeMessage(string $builder_class, string $record_class): string
+    protected function getInvalidRecordTypeMessage(string $builder_class, string $record_class): string
     {
         return "The $builder_class builder must have an array of $record_class instances.";
     }
@@ -140,7 +147,7 @@ abstract class Builder implements BuilderInterface
      * @param string $builder_class
      * @return string
      */
-    public static function getEmptyDataMessage(string $builder_class): string
+    protected function getEmptyDataMessage(string $builder_class): string
     {
         return "The $builder_class builder cannot work with empty array data.";
     }

@@ -45,7 +45,7 @@ class PhasesTest extends RhythmTestCase
     {
         // Arrange
         $synodic_rhythm = $this->getSynodicRhythm();
-        $phases_builder = new FromSynodicRhythm($synodic_rhythm, Phase::cases());
+        $phases_builder = new FromSynodicRhythm($synodic_rhythm, Phase::cases(), $this->sampling_rate);
         $phases = new Phases($phases_builder);
 
         // Act

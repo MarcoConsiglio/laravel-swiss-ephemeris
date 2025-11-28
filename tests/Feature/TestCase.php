@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\Console\Kernel as TestbenchConsoleKernel;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
@@ -16,7 +17,7 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
  */
 abstract class TestCase extends OrchestraTestCase
 {
-    use WithFailureMessage;
+    use WithFailureMessage, WithFaker;
     
     /**
      * The application configs.
@@ -46,6 +47,7 @@ abstract class TestCase extends OrchestraTestCase
             Config::get("ephemeris.longitude"),
             Config::get("ephemeris.timezone")
         );
+        $this->setUpFaker();
     }
 
     /**

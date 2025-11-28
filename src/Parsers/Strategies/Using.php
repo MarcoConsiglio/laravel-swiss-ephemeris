@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Parsers\Strategies;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 
 /**
- * The ParsingStrategy used to find a "using" notice
+ * The parsing strategy used to find a "using" notice
  * in the raw Swiss Ephemeris output.
  */
 class Using extends ParsingStrategy

@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 /**
  * A collection of Moon SynodicRhythmRecord instances.
  * 
- * Represents the Moon's synodic rhythm over a time range. 
+ * It represents the Moon's synodic rhythm over a time range. 
  * A Moon synodic rhythm, or synodic period, is the time it takes 
  * for a celestial object to return to the same position 
  * relative to the Sun, as seen from the Earth.
@@ -19,13 +19,22 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 class SynodicRhythm extends Collection
 {
     /**
+     * The sampling rate of the ephemeris expressed in minutes.
+     * 
+     * @var int
+     */
+    public protected(set) int $sampling_rate;
+
+    /**
      * It constructs a Moon SynodicRhythm.
      *
      * @param FromArray|FromRecords $items
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
      */
-    public function __construct(FromArray|FromRecords $builder)
+    public function __construct(FromArray|FromRecords $builder, int $sampling_rate)
     {
         $this->items = $builder->fetchCollection(); 
+        $this->sampling_rate = $sampling_rate;
     }
 
     /**
@@ -59,7 +68,7 @@ class SynodicRhythm extends Collection
      */
     public function getPhases(array $moon_phase_types): Phases
     {
-        return new Phases(new MoonPhasesBuilder($this, $moon_phase_types));
+        return new Phases(new MoonPhasesBuilder($this, $moon_phase_types, $this->sampling_rate));
     }
 
     /**

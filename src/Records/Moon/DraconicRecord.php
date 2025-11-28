@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
+use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
@@ -10,7 +11,7 @@ use MarcoConsiglio\Goniometry\Angle;
  * between its orbit and the plane of 
  * the ecliptic.
  */
-class DraconicRecord
+class DraconicRecord extends Record
 {
     /**
      * The timestamp of this MoonAnomalistcRecord.
@@ -48,17 +49,20 @@ class DraconicRecord
      * @param Angle $moon_longitude
      * @param Angle $node_longitude
      * @param Angle $node_declination
+     * @param float $moon_daily_speed
      */
     public function __construct(
         SwissEphemerisDateTime $timestamp,
         Angle $moon_longitude,
         Angle $moon_latitude,
         Angle $node_longitude,
+        float $moon_daily_speed
     ) {
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;
         $this->moon_latitude = $moon_latitude;
         $this->node_longitude = $node_longitude;
+        $this->daily_speed = $moon_daily_speed;
     }
 
     /**

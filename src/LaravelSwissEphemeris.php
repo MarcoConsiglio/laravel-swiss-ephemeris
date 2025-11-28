@@ -139,7 +139,7 @@ class LaravelSwissEphemeris
      * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
      */
     public function getMoonAnomalisticRhythm(
-        SwissEphemerisDateTime $start_date,
+        CarbonInterface $start_date,
         $days = 30,
         $step_size = 60
     ): AnomalisticRhythm 

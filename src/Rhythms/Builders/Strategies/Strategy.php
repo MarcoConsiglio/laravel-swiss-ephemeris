@@ -1,9 +1,11 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies;
 
+use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
 use MarcoConsiglio\Goniometry\Angle;
+use RoundingMode;
 
 /**
  * The abstract strategy used to build a rhythm.
@@ -22,23 +24,9 @@ abstract class Strategy implements BuilderStrategy
      * Angular distance delta expressed as a decimal number: It 
      * is used for an error biased search. 
      * 
-     * Warning! Changing this value cause unpredictable behaviour 
-     * in rhythms builders. This value is related to the ephemeris 
-     * sampling rate. This value should be adjusted accordingly.
-     * The ephemeris sampling rate is currently set to 60 minutes 
-     * by default in this software. Changing the sampling rate causes 
-     * the same unpredictability effects as changing the value of 
-     * $delta. This problem could be solved by developing an algorithm 
-     * that, given a sampling frequency and the angular velocity of the 
-     * stellar object, calculates the ideal $delta to satisfy the 
-     * fuzzy conditions.
-     * 
      * @var float
      */
-    public protected(set) float $delta = 0.25 {
-        get { return $this->delta; }
-        set(float $value) { $this->delta = abs($value); }
-    }
+    public protected(set) float $delta;
 
     /**
      * Angular distance delta: It is used for an error biased search. 
@@ -50,9 +38,41 @@ abstract class Strategy implements BuilderStrategy
     }
 
     /**
+     * The sampling rate of the ephemeris expressed in minutes.
+     *
+     * @var integer
+     */
+    protected int $sampling_rate;
+
+    /**
      * Find an exact record.
      *
      * @return mixed
      */
     abstract public function found();
+
+    /**
+     * It calculates the delta angle used to select/discard a record based on the 
+     * record daily speed and the ephemeris sampling rate.
+     * 
+     * This roughly means that the delta will have a sampling rate twice the 
+     * ephemeris sampling rate, to ensure that the correct records are selected/discarded.
+     *
+     * @return float
+     */
+    protected function calculateDelta(): float
+    {
+        return round(
+            $this->getSpeed() * $this->sampling_rate / 1440 /* minutes */,
+            PHP_FLOAT_DIG,
+            RoundingMode::HalfTowardsZero
+        );
+    }
+
+    /**
+     * It returns the daily speed of the record the strategy uses.
+     *
+     * @return float
+     */
+    abstract protected function getSpeed(): float;
 }

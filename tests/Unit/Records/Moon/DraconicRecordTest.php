@@ -19,58 +19,44 @@ class DraconicRecordTest extends TestCase
     public function test_timestamp_proerty()
     {
         // Arrange
-        $datetime = SwissEphemerisDateTime::create(2000, 12, 3);
+        $datetime = SwissEphemerisDateTime::create(2000);
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $record = new DraconicRecord($datetime, $angle, $angle, $angle);
+        $record = new DraconicRecord($datetime, $angle, $angle, $angle, 12.0);
 
         // Act & Assert
-        $this->assertSame($datetime, $record->timestamp);
+        $this->assertProperty("timestamp", $datetime, SwissEphemerisDateTime::class, $record->timestamp);
     }
 
-    #[TestDox("has a \"moon_longitude\" property which is an Angle.")]
+    #[TestDox("has a \"moon_longitude\", \"node_longitude\", \"moon_latitude\" properties which are Angle(s).")]
     public function test_moon_longitude_property()
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMocked(SwissEphemerisDateTime::class);
-        /** @var Angle&MockObject $angle */
-        $angle = $this->getMocked(Angle::class);
         $moon_longitude = Angle::createFromValues(180, 30, 15);
-        $record = new DraconicRecord($datetime, $moon_longitude, $angle, $angle);
+        $node_longitude = Angle::createFromValues(180, 15, 30);
+        $moon_latitude = Angle::createFromValues(5, 20, 7);
+        $record = new DraconicRecord($datetime, $moon_longitude, $moon_latitude, $node_longitude, 12.0);
 
         // Act & Assert
-        $this->assertSame($moon_longitude, $record->moon_longitude);
+        $this->assertProperty("moon_longitude", $moon_longitude, Angle::class, $record->moon_longitude);
+        $this->assertProperty("moon_latitude", $moon_latitude, Angle::class, $record->moon_latitude);
+        $this->assertProperty("node_longitude", $node_longitude, Angle::class, $record->node_longitude);
     }
 
-    #[TestDox("has a \"node_longitude\" property which is an Angle.")]
-    public function test_node_longitude_property()
+    public function test_daily_speed_property()
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMocked(SwissEphemerisDateTime::class);
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $node_longitude = Angle::createFromValues(180, 30, 15);
-        $record = new DraconicRecord($datetime, $angle, $angle, $node_longitude);
+        $moon_daily_speed = 12.0;
+        $record = new DraconicRecord($datetime, $angle, $angle, $angle, $moon_daily_speed);
 
         // Act & Assert
-        $this->assertSame($node_longitude, $record->node_longitude);
-    }
-
-    #[TestDox("has a \"moon_latitude\" property which is an Angle.")]
-    public function test_moon_latitude_property()
-    {
-        // Arrange
-        /** @var SwissEphemerisDateTime&MockObject $datetime */
-        $datetime = $this->getMocked(SwissEphemerisDateTime::class);
-        /** @var Angle&MockObject $angle */
-        $angle = $this->getMocked(Angle::class);
-        $moon_latitude = Angle::createFromValues(180, 30, 15);
-        $record = new DraconicRecord($datetime, $angle, $moon_latitude, $angle);
-
-        // Act & Assert
-        $this->assertSame($moon_latitude, $record->moon_latitude);
+        $this->assertProperty("daily_speed", $moon_daily_speed, "float", $record->daily_speed);
     }
 
     #[TestDox("can be a north node.")]
@@ -83,7 +69,7 @@ class DraconicRecordTest extends TestCase
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
         $moon_latitude = Angle::createFromValues(7);
-        $record = new DraconicRecord($datetime, $angle, $angle, $moon_latitude);
+        $record = new DraconicRecord($datetime, $angle, $angle, $moon_latitude, 12.0);
 
         // Act & Assert
         $this->assertTrue($record->isNorthNode());
@@ -100,7 +86,7 @@ class DraconicRecordTest extends TestCase
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
         $moon_latitude = Angle::createFromValues(7, 0, 0.0, Angle::CLOCKWISE);
-        $record = new DraconicRecord($datetime, $angle, $angle, $moon_latitude);
+        $record = new DraconicRecord($datetime, $angle, $angle, $moon_latitude, 12.0);
 
         // Act & Assert
         $this->assertTrue($record->isSouthNode());

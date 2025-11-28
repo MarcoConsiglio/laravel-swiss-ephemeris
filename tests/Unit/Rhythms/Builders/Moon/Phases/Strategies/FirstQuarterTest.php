@@ -21,7 +21,6 @@ class FirstQuarterTest extends PhaseStrategyTestCase
     {
         $this->tested_class = FirstQuarter::class;
         $this->record_class = SynodicRhythmRecord::class;
-        $this->delta = $this->getDelta();
         parent::setUp();
     }
 
@@ -35,13 +34,8 @@ class FirstQuarterTest extends PhaseStrategyTestCase
 
         // Act
         $strategy = $this->makeStrategy($record_90);
-        //      Guard Assertions
-        $this->assertInstanceOf($this->strategy_interface, $strategy, 
-            $this->mustImplement($this->tested_class, $this->strategy_interface)
-        );
-        $this->assertInstanceOf($this->abstract_strategy, $strategy, 
-            $this->mustExtend($this->tested_class, $this->abstract_strategy)
-        );
+        $this->checkStrategyImplementsInterface($strategy);
+        $this->checkStrategyExtendsAbstract($strategy);
         $actual_record_90 = $strategy->found();
         $strategy = $this->makeStrategy($record_non_90);
         $actual_record_non_90 = $strategy->found();

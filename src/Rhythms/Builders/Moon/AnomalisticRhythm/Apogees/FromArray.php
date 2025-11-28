@@ -9,7 +9,7 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * Builds a Moon Apogees collection from raw ephemeris response.
+ * Builds a Moon Apogees collection from raw Swiss Ephemeris response.
  */
 class FromArray extends Builder
 {
@@ -20,19 +20,22 @@ class FromArray extends Builder
      */
     protected array $columns = [
         "timestamp",
-        "longitude"
+        "longitude",
+        "daily_speed"
     ];
 
     /**
      * It constructs the builder with raw data.
      *
      * @param array $data
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
      * @throws InvalidArgumentException if the array data does not 
      * have keys "timestamp" and "longitude" or if the array is empty.
      */
-    public function __construct(array $data)
+    public function __construct(array $data, int $sampling_rate)
     {
         $this->data = $data;
+        $this->sampling_rate = abs($sampling_rate);
         $this->validateData();
     }
 
@@ -62,29 +65,27 @@ class FromArray extends Builder
                 $first_row = reset($lines);
                 $last_row = end($lines);
             return [
-                $first_row["timestamp"] /* timestamp */, 
-                $first_row["longitude"], /* Moon longitude */
-                $last_row["longitude"] /* apogee longitude */
+                "timestamp" => $first_row["timestamp"] /* timestamp */, 
+                "moon_longitude" => $first_row["longitude"], /* Moon longitude */
+                "apogee_longitude" => $last_row["longitude"], /* apogee longitude */
+                "moon_daily_speed" => $first_row["daily_speed"] /* Moon daily speed */
             ];
         })->all();
 
         // Transform raw data in Moon ApogeeRecord instances.
-        $timestamp = 0;
-        $moon_longitude = 1;
-        $apogee_longitude = 2;
-        $this->data = collect($this->data)->transform(function($item) 
-            use ($timestamp, $moon_longitude, $apogee_longitude){
+        $this->data = collect($this->data)->transform(function($item) {
                 return new ApogeeRecord(
-                    SwissEphemerisDateTime::createFromGregorianTT($item[$timestamp]),
-                    Angle::createFromDecimal((float) $item[$moon_longitude]),
-                    Angle::createFromDecimal((float) $item[$apogee_longitude])
+                    SwissEphemerisDateTime::createFromGregorianTT($item["timestamp"]),
+                    Angle::createFromDecimal((float) $item["moon_longitude"]),
+                    Angle::createFromDecimal((float) $item["apogee_longitude"]),
+                    (float) $item["moon_daily_speed"]
                 );
         })->all();
 
         // Select the correct Moon ApogeeRecord where the Moon is close to its apogee.
         $this->data = collect($this->data)->filter(function ($record) {
             /** @var ApogeeRecord $record */
-            return new Apogee($record)->found();
+            return new Apogee($record, $this->sampling_rate)->found();
         })->values()->all();
     }
 

@@ -24,7 +24,10 @@ class LaravelSwissEphemerisTest extends TestCase
         // Arrange in setUp()
 
         // Act
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(SwissEphemerisDateTime::create(2000));
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(SwissEphemerisDateTime::create(
+            $this->faker->numberBetween(2000, 2025),
+            $this->faker->numberBetween(1, 12)
+        ));
 
         // Assert
         $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm, 
@@ -47,7 +50,10 @@ class LaravelSwissEphemerisTest extends TestCase
         // Arrange in setUp()
 
         // Act
-        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm(SwissEphemerisDateTime::create(2000));
+        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm(SwissEphemerisDateTime::create(
+            $this->faker->numberBetween(2000, 2025),
+            $this->faker->numberBetween(1, 12)
+        ));
 
         // Assert
         $this->assertInstanceOf(AnomalisticRhythm::class, $anomalistic_rhythm,

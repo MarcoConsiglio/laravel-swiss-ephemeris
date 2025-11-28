@@ -1,0 +1,34 @@
+# Development Roadmap
+Emphasis will be placed on prioritizing the functions necessary for the creation of a biodynamic calendar.
+
+- [ ] Planets
+  - [ ] Moon
+    - [ ] Position
+    - [x] Synodic rhythm
+      - [x] Phases
+      - [x] Phase periods
+        - [x] Waxing
+        - [x] Waning 
+    - [x] Anomalistic rhythm
+    - [ ] Draconic rhythm
+    - [ ] Sidereal rhythm
+      - [ ] Biodynamic days
+    - [ ] Tropic rhythm
+  - [ ] Mercury
+    - [ ] Position
+  - [ ] Venus 
+    - [ ] Position
+    - [ ] Draconic rhythm
+  - [ ] Sun
+    - [ ] Sidereal rhythm
+  - [ ] Mars
+    - [ ] Position
+    - [ ] Draconic rhythm
+  - [ ] Jupiter
+    - [ ] Position
+  - [ ] Saturn
+    - [ ] Position
+- [ ] Aspects
+  - [ ] Opposition
+    - [ ] Saturn-Moon
+  - [ ] Trine 

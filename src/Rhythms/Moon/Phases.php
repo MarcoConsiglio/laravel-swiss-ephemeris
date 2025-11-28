@@ -7,6 +7,9 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSyno
 
 /**
  * A collection of Moon PhaseRecord instances.
+ * 
+ * It represents a collection of records of the 
+ * Moon's synodic rhythm that are at a precise angle to the sun.
  */
 class Phases extends Collection
 {

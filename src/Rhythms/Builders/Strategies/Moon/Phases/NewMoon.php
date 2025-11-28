@@ -10,23 +10,13 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 class NewMoon extends PhaseStrategy
 {
     /**
-     * It constructs a NewMoon strategy with a MoonSynodicRhythmRecord.
-     *
-     * @param SynodicRhythmRecord $record
-     */
-    public function __construct(SynodicRhythmRecord $record)
-    {
-        $this->record = $record;
-    }
-
-    /**
      * Return the record only if its angular_distance is about 0°.
      *
      * @return SynodicRhythmRecord|null
      */
     public function found(): ?SynodicRhythmRecord
     {   
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), 0, $this->delta)) {
+        if ($this->isAbout($this->record->angular_distance->toDecimal(), 0, $this->calculateDelta())) {
             return $this->record;
         }
         return null;

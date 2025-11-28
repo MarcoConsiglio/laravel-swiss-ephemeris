@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
+use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
@@ -34,5 +35,20 @@ class PhaseRecord
     {
         $this->timestamp = $timestamp;
         $this->type = $type;
+    }
+
+    /**
+     * It cast this record to string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $type = ((array) $this->type)["name"];
+        return <<<TEXT
+Moon PhaseRecord
+timestamp: {$this->timestamp->toDateTimeString()}
+phase: {$type}
+TEXT;
     }
 }

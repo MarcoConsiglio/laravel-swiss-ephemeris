@@ -21,14 +21,27 @@ class SynodicRhythmTemplate extends QueryTemplate
 {
     /**
      * The column names to be given to the columns of 
-     * the ephemeris answer.
+     * the ephemeris response.
      *
      * @var array
      */
-    protected array $columns = [
+    protected static array $columns = [
         0 => "timestamp",
-        1 => "angular_distance"
+        1 => "angular_distance",
+        2 => "daily_speed"
     ];
+
+    /**
+     * The output format of the ephemeris.
+     * 
+     * Warning! Changing the output format will cause errors in getMoonSynodicRhythm() method.
+     *
+     * @var string
+     */
+    protected string $output_format = 
+        OutputFormat::GregorianDateTimeFormat->value.
+        OutputFormat::LongitudeDecimal->value.
+        OutputFormat::DailyLongitudinalSpeedDecimal->value;
 
     /**
      * The object that will be built with the requested 
@@ -54,17 +67,14 @@ class SynodicRhythmTemplate extends QueryTemplate
      */
     protected function prepareFlags(): void
     {
-        $start_date = SwissEphemerisDateTime::create($this->start_date);
         $steps = $this->getStepsNumber();
-        // Warning! Changing the object format will cause errors in getMoonSynodicRhythm() method.
-        $object_format = OutputFormat::GregorianDateTimeFormat->value.OutputFormat::LongitudeDecimal->value;
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::DifferentialObjectSelection->value, SinglePlanet::Sun->value));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::BeginDate->value, $start_date->toGregorianDate()));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::InputTerrestrialTime->value, $start_date->toTimeString()));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::BeginDate->value, $this->start_date->toGregorianDate()));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::StepsNumber->value, $steps));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $object_format));       
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $this->output_format));       
     }
 
     /**
@@ -108,20 +118,20 @@ class SynodicRhythmTemplate extends QueryTemplate
         if (
             $this->datetimeFound($text, $datetime) &&
             $this->decimalNumberFound($text, $decimal)
-        ) return [$datetime[0], $decimal[0]];
+        ) return [$datetime[0], $decimal[0], $decimal[1]];
         else return null;
     }
 
     /**
      * Remap the output in an associative array,
-     * with the columns name as the key.
+     * with the columns name as keys.
      *
      * @return void
      * @codeCoverageIgnore
      */
     protected function remapColumns(): void
     {
-        $this->remapColumnsBy($this->columns);    
+        $this->remapColumnsBy($this->getColumns());    
     }
 
     /**
@@ -131,7 +141,10 @@ class SynodicRhythmTemplate extends QueryTemplate
      */
     protected function buildObject(): void
     {
-        $this->object = new SynodicRhythm(new FromArray($this->output->all()));           
+        $this->object = new SynodicRhythm(
+            new FromArray($this->output->all()), 
+            $this->step_size
+        );           
     }
 
     /**
@@ -153,5 +166,13 @@ class SynodicRhythmTemplate extends QueryTemplate
     {
         if (!$this->completed) $this->query();
         return $this->fetchObject();
+    }
+
+    /**
+     * It returns the columns names used by this template.
+     */
+    static public function getColumns(): array
+    {
+        return self::$columns;
     }
 }

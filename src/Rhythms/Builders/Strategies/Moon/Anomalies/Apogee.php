@@ -13,10 +13,13 @@ class Apogee extends AnomalisticStrategy
      * It constructs the ApogeeStrategy with an ApogeeRecord.
      *
      * @param ApogeeRecord $record
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
      */
-    public function __construct(ApogeeRecord $record)
+    public function __construct(ApogeeRecord $record, int $sampling_rate)
     {
         $this->record = $record;
+        $this->sampling_rate = $sampling_rate;
+        $this->delta = $this->calculateDelta();
     }
     
     /**
@@ -26,13 +29,11 @@ class Apogee extends AnomalisticStrategy
      */
     public function found(): ?ApogeeRecord
     {
-        if($this->isAboutAngle(
-            $this->record->moon_longitude, 
-            $this->record->apogee_longitude, 
-            $this->angular_delta)
-        ) {
-            return $this->record;
-        }
-        return null;
+        if($this->isAbout(
+            $this->record->moon_longitude->toDecimal(),
+            $this->record->apogee_longitude->toDecimal(),
+            $this->delta
+        )) return $this->record;
+        else return null;
     }
 }

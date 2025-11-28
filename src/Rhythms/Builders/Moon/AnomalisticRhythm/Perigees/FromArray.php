@@ -20,20 +20,23 @@ class FromArray extends Builder
      */
     protected array $columns = [
         "timestamp",
-        "longitude"
+        "longitude",
+        "daily_speed"
     ];
     
     /**
      * It constructs the builder with raw data.
      *
      * @param array $data
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
      * @throws InvalidArgumentException if the array data does not 
      * have keys "timestamp" and "longitude" or if the array is empty.
      */
-    public function __construct(array $data)
+    public function __construct(array $data, int $sampling_rate)
     {
         $this->data = $data;
         $this->validateData();
+        $this->sampling_rate = $sampling_rate;
     }
 
     /**
@@ -62,22 +65,20 @@ class FromArray extends Builder
                 $first_row = reset($lines);
                 $last_row = end($lines);
             return [
-                $first_row["timestamp"] /* timestamp */, 
-                $first_row["longitude"], /* Moon longitude */
-                $last_row["longitude"] /* perigee longitude */
+                "timestamp" => $first_row["timestamp"] , 
+                "moon_longitude" => $first_row["longitude"],
+                "perigee_longitude" => $last_row["longitude"],
+                "moon_daily_speed" => $first_row["daily_speed"]
             ];
         })->all();
 
         // Transform raw data in Moon PerigeeRecord instances.
-        $timestamp = 0;
-        $moon_longitude = 1;
-        $apogee_longitude = 2;
-        $this->data = collect($this->data)->transform(function($item) 
-            use ($timestamp, $moon_longitude, $apogee_longitude){
+        $this->data = collect($this->data)->transform(function($item) {
                 return new PerigeeRecord(
-                    SwissEphemerisDateTime::createFromGregorianTT($item[$timestamp]),
-                    Angle::createFromDecimal((float) $item[$moon_longitude]),
-                    Angle::createFromDecimal((float) $item[$apogee_longitude])
+                    SwissEphemerisDateTime::createFromGregorianTT($item["timestamp"]),
+                    Angle::createFromDecimal((float) $item["moon_longitude"]),
+                    Angle::createFromDecimal((float) $item["perigee_longitude"]),
+                    (float) $item["moon_daily_speed"]
                 );
         })->all();
 
@@ -85,7 +86,7 @@ class FromArray extends Builder
         // Select the correct Moon PerigeeRecord where the Moon is close to its perigee.
         $this->data = collect($this->data)->filter(function ($record) {
             /** @var PerigeeRecord $record */
-            $perigee = new Perigee($record);
+            $perigee = new Perigee($record, $this->sampling_rate);
             return $perigee->found();
         })->values()->all();
     }

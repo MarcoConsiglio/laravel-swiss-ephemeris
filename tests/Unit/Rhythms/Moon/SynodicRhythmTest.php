@@ -48,8 +48,8 @@ class SynodicRhythmTest extends RhythmTestCase
         ]);
 
         // Act
-        $synodic_rhythm_from_raw_ephemeris = new SynodicRhythm($from_array_builder);
-        $synodic_rhythm_from_records = new SynodicRhythm($from_records_builder);
+        $synodic_rhythm_from_raw_ephemeris = new SynodicRhythm($from_array_builder, $this->sampling_rate);
+        $synodic_rhythm_from_records = new SynodicRhythm($from_records_builder, $this->sampling_rate);
 
         // Assert
         $this->assertContainsOnlyInstancesOf(

@@ -17,7 +17,7 @@ trait WithFuzzyLogic
      * @param float   $delta    The delta tolerance at which the condition is true.
      * @return boolean
      */
-    protected function isAbout(float $number, float $expected, float $delta = 1): bool
+    protected function isAbout(float $number, float $expected, float $delta): bool
     {
         $epsilon = abs($delta) / 2;
         return $number >= $expected - $epsilon && $number <= $expected + $epsilon;
@@ -34,7 +34,7 @@ trait WithFuzzyLogic
      */
     protected function isAboutAngle(Angle $alfa, Angle $beta, Angle $delta){
         [$min, $max] = $this->getAngularDeltaExtrems($delta, $alfa);
-        $beta = $beta->toDecimal(PHP_FLOAT_DIG);
+        $beta = $beta->toDecimal();
         return $min <= $beta && $max >= $beta;
     }
 
@@ -50,14 +50,23 @@ trait WithFuzzyLogic
      */
     protected function getDeltaExtremes(float $delta, float $number, float|null $limit = null): array
     {
-        $delta = $this->normalizeAngularValue($delta);
-        $delta = abs($delta);
+        $delta = $this->normalizeAngularValue(abs($delta), $limit);
+        if ($limit == null) $limit = 360;
         return [
             $this->getMinDeltaExtremes($number, $delta, $limit),
             $this->getMaxDeltaExtremes($number, $delta, $limit)
         ];
     }
 
+    /**
+     * It calculates the lower extreme of the $delta angle,
+     * with the center being $number.
+     *
+     * @param float $number
+     * @param float $delta
+     * @param float|null|null $limit
+     * @return float
+     */
     private function getMinDeltaExtremes(float $number, float $delta, float|null $limit = null): float
     {
         $delta = abs($delta);
@@ -68,6 +77,15 @@ trait WithFuzzyLogic
         }
     }
 
+    /**
+     * It calculates the higher extreme of the $delta angle,
+     * with the center being $number.
+     *
+     * @param float $number
+     * @param float $delta
+     * @param float|null|null $limit
+     * @return float
+     */
     private function getMaxDeltaExtremes(float $number, float $delta, float|null $limit = null): float
     {
         $delta = abs($delta);
@@ -78,11 +96,26 @@ trait WithFuzzyLogic
         }
     }
 
+    /**
+     * It returns the epsilon relative error value,
+     * based on $delta.
+     *
+     * @param float $delta
+     * @return float
+     */
     private function getEpsilon(float $delta): float
     {
-        return round($delta / 2, PHP_FLOAT_DIG, RoundingMode::HalfTowardsZero);
+        return $delta / 2;
     }
 
+    /**
+     * It transform an $angle value maintaing it between 
+     * $limit° or 360° if $limit is not specifified.
+     *
+     * @param float $angle
+     * @param float|null|null $limit
+     * @return float
+     */
     private function normalizeAngularValue(float $angle, float|null $limit = null): float
     {
         if ($limit !== null) {
