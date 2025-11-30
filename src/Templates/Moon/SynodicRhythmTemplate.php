@@ -60,53 +60,24 @@ class SynodicRhythmTemplate extends QueryTemplate
     protected function prepareArguments(): void {}
 
     /**
-    /**
      * Prepares flags for the swetest executable.
      *
      * @return void
      */
     protected function prepareFlags(): void
     {
-        $steps = $this->getStepsNumber();
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::DifferentialObjectSelection->value, SinglePlanet::Sun->value));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::BeginDate->value, $this->start_date->toGregorianDate()));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::StepsNumber->value, $steps));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $this->output_format));       
-    }
-
-    /**
-     * Sets whether or not the header appears in the 
-     * ephemeris response.
-     *
-     * @return void
-     */
-    protected function setHeader(): void
-    {
-        // No header.
-        $this->command->addArgument(new SwissEphemerisArgument(CommandFlag::NoHeader->value));
     }
 
     /**
      * It formats the output before parsing it, if necessary.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function formatHook(): void {}
-
-    /**
-     * Parse the response.
-     *
-     * @return void
-     */
-    protected function parseOutput(): void
-    {
-        $this->output->transform(function($row) {
-            return $this->parse($row);
-        });
-    }
 
     /**
      * Parse a line of the raw ephemeris output.

@@ -83,7 +83,7 @@ class DraconicRecord extends Record
     public function isNorthNode(): bool
     {
         // This is a serious problem.
-        return $is_north_node;
+        return $this->is_north_node;
     }
 
     /**

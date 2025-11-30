@@ -6,7 +6,11 @@ use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
+use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
+use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
+use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
+use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Output;
@@ -166,11 +170,15 @@ abstract class QueryTemplate
 
     /**
      * Sets whether or not the header appears in the 
-     * ephemeris response.
+     * ephemeris response. It defaults to no header.
      *
      * @return void
      */
-    abstract protected function setHeader(): void;
+    protected function setHeader(): void
+    {
+        // No header.
+        $this->command->addArgument(new SwissEphemerisArgument(CommandFlag::NoHeader->value));
+    }
 
     /**
      * It formats the output before parsing it, if necessary.
@@ -195,6 +203,7 @@ abstract class QueryTemplate
     final protected function buildCommand(): void
     {
         $this->prepareArguments();
+        $this->setCommonFlags();
         $this->prepareFlags();
         $this->setHeader();
     }
@@ -299,13 +308,6 @@ abstract class QueryTemplate
     }
 
     /**
-     * Parse the response.
-     *
-     * @return void
-     */
-    abstract protected function parseOutput(): void;
-
-    /**
      * Remap the output in an associative array,
      * with the columns name as the key.
      *
@@ -333,7 +335,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Calcs the steps of the ephemeris response.
+     * It calcs the steps of the ephemeris request.
      *
      * @return integer
      */
@@ -366,12 +368,24 @@ abstract class QueryTemplate
     abstract protected function fetchObject();
 
     /**
+     * Parse the response.
+     *
+     * @return void
+     */
+    protected function parseOutput(): void
+    {
+        $this->output->transform(function($row) {
+            return $this->parse($row);
+        });
+    }
+
+    /**
      * Parse a line of the raw ephemeris output.
      * 
      * @return array|null
      */
     abstract protected function parse(string $text): array|null;
-
+    
     /**
      * Parse a datetime.
      *
@@ -436,5 +450,17 @@ abstract class QueryTemplate
      * It returns the columns names used by the concrete template.
      */
     abstract static public function getColumns(): array;
+
+    /**
+     * It sets the common flags for every template
+     * that query the swiss ephemeris executable.
+     */
+    protected function setCommonFlags(): void
+    {
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::BeginDate->value, $this->start_date->toGregorianDate()));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::StepsNumber->value, $this->getStepsNumber()));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
+    }
 
 }

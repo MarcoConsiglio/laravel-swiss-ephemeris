@@ -15,7 +15,7 @@ abstract class TemplateTestCase extends TestCase
      * Use it to not trigger a call to the executable during tests. 
      * @var string
      */
-    abstract protected string $response_file {get; set;}
+    protected string $response_file;
 
     /**
      * Gets an already generated swetest executable response, 

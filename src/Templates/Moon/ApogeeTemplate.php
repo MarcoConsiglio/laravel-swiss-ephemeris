@@ -54,43 +54,8 @@ class ApogeeTemplate extends AnomalisticTemplate
      */
     protected function prepareFlags(): void
     {
-        $this->command->addFlag(new Flag(CommandFlag::BeginDate->value, $this->start_date->toGregorianDate()));
-        $this->command->addFlag(new Flag(CommandFlag::StepsNumber->value, $this->getStepsNumber()));
-        $this->command->addFlag(new Flag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
-        $this->command->addFlag(new Flag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarApogee->value));
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $this->output_format));
-    }
-
-    /**
-     * Sets whether or not the header appears in the 
-     * ephemeris response.
-     *
-     * @return void
-     */
-    protected function setHeader(): void
-    {
-        // No header.
-        $this->command->addArgument(new Argument(CommandFlag::NoHeader->value));
-    }
-    
-    /**
-     * It formats the output before parsing it, if necessary.
-     *
-     * @return void
-     */
-    protected function formatHook(): void {}
-
-    /**
-     * Parse the response.
-     *
-     * @return void
-     */
-    protected function parseOutput(): void
-    {
-        $this->output->transform(function($row) {
-            return $this->parse($row);
-        });   
     }
 
     /**

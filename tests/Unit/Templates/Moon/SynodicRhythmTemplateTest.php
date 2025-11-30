@@ -20,12 +20,11 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 #[TestDox("The Moon\SynodicRhythmTemplate")]
 class SynodicRhythmTemplateTest extends TemplateTestCase
 {
-    protected string $response_file = "./tests/SwissEphemerisResponses/Moon/synodic_rhythm_decimal.txt";
-
     #[TestDox("is the template used to build a Moon\SynodicRhythm collection.")]
     public function test_query_template()
     {
         // Arrange
+        $this->response_file = "./tests/SwissEphemerisResponses/Moon/synodic_rhythm_decimal.txt";
         $start_date = SwissEphemerisDateTime::create(2000);
         $days = 30;
         $step_size = 60;

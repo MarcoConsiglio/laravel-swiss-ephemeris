@@ -22,6 +22,8 @@ enum SinglePlanet: string {
     case OsculatingLunarApogee = "B";
     case InterpolatedLunarApogee = 'c';
     case InterpolatedLunarPerigee = 'g';
+    case MeanLunarNode = 'm';
+    case TrueLunarNode = 't';
     public const Lilith = self::MeanLunarApogee;
     public const BlackMoon = self::MeanLunarApogee;
     public const TrueLilith = self::OsculatingLunarApogee;
