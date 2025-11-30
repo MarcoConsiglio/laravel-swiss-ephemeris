@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Dummy;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\PhaseStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\PhaseStrategy;
 
 /**
  * A class Stub refering to an incorrect PhaseStrategy.

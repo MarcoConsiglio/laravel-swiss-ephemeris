@@ -1,9 +1,8 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
 
-use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;

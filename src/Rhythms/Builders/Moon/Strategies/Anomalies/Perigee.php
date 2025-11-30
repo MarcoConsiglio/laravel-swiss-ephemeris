@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 

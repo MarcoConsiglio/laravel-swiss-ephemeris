@@ -1,8 +1,8 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 
 /**
  * Describe a strategy used to find a Moon phase.

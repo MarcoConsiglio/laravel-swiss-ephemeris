@@ -1,10 +1,9 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Strategy;
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 
 /**
  * Describes a strategy used to found a record of the Moon anomalistic rhythm.

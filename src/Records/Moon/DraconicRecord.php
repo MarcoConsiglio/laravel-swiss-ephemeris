@@ -43,6 +43,13 @@ class DraconicRecord extends Record
     public protected(set) Angle $node_longitude;
 
     /**
+     * True if this is a north node, false otherwise.
+     *
+     * @var boolean
+     */
+    protected bool $is_north_node;
+
+    /**
      * It constructs the Moon DraconicRecord. 
      *
      * @param SwissEphemerisDateTime $timestamp
@@ -50,19 +57,22 @@ class DraconicRecord extends Record
      * @param Angle $node_longitude
      * @param Angle $node_declination
      * @param float $moon_daily_speed
+     * @param bool $is_north_node
      */
     public function __construct(
         SwissEphemerisDateTime $timestamp,
         Angle $moon_longitude,
         Angle $moon_latitude,
         Angle $node_longitude,
-        float $moon_daily_speed
+        float $moon_daily_speed,
+        bool $is_north_node
     ) {
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;
         $this->moon_latitude = $moon_latitude;
         $this->node_longitude = $node_longitude;
         $this->daily_speed = $moon_daily_speed;
+        $this->is_north_node = $is_north_node;
     }
 
     /**
@@ -73,7 +83,7 @@ class DraconicRecord extends Record
     public function isNorthNode(): bool
     {
         // This is a serious problem.
-        return false;
+        return $is_north_node;
     }
 
     /**
@@ -84,6 +94,6 @@ class DraconicRecord extends Record
     public function isSouthNode(): bool
     {
         // This is a serious problem. 
-        return false;
+        return !$this->isNorthNode();
     }
 }

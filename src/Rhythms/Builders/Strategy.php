@@ -1,7 +1,6 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders;
 
-use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
 use MarcoConsiglio\Goniometry\Angle;

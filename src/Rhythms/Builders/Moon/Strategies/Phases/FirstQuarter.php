@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases;
+namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases;
 
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 

@@ -1,10 +1,10 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Enums\Moon;
 
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FirstQuarter as FirstQuarterStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FullMoon as FullMoonStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\NewMoon as NewMoonStrategy;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\ThirdQuarter as ThirdQuarterStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FirstQuarter as FirstQuarterStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FullMoon as FullMoonStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\NewMoon as NewMoonStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\ThirdQuarter as ThirdQuarterStrategy;
 
 /**
  * Moon phases definitions.
