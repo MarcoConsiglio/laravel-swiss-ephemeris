@@ -27,6 +27,7 @@
         }
     },
     "require": {
+        "php": "^8.4",
         "adambrett/shell-wrapper": "~1.0",
         "marcoconsiglio/goniometry": "^1.0"
     },
@@ -49,11 +50,6 @@
             "@build",
             "@php vendor/bin/testbench serve --ansi"
         ]
-    },
-    "config": {
-        "platform": {
-            "php": "8.4"
-        }
     },
     "license": "AGPL-3.0-or-later"
 }
