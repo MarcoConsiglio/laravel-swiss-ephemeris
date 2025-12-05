@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perig
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies\Perigee;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
@@ -11,7 +11,7 @@ use MarcoConsiglio\Goniometry\Angle;
 /**
  * Builds a Moon Perigees collection from raw ephemeris response.
  */
-class FromArray extends Builder
+class FromArray extends FromArrayBuilder
 {
     /**
      * The keys the array data must have.

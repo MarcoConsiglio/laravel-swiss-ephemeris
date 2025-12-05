@@ -46,6 +46,10 @@ enum RegExPattern: string {
      */
     public const InterpolatedPerigee = '(intp\.\sPerigee)';
     /**
+     * It matches the string "true Node".
+     */
+    public const TrueNode = '(true\sNode)';
+    /**
      * It matches looking back a word bound and one space.
      */
     public const OneSpaceDelimeter = '(?<=\b\s)';

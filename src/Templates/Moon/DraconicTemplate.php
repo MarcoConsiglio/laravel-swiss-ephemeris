@@ -4,8 +4,8 @@ namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
+use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
-use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
@@ -68,6 +68,28 @@ class DraconicTemplate extends QueryTemplate
     }
 
     /**
+     * Parse a line of the raw ephemeris output.
+     * 
+     * @return array|null
+     */
+    protected function parse(string $text): array|null
+    {
+        $object_name_regex = RegExPattern::getRegex(RegExPattern::Moon."|".RegExPattern::TrueNode);
+        if (
+            $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
+            $this->datetimeFound($text, $datetime) &&
+            $this->decimalNumberFound($text, $decimal)
+        ) return [
+            $astral_object[0],  // Object name
+            $datetime[0],       // Datetime
+            $decimal[0],        // Object longitude
+            $decimal[1],        // Object latitude
+            $decimal[2]         // Object daily speed
+        ];
+        else return null;
+    }
+
+    /**
      * It formats the output before parsing it, if necessary.
      *
      * @return void
@@ -85,5 +107,15 @@ class DraconicTemplate extends QueryTemplate
     protected function remapColumns(): void
     {
         $this->remapColumnsBy($this->getColumns());    
+    }
+
+    /**
+     * It returns the columns names used by this template.
+     *
+     * @return array
+     */
+    public static function getColumns(): array
+    {
+        return static::$columns;
     }
 }

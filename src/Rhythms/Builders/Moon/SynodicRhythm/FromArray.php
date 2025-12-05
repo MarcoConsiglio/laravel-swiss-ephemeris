@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm;
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 use MarcoConsiglio\Goniometry\Angle;
@@ -11,14 +11,8 @@ use MarcoConsiglio\Goniometry\Angle;
 /**
  * Builds a Moon SynodicRhythm starting from an array of raw ephemeris response.
  */
-class FromArray extends Builder
+class FromArray extends FromArrayBuilder
 {
-    /**
-     * The keys the array data must have.
-     *
-     * @var array
-     */
-    protected array $columns;
 
     /**
      * It constructs the builder with raw data.

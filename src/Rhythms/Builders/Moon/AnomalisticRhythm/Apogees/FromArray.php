@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apoge
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies\Apogee;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
@@ -11,7 +11,7 @@ use MarcoConsiglio\Goniometry\Angle;
 /**
  * Builds a Moon Apogees collection from raw Swiss Ephemeris response.
  */
-class FromArray extends Builder
+class FromArray extends FromArrayBuilder
 {
     /**
      * The keys the array data must have.

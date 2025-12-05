@@ -35,19 +35,35 @@ class DraconicRecord extends Record
     public protected(set) Angle $moon_latitude;
 
     /**
-     * The current node longitude. It represents the
-     * node position.
+     * The current node longitude returned by the ephemeris.
+     * It represent the position of one of the two nodes.
+     * 
+     * The swiss ephemeris returns only one of the two nodes.
+     * This is the one returned by the swiss ephemeris.
      * 
      * @var Angle
      */
     public protected(set) Angle $node_longitude;
 
     /**
+     * The current opposite node longitude. It represent the
+     * position of one of the two nodes.
+     * 
+     * The swiss ephemeris returns only one of the two nodes.
+     * This is the one opposite to the only node presents in
+     * the ephemeris response.
+     * 
+     * @var Angle
+     * @see Angle::$node_longitude
+     */
+    public protected(set) Angle $opposite_node_longitude;
+
+    /**
      * True if this is a north node, false otherwise.
      *
-     * @var boolean
+     * @var boolean|null
      */
-    protected bool $is_north_node;
+    protected bool|null $is_north_node = null;
 
     /**
      * It constructs the Moon DraconicRecord. 
@@ -64,15 +80,15 @@ class DraconicRecord extends Record
         Angle $moon_longitude,
         Angle $moon_latitude,
         Angle $node_longitude,
-        float $moon_daily_speed,
-        bool $is_north_node
+        Angle $opposite_node_longitude,
+        float $moon_daily_speed
     ) {
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;
         $this->moon_latitude = $moon_latitude;
         $this->node_longitude = $node_longitude;
+        $this->opposite_node_longitude = $opposite_node_longitude;
         $this->daily_speed = $moon_daily_speed;
-        $this->is_north_node = $is_north_node;
     }
 
     /**
@@ -82,7 +98,6 @@ class DraconicRecord extends Record
      */
     public function isNorthNode(): bool
     {
-        // This is a serious problem.
         return $this->is_north_node;
     }
 
@@ -93,7 +108,20 @@ class DraconicRecord extends Record
      */
     public function isSouthNode(): bool
     {
-        // This is a serious problem. 
-        return !$this->isNorthNode();
+        return ! $this->isNorthNode();
     }
+
+    /**
+     * It sets the node cardinality (north or south),
+     * if it is not setted yet.
+     *
+     * @param boolean $is_north_node True for a north node, false otherwise.
+     * @return void
+     */
+    public function setNodeCardinality(bool $is_north_node)
+    {
+        if ($this->is_north_node !== null )
+            $this->is_north_node = $is_north_node;
+    }
+
 }

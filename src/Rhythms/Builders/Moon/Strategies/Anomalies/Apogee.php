@@ -36,4 +36,14 @@ class Apogee extends AnomalisticStrategy
         )) return $this->record;
         else return null;
     }
+
+    /**
+     * It returns the daily speed of the record the strategy uses.
+     *
+     * @return float
+     */
+    protected function getSpeed(): float
+    {
+        return $this->record->daily_speed;
+    }
 }

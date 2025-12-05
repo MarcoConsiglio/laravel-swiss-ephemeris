@@ -25,14 +25,4 @@ abstract class AnomalisticStrategy extends Strategy
      * @return mixed
      */
     abstract public function found();
-
-    /**
-     * It returns the daily speed of the AnomalisticRecord the strategy uses.
-     *
-     * @return float
-     */
-    protected function getSpeed(): float
-    {
-        return $this->record->daily_speed;
-    }
 }

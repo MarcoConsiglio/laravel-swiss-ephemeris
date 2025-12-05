@@ -89,7 +89,11 @@ class SynodicRhythmTemplate extends QueryTemplate
         if (
             $this->datetimeFound($text, $datetime) &&
             $this->decimalNumberFound($text, $decimal)
-        ) return [$datetime[0], $decimal[0], $decimal[1]];
+        ) return [
+            $datetime[0],   // Datetime
+            $decimal[0],    // Angular distance between moon and sun
+            $decimal[1]     // Moon daily speed
+        ];
         else return null;
     }
 

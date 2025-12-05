@@ -57,6 +57,8 @@ abstract class AnomalisticTemplate extends QueryTemplate
 
     /**
      * It returns the columns names used by this template.
+     *
+     * @return array
      */
     static public function getColumns(): array
     {

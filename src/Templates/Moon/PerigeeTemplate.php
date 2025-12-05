@@ -69,7 +69,12 @@ class PerigeeTemplate extends AnomalisticTemplate
             $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
             $this->datetimeFound($text, $datetime) &&
             $this->decimalNumberFound($text, $decimal)
-        ) return [$astral_object[0], $datetime[0], $decimal[0], $decimal[1]];
+        ) return [
+            $astral_object[0],  // Object name
+            $datetime[0],       // Datetime
+            $decimal[0],        // Object longitude
+            $decimal[1]         // Object daily speed
+        ];
         else return null;
     }
 

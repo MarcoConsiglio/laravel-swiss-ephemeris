@@ -56,28 +56,6 @@ abstract class Builder implements BuilderInterface
     abstract public function fetchCollection();
 
     /**
-     * It checks if $columns are present as keys
-     * in the array data passed into the builder.
-     *
-     * @param array $columns
-     * @return void
-     */
-    protected function validateArrayData(array $columns)
-    {
-        $data = collect($this->data);
-        $concrete_builder = static::class;
-        $data->each(function ($item) use ($columns, $concrete_builder) {
-            foreach ($columns as $key) {
-                if(!isset($item[$key])) {
-                    throw new InvalidArgumentException(
-                        $this->getMalformedArrayMessage($concrete_builder, $key)
-                    );    
-                }
-            }
-        });
-    }
-
-    /**
      * It validates records passed into the builder.
      *
      * @param string $record_class
@@ -103,7 +81,7 @@ abstract class Builder implements BuilderInterface
      * the builder is empty.
      *
      * @return void
-     * @throws InvalidArgumentException if array data is empty.private
+     * @throws InvalidArgumentException if array data is empty.
      */
     protected function checkEmptyData()
     {
@@ -112,19 +90,6 @@ abstract class Builder implements BuilderInterface
                 $this->getEmptyDataMessage(static::class)
             );
         }       
-    }
-
-    /**
-     * It returns an exception message for a malformed
-     * array data passed to the builder.
-     *
-     * @param string $builder_class
-     * @param string $key
-     * @return string
-     */
-    protected function getMalformedArrayMessage(string $builder_class, string $key): string
-    {
-        return "The $builder_class builder must have \"$key\" key in its raw array data.";
     }
 
     /**
