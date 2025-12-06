@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies;
 
+use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 use MarcoConsiglio\Goniometry\Angle;
@@ -34,11 +35,12 @@ class Node extends Strategy
      */
     public function found(): DraconicRecord|null
     {
-        if (
-            $this->isANode($this->record->moon_longitude, $this->record->node_longitude) ||
-            $this->isANode($this->record->moon_longitude, $this->record->opposite_node_longitude)
-        ) {
-            // Calc node cardinality here and return the record with cardinality setted.
+        if ($this->isANode($this->record->moon_longitude, $this->record->north_node_longitude)) {
+            $this->record->cardinality = Cardinality::North;
+            return $this->record;
+        }
+        if ($this->isANode($this->record->moon_longitude, $this->record->south_node_longitude)) {
+            $this->record->cardinality = Cardinality::South;
             return $this->record;
         }
         else return null;

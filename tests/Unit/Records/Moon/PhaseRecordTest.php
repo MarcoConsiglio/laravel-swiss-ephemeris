@@ -14,7 +14,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[CoversClass(PhaseRecord::class)]
 class PhaseRecordTest extends TestCase
 {
-    #[TestDox("has read-only property \"type\" which is a Phase.")]
+    #[TestDox("has read-only property \"type\" which is a Phase enumeration.")]
     public function test_type_property()
     {
         // Arrange

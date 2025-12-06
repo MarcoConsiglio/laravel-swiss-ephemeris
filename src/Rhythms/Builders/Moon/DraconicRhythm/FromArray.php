@@ -6,6 +6,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\Moon\DraconicTemplate;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Node;
 
 class FromArray extends FromArrayBuilder
 {
@@ -17,7 +18,6 @@ class FromArray extends FromArrayBuilder
     protected array $columns = [
         0 => "timestamp",
         1 => "longitude",
-        2 => "latitude",
         3 => "daily_speed"        
     ];
 
@@ -25,12 +25,15 @@ class FromArray extends FromArrayBuilder
      * It constructs the builder with raw data.
      *
      * @param array $data
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
+     * @throws InvalidArgumentException if one or more columns 
+     * are missing from the data passed to the builder.
      */
-    public function __construct(array $data)
+    public function __construct(array $data, int $sampling_rate)
     {
         $this->data = $data;
-        $this->columns = DraconicTemplate::getColumns();
         $this->validateData();
+        $this->columns = DraconicTemplate::getColumns();
     }
 
     /**
@@ -62,28 +65,25 @@ class FromArray extends FromArrayBuilder
                 "timestamp" => $first_row["timestamp"],
                 "moon_longitude" => $first_row["longitude"],
                 "node_longitude" => $last_row["longitude"],
-                "moon_latitude" => $first_row["latitude"],
                 "moon_daily_speed" => $first_row["daily_speed"]
             ];
         })->all();
 
         // Transform raw data in Moon DraconicRecord instances.
         $this->data = collect($this->data)->transform(function ($item) {
-            $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
             return new DraconicRecord(
                 SwissEphemerisDateTime::createFromGregorianTT($item["timestamp"]),
                 Angle::createFromDecimal($item["moon_longitude"]),
-                Angle::createFromDecimal($item["moon_latitude"]),
-                $node_longitude = Angle::createFromDecimal($item["node_longitude"]),
-                Angle::sum($node_longitude, $opposite),
+                Angle::createFromDecimal($item["node_longitude"]),
                 $item["moon_daily_speed"]
             );
         })->all();
 
         // Select the correct Moon DraconicRecord where the Moon is close to one of the two nodes.
         $this->data = collect($this->data)->filter(function ($record) {
+            /** @var DraconicRecord $record */
             return new Node($record, $this->sampling_rate)->found();
-        })->values()->all();
+        })->filter()->values()->all();
     }
 
     /**
@@ -93,6 +93,7 @@ class FromArray extends FromArrayBuilder
      */
     public function fetchCollection()
     {
-        
+        if (! $this->builded) $this->buildRecords();
+        return $this->data;
     }
 }

@@ -18,8 +18,8 @@ class FromArray extends FromArrayBuilder
      * It constructs the builder with raw data.
      *
      * @param mixed $data
-     * @throws InvalidArgumentException if the array data does not 
-     * have keys "timestamp" and "angular_distance" or if the array is empty.
+     * @throws InvalidArgumentException if one or more columns 
+     * are missing from the data passed to the builder.
      */
     public function __construct(array $data)
     {
@@ -30,8 +30,8 @@ class FromArray extends FromArrayBuilder
 
     /**
      * @return void
-     * @throws InvalidArgumentException if the array data does not 
-     * have keys "timestamp" and "angular_distance" or if the array is empty.
+     * @throws InvalidArgumentException if one or more columns 
+     * are missing from the data passed to the builder.
      */
     protected function validateData()
     {

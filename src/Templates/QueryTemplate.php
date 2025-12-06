@@ -188,7 +188,7 @@ abstract class QueryTemplate
     abstract protected function formatHook(): void;
 
     /**
-     * Sets whether to include debug information in the response.
+     * It sets whether to include debug information in the response.
      *
      * @return void
      * @codeCoverageIgnore
@@ -209,7 +209,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Run the swetest executable.
+     * It runs the swetest executable.
      *
      * @return void
      * @codeCoverageIgnore
@@ -230,7 +230,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Search for errors in the swetest executable output.
+     * It searches for errors in the swetest executable output.
      *
      * @param array $output
      * @return void
@@ -252,7 +252,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Search for warnings in the swetest executable output.
+     * It searches for warnings in the swetest executable output.
      *
      * @return void
      */
@@ -272,7 +272,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Search for notices in the swetest executable output.
+     * It searches for notices in the swetest executable output.
      *
      * @return void
      */
@@ -293,7 +293,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Removes empty line in the swetest executable output.
+     * It removes empty line in the swetest executable output.
      *
      * @return void
      */
@@ -308,7 +308,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Remap the output in an associative array,
+     * It remaps the output in an associative array,
      * with the columns name as the key.
      *
      * @return void
@@ -316,12 +316,17 @@ abstract class QueryTemplate
     abstract protected function remapColumns(): void;
 
     /**
-     * Construct the correct object with a builder.
+     * It constructs the correct object with a builder.
      *
      * @return void
      */
     abstract protected function buildObject(): void;
 
+    /**
+     * It returns the builded object.
+     *
+     * @return mixed
+     */
     abstract public function getResult();
 
     protected function remapColumnsBy(array $columns)
@@ -361,7 +366,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Returns the builded object.
+     * It returns the builded object.
      *
      * @return mixed
      */
@@ -380,7 +385,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Parse a line of the raw ephemeris output.
+     * It parses a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -412,26 +417,26 @@ abstract class QueryTemplate
         return $result;
     }
 
-    /**
-     * Parse a string angle measure.
-     *
-     * @param string $text
-     * @param mixed $match
-     * @return integer
-     */
-    protected function angularValuesFound(string $text, &$match): int
-    {
-        $degrees_match = null;
-        $degrees_result = preg_match(Angle::DEGREES_REGEX, $text, $degrees_match);
-        $minutes_match = null;
-        $minutes_result = preg_match(Angle::MINUTES_REGEX, $text, $minutes_match);
-        $seconds_match = null;
-        $seconds_result = preg_match(Angle::SECONDS_REGEX, $text, $seconds_match);
-        if ($degrees_result == 1 && $minutes_result == 1 && $seconds_result == 1) {
-            $match = $degrees_match[0]." ".$minutes_match[0]." ".$seconds_match[0];
-            return 1;
-        } else return 0;
-    }
+    // /**
+    //  * Parse a string angle measure.
+    //  *
+    //  * @param string $text
+    //  * @param mixed $match
+    //  * @return integer
+    //  */
+    // protected function angularValuesFound(string $text, &$match): int
+    // {
+    //     $degrees_match = null;
+    //     $degrees_result = preg_match(Angle::DEGREES_REGEX, $text, $degrees_match);
+    //     $minutes_match = null;
+    //     $minutes_result = preg_match(Angle::MINUTES_REGEX, $text, $minutes_match);
+    //     $seconds_match = null;
+    //     $seconds_result = preg_match(Angle::SECONDS_REGEX, $text, $seconds_match);
+    //     if ($degrees_result == 1 && $minutes_result == 1 && $seconds_result == 1) {
+    //         $match = $degrees_match[0]." ".$minutes_match[0]." ".$seconds_match[0];
+    //         return 1;
+    //     } else return 0;
+    // }
 
     /**
      * Parse an astral object name.

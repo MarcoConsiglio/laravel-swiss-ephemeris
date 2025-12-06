@@ -57,7 +57,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Parse a line of the raw ephemeris output.
+     * It parses a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -78,7 +78,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It constructs the Apogee collection.
+     * It constructs the Apogees collection.
      *
      * @return void
      */
@@ -88,7 +88,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Returns the builded object.
+     * It returns the builded object.
      *
      * @return Apogees
      */
@@ -98,7 +98,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Gets the builded SynodicRhythm collection.
+     * It returns the builded Apogees collection.
      *
      * @return Apogees
      */
@@ -109,7 +109,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Remap the output in an associative array, 
+     * It Remaps the output in an associative array, 
      * with the columns name as the key.
      *
      * @return void

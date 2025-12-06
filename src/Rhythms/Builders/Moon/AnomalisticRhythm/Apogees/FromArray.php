@@ -29,8 +29,8 @@ class FromArray extends FromArrayBuilder
      *
      * @param array $data
      * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
-     * @throws InvalidArgumentException if the array data does not 
-     * have keys "timestamp" and "longitude" or if the array is empty.
+     * @throws InvalidArgumentException if one or more columns 
+     * are missing from the data passed to the builder.
      */
     public function __construct(array $data, int $sampling_rate)
     {

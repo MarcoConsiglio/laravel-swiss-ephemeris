@@ -211,6 +211,14 @@ TEXT
         ]);
     }
 
+    /**
+     * It calculates the delta angle which is the accepted error
+     * to found an angle with a precise value.
+     *
+     * @param float $daily_speed
+     * @param float $sampling_rate
+     * @return float
+     */
     protected function getDelta(float $daily_speed, float $sampling_rate): float
     {
         return round(

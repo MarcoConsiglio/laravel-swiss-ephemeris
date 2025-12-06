@@ -8,6 +8,7 @@ use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm\FromArray;
 
 /**
  * A template for an ephemeris query to obtain 
@@ -25,15 +26,13 @@ class DraconicTemplate extends QueryTemplate
         0 => "astral_object",
         1 => "timestamp",
         2 => "longitude",
-        3 => "latitude",
-        4 => "daily_speed"
+        3 => "daily_speed"
     ];
 
     protected string $output_format = 
-        OutputFormat::PlanetIndex->value.
+        OutputFormat::PlanetName->value.
         OutputFormat::GregorianDateTimeFormat->value.
         OutputFormat::LongitudeDecimal->value.
-        OutputFormat::LatitudeDecimal->value.
         OutputFormat::DailyLongitudinalSpeedDecimal->value;
 
     /**
@@ -53,7 +52,6 @@ class DraconicTemplate extends QueryTemplate
     protected function prepareArguments(): void {}
 
     /**
-    /**
      * Prepares flags for the swetest executable.
      *
      * @return void
@@ -68,7 +66,7 @@ class DraconicTemplate extends QueryTemplate
     }
 
     /**
-     * Parse a line of the raw ephemeris output.
+     * It parses a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -83,10 +81,21 @@ class DraconicTemplate extends QueryTemplate
             $astral_object[0],  // Object name
             $datetime[0],       // Datetime
             $decimal[0],        // Object longitude
-            $decimal[1],        // Object latitude
-            $decimal[2]         // Object daily speed
+            $decimal[1]         // Object daily speed
         ];
         else return null;
+    }
+
+    /**
+     * It constructs the DraconicRhythm object.
+     *
+     * @return void
+     */
+    protected function buildObject(): void
+    {
+        $this->object = new DraconicRhythm(
+            new FromArray($this->output->all(), $this->step_size)
+        );
     }
 
     /**
@@ -98,7 +107,7 @@ class DraconicTemplate extends QueryTemplate
     protected function formatHook(): void {}
 
     /**
-     * Remap the output in an associative array,
+     * It remaps the output in an associative array,
      * with the columns name as keys.
      *
      * @return void
@@ -117,5 +126,26 @@ class DraconicTemplate extends QueryTemplate
     public static function getColumns(): array
     {
         return static::$columns;
+    }
+
+    /**
+     * It returns the DraconicRhythm collection.
+     *
+     * @return DraconicRhythm
+     */
+    public function getResult(): DraconicRhythm
+    {
+        if (! $this->completed) $this->query();
+        return $this->fetchObject();
+    }
+
+    /**
+     * It returns the builded object.
+     *
+     * @return DraconicRhythm
+     */
+    protected function fetchObject(): DraconicRhythm
+    {
+        return $this->object;
     }
 }

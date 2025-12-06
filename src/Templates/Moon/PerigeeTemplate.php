@@ -58,7 +58,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Parse a line of the raw ephemeris output.
+     * It parses a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -79,7 +79,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It constructs the Apogee collection.
+     * It constructs the Perigees collection.
      *
      * @return void
      */
@@ -89,7 +89,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Returns the builded object.
+     * It returns the builded object.
      *
      * @return Perigees
      */
@@ -99,7 +99,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Gets the builded SynodicRhythm collection.
+     * It returns the builded Perigees collection.
      *
      * @return Perigees
      */
@@ -110,7 +110,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Remap the output in an associative array, 
+     * It remaps the output in an associative array, 
      * with the columns name as the key.
      *
      * @return void

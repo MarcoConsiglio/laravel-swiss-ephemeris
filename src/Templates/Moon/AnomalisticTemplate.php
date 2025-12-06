@@ -38,7 +38,7 @@ abstract class AnomalisticTemplate extends QueryTemplate
     ];
 
     /**
-     * Remap the output in an associative array,
+     * It remaps the output in an associative array,
      * with the columns name as the key.
      *
      * @return void

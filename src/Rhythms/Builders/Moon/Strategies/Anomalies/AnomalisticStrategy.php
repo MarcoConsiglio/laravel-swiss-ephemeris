@@ -16,8 +16,6 @@ abstract class AnomalisticStrategy extends Strategy
      * @var ApogeeRecord|PerigeeRecord
      */
     protected ApogeeRecord|PerigeeRecord $record;
-    
-
 
     /**
      * Find an exact record.
@@ -25,4 +23,9 @@ abstract class AnomalisticStrategy extends Strategy
      * @return mixed
      */
     abstract public function found();
+
+    protected function getSpeed(): float
+    {
+        return $this->record->daily_speed;
+    }
 }

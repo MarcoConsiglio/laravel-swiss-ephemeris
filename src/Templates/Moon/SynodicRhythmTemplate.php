@@ -80,7 +80,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     protected function formatHook(): void {}
 
     /**
-     * Parse a line of the raw ephemeris output.
+     * It parses a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -98,7 +98,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * Remap the output in an associative array,
+     * It remaps the output in an associative array,
      * with the columns name as keys.
      *
      * @return void
@@ -123,7 +123,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * Returns the builded object.
+     * It returns the builded object.
      *
      * @return SynodicRhythm
      */
