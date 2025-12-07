@@ -10,7 +10,7 @@ use RoundingMode;
 trait WithFuzzyLogic
 {
     /**
-     * It checks if a $number is almost equal to $expected.
+     * Check if a $number is almost equal to $expected.
      *
      * @param float   $number   First operand.
      * @param float   $expected Second operand.
@@ -24,7 +24,7 @@ trait WithFuzzyLogic
     }
 
     /**
-     * It checks that $alpha is nearly equal to $beta, 
+     * Check that $alpha is nearly equal to $beta, 
      * taking into account an angular neighborhood of $delta.
      *
      * @param Angle $alfa The first angle operand.
@@ -39,7 +39,7 @@ trait WithFuzzyLogic
     }
 
     /**
-     * Calculates the min and max extremes for a fuzzy condition with angular values.
+     * Calculate the min and max extremes for a fuzzy condition with angular values.
      *
      * @param float $delta The neighborhood.
      * @param float $number The central point of the neighborhood.
@@ -59,7 +59,7 @@ trait WithFuzzyLogic
     }
 
     /**
-     * It calculates the lower extreme of the $delta angle,
+     * Calculate the lower extreme of the $delta angle,
      * with the center being $number.
      *
      * @param float $number
@@ -78,7 +78,7 @@ trait WithFuzzyLogic
     }
 
     /**
-     * It calculates the higher extreme of the $delta angle,
+     * Calculate the higher extreme of the $delta angle,
      * with the center being $number.
      *
      * @param float $number
@@ -97,7 +97,7 @@ trait WithFuzzyLogic
     }
 
     /**
-     * It returns the epsilon relative error value,
+     * Return the epsilon relative error value,
      * based on $delta.
      *
      * @param float $delta
@@ -109,7 +109,7 @@ trait WithFuzzyLogic
     }
 
     /**
-     * It transform an $angle value maintaing it between 
+     * Transform an $angle value maintaing it between 
      * $limit° or 360° if $limit is not specifified.
      *
      * @param float $angle
@@ -131,7 +131,7 @@ trait WithFuzzyLogic
     }
 
     /**
-     * Calculates the min and max angular extremes for a fuzzy condition.
+     * Calculate the min and max angular extremes for a fuzzy condition.
      *
      * @param Angle $delta The neighborhood.
      * @param Angle $angle The central point of the neighborhood.

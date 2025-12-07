@@ -24,7 +24,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_timestamp_property()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
+        $timestamp = $this->getRandomSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
         $daily_speed = $this->getRandomDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
@@ -37,7 +37,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_angular_distance_property()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
         $daily_speed = $this->getRandomDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
@@ -50,7 +50,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_percentage_property()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
         $expected_percentage = round($angular_distance->toDecimal() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
         $daily_speed = $this->getRandomDailySpeed();
@@ -64,7 +64,7 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_daily_speed_property()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
         $daily_speed = $this->getRandomDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
@@ -77,8 +77,8 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waxing()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
-        $angular_distance = $this->getRandomAngularDistance(0, 180);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
+        $angular_distance = $this->getAngleBetween(0, 180);
         $daily_speed = $this->getRandomDailySpeed();
         $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
@@ -96,8 +96,8 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waning()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
-        $angular_distance = $this->getRandomAngularDistance(-180, 0);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
+        $angular_distance = $this->getAngleBetween(-180, 0);
         $daily_speed = $this->getRandomDailySpeed();
         $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
@@ -115,9 +115,9 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_equal()
     {
         // Arrange
-        $d1 = $this->getTestingTimestamp(2000);
+        $d1 = $this->getRandomSwissEphemerisDateTime();
         $d2 = clone $d1;
-        $d2->hour = 2;
+        $d2->hour += 1;
         $a1 = Angle::createFromDecimal(180.0);
         $a2 = Angle::createFromDecimal(90.0);
         $daily_speed = $this->getRandomDailySpeed();
@@ -147,13 +147,13 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $record_A = new SynodicRhythmRecord(
-            $this->getTestingTimestamp(2000), 
-            $this->getRandomAngularDistance(-180, 0),
+            $this->getMockedSwissEphemerisDateTime(), 
+            $this->getAngleBetween(-180, 0),
             $this->getRandomDailySpeed()
         );
         $record_B = new SynodicRhythmRecord(
-            $this->getTestingTimestamp(2000),
-            $this->getRandomAngularDistance(0, 180),
+            $this->getMockedSwissEphemerisDateTime(),
+            $this->getAngleBetween(0, 180),
             $this->getRandomDailySpeed()
         );
 
@@ -170,13 +170,13 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_casting_to_string()
     {
         // Arrange
-        $timestamp = Carbon::create(2000, 12, 6, 3, 25, 11);
+        $timestamp = $this->getRandomSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
         $daily_speed = $this->getRandomDailySpeed();
         $percentage = round($angular_distance->toDecimal() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
         if ($percentage == -0.0) $percentage = 0;
         $record = new SynodicRhythmRecord(
-            SwissEphemerisDateTime::createFromCarbon($timestamp),
+            $timestamp,
             $angular_distance,
             $daily_speed
         );
@@ -195,18 +195,6 @@ daily_speed: {$daily_speed}°/day
 TEXT,
             (string) $record
         );
-    }
-
-    protected function getTestingTimestamp($year = 0, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0, $timezone = null): SwissEphemerisDateTime
-    {
-        return SwissEphemerisDateTime::create($year, $month, $day, $hour, $minute, $second, $timezone);
-    }
-
-    protected function getRandomAngularDistance(float|null $min_angular_distance = null, float|null $max_angular_distance = null): Angle
-    {
-        $min_angular_distance = $min_angular_distance ?? -180;
-        $max_angular_distance = $max_angular_distance ?? 180;
-        return Angle::createFromDecimal($this->faker->randomFloat(7, $min_angular_distance, $max_angular_distance));
     }
 
     protected function getRandomDailySpeed(): float

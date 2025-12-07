@@ -84,7 +84,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Formats this date to the Gregorian calendar expressed in
+     * Format this date to the Gregorian calendar expressed in
      * Universal Time.
      *
      * @return string
@@ -95,7 +95,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Formats this date to the Gregorian calendar expressed in
+     * Format this date to the Gregorian calendar expressed in
      * Terrestrial Time.
      *
      * @return string
@@ -106,7 +106,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Formats this date to the Julian calendar expressed in
+     * Format this date to the Julian calendar expressed in
      * Universal Time.
      *
      * @return string
@@ -117,7 +117,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Formats this date to the Julian calendar expressed in
+     * Format this date to the Julian calendar expressed in
      * Terrestrial Time.
      *
      * @return string
@@ -128,7 +128,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Formats this date to the Gregorian calendar date.
+     * Format this date to the Gregorian calendar date.
      *
      * @return string
      */
@@ -138,7 +138,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Formats this date to the Julian calendar date.
+     * Format this date to the Julian calendar date.
      *
      * @return string
      */
@@ -148,7 +148,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Returns all available formats.
+     * Return all available formats.
      *
      * @return array
      */
@@ -163,7 +163,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Creates a SwissDateTime from a Gregorian calendar date and a Universal Time.
+     * Create a SwissDateTime from a Gregorian calendar date and a Universal Time.
      *
      * @param string                    $date
      * @param string|\DateTimeZone|null $timezone
@@ -178,7 +178,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Creates a SwissDateTime from a Gregorian calendar date and a Terrestrial Time.
+     * Create a SwissDateTime from a Gregorian calendar date and a Terrestrial Time.
      *
      * @param string                    $date
      * @param string|DateTimeZone|null  $timezone
@@ -193,7 +193,7 @@ class SwissEphemerisDateTime extends Carbon
     }
     
     /**
-     * Creates a SwissDateTime from a Julian calendar date and a Universal Time.
+     * Create a SwissDateTime from a Julian calendar date and a Universal Time.
      *
      * @param string                    $date
      * @param string|DateTimeZone|null  $timezone
@@ -208,7 +208,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Creates a SwissDateTime from a Julian calendar date and a Universal Time.
+     * Create a SwissDateTime from a Julian calendar date and a Universal Time.
      *
      * @param string                    $date
      * @param string|DateTimeZone|null  $timezone
@@ -223,7 +223,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Alias of the isUniversalTime method.
+     * Alias of isUniversalTime method.
      *
      * @return boolean
      */
@@ -233,8 +233,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Returns whetere this instance is created with
-     * a Universal Time.
+     * Return whether this instance is created with a Universal Time.
      *
      * @return boolean
      */
@@ -244,7 +243,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Alias of the isTerrestrialTime method.
+     * Alias of isTerrestrialTime method.
      *
      * @return boolean
      */
@@ -254,8 +253,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Returns whetere this instance is created with
-     * a Terrestrial Time.
+     * Return wheter this instance is created with a Terrestrial Time.
      *
      * @return boolean
      */
@@ -265,8 +263,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Returns weather this instance is created with
-     * a Gregorian calendar date.
+     * Return weather this instance is created with a Gregorian calendar date.
      *
      * @return boolean
      */
@@ -276,8 +273,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Returns weather this instance is created with
-     * a Julian calendar date.
+     * Return weather this instance is created with a Julian calendar date.
      *
      * @return boolean
      */
@@ -287,16 +283,18 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Creates a SwissEphemerisDateTime with one of the
+     * Create a SwissEphemerisDateTime with one of the
      * available Swiss Ephemeris formats.
      * 
      * If $timestamp came from Swiss Ephemeris, you can 
      * build this class instance without know what format
-     * $timestamp has.
+     * $timestamp has because this method will guess based
+     * on SwissEphemerisDateTime::availableFormats().
      *
      * @param string $timestamp
      * @return SwissEphemerisDateTime
      * @throws InvalidFormatException if $timestamp doesn't match any of the available formats.
+     * @see \MarcoConsiglio\Ephemeris\SwissEphemerisDateTime::availableFormats()
      */
     public static function createFromSwissEphemerisFormat(string $timestamp): SwissEphemerisDateTime
     {
@@ -330,7 +328,7 @@ class SwissEphemerisDateTime extends Carbon
     }
 
     /**
-     * Format the instance as a string using the set format
+     * Format the instance as a string.
      *
      * @return string
      */

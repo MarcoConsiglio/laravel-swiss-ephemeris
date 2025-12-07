@@ -52,19 +52,19 @@ class SynodicRhythmTemplate extends QueryTemplate
     protected SynodicRhythm $object;
 
     /**
-     * Prepares arguments for the swetest executable.
+     * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void {}
+    protected function setArguments(): void {}
 
     /**
-     * Prepares flags for the swetest executable.
+     * Set flags for the swetest executable.
      *
      * @return void
      */
-    protected function prepareFlags(): void
+    protected function setFlags(): void
     {
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::DifferentialObjectSelection->value, SinglePlanet::Sun->value));
@@ -80,7 +80,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     protected function formatHook(): void {}
 
     /**
-     * It parses a line of the raw ephemeris output.
+     * Parse a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -98,7 +98,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * It remaps the output in an associative array,
+     * Remap the output in an associative array,
      * with the columns name as keys.
      *
      * @return void
@@ -110,7 +110,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * It constructs the SynodicRhythm collection.
+     * Construct the SynodicRhythm collection.
      *
      * @return void
      */
@@ -123,7 +123,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * It returns the builded object.
+     * Return the builded object.
      *
      * @return SynodicRhythm
      */
@@ -133,7 +133,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * Gets the builded SynodicRhythm collection.
+     * Get the builded SynodicRhythm collection.
      *
      * @return SynodicRhythm
      */
@@ -144,7 +144,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * It returns the columns names used by this template.
+     * Return the columns names used by this template.
      */
     static public function getColumns(): array
     {

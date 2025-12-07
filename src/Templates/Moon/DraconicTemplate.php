@@ -44,19 +44,19 @@ class DraconicTemplate extends QueryTemplate
     protected DraconicRhythm $object;
 
     /**
-     * Prepares arguments for the swetest executable.
+     * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void {}
+    protected function setArguments(): void {}
 
     /**
-     * Prepares flags for the swetest executable.
+     * Set flags for the swetest executable.
      *
      * @return void
      */
-    protected function prepareFlags(): void
+    protected function setFlags(): void
     {
         $this->command->addFlag(new SwissEphemerisFlag(
             CommandFlag::ObjectSelection->value, 
@@ -66,7 +66,7 @@ class DraconicTemplate extends QueryTemplate
     }
 
     /**
-     * It parses a line of the raw ephemeris output.
+     * Parse a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -87,7 +87,7 @@ class DraconicTemplate extends QueryTemplate
     }
 
     /**
-     * It constructs the DraconicRhythm object.
+     * Construct the DraconicRhythm object.
      *
      * @return void
      */
@@ -107,7 +107,7 @@ class DraconicTemplate extends QueryTemplate
     protected function formatHook(): void {}
 
     /**
-     * It remaps the output in an associative array,
+     * Remap the output in an associative array,
      * with the columns name as keys.
      *
      * @return void
@@ -119,7 +119,7 @@ class DraconicTemplate extends QueryTemplate
     }
 
     /**
-     * It returns the columns names used by this template.
+     * Return the columns names used by this template.
      *
      * @return array
      */
@@ -129,7 +129,7 @@ class DraconicTemplate extends QueryTemplate
     }
 
     /**
-     * It returns the DraconicRhythm collection.
+     * Return the DraconicRhythm collection.
      *
      * @return DraconicRhythm
      */
@@ -140,7 +140,7 @@ class DraconicTemplate extends QueryTemplate
     }
 
     /**
-     * It returns the builded object.
+     * Return the builded object.
      *
      * @return DraconicRhythm
      */

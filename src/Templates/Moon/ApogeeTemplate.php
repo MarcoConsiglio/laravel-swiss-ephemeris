@@ -38,26 +38,26 @@ class ApogeeTemplate extends AnomalisticTemplate
         OutputFormat::DailyLongitudinalSpeedDecimal->value;
     
     /**
-     * Prepares arguments for the swetest executable.
+     * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void {}
+    protected function setArguments(): void {}
 
     /**
-     * Prepares flags for the swetest executable.
+     * Set flags for the swetest executable.
      *
      * @return void
      */
-    protected function prepareFlags(): void
+    protected function setFlags(): void
     {
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarApogee->value));
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $this->output_format));
     }
 
     /**
-     * It parses a line of the raw ephemeris output.
+     * Parse a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -78,7 +78,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It constructs the Apogees collection.
+     * Construct the Apogees collection.
      *
      * @return void
      */
@@ -88,7 +88,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It returns the builded object.
+     * Return the builded object.
      *
      * @return Apogees
      */
@@ -98,7 +98,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It returns the builded Apogees collection.
+     * Return the builded Apogees collection.
      *
      * @return Apogees
      */

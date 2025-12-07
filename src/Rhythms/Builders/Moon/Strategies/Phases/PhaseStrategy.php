@@ -5,7 +5,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 
 /**
- * Describe a strategy used to find a Moon phase.
+ * The strategy used to find a Moon phase.
  */
 abstract class PhaseStrategy extends Strategy
 {
@@ -17,17 +17,11 @@ abstract class PhaseStrategy extends Strategy
     protected SynodicRhythmRecord $record;
 
     /**
-     * The angular neighborhood within which to accept a record.
-     *
-     * @var float
-     */
-    public protected(set) float $delta;
-
-    /**
-     * It constructs a FirstQuarter strategy with a Moon SynodicRhythmRecord.
+     * Construct a FirstQuarter strategy with a Moon SynodicRhythmRecord.
      *
      * @param SynodicRhythmRecord $record
-     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
+     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * expressed in minutes per each step of the ephemeris response.
      */
     public function __construct(SynodicRhythmRecord $record, int $sampling_rate)
     {
@@ -37,8 +31,7 @@ abstract class PhaseStrategy extends Strategy
     }
 
     /**
-     * It returns the daily speed of the SynodicRhythmRecord
-     * the strategy uses.
+     * Return the daily speed of the record the strategy uses.
      *
      * @return float
      */

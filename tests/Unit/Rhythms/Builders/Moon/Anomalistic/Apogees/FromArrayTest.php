@@ -62,7 +62,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     /**
-     * It returns raw data to test the builder.
+     * Return raw data to test the builder.
      *
      * @return array
      */

@@ -8,6 +8,9 @@ use MarcoConsiglio\Ephemeris\Templates\Moon\DraconicTemplate;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Node;
 
+/**
+ * Builds a DraconicRhythm from an array of raw ephemeris data.
+ */
 class FromArray extends FromArrayBuilder
 {
     /**
@@ -22,10 +25,11 @@ class FromArray extends FromArrayBuilder
     ];
 
     /**
-     * It constructs the builder with raw data.
+     * Construct the builder with raw data.
      *
      * @param array $data
-     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
+     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * expressed in minutes per each step of the ephemeris response.
      * @throws InvalidArgumentException if one or more columns 
      * are missing from the data passed to the builder.
      */
@@ -37,7 +41,7 @@ class FromArray extends FromArrayBuilder
     }
 
     /**
-     * Validates data.
+     * Validate data.
      *
      * @return void
      * @throws InvalidArgumentException if one or more columns 

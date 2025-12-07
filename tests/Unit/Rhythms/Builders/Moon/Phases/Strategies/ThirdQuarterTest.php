@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\ThirdQuarte
 #[TestDox("The ThirdQuarter PhaseStrategy")]
 #[CoversClass(ThirdQuarter::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
-class ThirdQuarterTest extends PhaseStrategyTestCase
+class ThirdQuarterTest extends TestCase
 {
     /**
      * Setup the test environment.

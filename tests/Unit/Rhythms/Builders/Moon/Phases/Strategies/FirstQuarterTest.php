@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FirstQuarte
 #[TestDox("The FirstQuarter PhaseStrategy")]
 #[CoversClass(FirstQuarter::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
-class FirstQuarterTest extends PhaseStrategyTestCase
+class FirstQuarterTest extends TestCase
 {
     /**
      * Setup the test environment.

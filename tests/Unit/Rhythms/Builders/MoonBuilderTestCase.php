@@ -6,14 +6,14 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 abstract class MoonBuilderTestCase extends BuilderTestCase
 {
     /**
-     * It returns a random Moon daily speed expressed in 
+     * Return a random Moon daily speed expressed in 
      * decimal degrees per day.
      *
      * @return float
      */
     protected function getRandomMoonDailySpeed(): float
     {
-        return $this->faker->randomFloat(PHP_FLOAT_DIG, 10, 14);
+        return $this->getRandomSpeed(10, 14);
     }
 
     /**

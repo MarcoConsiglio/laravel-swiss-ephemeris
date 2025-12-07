@@ -40,7 +40,7 @@ class SynodicRhythmRecord extends Record
     }
 
     /**
-     * It constructs a Moon SynodicRhythmRecord.
+     * Construct a Moon SynodicRhythmRecord.
      *
      * @param SwissEphemerisDateTime $timestamp
      * @param Angle $angular_distance The angular difference between the Moon and the Sun.

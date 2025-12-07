@@ -64,7 +64,7 @@ class DraconicRecord extends Record
     }
 
     /**
-     * It constructs the Moon DraconicRecord. 
+     * Construct the Moon DraconicRecord. 
      *
      * @param SwissEphemerisDateTime $timestamp
      * @param Angle $moon_longitude
@@ -85,7 +85,7 @@ class DraconicRecord extends Record
     }
 
     /**
-     * It calculates the opposite angle of a longitude value.
+     * Calculate the opposite angle of a longitude value.
      *
      * @return Angle
      */
@@ -96,7 +96,7 @@ class DraconicRecord extends Record
     }
 
     /**
-     * It returns true if this record is a north node.
+     * Return true if this record is a north node.
      *
      * @return boolean
      */
@@ -106,7 +106,7 @@ class DraconicRecord extends Record
     }
 
     /**
-     * It returns true if this record is a south node.
+     * Return true if this record is a south node.
      *
      * @return boolean
      */

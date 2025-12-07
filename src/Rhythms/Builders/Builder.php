@@ -5,8 +5,8 @@ use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder as BuilderInterface;
 
 /**
- * A builder constructs ephemeris object from a specific
- * type of input.
+ * The abstract constructor that builds ephemeris collection from a 
+ * specific type of input.
  * 
  * The specific type of input determines the concrete builder class.
  */
@@ -21,42 +21,43 @@ abstract class Builder implements BuilderInterface
     protected bool $builded = false;
 
     /**
-     * The data used to construct a builder.
+     * The data used to construct a collection.
      *
      * @var mixed
      */
     protected $data;
 
     /**
-     * The sampling rate of the ephemeris expressed in minutes.
+     * The sampling rate of the ephemeris expressed in 
+     * minutes per each step of the ephemeris response.
      *
      * @var integer
      */
     protected int $sampling_rate;
 
     /**
-     * Validates data.
+     * Validate data.
      *
      * @return void
      */
     abstract protected function validateData();
 
     /**
-     * Builds records.
+     * Build records.
      *
      * @return void
      */
     abstract protected function buildRecords();
 
     /**
-     * Fetches the result.
+     * Fetch the result.
      *
      * @return mixed
      */
     abstract public function fetchCollection();
 
     /**
-     * It validates records passed into the builder.
+     * Validate records passed into the builder.
      *
      * @param string $record_class
      * @return void
@@ -77,7 +78,7 @@ abstract class Builder implements BuilderInterface
     }
 
     /**
-     * It checks if the array data passed into
+     * Check if the array data passed into
      * the builder is empty.
      *
      * @return void
@@ -93,7 +94,7 @@ abstract class Builder implements BuilderInterface
     }
 
     /**
-     * It returns an exception message for a
+     * Return an exception message for a
      * record type mismatch.
      *
      * @param string $builder_class
@@ -106,7 +107,7 @@ abstract class Builder implements BuilderInterface
     }
 
     /**
-     * It returns an exception message for an
+     * Return an exception message for an
      * empty array data.
      *
      * @param string $builder_class

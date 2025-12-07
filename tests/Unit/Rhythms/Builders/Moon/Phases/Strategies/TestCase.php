@@ -3,10 +3,11 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Phases\Strat
 
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonStrategyTestCase;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
-class PhaseStrategyTestCase extends StrategyTestCase
+class TestCase extends MoonStrategyTestCase
 {
     /**
      * Setup the test environment.
@@ -23,7 +24,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets a new moon record.
+     * Get a new moon record.
      *
      * @return SynodicRhythmRecord
      */
@@ -37,7 +38,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets a first quarter record.
+     * Get a first quarter record.
      *
      * @return SynodicRhythmRecord
      */
@@ -51,7 +52,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets a full moon record.
+     * Get a full moon record.
      *
      * @param bool $positive Specify this if the record should be positive or negative, 
      * because the angular distance between Sun and Moon tend to +/-180°.
@@ -74,7 +75,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets a third quarter record.
+     * Get a third quarter record.
      *
      * @return SynodicRhythmRecord
      */
@@ -88,7 +89,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets any random record except for new moon.
+     * Get any random record except for new moon.
      *
      * @return SynodicRhythmRecord
      */
@@ -102,7 +103,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets any random record except for first quarter.
+     * Get any random record except for first quarter.
      *
      * @return SynodicRhythmRecord
      */
@@ -116,7 +117,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets any random record except for full moon.
+     * Get any random record except for full moon.
      *
      * @return SynodicRhythmRecord
      */
@@ -131,7 +132,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets any random record except for third quarter moon.
+     * Get any random record except for third quarter moon.
      *
      * @return SynodicRhythmRecord
      */
@@ -145,7 +146,7 @@ class PhaseStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * It constructs the strategy to test.
+     * Construct the strategy to test.
      *
      * @param string $strategy
      * @param SynodicRhythmRecord $record

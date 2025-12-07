@@ -4,16 +4,17 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 
 /**
- * This strategy is used to find an PerigeeRecord
+ * The strategy used to find an PerigeeRecord
  * representing the Moon in its perigee.
  */
 class Perigee extends AnomalisticStrategy
 {
     /**
-     * It constructs the PerigeeStrategy with a PerigeeRecord.
+     * Construct the PerigeeStrategy with a PerigeeRecord.
      *
      * @param PerigeeRecord $record
-     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
+     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * expressed in minutes per each step of the ephemeris response.
      */
     public function __construct(PerigeeRecord $record, int $sampling_rate)
     {
@@ -23,7 +24,7 @@ class Perigee extends AnomalisticStrategy
     }
     
     /**
-     * Returns the record only if the Moon is close to its perigee.
+     * Return the record only if the Moon is close to its perigee.
      *
      * @return PerigeeRecord|null
      */

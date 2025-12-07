@@ -26,7 +26,7 @@ class PhaseRecord
     public protected(set) Phase $type;
 
     /**
-     * It constructs a MoonPhaseRecord with a moon phase type and a timestamp.
+     * Construct a MoonPhaseRecord with a moon phase type and a timestamp.
      *
      * @param SwissEphemerisDateTime        $timestamp
      * @param Phase $type

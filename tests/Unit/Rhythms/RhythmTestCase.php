@@ -8,15 +8,8 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
-class RhythmTestCase extends TestCase
+abstract class RhythmTestCase extends TestCase
 {
-    /**
-     * The sampling rate of the ephemeris.
-     *
-     * @var integer
-     */
-    protected int $sampling_rate;
-
     /**
      * Setup the test environment.
      *
@@ -29,7 +22,7 @@ class RhythmTestCase extends TestCase
     }
 
     /**
-     * Gets a Moon SynodicRhythm of a full cycle.
+     * Get a Moon SynodicRhythm of a full cycle.
      *
      * @return SynodicRhythm
      */
@@ -39,31 +32,36 @@ class RhythmTestCase extends TestCase
             new FromRecords([
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 1),
-                    Angle::createFromDecimal(0.0),
-                    $this->getRandomDailySpeed()
+                    $this->getSpecificAngle(0),
+                    $this->getRandomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 8),
-                    Angle::createFromDecimal(90.0),
-                    $this->getRandomDailySpeed()
+                    $this->getSpecificAngle(90),
+                    $this->getRandomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 15),
-                    Angle::createFromDecimal(180.0),
-                    $this->getRandomDailySpeed()
+                    $this->getSpecificAngle(180),
+                    $this->getRandomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 22),
-                    Angle::createFromDecimal(-90),
-                    $this->getRandomDailySpeed()
+                    $this->getSpecificAngle(-90),
+                    $this->getRandomMoonDailySpeed()
                 )
                 ]),
                 $this->sampling_rate
         );
     }
 
-    protected function getRandomDailySpeed(): float
+    /**
+     * Get a fake lunar daily speed expressed in degrees per day.
+     * 
+     * @return float
+     */
+    protected function getRandomMoonDailySpeed(): float
     {
-        return $this->faker->randomFloat(7, 10, 14);
+        return $this->getRandomSpeed(10, 14);
     }
 }

@@ -28,7 +28,7 @@ class IsDateEqual extends Constraint
     }
     
     /**
-     * Evaluates the constraint for parameter $other. Returns true if the
+     * Evaluates the constraint for parameter $other. Return true if the
      * constraint is met, false otherwise.
      *
      * This method can be overridden to implement the evaluation algorithm.
@@ -41,7 +41,7 @@ class IsDateEqual extends Constraint
     }
 
     /**
-     * Returns the description of the failure.
+     * Return the description of the failure.
      *
      * The beginning of failure messages is "Failed asserting that" in most
      * cases. This method should return the second part of that sentence.
@@ -59,7 +59,7 @@ class IsDateEqual extends Constraint
     }
 
     /**
-     * Returns a string representation of the object.
+     * Return a string representation of the object.
      * 
      * @return string
      */

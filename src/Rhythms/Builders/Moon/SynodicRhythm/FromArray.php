@@ -15,7 +15,7 @@ class FromArray extends FromArrayBuilder
 {
 
     /**
-     * It constructs the builder with raw data.
+     * Construct the builder with raw data.
      *
      * @param mixed $data
      * @throws InvalidArgumentException if one or more columns 
@@ -29,6 +29,8 @@ class FromArray extends FromArrayBuilder
     }
 
     /**
+     * Validate data.
+     * 
      * @return void
      * @throws InvalidArgumentException if one or more columns 
      * are missing from the data passed to the builder.

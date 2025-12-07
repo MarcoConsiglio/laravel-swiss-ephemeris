@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\NewMoon;
 #[TestDox("The NewMoon PhaseStrategy")]
 #[CoversClass(NewMoon::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
-class NewMoonTest extends PhaseStrategyTestCase
+class NewMoonTest extends TestCase
 {
     /**
      * Setup the test environment.

@@ -41,7 +41,7 @@ class AnomalisticRecordTest extends TestCase
     {
         parent::setUp();
         $this->angle = $this->getMocked(Angle::class);
-        $this->date = $this->getMocked(SwissEphemerisDateTime::class);
+        $this->date = $this->getMockedSwissEphemerisDateTime();
     }
 
     #[TestDox("can be an ApogeeRecord.")]

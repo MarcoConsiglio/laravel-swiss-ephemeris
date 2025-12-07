@@ -9,12 +9,12 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSyno
  * A collection of Moon PhaseRecord instances.
  * 
  * It represents a collection of records of the 
- * Moon's synodic rhythm that are at a precise angle to the sun.
+ * Moon's synodic rhythm that represents the lunar phases.
  */
 class Phases extends Collection
 {
     /**
-     * It constructs a Phase collection from a SynodicRhythm collection.
+     * Construct a Phase collection from a SynodicRhythm collection.
      *
      * @param FromSynodicRhythm $builder
      */
@@ -24,7 +24,7 @@ class Phases extends Collection
     }
 
     /**
-     * Gets a Moon PhaseRecord from the collection by key.
+     * Get a Moon PhaseRecord from the collection by key.
      *
      * @param mixed $key
      * @param mixed $default
@@ -36,7 +36,7 @@ class Phases extends Collection
     }
 
     /**
-     * Gets the first Moon PhaseRecord.
+     * Get the first Moon PhaseRecord.
      *
      * @param callable|null $callback
      * @param mixed $default
@@ -48,7 +48,7 @@ class Phases extends Collection
     }
 
     /**
-     * Gets the last Moon PhaseRecord.
+     * Get the last Moon PhaseRecord.
      *
      * @param callable|null $callback
      * @param mixed $default

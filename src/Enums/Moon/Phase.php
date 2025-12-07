@@ -32,7 +32,7 @@ enum Phase
     case ThirdQuarter;
 
     /**
-     * Gets the corresponding type associated to a Moon PhaseStrategy concrete class.
+     * Get the corresponding type associated to a Moon PhaseStrategy concrete class.
      * Every Moon PhaseStrategy must have the same name of the corresponding Moon Phase constant.
      *
      * @param string $strategy_class
@@ -58,7 +58,7 @@ enum Phase
     }
 
     /**
-     * Gets the corresponsing strategy used to find a MoonPhaseType.
+     * Get the corresponsing strategy used to find a MoonPhaseType.
      *
      * @param Phase $type
      * @return string|null

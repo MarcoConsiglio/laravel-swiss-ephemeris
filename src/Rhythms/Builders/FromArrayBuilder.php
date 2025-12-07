@@ -3,6 +3,10 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders;
 
 use InvalidArgumentException;
 
+/**
+ * The generic behaviour of a builder that uses an array
+ * of raw ephemeris data.
+ */
 abstract class FromArrayBuilder extends Builder
 {
     /**
@@ -13,7 +17,7 @@ abstract class FromArrayBuilder extends Builder
     protected array $columns;
 
     /**
-     * It checks if $columns are present as keys
+     * Check if $columns are present as keys
      * in the array data passed into the builder.
      *
      * @param array $columns The keys the array must have.
@@ -37,7 +41,7 @@ abstract class FromArrayBuilder extends Builder
     }
 
     /**
-     * It returns an exception message for a malformed
+     * Return an exception message for a malformed
      * array data passed to the builder.
      *
      * @param string $builder_class

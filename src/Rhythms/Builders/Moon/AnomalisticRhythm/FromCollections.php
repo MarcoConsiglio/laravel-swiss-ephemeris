@@ -28,7 +28,7 @@ class FromCollections extends Builder
     protected Perigees $perigees;
 
     /**
-     * It constructs the builder with 
+     * Construct the builder with 
      * the two apogee and perigee collections.
      *
      * @param Apogees $apogees
@@ -41,7 +41,7 @@ class FromCollections extends Builder
     }
 
     /**
-     * Validates data.
+     * Validate data.
      *
      * @return void
      * @codeCoverageIgnore

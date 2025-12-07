@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 
 /**
- * This strategy is used to find a Moon SynodicRhythmRecord matching
+ * The strategy used to find a Moon SynodicRhythmRecord matching
  * the third quarter Moon phase.
  */
 class ThirdQuarter extends PhaseStrategy

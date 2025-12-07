@@ -34,7 +34,7 @@ class DraconicRecordTest extends TestCase
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
-        $datetime = $this->getMocked(SwissEphemerisDateTime::class);
+        $datetime = $this->getMockedSwissEphemerisDateTime();
         $moon_longitude = Angle::createFromValues(180, 30, 15);
         $north_node_longitude = Angle::createFromValues(180, 15, 30);
         $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
@@ -52,7 +52,7 @@ class DraconicRecordTest extends TestCase
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
-        $datetime = $this->getMocked(SwissEphemerisDateTime::class);
+        $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
         $moon_daily_speed = 12.0;
@@ -67,7 +67,7 @@ class DraconicRecordTest extends TestCase
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
-        $datetime = $this->getMocked(SwissEphemerisDateTime::class);
+        $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
         $moon_daily_speed = 12.0;
@@ -86,7 +86,7 @@ class DraconicRecordTest extends TestCase
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
-        $datetime = $this->getMocked(SwissEphemerisDateTime::class);
+        $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
         $record = new DraconicRecord($datetime, $angle, $angle, 12.0, true);
@@ -104,7 +104,7 @@ class DraconicRecordTest extends TestCase
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
-        $datetime = $this->getMocked(SwissEphemerisDateTime::class);
+        $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
         $record = new DraconicRecord($datetime, $angle, $angle, 12.0, true);

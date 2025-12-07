@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 class FromRecords extends Builder
 {
     /**
-     * It constructs the builder with an array
+     * Construct the builder with an array
      * of PerigeeRecord instances.
      *
      * @param array $data
@@ -26,7 +26,7 @@ class FromRecords extends Builder
 
 
     /**
-     * Validates data.
+     * Validate data.
      *
      * @return void
      * @throws \InvalidArgumentException if at least one item is 

@@ -39,26 +39,26 @@ class PerigeeTemplate extends AnomalisticTemplate
         OutputFormat::DailyLongitudinalSpeedDecimal->value;
 
     /**
-     * Prepares arguments for the swetest executable.
+     * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void {}
+    protected function setArguments(): void {}
 
     /**
-     * Prepares flags for the swetest executable.
+     * Set flags for the swetest executable.
      *
      * @return void
      */
-    protected function prepareFlags(): void
+    protected function setFlags(): void
     {
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarPerigee->value));
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $this->output_format));
     }
 
     /**
-     * It parses a line of the raw ephemeris output.
+     * Parse a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -79,7 +79,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It constructs the Perigees collection.
+     * Construct the Perigees collection.
      *
      * @return void
      */
@@ -89,7 +89,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It returns the builded object.
+     * Return the builded object.
      *
      * @return Perigees
      */
@@ -99,7 +99,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It returns the builded Perigees collection.
+     * Return the builded Perigees collection.
      *
      * @return Perigees
      */
@@ -110,7 +110,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It remaps the output in an associative array, 
+     * Remap the output in an associative array, 
      * with the columns name as the key.
      *
      * @return void

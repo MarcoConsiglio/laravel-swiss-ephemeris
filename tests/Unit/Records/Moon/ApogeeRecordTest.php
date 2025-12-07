@@ -36,7 +36,7 @@ class ApogeeRecordTest extends TestCase
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
-        $timestamp = $this->getMocked(SwissEphemerisDateTime::class);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
         $moon_longitude = Angle::createFromDecimal(179.9);
         $apogee_longitude= Angle::createFromDecimal(180.0);
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, 12.0);

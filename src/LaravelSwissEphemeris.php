@@ -74,7 +74,7 @@ class LaravelSwissEphemeris
     protected float $altitude;
 
     /**
-     * It constructs di ephemeris query based on a location and timezone.
+     * Construct the ephemeris.
      *
      * @param string $latitude in decimal format.
      * @param string $longitude in decimal format.
@@ -104,7 +104,7 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Gets the Moon synodic rhythm starting from $start_date up until a specified number 
+     * Get the Moon synodic rhythm starting from $start_date up until a specified number 
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.
@@ -129,7 +129,7 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Gets the Moon anomalistic rhythm starting from $start_date up until a specified number
+     * Get the Moon anomalistic rhythm starting from $start_date up until a specified number
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.
@@ -164,7 +164,7 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Transforms a Carbon instance into a
+     * Transform a Carbon instance into a
      * SwissEphemerisDateTime instance.
      *
      * @param CarbonInterface $datetime
@@ -177,7 +177,7 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Normalizes the $datetime to a
+     * Normalize the $datetime to a
      * SwissEphemerisDateTime instance.
      *
      * @param CarbonInterface $datetime

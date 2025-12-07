@@ -19,17 +19,19 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 class SynodicRhythm extends Collection
 {
     /**
-     * The sampling rate of the ephemeris expressed in minutes.
+     * The sampling rate of the ephemeris expressed in minutes 
+     * per each step of the ephemeris response.
      * 
      * @var int
      */
     public protected(set) int $sampling_rate;
 
     /**
-     * It constructs a Moon SynodicRhythm.
+     * Construct a Moon SynodicRhythm.
      *
      * @param FromArray|FromRecords $items
-     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
+     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * expressed in minutes per each step of the ephemeris response.
      */
     public function __construct(FromArray|FromRecords $builder, int $sampling_rate)
     {
@@ -38,7 +40,7 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Gets a Moon SynodicRhythmRecord from the collection by key.
+     * Get a Moon SynodicRhythmRecord from the collection by key.
      *
      * @param  mixed  $key
      * @param  mixed  $default
@@ -50,7 +52,7 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Gets a collection of Moon Periods.
+     * Get a collection of Moon Periods.
      *
      * @return Periods
      */
@@ -60,7 +62,7 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Gets a collection of Moon Phases.
+     * Get a collection of Moon Phases.
      *
      * @param array $moon_phase_types An array ofMoonPhaseType
      * items representing which moon phases you want to extract.
@@ -72,7 +74,7 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Gets the first Moon SynodicRhythmRecord.
+     * Get the first Moon SynodicRhythmRecord.
      *
      * @param callable|null $callback
      * @param mixed $default
@@ -84,7 +86,7 @@ class SynodicRhythm extends Collection
     }
 
     /**
-     * Gets the last Moon SynodicRhythmRecord.
+     * Get the last Moon SynodicRhythmRecord.
      *
      * @param callable|null $callback
      * @param mixed        $default

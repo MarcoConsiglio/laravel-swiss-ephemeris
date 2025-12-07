@@ -110,7 +110,8 @@ abstract class QueryTemplate
      *
      * @param SwissEphemerisDateTime $start_date
      * @param integer $days The length of the requested ephemeris interval.
-     * @param integer $step_size The sampling rate of the ephemeris expressed in minutes.
+     * @param integer $step_size The sampling rate of the ephemeris expressed 
+     * in minutes per each step of the ephemeris response.
      * @param Exec|DryRunner|FakeRunner|null $shell The shell used to call the "swetest" executable.
      * Do not use this parameter unless for testing purposes.
      * @param Command|null $command The command to be executed.
@@ -155,21 +156,21 @@ abstract class QueryTemplate
     }
 
     /**
-     * Prepares arguments for the swetest executable.
+     * Set arguments for the swetest executable.
      *
      * @return void
      */
-    abstract protected function prepareArguments(): void;
+    abstract protected function setArguments(): void;
     
     /**
-     * Prepares flags for the swetest executable.
+     * Set flags for the swetest executable.
      *
      * @return void
      */
-    abstract protected function prepareFlags(): void;
+    abstract protected function setFlags(): void;
 
     /**
-     * Sets whether or not the header appears in the 
+     * Set whether or not the header appears in the 
      * ephemeris response. It defaults to no header.
      *
      * @return void
@@ -196,15 +197,15 @@ abstract class QueryTemplate
     protected function debug(): void {}
 
     /**
-     * It constructs the swetest command with the correct inputs.
+     * Construct the swetest command with the correct inputs.
      *
      * @return void
      */
     final protected function buildCommand(): void
     {
-        $this->prepareArguments();
+        $this->setArguments();
         $this->setCommonFlags();
-        $this->prepareFlags();
+        $this->setFlags();
         $this->setHeader();
     }
 
@@ -230,7 +231,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It searches for errors in the swetest executable output.
+     * Search for errors in the swetest executable output.
      *
      * @param array $output
      * @return void
@@ -252,7 +253,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It searches for warnings in the swetest executable output.
+     * Search for warnings in the swetest executable output.
      *
      * @return void
      */
@@ -272,7 +273,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It searches for notices in the swetest executable output.
+     * Search for notices in the swetest executable output.
      *
      * @return void
      */
@@ -293,7 +294,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It removes empty line in the swetest executable output.
+     * Remove empty line in the swetest executable output.
      *
      * @return void
      */
@@ -308,7 +309,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It remaps the output in an associative array,
+     * Remap the output in an associative array,
      * with the columns name as the key.
      *
      * @return void
@@ -316,14 +317,14 @@ abstract class QueryTemplate
     abstract protected function remapColumns(): void;
 
     /**
-     * It constructs the correct object with a builder.
+     * Construct the correct object with a builder.
      *
      * @return void
      */
     abstract protected function buildObject(): void;
 
     /**
-     * It returns the builded object.
+     * Return the builded object.
      *
      * @return mixed
      */
@@ -340,7 +341,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It calcs the steps of the ephemeris request.
+     * Calculate the steps of the ephemeris request.
      *
      * @return integer
      */
@@ -366,7 +367,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It returns the builded object.
+     * Return the builded object.
      *
      * @return mixed
      */
@@ -385,7 +386,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It parses a line of the raw ephemeris output.
+     * Parse a line of the raw ephemeris output.
      * 
      * @return array|null
      */
@@ -452,7 +453,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It returns the columns names used by the concrete template.
+     * Return the columns names used by the concrete template.
      */
     abstract static public function getColumns(): array;
 

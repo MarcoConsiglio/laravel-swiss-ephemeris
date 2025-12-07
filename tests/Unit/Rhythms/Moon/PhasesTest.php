@@ -23,7 +23,7 @@ class PhasesTest extends RhythmTestCase
     public function test_moon_phases()
     {
         // Arrange
-        $date = SwissEphemerisDateTime::create(2000);
+        $date = $this->getMockedSwissEphemerisDateTime();
         /** @var FromSynodicRhythm&MockObject */
         $phases_builder = $this->getMocked(FromSynodicRhythm::class);
         $phases_builder->expects($this->once())->method("fetchCollection")->willReturn([

@@ -4,10 +4,11 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic\
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonStrategyTestCase;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
-class AnomalisticStrategyTestCase extends StrategyTestCase
+class TestCase extends MoonStrategyTestCase
 {
     /**
      * Setup the test environment.
@@ -23,29 +24,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets a biased Angle with $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
-     */
-    private function getLongitude(float $longitude = 180.0): Angle
-    {
-        return Angle::createFromDecimal($this->getBiasedLongitude($longitude, $this->delta));
-    }
-
-    /**
-     * Gets a biased Angle fexcept for $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
-     */
-    private function getLongitudeExceptFor(float $longitude = 180.0): Angle
-    {
-        return Angle::createFromDecimal($this->getBiasedLongitudeExceptFor($longitude, $this->delta));
-    }
-
-    /**
-     * Gets an ApogeeRecord with the Moon close to its apogee.
+     * Return an ApogeeRecord with the Moon close to its apogee.
      *
      * @param integer $longitude Moon and apogee longitude.
      * @return ApogeeRecord
@@ -63,7 +42,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets an PerigeeRecord with the Moon close to its perigee.
+     * Return an PerigeeRecord with the Moon close to its perigee.
      *
      * @param integer $longitude Moon and perigee longitude.
      * @return PerigeeRecord
@@ -81,7 +60,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets an ApogeeRecord with the Moon too far from its apogee.
+     * Return an ApogeeRecord with the Moon that isn't in its apogee.
      *
      * @param float $longitude The Moon longitude, but not the apogee longitude.
      * @return ApogeeRecord
@@ -99,7 +78,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * Gets an PerigeeRecord with the Moon too far from its perigee.
+     * Return a PerigeeRecord with the Moon that isn't in its perigee.
      *
      * @param float $longitude The Moon longitude, but not the perigee longitude.
      * @return PerigeeRecord
@@ -117,7 +96,7 @@ class AnomalisticStrategyTestCase extends StrategyTestCase
     }
 
     /**
-     * It constructs the strategy to test.
+     * Construct the strategy to test.
      *
      * @param string $strategy
      * @param ApogeeRecord|PerigeeRecord $record

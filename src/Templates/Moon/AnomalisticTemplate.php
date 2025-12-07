@@ -38,7 +38,7 @@ abstract class AnomalisticTemplate extends QueryTemplate
     ];
 
     /**
-     * It remaps the output in an associative array,
+     * Remap the output in an associative array,
      * with the columns name as the key.
      *
      * @return void
@@ -56,7 +56,7 @@ abstract class AnomalisticTemplate extends QueryTemplate
 
 
     /**
-     * It returns the columns names used by this template.
+     * Return the columns names used by this template.
      *
      * @return array
      */

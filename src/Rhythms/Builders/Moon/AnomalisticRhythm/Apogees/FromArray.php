@@ -25,10 +25,11 @@ class FromArray extends FromArrayBuilder
     ];
 
     /**
-     * It constructs the builder with raw data.
+     * Construct the builder with raw data.
      *
      * @param array $data
-     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
+     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * expressed in minutes per each step of the ephemeris response.
      * @throws InvalidArgumentException if one or more columns 
      * are missing from the data passed to the builder.
      */
@@ -40,7 +41,7 @@ class FromArray extends FromArrayBuilder
     }
 
     /**
-     * Validates data.
+     * Validate data.
      * 
      * @return void
      * @throws InvalidArgumentException if the array data does not 
