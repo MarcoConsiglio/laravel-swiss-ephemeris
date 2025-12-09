@@ -5,18 +5,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 
 abstract class MoonBuilderTestCase extends BuilderTestCase
 {
-    /**
-     * Return a random Moon daily speed expressed in 
-     * decimal degrees per day.
-     *
-     * @return float
-     */
-    protected function getRandomMoonDailySpeed(): float
-    {
-        return $this->getRandomSpeed(10, 14);
-    }
-
-    /**
+     /**
      * It creates a specific Moon SynodicRhythmRecord.
      *
      * @param float $angular_distance The angular difference between the Moon and the Sun.

@@ -178,6 +178,16 @@ abstract class TestCase extends TestbenchTestCase
     }
 
     /**
+     * Return a random daily speed 
+     *
+     * @return float
+     */
+    protected function getRandomMoonDailySpeed(): float
+    {
+        return $this->getRandomSpeed(10, 14);
+    }
+
+    /**
      * Get a random sampling rate expressed in minutes
      * per each step of the ephemeris response.
      *

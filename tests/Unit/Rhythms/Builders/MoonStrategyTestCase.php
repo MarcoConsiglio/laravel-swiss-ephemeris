@@ -64,18 +64,6 @@ class MoonStrategyTestCase extends StrategyTestCase
      */
     protected SwissEphemerisDateTime $date;
 
-    // /**
-    //  * Setup the test environment.
-    //  *
-    //  * @return void
-    //  */
-    // public function setUp(): void
-    // {
-    //     parent::setUp();
-    //     $this->date = SwissEphemerisDateTime::create();
-    //     $this->strategy_basename = class_basename($this->tested_class);
-    // }
-
     /**
      * Get a random unprecise angular distance biased by a delta.
      *

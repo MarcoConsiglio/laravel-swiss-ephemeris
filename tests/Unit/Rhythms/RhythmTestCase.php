@@ -54,14 +54,4 @@ abstract class RhythmTestCase extends TestCase
                 $this->sampling_rate
         );
     }
-
-    /**
-     * Get a fake lunar daily speed expressed in degrees per day.
-     * 
-     * @return float
-     */
-    protected function getRandomMoonDailySpeed(): float
-    {
-        return $this->getRandomSpeed(10, 14);
-    }
 }

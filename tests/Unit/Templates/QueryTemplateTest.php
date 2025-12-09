@@ -36,7 +36,7 @@ class QueryTemplateTest extends TemplateTestCase
         /** @var SynodicRhythmTemplate&MockObject $template */
         $template = $this->getMocked(
             SynodicRhythmTemplate::class, [
-                "prepareFlags", "prepareArguments", "setHeader", "checkErrors", "checkNotices",
+                "setFlags", "setArguments", "setHeader", "checkErrors", "checkNotices",
                 "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
@@ -63,7 +63,7 @@ class QueryTemplateTest extends TemplateTestCase
         /** @var SynodicRhythmTemplate&MockObject $template */
         $template = $this->getMocked(
             SynodicRhythmTemplate::class, [
-                "prepareFlags", "prepareArguments", "setHeader", "checkErrors", "checkWarnings",
+                "setFlags", "setArguments", "setHeader", "checkErrors", "checkWarnings",
                 "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
@@ -87,7 +87,7 @@ class QueryTemplateTest extends TemplateTestCase
         /** @var SynodicRhythmTemplate&MockObject $template */
         $template = $this->getMocked(
             SynodicRhythmTemplate::class, [
-                "prepareFlags", "prepareArguments", "setHeader", "checkWarnings", "checkNotices",
+                "setFlags", "setArguments", "setHeader", "checkWarnings", "checkNotices",
                 "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
