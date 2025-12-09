@@ -14,16 +14,16 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[CoversClass(DraconicRecord::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon\DraconicRecord")]
-class DraconicRecordTest extends TestCase
+class DraconicRecordTest extends MoonRecordTestCase
 {
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
     public function test_timestamp_proerty()
     {
         // Arrange
-        $datetime = SwissEphemerisDateTime::create(2000);
+        $datetime = $this->getRandomSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $record = new DraconicRecord($datetime, $angle, $angle, 12.0, true);
+        $record = new DraconicRecord($datetime, $angle, $angle, 12.0);
 
         // Act & Assert
         $this->assertProperty("timestamp", $datetime, SwissEphemerisDateTime::class, $record->timestamp);
@@ -35,11 +35,11 @@ class DraconicRecordTest extends TestCase
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMockedSwissEphemerisDateTime();
-        $moon_longitude = Angle::createFromValues(180, 30, 15);
-        $north_node_longitude = Angle::createFromValues(180, 15, 30);
+        $moon_longitude = $this->getSpecificAngle(180);
+        $north_node_longitude = $this->getSpecificAngle(180);
         $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
         $south_node_longitude = Angle::sum($north_node_longitude, $opposite);
-        $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, 12.0, true);
+        $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, 12.0);
 
         // Act & Assert
         $this->assertProperty("moon_longitude", $moon_longitude, Angle::class, $record->moon_longitude);
@@ -55,8 +55,8 @@ class DraconicRecordTest extends TestCase
         $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $moon_daily_speed = 12.0;
-        $record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed, 12.0, true);
+        $moon_daily_speed = $this->getRandomMoonDailySpeed();
+        $record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
 
         // Act & Assert
         $this->assertProperty("daily_speed", $moon_daily_speed, "float", $record->daily_speed);
@@ -71,8 +71,8 @@ class DraconicRecordTest extends TestCase
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
         $moon_daily_speed = 12.0;
-        $north_record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed, 12.0, true);
-        $south_record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed, 12.0, true);
+        $north_record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
+        $south_record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
         $north_record->cardinality = Cardinality::North;
         $south_record->cardinality = Cardinality::South;
 

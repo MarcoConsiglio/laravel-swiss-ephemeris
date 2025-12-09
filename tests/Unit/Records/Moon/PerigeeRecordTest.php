@@ -6,7 +6,6 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -14,13 +13,13 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon\PerigeeRecord")]
-class PerigeeRecordTest extends TestCase
+class PerigeeRecordTest extends MoonRecordTestCase
 {
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property()
     {
         // Arrange
-        $timestamp = SwissEphemerisDateTime::create();
+        $timestamp = $this->getRandomSwissEphemerisDateTime();
         /** @var Angle&MockObject $moon_longitude */
         $moon_longitude = $this->getMocked(Angle::class);
         /** @var Angle&MockObject $perigee_longitude */
@@ -37,8 +36,8 @@ class PerigeeRecordTest extends TestCase
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $moon_longitude = Angle::createFromDecimal(179.0);
-        $perigee_longitude= Angle::createFromDecimal(180.0);
+        $moon_longitude = $this->getRandomAngle();
+        $perigee_longitude = $this->getRandomAngle();
         $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, 12.0);
 
         // Act & Assert
@@ -50,14 +49,23 @@ class PerigeeRecordTest extends TestCase
     public function test_is_equal()
     {
         // Arrange
-        $angle_1 = Angle::createFromDecimal(90.0);
-        $angle_2 = Angle::createFromDecimal(180.0);
-        $date_1 = SwissEphemerisDateTime::create(2000);
-        $date_2 = clone $date_1;
-        $date_2->hour = 2;
+        /**
+         * This are couple values to check
+         * if a property is equal or different.
+         */
+        $angle_1 = $this->getSpecificAngle(90);
+        $angle_2 = $this->getSpecificAngle(180);
+        $date_1 = $this->getRandomSwissEphemerisDateTime();
+        $date_2 = $date_1->clone()->addHour();
         $speed_1 = 12.0;
         $speed_2 = 13.0;
 
+        /**
+         * Get all permutation possible.
+         * The last case is when two records
+         * are equal because each own property is
+         * equal to the other one same property.
+         */
         $property_A_is_equal = [false, true];
         $property_B_is_equal = [false, true];
         $property_C_is_equal = [false, true];
@@ -120,6 +128,10 @@ $record_couple[1]
 HEREDOC;
         };
         
+        /**
+         * Perform the assertion for all cases
+         * when two records are not equal.
+         */
         for ($i=0; $i < 15; $i++) { 
             $this->assertObjectNotEquals(
                 $records[$i][$first_record], 
@@ -128,6 +140,11 @@ HEREDOC;
                 $failure_message($i, $records[$i])
             );
         }
+        /**
+         * Perform the last assertion for
+         * the only one case the record is equal
+         * to the other one.
+         */
         $this->assertObjectEquals(
             $records[$i][$first_record],
             $records[$i][$second_record],
@@ -140,10 +157,10 @@ HEREDOC;
     public function test_casting_to_string()
     {
         // Arrange
-        $timestamp = new SwissEphemerisDateTime($this->faker->dateTimeAD());
-        $moon_longitude = Angle::createFromValues($this->faker->numberBetween(0, Angle::MAX_DEGREES));
-        $perigee_longitude = Angle::createFromValues($this->faker->numberBetween(0, Angle::MAX_DEGREES));
-        $moon_daily_speed = $this->faker->randomFloat(PHP_FLOAT_DIG, 10, 14);
+        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $moon_longitude = $this->getRandomAngle();
+        $perigee_longitude = $this->getRandomAngle();
+        $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();
         $moon_longitude = $moon_longitude->toDecimal();

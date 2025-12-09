@@ -18,7 +18,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[UsesClass(PerigeeRecord::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
-class AnomalisticRecordTest extends TestCase
+class AnomalisticRecordTest extends MoonRecordTestCase
 {
     /**
      * The mocked Angle to be used in the tests.

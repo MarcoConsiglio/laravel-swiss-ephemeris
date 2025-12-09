@@ -6,7 +6,6 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -14,7 +13,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon\ApogeeRecord")]
-class ApogeeRecordTest extends TestCase
+class ApogeeRecordTest extends MoonRecordTestCase
 {
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property()
@@ -37,8 +36,8 @@ class ApogeeRecordTest extends TestCase
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $moon_longitude = Angle::createFromDecimal(179.9);
-        $apogee_longitude= Angle::createFromDecimal(180.0);
+        $moon_longitude = $this->getRandomAngle();
+        $apogee_longitude= $this->getRandomAngle();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, 12.0);
 
         // Act & Assert
@@ -55,7 +54,7 @@ class ApogeeRecordTest extends TestCase
         $moon_longitude = $this->getMocked(Angle::class);
         /** @var Angle&MockObject $apogee_longitude */
         $apogee_longitude= $this->getMocked(Angle::class);
-        $moon_daily_speed = $this->faker->randomFloat(7, 10, 14);
+        $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
 
         // Act & Assert
@@ -152,13 +151,14 @@ HEREDOC;
         );
     }
 
+    #[TestDox("can be casted to string.")]
     public function test_casting_to_string()
     {
         // Arrange
-        $timestamp = new SwissEphemerisDateTime($this->faker->dateTimeAD());
-        $moon_longitude = Angle::createFromValues($this->faker->numberBetween(0, Angle::MAX_DEGREES));
-        $apogee_longitude = Angle::createFromValues($this->faker->numberBetween(0, Angle::MAX_DEGREES));
-        $moon_daily_speed = $this->faker->randomFloat(PHP_FLOAT_DIG, 10, 14);
+        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $moon_longitude = $this->getRandomAngle();
+        $apogee_longitude = $this->getRandomAngle();
+        $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();
         $moon_longitude = $moon_longitude->toDecimal();
