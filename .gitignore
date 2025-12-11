@@ -14,3 +14,5 @@ docs/build
 .vscode
 clover.xml
 *.dump
+.**tools
+*.puml
