@@ -1,16 +1,17 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon;
 
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 use RoundingMode;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase as TestCase;
 
 /**
  * Test case for Moon builder strategies.
  */
-class MoonStrategyTestCase extends StrategyTestCase
+abstract class StrategyTestCase extends TestCase
 {
 
     /**
@@ -63,6 +64,20 @@ class MoonStrategyTestCase extends StrategyTestCase
      * @var SwissEphemerisDateTime
      */
     protected SwissEphemerisDateTime $date;
+
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+        // Fake daily speed of the Moon.
+        $this->daily_speed = $this->getRandomMoonDailySpeed();
+        $this->sampling_rate = $this->getRandomSamplingRate();
+        $this->delta = $this->getDelta($this->daily_speed, $this->sampling_rate);
+    }
 
     /**
      * Get a random unprecise angular distance biased by a delta.

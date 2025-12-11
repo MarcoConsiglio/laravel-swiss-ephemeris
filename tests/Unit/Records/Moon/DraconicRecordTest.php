@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -14,7 +13,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[CoversClass(DraconicRecord::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon\DraconicRecord")]
-class DraconicRecordTest extends MoonRecordTestCase
+class DraconicRecordTest extends TestCase
 {
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
     public function test_timestamp_proerty()

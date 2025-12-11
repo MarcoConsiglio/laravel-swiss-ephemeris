@@ -114,4 +114,10 @@ class DraconicRecord extends Record
     {
         return $this->cardinality == Cardinality::South;
     }
+
+    
+    public function __toString()
+    {
+        throw new \Exception('Not implemented');
+    }
 }

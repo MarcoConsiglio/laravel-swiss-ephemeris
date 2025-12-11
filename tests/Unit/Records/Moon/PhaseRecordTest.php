@@ -10,7 +10,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The Moon\PhaseRecord")]
 #[CoversClass(PhaseRecord::class)]
-class PhaseRecordTest extends MoonRecordTestCase
+class PhaseRecordTest extends TestCase
 {
     #[TestDox("has read-only property \"type\" which is a Phase enumeration.")]
     public function test_type_property()

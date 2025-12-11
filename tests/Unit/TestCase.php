@@ -25,6 +25,14 @@ abstract class TestCase extends TestbenchTestCase
      */
     protected int $sampling_rate;
 
+    /**
+     * The angular neighborhood within which to accept a record.
+     * 
+     * It represents the maximum error accepted to select some
+     * angular ephemeris value and discard others.  
+     *
+     * @var float
+     */
     protected float $delta;
 
 
@@ -113,6 +121,23 @@ abstract class TestCase extends TestbenchTestCase
                 $limit ? $limit : Angle::MAX_DEGREES
             )
         );
+    }
+
+    /**
+     * Get a random positive sexadecimal value, useful to create an Angle from
+     * a decimal value.
+     *
+     * @param float|null|null $limit
+     * @return float
+     */
+    protected function getRandomPositiveSexadecimalValue(float|null $limit = null): float
+    {
+        if ($limit !== null) {
+            $limit = abs($limit);
+            if ($limit > Angle::MAX_DEGREES) $limit = Angle::MAX_DEGREES;
+        }
+        $limit = $limit ?? Angle::MAX_DEGREES;
+        return $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $limit);
     }
 
     /**

@@ -14,7 +14,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSyno
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonBuilderTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use stdClass;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -27,7 +27,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythm::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
-class FromSynodicRhythmTest extends MoonBuilderTestCase
+class FromSynodicRhythmTest extends BuilderTestCase
 {
     /**
      * Setup the test environment.
@@ -112,5 +112,22 @@ class FromSynodicRhythmTest extends MoonBuilderTestCase
     protected function getBuilderClass(): string
     {
         return FromSynodicRhythm::class;  
+    }
+
+    /**
+     * It creates a specific Moon SynodicRhythmRecord.
+     *
+     * @param float $angular_distance The angular difference between the Moon and the Sun.
+     * @return SynodicRhythmRecord
+     */
+    protected function getSpecificSynodicRhythmRecord(float $angular_distance): SynodicRhythmRecord
+    {
+        if ($angular_distance > 180) $angular_distance = 180;
+        if ($angular_distance < -180) $angular_distance = -180;
+        return new SynodicRhythmRecord(
+            $this->getRandomSwissEphemerisDateTime(),
+            $this->getSpecificAngle($angular_distance),
+            $this->getRandomMoonDailySpeed()
+        );
     }
 }

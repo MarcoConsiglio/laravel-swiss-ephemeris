@@ -15,7 +15,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\Fr
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonBuilderTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
 #[CoversClass(FromCollections::class)]
@@ -26,7 +26,7 @@ use MarcoConsiglio\Goniometry\Angle;
 #[UsesClass(PerigeesBuilder::class)]
 #[UsesClass(Angle::class)]
 #[TestDox("The Moon\AnomalisticRhythm\FromCollections builder")]
-class FromCollectionsTest extends MoonBuilderTestCase
+class FromCollectionsTest extends BuilderTestCase
 {
     #[TestDox("can build an AnomalisticRhythm collection from Apogees and Perigees collections.")]
     public function test_build_anomalistic_rhythm_from_apogees_and_perigees_collection()

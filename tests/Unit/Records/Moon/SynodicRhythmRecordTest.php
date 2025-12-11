@@ -13,7 +13,7 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 #[TestDox("The Moon\SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]
-class SynodicRhythmRecordTest extends MoonRecordTestCase
+class SynodicRhythmRecordTest extends TestCase
 {
     use WithCustomAssertions;
 

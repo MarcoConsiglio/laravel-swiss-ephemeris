@@ -12,24 +12,6 @@ abstract class StrategyTestCase extends TestCase
     use WithFuzzyLogic;
 
     /**
-     * The sampling rate of the ephemeris expressed in minutes 
-     * per each step of the ephemeris response.
-     *
-     * @var integer
-     */
-    protected int $sampling_rate;
-
-    /**
-     * The angular neighborhood within which to accept a record.
-     * 
-     * It represents the maximum error accepted to select some
-     * angular ephemeris value and discard others.  
-     *
-     * @var float
-     */
-    protected float $delta;
-
-    /**
      * A fake daily speed of the record expressed in decimal degrees per day.
      *
      * @var float
@@ -98,6 +80,7 @@ abstract class StrategyTestCase extends TestCase
         $this->date = $this->getRandomSwissEphemerisDateTime();
         $this->strategy_basename = class_basename($this->tested_class);
     }
+
     /**
      * Assert $expected_record equals the $actual_record.
      *

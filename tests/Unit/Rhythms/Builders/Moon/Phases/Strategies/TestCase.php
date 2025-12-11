@@ -3,26 +3,11 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Phases\Strat
 
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonStrategyTestCase;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\StrategyTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
-class TestCase extends MoonStrategyTestCase
+class TestCase extends StrategyTestCase
 {
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-        // Fake daily speed of the Moon.
-        $this->daily_speed = $this->faker->randomFloat(7, 10, 14);
-        $this->sampling_rate = $this->faker->numberBetween(30, 1440);
-        $this->delta = $this->getDelta($this->daily_speed, $this->sampling_rate);
-    }
-
     /**
      * Get a new moon record.
      *

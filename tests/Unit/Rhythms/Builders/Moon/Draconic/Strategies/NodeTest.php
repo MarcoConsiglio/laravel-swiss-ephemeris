@@ -3,7 +3,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Draconic\Str
 
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonStrategyTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
@@ -11,10 +10,41 @@ use PHPUnit\Framework\Attributes\TestDox;
 #[CoversClass(Node::class)]
 class NodeTest extends TestCase
 {
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        $this->tested_class = Node::class;
+        $this->record_class = DraconicRecord::class;
+        parent::setUp();
+    }
 
     #[TestDox("can find the Moon in north node.")]
-    public function test_can_find_moon_apogees()
+    public function test_can_find_a_north_node()
     {
-        $this->markTestIncomplete();
+        $this->markTestSkipped("Develop the Stringable trait first.");
+        // Arrange
+        $north_node_record = $this->getRandomNorthNodeRecord();
+        $strategy = $this->makeStrategy($north_node_record);
+
+        // Act
+        $accepted_record = $strategy->found();
+
+        // Assert
+        $this->assertRecordFound($north_node_record, $accepted_record);
+    }
+
+    /**
+     * Construct the strategy to test.
+     *
+     * @param DraconicRecord $record
+     * @return Node
+     */
+    protected function makeStrategy(DraconicRecord $record): Node
+    {
+        return new $this->tested_class($record, $this->sampling_rate);
     }
 }

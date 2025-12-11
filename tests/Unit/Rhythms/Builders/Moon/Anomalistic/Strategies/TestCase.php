@@ -4,25 +4,11 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic\
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonStrategyTestCase;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\StrategyTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
-class TestCase extends MoonStrategyTestCase
+class TestCase extends StrategyTestCase
 {
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-        $this->daily_speed = $this->faker->randomFloat(7, 10, 14);
-        $this->sampling_rate = $this->faker->numberBetween(1, 1440);
-        $this->delta = $this->getDelta($this->daily_speed, $this->sampling_rate);
-    }
-
     /**
      * Return an ApogeeRecord with the Moon close to its apogee.
      *

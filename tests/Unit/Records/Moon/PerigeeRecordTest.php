@@ -13,7 +13,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon\PerigeeRecord")]
-class PerigeeRecordTest extends MoonRecordTestCase
+class PerigeeRecordTest extends TestCase
 {
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property()

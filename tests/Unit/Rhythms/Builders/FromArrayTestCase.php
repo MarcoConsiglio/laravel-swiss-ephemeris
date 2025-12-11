@@ -4,9 +4,22 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
 abstract class FromArrayTestCase extends BuilderTestCase
 {
     /**
-     * Return raw data to test the builder.
+     * Return raw ephemeris data to test the builder.
      *
      * @return array
      */
     protected abstract function getRawData(): array;
+
+    /**
+     * Get an error message thrown when a builder accepting raw array data
+     * didn't find a certain key (column) in the array (ephemeris table).
+     *
+     * @param string $builder_class
+     * @param string $key
+     * @return string
+     */
+    protected function getBuilderMissingKeyErrorMessage(string $builder_class, string $key): string
+    {
+        return "The $builder_class builder must have \"$key\" key in its raw array data.";
+    }
 }

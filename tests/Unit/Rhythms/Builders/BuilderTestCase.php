@@ -1,10 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
 
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use MarcoConsiglio\Goniometry\Angle;
 
 abstract class BuilderTestCase extends TestCase
 {    
@@ -45,6 +42,4 @@ abstract class BuilderTestCase extends TestCase
             "The $builder_class builder must implement the $builder_interface interface."
         );
     }
-
-
 }

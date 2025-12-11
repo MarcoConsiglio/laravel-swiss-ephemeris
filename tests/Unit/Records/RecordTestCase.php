@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records;
 
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase as UnitTestCase;
 
-abstract class RecordTestCase extends TestCase
+abstract class TestCase extends UnitTestCase
 {
 
 }
