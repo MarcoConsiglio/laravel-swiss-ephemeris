@@ -182,13 +182,15 @@ class SynodicRhythmRecordTest extends TestCase
         $timestamp = $timestamp->toDateTimeString();
 
         // Act & Assert
-        $this->assertEquals(<<<TEXT
-Moon SynodicRhythmRecord
-timestamp: $timestamp
+        $this->assertEquals(
+            <<<TEXT
+SynodicRhythmRecord
 angular_distance: {$angular_distance}°
-phase_percentage: $percentage%
-period_type: $period
 daily_speed: {$daily_speed}°/day
+period_type: $period
+phase_percentage: $percentage%
+timestamp: $timestamp
+
 TEXT,
             (string) $record
         );

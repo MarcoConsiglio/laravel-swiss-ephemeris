@@ -3,13 +3,17 @@ namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Traits\StringableRecord;
+use Stringable;
 
 /**
  * Represents a fraction of the Moon phase cicle, 
  * i.e. a waxing or a waning Moon period.
  */
-class Period
+class Period implements Stringable
 {
+    use StringableRecord;
+
     /**
      * Start timestamp of this period.
      *
@@ -66,18 +70,24 @@ class Period
     }
 
     /**
-     * It cast this record to string.
-     *
-     * @return string
+     * Pack the object properties in an associative array.
+     * 
+     * @return array{end:string,start:string,type:mixed}
      */
-    public function __toString()
+    protected function packProperties(): array
     {
-        $type = ((array) $this->type)["name"];
-        return <<<TEXT
-Moon Period
-start: {$this->start->toDateTimeString()}
-end: {$this->end->toDateTimeString()}
-type: {$type}
-TEXT;
+        return [
+            "start" => $this->start->toDateTimeString(),
+            "end" => $this->end->toDateTimeString(),
+            "type" => $this->enumToString($this->type)
+        ];
     }
+
+    /**
+     * Get the parent properties packed in an associative 
+     * array.
+     * 
+     * @return array
+     */
+    protected function getParentProperties(): array {return [];}
 }

@@ -88,7 +88,7 @@ class DraconicRecordTest extends TestCase
         $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $record = new DraconicRecord($datetime, $angle, $angle, 12.0, true);
+        $record = new DraconicRecord($datetime, $angle, $angle, 12.0);
         $record->cardinality = Cardinality::North;
         // This checks that the property is immutable.
         $record->cardinality = Cardinality::South;
@@ -106,7 +106,7 @@ class DraconicRecordTest extends TestCase
         $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $record = new DraconicRecord($datetime, $angle, $angle, 12.0, true);
+        $record = new DraconicRecord($datetime, $angle, $angle, 12.0);
         $record->cardinality = Cardinality::South;
         // This checks that the property is immutable.
         $record->cardinality = Cardinality::North;
@@ -115,4 +115,35 @@ class DraconicRecordTest extends TestCase
         $this->assertTrue($record->isSouthNode());
         $this->assertFalse($record->isNorthNode());
     }    
+
+    #[TestDox("can be casted to string.")]
+    public function test_casting_to_string()
+    {
+        // Arrange
+        $datetime = $this->getRandomSwissEphemerisDateTime();
+        $moon_longitude = $this->getRandomAngle();
+        $opposite = $this->getSpecificAngle(-180);
+        $north_node_longitude = $this->getRandomAngle();
+        $south_node_longitude = Angle::sum($north_node_longitude, $opposite);
+        if ($south_node_longitude->isClockwise()) $south_node_longitude = $south_node_longitude->toggleDirection();
+        $daily_speed = $this->getRandomMoonDailySpeed();
+        $cardinality = $this->faker->randomElement(Cardinality::cases());
+        $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);
+        $record->cardinality = $cardinality;
+        $expected_cardinality = ((array) $cardinality)["name"];
+
+        // Act & Assert
+        $this->assertEquals(<<<TEXT
+DraconicRecord
+cardinality: $expected_cardinality
+daily_speed: {$daily_speed}°/day
+moon_longitude: {$moon_longitude->toDecimal()}°
+north_node_longitude: {$north_node_longitude->toDecimal()}°
+south_node_longitude: {$south_node_longitude->toDecimal()}°
+timestamp: {$datetime->toDateTimeString()}
+
+TEXT, (string) $record
+        );
+    }
+
 }

@@ -5,13 +5,17 @@ use RoundingMode;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Traits\StringableRecord;
 use MarcoConsiglio\Goniometry\Angle;
+use Stringable;
 
 /**
  * It represent a moment of the Moon synodic rhythm.
  */
 class SynodicRhythmRecord extends Record
 {
+
+    use StringableRecord;
 
     /**
      * The timestamp of this record.
@@ -104,20 +108,28 @@ class SynodicRhythmRecord extends Record
     }
 
     /**
-     * It cast this record to string.
-     *
-     * @return string
+     * Pack the object properties in an associative array.
+     * 
+     * @return array{angular_distance:string,daily_speed:string,period_type:string,phase_percentage:string,timestamp:string}
      */
-    public function __toString()
+    protected function packProperties(): array
     {
-        $period = ((array) $this->getPeriodType())["name"];
-        return <<<TEXT
-Moon SynodicRhythmRecord
-timestamp: {$this->timestamp->toDateTimeString()}
-angular_distance: {$this->angular_distance->toDecimal()}°
-phase_percentage: {$this->percentage}%
-period_type: $period
-daily_speed: {$this->daily_speed}°/day
-TEXT;
+        return array_merge(self::getParentProperties(),  [
+            "timestamp" => $this->timestamp->toDateTimeString(),
+            "angular_distance" => "{$this->angular_distance->toDecimal()}°",
+            "phase_percentage" => "{$this->percentage}%",
+            "period_type" => $this->enumToString($this->getPeriodType()),
+        ]);
+    }
+
+    /**
+     * Get the parent properties packed in an associative 
+     * array.
+     * 
+     * @return array{daily_speed:string}
+     */
+    protected function getParentProperties(): array
+    {
+        return parent::packProperties();
     }
 }

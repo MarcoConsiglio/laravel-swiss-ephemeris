@@ -52,18 +52,26 @@ class ApogeeRecord extends AnomalisticRecord
     }
 
     /**
-     * It cast this record to string.
-     *
-     * @return string
+     * Pack the object properties in an associative array.
+     * 
+     * @return array{moon_longitude:string,timestamp:string,apogee_longitude:string,daily_speed:string}
      */
-    public function __toString()
+    protected function packProperties(): array
     {
-        return <<<TEXT
-Moon ApogeeRecord
-timestamp: {$this->timestamp->toDateTimeString()}
-moon_longitude: {$this->moon_longitude->toDecimal()}°
-apogee_longitude: {$this->apogee_longitude->toDecimal()}°
-daily_speed: {$this->daily_speed}°/day
-TEXT;
+        return array_merge(self::getParentProperties(), [
+            "moon_longitude" => "{$this->moon_longitude->toDecimal()}°",
+            "apogee_longitude" => "{$this->apogee_longitude->toDecimal()}°"
+        ]);
+    }
+
+    /**
+     * Get the parent properties packed in an associative 
+     * array.
+     * 
+     * @return array{moon_longitude:string,timestamp:string}
+     */
+    protected function getParentProperties(): array
+    {
+        return parent::packProperties();
     }
 }

@@ -67,10 +67,11 @@ class PeriodTest extends TestCase
 
         // Act & Assert
         $this->assertEquals(<<<TEXT
-Moon Period
-start: {$start}
+Period
 end: {$end}
+start: {$start}
 type: {$type}
+
 TEXT,
             (string) $record    
         );

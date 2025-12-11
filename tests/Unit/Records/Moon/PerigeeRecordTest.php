@@ -168,11 +168,12 @@ HEREDOC;
 
         // Act & Assert
         $this->assertEquals(<<<TEXT
-Moon PerigeeRecord
-timestamp: $timestamp
+PerigeeRecord
+daily_speed: {$moon_daily_speed}°/day
 moon_longitude: {$moon_longitude}°
 perigee_longitude: {$perigee_longitude}°
-daily_speed: {$moon_daily_speed}°/day
+timestamp: $timestamp
+
 TEXT,
             (string) $record
         );

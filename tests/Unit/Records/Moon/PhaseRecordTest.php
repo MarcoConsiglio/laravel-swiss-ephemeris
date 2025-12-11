@@ -49,9 +49,10 @@ class PhaseRecordTest extends TestCase
 
         // Act & Assert
         $this->assertEquals(<<<TEXT
-Moon PhaseRecord
-timestamp: $timestamp
+PhaseRecord
 phase: $type
+timestamp: $timestamp
+
 TEXT,
             (string) $record);
     }

@@ -115,9 +115,31 @@ class DraconicRecord extends Record
         return $this->cardinality == Cardinality::South;
     }
 
-    
-    public function __toString()
+    /**
+     * Pack the object properties in an associative array.
+     * 
+     * @return array{daily_speed:string,moon_longitude:string,timestamp:string,north_node_longitude:string,south_node_longitude:string,cardinality:string}
+     */
+    protected function packProperties(): array
     {
-        throw new \Exception('Not implemented');
+        return array_merge(self::getParentProperties(), [
+            "moon_longitude" => "{$this->moon_longitude->toDecimal()}°",
+            "timestamp" => $this->timestamp->toDateTimeString(),
+            "north_node_longitude" => "{$this->north_node_longitude->toDecimal()}°",
+            "south_node_longitude" => "{$this->south_node_longitude->toDecimal()}°",
+            "cardinality" => $this->enumToString($this->cardinality)
+        ]);
     }
+
+    /**
+     * Get the parent properties packed in an associative 
+     * array.
+     * 
+     * @return array{daily_speed:string}
+     */
+    protected function getParentProperties(): array
+    {
+        return parent::packProperties();
+    }
+
 }
