@@ -13,9 +13,11 @@
         <api>
             <source dsn=".">
                 <path>src</path>
+                <!-- <path>tests</path> -->
             </source>
             <visibility>public</visibility>
             <default-package-name>Ephemeris</default-package-name>
+            <!-- <default-package-name>Ephemeris\Tests</default-package-name> -->
             <include-source>false</include-source>
         </api>
     </version>

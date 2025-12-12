@@ -72,6 +72,12 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Ephemeris.html" class="">Ephemeris</a>
 </h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Ephemeris-Tests.html" class="">Tests</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -112,6 +118,7 @@
             in package
             <ul class="phpdocumentor-breadcrumbs">
                                     <li class="phpdocumentor-breadcrumb"><a href="packages/Ephemeris.html">Ephemeris</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Ephemeris-Tests.html">Tests</a></li>
                             </ul>
         </div>
     
@@ -175,6 +182,33 @@
 
 
 
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Parsers-Strategies-UsingTest.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertDate">assertDate()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Assert that $actual_date is equal to $expected_date.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertProperty">assertProperty()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Asserts type and value of an object property.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Parsers-Strategies-UsingTest.html#method_test_can_find_using_notice">test_can_find_using_notice()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+    </dl>
 
 
 
@@ -182,7 +216,189 @@
 
         
 
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Parsers-Strategies-UsingTest.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_assertDate">
+        assertDate()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertDate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Traits/WithCustomAssertions.php"><a href="files/tests-traits-withcustomassertions.html"><abbr title="tests/Traits/WithCustomAssertions.php">WithCustomAssertions.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Assert that $actual_date is equal to $expected_date.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">assertDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actual_date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expected_date</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">""</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$actual_date</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$expected_date</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$message</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">""</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The failure message in case the assertion is false.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
         
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_assertProperty">
+        assertProperty()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertProperty" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Traits/WithCustomAssertions.php"><a href="files/tests-traits-withcustomassertions.html"><abbr title="tests/Traits/WithCustomAssertions.php">WithCustomAssertions.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">25</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asserts type and value of an object property.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">assertProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expected_value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expected_type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actual_value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$name</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$expected_value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$expected_type</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$actual_value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_find_using_notice">
+        test_can_find_using_notice()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Parsers-Strategies-UsingTest.html#method_test_can_find_using_notice" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/Parsers/Strategies/UsingTest.php"><a href="files/tests-unit-parsers-strategies-usingtest.html"><abbr title="tests/Unit/Parsers/Strategies/UsingTest.php">UsingTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_find_using_notice</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Parsers-Strategies-UsingTest.html#method_test_can_find_using_notice#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;matches using notice in the raw output.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+            </section>
+
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
@@ -288,10 +504,19 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                            </ul>
+                                                                                <li><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Parsers-Strategies-UsingTest.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
             
             
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertDate">assertDate()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertProperty">assertProperty()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Parsers-Strategies-UsingTest.html#method_test_can_find_using_notice">test_can_find_using_notice()</a></li>
+                                    </ul>
+            </li>
                     </ul>
     </section>
 

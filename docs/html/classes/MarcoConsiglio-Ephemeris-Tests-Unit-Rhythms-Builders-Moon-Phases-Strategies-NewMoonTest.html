@@ -72,6 +72,12 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Ephemeris.html" class="">Ephemeris</a>
 </h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Ephemeris-Tests.html" class="">Tests</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -115,6 +121,7 @@
             in package
             <ul class="phpdocumentor-breadcrumbs">
                                     <li class="phpdocumentor-breadcrumb"><a href="packages/Ephemeris.html">Ephemeris</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Ephemeris-Tests.html">Tests</a></li>
                             </ul>
         </div>
     
@@ -192,37 +199,32 @@
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_getEpsilon">getEpsilon()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertDate">assertDate()</a>
     <span>
-                                &nbsp;: float    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Return the epsilon relative error value,
-based on $delta.</dd>
+<dd>Assert that $actual_date is equal to $expected_date.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_getMaxDeltaExtremes">getMaxDeltaExtremes()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertProperty">assertProperty()</a>
     <span>
-                                &nbsp;: float    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Calculate the higher extreme of the $delta angle,
-with the center being $number.</dd>
+<dd>Asserts type and value of an object property.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_getMinDeltaExtremes">getMinDeltaExtremes()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Rhythms-Builders-Moon-Phases-Strategies-NewMoonTest.html#method_setUp">setUp()</a>
     <span>
-                                &nbsp;: float    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Calculate the lower extreme of the $delta angle,
-with the center being $number.</dd>
+<dd>Setup the test environment.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_normalizeAngularValue">normalizeAngularValue()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Rhythms-Builders-Moon-Phases-Strategies-NewMoonTest.html#method_test_can_find_new_moon_if_angular_distance_is_about_zero">test_can_find_new_moon_if_angular_distance_is_about_zero()</a>
     <span>
-                                &nbsp;: float    </span>
+                                &nbsp;: mixed    </span>
 </dt>
-<dd>Transform an $angle value maintaing it between
-$limit° or 360° if $limit is not specifified.</dd>
 
     </dl>
 
@@ -241,27 +243,26 @@ $limit° or 360° if $limit is not specifified.</dd>
                     <article
         class="phpdocumentor-element
             -method
-            -private
-                                                        "
+            -public
+                                    -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getEpsilon">
-        getEpsilon()
-        <a href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_getEpsilon" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_assertDate">
+        assertDate()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertDate" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/WithFuzzyLogic.php"><a href="files/src-traits-withfuzzylogic.html"><abbr title="src/Traits/WithFuzzyLogic.php">WithFuzzyLogic.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Traits/WithCustomAssertions.php"><a href="files/tests-traits-withcustomassertions.html"><abbr title="tests/Traits/WithCustomAssertions.php">WithCustomAssertions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">106</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Return the epsilon relative error value,
-based on $delta.</p>
+        <p class="phpdocumentor-summary">Assert that $actual_date is equal to $expected_date.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">getEpsilon</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delta</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">assertDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actual_date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expected_date</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">""</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -270,11 +271,27 @@ based on $delta.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$delta</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float</span>
+                <span class="phpdocumentor-argument-list__argument__name">$actual_date</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$expected_date</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$message</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">""</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The failure message in case the assertion is false.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -282,36 +299,31 @@ based on $delta.</p>
 
         
     
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">float</span>
-            </section>
-
+    
 </article>
                     <article
         class="phpdocumentor-element
             -method
-            -private
-                                                        "
+            -public
+                                    -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getMaxDeltaExtremes">
-        getMaxDeltaExtremes()
-        <a href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_getMaxDeltaExtremes" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_assertProperty">
+        assertProperty()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertProperty" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/WithFuzzyLogic.php"><a href="files/src-traits-withfuzzylogic.html"><abbr title="src/Traits/WithFuzzyLogic.php">WithFuzzyLogic.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Traits/WithCustomAssertions.php"><a href="files/tests-traits-withcustomassertions.html"><abbr title="tests/Traits/WithCustomAssertions.php">WithCustomAssertions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Calculate the higher extreme of the $delta angle,
-with the center being $number.</p>
+        <p class="phpdocumentor-summary">Asserts type and value of an object property.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">getMaxDeltaExtremes</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$number</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delta</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">float|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$limit</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">assertProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expected_value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expected_type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actual_value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -320,23 +332,30 @@ with the center being $number.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$number</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float</span>
+                <span class="phpdocumentor-argument-list__argument__name">$name</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$delta</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float</span>
+                <span class="phpdocumentor-argument-list__argument__name">$expected_value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$limit</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$expected_type</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$actual_value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
@@ -346,132 +365,90 @@ with the center being $number.</p>
 
         
     
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">float</span>
-            </section>
-
+    
 </article>
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getMinDeltaExtremes">
-        getMinDeltaExtremes()
-        <a href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_getMinDeltaExtremes" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_setUp">
+        setUp()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Rhythms-Builders-Moon-Phases-Strategies-NewMoonTest.html#method_setUp" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/WithFuzzyLogic.php"><a href="files/src-traits-withfuzzylogic.html"><abbr title="src/Traits/WithFuzzyLogic.php">WithFuzzyLogic.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/Rhythms/Builders/Moon/Phases/Strategies/NewMoonTest.php"><a href="files/tests-unit-rhythms-builders-moon-phases-strategies-newmoontest.html"><abbr title="tests/Unit/Rhythms/Builders/Moon/Phases/Strategies/NewMoonTest.php">NewMoonTest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Calculate the lower extreme of the $delta angle,
-with the center being $number.</p>
+        <p class="phpdocumentor-summary">Setup the test environment.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">getMinDeltaExtremes</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$number</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delta</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">float|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$limit</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setUp</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$number</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$delta</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$limit</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
+    
     
 
         
     
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">float</span>
-            </section>
-
+    
 </article>
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_normalizeAngularValue">
-        normalizeAngularValue()
-        <a href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_normalizeAngularValue" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_find_new_moon_if_angular_distance_is_about_zero">
+        test_can_find_new_moon_if_angular_distance_is_about_zero()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Rhythms-Builders-Moon-Phases-Strategies-NewMoonTest.html#method_test_can_find_new_moon_if_angular_distance_is_about_zero" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/WithFuzzyLogic.php"><a href="files/src-traits-withfuzzylogic.html"><abbr title="src/Traits/WithFuzzyLogic.php">WithFuzzyLogic.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/Rhythms/Builders/Moon/Phases/Strategies/NewMoonTest.php"><a href="files/tests-unit-rhythms-builders-moon-phases-strategies-newmoontest.html"><abbr title="tests/Unit/Rhythms/Builders/Moon/Phases/Strategies/NewMoonTest.php">NewMoonTest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Transform an $angle value maintaing it between
-$limit° or 360° if $limit is not specifified.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">normalizeAngularValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">float|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$limit</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_find_new_moon_if_angular_distance_is_about_zero</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$angle</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$limit</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
+    
     
 
         
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">float</span>
-            </section>
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Rhythms-Builders-Moon-Phases-Strategies-NewMoonTest.html#method_test_can_find_new_moon_if_angular_distance_is_about_zero#attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can find a Moon\\SyndicRhythmRecord whose \&quot;angular_distance\&quot; is about 0°.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
 </article>
             </section>
 
@@ -588,10 +565,10 @@ $limit° or 360° if $limit is not specifified.</p>
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_getEpsilon">getEpsilon()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_getMaxDeltaExtremes">getMaxDeltaExtremes()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_getMinDeltaExtremes">getMinDeltaExtremes()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Traits-WithFuzzyLogic.html#method_normalizeAngularValue">normalizeAngularValue()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertDate">assertDate()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertProperty">assertProperty()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Rhythms-Builders-Moon-Phases-Strategies-NewMoonTest.html#method_setUp">setUp()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-Rhythms-Builders-Moon-Phases-Strategies-NewMoonTest.html#method_test_can_find_new_moon_if_angular_distance_is_about_zero">test_can_find_new_moon_if_angular_distance_is_about_zero()</a></li>
                                     </ul>
             </li>
                     </ul>

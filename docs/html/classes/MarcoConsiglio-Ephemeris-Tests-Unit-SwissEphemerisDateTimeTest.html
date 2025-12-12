@@ -72,6 +72,12 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Ephemeris.html" class="">Ephemeris</a>
 </h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/Ephemeris-Tests.html" class="">Tests</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -110,6 +116,7 @@
             in package
             <ul class="phpdocumentor-breadcrumbs">
                                     <li class="phpdocumentor-breadcrumb"><a href="packages/Ephemeris.html">Ephemeris</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Ephemeris-Tests.html">Tests</a></li>
                             </ul>
         </div>
     
@@ -178,17 +185,1310 @@
 
 
 
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_GREGORIAN_DATE">GREGORIAN_DATE</a>
+    <span>
+        &nbsp;= &quot;d.m.Y&quot;                            </span>
+</dt>
+<dd>The Gregorian calendar date time format.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_GREGORIAN_TT">GREGORIAN_TT</a>
+    <span>
+        &nbsp;= self::GREGORIAN_DATE . &quot; &quot; . self::TIME_FORMAT . &quot; &quot; . self::TT                            </span>
+</dt>
+<dd>The format of a Gregorian calendar date expressed in the
+Terrestrial Time (TT).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_GREGORIAN_UT">GREGORIAN_UT</a>
+    <span>
+        &nbsp;= self::GREGORIAN_DATE . &quot; &quot; . self::TIME_FORMAT . &quot; &quot; . self::UT                            </span>
+</dt>
+<dd>The format of a Gregorian calendar date expressed in
+the Universal Time (UT) aka Greenwich Mean Time (GMT).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_JULIAN_DATE">JULIAN_DATE</a>
+    <span>
+        &nbsp;= &quot;d.m.Y\\j&quot;                            </span>
+</dt>
+<dd>The Julian calendar date time format.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_JULIAN_TT">JULIAN_TT</a>
+    <span>
+        &nbsp;= self::JULIAN_DATE . &quot; &quot; . self::TIME_FORMAT . &quot; &quot; . self::TT                            </span>
+</dt>
+<dd>The format of a Julian calendar date expressed in the
+Terrestrial Time (TT).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_JULIAN_UT">JULIAN_UT</a>
+    <span>
+        &nbsp;= self::JULIAN_DATE . &quot; &quot; . self::TIME_FORMAT . &quot; &quot; . self::UT                            </span>
+</dt>
+<dd>The format of a Julian calendar date expressed in the
+Universal Time (UT) aka Greenwich Mean Time (GMT).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_TIME_FORMAT">TIME_FORMAT</a>
+    <span>
+        &nbsp;= &quot;G:i:s&quot;                            </span>
+</dt>
+<dd>The time format.</dd>
+
+    </dl>
 
 
 
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertDate">assertDate()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Assert that $actual_date is equal to $expected_date.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertProperty">assertProperty()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Asserts type and value of an object property.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_be_casted_to_string">test_can_be_casted_to_string()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_be_create_from_carbon_instance">test_can_be_create_from_carbon_instance()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_any_available_format">test_can_create_from_any_available_format()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_gregorian_tt">test_can_create_from_gregorian_tt()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_gregorian_ut">test_can_create_from_gregorian_ut()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_julian_tt">test_can_create_from_julian_tt()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_julian_ut">test_can_create_from_julian_ut()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_return_all_available_formats">test_can_return_all_available_formats()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_cannot_create_from_unavailable_format">test_cannot_create_from_unavailable_format()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_gregorian_date">test_gregorian_date()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_is_a_carbon_instance">test_is_a_carbon_instance()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_julian_date">test_julian_date()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_tt_greg_format">test_tt_greg_format()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_tt_jul_format">test_tt_jul_format()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_ut_greg_format">test_ut_greg_format()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_ut_jul_format">test_ut_jul_format()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+    </dl>
 
 
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_GREGORIAN_DATE">
+        GREGORIAN_DATE
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_GREGORIAN_DATE" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">19</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The Gregorian calendar date time format.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">GREGORIAN_DATE</span>
+    = <span class="phpdocumentor-signature__default-value">&quot;d.m.Y&quot;</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_GREGORIAN_TT">
+        GREGORIAN_TT
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_GREGORIAN_TT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The format of a Gregorian calendar date expressed in the
+Terrestrial Time (TT).</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">GREGORIAN_TT</span>
+    = <span class="phpdocumentor-signature__default-value">self::GREGORIAN_DATE . &quot; &quot; . self::TIME_FORMAT . &quot; &quot; . self::TT</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_GREGORIAN_UT">
+        GREGORIAN_UT
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_GREGORIAN_UT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The format of a Gregorian calendar date expressed in
+the Universal Time (UT) aka Greenwich Mean Time (GMT).</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">GREGORIAN_UT</span>
+    = <span class="phpdocumentor-signature__default-value">self::GREGORIAN_DATE . &quot; &quot; . self::TIME_FORMAT . &quot; &quot; . self::UT</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_JULIAN_DATE">
+        JULIAN_DATE
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_JULIAN_DATE" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The Julian calendar date time format.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">JULIAN_DATE</span>
+    = <span class="phpdocumentor-signature__default-value">&quot;d.m.Y\\j&quot;</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_JULIAN_TT">
+        JULIAN_TT
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_JULIAN_TT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">57</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The format of a Julian calendar date expressed in the
+Terrestrial Time (TT).</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">JULIAN_TT</span>
+    = <span class="phpdocumentor-signature__default-value">self::JULIAN_DATE . &quot; &quot; . self::TIME_FORMAT . &quot; &quot; . self::TT</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_JULIAN_UT">
+        JULIAN_UT
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_JULIAN_UT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">63</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The format of a Julian calendar date expressed in the
+Universal Time (UT) aka Greenwich Mean Time (GMT).</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">JULIAN_UT</span>
+    = <span class="phpdocumentor-signature__default-value">self::JULIAN_DATE . &quot; &quot; . self::TIME_FORMAT . &quot; &quot; . self::UT</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_TIME_FORMAT">
+        TIME_FORMAT
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_TIME_FORMAT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">29</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The time format.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">TIME_FORMAT</span>
+    = <span class="phpdocumentor-signature__default-value">&quot;G:i:s&quot;</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+            </section>
 
         
 
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_assertDate">
+        assertDate()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertDate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Traits/WithCustomAssertions.php"><a href="files/tests-traits-withcustomassertions.html"><abbr title="tests/Traits/WithCustomAssertions.php">WithCustomAssertions.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Assert that $actual_date is equal to $expected_date.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">assertDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actual_date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expected_date</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">""</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$actual_date</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$expected_date</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Carbon\CarbonInterface">CarbonInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$message</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">""</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The failure message in case the assertion is false.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
         
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_assertProperty">
+        assertProperty()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertProperty" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Traits/WithCustomAssertions.php"><a href="files/tests-traits-withcustomassertions.html"><abbr title="tests/Traits/WithCustomAssertions.php">WithCustomAssertions.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">25</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asserts type and value of an object property.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">assertProperty</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expected_value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expected_type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actual_value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$name</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$expected_value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$expected_type</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$actual_value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_be_casted_to_string">
+        test_can_be_casted_to_string()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_be_casted_to_string" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">323</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_be_casted_to_string</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_be_casted_to_string#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can be casted to string.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_be_create_from_carbon_instance">
+        test_can_be_create_from_carbon_instance()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_be_create_from_carbon_instance" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">338</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_be_create_from_carbon_instance</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_create_from_any_available_format">
+        test_can_create_from_any_available_format()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_any_available_format" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">279</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_create_from_any_available_format</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_any_available_format#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can be created from any available format.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_create_from_gregorian_tt">
+        test_can_create_from_gregorian_tt()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_gregorian_tt" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">219</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_create_from_gregorian_tt</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_gregorian_tt#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can be created from a Gregorian date and Terrestrial Time.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_create_from_gregorian_ut">
+        test_can_create_from_gregorian_ut()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_gregorian_ut" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">199</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_create_from_gregorian_ut</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_gregorian_ut#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can be created from a Gregorian date and Universal Time.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_create_from_julian_tt">
+        test_can_create_from_julian_tt()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_julian_tt" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">259</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_create_from_julian_tt</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_julian_tt#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can be created from a Julian date and Terrestrial Time.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_create_from_julian_ut">
+        test_can_create_from_julian_ut()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_julian_ut" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">239</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_create_from_julian_ut</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_julian_ut#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can be created from a Julian date and Universal Time.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_can_return_all_available_formats">
+        test_can_return_all_available_formats()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_return_all_available_formats" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">362</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_can_return_all_available_formats</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_return_all_available_formats#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can return all available datetime formats used by the Swiss Ephemeris.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_cannot_create_from_unavailable_format">
+        test_cannot_create_from_unavailable_format()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_cannot_create_from_unavailable_format" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">308</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_cannot_create_from_unavailable_format</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_cannot_create_from_unavailable_format#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;cannot be created from unavailable format.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_gregorian_date">
+        test_gregorian_date()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_gregorian_date" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">159</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_gregorian_date</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_gregorian_date#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can format a date to the Gregorian calendar.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_is_a_carbon_instance">
+        test_is_a_carbon_instance()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_is_a_carbon_instance" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">65</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_is_a_carbon_instance</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_is_a_carbon_instance#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;is a Carbon instance.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_julian_date">
+        test_julian_date()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_julian_date" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">179</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_julian_date</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_julian_date#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can format a date to the Julian calendar.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_tt_greg_format">
+        test_tt_greg_format()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_tt_greg_format" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">98</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_tt_greg_format</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_tt_greg_format#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can format a datetime to Terrestrial Time format of the Gregorian calendar.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_tt_jul_format">
+        test_tt_jul_format()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_tt_jul_format" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">118</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_tt_jul_format</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_tt_jul_format#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can format a datetime to Terrestrial Time format of the Julian calendar.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_ut_greg_format">
+        test_ut_greg_format()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_ut_greg_format" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">78</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_ut_greg_format</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_ut_greg_format#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can format a datetime to Universal Time format of the Gregorian calendar.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_test_ut_jul_format">
+        test_ut_jul_format()
+        <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_ut_jul_format" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="tests/Unit/SwissEphemerisDateTimeTest.php"><a href="files/tests-unit-swissephemerisdatetimetest.html"><abbr title="tests/Unit/SwissEphemerisDateTimeTest.php">SwissEphemerisDateTimeTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">139</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">test_ut_jul_format</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_ut_jul_format#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\PHPUnit\Framework\Attributes\TestDox">TestDox</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &quot;can format a datetime to Terrestrial Time format of the Julian calendar.&quot;
+    </dd>
+    </dl>
+                    </section>
+    
+    
+</article>
+            </section>
+
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
@@ -294,10 +1594,47 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                            </ul>
+                                        <li><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#toc-constants">Constants</a></li>
+                                                                                <li><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_GREGORIAN_DATE">GREGORIAN_DATE</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_GREGORIAN_TT">GREGORIAN_TT</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_GREGORIAN_UT">GREGORIAN_UT</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_JULIAN_DATE">JULIAN_DATE</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_JULIAN_TT">JULIAN_TT</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_JULIAN_UT">JULIAN_UT</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#constant_TIME_FORMAT">TIME_FORMAT</a></li>
+                                            </ul>
+                </li>
             
             
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertDate">assertDate()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Traits-WithCustomAssertions.html#method_assertProperty">assertProperty()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_be_casted_to_string">test_can_be_casted_to_string()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_be_create_from_carbon_instance">test_can_be_create_from_carbon_instance()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_any_available_format">test_can_create_from_any_available_format()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_gregorian_tt">test_can_create_from_gregorian_tt()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_gregorian_ut">test_can_create_from_gregorian_ut()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_julian_tt">test_can_create_from_julian_tt()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_create_from_julian_ut">test_can_create_from_julian_ut()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_can_return_all_available_formats">test_can_return_all_available_formats()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_cannot_create_from_unavailable_format">test_cannot_create_from_unavailable_format()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_gregorian_date">test_gregorian_date()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_is_a_carbon_instance">test_is_a_carbon_instance()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_julian_date">test_julian_date()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_tt_greg_format">test_tt_greg_format()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_tt_jul_format">test_tt_jul_format()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_ut_greg_format">test_ut_greg_format()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Tests-Unit-SwissEphemerisDateTimeTest.html#method_test_ut_jul_format">test_ut_jul_format()</a></li>
+                                    </ul>
+            </li>
                     </ul>
     </section>
 
