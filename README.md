@@ -21,15 +21,14 @@ Check the next features in the [development roadmap](./docs/md/Roadmap.md).
 composer require marcoconsiglio/ephemeris
 ```
 
-After installation, composer will automatically publish the Swiss Ephemeris library and the executable in the `resources/swiss_ephemeris` directory. 
-If this does not happen, run the command 
+After installation run this command to publish the Swiss Ephemeris in the laravel resource folder. 
 ```bash
 php artisan vendor:publish --tag=swiss-ephemeris
 ```
 
 Remember to grant execution privileges to the `swetest` file, otherwise this software won't work. To do this, run the command 
 ```bash
-chmod a+x ./resources/swiss_ephemeris/swetest
+chmod u+x ./resources/swiss_ephemeris/swetest
 ```
 
 To extend the ephemeris data, download the [ephemeris files](https://github.com/aloistr/swisseph/tree/master/ephe) you wish and put them in the `resources/swiss_ephemeris` directory. If you don't know which files to download to extend the time range of the ephemeris, please refer to the [description of the ephemerides](https://www.astro.com/swisseph/swisseph.htm#_Toc112511704).
