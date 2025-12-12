@@ -25,7 +25,7 @@ class NodeTest extends TestCase
     #[TestDox("can find the Moon in north node.")]
     public function test_can_find_a_north_node()
     {
-        $this->markTestSkipped("Develop the Stringable trait first.");
+        $this->markTestSkipped("Develop equals() method in DraconicRecord class first.");
         // Arrange
         $north_node_record = $this->getRandomNorthNodeRecord();
         $strategy = $this->makeStrategy($north_node_record);

@@ -47,9 +47,12 @@ class DraconicRecord extends Record
      * the ephemeris response.
      * 
      * @var Angle
-     * @see Angle::$node_longitude
      */
-    public protected(set) Angle $south_node_longitude;
+    public Angle $south_node_longitude {
+        get {
+            return $this->oppositeLongitude($this->north_node_longitude);
+        }
+    }
 
     /**
      * True if this is a north node, false otherwise.
@@ -80,7 +83,6 @@ class DraconicRecord extends Record
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;
         $this->north_node_longitude = $north_node_longitude;
-        $this->south_node_longitude = $this->oppositeLongitude($north_node_longitude);
         $this->daily_speed = $moon_daily_speed;
     }
 
@@ -142,4 +144,20 @@ class DraconicRecord extends Record
         return parent::packProperties();
     }
 
+    /**
+     * Check if this record is equal to $another_record.
+     *
+     * @param DraconicRecord $another_record
+     * @return boolean
+     */
+    public function equals(DraconicRecord $another_record): bool
+    {
+        $a = $this->timestamp == $another_record->timestamp;
+        $b = $this->moon_longitude == $another_record->moon_longitude;
+        $c = $this->north_node_longitude == $another_record->north_node_longitude;
+        $d = $this->south_node_longitude == $another_record->south_node_longitude;
+        $e = $this->cardinality == $another_record->cardinality;
+        $f = $this->daily_speed == $another_record->daily_speed;
+        return $a && $b && $c && $d && $e && $f;
+    }
 }
