@@ -1,5 +1,10 @@
 # Changelog
-## [1.1.0-alpha] 2025-11-26
+## 1.1.1-alpha 2025-12-12
+### Changed
+- README documentation.
+### Fixed
+- [#16](https://github.com/MarcoConsiglio/laravel-swiss-ephemeris/issues/16) issue when trying to install dependencies cause an error due to a `post-package-install` script trying to access `vendor/autoload.php` before it has been created. Follow [README.md](https://github.com/MarcoConsiglio/laravel-swiss-ephemeris/blob/master/README.md#installation) documentation to publish vendor files manually after the package installation.
+## 1.1.0-alpha 2025-11-26
 ### Added
 - The property `$daily_speed` to all classes extending `Record` class.
 - The parameter `$moon_daily_speed` in the constructor of `ApogeeRecord`, `PerigeeRecord`, `DraconicRecord` and `SynodicRhythmRecord` classes of the Moon.
@@ -38,13 +43,13 @@ of class
 `}`.
 - API Documentation
 
-## [1.0.1-alpha] 2025-11-01
+## 1.0.1-alpha 2025-11-01
 ## Updated
 - API Documentation.
 ## Removed
 - Unused code and tests.
   
-## [1.0.0-alpha] 2025-10-30
+## 1.0.0-alpha 2025-10-30
 ### Added
 - `SwissEphemerisDateTime::availableFormats()` static method that returns all available date time format used by the Swiss Ephemeris.
 - `SwissEphemerisServiceProvider` class that publishes `swetest` executable along with asteroid, Moon and planetary ephemeris database files by Swiss Ephemeris tapping ephemeris from 1800 CE (AD) to 2399 CE (AD).
