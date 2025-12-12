@@ -14,5 +14,4 @@ testbook.*
 tests/cache
 tests/coverage_report
 tests/xml-coverage
-tools
 vendor
