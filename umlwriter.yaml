@@ -1,0 +1,31 @@
+parameters:
+  generator: graphviz
+
+  graph:
+    layout: neato
+    mode: "hier"
+    model: "subset"
+    name: "Source Class Diagram"
+    bgcolor: white
+    fontname: "Arial"
+    fontsize: 14
+    overlap: prism
+    overlap_scaling: 3
+
+  node:
+    fontname: "Arial"
+    fontsize: 14
+
+  edge:
+    fontname: "Arial"
+    fontsize: 14
+    splines: "compound"
+
+  paths:
+  - src/
+
+  show_constants: false
+  show_properties: false
+  show_methods: false
+  show_private: false
+  show_protected: false

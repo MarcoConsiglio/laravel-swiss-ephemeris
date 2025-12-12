@@ -756,11 +756,6 @@ Search.appendIndex(
             "summary": "Check\u0020if\u0020this\u0020record\u0020is\u0020equal\u0020to\u0020\u0024another_record.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#method_equals"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\ApogeeRecord\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "It\u0020cast\u0020this\u0020record\u0020to\u0020string.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html#method___toString"
-        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\ApogeeRecord\u003A\u003A\u0024apogee_longitude",
             "name": "apogee_longitude",
             "summary": "The\u0020current\u0020Moon\u0020apogee\u0020longitude.\u0020It\u0020represents\nthe\u0020apogee\u0020position.",
@@ -785,11 +780,6 @@ Search.appendIndex(
             "name": "isSouthNode",
             "summary": "Return\u0020true\u0020if\u0020this\u0020record\u0020is\u0020a\u0020south\u0020node.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#method_isSouthNode"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#method___toString"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A\u0024timestamp",
             "name": "timestamp",
@@ -831,11 +821,6 @@ Search.appendIndex(
             "summary": "Check\u0020if\u0020this\u0020record\u0020is\u0020equal\u0020to\u0020\u0024another_record.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#method_equals"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PerigeeRecord\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "It\u0020cast\u0020this\u0020record\u0020to\u0020string.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#method___toString"
-        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PerigeeRecord\u003A\u003A\u0024perigee_longitude",
             "name": "perigee_longitude",
             "summary": "The\u0020current\u0020Moon\u0020apogee\u0020longitude.\u0020It\u0020represents\nthe\u0020perigee\u0020position.",
@@ -861,11 +846,6 @@ Search.appendIndex(
             "summary": "Tells\u0020if\u0020this\u0020period\u0020is\u0020waning.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method_isWaning"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\Period\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "It\u0020cast\u0020this\u0020record\u0020to\u0020string.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method___toString"
-        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\Period\u003A\u003A\u0024start",
             "name": "start",
             "summary": "Start\u0020timestamp\u0020of\u0020this\u0020period.",
@@ -890,11 +870,6 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Construct\u0020a\u0020MoonPhaseRecord\u0020with\u0020a\u0020moon\u0020phase\u0020type\u0020and\u0020a\u0020timestamp.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-PhaseRecord.html#method___construct"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PhaseRecord\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "It\u0020cast\u0020this\u0020record\u0020to\u0020string.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-PhaseRecord.html#method___toString"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PhaseRecord\u003A\u003A\u0024timestamp",
             "name": "timestamp",
@@ -935,11 +910,6 @@ Search.appendIndex(
             "name": "equals",
             "summary": "Check\u0020if\u0020this\u0020record\u0020is\u0020equal\u0020to\u0020\u0024another_record.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-SynodicRhythmRecord.html#method_equals"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\SynodicRhythmRecord\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "It\u0020cast\u0020this\u0020record\u0020to\u0020string.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-SynodicRhythmRecord.html#method___toString"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\SynodicRhythmRecord\u003A\u003A\u0024timestamp",
             "name": "timestamp",
@@ -1711,10 +1681,15 @@ Search.appendIndex(
             "summary": "The\u0020notices\u0020list\u0020found\u0020in\u0020the\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Templates-QueryTemplate.html#property_notices"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Traits\\Stringable",
-            "name": "Stringable",
-            "summary": "",
-            "url": "classes/MarcoConsiglio-Ephemeris-Traits-Stringable.html"
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Traits\\StringableRecord",
+            "name": "StringableRecord",
+            "summary": "Support\u0020for\u0020objects\u0020that\u0020implements\u0020the\u0020Stringable\u0020interface.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Traits\\StringableRecord\u003A\u003A__tostring\u0028\u0029",
+            "name": "__tostring",
+            "summary": "Implementation\u0020of\u0020the\u0020Stringable\u0020interface.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html#method___tostring"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Traits\\WithFuzzyLogic",
             "name": "WithFuzzyLogic",
