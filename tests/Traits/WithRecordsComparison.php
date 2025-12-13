@@ -82,7 +82,7 @@ trait WithRecordsComparison
      * 
      * @param int $properties_number The number of properties of the class being 
      * compared.
-     * @throws InvalidArgumentException if $properties_number exceed MAX_PROPERTIES constant.
+     * @throws \InvalidArgumentException if $properties_number exceed MAX_PROPERTIES constant.
      * @return void
      */
     protected function testEqualComparison(int $properties_number)

@@ -30,7 +30,7 @@ class FromArray extends FromArrayBuilder
      * @param array $data
      * @param int $sampling_rate The sampling rate of the ephemeris 
      * expressed in minutes per each step of the ephemeris response.
-     * @throws InvalidArgumentException if one or more columns 
+     * @throws \InvalidArgumentException if one or more columns 
      * are missing from the data passed to the builder.
      */
     public function __construct(array $data, int $sampling_rate)
@@ -44,7 +44,7 @@ class FromArray extends FromArrayBuilder
      * Validate data.
      * 
      * @return void
-     * @throws InvalidArgumentException if the array data does not 
+     * @throws \InvalidArgumentException if the array data does not 
      * have keys "timestamp" and "longitude" or if the array is empty.
      */
     protected function validateData()

@@ -15,7 +15,7 @@ class FromRecords extends Builder
      * of PerigeeRecord instances.
      *
      * @param array $data
-     * @throws InvalidArgumentException if at least 
+     * @throws \InvalidArgumentException if at least 
      * one element is not an PerigeeRecord.
      */
     public function __construct(array $data)

@@ -22,7 +22,7 @@ abstract class FromArrayBuilder extends Builder
      *
      * @param array $columns The keys the array must have.
      * @return void
-     * @throws InvalidArgumentException if one or more columns 
+     * @throws \InvalidArgumentException if one or more columns 
      * are missing from the data passed to the builder.
      */
     protected function validateArrayData(array $columns)

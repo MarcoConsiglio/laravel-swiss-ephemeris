@@ -14,7 +14,7 @@ class FromRecords extends Builder
      * of ApogeeRecord instances.
      *
      * @param array $data
-     * @throws InvalidArgumentException if at least 
+     * @throws \InvalidArgumentException if at least 
      * one element is not an ApogeeRecord or the 
      * array data is empty.
      */

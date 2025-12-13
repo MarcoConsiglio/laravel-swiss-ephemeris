@@ -61,7 +61,7 @@ abstract class Builder implements BuilderInterface
      *
      * @param string $record_class
      * @return void
-     * @throws InvalidArgumentException if at least one item
+     * @throws \InvalidArgumentException if at least one item
      * is not a $record_class type.
      */
     protected function validateRecords(string $record_class)
@@ -82,7 +82,7 @@ abstract class Builder implements BuilderInterface
      * the builder is empty.
      *
      * @return void
-     * @throws InvalidArgumentException if array data is empty.
+     * @throws \InvalidArgumentException if array data is empty.
      */
     protected function checkEmptyData()
     {

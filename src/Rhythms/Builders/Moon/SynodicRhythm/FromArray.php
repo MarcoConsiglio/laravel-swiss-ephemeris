@@ -18,7 +18,7 @@ class FromArray extends FromArrayBuilder
      * Construct the builder with raw data.
      *
      * @param mixed $data
-     * @throws InvalidArgumentException if one or more columns 
+     * @throws \InvalidArgumentException if one or more columns 
      * are missing from the data passed to the builder.
      */
     public function __construct(array $data)
@@ -32,7 +32,7 @@ class FromArray extends FromArrayBuilder
      * Validate data.
      * 
      * @return void
-     * @throws InvalidArgumentException if one or more columns 
+     * @throws \InvalidArgumentException if one or more columns 
      * are missing from the data passed to the builder.
      */
     protected function validateData()
