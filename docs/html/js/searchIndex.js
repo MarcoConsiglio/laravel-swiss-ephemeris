@@ -781,6 +781,11 @@ Search.appendIndex(
             "summary": "Return\u0020true\u0020if\u0020this\u0020record\u0020is\u0020a\u0020south\u0020node.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#method_isSouthNode"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003Aequals\u0028\u0029",
+            "name": "equals",
+            "summary": "Check\u0020if\u0020this\u0020record\u0020is\u0020equal\u0020to\u0020\u0024another_record.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#method_equals"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A\u0024timestamp",
             "name": "timestamp",
             "summary": "The\u0020timestamp\u0020of\u0020this\u0020MoonAnomalistcRecord.",
