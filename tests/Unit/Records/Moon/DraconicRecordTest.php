@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -12,11 +13,13 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 #[CoversClass(DraconicRecord::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
-#[TestDox("The Moon\DraconicRecord")]
+#[TestDox("The Moon DraconicRecord")]
 class DraconicRecordTest extends TestCase
 {
+    use WithRecordsComparison;
+
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
-    public function test_timestamp_proerty()
+    public function test_timestamp_property()
     {
         // Arrange
         $datetime = $this->getRandomSwissEphemerisDateTime();
@@ -144,6 +147,73 @@ timestamp: {$datetime->toDateTimeString()}
 
 TEXT, (string) $record
         );
+    }
+
+    public function test_equals_method()
+    {
+        $this->testEqualComparison(4);
+    }
+
+    /**
+     * Construct the two records to be compared with some $property_couples 
+     * representing an equal or different property
+     * 
+     * @param array $property_couples
+     * @return array
+     */
+    protected function getRecordsToCompare(array $property_couples): array
+    {
+        $first = 0;
+        $second = 1;
+        return [
+            new DraconicRecord(
+                $property_couples[0][$first],
+                $property_couples[1][$first],
+                $property_couples[2][$first],
+                $property_couples[3][$first]
+            ),
+            new DraconicRecord(
+                $property_couples[0][$second],
+                $property_couples[1][$second],
+                $property_couples[2][$second],
+                $property_couples[3][$second]
+            )
+        ];
+    }
+
+    /**
+     * Return a comparison dataset with different and equal arguments.
+     * 
+     * @return array
+     */
+    protected function getComparisonDataset(): array
+    {
+        $d1 = $this->getRandomSwissEphemerisDateTime();
+        $d2 = $d1->clone()->addYear();
+        $m1 = $this->getSpecificAngle(180.0);
+        $m2 = $this->getSpecificAngle(90.0);
+        $n1 = clone $m1;
+        $n2 = clone $m2;
+        $s1 = 12.0;
+        $s2 = 13.0;
+        return [
+            0 => [
+                self::DIFFERENT => [$d1, $d2],
+                self::EQUAL     => [$d1, $d1]
+            ],
+            1 => [
+                self::DIFFERENT => [$m1, $m2],
+                self::EQUAL     => [$m1, $m1]
+            ],
+            2 => [
+                self::DIFFERENT => [$n1, $n2],
+                self::EQUAL     => [$n1, $n1]
+            ],
+            3 => [
+                self::DIFFERENT => [$s1, $s2],
+                self::EQUAL     => [$s1, $s1]
+            ]
+        ];
     }
 
 }

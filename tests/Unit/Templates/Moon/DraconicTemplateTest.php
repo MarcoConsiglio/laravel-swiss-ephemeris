@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 
-#[TestDox("The Moon\DraconicTemplate")]
+#[TestDox("The Moon DraconicTemplate")]
 #[CoversClass(DraconicTemplate::class)]
 class DraconicTemplateTest extends TemplateTestCase
 {

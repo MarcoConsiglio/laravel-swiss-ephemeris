@@ -19,7 +19,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use stdClass;
 use PHPUnit\Framework\MockObject\MockObject;
 
-#[TestDox("The Moon\Phases\FromMoonSynodicRhythm builder")]
+#[TestDox("The Moon Phases\FromMoonSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(FromRecords::class)]
@@ -40,7 +40,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $this->sampling_rate = $this->faker->numberBetween(30, 1440);
     }
 
-    #[TestDox("can build a Moon\Phases collection from the Moon\SynodicRhythm.")]
+    #[TestDox("can build a Moon\Phases collection from The Moon SynodicRhythm.")]
     public function test_build_moon_phases_from_synodic_rhythm()
     {
         // Arrange
@@ -115,7 +115,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     }
 
     /**
-     * It creates a specific Moon SynodicRhythmRecord.
+     * Create a specific Moon SynodicRhythmRecord.
      *
      * @param float $angular_distance The angular difference between the Moon and the Sun.
      * @return SynodicRhythmRecord

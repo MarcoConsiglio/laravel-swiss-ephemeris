@@ -13,7 +13,7 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\FromArrayTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
-#[TestDox("The Moon\SynodicRhythm\FromArray builder")]
+#[TestDox("The Moon SynodicRhythm\FromArray builder")]
 #[CoversClass(FromArray::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythmRecord::class)]

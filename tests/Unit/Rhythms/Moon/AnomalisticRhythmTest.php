@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollect
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 
-#[TestDox("The Moon\AnomalisticRhythm collection")]
+#[TestDox("The Moon AnomalisticRhythm collection")]
 #[CoversClass(AnomalisticRhythm::class)]
 #[UsesClass(FromCollections::class)]
 #[UsesClass(AnomalisticRecord::class)]

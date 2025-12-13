@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 
-#[TestDox("The Moon\PhaseRecord")]
+#[TestDox("The Moon PhaseRecord")]
 #[CoversClass(PhaseRecord::class)]
 class PhaseRecordTest extends TestCase
 {

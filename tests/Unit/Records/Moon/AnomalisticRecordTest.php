@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 
-#[TestDox("The AnomalisticRecord")]
+#[TestDox("The Moon AnomalisticRecord")]
 #[CoversClass(AnomalisticRecord::class)]
 #[UsesClass(ApogeeRecord::class)]
 #[UsesClass(PerigeeRecord::class)]

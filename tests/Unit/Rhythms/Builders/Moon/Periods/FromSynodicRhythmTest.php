@@ -14,7 +14,7 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
-#[TestDox("The Moon\Periods\FromSynodicRhythm builder")]
+#[TestDox("The Moon Periods\FromSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
 #[UsesClass(FromRecords::class)]
 #[UsesClass(Period::class)]

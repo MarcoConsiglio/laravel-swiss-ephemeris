@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
 use stdClass;
 
 #[CoversClass(FromRecords::class)]
-#[TestDox("The Moon\Apogees\FromRecords builder")]
+#[TestDox("The Moon Apogees\FromRecords builder")]
 class FromRecordsTest extends BuilderTestCase
 {
     #[TestDox("can build an Apogees collection from ApogeeRecord instances.")]

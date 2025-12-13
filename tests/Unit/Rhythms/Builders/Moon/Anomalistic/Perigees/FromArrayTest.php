@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\FromArrayTestCase;
 #[CoversClass(FromArray::class)]
 #[UsesClass(Perigees::class)]
 #[UsesClass(PerigeeRecord::class)]
-#[TestDox("The Moon\Perigees\FromArray builder")]
+#[TestDox("The Moon Perigees\FromArray builder")]
 class FromArrayTest extends FromArrayTestCase
 {
     /**

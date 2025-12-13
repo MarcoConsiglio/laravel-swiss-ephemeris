@@ -124,12 +124,14 @@ class DraconicRecord extends Record
      */
     protected function packProperties(): array
     {
+        if ($this->cardinality !== null) $cardinality = $this->enumToString($this->cardinality);
+        else $cardinality = $this->cardinality;
         return array_merge(self::getParentProperties(), [
             "moon_longitude" => "{$this->moon_longitude->toDecimal()}°",
             "timestamp" => $this->timestamp->toDateTimeString(),
             "north_node_longitude" => "{$this->north_node_longitude->toDecimal()}°",
             "south_node_longitude" => "{$this->south_node_longitude->toDecimal()}°",
-            "cardinality" => $this->enumToString($this->cardinality)
+            "cardinality" => $cardinality
         ]);
     }
 

@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 
-#[TestDox("The Moon\Phases collection")]
+#[TestDox("The Moon Phases collection")]
 #[CoversClass(Phases::class)]
 #[UsesClass(PhaseRecord::class)]
 #[UsesClass(Phase::class)]

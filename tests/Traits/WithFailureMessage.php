@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
 /**
- * Provides testing failure message helpers.
+ * This trait provides testing failure message helpers.
  */
 trait WithFailureMessage
 {

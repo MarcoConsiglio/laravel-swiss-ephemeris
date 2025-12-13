@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic\Strate
 
 #[CoversClass(Apogee::class)]
 #[UsesClass(ApogeeRecord::class)]
-#[TestDox("The Moon\Apogee AnomalisticStrategy")]
+#[TestDox("The Moon Apogee AnomalisticStrategy")]
 class ApogeeTest extends TestCase
 {
     /**

@@ -17,7 +17,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 #[UsesClass(Command::class)]
 #[UsesClass(SynodicRhythm::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
-#[TestDox("The Moon\SynodicRhythmTemplate")]
+#[TestDox("The Moon SynodicRhythmTemplate")]
 class SynodicRhythmTemplateTest extends TemplateTestCase
 {
     #[TestDox("is the template used to build a Moon\SynodicRhythm collection.")]

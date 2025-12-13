@@ -25,7 +25,7 @@ use MarcoConsiglio\Goniometry\Angle;
 #[UsesClass(ApogeesBuilder::class)]
 #[UsesClass(PerigeesBuilder::class)]
 #[UsesClass(Angle::class)]
-#[TestDox("The Moon\AnomalisticRhythm\FromCollections builder")]
+#[TestDox("The Moon AnomalisticRhythm\FromCollections builder")]
 class FromCollectionsTest extends BuilderTestCase
 {
     #[TestDox("can build an AnomalisticRhythm collection from Apogees and Perigees collections.")]

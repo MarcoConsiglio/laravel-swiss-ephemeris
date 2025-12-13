@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
-#[TestDox("The Moon\Period")]
+#[TestDox("The Moon Period")]
 #[CoversClass(Period::class)]
 #[UsesClass(PeriodType::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]

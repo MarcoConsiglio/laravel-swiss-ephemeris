@@ -104,7 +104,7 @@ abstract class TestCase extends TestbenchTestCase
     }
 
     /**
-     * It creates a random Angle.
+     * Create a random Angle.
      *
      * @param float|null $limit It limits the angle to $limit decimal degrees.
      * @return Angle
@@ -141,7 +141,7 @@ abstract class TestCase extends TestbenchTestCase
     }
 
     /**
-     * It creates a specific Angle with $decimal_degrees.
+     * Create a specific Angle with $decimal_degrees.
      *
      * @param float $decimal_degrees
      * @return Angle

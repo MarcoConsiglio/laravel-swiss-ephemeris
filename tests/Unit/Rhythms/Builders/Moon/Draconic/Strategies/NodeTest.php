@@ -6,7 +6,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
-#[TestDox("The Moon\Node strategy")]
+#[TestDox("The Moon Node strategy")]
 #[CoversClass(Node::class)]
 class NodeTest extends TestCase
 {

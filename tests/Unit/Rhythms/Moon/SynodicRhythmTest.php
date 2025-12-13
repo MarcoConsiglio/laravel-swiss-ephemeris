@@ -25,7 +25,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 #[UsesClass(PhaseRecord::class)]
 #[UsesClass(Phases::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
-#[TestDox("The Moon\SynodicRhythm collection")]
+#[TestDox("The Moon SynodicRhythm collection")]
 class SynodicRhythmTest extends RhythmTestCase
 {
     #[TestDox("is a collection of Moon\SynodicRhythmRecord instances.")]

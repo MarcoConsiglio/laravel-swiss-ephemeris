@@ -18,7 +18,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 #[UsesClass(FakeRunner::class)]
 #[UsesClass(Command::class)]
 #[UsesClass(Perigees::class)]
-#[TestDox("The Moon\PerigeeTemplate")]
+#[TestDox("The Moon PerigeeTemplate")]
 class PerigeeTemplateTest extends TemplateTestCase
 {
     #[TestDox("is the template used to build a Moon\Perigees collection.")]

@@ -7,15 +7,14 @@ use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
-#[TestDox("The Moon\SynodicRhythmRecord")]
+#[TestDox("The Moon SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]
 class SynodicRhythmRecordTest extends TestCase
 {
-    use WithCustomAssertions;
+    use WithRecordsComparison;
 
     #[TestDox("has read-only properties \"timestamp\" which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property()
@@ -109,34 +108,9 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     #[TestDox("can establish equality with another record of the same type.")]
-    public function test_is_equal()
+    public function test_equals_method()
     {
-        // Arrange
-        $d1 = $this->getRandomSwissEphemerisDateTime();
-        $d2 = clone $d1;
-        $d2->hour += 1;
-        $a1 = Angle::createFromDecimal(180.0);
-        $a2 = Angle::createFromDecimal(90.0);
-        $daily_speed = $this->getRandomMoonDailySpeed();
-        $record_A1 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_A2 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_B1 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_B2 = new SynodicRhythmRecord($d2, $a2, $daily_speed);
-        $record_C1 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_C2 = new SynodicRhythmRecord($d2, $a1, $daily_speed);
-        $record_D1 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_D2 = new SynodicRhythmRecord($d1, $a2, $daily_speed);
-
-        // Act & Assert
-        //      0 means not equal, 1 means equal, $daily_speed
-        //      A = 1   B = 1
-        $this->assertObjectEquals($record_A1, $record_A2);
-        //      A = 0   B = 0
-        $this->assertObjectNotEquals($record_B1, $record_B2);
-        //      A = 0   B = 1
-        $this->assertObjectNotEquals($record_C1, $record_C2);
-        //      A = 1   B = 0
-        $this->assertObjectNotEquals($record_D1, $record_D2);
+        $this->testEqualComparison(3);
     }
 
     #[TestDox("can determine which moon period it belongs to.")]
@@ -194,5 +168,61 @@ timestamp: $timestamp
 TEXT,
             (string) $record
         );
+    }
+
+    /**
+     * Construct the two records to be compared with some $property_couples 
+     * representing an equal or different property.
+     * 
+     * @param array $property_couples
+     * @return array
+     */    
+    protected function getComparisonDataset(): array
+    {
+        $d1 = $this->getRandomSwissEphemerisDateTime();
+        $d2 = $d1->clone()->addYear();
+        $a1 = $this->getSpecificAngle(180.0);
+        $a2 = $this->getSpecificAngle(90.0);
+        $s1 = 12.0;
+        $s2 = 13.0;
+        return [
+            0 => [
+                self::DIFFERENT => [$d1, $d2],
+                self::EQUAL => [$d1, $d1]
+            ],
+            1 => [
+                self::DIFFERENT => [$a1, $a2],
+                self::EQUAL => [$a1, $a1]
+            ],
+            2 => [
+                self::DIFFERENT => [$s1, $s2],
+                self::EQUAL => [$s1, $s1]
+            ]
+        ];
+    }
+
+    /**
+     * Construct the two records to be compared with some $property_couples 
+     * representing an equal or different property
+     * 
+     * @param array $property_couples
+     * @return array
+     */
+    protected function getRecordsToCompare(array $property_couples): array
+    {
+        $first = 0;
+        $second = 1;
+        return [
+            new SynodicRhythmRecord(
+                $property_couples[0][$first],
+                $property_couples[1][$first],
+                $property_couples[2][$first]
+            ),
+            new SynodicRhythmRecord(
+                $property_couples[0][$second],
+                $property_couples[1][$second],
+                $property_couples[2][$second]
+            )
+        ];
     }
 }
