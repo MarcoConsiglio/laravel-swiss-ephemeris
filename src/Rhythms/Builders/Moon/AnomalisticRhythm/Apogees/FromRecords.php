@@ -1,5 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees;
+
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;

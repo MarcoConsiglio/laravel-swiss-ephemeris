@@ -22,10 +22,9 @@ class NodeTest extends TestCase
         parent::setUp();
     }
 
-    #[TestDox("can find the Moon in north node.")]
+    #[TestDox("can find when the Moon is in its north node.")]
     public function test_can_find_a_north_node()
     {
-        $this->markTestSkipped("Develop equals() method in DraconicRecord class first.");
         // Arrange
         $north_node_record = $this->getRandomNorthNodeRecord();
         $strategy = $this->makeStrategy($north_node_record);
@@ -35,6 +34,20 @@ class NodeTest extends TestCase
 
         // Assert
         $this->assertRecordFound($north_node_record, $accepted_record);
+    }
+
+    #[TestDox("can find when the Moon is in its south node.")]
+    public function test_can_find_a_south_node()
+    {
+        // Arrange
+        $south_node_record = $this->getRandomSouthNodeRecord();
+        $strategy = $this->makeStrategy($south_node_record);
+
+        // Act
+        $accepted_record = $strategy->found();
+
+        // Assert
+        $this->assertRecordFound($south_node_record, $accepted_record);
     }
 
     /**

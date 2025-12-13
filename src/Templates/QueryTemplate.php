@@ -15,9 +15,6 @@ use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Output;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
-use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 
 /**
  * The template for an ephemeris query.

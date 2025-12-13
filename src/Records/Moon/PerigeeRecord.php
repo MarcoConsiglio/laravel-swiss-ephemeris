@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Interfaces\Angle;
+use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * It represents a moment when the Moon is at its perigee.

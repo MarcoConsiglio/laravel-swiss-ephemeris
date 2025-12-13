@@ -95,12 +95,11 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio.html">MarcoConsiglio</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-ephemeris.html">Ephemeris</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-ephemeris-records.html">Records</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-ephemeris-records-moon.html">Moon</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Period
+    MovingObjectRecord
 
         <span class="phpdocumentor-element__extends">
         extends <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html"><abbr title="\MarcoConsiglio\Ephemeris\Records\Record">Record</abbr></a>
@@ -119,17 +118,19 @@
 <div class="phpdocumentor-label-line">
 
 
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Abstract</span><span>Yes</span></div>
+
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/Period.php"><a href="files/src-records-moon-period.html"><abbr title="src/Records/Moon/Period.php">Period.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/MovingObjectRecord.php"><a href="files/src-records-movingobjectrecord.html"><abbr title="src/Records/MovingObjectRecord.php">MovingObjectRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Represents a fraction of the Moon phase cicle,
-i.e. a waxing or a waning Moon period.</p>
+            <p class="phpdocumentor-summary">It defines the abstract concept of a record of the
+ ephemeris representing a moving stellar object.</p>
 
 
 
@@ -139,7 +140,7 @@ i.e. a waxing or a waning Moon period.</p>
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -153,66 +154,33 @@ i.e. a waxing or a waning Moon period.</p>
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_end">$end</a>
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#property_daily_speed">$daily_speed</a>
     <span>
-                        &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>            </span>
+                        &nbsp;: float            </span>
 </dt>
-<dd>End timestamp of this period.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_start">$start</a>
-    <span>
-                        &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>            </span>
-</dt>
-<dd>Start timestamp of this period.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_type">$type</a>
-    <span>
-                        &nbsp;: <a href="classes/MarcoConsiglio-Ephemeris-Enums-Moon-Period.html"><abbr title="\MarcoConsiglio\Ephemeris\Enums\Moon\Period">Period</abbr></a>            </span>
-</dt>
-<dd>The type of this period (waning or waxing).</dd>
+<dd>The daily speed of the celestial object at the
+time to which the record refers expressed in
+decimal degrees per day.</dd>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method___construct">__construct()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd>Construct a Moon period.</dd>
-
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html#method___tostring">__tostring()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Implementation of the Stringable interface.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method_isWaning">isWaning()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Tells if this period is waning.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method_isWaxing">isWaxing()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Tells if this period is waxing.</dd>
 
     </dl>
 
@@ -224,7 +192,7 @@ i.e. a waxing or a waning Moon period.</p>
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -234,103 +202,29 @@ i.e. a waxing or a waning Moon period.</p>
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_end">
-        $end
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_end" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_daily_speed">
+        $daily_speed
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#property_daily_speed" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/Period.php"><a href="files/src-records-moon-period.html"><abbr title="src/Records/Moon/Period.php">Period.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/MovingObjectRecord.php"><a href="files/src-records-movingobjectrecord.html"><abbr title="src/Records/MovingObjectRecord.php">MovingObjectRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">End timestamp of this period.</p>
+        <p class="phpdocumentor-summary">The daily speed of the celestial object at the
+time to which the record refers expressed in
+decimal degrees per day.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
             <span class="phpdocumentor-signature__visibility">public protected(set)</span>
-            <span class="phpdocumentor-signature__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$end</span>
-    </code>
-
-    
-    
-    
-
-        
-        
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_start">
-        $start
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_start" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/Period.php"><a href="files/src-records-moon-period.html"><abbr title="src/Records/Moon/Period.php">Period.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">19</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Start timestamp of this period.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
-            <span class="phpdocumentor-signature__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$start</span>
-    </code>
-
-    
-    
-    
-
-        
-        
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_type">
-        $type
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_type" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/Period.php"><a href="files/src-records-moon-period.html"><abbr title="src/Records/Moon/Period.php">Period.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">33</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The type of this period (waning or waxing).</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
-            <span class="phpdocumentor-signature__type"><a href="classes/MarcoConsiglio-Ephemeris-Enums-Moon-Period.html"><abbr title="\MarcoConsiglio\Ephemeris\Enums\Moon\Period">Period</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$type</span>
+            <span class="phpdocumentor-signature__type">float</span>
+    <span class="phpdocumentor-signature__name">$daily_speed</span>
     </code>
 
     
@@ -346,68 +240,9 @@ i.e. a waxing or a waning Moon period.</p>
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method___construct">
-        __construct()
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/Period.php"><a href="files/src-records-moon-period.html"><abbr title="src/Records/Moon/Period.php">Period.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">42</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Construct a Moon period.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$start</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$end</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-Enums-Moon-Period.html"><abbr title="\MarcoConsiglio\Ephemeris\Enums\Moon\Period">Period</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$start</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$end</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$type</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-Enums-Moon-Period.html"><abbr title="\MarcoConsiglio\Ephemeris\Enums\Moon\Period">Period</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-        
-    
-    
-</article>
                     <article
         class="phpdocumentor-element
             -method
@@ -447,91 +282,13 @@ i.e. a waxing or a waning Moon period.</p>
             </section>
 
 </article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_isWaning">
-        isWaning()
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method_isWaning" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/Period.php"><a href="files/src-records-moon-period.html"><abbr title="src/Records/Moon/Period.php">Period.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">64</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Tells if this period is waning.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isWaning</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_isWaxing">
-        isWaxing()
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method_isWaxing" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/Period.php"><a href="files/src-records-moon-period.html"><abbr title="src/Records/Moon/Period.php">Period.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">54</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Tells if this period is waxing.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isWaxing</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-            </section>
-
-</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Records/Moon/Period.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Records/MovingObjectRecord.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -632,27 +389,22 @@ i.e. a waxing or a waning Moon period.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_end">$end</a></li>
-                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_start">$start</a></li>
-                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_type">$type</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#property_daily_speed">$daily_speed</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html#method___tostring">__tostring()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method_isWaning">isWaning()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method_isWaxing">isWaxing()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -672,7 +424,7 @@ i.e. a waxing or a waning Moon period.</p>
     </section>
 </section>
         </div>
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

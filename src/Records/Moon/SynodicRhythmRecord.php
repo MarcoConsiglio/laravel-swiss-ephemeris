@@ -3,19 +3,15 @@ namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use RoundingMode;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
-use MarcoConsiglio\Ephemeris\Records\Record;
+use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Traits\StringableRecord;
 use MarcoConsiglio\Goniometry\Angle;
-use Stringable;
 
 /**
  * It represent a moment of the Moon synodic rhythm.
  */
-class SynodicRhythmRecord extends Record
+class SynodicRhythmRecord extends MovingObjectRecord
 {
-
-    use StringableRecord;
 
     /**
      * The timestamp of this record.

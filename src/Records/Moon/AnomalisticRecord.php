@@ -1,17 +1,15 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
-use MarcoConsiglio\Ephemeris\Records\Record;
+use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Traits\StringableRecord;
 use MarcoConsiglio\Goniometry\Angle;
-use Stringable;
 
 /**
  * It represents an instant when the Moon 
  * is at either apogee or perigee.
  */
-abstract class AnomalisticRecord extends Record
+abstract class AnomalisticRecord extends MovingObjectRecord
 {
     /**
      * The timestamp of this Moon AnomalistcRecord.

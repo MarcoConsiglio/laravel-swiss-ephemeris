@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Enums;
 
 /**
  * The executable's flags used to query the Swiss Ephemeris.
+ * 
  * @codeCoverageIgnore
  */
 enum CommandFlag: string {

@@ -4,16 +4,13 @@ namespace MarcoConsiglio\Ephemeris\Records\Moon;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Traits\StringableRecord;
-use Stringable;
 
 /**
  * It represents a time when the Moon 
  * is in a specific lunar phase.
  */
-class PhaseRecord implements Stringable
+class PhaseRecord extends Record
 {
-    use StringableRecord;
 
     /**
      * The timestamp this record refers to.

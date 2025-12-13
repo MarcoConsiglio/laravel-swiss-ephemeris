@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
-use MarcoConsiglio\Ephemeris\Records\Record;
+use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 
@@ -12,7 +12,7 @@ use MarcoConsiglio\Goniometry\Angle;
  * between its orbit and the plane of 
  * the ecliptic.
  */
-class DraconicRecord extends Record
+class DraconicRecord extends MovingObjectRecord
 {
     /**
      * The timestamp of this MoonAnomalistcRecord.

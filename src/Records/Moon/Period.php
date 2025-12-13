@@ -2,18 +2,15 @@
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
+use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Traits\StringableRecord;
-use Stringable;
 
 /**
  * Represents a fraction of the Moon phase cicle, 
  * i.e. a waxing or a waning Moon period.
  */
-class Period implements Stringable
+class Period extends Record
 {
-    use StringableRecord;
-
     /**
      * Start timestamp of this period.
      *

@@ -1,11 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 
-use AdamBrett\ShellWrapper\Command;
-use AdamBrett\ShellWrapper\Runners\DryRunner;
-use AdamBrett\ShellWrapper\Runners\Exec;
-use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 

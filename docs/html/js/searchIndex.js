@@ -348,7 +348,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\PlanetsList",
             "name": "PlanetsList",
-            "summary": "The\u0020Swiss\u0020Ephemeris\u0020encodes\u0020planets\u0020and\u0020other\u0020objects\u0020with\nalphanumeric\u0020codes.\u0020This\u0020is\u0020a\u0020list\u0020of\u0020codes\u0020that\u0020are\u0020passed\nto\u0020the\u0020executable\u0020to\u0020refer\u0020to\u0020a\u0020collection\u0020of\u0020stellar\u0020object.",
+            "summary": "It\u0020represents\u0020a\u0020shortcut\u0020flag\u0020to\u0020select\u0020a\u0020group\u0020of\u0020stellar\u0020objects.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-PlanetsList.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\PlanetsList\u003A\u003ADefault",
@@ -498,7 +498,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\SinglePlanet",
             "name": "SinglePlanet",
-            "summary": "The\u0020Swiss\u0020Ephemeris\u0020encodes\u0020planets\u0020and\u0020other\u0020objects\u0020with\nalphanumeric\u0020codes.\u0020This\u0020is\u0020a\u0020list\u0020of\u0020codes\u0020that\u0020are\u0020passed\nto\u0020the\u0020executable\u0020to\u0020refer\u0020to\u0020a\u0020single\u0020planet.",
+            "summary": "It\u0020represents\u0020a\u0020flag\u0020to\u0020select\u0020a\u0020specific\u0020stellar\u0020object.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-SinglePlanet.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\SinglePlanet\u003A\u003ASun",
@@ -931,15 +931,20 @@ Search.appendIndex(
             "summary": "Angular\u0020distance\u0020percentage.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-SynodicRhythmRecord.html#property_percentage"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Record",
-            "name": "Record",
-            "summary": "It\u0020defines\u0020the\u0020abstract\u0020concept\u0020of\u0020a\u0020record\u0020of\u0020the\nephemeris\u0020of\u0020a\u0020celestial\u0020object.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Record.html"
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\MovingObjectRecord",
+            "name": "MovingObjectRecord",
+            "summary": "It\u0020defines\u0020the\u0020abstract\u0020concept\u0020of\u0020a\u0020record\u0020of\u0020the\n\u0020ephemeris\u0020representing\u0020a\u0020moving\u0020stellar\u0020object.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Record\u003A\u003A\u0024daily_speed",
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\MovingObjectRecord\u003A\u003A\u0024daily_speed",
             "name": "daily_speed",
             "summary": "The\u0020daily\u0020speed\u0020of\u0020the\u0020celestial\u0020object\u0020at\u0020the\ntime\u0020to\u0020which\u0020the\u0020record\u0020refers\u0020expressed\u0020in\ndecimal\u0020degrees\u0020per\u0020day.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed"
+            "url": "classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#property_daily_speed"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Record",
+            "name": "Record",
+            "summary": "It\u0020defines\u0020the\u0020abstract\u0020concept\u0020of\u0020a\u0020record\u0020of\u0020the\nephemeris.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Records-Record.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Builder",
             "name": "Builder",
