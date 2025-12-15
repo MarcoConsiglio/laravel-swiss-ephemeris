@@ -5,6 +5,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use MarcoConsiglio\Goniometry\Angle;
 
 #[TestDox("The Moon Node strategy")]
 #[CoversClass(Node::class)]

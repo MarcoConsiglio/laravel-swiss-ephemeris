@@ -59,7 +59,7 @@ class Node extends Strategy
      */
     protected function isANode(Angle $moon_longitude, Angle $node_longitude): bool
     {
-        return $this->isAbout(
+        return $this->isAboutAbsolute(
             $moon_longitude->toDecimal(),
             $node_longitude->toDecimal(),
             $this->delta

@@ -31,10 +31,13 @@ abstract class TestCase extends StrategyTestCase
     protected function getRandomNorthNodeRecord(bool $set_cardinality = false): DraconicRecord
     {
         $longitude = $this->getRandomPositiveSexadecimalValue();
+        $moon_longitude = $this->getAbsoluteLongitude($longitude);
+        $longitude = $moon_longitude->toDecimal();
+        $north_node_longitude = $this->getAbsoluteLongitude($longitude);
         $record = new DraconicRecord(
             $this->date, 
-            $this->getSpecificAngle($this->getBiasedLongitude($longitude)),
-            $this->getSpecificAngle($this->getBiasedLongitude($longitude)),
+            $moon_longitude,
+            $north_node_longitude,
             $this->getRandomMoonDailySpeed()
         );
         if ($set_cardinality) $record->cardinality = Cardinality::North;
@@ -51,17 +54,17 @@ abstract class TestCase extends StrategyTestCase
     protected function getRandomSouthNodeRecord(bool $set_cardinality = false): DraconicRecord
     {
         $longitude = $this->getRandomPositiveSexadecimalValue();
-        $moon_longitude = $this->getSpecificAngle($this->getBiasedLongitude($longitude));
-        $south_node_longitude = $this->getSpecificAngle($this->getBiasedLongitude($longitude));
-        $opposite = $this->getSpecificAngle(-180);
-        $north_node_longitude = Angle::sum($south_node_longitude, $opposite);
+        $moon_longitude = $this->getAbsoluteLongitude($longitude);
+        $longitude = $moon_longitude->toDecimal();
+        $south_node_longitude = $this->getAbsoluteLongitude($longitude);
+        $north_node_longitude = $this->getOppositeAbsoluteLongitude($south_node_longitude);
         $record = new DraconicRecord(
             $this->date,
             $moon_longitude,
             $north_node_longitude,
-            $this->getRandomMoonDailySpeed()
+            $this->daily_speed
         );
-        $record->cardinality = Cardinality::South;
+        if ($set_cardinality) $record->cardinality = Cardinality::South;
         return $record;
     }
 

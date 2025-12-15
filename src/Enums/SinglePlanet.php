@@ -7,8 +7,6 @@ namespace MarcoConsiglio\Ephemeris\Enums;
  * The Swiss Ephemeris encodes planets and other objects with 
  * alphanumeric codes. This is a list of codes that are passed 
  * to the executable to refer to a single planet.
- * 
- * @codeCoverageIgnore
  */
 enum SinglePlanet: string {
     case Sun = '0';

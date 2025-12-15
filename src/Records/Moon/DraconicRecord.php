@@ -94,7 +94,12 @@ class DraconicRecord extends MovingObjectRecord
     protected function oppositeLongitude(Angle $longitude): Angle
     {
         $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
-        return Angle::sum($longitude, $opposite);
+        $angle = Angle::sum($longitude, $opposite);
+        if ($angle->isClockwise()) {
+            $full = Angle::createFromValues(Angle::MAX_DEGREES);
+            $angle = Angle::sum($full, $angle);
+        }
+        return $angle;
     }
 
     /**

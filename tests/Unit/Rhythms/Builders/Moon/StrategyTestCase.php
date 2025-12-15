@@ -119,7 +119,7 @@ abstract class StrategyTestCase extends TestCase
     }
     
     /**
-     * Get a random unprecise longitude biased by a delta.
+     * Get a random unprecise longitude.
      *
      * @param float $longitude
      * @param float $delta
@@ -131,9 +131,29 @@ abstract class StrategyTestCase extends TestCase
         return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
     }
 
+    /**
+     * Get a random biased longitude.
+     *
+     * @param float $longitude
+     * @param float $delta
+     * @return float
+     */
+    protected function getAbsBiasedLongitude(float $longitude): float
+    {
+        [$min, $max] = $this->getAbsDeltaExtremes($this->delta, $longitude);
+        // $min = $this->toAbsoluteAngularValue($min);
+        // $max = $this->toAbsoluteAngularValue($max);
+        if ($min > $max) {
+            return $this->faker->randomElement([
+                $this->faker->randomFloat(PHP_FLOAT_DIG, $min, Angle::MAX_DEGREES),
+                $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $max)
+            ]);
+        } else return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
+    }
+
 
     /**
-     * Get a random unprecise longitude except for $longitude. 
+     * Get a random biased longitude except for $longitude. 
      *
      * @param float $longitude
      * @param float $delta
@@ -148,16 +168,37 @@ abstract class StrategyTestCase extends TestCase
             return $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded);
         }
         if ($min == 0) {
-            return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, 360);
+            return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES);
         }
         return $this->faker->randomElement([
             $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded),
-            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, 360)
+            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES)
         ]);
     }
 
     /**
-     * Return a biased Angle with $longitude.
+     * Get a random biased absolute longitude except for $longitude. 
+     *
+     * @param float $longitude
+     * @param float $delta
+     * @return float
+     */
+    protected function getAbsBiasedLongitudeExceptFor(float $longitude): float
+    {
+        $max_excluded = 0.00000000000001;
+        $min_excluded = -$max_excluded;
+        [$min, $max] = $this->getAbsDeltaExtremes($this->delta, $longitude);
+        $min = $this->toAbsoluteAngularValue($min);
+        $max = $this->toAbsoluteAngularValue($max);
+        if ($min > $max) return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $min + $min_excluded);
+        else return $this->faker->randomElement([
+            $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded),
+            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES)
+        ]);
+    }
+
+    /**
+     * Return a biased Angle near $longitude.
      *
      * @param float $longitude
      * @return Angle
@@ -165,6 +206,18 @@ abstract class StrategyTestCase extends TestCase
     protected function getLongitude(float $longitude = 180.0): Angle
     {
         return Angle::createFromDecimal($this->getBiasedLongitude($longitude, $this->delta));
+    }
+    
+    /**
+     * Return a biased absolute Angle near $longitude.
+     *
+     * @param float $longitude
+     * @return Angle
+     */
+    protected function getAbsoluteLongitude(float $longitude = 180.0): Angle
+    {
+        $longitude = abs($longitude);
+        return Angle::createFromDecimal($this->getAbsBiasedLongitude($longitude, $this->delta));
     }
 
     /**
@@ -179,6 +232,34 @@ abstract class StrategyTestCase extends TestCase
     }
 
     /**
+     * Return a biased Angle except for $longitude.
+     *
+     * @param float $longitude
+     * @return Angle
+     */
+    protected function getAbsoluteLongitudeExceptFor(float $longitude = 180.0): Angle
+    {
+        return Angle::createFromDecimal($this->getAbsBiasedLongitudeExceptFor($longitude, $this->delta));
+    }
+
+    /**
+     * Return the opposite Angle of $longitude.
+     *
+     * @param Angle $longitude
+     * @return Angle
+     */
+    protected function getOppositeAbsoluteLongitude(Angle $longitude): Angle
+    {
+        $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
+        $result = Angle::sum($longitude, $opposite);
+        if ($result->isClockwise()) {
+            $full = Angle::createFromValues(Angle::MAX_DEGREES);
+            $result = Angle::sum($full, $result);
+        }
+        return $result;
+    }
+
+    /**
      * Calculate the delta angle which is the accepted error
      * to found an angle with a precise value.
      *
@@ -189,7 +270,7 @@ abstract class StrategyTestCase extends TestCase
     protected function getDelta(float $daily_speed, float $sampling_rate): float
     {
         return round(
-            $daily_speed * $sampling_rate / 1440 /* minutes */,
+            abs($daily_speed) * abs($sampling_rate) / 1440 /* minutes */,
             PHP_FLOAT_DIG,
             RoundingMode::HalfTowardsZero
         );
