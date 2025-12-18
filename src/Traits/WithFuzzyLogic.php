@@ -39,9 +39,13 @@ trait WithFuzzyLogic
         [$min, $max] = $this->getAbsDeltaExtremes($delta, $number);
         if ($min > $max) {
             return (
-                ($number >= $min && $number <= Angle::MAX_DEGREES) ||
-                ($number >= 0 && $number <= $max)
+                ($expected >= $min && $expected <= Angle::MAX_DEGREES) ||
+                ($expected >= 0 && $expected <= $max)
             );
+        } else if ($max == Angle::MAX_DEGREES) {
+            return ($expected >= $min && $expected <= $max) || $expected == 0;
+        } else if ($min == 0) {
+            return ($expected >= $min && $expected <= $max) || $expected == Angle::MAX_DEGREES;
         } else return $expected >= $min && $expected <= $max;
     }
 
