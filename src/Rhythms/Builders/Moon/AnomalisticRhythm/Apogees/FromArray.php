@@ -6,6 +6,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies\Apogee;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Templates\Moon\AnomalisticTemplate;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
@@ -13,17 +14,6 @@ use MarcoConsiglio\Goniometry\Angle;
  */
 class FromArray extends FromArrayBuilder
 {
-    /**
-     * The keys the array data must have.
-     *
-     * @var array
-     */
-    protected array $columns = [
-        "timestamp",
-        "longitude",
-        "daily_speed"
-    ];
-
     /**
      * Construct the builder with raw data.
      *
@@ -37,6 +27,7 @@ class FromArray extends FromArrayBuilder
     {
         $this->data = $data;
         $this->sampling_rate = abs($sampling_rate);
+        $this->columns = AnomalisticTemplate::getColumns();
         $this->validateData();
     }
 

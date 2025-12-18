@@ -14,17 +14,6 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node;
 class FromArray extends FromArrayBuilder
 {
     /**
-     * The keys the array data must have.
-     *
-     * @var array
-     */
-    protected array $columns = [
-        0 => "timestamp",
-        1 => "longitude",
-        3 => "daily_speed"        
-    ];
-
-    /**
      * Construct the builder with raw data.
      *
      * @param array $data
@@ -36,8 +25,9 @@ class FromArray extends FromArrayBuilder
     public function __construct(array $data, int $sampling_rate)
     {
         $this->data = $data;
-        $this->validateData();
+        $this->sampling_rate = $sampling_rate;
         $this->columns = DraconicTemplate::getColumns();
+        $this->validateData();
     }
 
     /**

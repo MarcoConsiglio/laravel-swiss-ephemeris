@@ -6,6 +6,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies\Perigee;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Templates\Moon\AnomalisticTemplate;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
@@ -36,8 +37,9 @@ class FromArray extends FromArrayBuilder
     public function __construct(array $data, int $sampling_rate)
     {
         $this->data = $data;
-        $this->validateData();
         $this->sampling_rate = $sampling_rate;
+        $this->columns = AnomalisticTemplate::getColumns();
+        $this->validateData();
     }
 
     /**
@@ -82,7 +84,6 @@ class FromArray extends FromArrayBuilder
                     (float) $item["moon_daily_speed"]
                 );
         })->all();
-
 
         // Select the correct Moon PerigeeRecord where the Moon is close to its perigee.
         $this->data = collect($this->data)->filter(function ($record) {

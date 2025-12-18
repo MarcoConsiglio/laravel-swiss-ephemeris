@@ -20,13 +20,6 @@ use MarcoConsiglio\Goniometry\Angle;
 class FromArrayTest extends FromArrayTestCase
 {
     /**
-     * Test data.
-     *
-     * @var array
-     */
-    protected array $data;
-
-    /**
      * Setup the test environment.
      *
      * @return void
@@ -34,11 +27,11 @@ class FromArrayTest extends FromArrayTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->data = $this->getRawData();
+        $this->sampling_rate = 60;
     }
-
+    
     #[TestDox("can build an array of Moon\SynodicRhythmRecords starting from an array of raw ephemeris data.")]
-    public function test_build_synodic_rhythm_from_array()
+    public function test_build_synodic_rhythm()
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -46,7 +39,7 @@ class FromArrayTest extends FromArrayTestCase
 
         // Act
         /** @var FromArray $builder */
-        $builder = new $builder_class($this->getRawData());
+        $builder = new $builder_class($this->data);
         $this->checkBuilderInterface(Builder::class, $builder);
         $synodic_rhythm_records = $builder->fetchCollection();
 
@@ -63,7 +56,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require the \"timestamp\" column.")]
-    public function test_from_array_builder_wants_timestamp_column()
+    public function test_require_timestamp_column()
     {
         /**
          * Missing key "timestamp"
@@ -83,7 +76,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require the \"angular_distance\" column")]
-    public function test_from_array_builder_wants_angular_distance_column()
+    public function test_require_angular_distance_column()
     {   
         /**
          * Missing key "angular_distance"
@@ -102,7 +95,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require the \"daily_speed\" column")]
-    public function test_from_array_builder_wants_daily_speed_column()
+    public function test_require_daily_speed_column()
     {   
         /**
          * Missing key "daily_daily"

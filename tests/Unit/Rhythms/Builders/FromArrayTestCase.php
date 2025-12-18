@@ -4,6 +4,24 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
 abstract class FromArrayTestCase extends BuilderTestCase
 {
     /**
+     * Test data.
+     *
+     * @var array
+     */
+    protected array $data;
+
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->data = $this->getRawData();
+    }
+    
+    /**
      * Return raw ephemeris data to test the builder.
      *
      * @return array
