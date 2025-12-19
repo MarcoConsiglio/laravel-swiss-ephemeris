@@ -162,9 +162,7 @@ class DraconicRecord extends MovingObjectRecord
         $a = $this->timestamp == $another_record->timestamp;
         $b = $this->moon_longitude == $another_record->moon_longitude;
         $c = $this->north_node_longitude == $another_record->north_node_longitude;
-        $d = $this->south_node_longitude == $another_record->south_node_longitude;
-        $e = $this->cardinality == $another_record->cardinality;
-        $f = $this->daily_speed == $another_record->daily_speed;
-        return $a && $b && $c && $d && $e && $f;
+        $d = $this->daily_speed == $another_record->daily_speed;
+        return $a && $b && $c && $d;
     }
 }

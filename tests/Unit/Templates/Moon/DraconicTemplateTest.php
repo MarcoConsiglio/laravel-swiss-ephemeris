@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates\Moon;
 
 use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
+use ErrorException;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\Moon\DraconicTemplate;
@@ -37,5 +38,25 @@ class DraconicTemplateTest extends TemplateTestCase
             $this->methodMustReturn(DraconicTemplate::class, "getResult", DraconicRhythm::class)
         );
 
+    }
+
+    public function test_parse_error()
+    {
+        // Arrange
+        $this->response_file = "./tests/SwissEphemerisResponses/Moon/draconic_malformed.txt";
+        $start_date = SwissEphemerisDateTime::create(2000);
+        $days = 30;
+        $step_size = 60;
+        /** @var Command&MockObject $command */
+        $command = $this->getMocked(Command::class);
+        $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
+        $template = new DraconicTemplate($start_date, $days, $step_size, $runner, $command);
+
+        // Assert
+        $this->expectException(ErrorException::class);
+        
+        // Act
+        $template->getResult();   
+        
     }
 }
