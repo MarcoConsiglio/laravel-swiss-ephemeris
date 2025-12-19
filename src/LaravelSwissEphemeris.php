@@ -10,8 +10,10 @@ use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollections;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\Moon\ApogeeTemplate;
+use MarcoConsiglio\Ephemeris\Templates\Moon\DraconicTemplate;
 use MarcoConsiglio\Ephemeris\Templates\Moon\PerigeeTemplate;
 use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 
@@ -161,6 +163,18 @@ class LaravelSwissEphemeris
         $apogees = $apogees_query->getResult();
         $perigees = $perigees_query->getResult();
         return new AnomalisticRhythm(new FromCollections($apogees, $perigees));
+    }
+
+    public function getMoonDraconicRhythm(
+        CarbonInterface $start_date,
+        $days = 30,
+        $step_size = 60
+    ): DraconicRhythm
+    {
+        $start_date = $this->normalizeDatetime($start_date);
+        $query = new DraconicTemplate($start_date, $days, $step_size, $this->shell, $this->command);
+        $draconic_rhythm = $query->getResult();
+        return $draconic_rhythm;
     }
 
     /**

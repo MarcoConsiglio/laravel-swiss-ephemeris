@@ -11,13 +11,14 @@ use Orchestra\Workbench\WorkbenchServiceProvider;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\SwissEphemerisServiceProvider;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithRandomData;
 
 /**
  * Feature custom TestCase.
  */
 abstract class TestCase extends OrchestraTestCase
 {
-    use WithFailureMessage, WithFaker;
+    use WithFailureMessage, WithRandomData;
     
     /**
      * The application configs.

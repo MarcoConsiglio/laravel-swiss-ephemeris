@@ -6,8 +6,10 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
+use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -21,13 +23,8 @@ class LaravelSwissEphemerisTest extends TestCase
     #[TestDox("can query the Moon synodic rhythm.")]
     public function test_moon_synodic_rhythm()
     {
-        // Arrange in setUp()
-
         // Act
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm(SwissEphemerisDateTime::create(
-            $this->faker->numberBetween(2000, 2025),
-            $this->faker->numberBetween(1, 12)
-        ));
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->getRandomSwissEphemerisDateTime());
 
         // Assert
         $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm, 
@@ -47,13 +44,8 @@ class LaravelSwissEphemerisTest extends TestCase
     #[TestDox("can query the Moon anomalistic rhythm.")]
     public function test_moon_anomalistic_rhythm()
     {
-        // Arrange in setUp()
-
         // Act
-        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm(SwissEphemerisDateTime::create(
-            $this->faker->numberBetween(2000, 2025),
-            $this->faker->numberBetween(1, 12)
-        ));
+        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm($this->getRandomSwissEphemerisDateTime());
 
         // Assert
         $this->assertInstanceOf(AnomalisticRhythm::class, $anomalistic_rhythm,
@@ -64,15 +56,18 @@ class LaravelSwissEphemerisTest extends TestCase
         ));
     }
 
-    #[TestDox("throw an Exception if the query is outbound the available time range.")]
-    public function test_outbound_time_range_throw_exception()
+    #[TestDox("can query the Moon draconic rhythm.")]
+    public function test_moon_draconic_rhythm()
     {
-        // Arrange in setUp()
-        $this->markTestSkipped("Need better checks errors and warning in the raw output.");
-        // Assert
-        $this->expectException(SwissEphemerisError::class);
-
         // Act
-        $this->ephemeris->getMoonSynodicRhythm(SwissEphemerisDateTime::create(0), -1, -5);
+        $draconic_rhythm = $this->ephemeris->getMoonDraconicRhythm($this->getRandomSwissEphemerisDateTime());
+
+        // Assert
+        $this->assertInstanceOf(DraconicRhythm::class, $draconic_rhythm,
+            $this->methodMustReturn(LaravelSwissEphemeris::class,
+                "getMoonDraconicRhythm",
+                DraconicRhythm::class
+            )
+        );
     }
 }
