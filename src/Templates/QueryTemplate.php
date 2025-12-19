@@ -415,27 +415,6 @@ abstract class QueryTemplate
         return $result;
     }
 
-    // /**
-    //  * Parse a string angle measure.
-    //  *
-    //  * @param string $text
-    //  * @param mixed $match
-    //  * @return integer
-    //  */
-    // protected function angularValuesFound(string $text, &$match): int
-    // {
-    //     $degrees_match = null;
-    //     $degrees_result = preg_match(Angle::DEGREES_REGEX, $text, $degrees_match);
-    //     $minutes_match = null;
-    //     $minutes_result = preg_match(Angle::MINUTES_REGEX, $text, $minutes_match);
-    //     $seconds_match = null;
-    //     $seconds_result = preg_match(Angle::SECONDS_REGEX, $text, $seconds_match);
-    //     if ($degrees_result == 1 && $minutes_result == 1 && $seconds_result == 1) {
-    //         $match = $degrees_match[0]." ".$minutes_match[0]." ".$seconds_match[0];
-    //         return 1;
-    //     } else return 0;
-    // }
-
     /**
      * Parse an astral object name.
      *
