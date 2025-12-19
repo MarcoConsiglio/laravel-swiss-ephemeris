@@ -7,7 +7,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 use MarcoConsiglio\Ephemeris\Tests\Constraints\IsDateEqual;
 
 /**
- * Provides Custom Assertions for tests.
+ * This trait provides Custom Assertions for tests.
  */
 trait WithCustomAssertions
 {

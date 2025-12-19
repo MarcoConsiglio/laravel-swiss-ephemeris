@@ -3,47 +3,39 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apoge
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies\Apogee;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies\Apogee;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Templates\Moon\AnomalisticTemplate;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * Builds a Moon Apogees collection from raw Swiss Ephemeris response.
  */
-class FromArray extends Builder
+class FromArray extends FromArrayBuilder
 {
     /**
-     * The keys the array data must have.
-     *
-     * @var array
-     */
-    protected array $columns = [
-        "timestamp",
-        "longitude",
-        "daily_speed"
-    ];
-
-    /**
-     * It constructs the builder with raw data.
+     * Construct the builder with raw data.
      *
      * @param array $data
-     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
-     * @throws InvalidArgumentException if the array data does not 
-     * have keys "timestamp" and "longitude" or if the array is empty.
+     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * expressed in minutes per each step of the ephemeris response.
+     * @throws \InvalidArgumentException if one or more columns 
+     * are missing from the data passed to the builder.
      */
     public function __construct(array $data, int $sampling_rate)
     {
         $this->data = $data;
         $this->sampling_rate = abs($sampling_rate);
+        $this->columns = AnomalisticTemplate::getColumns();
         $this->validateData();
     }
 
     /**
-     * Validates data.
+     * Validate data.
      * 
      * @return void
-     * @throws InvalidArgumentException if the array data does not 
+     * @throws \InvalidArgumentException if the array data does not 
      * have keys "timestamp" and "longitude" or if the array is empty.
      */
     protected function validateData()

@@ -1,5 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees;
+
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
@@ -10,11 +11,11 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 class FromRecords extends Builder
 {
     /**
-     * It constructs the builder with an array
+     * Construct the builder with an array
      * of ApogeeRecord instances.
      *
      * @param array $data
-     * @throws InvalidArgumentException if at least 
+     * @throws \InvalidArgumentException if at least 
      * one element is not an ApogeeRecord or the 
      * array data is empty.
      */
@@ -25,7 +26,7 @@ class FromRecords extends Builder
     }
 
     /**
-     * Validates data.
+     * Validate data.
      *
      * @return void
      */

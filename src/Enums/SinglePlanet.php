@@ -2,6 +2,8 @@
 namespace MarcoConsiglio\Ephemeris\Enums;
 
 /**
+ * It represents a flag to select a specific stellar object.
+ * 
  * The Swiss Ephemeris encodes planets and other objects with 
  * alphanumeric codes. This is a list of codes that are passed 
  * to the executable to refer to a single planet.
@@ -22,6 +24,8 @@ enum SinglePlanet: string {
     case OsculatingLunarApogee = "B";
     case InterpolatedLunarApogee = 'c';
     case InterpolatedLunarPerigee = 'g';
+    case MeanLunarNode = 'm';
+    case TrueLunarNode = 't';
     public const Lilith = self::MeanLunarApogee;
     public const BlackMoon = self::MeanLunarApogee;
     public const TrueLilith = self::OsculatingLunarApogee;

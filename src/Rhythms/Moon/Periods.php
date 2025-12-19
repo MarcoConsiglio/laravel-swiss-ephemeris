@@ -7,11 +7,14 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSyn
 
 /**
  * A collection of Moon Period instances.
+ * 
+ * It represents a collection of time periods between
+ * a lunar phase and another.
  */
 class Periods extends Collection
 {
     /**
-     * It constructs a Periods collection from a SynodicRhythm collection.
+     * Construct a Periods collection from a SynodicRhythm collection.
      *
      * @param FromSynodicRhythm $builder
      */
@@ -21,7 +24,7 @@ class Periods extends Collection
     }
 
     /**
-     * Gets the first Moon Period.
+     * Get the first Moon Period.
      *
      * @param callable|null $callback
      * @param mixed $default
@@ -33,7 +36,7 @@ class Periods extends Collection
     }
 
     /**
-     * Gets the last Moon Period.
+     * Get the last Moon Period.
      *
      * @param callable|null $callback
      * @param mixed $default
@@ -45,7 +48,7 @@ class Periods extends Collection
     }
 
     /**
-     * Gets a Moon Period from the collection by key.
+     * Get a Moon Period from the collection by key.
      *
      * @param mixed $key
      * @param mixed $default

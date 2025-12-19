@@ -11,11 +11,11 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 class FromRecords extends Builder
 {
     /**
-     * It constructs the builder with an array
+     * Construct the builder with an array
      * of PerigeeRecord instances.
      *
      * @param array $data
-     * @throws InvalidArgumentException if at least 
+     * @throws \InvalidArgumentException if at least 
      * one element is not an PerigeeRecord.
      */
     public function __construct(array $data)
@@ -26,7 +26,7 @@ class FromRecords extends Builder
 
 
     /**
-     * Validates data.
+     * Validate data.
      *
      * @return void
      * @throws \InvalidArgumentException if at least one item is 

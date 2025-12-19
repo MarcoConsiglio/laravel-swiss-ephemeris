@@ -30,20 +30,24 @@ class FromSynodicRhythm extends Builder
     protected array $records;
 
     /**
-     * The sampling rate of the ephemeris expressed in minutes.
+     * The sampling rate of the ephemeris expressed in minutes 
+     * per each step of the ephemeris response.
      *
      * @var integer
      */
     protected int $sampling_rate;
     
     /**
-     * It constructs the builder with a MoonSynodicRhythm and a list of MoonPhaseType(s).
+     * Construct the builder with a MoonSynodicRhythm and a list of MoonPhaseType 
+     * instances.
      *
      * @param SynodicRhythm $synodic_rhythm
      * @param Phase[] $moon_phase_types The list of Moon Phase(s) used to filter the 
      * the result of the builder. The builder needs at least one Moon Phase.
-     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
-     * @throws \InvalidArgumentException when at least one element of $moon_phase is not a Moon Phase
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in 
+     * minutes per each step of the ephemeris response.
+     * @throws \InvalidArgumentException when at least one element of $moon_phase is 
+     * not a Moon Phase.
      * or $moon_phase array is empty.
      */
     public function __construct(SynodicRhythm $synodic_rhythm, array $moon_phases, int $sampling_rate)
@@ -55,11 +59,11 @@ class FromSynodicRhythm extends Builder
     }
 
     /**
-     * Validates the list of Phase enum constants.
+     * Validate the list of Phase enum constants.
      *
      * @return void
-     * @throws \InvalidArgumentException when at least one element of $moon_phase is not a Moon Phase
-     * or $moon_phase array is empty.
+     * @throws \InvalidArgumentException when at least one element of $moon_phase is 
+     * not a Moon Phase or $moon_phase array is empty.
      */
     public function validateData()
     {
@@ -115,7 +119,7 @@ class FromSynodicRhythm extends Builder
     }
 
     /**
-     * Returns an array of PhaseRecord instances.
+     * Return an array of PhaseRecord instances.
      *
      * @return PhaseRecord[]
      */

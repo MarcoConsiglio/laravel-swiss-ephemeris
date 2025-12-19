@@ -1,32 +1,28 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
-use Dom\Text;
 use RoundingMode;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
-use Illuminate\Support\Carbon;
 
-#[TestDox("The Moon\SynodicRhythmRecord")]
+#[TestDox("The Moon SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]
 class SynodicRhythmRecordTest extends TestCase
 {
-    use WithCustomAssertions;
+    use WithRecordsComparison;
 
     #[TestDox("has read-only properties \"timestamp\" which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
+        $timestamp = $this->getRandomSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
-        $daily_speed = $this->getRandomDailySpeed();
+        $daily_speed = $this->getRandomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
@@ -37,9 +33,9 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_angular_distance_property()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
-        $daily_speed = $this->getRandomDailySpeed();
+        $daily_speed = $this->getRandomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
@@ -50,10 +46,10 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_percentage_property()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
         $expected_percentage = round($angular_distance->toDecimal() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
-        $daily_speed = $this->getRandomDailySpeed();
+        $daily_speed = $this->getRandomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
@@ -64,9 +60,9 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_daily_speed_property()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
-        $daily_speed = $this->getRandomDailySpeed();
+        $daily_speed = $this->getRandomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
@@ -77,9 +73,9 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waxing()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
-        $angular_distance = $this->getRandomAngularDistance(0, 180);
-        $daily_speed = $this->getRandomDailySpeed();
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
+        $angular_distance = $this->getAngleBetween(0, 180);
+        $daily_speed = $this->getRandomMoonDailySpeed();
         $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act
@@ -96,9 +92,9 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_is_waning()
     {
         // Arrange
-        $timestamp = $this->getTestingTimestamp(2000);
-        $angular_distance = $this->getRandomAngularDistance(-180, 0);
-        $daily_speed = $this->getRandomDailySpeed();
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
+        $angular_distance = $this->getAngleBetween(-180, 0);
+        $daily_speed = $this->getRandomMoonDailySpeed();
         $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act
@@ -112,34 +108,9 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     #[TestDox("can establish equality with another record of the same type.")]
-    public function test_is_equal()
+    public function test_equals_method()
     {
-        // Arrange
-        $d1 = $this->getTestingTimestamp(2000);
-        $d2 = clone $d1;
-        $d2->hour = 2;
-        $a1 = Angle::createFromDecimal(180.0);
-        $a2 = Angle::createFromDecimal(90.0);
-        $daily_speed = $this->getRandomDailySpeed();
-        $record_A1 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_A2 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_B1 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_B2 = new SynodicRhythmRecord($d2, $a2, $daily_speed);
-        $record_C1 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_C2 = new SynodicRhythmRecord($d2, $a1, $daily_speed);
-        $record_D1 = new SynodicRhythmRecord($d1, $a1, $daily_speed);
-        $record_D2 = new SynodicRhythmRecord($d1, $a2, $daily_speed);
-
-        // Act & Assert
-        //      0 means not equal, 1 means equal, $daily_speed
-        //      A = 1   B = 1
-        $this->assertObjectEquals($record_A1, $record_A2);
-        //      A = 0   B = 0
-        $this->assertObjectNotEquals($record_B1, $record_B2);
-        //      A = 0   B = 1
-        $this->assertObjectNotEquals($record_C1, $record_C2);
-        //      A = 1   B = 0
-        $this->assertObjectNotEquals($record_D1, $record_D2);
+        $this->testEqualComparison(3);
     }
 
     #[TestDox("can determine which moon period it belongs to.")]
@@ -147,14 +118,14 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $record_A = new SynodicRhythmRecord(
-            $this->getTestingTimestamp(2000), 
-            $this->getRandomAngularDistance(-180, 0),
-            $this->getRandomDailySpeed()
+            $this->getMockedSwissEphemerisDateTime(), 
+            $this->getAngleBetween(-180, 0),
+            $this->getRandomMoonDailySpeed()
         );
         $record_B = new SynodicRhythmRecord(
-            $this->getTestingTimestamp(2000),
-            $this->getRandomAngularDistance(0, 180),
-            $this->getRandomDailySpeed()
+            $this->getMockedSwissEphemerisDateTime(),
+            $this->getAngleBetween(0, 180),
+            $this->getRandomMoonDailySpeed()
         );
 
         // Act
@@ -170,12 +141,13 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_casting_to_string()
     {
         // Arrange
-        $timestamp = Carbon::create(2000, 12, 6, 3, 25, 11);
+        $timestamp = $this->getRandomSwissEphemerisDateTime();
         $angular_distance = $this->getRandomAngularDistance();
-        $daily_speed = $this->getRandomDailySpeed();
+        $daily_speed = $this->getRandomMoonDailySpeed();
         $percentage = round($angular_distance->toDecimal() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
+        if ($percentage == -0.0) $percentage = 0;
         $record = new SynodicRhythmRecord(
-            SwissEphemerisDateTime::createFromCarbon($timestamp),
+            $timestamp,
             $angular_distance,
             $daily_speed
         );
@@ -184,32 +156,73 @@ class SynodicRhythmRecordTest extends TestCase
         $timestamp = $timestamp->toDateTimeString();
 
         // Act & Assert
-        $this->assertEquals(<<<TEXT
-Moon SynodicRhythmRecord
-timestamp: $timestamp
+        $this->assertEquals(
+            <<<TEXT
+SynodicRhythmRecord
 angular_distance: {$angular_distance}°
-phase_percentage: $percentage%
-period_type: $period
 daily_speed: {$daily_speed}°/day
+period_type: $period
+phase_percentage: $percentage%
+timestamp: $timestamp
+
 TEXT,
             (string) $record
         );
     }
 
-    protected function getTestingTimestamp($year = 0, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0, $timezone = null): SwissEphemerisDateTime
+    /**
+     * Construct the two records to be compared with some $property_couples 
+     * representing an equal or different property.
+     * 
+     * @param array $property_couples
+     * @return array
+     */    
+    protected function getComparisonDataset(): array
     {
-        return SwissEphemerisDateTime::create($year, $month, $day, $hour, $minute, $second, $timezone);
+        $d1 = $this->getRandomSwissEphemerisDateTime();
+        $d2 = $d1->clone()->addYear();
+        $a1 = $this->getSpecificAngle(180.0);
+        $a2 = $this->getSpecificAngle(90.0);
+        $s1 = 12.0;
+        $s2 = 13.0;
+        return [
+            0 => [
+                self::DIFFERENT => [$d1, $d2],
+                self::EQUAL => [$d1, $d1]
+            ],
+            1 => [
+                self::DIFFERENT => [$a1, $a2],
+                self::EQUAL => [$a1, $a1]
+            ],
+            2 => [
+                self::DIFFERENT => [$s1, $s2],
+                self::EQUAL => [$s1, $s1]
+            ]
+        ];
     }
 
-    protected function getRandomAngularDistance(float|null $min_angular_distance = null, float|null $max_angular_distance = null): Angle
+    /**
+     * Construct the two records to be compared with some $property_couples 
+     * representing an equal or different property
+     * 
+     * @param array $property_couples
+     * @return array
+     */
+    protected function getRecordsToCompare(array $property_couples): array
     {
-        $min_angular_distance = $min_angular_distance ?? -180;
-        $max_angular_distance = $max_angular_distance ?? 180;
-        return Angle::createFromDecimal($this->faker->randomFloat(7, $min_angular_distance, $max_angular_distance));
-    }
-
-    protected function getRandomDailySpeed(): float
-    {
-        return $this->faker->randomFloat(7, 10, 14);
+        $first = 0;
+        $second = 1;
+        return [
+            new SynodicRhythmRecord(
+                $property_couples[0][$first],
+                $property_couples[1][$first],
+                $property_couples[2][$first]
+            ),
+            new SynodicRhythmRecord(
+                $property_couples[0][$second],
+                $property_couples[1][$second],
+                $property_couples[2][$second]
+            )
+        ];
     }
 }

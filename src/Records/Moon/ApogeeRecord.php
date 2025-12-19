@@ -1,8 +1,8 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Interfaces\Angle;
 
 /**
  * It represents a moment when the Moon is at its apogee.
@@ -16,7 +16,7 @@ class ApogeeRecord extends AnomalisticRecord
     public protected(set) Angle $apogee_longitude;
 
     /**
-     * It constructs a Moon ApogeeRecord.
+     * Construct a Moon ApogeeRecord.
      * 
      * It can be that $moon_longitude and $apogee_longitute are not close enough
      * to be considered a Moon apogee. In order to have real apogees you should
@@ -52,18 +52,26 @@ class ApogeeRecord extends AnomalisticRecord
     }
 
     /**
-     * It cast this record to string.
-     *
-     * @return string
+     * Pack the object properties in an associative array.
+     * 
+     * @return array{moon_longitude:string,timestamp:string,apogee_longitude:string,daily_speed:string}
      */
-    public function __toString()
+    protected function packProperties(): array
     {
-        return <<<TEXT
-Moon ApogeeRecord
-timestamp: {$this->timestamp->toDateTimeString()}
-moon_longitude: {$this->moon_longitude->toDecimal()}°
-apogee_longitude: {$this->apogee_longitude->toDecimal()}°
-daily_speed: {$this->daily_speed}°/day
-TEXT;
+        return array_merge(self::getParentProperties(), [
+            "moon_longitude" => "{$this->moon_longitude->toDecimal()}°",
+            "apogee_longitude" => "{$this->apogee_longitude->toDecimal()}°"
+        ]);
+    }
+
+    /**
+     * Get the parent properties packed in an associative 
+     * array.
+     * 
+     * @return array{moon_longitude:string,timestamp:string}
+     */
+    protected function getParentProperties(): array
+    {
+        return parent::packProperties();
     }
 }

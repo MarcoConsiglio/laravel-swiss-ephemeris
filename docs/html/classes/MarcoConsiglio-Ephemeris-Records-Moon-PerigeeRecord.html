@@ -157,7 +157,7 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed">$daily_speed</a>
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#property_daily_speed">$daily_speed</a>
     <span>
                         &nbsp;: float            </span>
 </dt>
@@ -176,7 +176,7 @@ Moon position.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#property_perigee_longitude">$perigee_longitude</a>
     <span>
-                        &nbsp;: <abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr>            </span>
+                        &nbsp;: <abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr>            </span>
 </dt>
 <dd>The current Moon apogee longitude. It represents
 the perigee position.</dd>
@@ -201,14 +201,14 @@ the perigee position.</dd>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>It constructs a Moon PerigeeRecord.</dd>
+<dd>Construct a Moon PerigeeRecord.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#method___toString">__toString()</a>
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html#method___tostring">__tostring()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>It cast this record to string.</dd>
+<dd>Implementation of the Stringable interface.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#method_equals">equals()</a>
@@ -253,13 +253,13 @@ the perigee position.</dd>
 >
     <h4 class="phpdocumentor-element__name" id="property_daily_speed">
         $daily_speed
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#property_daily_speed" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Record.php"><a href="files/src-records-record.html"><abbr title="src/Records/Record.php">Record.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/MovingObjectRecord.php"><a href="files/src-records-movingobjectrecord.html"><abbr title="src/Records/MovingObjectRecord.php">MovingObjectRecord.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">17</span>
 
@@ -350,7 +350,7 @@ the perigee position.</p>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
             <span class="phpdocumentor-signature__visibility">public protected(set)</span>
-            <span class="phpdocumentor-signature__type"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></span>
+            <span class="phpdocumentor-signature__type"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></span>
     <span class="phpdocumentor-signature__name">$perigee_longitude</span>
     </code>
 
@@ -426,11 +426,11 @@ the perigee position.</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">It constructs a Moon PerigeeRecord.</p>
+        <p class="phpdocumentor-summary">Construct a Moon PerigeeRecord.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$timestamp</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moon_longitude</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$apogee_longitude</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moon_daily_speed</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Ephemeris-SwissEphemerisDateTime.html"><abbr title="\MarcoConsiglio\Ephemeris\SwissEphemerisDateTime">SwissEphemerisDateTime</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$timestamp</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moon_longitude</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$apogee_longitude</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moon_daily_speed</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -451,14 +451,14 @@ instantiate a Moon Perigees collection.</p>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$moon_longitude</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$apogee_longitude</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -484,23 +484,23 @@ instantiate a Moon Perigees collection.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method___toString">
-        __toString()
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___tostring">
+        __tostring()
+        <a href="classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html#method___tostring" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Moon/PerigeeRecord.php"><a href="files/src-records-moon-perigeerecord.html"><abbr title="src/Records/Moon/PerigeeRecord.php">PerigeeRecord.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/StringableRecord.php"><a href="files/src-traits-stringablerecord.html"><abbr title="src/Traits/StringableRecord.php">StringableRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">It cast this record to string.</p>
+        <p class="phpdocumentor-summary">Implementation of the Stringable interface.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">__tostring</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -759,7 +759,7 @@ instantiate a Moon Perigees collection.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed">$daily_speed</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html#property_daily_speed">$daily_speed</a></li>
                                                     <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_moon_longitude">$moon_longitude</a></li>
                                                     <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#property_perigee_longitude">$perigee_longitude</a></li>
                                                     <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_timestamp">$timestamp</a></li>
@@ -770,7 +770,7 @@ instantiate a Moon Perigees collection.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#method___toString">__toString()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html#method___tostring">__tostring()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html#method_equals">equals()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isApogee">isApogee()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isPerigee">isPerigee()</a></li>

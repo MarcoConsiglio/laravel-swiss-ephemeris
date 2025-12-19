@@ -1,20 +1,21 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
-use MarcoConsiglio\Ephemeris\Records\Record;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Ephemeris\Enums\Cardinality;
+use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
- * It represents a moment when the moon 
+ * Represents a moment when the moon 
  * passes over the point of intersection 
  * between its orbit and the plane of 
  * the ecliptic.
  */
-class DraconicRecord extends Record
+class DraconicRecord extends MovingObjectRecord
 {
     /**
-     * The timestamp of this MoonAnomalistcRecord.
+     * The timestamp of this Moon DraconicRecord.
      */
     public protected(set) SwissEphemerisDateTime $timestamp;
 
@@ -25,65 +26,141 @@ class DraconicRecord extends Record
      * @var Angle
      */
     public protected(set) Angle $moon_longitude;
-
+    
     /**
-     * The current Moon latitude. It represents the
-     * Moon position.
+     * The current node longitude.
+     * 
+     * The Swiss Ephemeris returns only one of the two nodes.
+     * This is the one returned by the Swiss Ephemeris.
      * 
      * @var Angle
      */
-    public protected(set) Angle $moon_latitude;
+    public protected(set) Angle $north_node_longitude;
 
     /**
-     * The current node longitude. It represents the
-     * node position.
+     * The current south node longitude.
+     * 
+     * The Swiss Ephemeris returns only one of the two nodes.
+     * This is the one opposite to the only node presents in
+     * the ephemeris response.
      * 
      * @var Angle
      */
-    public protected(set) Angle $node_longitude;
+    public Angle $south_node_longitude {
+        get {
+            return $this->oppositeLongitude($this->north_node_longitude);
+        }
+    }
 
     /**
-     * It constructs the Moon DraconicRecord. 
+     * The cardinality of this node.
+     *
+     * @var Cardinality
+     */
+    public Cardinality|null $cardinality = null {
+        set(Cardinality|null $cardinality) {
+            if ($this->cardinality === null)
+                $this->cardinality = $cardinality;
+        }
+    }
+
+    /**
+     * Construct the Moon DraconicRecord. 
      *
      * @param SwissEphemerisDateTime $timestamp
      * @param Angle $moon_longitude
-     * @param Angle $node_longitude
-     * @param Angle $node_declination
+     * @param Angle $north_node_longitude
      * @param float $moon_daily_speed
      */
     public function __construct(
         SwissEphemerisDateTime $timestamp,
         Angle $moon_longitude,
-        Angle $moon_latitude,
-        Angle $node_longitude,
+        Angle $north_node_longitude,
         float $moon_daily_speed
     ) {
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;
-        $this->moon_latitude = $moon_latitude;
-        $this->node_longitude = $node_longitude;
+        $this->north_node_longitude = $north_node_longitude;
         $this->daily_speed = $moon_daily_speed;
     }
 
     /**
-     * It returns true if this record is a north node.
+     * Calculate the opposite angle of a longitude value.
+     *
+     * @return Angle
+     */
+    protected function oppositeLongitude(Angle $longitude): Angle
+    {
+        $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
+        $angle = Angle::sum($longitude, $opposite);
+        if ($angle->isClockwise()) {
+            $full = Angle::createFromValues(Angle::MAX_DEGREES);
+            $angle = Angle::sum($full, $angle);
+        }
+        return $angle;
+    }
+
+    /**
+     * Return true if this record is a north node.
      *
      * @return boolean
      */
     public function isNorthNode(): bool
     {
-        // This is a serious problem.
-        return false;
+        return $this->cardinality == Cardinality::North;
     }
 
     /**
-     * It returns true if this record is a south node.
+     * Return true if this record is a south node.
      *
      * @return boolean
      */
     public function isSouthNode(): bool
     {
-        // This is a serious problem. 
-        return false;
+        return $this->cardinality == Cardinality::South;
+    }
+
+    /**
+     * Pack the object properties in an associative array.
+     * 
+     * @return array{daily_speed:string,moon_longitude:string,timestamp:string,north_node_longitude:string,south_node_longitude:string,cardinality:string}
+     */
+    protected function packProperties(): array
+    {
+        if ($this->cardinality !== null) $cardinality = $this->enumToString($this->cardinality);
+        else $cardinality = $this->cardinality;
+        return array_merge(self::getParentProperties(), [
+            "moon_longitude" => "{$this->moon_longitude->toDecimal()}°",
+            "timestamp" => $this->timestamp->toDateTimeString(),
+            "north_node_longitude" => "{$this->north_node_longitude->toDecimal()}°",
+            "south_node_longitude" => "{$this->south_node_longitude->toDecimal()}°",
+            "cardinality" => $cardinality
+        ]);
+    }
+
+    /**
+     * Get the parent properties packed in an associative 
+     * array.
+     * 
+     * @return array{daily_speed:string}
+     */
+    protected function getParentProperties(): array
+    {
+        return parent::packProperties();
+    }
+
+    /**
+     * Check if this record is equal to $another_record.
+     *
+     * @param DraconicRecord $another_record
+     * @return boolean
+     */
+    public function equals(DraconicRecord $another_record): bool
+    {
+        $a = $this->timestamp == $another_record->timestamp;
+        $b = $this->moon_longitude == $another_record->moon_longitude;
+        $c = $this->north_node_longitude == $another_record->north_node_longitude;
+        $d = $this->daily_speed == $another_record->daily_speed;
+        return $a && $b && $c && $d;
     }
 }

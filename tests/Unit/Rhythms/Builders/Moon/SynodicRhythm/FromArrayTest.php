@@ -10,21 +10,15 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonBuilderTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\FromArrayTestCase;
+use MarcoConsiglio\Goniometry\Angle;
 
-#[TestDox("The Moon\SynodicRhythm\FromArray builder")]
+#[TestDox("The Moon SynodicRhythm\FromArray builder")]
 #[CoversClass(FromArray::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
-class FromArrayTest extends MoonBuilderTestCase
+class FromArrayTest extends FromArrayTestCase
 {
-    /**
-     * Test data.
-     *
-     * @var array
-     */
-    protected array $data;
-
     /**
      * Setup the test environment.
      *
@@ -33,25 +27,11 @@ class FromArrayTest extends MoonBuilderTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $t1 = SwissEphemerisDateTime::create();
-        $t2 = $t1->copy()->addHour();
-        $limit = 180;
-        $this->data = [
-            0 => [
-                "timestamp" => $t1->toGregorianTT(),
-                "angular_distance" => $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit, $limit),
-                "daily_speed" => $this->getRandomMoonDailySpeed()
-            ],
-            1 => [
-                "timestamp" => $t2->toGregorianTT(),
-                "angular_distance" => $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit, $limit),
-                "daily_speed" => $this->getRandomMoonDailySpeed()
-            ]
-        ];
+        $this->sampling_rate = 60;
     }
-
-    #[TestDox("can build an array of Moon\SynodicRhythmRecords starting from an array of raw ephemeris data.")]
-    public function test_build_synodic_rhythm_from_array()
+    
+    #[TestDox("can build an array of Moon SynodicRhythmRecords starting from an array of raw ephemeris data.")]
+    public function test_build_synodic_rhythm()
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -76,7 +56,7 @@ class FromArrayTest extends MoonBuilderTestCase
     }
 
     #[TestDox("require the \"timestamp\" column.")]
-    public function test_from_array_builder_wants_timestamp_column()
+    public function test_require_timestamp_column()
     {
         /**
          * Missing key "timestamp"
@@ -88,14 +68,15 @@ class FromArrayTest extends MoonBuilderTestCase
         
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The $builder_class builder must have \"$column\" key in its raw array data.");
+        $this->expectExceptionMessage($this->getBuilderMissingKeyErrorMessage($builder_class, $column));
+        $this->getBuilderMissingKeyErrorMessage($builder_class, $column);
 
         // Act
         new $builder_class($this->data);
     }
 
     #[TestDox("require the \"angular_distance\" column")]
-    public function test_from_array_builder_wants_angular_distance_column()
+    public function test_require_angular_distance_column()
     {   
         /**
          * Missing key "angular_distance"
@@ -107,17 +88,17 @@ class FromArrayTest extends MoonBuilderTestCase
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The $builder_class builder must have \"$column\" key in its raw array data.");
+        $this->expectExceptionMessage($this->getBuilderMissingKeyErrorMessage($builder_class, $column));
 
         // Act
         new $builder_class($this->data);
     }
 
     #[TestDox("require the \"daily_speed\" column")]
-    public function test_from_array_builder_wants_daily_speed_column()
+    public function test_require_daily_speed_column()
     {   
         /**
-         * Missing key "daily_speed"
+         * Missing key "daily_daily"
          */
         // Arrange
         $column = "daily_speed";
@@ -126,7 +107,7 @@ class FromArrayTest extends MoonBuilderTestCase
 
         // Assert
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("The $builder_class builder must have \"$column\" key in its raw array data.");
+        $this->expectExceptionMessage($this->getBuilderMissingKeyErrorMessage($builder_class, $column));
 
         // Act
         new $builder_class($this->data);
@@ -154,5 +135,25 @@ class FromArrayTest extends MoonBuilderTestCase
     protected function getBuilderClass(): string
     {
         return FromArray::class;
+    }
+
+    /**
+     * Return raw ephemeris data to test the builder.
+     *
+     * @return array
+     */
+    protected function getRawData(): array
+    {
+        $starting_date = $this->getRandomSwissEphemerisDateTime();
+        $daily_speed = $this->getRandomMoonDailySpeed();
+        $starting_angle = $this->getSpecificAngle(-3);
+        $daily_step = $daily_speed / 24;
+        $data = [];
+        for ($i = 0; $i < 24; $i++) {
+            $data[$i]["timestamp"] = $starting_date->clone()->addHours($i)->toGregorianTT();
+            $data[$i]["angular_distance"] = Angle::sum($starting_angle, Angle::createFromDecimal($daily_step * $i));
+            $data[$i]["daily_speed"] = $daily_speed;
+        }
+        return $data;
     }
 }

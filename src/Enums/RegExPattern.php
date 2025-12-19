@@ -46,6 +46,10 @@ enum RegExPattern: string {
      */
     public const InterpolatedPerigee = '(intp\.\sPerigee)';
     /**
+     * It matches the string "true Node".
+     */
+    public const TrueNode = '(true\sNode)';
+    /**
      * It matches looking back a word bound and one space.
      */
     public const OneSpaceDelimeter = '(?<=\b\s)';
@@ -59,7 +63,7 @@ enum RegExPattern: string {
     public const ThreeSpaceDelimiter = '(?<=\b\s\s\s)';
 
     /**
-     * It constructs a regular expression adding delimiters.
+     * Construct a regular expression adding delimiters.
      *
      * @param string $partial_regex
      * @return string

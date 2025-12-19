@@ -1,11 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 
-use AdamBrett\ShellWrapper\Command;
-use AdamBrett\ShellWrapper\Runners\DryRunner;
-use AdamBrett\ShellWrapper\Runners\Exec;
-use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
@@ -42,6 +37,7 @@ abstract class AnomalisticTemplate extends QueryTemplate
      * with the columns name as the key.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     abstract protected function remapColumns(): void;
 
@@ -55,7 +51,9 @@ abstract class AnomalisticTemplate extends QueryTemplate
 
 
     /**
-     * It returns the columns names used by this template.
+     * Return the columns names used by this template.
+     *
+     * @return array
      */
     static public function getColumns(): array
     {

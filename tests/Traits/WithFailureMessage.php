@@ -2,12 +2,12 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
 /**
- * Provides testing failure message helpers.
+ * This trait provides testing failure message helpers.
  */
 trait WithFailureMessage
 {
     /**
-     * Gets a property type failure message.
+     * Get a property type failure message.
      *
      * @param string $property The property name
      * @return string
@@ -18,7 +18,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Gets a getter/setter failure message.
+     * Get a getter/setter failure message.
      *
      * @param string $property The property name
      * @return string
@@ -29,7 +29,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Gets a function failure message.
+     * Get a function failure message.
      *
      * @param string $name The function name.
      * @return string
@@ -40,7 +40,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Gets an enumeration failure message.
+     * Get an enumeration failure message.
      *
      * @param string $constant The enumeration constant name.
      * @return string
@@ -51,7 +51,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Gets an instance type failure message.
+     * Get an instance type failure message.
      *
      * @param [type] $expected_class
      * @param [type] $actual_class

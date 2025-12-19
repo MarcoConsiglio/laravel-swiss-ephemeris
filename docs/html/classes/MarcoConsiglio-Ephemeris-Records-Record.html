@@ -109,7 +109,13 @@
                             </ul>
         </div>
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <abbr title="\Stringable">Stringable</abbr>                    </span>
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <a href="classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html"><abbr title="\MarcoConsiglio\Ephemeris\Traits\StringableRecord">StringableRecord</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -122,16 +128,30 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Record.php"><a href="files/src-records-record.html"><abbr title="src/Records/Record.php">Record.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
             <p class="phpdocumentor-summary">It defines the abstract concept of a record of the
-ephemeris of a celestial object.</p>
+ephemeris.</p>
 
 
 
 
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">codeCoverageIgnore</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
 
     
     
@@ -143,84 +163,88 @@ ephemeris of a celestial object.</p>
 
 
 
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Stringable">Stringable</abbr></dt>    </dl>
 
 
 
 
 
 
-<h4 id="toc-properties">
-    Properties
-    <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed">$daily_speed</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html#method___tostring">__tostring()</a>
     <span>
-                        &nbsp;: float            </span>
+                                &nbsp;: string    </span>
 </dt>
-<dd>The daily speed of the celestial object at the
-time to which the record refers expressed in
-decimal degrees per day.</dd>
+<dd>Implementation of the Stringable interface.</dd>
 
     </dl>
 
 
 
-
         
 
         
-    <section class="phpdocumentor-properties">
-        <h3 class="phpdocumentor-elements__header" id="properties">
-            Properties
-            <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
-        class="
-            phpdocumentor-element
-            -property
+        class="phpdocumentor-element
+            -method
             -public
-                                                                    "
+                                                        "
 >
-    <h4 class="phpdocumentor-element__name" id="property_daily_speed">
-        $daily_speed
-        <a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___tostring">
+        __tostring()
+        <a href="classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html#method___tostring" class="headerlink"><i class="fas fa-link"></i></a>
 
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Records/Record.php"><a href="files/src-records-record.html"><abbr title="src/Records/Record.php">Record.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/StringableRecord.php"><a href="files/src-traits-stringablerecord.html"><abbr title="src/Traits/StringableRecord.php">StringableRecord.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The daily speed of the celestial object at the
-time to which the record refers expressed in
-decimal degrees per day.</p>
+        <p class="phpdocumentor-summary">Implementation of the Stringable interface.</p>
 
-    
     <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
-            <span class="phpdocumentor-signature__type">float</span>
-    <span class="phpdocumentor-signature__name">$daily_speed</span>
-    </code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">__tostring</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
     
     
     
 
         
-        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
 
 </article>
             </section>
 
-        
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
@@ -326,17 +350,17 @@ decimal degrees per day.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#toc-properties">Properties</a></li>
-                                                        </ul>
+                                                                                <li><a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
             
-                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_daily_speed">$daily_speed</a></li>
-                                            </ul>
-                </li>
             
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/MarcoConsiglio-Ephemeris-Traits-StringableRecord.html#method___tostring">__tostring()</a></li>
+                                    </ul>
+            </li>
                     </ul>
     </section>
 

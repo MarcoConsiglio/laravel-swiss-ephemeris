@@ -1,4 +1,41 @@
 # Changelog
+## 1.2.0-alpha 2025-12-19
+### Added
+- `MarcoConsiglio\Ephemeris\Enums\Cardinality` enum to specify lunar node cardinality (north and south nodes).
+- `MarcoConsiglio\Ephemeris\Records\MovingObjectRecord` abstract class extended by all record classes that have a `$daily_speed` property.
+- `MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord` class to represent lunar nodes.
+- `MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node` class to select correct `DraconicRecord`.
+- `MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm` collection to collect `DraconicRecord` instances.
+- `MarcoConsiglio\Ephemeris\Templates\Moon\DraconicTemplate` class to query the Moon draconic rhythm.
+- `MarcoConsiglio\Ephemeris\Traits\StringableRecord` trait to support the implementation of the `Stringable` interface.
+- `MarcoConsiglio\Ephemeris\LaravelSwissEphemeris::getMoonDraconicRhythm()` method to query the Moon draconic rhythm.
+### Changed
+- Every classes extending the `MarcoConsiglio\Ephemeris\Records\Record` class have now implementation of the `Stringable` interface, meaning they can safely casted to string.
+- Namespace of classes `MarcoConsiglio\Ephemeris\Rhythms\Builders\{`  
+&ensp;&ensp;&ensp;&ensp;`Strategies\Moon\Anomalies\AnomalisticStrategy`  
+&ensp;&ensp;&ensp;&ensp;`Strategies\Moon\Anomalies\Apogee`  
+&ensp;&ensp;&ensp;&ensp;`Strategies\Moon\Anomalies\Perigee`  
+`}`  
+to `MarcoConsiglio\Ephemeris\Rhythms\Builders\{`  
+&ensp;&ensp;&ensp;&ensp;`Moon\Strategies\Anomalies\AnomalisticStrategy`  
+&ensp;&ensp;&ensp;&ensp;`Moon\Strategies\Anomalies\Apogee`  
+&ensp;&ensp;&ensp;&ensp;`Moon\Strategies\Anomalies\Perigee`  
+`}`,  
+of classes `MarcoConsiglio\Ephemeris\Rhythms\Builders\{`  
+&ensp;&ensp;&ensp;&ensp;`Strategies\Moon\Phases\FirstQuarter`  
+&ensp;&ensp;&ensp;&ensp;`Strategies\Moon\Phases\FullMoon`  
+&ensp;&ensp;&ensp;&ensp;`Strategies\Moon\Phases\NewMoon`  
+&ensp;&ensp;&ensp;&ensp;`Strategies\Moon\Phases\PhaseStrategy`  
+&ensp;&ensp;&ensp;&ensp;`Strategies\Moon\Phases\ThirdQuarter`  
+`}`  
+to `MarcoConsiglio\Ephemeris\Rhythms\Builders\{`  
+&ensp;&ensp;&ensp;&ensp;`Moon\Strategies\Phases\FirstQuarter`
+&ensp;&ensp;&ensp;&ensp;`Moon\Strategies\Phases\FullMoon`  
+&ensp;&ensp;&ensp;&ensp;`Moon\Strategies\Phases\NewMoon`  
+&ensp;&ensp;&ensp;&ensp;`Moon\Strategies\Phases\PhaseStrategy`  
+&ensp;&ensp;&ensp;&ensp;`Moon\Strategies\Phases\ThirdQuarter`  
+`}`
+
 ## 1.1.1-alpha 2025-12-12
 ### Changed
 - README documentation.
@@ -20,7 +57,7 @@
 &ensp;&ensp;&ensp;&ensp;`Anomalies\Perigee`  
 &ensp;&ensp;&ensp;&ensp;`Phases\PhaseStrategy`  
 `}`
-  - `MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm`
+- `MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm`
 - The method `getColumns()` to all classes extending `QueryTemplate`.
 ### Changed
 - Namespace of classes 
@@ -32,7 +69,7 @@
 &ensp;&ensp;&ensp;&ensp;`Apogees\FromArray,`  
 &ensp;&ensp;&ensp;&ensp;`Perigees\FromArray`  
 `}`, 
-of class  
+of classes  
 `MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\{`  
 &ensp;&ensp;&ensp;&ensp;`Periods\FromSynodicRhythm,`  
 &ensp;&ensp;&ensp;&ensp;`Phase\FromSynodicRhythm`  

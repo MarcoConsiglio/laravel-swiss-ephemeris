@@ -10,7 +10,7 @@ Emphasis will be placed on prioritizing the functions necessary for the creation
         - [x] Waxing
         - [x] Waning 
     - [x] Anomalistic rhythm
-    - [ ] Draconic rhythm
+    - [x] Draconic rhythm
     - [ ] Sidereal rhythm
       - [ ] Biodynamic days
     - [ ] Tropic rhythm

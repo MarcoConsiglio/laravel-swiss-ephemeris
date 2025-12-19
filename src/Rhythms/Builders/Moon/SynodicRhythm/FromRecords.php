@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 class FromRecords extends Builder
 {
     /**
-     * It constructs the builder.
+     * Construct the builder.
      *
      * @param array $data A list of MoonSynodicRecord(s).
      * @throws \InvalidArgumentException if at least one item is not a Moon SynodicRhythmRecord.
@@ -23,7 +23,7 @@ class FromRecords extends Builder
     }
 
     /**
-     * Validates data.
+     * Validate data.
      *
      * @return void
      * @throws \InvalidArgumentException if at least one item is 

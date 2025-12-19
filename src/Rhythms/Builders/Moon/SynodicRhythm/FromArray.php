@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm;
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 use MarcoConsiglio\Goniometry\Angle;
@@ -11,21 +11,15 @@ use MarcoConsiglio\Goniometry\Angle;
 /**
  * Builds a Moon SynodicRhythm starting from an array of raw ephemeris response.
  */
-class FromArray extends Builder
+class FromArray extends FromArrayBuilder
 {
-    /**
-     * The keys the array data must have.
-     *
-     * @var array
-     */
-    protected array $columns;
 
     /**
-     * It constructs the builder with raw data.
+     * Construct the builder with raw data.
      *
      * @param mixed $data
-     * @throws InvalidArgumentException if the array data does not 
-     * have keys "timestamp" and "angular_distance" or if the array is empty.
+     * @throws \InvalidArgumentException if one or more columns 
+     * are missing from the data passed to the builder.
      */
     public function __construct(array $data)
     {
@@ -35,9 +29,11 @@ class FromArray extends Builder
     }
 
     /**
+     * Validate data.
+     * 
      * @return void
-     * @throws InvalidArgumentException if the array data does not 
-     * have keys "timestamp" and "angular_distance" or if the array is empty.
+     * @throws \InvalidArgumentException if one or more columns 
+     * are missing from the data passed to the builder.
      */
     protected function validateData()
     {

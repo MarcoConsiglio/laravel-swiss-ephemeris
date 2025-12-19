@@ -1,18 +1,27 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records;
 
+use MarcoConsiglio\Ephemeris\Traits\StringableRecord;
+use Stringable;
+
 /**
  * It defines the abstract concept of a record of the 
- * ephemeris of a celestial object.
+ * ephemeris.
+ * 
+ * @codeCoverageIgnore
  */
-abstract class Record
+abstract class Record implements Stringable
 {
+    use StringableRecord;
+
     /**
-     * The daily speed of the celestial object at the 
-     * time to which the record refers expressed in
-     * decimal degrees per day.
+     * Get the parent properties packed in an associative 
+     * array.
      * 
-     * @var float
+     * @return array
      */
-    public protected(set) float $daily_speed;
+    protected function getParentProperties(): array
+    {
+        return [];
+    }
 }

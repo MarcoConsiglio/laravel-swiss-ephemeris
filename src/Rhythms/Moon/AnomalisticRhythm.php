@@ -7,11 +7,16 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollect
 
 /**
  * A collection of Moon AnomalisticRecord instances.
+ * 
+ * It represents a collection of records in which the 
+ * Moon passes over its node, that is, the 
+ * intersection of the Moon's orbit on the plane of 
+ * the ecliptic.
  */
 class AnomalisticRhythm extends Collection
 {
     /**
-     * It constructs the collection starting from
+     * Construct the collection starting from
      * Moon Apogees and Moon Perigees collections.
      *
      * @param FromCollections $builder
@@ -22,7 +27,7 @@ class AnomalisticRhythm extends Collection
     }
 
     /**
-     * Gets the first Moon AnomalisticRecord.
+     * Get the first Moon AnomalisticRecord.
      *
      * @param callable|null $callback
      * @param mixed $default
@@ -34,7 +39,7 @@ class AnomalisticRhythm extends Collection
     }
 
     /**
-     * Gets the last Moon AnomalisticRecord.
+     * Get the last Moon AnomalisticRecord.
      *
      * @param callable|null $callback
      * @param mixed $default
@@ -46,7 +51,7 @@ class AnomalisticRhythm extends Collection
     }
 
     /**
-     * Gets an Moon AnomalisticRecord from the collection by key.
+     * Get an Moon AnomalisticRecord from the collection by key.
      *
      * @param mixed $key
      * @param mixed $default

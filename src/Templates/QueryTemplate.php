@@ -6,14 +6,15 @@ use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
+use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
+use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
+use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
+use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Output;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
-use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 
 /**
  * The template for an ephemeris query.
@@ -106,7 +107,8 @@ abstract class QueryTemplate
      *
      * @param SwissEphemerisDateTime $start_date
      * @param integer $days The length of the requested ephemeris interval.
-     * @param integer $step_size The sampling rate of the ephemeris expressed in minutes.
+     * @param integer $step_size The sampling rate of the ephemeris expressed 
+     * in minutes per each step of the ephemeris response.
      * @param Exec|DryRunner|FakeRunner|null $shell The shell used to call the "swetest" executable.
      * Do not use this parameter unless for testing purposes.
      * @param Command|null $command The command to be executed.
@@ -151,26 +153,30 @@ abstract class QueryTemplate
     }
 
     /**
-     * Prepares arguments for the swetest executable.
+     * Set arguments for the swetest executable.
      *
      * @return void
      */
-    abstract protected function prepareArguments(): void;
+    abstract protected function setArguments(): void;
     
     /**
-     * Prepares flags for the swetest executable.
+     * Set flags for the swetest executable.
      *
      * @return void
      */
-    abstract protected function prepareFlags(): void;
+    abstract protected function setFlags(): void;
 
     /**
-     * Sets whether or not the header appears in the 
-     * ephemeris response.
+     * Set whether or not the header appears in the 
+     * ephemeris response. It defaults to no header.
      *
      * @return void
      */
-    abstract protected function setHeader(): void;
+    protected function setHeader(): void
+    {
+        // No header.
+        $this->command->addArgument(new SwissEphemerisArgument(CommandFlag::NoHeader->value));
+    }
 
     /**
      * It formats the output before parsing it, if necessary.
@@ -180,7 +186,7 @@ abstract class QueryTemplate
     abstract protected function formatHook(): void;
 
     /**
-     * Sets whether to include debug information in the response.
+     * It sets whether to include debug information in the response.
      *
      * @return void
      * @codeCoverageIgnore
@@ -188,19 +194,20 @@ abstract class QueryTemplate
     protected function debug(): void {}
 
     /**
-     * It constructs the swetest command with the correct inputs.
+     * Construct the swetest command with the correct inputs.
      *
      * @return void
      */
     final protected function buildCommand(): void
     {
-        $this->prepareArguments();
-        $this->prepareFlags();
+        $this->setArguments();
+        $this->setCommonFlags();
+        $this->setFlags();
         $this->setHeader();
     }
 
     /**
-     * Run the swetest executable.
+     * It runs the swetest executable.
      *
      * @return void
      * @codeCoverageIgnore
@@ -284,7 +291,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Removes empty line in the swetest executable output.
+     * Remove empty line in the swetest executable output.
      *
      * @return void
      */
@@ -297,13 +304,6 @@ abstract class QueryTemplate
             );
         });
     }
-
-    /**
-     * Parse the response.
-     *
-     * @return void
-     */
-    abstract protected function parseOutput(): void;
 
     /**
      * Remap the output in an associative array,
@@ -320,6 +320,11 @@ abstract class QueryTemplate
      */
     abstract protected function buildObject(): void;
 
+    /**
+     * Return the builded object.
+     *
+     * @return mixed
+     */
     abstract public function getResult();
 
     protected function remapColumnsBy(array $columns)
@@ -333,7 +338,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * Calcs the steps of the ephemeris response.
+     * Calculate the steps of the ephemeris request.
      *
      * @return integer
      */
@@ -359,11 +364,23 @@ abstract class QueryTemplate
     }
 
     /**
-     * Returns the builded object.
+     * Return the builded object.
      *
      * @return mixed
      */
     abstract protected function fetchObject();
+
+    /**
+     * Parse the response.
+     *
+     * @return void
+     */
+    protected function parseOutput(): void
+    {
+        $this->output->transform(function($row) {
+            return $this->parse($row);
+        });
+    }
 
     /**
      * Parse a line of the raw ephemeris output.
@@ -371,7 +388,7 @@ abstract class QueryTemplate
      * @return array|null
      */
     abstract protected function parse(string $text): array|null;
-
+    
     /**
      * Parse a datetime.
      *
@@ -412,8 +429,20 @@ abstract class QueryTemplate
     }
 
     /**
-     * It returns the columns names used by the concrete template.
+     * Return the columns names used by the concrete template.
      */
     abstract static public function getColumns(): array;
+
+    /**
+     * It sets the common flags for every template
+     * that query the swiss ephemeris executable.
+     */
+    protected function setCommonFlags(): void
+    {
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::BeginDate->value, $this->start_date->toGregorianDate()));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::StepsNumber->value, $this->getStepsNumber()));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
+    }
 
 }

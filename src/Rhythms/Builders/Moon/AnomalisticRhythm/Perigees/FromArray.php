@@ -3,15 +3,16 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perig
 
 use InvalidArgumentException;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Anomalies\Perigee;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies\Perigee;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Templates\Moon\AnomalisticTemplate;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * Builds a Moon Perigees collection from raw ephemeris response.
  */
-class FromArray extends Builder
+class FromArray extends FromArrayBuilder
 {
     /**
      * The keys the array data must have.
@@ -25,25 +26,27 @@ class FromArray extends Builder
     ];
     
     /**
-     * It constructs the builder with raw data.
+     * Construct the builder with raw data.
      *
      * @param array $data
-     * @param int $sampling_rate The sampling rate of the ephemeris expressed in minutes.
-     * @throws InvalidArgumentException if the array data does not 
-     * have keys "timestamp" and "longitude" or if the array is empty.
+     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * expressed in minutes per each step of the ephemeris response.
+     * @throws \InvalidArgumentException if one or more columns 
+     * are missing from the data passed to the builder.
      */
     public function __construct(array $data, int $sampling_rate)
     {
         $this->data = $data;
-        $this->validateData();
         $this->sampling_rate = $sampling_rate;
+        $this->columns = AnomalisticTemplate::getColumns();
+        $this->validateData();
     }
 
     /**
-     * Validates data.
+     * Validate data.
      * 
      * @return void
-     * @throws InvalidArgumentException if the array data does not 
+     * @throws \InvalidArgumentException if the array data does not 
      * have keys "timestamp" and "longitude" or if the array is empty.
      */
     protected function validateData()
@@ -81,7 +84,6 @@ class FromArray extends Builder
                     (float) $item["moon_daily_speed"]
                 );
         })->all();
-
 
         // Select the correct Moon PerigeeRecord where the Moon is close to its perigee.
         $this->data = collect($this->data)->filter(function ($record) {

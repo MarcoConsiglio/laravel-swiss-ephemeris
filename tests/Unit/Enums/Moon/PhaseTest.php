@@ -6,10 +6,10 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FirstQuarter;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FullMoon;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\NewMoon;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\ThirdQuarter;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FirstQuarter;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FullMoon;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\NewMoon;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\ThirdQuarter;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Dummy\NonExistentMoonStrategy;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
@@ -104,6 +104,7 @@ class PhaseTest extends TestCase
         $fake_strategy = Angle::class;
         $non_existent_class = NonExistentMoonStrategy::class;
         $empty_string = "";
+        $random_string = $this->faker->text(15);
         $failure_message = $this->methodMustReturnIf(
             Phase::class, "getCorrespondingPhase", "null", "the strategy is unregistered."
         );
@@ -112,14 +113,17 @@ class PhaseTest extends TestCase
         $moon_phase_1 = Phase::getCorrespondingPhase($fake_strategy);
         $moon_phase_2 = Phase::getCorrespondingPhase($non_existent_class);
         $moon_phase_3 = Phase::getCorrespondingPhase($empty_string);
+        $moon_phase_4 = Phase::getCorrespondingPhase($random_string);
 
         // Assert
         $this->assertNotInstanceOf(Phase::class, $moon_phase_1);
         $this->assertNotInstanceOf(Phase::class, $moon_phase_2);
         $this->assertNotInstanceOf(Phase::class, $moon_phase_3);
+        $this->assertNotInstanceOf(Phase::class, $moon_phase_4);
         $this->assertNull($moon_phase_1, $failure_message);
         $this->assertNull($moon_phase_2, $failure_message);
         $this->assertNull($moon_phase_3, $failure_message);
+        $this->assertNull($moon_phase_4, $failure_message);
     }
 
     /**

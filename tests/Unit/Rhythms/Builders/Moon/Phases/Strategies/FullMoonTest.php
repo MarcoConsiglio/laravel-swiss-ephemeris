@@ -5,12 +5,12 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategies\Moon\Phases\FullMoon;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FullMoon;
 
 #[TestDox("The FullMoon PhaseStrategy")]
 #[CoversClass(FullMoon::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
-class FullMoonTest extends PhaseStrategyTestCase
+class FullMoonTest extends TestCase
 {
     /**
      * Setup the test environment.
@@ -24,7 +24,7 @@ class FullMoonTest extends PhaseStrategyTestCase
         parent::setUp();
     }
 
-    #[TestDox("can find a Moon\SynodicRhythmRecord whose \"angular_distance\" is about -/+180°.")]
+    #[TestDox("can find a Moon SynodicRhythmRecord whose \"angular_distance\" is about -/+180°.")]
     public function test_can_find_full_moon_if_angular_distance_is_minus_or_plus_180()
     {
         // Arrange in setUp()

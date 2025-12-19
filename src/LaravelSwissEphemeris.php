@@ -10,8 +10,10 @@ use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollections;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\Moon\ApogeeTemplate;
+use MarcoConsiglio\Ephemeris\Templates\Moon\DraconicTemplate;
 use MarcoConsiglio\Ephemeris\Templates\Moon\PerigeeTemplate;
 use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 
@@ -74,7 +76,7 @@ class LaravelSwissEphemeris
     protected float $altitude;
 
     /**
-     * It constructs di ephemeris query based on a location and timezone.
+     * Construct the ephemeris.
      *
      * @param string $latitude in decimal format.
      * @param string $longitude in decimal format.
@@ -104,7 +106,7 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Gets the Moon synodic rhythm starting from $start_date up until a specified number 
+     * Returns the Moon synodic rhythm starting from $start_date up until a specified number 
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.
@@ -129,7 +131,7 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Gets the Moon anomalistic rhythm starting from $start_date up until a specified number
+     * Returns the Moon anomalistic rhythm starting from $start_date up until a specified number
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.
@@ -164,7 +166,29 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Transforms a Carbon instance into a
+     * Returns the Moon draconic rhythm starting from $start_date up until a specified number
+     * of $days. Each step is long $step_size minutes.
+     *
+     * @param CarbonInterface $start_date The starting date of the response.
+     * @param integer $days The number of days included in the response.
+     * @param integer $step_size Duration in minutes of each step of the response.
+     * @return DraconicRhythm
+     * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
+     */
+    public function getMoonDraconicRhythm(
+        CarbonInterface $start_date,
+        $days = 30,
+        $step_size = 60
+    ): DraconicRhythm
+    {
+        $start_date = $this->normalizeDatetime($start_date);
+        $query = new DraconicTemplate($start_date, $days, $step_size, $this->shell, $this->command);
+        $draconic_rhythm = $query->getResult();
+        return $draconic_rhythm;
+    }
+
+    /**
+     * Transform a Carbon instance into a
      * SwissEphemerisDateTime instance.
      *
      * @param CarbonInterface $datetime
@@ -177,7 +201,7 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Normalizes the $datetime to a
+     * Normalize the $datetime to a
      * SwissEphemerisDateTime instance.
      *
      * @param CarbonInterface $datetime

@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic\Perigees;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -12,7 +13,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\FromArrayTestCase;
 #[CoversClass(FromArray::class)]
 #[UsesClass(Perigees::class)]
 #[UsesClass(PerigeeRecord::class)]
-#[TestDox("The Moon\Perigees\FromArray builder")]
+#[TestDox("The Moon Perigees\FromArray builder")]
 class FromArrayTest extends FromArrayTestCase
 {
     /**
@@ -20,11 +21,9 @@ class FromArrayTest extends FromArrayTestCase
      *
      * @return void
      */
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
-        // The sampling rate must be coherent with data obtained
-        // from the getRawData() method.
         $this->sampling_rate = 60;
     }
 
@@ -33,15 +32,78 @@ class FromArrayTest extends FromArrayTestCase
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
-        $output = $this->getRawData();
 
         // Act
-        $builder = new $builder_class($output, $this->sampling_rate);
+        $builder = new $builder_class($this->data, $this->sampling_rate);
         $collection = new Perigees($builder);
 
         // Assert
         $this->assertContainsOnlyInstancesOf(PerigeeRecord::class, $collection);
         $this->assertCount(3, $collection);
+    }
+
+    #[TestDox("require \"astral_object\" column key in its raw data.")]
+    public function test_require_astral_object_column()
+    {
+        // Arrange
+        $column = "astral_object";
+        unset($this->data[0][$column]);
+        $builder_class = $this->getBuilderClass();
+        
+        // Assert
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($this->getBuilderMissingKeyErrorMessage($builder_class, $column));
+
+        // Act
+        new $builder_class($this->data, $this->sampling_rate);
+    }
+
+    #[TestDox("require \"timestamp\" column key in its raw data.")]
+    public function test_require_timestamp_column()
+    {
+        // Arrange
+        $column = "timestamp";
+        unset($this->data[0][$column]);
+        $builder_class = $this->getBuilderClass();
+        
+        // Assert
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($this->getBuilderMissingKeyErrorMessage($builder_class, $column));
+
+        // Act
+        new $builder_class($this->data, $this->sampling_rate);
+    }
+
+    #[TestDox("require \"longitude\" column key in its raw data.")]
+    public function test_require_longitude_column()
+    {
+        // Arrange
+        $column = "longitude";
+        unset($this->data[0][$column]);
+        $builder_class = $this->getBuilderClass();
+        
+        // Assert
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($this->getBuilderMissingKeyErrorMessage($builder_class, $column));
+
+        // Act
+        new $builder_class($this->data, $this->sampling_rate);
+    }
+
+    #[TestDox("require \"daily_speed\" column key in its raw data.")]
+    public function test_require_daily_speed_column()
+    {
+        // Arrange
+        $column = "daily_speed";
+        unset($this->data[0][$column]);
+        $builder_class = $this->getBuilderClass();
+        
+        // Assert
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($this->getBuilderMissingKeyErrorMessage($builder_class, $column));
+
+        // Act
+        new $builder_class($this->data, $this->sampling_rate);
     }
 
     /**
@@ -55,7 +117,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     /**
-     * It returns raw data to test the builder.
+     * Return raw ephemeris data to test the builder.
      *
      * @return array
      */

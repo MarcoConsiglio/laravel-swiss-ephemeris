@@ -52,61 +52,32 @@ class SynodicRhythmTemplate extends QueryTemplate
     protected SynodicRhythm $object;
 
     /**
-     * Prepares arguments for the swetest executable.
+     * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void {}
+    protected function setArguments(): void {}
 
     /**
-    /**
-     * Prepares flags for the swetest executable.
+     * Set flags for the swetest executable.
      *
      * @return void
      */
-    protected function prepareFlags(): void
+    protected function setFlags(): void
     {
-        $steps = $this->getStepsNumber();
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::DifferentialObjectSelection->value, SinglePlanet::Sun->value));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::BeginDate->value, $this->start_date->toGregorianDate()));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::StepsNumber->value, $steps));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $this->output_format));       
-    }
-
-    /**
-     * Sets whether or not the header appears in the 
-     * ephemeris response.
-     *
-     * @return void
-     */
-    protected function setHeader(): void
-    {
-        // No header.
-        $this->command->addArgument(new SwissEphemerisArgument(CommandFlag::NoHeader->value));
     }
 
     /**
      * It formats the output before parsing it, if necessary.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function formatHook(): void {}
-
-    /**
-     * Parse the response.
-     *
-     * @return void
-     */
-    protected function parseOutput(): void
-    {
-        $this->output->transform(function($row) {
-            return $this->parse($row);
-        });
-    }
 
     /**
      * Parse a line of the raw ephemeris output.
@@ -118,7 +89,11 @@ class SynodicRhythmTemplate extends QueryTemplate
         if (
             $this->datetimeFound($text, $datetime) &&
             $this->decimalNumberFound($text, $decimal)
-        ) return [$datetime[0], $decimal[0], $decimal[1]];
+        ) return [
+            $datetime[0],   // Datetime
+            $decimal[0],    // Angular distance between moon and sun
+            $decimal[1]     // Moon daily speed
+        ];
         else return null;
     }
 
@@ -135,7 +110,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * It constructs the SynodicRhythm collection.
+     * Construct the SynodicRhythm collection.
      *
      * @return void
      */
@@ -148,7 +123,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * Returns the builded object.
+     * Return the builded object.
      *
      * @return SynodicRhythm
      */
@@ -158,7 +133,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * Gets the builded SynodicRhythm collection.
+     * Get the builded SynodicRhythm collection.
      *
      * @return SynodicRhythm
      */
@@ -169,7 +144,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * It returns the columns names used by this template.
+     * Return the columns names used by this template.
      */
     static public function getColumns(): array
     {

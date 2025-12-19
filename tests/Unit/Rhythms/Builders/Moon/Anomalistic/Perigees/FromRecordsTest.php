@@ -13,7 +13,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\Fr
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
 
 #[CoversClass(FromRecords::class)]
-#[TestDox("The Moon\Perigees\FromRecords builder")]
+#[TestDox("The Moon Perigees\FromRecords builder")]
 class FromRecordsTest extends BuilderTestCase
 {
     #[TestDox("can build an Perigees collection from PerigeeRecord instances.")]

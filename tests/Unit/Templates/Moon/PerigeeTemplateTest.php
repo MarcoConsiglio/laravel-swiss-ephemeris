@@ -18,15 +18,14 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 #[UsesClass(FakeRunner::class)]
 #[UsesClass(Command::class)]
 #[UsesClass(Perigees::class)]
-#[TestDox("The Moon\PerigeeTemplate")]
+#[TestDox("The Moon PerigeeTemplate")]
 class PerigeeTemplateTest extends TemplateTestCase
 {
-    protected string $response_file = "./tests/SwissEphemerisResponses/Moon/perigees_decimal.txt";
-
     #[TestDox("is the template used to build a Moon\Perigees collection.")]
     public function test_query_template()
     {
         // Arrange
+        $this->response_file = "./tests/SwissEphemerisResponses/Moon/perigees_decimal.txt";
         $start_date = SwissEphemerisDateTime::create(2000);
         $days = 30;
         $step_size = 60;

@@ -24,13 +24,46 @@ class WithFuzzyLogicTest extends TestCase
         $expected = 10;
 
         // Act & Assert
-        //      Out of $delta returns false.
+        //      Outside $delta returns false.
         $this->testIsAboutMethod($expected - $delta, $expected, $delta, false);
         $this->testIsAboutMethod($expected + $delta, $expected, $delta, false);
         //      Inside $delta including its limits returns true.
         $this->testIsAboutMethod($expected, $expected, $delta, true);
         $this->testIsAboutMethod($expected - $epsilon, $expected, $delta, true);
         $this->testIsAboutMethod($expected + $epsilon, $expected, $delta, true);
+    }
+
+    public function test_isAboutAbsolute_method()
+    {
+        // Arrange
+        $delta = 1;
+        $epsilon = $delta / 2;
+        
+        // Act & Assert
+        $expected = 180;
+        //      Outside of $delta returns false.
+        $this->testIsAboutAbsoluteMethod($expected - $delta, $expected, $delta, false);
+        $this->testIsAboutAbsoluteMethod($expected + $delta, $expected, $delta, false);
+        //      Inside $delta including its limits returns true.
+        $this->testIsAboutAbsoluteMethod($expected, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod($expected - $epsilon, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod($expected + $epsilon, $expected, $delta, true);
+        $expected = 0;
+        //      Outside of $delta returns false.
+        $this->testIsAboutAbsoluteMethod(Angle::MAX_DEGREES + $expected - $delta, $expected, $delta, false);
+        $this->testIsAboutAbsoluteMethod($expected + $delta, $expected, $delta, false);
+        //      Inside $delta including its limits returns true.
+        $this->testIsAboutAbsoluteMethod($expected, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod(Angle::MAX_DEGREES + $expected - $epsilon, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod($expected + $epsilon, $expected, $delta, true);
+        $expected = 360;
+        //      Outside of $delta returns false.
+        $this->testIsAboutAbsoluteMethod($expected - $delta, $expected, $delta, false);
+        $this->testIsAboutAbsoluteMethod(-Angle::MAX_DEGREES + $expected + $delta, $expected, $delta, false);
+        //      Inside $delta including its limits returns true.
+        $this->testIsAboutAbsoluteMethod($expected, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod($expected - $epsilon, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod(-Angle::MAX_DEGREES + $expected + $epsilon, $expected, $delta, true);
     }
     
     #[TestDox("has isAboutAngle() method that checks if an angle is nearly equal to another angle.")]
@@ -119,10 +152,10 @@ class WithFuzzyLogicTest extends TestCase
     }
 
     /**
+     * Tests isAbout() method.
+     * 
      * This is a Parameterized Test.
      * 
-     * It tests isAbout method present in 
-     * the WithFuzzyLogic trait.
      *
      * @param float $first_nuber
      * @param float $second_number
@@ -133,12 +166,35 @@ class WithFuzzyLogicTest extends TestCase
     protected function testIsAboutMethod(
         float $first_nuber, 
         float $second_number, 
-        float $delta = 1,
+        float $delta,
         bool $boolean_assertion = true,
-        string $error_message = "")
-    {
+        string $error_message = ""
+    ) {
         $result = $this->isAbout($first_nuber, $second_number, $delta);
         $this->assertSame($boolean_assertion, $result, $error_message);
+    }
+
+    /**
+     * Tests isAboutAbsolute() method.
+     * 
+     * This is a Parameterized Test.
+     *
+     * @param float $first_nuber
+     * @param float $second_number
+     * @param float $delta
+     * @param boolean $bolean_assertion
+     * @param string $error_message
+     * @return void
+     */
+    protected function testIsAboutAbsoluteMethod(
+        float $first_nuber,
+        float $second_number,
+        float $delta,
+        bool $bolean_assertion = true,
+        string $error_message = ""
+    ) {
+        $result = $this->isAboutAbsolute($first_nuber, $second_number, $delta);
+        $this->assertSame($bolean_assertion, $result, $error_message);
     }
 
     /**

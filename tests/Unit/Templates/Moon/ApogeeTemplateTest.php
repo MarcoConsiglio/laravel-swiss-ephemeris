@@ -18,18 +18,9 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 #[UsesClass(FakeRunner::class)]
 #[UsesClass(Command::class)]
 #[UsesClass(Apogees::class)]
-#[TestDox("The Moon\ApogeeTemplate")]
+#[TestDox("The Moon ApogeeTemplate")]
 class ApogeeTemplateTest extends TemplateTestCase
 {
-    /**
-     * The file path containing an already generated response output 
-     * of the swiss ephemeris executable.
-     * 
-     * Use it to not trigger a call to the executable during tests. 
-     * @var string
-     */
-    protected string $response_file;
-
     #[TestDox("is the template used to build a Moon\Apogees collection.")]
     public function test_query_template()
     {

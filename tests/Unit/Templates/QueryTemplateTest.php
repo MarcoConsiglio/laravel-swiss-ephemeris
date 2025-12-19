@@ -29,14 +29,14 @@ class QueryTemplateTest extends TemplateTestCase
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/warnings.txt";
         /** @var SwissEphemerisDateTime&MockObject $date*/
-        $date = $this->getMocked(SwissEphemerisDateTime::class);
+        $date = $this->getMockedSwissEphemerisDateTime();
         $shell = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
         /** @var Command&MockObject $command */
         $command = $this->getMocked(Command::class);
         /** @var SynodicRhythmTemplate&MockObject $template */
         $template = $this->getMocked(
             SynodicRhythmTemplate::class, [
-                "prepareFlags", "prepareArguments", "setHeader", "checkErrors", "checkNotices",
+                "setFlags", "setArguments", "setHeader", "checkErrors", "checkNotices",
                 "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
@@ -56,14 +56,14 @@ class QueryTemplateTest extends TemplateTestCase
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/warnings.txt";
         /** @var SwissEphemerisDateTime&MockObject $date*/
-        $date = $this->getMocked(SwissEphemerisDateTime::class);
+        $date = $this->getMockedSwissEphemerisDateTime();
         $shell = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
         /** @var Command&MockObject $command */
         $command = $this->getMocked(Command::class);
         /** @var SynodicRhythmTemplate&MockObject $template */
         $template = $this->getMocked(
             SynodicRhythmTemplate::class, [
-                "prepareFlags", "prepareArguments", "setHeader", "checkErrors", "checkWarnings",
+                "setFlags", "setArguments", "setHeader", "checkErrors", "checkWarnings",
                 "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
@@ -81,13 +81,13 @@ class QueryTemplateTest extends TemplateTestCase
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/errors.txt";
-        $date = $this->getMocked(SwissEphemerisDateTime::class);
+        $date = $this->getMockedSwissEphemerisDateTime();
         $shell = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
         $command = $this->getMocked(Command::class);
         /** @var SynodicRhythmTemplate&MockObject $template */
         $template = $this->getMocked(
             SynodicRhythmTemplate::class, [
-                "prepareFlags", "prepareArguments", "setHeader", "checkWarnings", "checkNotices",
+                "setFlags", "setArguments", "setHeader", "checkWarnings", "checkNotices",
                 "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,

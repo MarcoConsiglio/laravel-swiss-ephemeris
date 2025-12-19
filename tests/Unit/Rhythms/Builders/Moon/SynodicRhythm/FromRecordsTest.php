@@ -8,20 +8,20 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonBuilderTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
-#[TestDox("The Moon\SynodicRhythm\FromRecords builder")]
+#[TestDox("The Moon SynodicRhythm\FromRecords builder")]
 #[CoversClass(FromRecords::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
-class FromRecordsTest extends MoonBuilderTestCase
+class FromRecordsTest extends BuilderTestCase
 {
-    #[TestDox("can build a Moon\SynodicRhythm collection from Moon\SynodicRhythmRecord instances.")]
+    #[TestDox("can build a Moon\SynodicRhythm collection from Moon SynodicRhythmRecord instances.")]
     public function test_build_synodic_rhythm_from_records()
     {
         // Arrange in setUp()
@@ -30,7 +30,7 @@ class FromRecordsTest extends MoonBuilderTestCase
         for ($i=0; $i < 2; $i++) { 
             $records[$i] = new SynodicRhythmRecord(
                 $this->getRandomSwissEphemerisDateTime(),
-                $this->getRandomAngle(180),
+                $this->getRandomPositiveAngle(180),
                 $this->getRandomMoonDailySpeed()
             );
         }
@@ -49,7 +49,7 @@ class FromRecordsTest extends MoonBuilderTestCase
         ); 
     }
 
-    #[TestDox("cannot build a Moon\SynodicRhythm collection without Moon\SynodicRhythmRecord instances.")]
+    #[TestDox("cannot build a Moon\SynodicRhythm collection without Moon SynodicRhythmRecord instances.")]
     public function test_from_records_builder_wants_synodic_rhythm_records()
     {
         // Arrange

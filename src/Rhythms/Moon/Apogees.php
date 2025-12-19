@@ -7,12 +7,15 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\Fro
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromRecords;
 
 /**
- * A collection of Moon Apogee instances.
+ * A collection of Moon ApogeeRecord instances.
+ * 
+ * It represents a collection of record where the Moon
+ * is in its apogee.
  */
 class Apogees extends Collection
 {
     /**
-     * It constructs a Moon Apogees collection from an array of raw ephemeris.
+     * Construct a Moon Apogees collection from an array of raw ephemeris.
      *
      * @param FromArray|FromRecords $builder
      */
@@ -22,7 +25,7 @@ class Apogees extends Collection
     }
 
     /**
-     * Gets the first Moon ApogeeRecord.
+     * Get the first Moon ApogeeRecord.
      *
      * @param callable|null $callback
      * @param mixed $default
@@ -34,7 +37,7 @@ class Apogees extends Collection
     }
 
     /**
-     * Gets the last Moon ApogeeRecord.
+     * Get the last Moon ApogeeRecord.
      *
      * @param callable|null $callback
      * @param mixed $default
@@ -46,7 +49,7 @@ class Apogees extends Collection
     }
 
     /**
-     * Gets an Moon ApogeeRecord from the collection by key.
+     * Get an Moon ApogeeRecord from the collection by key.
      *
      * @param mixed $key
      * @param mixed $default

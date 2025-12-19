@@ -11,18 +11,17 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\MoonBuilderTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
-#[TestDox("The Moon\Periods\FromSynodicRhythm builder")]
+#[TestDox("The Moon Periods\FromSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
 #[UsesClass(FromRecords::class)]
 #[UsesClass(Period::class)]
 #[UsesClass(Periods::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythm::class)]
-class FromSynodicRhythmTest extends MoonBuilderTestCase
+class FromSynodicRhythmTest extends BuilderTestCase
 {
     /**
      * Setup the test environment.

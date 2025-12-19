@@ -39,58 +39,22 @@ class PerigeeTemplate extends AnomalisticTemplate
         OutputFormat::DailyLongitudinalSpeedDecimal->value;
 
     /**
-     * Prepares arguments for the swetest executable.
+     * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
      * @return void
      */
-    protected function prepareArguments(): void {}
+    protected function setArguments(): void {}
 
     /**
-     * Prepares flags for the swetest executable.
+     * Set flags for the swetest executable.
      *
      * @return void
      */
-    protected function prepareFlags(): void
+    protected function setFlags(): void
     {
-        $steps = $this->getStepsNumber();
-        $this->command->addFlag(new Flag(CommandFlag::BeginDate->value, $this->start_date->toGregorianDate()));
-        $this->command->addFlag(new Flag(CommandFlag::StepsNumber->value, $steps));
-        $this->command->addFlag(new Flag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
-        $this->command->addFlag(new Flag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarPerigee->value));
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $this->output_format));
-    }
-
-    /**
-     * Sets whether or not the header appears in the 
-     * ephemeris response.
-     *
-     * @return void
-     */
-    protected function setHeader(): void
-    {
-        // No header.
-        $this->command->addArgument(new Argument(CommandFlag::NoHeader->value));
-    }
-
-    /**
-     * It formats the output before parsing it, if necessary.
-     *
-     * @return void
-     */
-    protected function formatHook(): void {}
-
-    /**
-     * Parse the response.
-     *
-     * @return void
-     */
-    protected function parseOutput(): void
-    {
-        $this->output->transform(function($row) {
-            return $this->parse($row);
-        });     
     }
 
     /**
@@ -105,12 +69,17 @@ class PerigeeTemplate extends AnomalisticTemplate
             $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
             $this->datetimeFound($text, $datetime) &&
             $this->decimalNumberFound($text, $decimal)
-        ) return [$astral_object[0], $datetime[0], $decimal[0], $decimal[1]];
+        ) return [
+            $astral_object[0],  // Object name
+            $datetime[0],       // Datetime
+            $decimal[0],        // Object longitude
+            $decimal[1]         // Object daily speed
+        ];
         else return null;
     }
 
     /**
-     * It constructs the Apogee collection.
+     * Construct the Perigees collection.
      *
      * @return void
      */
@@ -120,7 +89,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Returns the builded object.
+     * Return the builded object.
      *
      * @return Perigees
      */
@@ -130,7 +99,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Gets the builded SynodicRhythm collection.
+     * Return the builded Perigees collection.
      *
      * @return Perigees
      */

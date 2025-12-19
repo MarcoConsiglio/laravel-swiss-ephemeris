@@ -7,7 +7,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 
 /**
- * Build a Moon Periods collection 
+ * Builds a Moon Periods collection 
  * from the Moon SynodicRhythm collection.
  */
 class FromSynodicRhythm extends Builder
@@ -20,7 +20,7 @@ class FromSynodicRhythm extends Builder
     protected array $records = [];
 
     /**
-     * It constructs the builder with the Moon SynodicRhythm.
+     * Construct the builder with the Moon SynodicRhythm.
      *
      * @param SynodicRhythm $data
      */
@@ -39,7 +39,7 @@ class FromSynodicRhythm extends Builder
     }
 
     /** 
-     * Builds records of the MoonPeriods collection.
+     * Build records of the MoonPeriods collection.
      *
      * @return void
      */
@@ -67,7 +67,7 @@ class FromSynodicRhythm extends Builder
     }
 
     /**
-     * Fetch the builded array of MoonPeriod(s).
+     * Fetch the builded array of MoonPeriod instances.
      *
      * @return Period[]
      */

@@ -9,8 +9,9 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
  * It represents a time when the Moon 
  * is in a specific lunar phase.
  */
-class PhaseRecord
+class PhaseRecord extends Record
 {
+
     /**
      * The timestamp this record refers to.
      *
@@ -26,7 +27,7 @@ class PhaseRecord
     public protected(set) Phase $type;
 
     /**
-     * It constructs a MoonPhaseRecord with a moon phase type and a timestamp.
+     * Construct a MoonPhaseRecord with a moon phase type and a timestamp.
      *
      * @param SwissEphemerisDateTime        $timestamp
      * @param Phase $type
@@ -38,17 +39,24 @@ class PhaseRecord
     }
 
     /**
-     * It cast this record to string.
-     *
-     * @return string
+     * Pack the object properties in an associative array.
+     * 
+     * @return array{phase:mixed,timestamp:string}
      */
-    public function __toString()
+    protected function packProperties(): array
     {
-        $type = ((array) $this->type)["name"];
-        return <<<TEXT
-Moon PhaseRecord
-timestamp: {$this->timestamp->toDateTimeString()}
-phase: {$type}
-TEXT;
+        return [
+            "timestamp" => $this->timestamp->toDateTimeString(),
+            "phase" => $this->enumToString($this->type)
+        ];
     }
+
+    /**
+     * Get the parent properties packed in an associative 
+     * array.
+     * 
+     * @return array
+     * @codeCoverageIgnore
+     */
+    protected function getParentProperties(): array {return [];}
 }

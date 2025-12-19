@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 
-#[TestDox("The Moon\Phases collection")]
+#[TestDox("The Moon Phases collection")]
 #[CoversClass(Phases::class)]
 #[UsesClass(PhaseRecord::class)]
 #[UsesClass(Phase::class)]
@@ -23,7 +23,7 @@ class PhasesTest extends RhythmTestCase
     public function test_moon_phases()
     {
         // Arrange
-        $date = SwissEphemerisDateTime::create(2000);
+        $date = $this->getMockedSwissEphemerisDateTime();
         /** @var FromSynodicRhythm&MockObject */
         $phases_builder = $this->getMocked(FromSynodicRhythm::class);
         $phases_builder->expects($this->once())->method("fetchCollection")->willReturn([

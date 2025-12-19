@@ -1,26 +1,24 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
-use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 
-#[TestDox("The Moon\PhaseRecord")]
+#[TestDox("The Moon PhaseRecord")]
 #[CoversClass(PhaseRecord::class)]
 class PhaseRecordTest extends TestCase
 {
-    #[TestDox("has read-only property \"type\" which is a Phase.")]
+    #[TestDox("has read-only property \"type\" which is a Phase enumeration.")]
     public function test_type_property()
     {
         // Arrange
-        $moon_phase_type = $this->faker->randomElement(Phase::cases());
+        $moon_phase_type = $this->getRandomMoonPhase();
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
-        $timestamp = $this->getMocked(SwissEphemerisDateTime::class);
+        $timestamp = $this->getMockedSwissEphemerisDateTime();
         $moon_phase_record = new PhaseRecord($timestamp, $moon_phase_type);
 
         // Act & Assert
@@ -31,8 +29,8 @@ class PhaseRecordTest extends TestCase
     public function test_timestamp_property()
     {
         // Arrange
-        $moon_phase_type = $this->faker->randomElement(Phase::cases());
-        $timestamp = SwissEphemerisDateTime::create();
+        $moon_phase_type = $this->getRandomMoonPhase();
+        $timestamp = $this->getRandomSwissEphemerisDateTime();
         $moon_phase_record = new PhaseRecord($timestamp, $moon_phase_type);
 
         // Act & Assert
@@ -43,18 +41,29 @@ class PhaseRecordTest extends TestCase
     public function test_casting_to_string()
     {
         // Arrange
-        $timestamp = new SwissEphemerisDateTime($this->faker->dateTimeAD());
-        $type = $this->faker->randomElement(Phase::cases());
-        $record = new PhaseRecord($timestamp, $type);
+        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $moon_phase_type = $this->getRandomMoonPhase();
+        $record = new PhaseRecord($timestamp, $moon_phase_type);
         $timestamp = $timestamp->toDateTimeString();
-        $type = ((array) $type)["name"];
+        $type = ((array) $moon_phase_type)["name"]; // Cast Phase to string.
 
         // Act & Assert
         $this->assertEquals(<<<TEXT
-Moon PhaseRecord
-timestamp: $timestamp
+PhaseRecord
 phase: $type
+timestamp: $timestamp
+
 TEXT,
             (string) $record);
+    }
+
+    /**
+     * Get a random Moon Phase.
+     *
+     * @return Phase
+     */
+    protected function getRandomMoonPhase(): Phase
+    {
+        return $this->faker->randomElement(Phase::cases());
     }
 }
