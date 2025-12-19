@@ -633,13 +633,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003AgetMoonSynodicRhythm\u0028\u0029",
             "name": "getMoonSynodicRhythm",
-            "summary": "Get\u0020the\u0020Moon\u0020synodic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
+            "summary": "Returns\u0020the\u0020Moon\u0020synodic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
             "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonSynodicRhythm"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003AgetMoonAnomalisticRhythm\u0028\u0029",
             "name": "getMoonAnomalisticRhythm",
-            "summary": "Get\u0020the\u0020Moon\u0020anomalistic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
+            "summary": "Returns\u0020the\u0020Moon\u0020anomalistic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
             "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonAnomalisticRhythm"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003AgetMoonDraconicRhythm\u0028\u0029",
+            "name": "getMoonDraconicRhythm",
+            "summary": "Returns\u0020the\u0020Moon\u0020draconic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
+            "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonDraconicRhythm"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003ASWISS_EPHEMERIS_EXECUTABLE",
             "name": "SWISS_EPHEMERIS_EXECUTABLE",
@@ -763,7 +768,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord",
             "name": "DraconicRecord",
-            "summary": "It\u0020represents\u0020a\u0020moment\u0020when\u0020the\u0020moon\npasses\u0020over\u0020the\u0020point\u0020of\u0020intersection\nbetween\u0020its\u0020orbit\u0020and\u0020the\u0020plane\u0020of\nthe\u0020ecliptic.",
+            "summary": "Represents\u0020a\u0020moment\u0020when\u0020the\u0020moon\npasses\u0020over\u0020the\u0020point\u0020of\u0020intersection\nbetween\u0020its\u0020orbit\u0020and\u0020the\u0020plane\u0020of\nthe\u0020ecliptic.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A__construct\u0028\u0029",
@@ -788,7 +793,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A\u0024timestamp",
             "name": "timestamp",
-            "summary": "The\u0020timestamp\u0020of\u0020this\u0020MoonAnomalistcRecord.",
+            "summary": "The\u0020timestamp\u0020of\u0020this\u0020Moon\u0020DraconicRecord.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#property_timestamp"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A\u0024moon_longitude",
@@ -798,17 +803,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A\u0024north_node_longitude",
             "name": "north_node_longitude",
-            "summary": "The\u0020current\u0020node\u0020longitude\u0020returned\u0020by\u0020the\u0020ephemeris.",
+            "summary": "The\u0020current\u0020node\u0020longitude.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#property_north_node_longitude"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A\u0024south_node_longitude",
             "name": "south_node_longitude",
-            "summary": "The\u0020current\u0020opposite\u0020node\u0020longitude.\u0020It\u0020represent\u0020the\nposition\u0020of\u0020one\u0020of\u0020the\u0020two\u0020nodes.",
+            "summary": "The\u0020current\u0020south\u0020node\u0020longitude.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#property_south_node_longitude"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A\u0024cardinality",
             "name": "cardinality",
-            "summary": "True\u0020if\u0020this\u0020is\u0020a\u0020north\u0020node,\u0020false\u0020otherwise.",
+            "summary": "The\u0020cardinality\u0020of\u0020this\u0020node.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#property_cardinality"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PerigeeRecord",
@@ -1325,6 +1330,26 @@ Search.appendIndex(
             "name": "DraconicRhythm",
             "summary": "A\u0020collection\u0020of\u0020DraconicRecord\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-DraconicRhythm.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\DraconicRhythm\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructs\u0020a\u0020Moon\u0020DraconicRhythm\u0020collection.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-DraconicRhythm.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\DraconicRhythm\u003A\u003Afirst\u0028\u0029",
+            "name": "first",
+            "summary": "Get\u0020the\u0020first\u0020Moon\u0020DraconicRecord.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-DraconicRhythm.html#method_first"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\DraconicRhythm\u003A\u003Alast\u0028\u0029",
+            "name": "last",
+            "summary": "Get\u0020the\u0020last\u0020Moon\u0020DraconicRecord.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-DraconicRhythm.html#method_last"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\DraconicRhythm\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Get\u0020an\u0020Moon\u0020DraconicRecord\u0020from\u0020the\u0020collection\u0020by\u0020key.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-DraconicRhythm.html#method_get"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\Perigees",
             "name": "Perigees",

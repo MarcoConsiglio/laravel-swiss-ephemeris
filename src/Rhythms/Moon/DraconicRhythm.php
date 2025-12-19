@@ -43,7 +43,7 @@ class DraconicRhythm extends Collection
     }
 
     /**
-     * Get an Moon ApogeeRecord from the collection by key.
+     * Get an Moon DraconicRecord from the collection by key.
      *
      * @param mixed $key
      * @param mixed $default

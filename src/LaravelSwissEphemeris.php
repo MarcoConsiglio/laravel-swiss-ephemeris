@@ -106,7 +106,7 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Get the Moon synodic rhythm starting from $start_date up until a specified number 
+     * Returns the Moon synodic rhythm starting from $start_date up until a specified number 
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.
@@ -131,7 +131,7 @@ class LaravelSwissEphemeris
     }
 
     /**
-     * Get the Moon anomalistic rhythm starting from $start_date up until a specified number
+     * Returns the Moon anomalistic rhythm starting from $start_date up until a specified number
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.
@@ -165,6 +165,16 @@ class LaravelSwissEphemeris
         return new AnomalisticRhythm(new FromCollections($apogees, $perigees));
     }
 
+    /**
+     * Returns the Moon draconic rhythm starting from $start_date up until a specified number
+     * of $days. Each step is long $step_size minutes.
+     *
+     * @param CarbonInterface $start_date The starting date of the response.
+     * @param integer $days The number of days included in the response.
+     * @param integer $step_size Duration in minutes of each step of the response.
+     * @return DraconicRhythm
+     * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
+     */
     public function getMoonDraconicRhythm(
         CarbonInterface $start_date,
         $days = 30,

@@ -1,8 +1,8 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
  * It represents a moment when the Moon is at its perigee.

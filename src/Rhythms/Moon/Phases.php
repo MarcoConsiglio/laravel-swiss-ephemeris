@@ -9,7 +9,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSyno
  * A collection of Moon PhaseRecord instances.
  * 
  * It represents a collection of records of the 
- * Moon's synodic rhythm that represents the lunar phases.
+ * Moon's synodic rhythm that are exactly common lunar phases.
  */
 class Phases extends Collection
 {

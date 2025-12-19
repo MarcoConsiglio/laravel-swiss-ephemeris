@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * It represents an instant when the Moon 

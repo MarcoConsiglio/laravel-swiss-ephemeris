@@ -2,10 +2,10 @@
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use RoundingMode;
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * It represent a moment of the Moon synodic rhythm.

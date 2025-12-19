@@ -29,6 +29,13 @@ class DraconicTemplate extends QueryTemplate
         3 => "daily_speed"
     ];
 
+    /**
+     * The output format of the ephemeris.
+     * 
+     * Warning! Changing the output format will cause errors in getMoonDraconicRhythm() method.
+     *
+     * @var string
+     */
     protected string $output_format = 
         OutputFormat::PlanetName->value.
         OutputFormat::GregorianDateTimeFormat->value.

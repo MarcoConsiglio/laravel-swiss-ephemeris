@@ -1,13 +1,13 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * It represents a moment when the moon 
+ * Represents a moment when the moon 
  * passes over the point of intersection 
  * between its orbit and the plane of 
  * the ecliptic.
@@ -15,7 +15,7 @@ use MarcoConsiglio\Goniometry\Angle;
 class DraconicRecord extends MovingObjectRecord
 {
     /**
-     * The timestamp of this MoonAnomalistcRecord.
+     * The timestamp of this Moon DraconicRecord.
      */
     public protected(set) SwissEphemerisDateTime $timestamp;
 
@@ -28,21 +28,19 @@ class DraconicRecord extends MovingObjectRecord
     public protected(set) Angle $moon_longitude;
     
     /**
-     * The current node longitude returned by the ephemeris.
-     * It represent the position of one of the two nodes.
+     * The current node longitude.
      * 
-     * The swiss ephemeris returns only one of the two nodes.
-     * This is the one returned by the swiss ephemeris.
+     * The Swiss Ephemeris returns only one of the two nodes.
+     * This is the one returned by the Swiss Ephemeris.
      * 
      * @var Angle
      */
     public protected(set) Angle $north_node_longitude;
 
     /**
-     * The current opposite node longitude. It represent the
-     * position of one of the two nodes.
+     * The current south node longitude.
      * 
-     * The swiss ephemeris returns only one of the two nodes.
+     * The Swiss Ephemeris returns only one of the two nodes.
      * This is the one opposite to the only node presents in
      * the ephemeris response.
      * 
@@ -55,7 +53,7 @@ class DraconicRecord extends MovingObjectRecord
     }
 
     /**
-     * True if this is a north node, false otherwise.
+     * The cardinality of this node.
      *
      * @var Cardinality
      */
