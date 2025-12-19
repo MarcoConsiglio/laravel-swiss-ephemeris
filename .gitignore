@@ -15,3 +15,5 @@ tests/cache
 tests/coverage_report
 tests/xml-coverage
 vendor
+*.dump
+.dev-tools
