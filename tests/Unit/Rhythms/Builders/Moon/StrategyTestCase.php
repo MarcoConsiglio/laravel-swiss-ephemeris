@@ -266,7 +266,7 @@ abstract class StrategyTestCase extends TestCase
     protected function getDelta(float $daily_speed, float $sampling_rate): float
     {
         return round(
-            abs($daily_speed) * abs($sampling_rate) / 1440 /* minutes */,
+            $daily_speed * $sampling_rate / 1440 /* minutes */,
             PHP_FLOAT_DIG,
             RoundingMode::HalfTowardsZero
         );

@@ -124,11 +124,10 @@ class DraconicRecordTest extends TestCase
     {
         // Arrange
         $datetime = $this->getRandomSwissEphemerisDateTime();
-        $moon_longitude = $this->getRandomAngle();
+        $moon_longitude = $this->getRandomPositiveAngle();
         $opposite = $this->getSpecificAngle(-180);
-        $north_node_longitude = $this->getRandomAngle();
+        $north_node_longitude = $this->getRandomPositiveAngle();
         $south_node_longitude = Angle::absSum($north_node_longitude, $opposite);
-        if ($south_node_longitude->isClockwise()) $south_node_longitude = $south_node_longitude->toggleDirection();
         $daily_speed = $this->getRandomMoonDailySpeed();
         $cardinality = $this->faker->randomElement(Cardinality::cases());
         $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);

@@ -36,7 +36,7 @@ enum Phase
      * Every Moon PhaseStrategy must have the same name of the corresponding Moon Phase constant.
      *
      * @param string $strategy_class
-     * @return Phase
+     * @return Phase|null
      */
     public static function getCorrespondingPhase(string $strategy_class): ?Phase
     {

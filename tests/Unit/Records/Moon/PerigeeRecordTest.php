@@ -39,8 +39,8 @@ class PerigeeRecordTest extends TestCase
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $moon_longitude = $this->getRandomAngle();
-        $perigee_longitude = $this->getRandomAngle();
+        $moon_longitude = $this->getRandomPositiveAngle();
+        $perigee_longitude = $this->getRandomPositiveAngle();
         $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, 12.0);
 
         // Act & Assert
@@ -59,8 +59,8 @@ class PerigeeRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();
-        $moon_longitude = $this->getRandomAngle();
-        $perigee_longitude = $this->getRandomAngle();
+        $moon_longitude = $this->getRandomPositiveAngle();
+        $perigee_longitude = $this->getRandomPositiveAngle();
         $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();

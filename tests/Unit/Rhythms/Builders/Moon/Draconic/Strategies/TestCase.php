@@ -38,7 +38,7 @@ abstract class TestCase extends StrategyTestCase
             $this->date, 
             $moon_longitude,
             $north_node_longitude,
-            $this->getRandomMoonDailySpeed()
+            $this->daily_speed
         );
         if ($set_cardinality) $record->cardinality = Cardinality::North;
         return $record;
@@ -96,7 +96,7 @@ abstract class TestCase extends StrategyTestCase
             $this->date,
             $moon_longitude,
             $north_node_longitude,
-            $this->getRandomMoonDailySpeed()
+            $this->daily_speed
         );
     }
 }

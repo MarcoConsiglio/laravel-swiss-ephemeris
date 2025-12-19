@@ -124,6 +124,26 @@ abstract class TestCase extends TestbenchTestCase
     }
 
     /**
+     * Create a random positive Angle.
+     *
+     * @param float|null $limit It limits the angle to $limit decimal degrees.
+     * @return Angle
+     */
+    protected function getRandomPositiveAngle(float|null $limit = null): Angle
+    {
+        if ($limit != null) {
+            $limit = abs($limit);
+            if ($limit > Angle::MAX_DEGREES) $limit = Angle::MAX_DEGREES;
+        }
+        return Angle::createFromDecimal(
+            $this->faker->randomFloat(PHP_FLOAT_DIG, 
+                0,
+                $limit ? $limit : Angle::MAX_DEGREES
+            )
+        );   
+    }
+
+    /**
      * Get a random positive sexadecimal value, useful to create an Angle from
      * a decimal value.
      *

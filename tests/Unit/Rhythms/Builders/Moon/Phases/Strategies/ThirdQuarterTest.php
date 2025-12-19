@@ -24,7 +24,7 @@ class ThirdQuarterTest extends TestCase
         parent::setUp();
     }
 
-    #[TestDox("can find a Moon\SynodicRhythmRecord whose \"angular_distance\" is about -90°.")]
+    #[TestDox("can find a Moon SynodicRhythmRecord whose \"angular_distance\" is about -90°.")]
     public function test_can_find_third_quarter_if_angular_distance_is_about_minus_90()
     {
         // Arrange

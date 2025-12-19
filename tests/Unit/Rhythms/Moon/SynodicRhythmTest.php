@@ -28,7 +28,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 #[TestDox("The Moon SynodicRhythm collection")]
 class SynodicRhythmTest extends RhythmTestCase
 {
-    #[TestDox("is a collection of Moon\SynodicRhythmRecord instances.")]
+    #[TestDox("is a collection of Moon SynodicRhythmRecord instances.")]
     public function test_synodic_rhythm_has_records()
     {
         // Arrange
@@ -100,7 +100,7 @@ class SynodicRhythmTest extends RhythmTestCase
         );
     }
 
-    #[TestDox("can return a specific Moon\SynodicRhythmRecord instance.")]
+    #[TestDox("can return a specific Moon SynodicRhythmRecord instance.")]
     public function test_getters()
     {
         // Arrange

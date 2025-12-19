@@ -30,7 +30,7 @@ class FromArrayTest extends FromArrayTestCase
         $this->sampling_rate = 60;
     }
     
-    #[TestDox("can build an array of Moon\SynodicRhythmRecords starting from an array of raw ephemeris data.")]
+    #[TestDox("can build an array of Moon SynodicRhythmRecords starting from an array of raw ephemeris data.")]
     public function test_build_synodic_rhythm()
     {
         // Arrange

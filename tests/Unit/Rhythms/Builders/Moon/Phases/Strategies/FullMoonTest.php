@@ -24,7 +24,7 @@ class FullMoonTest extends TestCase
         parent::setUp();
     }
 
-    #[TestDox("can find a Moon\SynodicRhythmRecord whose \"angular_distance\" is about -/+180°.")]
+    #[TestDox("can find a Moon SynodicRhythmRecord whose \"angular_distance\" is about -/+180°.")]
     public function test_can_find_full_moon_if_angular_distance_is_minus_or_plus_180()
     {
         // Arrange in setUp()

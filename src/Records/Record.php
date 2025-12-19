@@ -7,6 +7,8 @@ use Stringable;
 /**
  * It defines the abstract concept of a record of the 
  * ephemeris.
+ * 
+ * @codeCoverageIgnore
  */
 abstract class Record implements Stringable
 {

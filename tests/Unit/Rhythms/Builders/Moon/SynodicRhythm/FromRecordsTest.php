@@ -21,7 +21,7 @@ use MarcoConsiglio\Goniometry\Angle;
 #[UsesClass(SynodicRhythmRecord::class)]
 class FromRecordsTest extends BuilderTestCase
 {
-    #[TestDox("can build a Moon\SynodicRhythm collection from Moon\SynodicRhythmRecord instances.")]
+    #[TestDox("can build a Moon\SynodicRhythm collection from Moon SynodicRhythmRecord instances.")]
     public function test_build_synodic_rhythm_from_records()
     {
         // Arrange in setUp()
@@ -30,7 +30,7 @@ class FromRecordsTest extends BuilderTestCase
         for ($i=0; $i < 2; $i++) { 
             $records[$i] = new SynodicRhythmRecord(
                 $this->getRandomSwissEphemerisDateTime(),
-                $this->getRandomAngle(180),
+                $this->getRandomPositiveAngle(180),
                 $this->getRandomMoonDailySpeed()
             );
         }
@@ -49,7 +49,7 @@ class FromRecordsTest extends BuilderTestCase
         ); 
     }
 
-    #[TestDox("cannot build a Moon\SynodicRhythm collection without Moon\SynodicRhythmRecord instances.")]
+    #[TestDox("cannot build a Moon\SynodicRhythm collection without Moon SynodicRhythmRecord instances.")]
     public function test_from_records_builder_wants_synodic_rhythm_records()
     {
         // Arrange
