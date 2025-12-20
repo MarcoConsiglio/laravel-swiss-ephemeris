@@ -1,6 +1,9 @@
 # Development Roadmap
 Emphasis will be placed on prioritizing the functions necessary for the creation of a biodynamic calendar.
 
+- [ ] POV
+  - [x] Geocentric
+  - [ ] Topocentric 
 - [ ] Planets
   - [ ] Moon
     - [ ] Position
