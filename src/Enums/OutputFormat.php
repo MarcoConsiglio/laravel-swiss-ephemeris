@@ -5,6 +5,8 @@ namespace MarcoConsiglio\Ephemeris\Enums;
  * The Swiss ephemeris responses are formatted with the 
  * following codes. Each code corresponds to a column of 
  * a data type.
+ * 
+ * @codeCoverageIgnore
  */
 enum OutputFormat: string {
     case Year = 'y';

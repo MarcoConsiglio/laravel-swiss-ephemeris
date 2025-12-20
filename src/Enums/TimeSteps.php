@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Ephemeris\Enums;
 
 /**
  * The command flags refering to the format of the CommandFlag::TimeSteps.
+ * 
+ * @codeCoverageIgnore
  */
 enum TimeSteps: string {
     /**

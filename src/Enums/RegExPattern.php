@@ -5,6 +5,7 @@ namespace MarcoConsiglio\Ephemeris\Enums;
  * A list of regular expressions used to match the Swiss Ephemeris response.
  */
 enum RegExPattern: string {
+    // @codeCoverageIgnoreStart
     /**
      * It matches a datetime of the Gregorian or Julian calendar, Universal Time or Terrestrial Time.
     */
@@ -61,6 +62,7 @@ enum RegExPattern: string {
      * It matches looking back a word bound and three spaces.
      */
     public const ThreeSpaceDelimiter = '(?<=\b\s\s\s)';
+    // @codeCoverageIgnoreEnd
 
     /**
      * Construct a regular expression adding delimiters.

@@ -4,6 +4,8 @@ namespace MarcoConsiglio\Ephemeris\Enums\Moon;
 /**
  * Moon periods definitions.
  * A moon period is a fraction of a moon phase cycle.
+ * 
+ * @codeCoverageIgnore
  */
 enum Period
 {
