@@ -3,7 +3,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\Console\Kernel as TestbenchConsoleKernel;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
@@ -44,8 +43,12 @@ abstract class TestCase extends OrchestraTestCase
         parent::setUp();
         $this->createApplication();
         $this->ephemeris = new LaravelSwissEphemeris(
-            Config::get("ephemeris.latitude"), 
-            Config::get("ephemeris.longitude"),
+            // new TopocentricLocale(
+            //     Config::get("ephemeris.latitude"), 
+            //     Config::get("ephemeris.longitude"),
+            //     Config::get("ephemeris.altitude")
+            // ),
+            null,
             Config::get("ephemeris.timezone")
         );
         $this->setUpFaker();
@@ -59,11 +62,11 @@ abstract class TestCase extends OrchestraTestCase
      */
     protected function defineEnvironment($app) 
     {
-        // Setup default database to use sqlite :memory:
         tap($app['config'], function (Repository $config) { 
             $config->set('ephemeris', [
                 'latitude' => 51.47783333,
                 'longitude' => 0.0,
+                'altitude' => 0,
                 'timezone' => 'Europe/London'
             ]);
         });

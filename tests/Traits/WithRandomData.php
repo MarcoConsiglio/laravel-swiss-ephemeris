@@ -136,7 +136,7 @@ trait WithRandomData
     }
 
     /**
-     * Get a random positive sexadecimal value, useful to create an Angle from
+     * Returns a random positive sexadecimal value, useful to create an Angle from
      * a decimal value.
      *
      * @param float|null|null $limit
@@ -150,5 +150,18 @@ trait WithRandomData
         }
         $limit = $limit ?? Angle::MAX_DEGREES;
         return $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $limit);
+    }
+
+    /**
+     * Returns a random relative (positive or negative) sexadecimal value, useful 
+     * to create an Angle from a decimal value.
+     *
+     * @param float|null|null $limit
+     * @return float
+     */
+    protected function getRandomRelativeSexadecimalValue(float|null $limit = null): float
+    {
+        $value = $this->getRandomPositiveSexadecimalValue($limit);
+        return $this->faker->randomElement([-$value, $value]);
     }
 }

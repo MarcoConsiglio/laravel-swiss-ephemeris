@@ -14,10 +14,9 @@ use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
+use MarcoConsiglio\Ephemeris\Observer\Geocentric;
 use MarcoConsiglio\Ephemeris\Observer\PointOfView;
-use MarcoConsiglio\Ephemeris\Output;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\TopocentricLocale;
 
 /**
  * The template for an ephemeris query.
@@ -142,7 +141,7 @@ abstract class QueryTemplate
         $this->start_date = $start_date;
         $this->days = $days;
         $this->step_size = $step_size;  
-        $this->pov = $pov; 
+        $this->pov = $pov ?? new Geocentric; 
     }
 
     /**

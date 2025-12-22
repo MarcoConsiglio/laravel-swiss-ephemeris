@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates\Moon;
 
+use ErrorException;
 use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use ErrorException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -32,7 +32,7 @@ class SynodicRhythmTemplateTest extends TemplateTestCase
         $command = $this->getMocked(Command::class);
         $command->expects($this->any())->method("addFlag");
         $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
-        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $runner, $command);
+        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $this->pov, $runner, $command);
 
         // Act
         $object = $template->getResult();
@@ -51,7 +51,7 @@ class SynodicRhythmTemplateTest extends TemplateTestCase
         /** @var Command&MockObject $command */
         $command = $this->getMocked(Command::class);
         $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
-        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $runner, $command);
+        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $this->pov, $runner, $command);
 
         // Assert
         $this->expectException(ErrorException::class);

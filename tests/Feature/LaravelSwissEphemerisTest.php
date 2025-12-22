@@ -4,14 +4,11 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
-use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Laravel Swiss Ephemeris")]

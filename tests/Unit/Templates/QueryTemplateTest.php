@@ -3,14 +3,14 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates;
 
 use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
-use PHPUnit\Framework\MockObject\MockObject;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
-use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
+use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
 #[CoversClass(QueryTemplate::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
@@ -40,7 +40,7 @@ class QueryTemplateTest extends TemplateTestCase
                 "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
-            constructor_arguments: [$date, 30, 60, $shell, $command]
+            constructor_arguments: [$date, 30, 60, null, $shell, $command]
         );
 
         // Act
@@ -67,7 +67,7 @@ class QueryTemplateTest extends TemplateTestCase
                 "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
-            constructor_arguments: [$date, 30, 60, $shell, $command]
+            constructor_arguments: [$date, 30, 60, null, $shell, $command]
         );
 
         // Act
@@ -91,7 +91,7 @@ class QueryTemplateTest extends TemplateTestCase
                 "removeEmptyLines", "parseOutput", "remapColumns", "buildObject", "fetchObject"
             ],
             original_constructor: true,
-            constructor_arguments: [$date, 30, 60, $shell, $command]
+            constructor_arguments: [$date, 30, 60, null, $shell, $command]
         );
 
         // Assert
