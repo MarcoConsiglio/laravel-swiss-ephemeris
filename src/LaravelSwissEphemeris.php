@@ -47,40 +47,21 @@ class LaravelSwissEphemeris
     const SWISS_EPHEMERIS_PATH = "swiss_ephemeris";
 
     /**
-     * The latitude coordinate used to query the Swiss Ephemeris.
-     *
-     * @var float
+     * Latitude, longitude and altitude of a topocentric point of view.
      */
-    protected float $latitude;
+    public TopocentricLocale|null $locale;
 
     /**
-     * The longitude coordinate used to query the Swiss Ephemeris.
-     *
-     * @var float
-     */
-    protected float $longitude;
-
-    /**
-     * The timezone used to calculate the local time for The time zone used to convert local time to universal time, 
-     * to obtain a precise moment in which to consult the Swiss Ephemeris.
+     * The timezone used to calculate the local time for the time zone choose.
      *
      * @var string
      */
-    protected string $timezone;
-
-    /**
-     * The altitude above sea level in meters of the observation point for which the ephemeris is queried.
-     *
-     * @var float
-     */
-    protected float $altitude;
+    protected string|null $timezone;
 
     /**
      * Construct the ephemeris.
      *
-     * @param string $latitude in decimal format.
-     * @param string $longitude in decimal format.
-     * @param string $timezone like "Europe/London"
+     * @param TopocentricLocale|null $locale The topocentric point of view.
      * @param float $altitude in meters.
      * @param Exec|DryRunner|FakeRunner|null $shell The shell wrapper used to execute the command. 
      * Use this only for testing purposes, not in production environment.
@@ -88,17 +69,13 @@ class LaravelSwissEphemeris
      * Use this only for testing purposes, not in production environment.
      */
     public function __construct(
-        float $latitude, 
-        float $longitude, 
-        string $timezone, 
-        float $altitude = 0.0, 
-        Exec|DryRunner|FakeRunner|null $shell = null, 
-        ?Command $command = null
+        TopocentricLocale|null          $locale, 
+        string|null                     $timezone = null, 
+        Exec|DryRunner|FakeRunner|null  $shell = null, 
+        ?Command                        $command = null
     ) {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
+        $this->locale = $locale;
         $this->timezone = $timezone; 
-        $this->altitude = $altitude;
         $this->shell = $shell ?? new Exec();
         $this->command = $command ?? new Command(
             resource_path('swiss_ephemeris') . DIRECTORY_SEPARATOR . self::SWISS_EPHEMERIS_EXECUTABLE
@@ -120,13 +97,8 @@ class LaravelSwissEphemeris
         int $days = 30, 
         int $step_size = 60): SynodicRhythm
     {
-        $query = new SynodicRhythmTemplate(
-            $this->normalizeDatetime($start_date), 
-            $days, 
-            $step_size, 
-            $this->shell, 
-            $this->command
-        );
+        $start_date = $this->normalizeDatetime($start_date);
+        $query = new SynodicRhythmTemplate($start_date, $days, $step_size, $this->locale, $this->shell, $this->command);
         return $query->getResult();
     }
 
@@ -147,19 +119,8 @@ class LaravelSwissEphemeris
     ): AnomalisticRhythm 
     {
         $start_date = $this->normalizeDatetime($start_date);
-        $apogees_query = new ApogeeTemplate(
-            $start_date, 
-            $days, $step_size, 
-            $this->shell, 
-            $this->command
-        );
-        $perigees_query = new PerigeeTemplate(
-            $start_date, 
-            $days, 
-            $step_size, 
-            $this->shell, 
-            $this->command
-        );
+        $apogees_query = new ApogeeTemplate($start_date, $days, $step_size, null, $this->shell, $this->command);
+        $perigees_query = new PerigeeTemplate($start_date, $days, $step_size, null, $this->shell, $this->command);
         $apogees = $apogees_query->getResult();
         $perigees = $perigees_query->getResult();
         return new AnomalisticRhythm(new FromCollections($apogees, $perigees));
@@ -182,7 +143,7 @@ class LaravelSwissEphemeris
     ): DraconicRhythm
     {
         $start_date = $this->normalizeDatetime($start_date);
-        $query = new DraconicTemplate($start_date, $days, $step_size, $this->shell, $this->command);
+        $query = new DraconicTemplate($start_date, $days, $step_size, null, $this->shell, $this->command);
         $draconic_rhythm = $query->getResult();
         return $draconic_rhythm;
     }

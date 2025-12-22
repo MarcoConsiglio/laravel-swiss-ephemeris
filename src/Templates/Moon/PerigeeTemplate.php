@@ -55,6 +55,7 @@ class PerigeeTemplate extends AnomalisticTemplate
     {
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarPerigee->value));
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $this->output_format));
+        parent::setFlags();
     }
 
     /**

@@ -15,7 +15,6 @@ class SwissEphemerisError extends ErrorException
      */
     public function __construct(array $errors) 
     {
-        // $this->removeNonStringElements($errors);    
         $unique_errors = $this->unique($errors);
         $this->message = $this->makeMessage($unique_errors);
         $this->severity = E_RECOVERABLE_ERROR;

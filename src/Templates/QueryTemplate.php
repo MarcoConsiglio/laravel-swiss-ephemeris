@@ -6,6 +6,7 @@ use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
+use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
@@ -13,8 +14,10 @@ use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
+use MarcoConsiglio\Ephemeris\Observer\PointOfView;
 use MarcoConsiglio\Ephemeris\Output;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\TopocentricLocale;
 
 /**
  * The template for an ephemeris query.
@@ -53,6 +56,13 @@ abstract class QueryTemplate
      */
     protected int $step_size;
 
+    /**
+     * The topocentric locale.
+     *
+     * @var PointOfView|null
+     */
+    protected PointOfView|null $pov;
+
     /** 
      * @var Exec|DryRunner|FakeRunner|null $shell The shell wrapper used to execute the command. 
      * Use this only for testing purposes, not in production environment.
@@ -76,9 +86,9 @@ abstract class QueryTemplate
     /**
      * The output from the swetest executable.
      *
-     * @var Output
+     * @var array|Collection
      */
-    protected Output $output;
+    protected array|Collection $output;
 
     /**
      * Indicates whether the template is completed or not.
@@ -109,17 +119,19 @@ abstract class QueryTemplate
      * @param integer $days The length of the requested ephemeris interval.
      * @param integer $step_size The sampling rate of the ephemeris expressed 
      * in minutes per each step of the ephemeris response.
+     * @param PointOfView|null $pov The point of View
      * @param Exec|DryRunner|FakeRunner|null $shell The shell used to call the "swetest" executable.
      * Do not use this parameter unless for testing purposes.
      * @param Command|null $command The command to be executed.
      * This parameter is useless and it will be deprecated.
      */
     public function __construct(
-        SwissEphemerisDateTime $start_date, 
-        int $days = 30, 
-        int $step_size = 60,
-        Exec|DryRunner|FakeRunner|null $shell = null, 
-        ?Command $command = null
+        SwissEphemerisDateTime          $start_date, 
+        int                             $days = 30, 
+        int                             $step_size = 60,
+        PointOfView|null                $pov = null,
+        Exec|DryRunner|FakeRunner|null  $shell = null, 
+        Command|null                    $command = null
     ) {
         $this->shell = $shell ?? new Exec();
         $this->command = $command ?? new Command(
@@ -129,7 +141,8 @@ abstract class QueryTemplate
         );     
         $this->start_date = $start_date;
         $this->days = $days;
-        $this->step_size = $step_size;   
+        $this->step_size = $step_size;  
+        $this->pov = $pov; 
     }
 
     /**
@@ -217,13 +230,13 @@ abstract class QueryTemplate
         if ($this->shell instanceof Exec) {
             $this->shell->run($this->command);
             $this->return_value = $this->shell->getReturnValue();
-            $this->output = new Output($this->shell->getOutput());
+            $this->output = collect($this->shell->getOutput());
         } 
 
         // Used for testing purposes.
         if ($this->shell instanceof FakeRunner) {
             $fake_output = $this->shell->getStandardOut();
-            $this->output = new Output(explode(PHP_EOL, $fake_output));
+            $this->output = collect(explode(PHP_EOL, $fake_output));
         }
     }
 
@@ -327,6 +340,12 @@ abstract class QueryTemplate
      */
     abstract public function getResult();
 
+    /**
+     * Remap columns to have names speci
+     *
+     * @param array $columns
+     * @return void
+     */
     protected function remapColumnsBy(array $columns)
     {
         $this->output->transform(function ($record) use ($columns) {
@@ -445,4 +464,17 @@ abstract class QueryTemplate
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
     }
 
+    /**
+     * Returns a string representation of the TopocentricLocale used
+     * as argument in the `swetest` executable to obtain a topocentric
+     * point of view in the ephemeris response.
+     *
+     * @return string|null
+     */
+    protected function getTopocentricArguments(): string|null
+    {
+        if ($this->locale) {
+            return "[{$this->locale->longitude},{$this->locale->latitude},{$this->locale->altitude}]";
+        } else return $this->locale;
+    }
 }

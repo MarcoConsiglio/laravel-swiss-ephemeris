@@ -70,6 +70,9 @@ class DraconicTemplate extends QueryTemplate
             SinglePlanet::Moon->value.SinglePlanet::TrueLunarNode->value
         ));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $this->output_format));       
+        // Only the geocentric point of view is acceptable, so no other
+        // point view will be accepted.
+        $this->pov->setPointOfView($this->command, function() {return false;});
     }
 
     /**

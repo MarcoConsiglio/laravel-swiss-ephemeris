@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
+use MarcoConsiglio\Ephemeris\Enums\ObserverPosition;
 use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
@@ -68,7 +69,9 @@ class SynodicRhythmTemplate extends QueryTemplate
     {
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::DifferentialObjectSelection->value, SinglePlanet::Sun->value));
-        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $this->output_format));       
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $this->output_format));
+        // All PointOfView are acceptable for this QueryTemplate.
+        $this->pov->setPointOfView($this->command, function() {return true;});
     }
 
     /**

@@ -13,9 +13,9 @@ enum ObserverPosition: string
      */
     case Heliocentric = "hel";
     /**
-     * Observation from the solar system baricenter, which is close to the Sun.
+     * Observation from the solar system barycenter, which is close to the Sun.
      */
-    case Baricentric = "bary";
+    case Barycentric = "bary";
     /**
      * Observation from a specific point on the Earth surface.
      */

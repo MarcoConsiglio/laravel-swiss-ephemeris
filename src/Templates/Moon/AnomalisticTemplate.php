@@ -60,4 +60,10 @@ abstract class AnomalisticTemplate extends QueryTemplate
         return static::$columns;
     }
 
+    protected function setFlags(): void
+    {
+        // Only the geocentric point of view is acceptable, so no other
+        // point view will be accepted.
+        $this->pov->setPointOfView($this->command, function() {return false;});
+    }
 }

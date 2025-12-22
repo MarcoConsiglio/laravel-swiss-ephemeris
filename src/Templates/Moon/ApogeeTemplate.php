@@ -54,6 +54,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     {
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarApogee->value));
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $this->output_format));
+        parent::setFlags();
     }
 
     /**
