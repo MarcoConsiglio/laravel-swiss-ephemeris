@@ -80,22 +80,23 @@ abstract class TestCase extends StrategyTestCase
      */
     protected function getRandomNonNodeRecord(): DraconicRecord
     {
-        $longitude = $this->getRandomPositiveSexadecimalValue();
         $opposite = $this->getSpecificAngle(-180);
-        [$north_min_longitude, $north_max_longitude] = $this->getDeltaExtremes($this->delta, $longitude); 
+        $north_node_longitude = $this->getRandomPositiveSexadecimalValue();
+        $north_node_angle_longitude = $this->getSpecificAngle($north_node_longitude);
+        $south_max_longitude = Angle::absSum($north_node_angle_longitude, $opposite)->toDecimal();
+        [$north_min_longitude, $north_max_longitude] = $this->getDeltaExtremes($this->delta, $north_node_longitude); 
         $south_min_longitude = Angle::absSum($this->getSpecificAngle($north_max_longitude), $opposite)->toDecimal();
         $south_max_longitude = Angle::absSum($this->getSpecificAngle($north_min_longitude), $opposite)->toDecimal();
-        $moon_longitude = $this->getSpecificAngle($longitude);
-        $north_node_longitude = $this->getSpecificAngle(
+        $moon_angle_longitude = $this->getSpecificAngle(
             $this->faker->randomElement([
                 $this->faker->randomFloat(PHP_FLOAT_DIG, $north_max_longitude, $south_min_longitude),
-                $this->faker->randomFloat(PHP_FLOAT_DIG, $north_min_longitude, $south_max_longitude)
+                $this->faker->randomFloat(PHP_FLOAT_DIG, $south_max_longitude, $north_min_longitude)
             ])
         );
         return new DraconicRecord(
             $this->date,
-            $moon_longitude,
-            $north_node_longitude,
+            $moon_angle_longitude,
+            $north_node_angle_longitude,
             $this->daily_speed
         );
     }

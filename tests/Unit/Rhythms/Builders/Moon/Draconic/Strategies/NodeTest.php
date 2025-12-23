@@ -46,13 +46,11 @@ class NodeTest extends TestCase
         $strategy_1 = $this->makeStrategy($south_node_record);
         $strategy_2 = $this->makeStrategy($non_node_record);
 
-        // Act
-        $accepted_record = $strategy_1->found();
-
-        // Assert
-        $this->assertRecordFound($south_node_record, $accepted_record);
-        $this->assertNull($strategy_2->found());
+        // Act & Assert
+        $this->assertRecordFound($south_node_record, $strategy_1->found());
+        $this->assertRecordNotFound($strategy_2->found());
     }
+
 
     /**
      * Construct the strategy to test.
