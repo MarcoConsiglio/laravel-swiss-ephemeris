@@ -8,6 +8,7 @@ use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use Carbon\CarbonInterface;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
+use MarcoConsiglio\Ephemeris\Observer\PointOfView;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollections;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
@@ -47,9 +48,9 @@ class LaravelSwissEphemeris
     const SWISS_EPHEMERIS_PATH = "swiss_ephemeris";
 
     /**
-     * Latitude, longitude and altitude of a topocentric point of view.
+     * The point of view of the observer.
      */
-    public TopocentricLocale|null $locale;
+    public PointOfView|null $pov;
 
     /**
      * The timezone used to calculate the local time for the time zone choose.
@@ -61,25 +62,22 @@ class LaravelSwissEphemeris
     /**
      * Construct the ephemeris.
      *
-     * @param TopocentricLocale|null $locale The topocentric point of view.
-     * @param float $altitude in meters.
+PointOfView     * @param float $altitude in meters.
      * @param Exec|DryRunner|FakeRunner|null $shell The shell wrapper used to execute the command. 
      * Use this only for testing purposes, not in production environment.
      * @param ?Command $command The command to execute. 
      * Use this only for testing purposes, not in production environment.
      */
     public function __construct(
-        TopocentricLocale|null          $locale, 
+        PointOfView|null                $pov, 
         string|null                     $timezone = null, 
         Exec|DryRunner|FakeRunner|null  $shell = null, 
         ?Command                        $command = null
     ) {
-        $this->locale = $locale;
+        $this->pov = $pov;
         $this->timezone = $timezone; 
-        $this->shell = $shell ?? new Exec();
-        $this->command = $command ?? new Command(
-            resource_path('swiss_ephemeris') . DIRECTORY_SEPARATOR . self::SWISS_EPHEMERIS_EXECUTABLE
-        );
+        $shell ?? $this->resetShell();
+        $command ?? $this->resetCommand();
     }
 
     /**
@@ -98,7 +96,7 @@ class LaravelSwissEphemeris
         int $step_size = 60): SynodicRhythm
     {
         $start_date = $this->normalizeDatetime($start_date);
-        $query = new SynodicRhythmTemplate($start_date, $days, $step_size, $this->locale, $this->shell, $this->command);
+        $query = new SynodicRhythmTemplate($start_date, $days, $step_size, $this->pov, $this->resetShell(), $this->resetCommand());
         return $query->getResult();
     }
 
@@ -119,8 +117,8 @@ class LaravelSwissEphemeris
     ): AnomalisticRhythm 
     {
         $start_date = $this->normalizeDatetime($start_date);
-        $apogees_query = new ApogeeTemplate($start_date, $days, $step_size, null, $this->shell, $this->command);
-        $perigees_query = new PerigeeTemplate($start_date, $days, $step_size, null, $this->shell, $this->command);
+        $apogees_query = new ApogeeTemplate($start_date, $days, $step_size, null, $this->resetShell(), $this->resetCommand());
+        $perigees_query = new PerigeeTemplate($start_date, $days, $step_size, null, $this->resetShell(), $this->resetCommand());
         $apogees = $apogees_query->getResult();
         $perigees = $perigees_query->getResult();
         return new AnomalisticRhythm(new FromCollections($apogees, $perigees));
@@ -143,7 +141,7 @@ class LaravelSwissEphemeris
     ): DraconicRhythm
     {
         $start_date = $this->normalizeDatetime($start_date);
-        $query = new DraconicTemplate($start_date, $days, $step_size, null, $this->shell, $this->command);
+        $query = new DraconicTemplate($start_date, $days, $step_size, null, $this->resetShell(), $this->resetCommand());
         $draconic_rhythm = $query->getResult();
         return $draconic_rhythm;
     }
@@ -173,5 +171,17 @@ class LaravelSwissEphemeris
         if (! $datetime instanceof SwissEphemerisDateTime) 
             return $this->transformDatetime($datetime); // @codeCoverageIgnore
         else return $datetime;
+    }
+
+    protected function resetShell(): Exec
+    {
+        return $this->shell = new Exec();
+    }
+
+    protected function resetCommand(): Command
+    {
+        return $this->command = new Command(
+            resource_path('swiss_ephemeris') . DIRECTORY_SEPARATOR . self::SWISS_EPHEMERIS_EXECUTABLE
+        );
     }
 }
