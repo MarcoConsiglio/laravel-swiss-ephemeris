@@ -249,7 +249,7 @@ abstract class QueryTemplate
     protected function checkErrors(): void 
     {
         $errors_list = [];
-        $this->output->each(function($row) use(&$errors_list) {
+        $this->output->each(function($row) use(&$errors_list): void {
             if (preg_match(
                     RegExPattern::SwetestError->value, 
                     $row, 

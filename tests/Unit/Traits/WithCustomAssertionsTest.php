@@ -15,7 +15,7 @@ class WithCustomAssertionsTest extends TestCase
     use WithCustomAssertions;
 
     #[TestDox("you can assert a date is what you expect.")]
-    public function test_assert_date()
+    public function test_assert_date(): void
     {
         // Arrange
         $year = 2000; $month = 1; $day = 1; $hour = 0; $minute = 0; $second = 0;
@@ -27,7 +27,7 @@ class WithCustomAssertionsTest extends TestCase
     }
 
     #[TestDox("you can throw ExpectationFailedException if the date is not what you expect.")]
-    public function test_assert_date_exception()
+    public function test_assert_date_exception(): void
     {
         // Arrange
         $year = 2000; $month = 1; $day = 1; $hour = 0; $minute = 0; $second = 0;

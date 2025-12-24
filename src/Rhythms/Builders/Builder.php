@@ -68,7 +68,7 @@ abstract class Builder implements BuilderInterface
     {
         $records = collect($this->data);
         $concrete_builder = static::class;
-        $records->each(function ($item) use ($record_class, $concrete_builder){
+        $records->each(function ($item) use ($record_class, $concrete_builder): void{
             if (! $item instanceof $record_class) {
                 throw new InvalidArgumentException(
                     $this->getInvalidRecordTypeMessage($concrete_builder, $record_class)

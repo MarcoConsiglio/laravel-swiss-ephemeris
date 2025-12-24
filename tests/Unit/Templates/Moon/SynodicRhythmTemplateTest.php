@@ -21,7 +21,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 class SynodicRhythmTemplateTest extends TemplateTestCase
 {
     #[TestDox("is the template used to build a Moon\SynodicRhythm collection.")]
-    public function test_query_template()
+    public function test_query_template(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/synodic_rhythm_decimal.txt";
@@ -41,7 +41,7 @@ class SynodicRhythmTemplateTest extends TemplateTestCase
         $this->assertInstanceOf(SynodicRhythm::class, $object);
     }
 
-    public function test_parse_error()
+    public function test_parse_error(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/synodic_rhythm_malformed.txt";

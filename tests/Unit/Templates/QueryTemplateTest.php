@@ -24,7 +24,7 @@ class QueryTemplateTest extends TemplateTestCase
     protected string $response_file;
 
     #[TestDox("removes warning lines when it encounters them.")]
-    public function test_checkWarnings_removes_warnings_lines()
+    public function test_checkWarnings_removes_warnings_lines(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/warnings.txt";
@@ -51,7 +51,7 @@ class QueryTemplateTest extends TemplateTestCase
     }
 
     #[TestDox("removes notices lines when it encounters them.")]
-    public function test_checkNotices_removes_notices_lines()
+    public function test_checkNotices_removes_notices_lines(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/warnings.txt";
@@ -77,7 +77,7 @@ class QueryTemplateTest extends TemplateTestCase
         $this->assertCount(1, $template->notices);
     }
 
-    public function test_checkErrors_catch_SwissEphemerisError()
+    public function test_checkErrors_catch_SwissEphemerisError(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/errors.txt";

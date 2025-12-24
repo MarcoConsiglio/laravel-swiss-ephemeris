@@ -17,7 +17,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 class PeriodTest extends TestCase
 {
     #[TestDox("has read-only properties \"start\" and '\"end\" which are SwissEphemerisDateTime.")]
-    public function test_getters()
+    public function test_getters(): void
     {
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();
@@ -29,7 +29,7 @@ class PeriodTest extends TestCase
     }
 
     #[TestDox("can be a waxing one.")]
-    public function test_is_waxing()
+    public function test_is_waxing(): void
     {
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();
@@ -42,7 +42,7 @@ class PeriodTest extends TestCase
     }
 
     #[TestDox("can be a waning one.")]
-    public function test_is_waning()
+    public function test_is_waning(): void
     {
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();
@@ -55,7 +55,7 @@ class PeriodTest extends TestCase
     }
 
     #[TestDox("can be casted to string.")]
-    public function test_casting_to_string()
+    public function test_casting_to_string(): void
     {
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();

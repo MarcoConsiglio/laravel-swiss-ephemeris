@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 class SwissEphemerisFlagTest extends TestCase
 {
     #[TestDox("can cast the flag to string in the proper format acepted by the Swiss Ephemeris executable.")]
-    public function test_cast_a_flag_to_string()
+    public function test_cast_a_flag_to_string(): void
     {
         // Arrange
         $flag_name = $this->faker->randomLetter();

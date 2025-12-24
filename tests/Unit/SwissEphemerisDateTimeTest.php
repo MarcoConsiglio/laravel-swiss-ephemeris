@@ -63,7 +63,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     public const JULIAN_UT = self::JULIAN_DATE." ".self::TIME_FORMAT." ".self::UT;
 
     #[TestDox("is a Carbon instance.")]
-    public function test_is_a_carbon_instance()
+    public function test_is_a_carbon_instance(): void
     {
         // Arrange
         
@@ -76,7 +76,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can format a datetime to Universal Time format of the Gregorian calendar.")]
-    public function test_ut_greg_format()
+    public function test_ut_greg_format(): void
     {
         // Arrange
         $expected_format = self::GREGORIAN_UT;
@@ -96,7 +96,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can format a datetime to Terrestrial Time format of the Gregorian calendar.")]
-    public function test_tt_greg_format()
+    public function test_tt_greg_format(): void
     {
         // Arrange
         $expected_format = self::GREGORIAN_TT;
@@ -116,7 +116,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can format a datetime to Terrestrial Time format of the Julian calendar.")]
-    public function test_tt_jul_format()
+    public function test_tt_jul_format(): void
     {
         // Arrange
         $expected_format = self::JULIAN_TT;
@@ -137,7 +137,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can format a datetime to Terrestrial Time format of the Julian calendar.")]
-    public function test_ut_jul_format()
+    public function test_ut_jul_format(): void
     {
         // Arrange
         $expected_format = self::JULIAN_UT;
@@ -157,7 +157,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can format a date to the Gregorian calendar.")]
-    public function test_gregorian_date()
+    public function test_gregorian_date(): void
     {
         // Arrange
         $expected_format = self::GREGORIAN_DATE;
@@ -177,7 +177,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can format a date to the Julian calendar.")]
-    public function test_julian_date()
+    public function test_julian_date(): void
     {
         // Arrange
         $expected_format = self::JULIAN_DATE;
@@ -197,7 +197,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can be created from a Gregorian date and Universal Time.")]
-    public function test_can_create_from_gregorian_ut()
+    public function test_can_create_from_gregorian_ut(): void
     {
         // Arrange
         $date = "01.01.2000 0:00:00 UT";
@@ -217,7 +217,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can be created from a Gregorian date and Terrestrial Time.")]
-    public function test_can_create_from_gregorian_tt()
+    public function test_can_create_from_gregorian_tt(): void
     {
         // Arrange
         $date = "01.01.2000 0:00:00 TT";
@@ -237,7 +237,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can be created from a Julian date and Universal Time.")]
-    public function test_can_create_from_julian_ut()
+    public function test_can_create_from_julian_ut(): void
     {
         // Arrange
         $date = "01.01.2000j 0:00:00 UT";
@@ -257,7 +257,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can be created from a Julian date and Terrestrial Time.")]
-    public function test_can_create_from_julian_tt()
+    public function test_can_create_from_julian_tt(): void
     {
         // Arrange
         $date = "01.01.2000j 0:00:00 TT";
@@ -277,7 +277,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can be created from any available format.")]
-    public function test_can_create_from_any_available_format()
+    public function test_can_create_from_any_available_format(): void
     {
         // Arrange
         $gregorianTT_date = "01.01.2000 0:00:00 TT";
@@ -306,7 +306,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("cannot be created from unavailable format.")]
-    public function test_cannot_create_from_unavailable_format()
+    public function test_cannot_create_from_unavailable_format(): void
     {
         // Arrange
         $datetime_class = SwissEphemerisDateTime::class;
@@ -321,7 +321,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can be casted to string.")]
-    public function test_can_be_casted_to_string()
+    public function test_can_be_casted_to_string(): void
     {
         // Arrange
         $timestamp = "01.01.2000 0:00:00 TT";
@@ -335,7 +335,7 @@ class SwissEphemerisDateTimeTest extends TestCase
         $this->assertEquals($expected_string, $string);
     }
 
-    public function test_can_be_create_from_carbon_instance()
+    public function test_can_be_create_from_carbon_instance(): void
     {
         // Arrange
         $carbon = Carbon::create(2000);
@@ -360,7 +360,7 @@ class SwissEphemerisDateTimeTest extends TestCase
     }
 
     #[TestDox("can return all available datetime formats used by the Swiss Ephemeris.")]
-    public function test_can_return_all_available_formats()
+    public function test_can_return_all_available_formats(): void
     {
         // Arrange
         $expected_formats = [

@@ -13,7 +13,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 class PhaseRecordTest extends TestCase
 {
     #[TestDox("has read-only property \"type\" which is a Phase enumeration.")]
-    public function test_type_property()
+    public function test_type_property(): void
     {
         // Arrange
         $moon_phase_type = $this->getRandomMoonPhase();
@@ -26,7 +26,7 @@ class PhaseRecordTest extends TestCase
     }
 
     #[TestDox("has read-only property \"timestamp\" which is a SwissEphemerisDateTime.")]
-    public function test_timestamp_property()
+    public function test_timestamp_property(): void
     {
         // Arrange
         $moon_phase_type = $this->getRandomMoonPhase();
@@ -38,7 +38,7 @@ class PhaseRecordTest extends TestCase
     }
 
     #[TestDox("can be casted to string.")]
-    public function test_casting_to_string()
+    public function test_casting_to_string(): void
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();

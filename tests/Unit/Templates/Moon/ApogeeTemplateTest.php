@@ -22,7 +22,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 class ApogeeTemplateTest extends TemplateTestCase
 {
     #[TestDox("is the template used to build a Moon\Apogees collection.")]
-    public function test_query_template()
+    public function test_query_template(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/apogees_decimal.txt";
@@ -42,7 +42,7 @@ class ApogeeTemplateTest extends TemplateTestCase
         $this->assertInstanceOf(Apogees::class, $object);
     }
 
-    public function test_parse_error()
+    public function test_parse_error(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/apogees_malformed.txt";

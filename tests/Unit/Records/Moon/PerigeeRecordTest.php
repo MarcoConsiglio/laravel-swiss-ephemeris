@@ -19,7 +19,7 @@ class PerigeeRecordTest extends TestCase
     use WithRecordsComparison;
 
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
-    public function test_timestamp_property()
+    public function test_timestamp_property(): void
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();
@@ -34,7 +34,7 @@ class PerigeeRecordTest extends TestCase
     }
 
     #[TestDox("has \"moon_longitude\" and \"perigee_longituded\" property which are Angle.")]
-    public function test_moon_and_apogee_longitude_properties()
+    public function test_moon_and_apogee_longitude_properties(): void
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
@@ -49,13 +49,13 @@ class PerigeeRecordTest extends TestCase
     }
 
     #[TestDox("can establish equality with another record of the same type.")]
-    public function test_equals_method()
+    public function test_equals_method(): void
     {
         $this->testEqualComparison(4);
     }
 
     #[TestDox("can be casted to string.")]
-    public function test_casting_to_string()
+    public function test_casting_to_string(): void
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();

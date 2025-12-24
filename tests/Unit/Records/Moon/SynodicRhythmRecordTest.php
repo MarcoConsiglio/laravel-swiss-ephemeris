@@ -17,7 +17,7 @@ class SynodicRhythmRecordTest extends TestCase
     use WithRecordsComparison;
 
     #[TestDox("has read-only properties \"timestamp\" which is a SwissEphemerisDateTime.")]
-    public function test_timestamp_property()
+    public function test_timestamp_property(): void
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();
@@ -30,7 +30,7 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     #[TestDox("has read-only properties 'angular_distance' which is an Angle.")]
-    public function test_angular_distance_property()
+    public function test_angular_distance_property(): void
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
@@ -43,7 +43,7 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     #[TestDox("has read-only properties 'percentage' which is an integer.")]
-    public function test_percentage_property()
+    public function test_percentage_property(): void
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
@@ -57,7 +57,7 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     #[TestDox("had read-only properties 'daily_speed' which is a float.")]
-    public function test_daily_speed_property()
+    public function test_daily_speed_property(): void
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
@@ -70,7 +70,7 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     #[TestDox("may belong to a waxing moon period.")]
-    public function test_is_waxing()
+    public function test_is_waxing(): void
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
@@ -89,7 +89,7 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     #[TestDox("may belong to a waning moon period.")]
-    public function test_is_waning()
+    public function test_is_waning(): void
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
@@ -108,13 +108,13 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     #[TestDox("can establish equality with another record of the same type.")]
-    public function test_equals_method()
+    public function test_equals_method(): void
     {
         $this->testEqualComparison(3);
     }
 
     #[TestDox("can determine which moon period it belongs to.")]
-    public function test_moon_period_type()
+    public function test_moon_period_type(): void
     {
         // Arrange
         $record_A = new SynodicRhythmRecord(
@@ -138,7 +138,7 @@ class SynodicRhythmRecordTest extends TestCase
     }
 
     #[TestDox("can be casted to string.")]
-    public function test_casting_to_string()
+    public function test_casting_to_string(): void
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();

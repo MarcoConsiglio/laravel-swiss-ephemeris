@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 class WarningTest extends TestCase
 {
     #[TestDox("matches warnings in the raw output.")]
-    public function test_can_find_a_warning()
+    public function test_can_find_a_warning(): void
     {
         // Arrange
         $warning = "warning:";

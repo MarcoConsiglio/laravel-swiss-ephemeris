@@ -22,7 +22,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 class PerigeeTemplateTest extends TemplateTestCase
 {
     #[TestDox("is the template used to build a Moon\Perigees collection.")]
-    public function test_query_template()
+    public function test_query_template(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/perigees_decimal.txt";
@@ -42,7 +42,7 @@ class PerigeeTemplateTest extends TemplateTestCase
         $this->assertInstanceOf(Perigees::class, $object);
     }
 
-    public function test_parse_error()
+    public function test_parse_error(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/perigees_malformed.txt";

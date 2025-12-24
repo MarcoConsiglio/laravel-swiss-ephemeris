@@ -17,7 +17,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class ApogeesTest extends RhythmTestCase
 {
     #[TestDox("is a collection of ApogeeRecord instances.")]
-    public function test_moon_apogees_is_a_collection()
+    public function test_moon_apogees_is_a_collection(): void
     {
         // Arrange
         /** @var FromArray&MockObject $apogees_builder */
@@ -39,7 +39,7 @@ class ApogeesTest extends RhythmTestCase
     }
 
     #[TestDox("can return a specific ApogeeRecord.")]
-    public function test_getters()
+    public function test_getters(): void
     {
         // Arrange
         /** @var FromArray&MockObject $apogees_builder */

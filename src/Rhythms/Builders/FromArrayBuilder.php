@@ -29,7 +29,7 @@ abstract class FromArrayBuilder extends Builder
     {
         $data = collect($this->data);
         $concrete_builder = static::class;
-        $data->each(function ($item) use ($columns, $concrete_builder) {
+        $data->each(function ($item) use ($columns, $concrete_builder): void {
             foreach ($columns as $key) {
                 if(!isset($item[$key])) {
                     throw new InvalidArgumentException(

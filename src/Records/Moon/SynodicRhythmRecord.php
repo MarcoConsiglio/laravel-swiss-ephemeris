@@ -60,10 +60,7 @@ class SynodicRhythmRecord extends MovingObjectRecord
      */
     public function isWaxing(): bool
     {
-        if ($this->angular_distance->isCounterClockwise()) {
-            return true;
-        }
-        return false;
+        return $this->angular_distance->isCounterClockwise();
     }
 
     /**
@@ -73,10 +70,7 @@ class SynodicRhythmRecord extends MovingObjectRecord
      */
     public function isWaning(): bool
     {
-        if ($this->angular_distance->isClockwise()) {
-            return true;
-        }
-        return false;
+        return $this->angular_distance->isClockwise();
     }
 
     /**

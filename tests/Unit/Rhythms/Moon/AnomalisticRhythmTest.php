@@ -17,7 +17,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 class AnomalisticRhythmTest extends RhythmTestCase
 {
     #[TestDox("is a collection of AnomalisticRecord instances.")]
-    public function test_moon_apogees_is_a_collection()
+    public function test_moon_apogees_is_a_collection(): void
     {
         // Arrange
         /** @var FromCollections&MockObject $builder */
@@ -39,7 +39,7 @@ class AnomalisticRhythmTest extends RhythmTestCase
     }
 
     #[TestDox("can return a specific AnomalisticRecord.")]
-    public function test_getters()
+    public function test_getters(): void
     {
         // Arrange
         /** @var FromCollections&MockObject $builder */

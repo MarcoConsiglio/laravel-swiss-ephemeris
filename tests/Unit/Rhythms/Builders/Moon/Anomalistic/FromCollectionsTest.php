@@ -29,7 +29,7 @@ use MarcoConsiglio\Goniometry\Angle;
 class FromCollectionsTest extends BuilderTestCase
 {
     #[TestDox("can build an AnomalisticRhythm collection from Apogees and Perigees collections.")]
-    public function test_build_anomalistic_rhythm_from_apogees_and_perigees_collection()
+    public function test_build_anomalistic_rhythm_from_apogees_and_perigees_collection(): void
     {
         // Arrange
         $d1 = SwissEphemerisDateTime::create(2000);

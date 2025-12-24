@@ -63,7 +63,7 @@ abstract class TestCase extends OrchestraTestCase
      */
     protected function defineEnvironment($app) 
     {
-        tap($app['config'], function (Repository $config) { 
+        tap($app['config'], function (Repository $config): void { 
             $config->set('ephemeris', [
                 'latitude' => 51.47783333,
                 'longitude' => 0.0,

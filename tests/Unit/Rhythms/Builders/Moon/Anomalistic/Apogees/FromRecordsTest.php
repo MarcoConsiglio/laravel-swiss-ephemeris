@@ -16,7 +16,7 @@ use stdClass;
 class FromRecordsTest extends BuilderTestCase
 {
     #[TestDox("can build an Apogees collection from ApogeeRecord instances.")]
-    public function test_builds_apogees_collection_from_records()
+    public function test_builds_apogees_collection_from_records(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -38,7 +38,7 @@ class FromRecordsTest extends BuilderTestCase
     }
 
     #[TestDox("cannot build a Moon\Apogees collection without Moon\ApogeeRecords instances.")]
-    public function test_from_records_builder_wants_apogee_records()
+    public function test_from_records_builder_wants_apogee_records(): void
     {
         // Arrange
         $record_1 = $this->getMocked(stdClass::class);

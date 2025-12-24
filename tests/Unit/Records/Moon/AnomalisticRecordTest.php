@@ -45,7 +45,7 @@ class AnomalisticRecordTest extends TestCase
     }
 
     #[TestDox("can be an ApogeeRecord.")]
-    public function test_can_be_an_apogee()
+    public function test_can_be_an_apogee(): void
     {
         // Arrange
         $record = new ApogeeRecord($this->date, $this->angle, $this->angle, 12.0);
@@ -56,7 +56,7 @@ class AnomalisticRecordTest extends TestCase
     }
 
     #[TestDox("can be a PerigeeRecord.")]
-    public function test_can_be_a_perigee()
+    public function test_can_be_a_perigee(): void
     {
         // Arrange
         $record = new PerigeeRecord($this->date, $this->angle, $this->angle, 12.0);

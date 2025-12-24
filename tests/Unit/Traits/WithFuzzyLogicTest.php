@@ -16,7 +16,7 @@ class WithFuzzyLogicTest extends TestCase
     use WithFuzzyLogic;
 
     #[TestDox("has isAbout() method that checks if a number is almost equal to another number.")]
-    public function test_isAbout_method()
+    public function test_isAbout_method(): void
     {
         // Arrange
         $delta = 1;
@@ -33,7 +33,7 @@ class WithFuzzyLogicTest extends TestCase
         $this->testIsAboutMethod($expected + $epsilon, $expected, $delta, true);
     }
 
-    public function test_isAboutAbsolute_method()
+    public function test_isAboutAbsolute_method(): void
     {
         // Arrange
         $delta = 1;
@@ -67,7 +67,7 @@ class WithFuzzyLogicTest extends TestCase
     }
     
     #[TestDox("has isAboutAngle() method that checks if an angle is nearly equal to another angle.")]
-    public function test_isAboutAngle_method()
+    public function test_isAboutAngle_method(): void
     {
         // Arrange
         $delta_value = 2;
@@ -102,7 +102,7 @@ class WithFuzzyLogicTest extends TestCase
     }
     
     #[TestDox("has getDeltaExtremes method that calculates the min and max extremes for a fuzzy condition.")]
-    public function test_getDeltaExtremes_method()
+    public function test_getDeltaExtremes_method(): void
     {
         // Arrange
         $delta = 2;

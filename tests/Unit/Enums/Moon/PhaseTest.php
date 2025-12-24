@@ -24,7 +24,7 @@ class PhaseTest extends TestCase
     use WithFailureMessage;
 
     #[TestDox("has a new moon constant.")]
-    public function test_new_moon_phase()
+    public function test_new_moon_phase(): void
     {
         try {
             // Act
@@ -38,7 +38,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("has a first quarter constant.")]
-    public function test_first_quarter_phase()
+    public function test_first_quarter_phase(): void
     {
         try {
             // Act
@@ -52,7 +52,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("has a third quarter constant.")]
-    public function test_third_quarter_phase()
+    public function test_third_quarter_phase(): void
     {
         try {
             // Act
@@ -66,7 +66,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("has a full moon constant.")]
-    public function test_full_moon_phase()
+    public function test_full_moon_phase(): void
     {
         try {
             // Act
@@ -80,7 +80,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("maps a PhaseStrategy to its Phase constant.")]
-    public function test_map_phase_strategy_to_its_phase_constant()
+    public function test_map_phase_strategy_to_its_phase_constant(): void
     {
         $this->testPhaseConstantMapToPhaseStrategy(Phase::NewMoon, NewMoon::class);
         $this->testPhaseConstantMapToPhaseStrategy(Phase::FirstQuarter, FirstQuarter::class);
@@ -89,7 +89,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("maps a Phase constant to its PhaseStrategy.")]
-    public function test_map_phase_constant_to_its_phase_strategy()
+    public function test_map_phase_constant_to_its_phase_strategy(): void
     {
         $this->testPhaseStrategyMapToPhaseConstant(NewMoon::class, Phase::NewMoon);  
         $this->testPhaseStrategyMapToPhaseConstant(FirstQuarter::class, Phase::FirstQuarter);  
@@ -98,7 +98,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("can't map unregistered PhaseStrategy.")]
-    public function test_cant_map_unknown_moon_phase_strategy()
+    public function test_cant_map_unknown_moon_phase_strategy(): void
     {
         // Arrange
         $fake_strategy = Angle::class;

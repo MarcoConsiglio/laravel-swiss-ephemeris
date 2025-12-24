@@ -17,7 +17,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 class DraconicTemplateTest extends TemplateTestCase
 {
     #[TestDox("is the template used to build Moon\DraconicRhythm collection.")]
-    public function test_query_template()
+    public function test_query_template(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/draconic_decimal.txt";
@@ -40,7 +40,7 @@ class DraconicTemplateTest extends TemplateTestCase
 
     }
 
-    public function test_parse_error()
+    public function test_parse_error(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/draconic_malformed.txt";

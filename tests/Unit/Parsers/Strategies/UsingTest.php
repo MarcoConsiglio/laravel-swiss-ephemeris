@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 class UsingTest extends TestCase
 {
     #[TestDox("matches using notice in the raw output.")]
-    public function test_can_find_using_notice()
+    public function test_can_find_using_notice(): void
     {
         // Arrange
         $text_1 = "using Moshier eph.;";

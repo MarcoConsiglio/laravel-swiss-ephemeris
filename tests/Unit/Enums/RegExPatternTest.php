@@ -14,7 +14,7 @@ class RegExPatternTest extends TestCase
     use WithFailureMessage;
 
     #[TestDox("has several regular expression to match portions of the Swiss Ephemeris output.")]
-    public function test_regex_patterns()
+    public function test_regex_patterns(): void
     {
         // Arrange
         $delimiter = '/';
@@ -49,7 +49,7 @@ class RegExPatternTest extends TestCase
     }
 
     #[TestDox("can produce a regular expression to match ephemeris object names.")]
-    public function test_get_object_name_regex()
+    public function test_get_object_name_regex(): void
     {
         // Arrange
         $expected_regex = '/(Moon)/';

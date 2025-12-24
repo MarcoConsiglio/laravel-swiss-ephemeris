@@ -18,7 +18,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class LaravelSwissEphemerisTest extends TestCase
 {
     #[TestDox("can query the Moon synodic rhythm.")]
-    public function test_moon_synodic_rhythm()
+    public function test_moon_synodic_rhythm(): void
     {
         // Act
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->getRandomSwissEphemerisDateTime());
@@ -39,7 +39,7 @@ class LaravelSwissEphemerisTest extends TestCase
     }
 
     #[TestDox("can query the Moon anomalistic rhythm.")]
-    public function test_moon_anomalistic_rhythm()
+    public function test_moon_anomalistic_rhythm(): void
     {
         // Act
         $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm($this->getRandomSwissEphemerisDateTime());
@@ -54,7 +54,7 @@ class LaravelSwissEphemerisTest extends TestCase
     }
 
     #[TestDox("can query the Moon draconic rhythm.")]
-    public function test_moon_draconic_rhythm()
+    public function test_moon_draconic_rhythm(): void
     {
         // Act
         $draconic_rhythm = $this->ephemeris->getMoonDraconicRhythm($this->getRandomSwissEphemerisDateTime());

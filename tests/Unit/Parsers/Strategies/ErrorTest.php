@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 class ErrorTest extends TestCase
 {
     #[TestDox("matches errors in the raw ephemeris output.")]
-    public function test_can_find_an_error()
+    public function test_can_find_an_error(): void
     {
         // Arrange
         $expected_error = "Something went wrong.";

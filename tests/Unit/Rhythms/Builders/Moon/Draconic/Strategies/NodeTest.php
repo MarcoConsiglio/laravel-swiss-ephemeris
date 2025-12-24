@@ -25,7 +25,7 @@ class NodeTest extends TestCase
     }
 
     #[TestDox("can find when the Moon is in its north node.")]
-    public function test_can_find_a_north_node()
+    public function test_can_find_a_north_node(): void
     {
         // Arrange
         $north_node_record = $this->getRandomNorthNodeRecord();
@@ -39,7 +39,7 @@ class NodeTest extends TestCase
     }
 
     #[TestDox("can find when the Moon is in its south node.")]
-    public function test_can_find_a_south_node()
+    public function test_can_find_a_south_node(): void
     {
         // Arrange
         $south_node_record = $this->getRandomSouthNodeRecord();

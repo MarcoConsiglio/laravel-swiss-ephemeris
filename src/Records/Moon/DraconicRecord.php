@@ -128,8 +128,7 @@ class DraconicRecord extends MovingObjectRecord
     #[\Override]
     protected function packProperties(): array
     {
-        if ($this->cardinality !== null) $cardinality = $this->enumToString($this->cardinality);
-        else $cardinality = $this->cardinality;
+        $cardinality = $this->cardinality !== null ? $this->enumToString($this->cardinality) : $this->cardinality;
         return array_merge(self::getParentProperties(), [
             "moon_longitude" => "{$this->moon_longitude->toDecimal()}°",
             "timestamp" => $this->timestamp->toDateTimeString(),

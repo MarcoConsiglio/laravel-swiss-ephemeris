@@ -42,7 +42,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     }
 
     #[TestDox("can build a Moon\Phases collection from The Moon SynodicRhythm.")]
-    public function test_build_moon_phases_from_synodic_rhythm()
+    public function test_build_moon_phases_from_synodic_rhythm(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -70,7 +70,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     }
 
     #[TestDox("cannot build without Moon\Phase constants.")]
-    public function test_needs_at_least_one_moon_phase_type()
+    public function test_needs_at_least_one_moon_phase_type(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -90,7 +90,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     }
 
     #[TestDox("can build only with Moon\Phase constants.")]
-    public function test_needs_only_moon_phase_type()
+    public function test_needs_only_moon_phase_type(): void
     {
         // Arrange
         /** @var SynodicRhythm&MockObject $synodic_rhythm */

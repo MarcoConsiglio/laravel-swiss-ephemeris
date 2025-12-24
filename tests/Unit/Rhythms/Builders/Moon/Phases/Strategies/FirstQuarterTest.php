@@ -26,7 +26,7 @@ class FirstQuarterTest extends TestCase
     }
 
     #[TestDox("can find a Moon SynodicRhythmRecord whose \"angular_distance\" is about 90°.")]
-    public function test_can_find_first_quarter_moon_if_angular_distance_is_about_90()
+    public function test_can_find_first_quarter_moon_if_angular_distance_is_about_90(): void
     {
         // Arrange in setUp()
         // Generate two records, one has 90 and non-90 angular_distance.

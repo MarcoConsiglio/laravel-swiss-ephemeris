@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 class SwissEphemerisErrorTest extends TestCase
 {
     #[TestDox("list all errors thrown by the swetest executable.")]
-    public function test_multiple_errors()
+    public function test_multiple_errors(): void
     {
         // Arrange
         $error_message_A = $this->faker->sentence;

@@ -36,7 +36,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     }
 
     #[TestDox("can build a Moon\Periods collection starting from a Moon\SynodicRhythm.")]
-    public function test_build_moon_periods_from_synodic_rhythm()
+    public function test_build_moon_periods_from_synodic_rhythm(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();

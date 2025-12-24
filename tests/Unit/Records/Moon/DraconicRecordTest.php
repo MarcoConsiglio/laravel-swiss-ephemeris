@@ -19,7 +19,7 @@ class DraconicRecordTest extends TestCase
     use WithRecordsComparison;
 
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
-    public function test_timestamp_property()
+    public function test_timestamp_property(): void
     {
         // Arrange
         $datetime = $this->getRandomSwissEphemerisDateTime();
@@ -32,7 +32,7 @@ class DraconicRecordTest extends TestCase
     }
 
     #[TestDox("has a \"moon_longitude\", \"north_node_longitude\", \"south_node_longitude\", properties which are Angle(s).")]
-    public function test_moon_longitude_property()
+    public function test_moon_longitude_property(): void
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
@@ -50,7 +50,7 @@ class DraconicRecordTest extends TestCase
     }
 
     #[TestDox("has a \"daily_speed\" property which is a float.")]
-    public function test_daily_speed_property()
+    public function test_daily_speed_property(): void
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
@@ -65,7 +65,7 @@ class DraconicRecordTest extends TestCase
     }
 
     #[TestDox("has a \"cardinality\" property which is a Cardinality enumeration.")]
-    public function test_cardinality_speed_property()
+    public function test_cardinality_speed_property(): void
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
@@ -84,7 +84,7 @@ class DraconicRecordTest extends TestCase
     }
 
     #[TestDox("can be a north node.")]
-    public function test_is_north_node()
+    public function test_is_north_node(): void
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
@@ -102,7 +102,7 @@ class DraconicRecordTest extends TestCase
     }
 
     #[TestDox("can be a south node.")]
-    public function test_is_south_node()
+    public function test_is_south_node(): void
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
@@ -120,7 +120,7 @@ class DraconicRecordTest extends TestCase
     }    
 
     #[TestDox("can be casted to string.")]
-    public function test_casting_to_string()
+    public function test_casting_to_string(): void
     {
         // Arrange
         $datetime = $this->getRandomSwissEphemerisDateTime();
@@ -148,7 +148,7 @@ TEXT, (string) $record
         );
     }
 
-    public function test_equals_method()
+    public function test_equals_method(): void
     {
         $this->testEqualComparison(4);
     }

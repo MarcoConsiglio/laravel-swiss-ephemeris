@@ -27,7 +27,7 @@ class PerigeeTest extends TestCase
     }
 
     #[TestDox("can find a Moon perigee.")]
-    public function test_can_find_moon_perigees()
+    public function test_can_find_moon_perigees(): void
     {
         // Arrange
         $perigee_record = $this->getPerigeeRecord();
