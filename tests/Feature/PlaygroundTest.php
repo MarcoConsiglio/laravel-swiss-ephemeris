@@ -7,6 +7,8 @@ use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Observer\Topocentric;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\TestDox;
 
 /**
  * This TestCase is intended to be a playground for testing features.
@@ -15,6 +17,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
  * while trying this software features as you wish.
  */
 #[CoversNothing]
+#[TestDox("With Laravel Swiss Ephemeris")]
 class PlaygroundTest extends TestCase
 {
     /**
@@ -22,39 +25,52 @@ class PlaygroundTest extends TestCase
      */
     const string PLAYGROUND_FOLDER = "./tests/playground";
 
+    /**
+     * The demo output.
+     *
+     * @var string[]
+     */
+    protected array $output;
+
     // Add here your test method to try out the 
     // laravel-swiss-ephemeris features.
-    public function test_pizza(): void
+    #[TestDox("you can know on which days the pizza will leavening best or worst.")]
+    #[Test]
+    public function pizza_leavening(): void
     {
         $this->expectNotToPerformAssertions();
-        // Avezzano, Italy.
+        // Set your locale here.
+        $location_name = "Avezzano, Italy";
         $this->ephemeris->pov = new Topocentric(
-            42.0412,
-            13.4397,
-            695
+            $lat = 42.0412,
+            $long = 13.4397,
+            $alt = 695
         );
         $date = new Carbon("2025-12-20");
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($date);
         $moon_phases = $synodic_rhythm->getPhases([Phase::NewMoon, Phase::FullMoon]);
         $draconic_rhyhtm = $this->ephemeris->getMoonDraconicRhythm($date);
-        $output_1[] = "With new moon, use less salt.\n";
-        $output_1[] = "With full moon, use more salt.\n";
-        $output_1[] = "DATETIME\t\t\t\tLUNAR PHASE\tSALT\n";
-        $output_2[] = "\nAvoid leavening the pizza on these days:\n";
-        $output_2[] = "DATETIME\t\t\t\tLUNAR NODE\n";
+        $this->writeLine("+---------------+");
+        $this->writeLine("| Pizza Almanac |");
+        $this->writeLine("+---------------+");
+        $this->writeLine("");
+        $this->writeLine("Location: {$location_name}");
+        $this->writeLine("Lat: {$lat}° Long: {$long}° Alt: {$alt}m\n");
+        $this->writeLine("With new moon, use less salt.");
+        $this->writeLine("With full moon, use more salt.");
+        $this->writeLine("DATETIME\t\t\t\tLUNAR PHASE\tSALT");
         foreach ($moon_phases as $phase) {
             /** @var PhaseRecord $phase */
             $salt = $phase->type == Phase::FullMoon ? "\t++" : "\t\t--";
-            $output_1[] = "{$phase->timestamp}\t\t{$phase->type->name}{$salt}\n";
+            $this->writeLine("{$phase->timestamp}\t\t{$phase->type->name}{$salt}");
         }
+        $this->writeLine("\nAvoid leavening the pizza on these days:");
+        $this->writeLine("DATETIME\t\t\t\tLUNAR NODE");
         foreach ($draconic_rhyhtm as $node) {
             /** @var DraconicRecord $node */
-            $output_2[] = "{$node->timestamp}\t\t{$node->cardinality->name}\n";
+            $this->writeLine("{$node->timestamp}\t\t{$node->cardinality->name}");
         }
-        file_put_contents(
-            $this->getPlaygroundFileName("pizza.txt"),
-            array_merge($output_1, $output_2)
-        );
+        $this->writeToFile("pizza.txt");
     }
 
     /**
@@ -66,5 +82,27 @@ class PlaygroundTest extends TestCase
     protected function getPlaygroundFileName(string $filename): string
     {
         return self::PLAYGROUND_FOLDER . DIRECTORY_SEPARATOR . $filename;
+    }
+
+    /**
+     * Write a line of text in the demo output.
+     *
+     * @param string $text
+     * @return void
+     */
+    protected function writeLine(string $text): void
+    {
+        $this->output[] = "$text\n";
+    }
+
+    /**
+     * Write the demo output in $filename.
+     */
+    protected function writeToFile(string $filename): void
+    {
+        file_put_contents(
+            $this->getPlaygroundFileName($filename),
+            $this->output
+        );
     }
 }
