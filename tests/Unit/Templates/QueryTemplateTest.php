@@ -77,6 +77,7 @@ class QueryTemplateTest extends TemplateTestCase
         $this->assertCount(1, $template->notices);
     }
 
+    #[TestDox("can throw SwissEphemerisError exception if there is some error in the raw output.")]
     public function test_checkErrors_catch_SwissEphemerisError(): void
     {
         // Arrange
@@ -100,6 +101,5 @@ class QueryTemplateTest extends TemplateTestCase
 
         // Act
         $template->getResult();
-
     }
 }

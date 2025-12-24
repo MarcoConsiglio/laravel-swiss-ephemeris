@@ -107,8 +107,7 @@ class PerigeeTemplate extends AnomalisticTemplate
      */
     public function getResult(): Perigees
     {
-        if (!$this->completed) $this->query();
-        return $this->fetchObject();
+        return parent::getResult();
     }
 
     /**

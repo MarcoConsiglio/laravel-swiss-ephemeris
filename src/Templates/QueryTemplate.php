@@ -335,7 +335,11 @@ abstract class QueryTemplate
      *
      * @return mixed
      */
-    abstract public function getResult();
+    public function getResult()
+    {
+        if (!$this->completed) $this->query();
+        return $this->fetchObject();
+    }
 
     /**
      * Remap columns to have names speci

@@ -142,8 +142,7 @@ class SynodicRhythmTemplate extends QueryTemplate
      */
     public function getResult(): SynodicRhythm
     {
-        if (!$this->completed) $this->query();
-        return $this->fetchObject();
+        return parent::getResult();
     }
 
     /**

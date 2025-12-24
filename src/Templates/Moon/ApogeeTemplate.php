@@ -106,8 +106,7 @@ class ApogeeTemplate extends AnomalisticTemplate
      */
     public function getResult(): Apogees
     {
-        if (!$this->completed) $this->query();
-        return $this->fetchObject();
+        return parent::getResult();
     }
 
     /**
