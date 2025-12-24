@@ -30,6 +30,7 @@ class Periods extends Collection
      * @param mixed $default
      * @return Period
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): Period
     {
         return parent::first($callback, $default);
@@ -42,6 +43,7 @@ class Periods extends Collection
      * @param mixed $default
      * @return Period
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): Period
     {
         return parent::last($callback, $default); 
@@ -54,6 +56,7 @@ class Periods extends Collection
      * @param mixed $default
      * @return Period
      */
+    #[\Override]
     public function get($key, $default = null): Period
     {
         return parent::get($key, $default);

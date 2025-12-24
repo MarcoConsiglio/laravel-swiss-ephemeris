@@ -33,6 +33,7 @@ class AnomalisticRhythm extends Collection
      * @param mixed $default
      * @return AnomalisticRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): AnomalisticRecord
     {
         return parent::first($callback, $default);
@@ -45,6 +46,7 @@ class AnomalisticRhythm extends Collection
      * @param mixed $default
      * @return AnomalisticRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): AnomalisticRecord
     {
         return parent::last($callback, $default);
@@ -57,6 +59,7 @@ class AnomalisticRhythm extends Collection
      * @param mixed $default
      * @return AnomalisticRecord
      */
+    #[\Override]
     public function get($key, $default = null): AnomalisticRecord
     {
         return parent::get($key, $default);

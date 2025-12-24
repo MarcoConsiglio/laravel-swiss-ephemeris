@@ -87,5 +87,6 @@ class Period extends Record
      * @return array
      * @codeCoverageIgnore
      */
+    #[\Override]
     protected function getParentProperties(): array {return [];}
 }

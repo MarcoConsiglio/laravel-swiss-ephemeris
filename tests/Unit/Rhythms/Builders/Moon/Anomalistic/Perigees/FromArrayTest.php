@@ -21,6 +21,7 @@ class FromArrayTest extends FromArrayTestCase
      *
      * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();

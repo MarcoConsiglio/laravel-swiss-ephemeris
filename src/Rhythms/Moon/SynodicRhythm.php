@@ -46,6 +46,7 @@ class SynodicRhythm extends Collection
      * @param  mixed  $default
      * @return SynodicRhythmRecord
      */
+    #[\Override]
     public function get($key, $default = null): SynodicRhythmRecord
     {
         return parent::get($key, $default = null);
@@ -80,6 +81,7 @@ class SynodicRhythm extends Collection
      * @param mixed $default
      * @return SynodicRhythmRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): SynodicRhythmRecord
     {
         return parent::first($callback, $default);
@@ -92,6 +94,7 @@ class SynodicRhythm extends Collection
      * @param mixed        $default
      * @return SynodicRhythmRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): SynodicRhythmRecord
     {
         return parent::last($callback, $default);

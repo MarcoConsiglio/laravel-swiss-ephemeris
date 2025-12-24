@@ -28,6 +28,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
      *
      * @return void
      */
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

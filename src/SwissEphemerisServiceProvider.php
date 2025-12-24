@@ -35,22 +35,22 @@ class SwissEphemerisServiceProvider extends ServiceProvider
             './lib/semo_18.se1' => resource_path($lib.'semo_18.se1'),
             './lib/sepl_18.se1' => resource_path($lib.'sepl_18.se1'),
         ], 'swiss-ephemeris');
-        
+
         // Publishing the views.
         /*$this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/ephemeris'),
         ], 'views');*/
-        
+
         // Publishing assets.
         /*$this->publishes([
             __DIR__.'/../resources/assets' => public_path('vendor/ephemeris'),
         ], 'assets');*/
-        
+
         // Publishing the translation files.
         /*$this->publishes([
             __DIR__.'/../resources/lang' => resource_path('lang/vendor/ephemeris'),
         ], 'lang');*/
-        
+
         // if ($this->app->runningInConsole()) {
             // Registering package commands.
             // $this->commands([
@@ -62,6 +62,7 @@ class SwissEphemerisServiceProvider extends ServiceProvider
     /**
      * Register the application services.
      */
+    #[\Override]
     public function register()
     {
         // Automatically apply the package configuration

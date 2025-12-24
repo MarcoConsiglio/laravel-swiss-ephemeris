@@ -110,7 +110,7 @@ trait WithRandomData
         return Angle::createFromDecimal(
             $this->faker->randomFloat(PHP_FLOAT_DIG, 
                 $limit ? -$limit : -Angle::MAX_DEGREES,
-                $limit ? $limit : Angle::MAX_DEGREES
+                $limit ?: Angle::MAX_DEGREES
             )
         );
     }
@@ -130,7 +130,7 @@ trait WithRandomData
         return Angle::createFromDecimal(
             $this->faker->randomFloat(PHP_FLOAT_DIG, 
                 0,
-                $limit ? $limit : Angle::MAX_DEGREES
+                $limit ?: Angle::MAX_DEGREES
             )
         );   
     }
@@ -148,7 +148,7 @@ trait WithRandomData
             $limit = abs($limit);
             if ($limit > Angle::MAX_DEGREES) $limit = Angle::MAX_DEGREES;
         }
-        $limit = $limit ?? Angle::MAX_DEGREES;
+        $limit ??= Angle::MAX_DEGREES;
         return $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $limit);
     }
 

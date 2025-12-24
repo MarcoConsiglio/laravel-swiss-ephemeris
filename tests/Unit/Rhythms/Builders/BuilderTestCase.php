@@ -37,7 +37,7 @@ abstract class BuilderTestCase extends TestCase
      */
     protected function checkBuilderInterface(string $builder_interface, object $builder): void
     {
-        $builder_class = get_class($builder);
+        $builder_class = $builder::class;
         $this->assertInstanceOf($builder_interface, $builder, 
             "The $builder_class builder must implement the $builder_interface interface."
         );

@@ -52,8 +52,8 @@ class FromArray extends FromArrayBuilder
         $records = collect($this->data);
         $records->transform(function ($item) use ($columns) {
             $datetime = SwissEphemerisDateTime::createFromSwissEphemerisFormat($item[$columns[0]]);
-            $angle = Angle::createFromDecimal((float) trim($item[$columns[1]]));
-            $daily_speed = (float) trim($item[$columns[2]]);
+            $angle = Angle::createFromDecimal((float) trim((string) $item[$columns[1]]));
+            $daily_speed = (float) trim((string) $item[$columns[2]]);
             return new SynodicRhythmRecord($datetime, $angle, $daily_speed);
         });
         $this->data = $records->all();

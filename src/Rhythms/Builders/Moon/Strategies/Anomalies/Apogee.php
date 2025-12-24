@@ -43,6 +43,7 @@ class Apogee extends AnomalisticStrategy
      *
      * @return float
      */
+    #[\Override]
     protected function getSpeed(): float
     {
         return $this->record->daily_speed;

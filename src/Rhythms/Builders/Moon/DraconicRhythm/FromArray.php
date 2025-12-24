@@ -64,14 +64,12 @@ class FromArray extends FromArrayBuilder
         })->all();
 
         // Transform raw data in Moon DraconicRecord instances.
-        $this->data = collect($this->data)->transform(function ($item) {
-            return new DraconicRecord(
-                SwissEphemerisDateTime::createFromGregorianTT($item["timestamp"]),
-                Angle::createFromDecimal($item["moon_longitude"]),
-                Angle::createFromDecimal($item["node_longitude"]),
-                $item["moon_daily_speed"]
-            );
-        })->all();
+        $this->data = collect($this->data)->transform(fn($item) => new DraconicRecord(
+            SwissEphemerisDateTime::createFromGregorianTT($item["timestamp"]),
+            Angle::createFromDecimal($item["moon_longitude"]),
+            Angle::createFromDecimal($item["node_longitude"]),
+            $item["moon_daily_speed"]
+        ))->all();
 
         // Select the correct Moon DraconicRecord where the Moon is close to one of the two nodes.
         $this->data = collect($this->data)->filter(function ($record) {

@@ -235,7 +235,7 @@ abstract class QueryTemplate
         // Used for testing purposes.
         if ($this->shell instanceof FakeRunner) {
             $fake_output = $this->shell->getStandardOut();
-            $this->output = collect(explode(PHP_EOL, $fake_output));
+            $this->output = collect(explode(PHP_EOL, (string) $fake_output));
         }
     }
 
@@ -309,12 +309,10 @@ abstract class QueryTemplate
      */
     protected function removeEmptyLines()
     {
-        $this->output = $this->output->reject(function($row) {
-            return preg_match(
+        $this->output = $this->output->reject(fn($row) => preg_match(
                 RegExPattern::EmptyLine->value, 
-                $row, $empty_line_match
-            );
-        });
+            (string) $row, $empty_line_match
+        ));
     }
 
     /**
@@ -395,9 +393,7 @@ abstract class QueryTemplate
      */
     protected function parseOutput(): void
     {
-        $this->output->transform(function($row) {
-            return $this->parse($row);
-        });
+        $this->output->transform($this->parse(...));
     }
 
     /**
@@ -463,17 +459,4 @@ abstract class QueryTemplate
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
     }
 
-    /**
-     * Returns a string representation of the TopocentricLocale used
-     * as argument in the `swetest` executable to obtain a topocentric
-     * point of view in the ephemeris response.
-     *
-     * @return string|null
-     */
-    protected function getTopocentricArguments(): string|null
-    {
-        if ($this->locale) {
-            return "[{$this->locale->longitude},{$this->locale->latitude},{$this->locale->altitude}]";
-        } else return $this->locale;
-    }
 }

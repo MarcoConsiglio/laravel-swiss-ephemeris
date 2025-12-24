@@ -33,9 +33,9 @@ class FromCollectionsTest extends BuilderTestCase
     {
         // Arrange
         $d1 = SwissEphemerisDateTime::create(2000);
-        $d2 = $d1->copy()->addMonth(1);
-        $d3 = $d2->copy()->addMonth(2);
-        $d4 = $d3->copy()->addMonth(3);
+        $d2 = $d1->copy()->addMonth();
+        $d3 = $d2->copy()->addMonth();
+        $d4 = $d3->copy()->addMonth();
         $s = $this->getRandomMoonDailySpeed();
         /** @var Angle&MockObject $a */
         $a = $this->getMocked(Angle::class);

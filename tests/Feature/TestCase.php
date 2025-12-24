@@ -38,6 +38,7 @@ abstract class TestCase extends OrchestraTestCase
      *
      * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();

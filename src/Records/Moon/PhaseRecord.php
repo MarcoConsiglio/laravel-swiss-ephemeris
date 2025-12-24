@@ -58,5 +58,6 @@ class PhaseRecord extends Record
      * @return array
      * @codeCoverageIgnore
      */
+    #[\Override]
     protected function getParentProperties(): array {return [];}
 }

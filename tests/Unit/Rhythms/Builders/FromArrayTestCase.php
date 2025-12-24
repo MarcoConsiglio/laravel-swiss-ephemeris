@@ -15,6 +15,7 @@ abstract class FromArrayTestCase extends BuilderTestCase
      *
      * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();

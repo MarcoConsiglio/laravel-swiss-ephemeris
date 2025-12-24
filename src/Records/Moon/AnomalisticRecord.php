@@ -55,6 +55,7 @@ abstract class AnomalisticRecord extends MovingObjectRecord
      * 
      * @return array{moon_longitude:string,timestamp:string}
      */
+    #[\Override]
     protected function packProperties(): array
     {
         return array_merge(self::getParentProperties(), [
@@ -69,6 +70,7 @@ abstract class AnomalisticRecord extends MovingObjectRecord
      * 
      * @return array{daily_speed:string}
      */
+    #[\Override]
     protected function getParentProperties(): array
     {
         return parent::packProperties();

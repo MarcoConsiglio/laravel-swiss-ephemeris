@@ -72,7 +72,7 @@ class DraconicTemplate extends QueryTemplate
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $this->output_format));       
         // Only the geocentric point of view is acceptable, so no other
         // point view will be accepted.
-        $this->pov->setPointOfView($this->command, function() {return false;});
+        $this->pov->setPointOfView($this->command, fn() => false);
     }
 
     /**
@@ -125,7 +125,7 @@ class DraconicTemplate extends QueryTemplate
      */
     protected function remapColumns(): void
     {
-        $this->remapColumnsBy($this->getColumns());    
+        $this->remapColumnsBy(static::getColumns());    
     }
 
     /**

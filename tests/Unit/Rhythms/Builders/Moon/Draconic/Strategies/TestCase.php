@@ -14,6 +14,7 @@ abstract class TestCase extends StrategyTestCase
      *
      * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         $this->tested_class = Node::class;

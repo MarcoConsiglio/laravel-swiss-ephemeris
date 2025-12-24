@@ -30,6 +30,7 @@ class Phases extends Collection
      * @param mixed $default
      * @return PhaseRecord
      */
+    #[\Override]
     public function get($key, $default = null): PhaseRecord
     {
         return parent::get($key, $default);
@@ -42,6 +43,7 @@ class Phases extends Collection
      * @param mixed $default
      * @return PhaseRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): PhaseRecord
     {
         return parent::first($callback, $default);
@@ -54,6 +56,7 @@ class Phases extends Collection
      * @param mixed $default
      * @return PhaseRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): PhaseRecord
     {
         return parent::last($callback, $default);

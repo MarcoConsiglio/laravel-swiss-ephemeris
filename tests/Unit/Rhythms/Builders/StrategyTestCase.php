@@ -74,6 +74,7 @@ abstract class StrategyTestCase extends TestCase
      *
      * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();

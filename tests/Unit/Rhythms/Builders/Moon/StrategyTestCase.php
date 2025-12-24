@@ -70,6 +70,7 @@ abstract class StrategyTestCase extends TestCase
      *
      * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();
@@ -205,7 +206,7 @@ abstract class StrategyTestCase extends TestCase
      */
     protected function getLongitude(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getBiasedLongitude($longitude, $this->delta));
+        return Angle::createFromDecimal($this->getBiasedLongitude($longitude));
     }
     
     /**
@@ -217,7 +218,7 @@ abstract class StrategyTestCase extends TestCase
     protected function getAbsoluteLongitude(float $longitude = 180.0): Angle
     {
         $longitude = abs($longitude);
-        return Angle::createFromDecimal($this->getAbsBiasedLongitude($longitude, $this->delta));
+        return Angle::createFromDecimal($this->getAbsBiasedLongitude($longitude));
     }
 
     /**
@@ -228,7 +229,7 @@ abstract class StrategyTestCase extends TestCase
      */
     protected function getLongitudeExceptFor(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getBiasedLongitudeExceptFor($longitude, $this->delta));
+        return Angle::createFromDecimal($this->getBiasedLongitudeExceptFor($longitude));
     }
 
     /**
@@ -239,7 +240,7 @@ abstract class StrategyTestCase extends TestCase
      */
     protected function getAbsoluteLongitudeExceptFor(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getAbsBiasedLongitudeExceptFor($longitude, $this->delta));
+        return Angle::createFromDecimal($this->getAbsBiasedLongitudeExceptFor($longitude));
     }
 
     /**

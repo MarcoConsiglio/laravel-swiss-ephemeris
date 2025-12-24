@@ -17,6 +17,7 @@ class FirstQuarterTest extends TestCase
      *
      * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         $this->tested_class = FirstQuarter::class;

@@ -166,7 +166,7 @@ trait WithRecordsComparison
     protected function getTotalDispositions(int $properties_number) 
     {
         $properties_number = abs($properties_number);
-        return pow(2, $properties_number);
+        return 2 ** $properties_number;
     }
 
     /**

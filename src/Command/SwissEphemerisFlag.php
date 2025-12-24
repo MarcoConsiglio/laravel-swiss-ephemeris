@@ -13,10 +13,11 @@ class SwissEphemerisFlag extends Flag
      *
      * @return string
      */
+    #[\Override]
     protected function getValuesAsString(): string
     {
         // $values = array_map('escapeshellarg', $this->values);
         $prefix = sprintf('%s%s', static::PREFIX, $this->name);
-        return $prefix . join("", $this->values);
+        return $prefix . implode("", $this->values);
     }
 }

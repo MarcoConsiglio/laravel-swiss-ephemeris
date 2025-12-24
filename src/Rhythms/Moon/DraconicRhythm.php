@@ -25,6 +25,7 @@ class DraconicRhythm extends Collection
      * @param mixed $default
      * @return DraconicRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): DraconicRecord
     {
         return parent::first($callback, $default);
@@ -37,6 +38,7 @@ class DraconicRhythm extends Collection
      * @param mixed $default
      * @return DraconicRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): DraconicRecord
     {
         return parent::last($callback, $default);
@@ -49,6 +51,7 @@ class DraconicRhythm extends Collection
      * @param mixed $default
      * @return DraconicRecord
      */
+    #[\Override]
     public function get($key, $default = null): DraconicRecord
     {
         return parent::get($key, $default);

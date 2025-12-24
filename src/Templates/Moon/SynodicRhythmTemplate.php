@@ -71,7 +71,7 @@ class SynodicRhythmTemplate extends QueryTemplate
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::DifferentialObjectSelection->value, SinglePlanet::Sun->value));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $this->output_format));
         // All PointOfView are acceptable for this QueryTemplate.
-        $this->pov->setPointOfView($this->command, function() {return true;});
+        $this->pov->setPointOfView($this->command, fn() => true);
     }
 
     /**
@@ -109,7 +109,7 @@ class SynodicRhythmTemplate extends QueryTemplate
      */
     protected function remapColumns(): void
     {
-        $this->remapColumnsBy($this->getColumns());    
+        $this->remapColumnsBy(static::getColumns());    
     }
 
     /**

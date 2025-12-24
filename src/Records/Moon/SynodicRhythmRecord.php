@@ -108,6 +108,7 @@ class SynodicRhythmRecord extends MovingObjectRecord
      * 
      * @return array{angular_distance:string,daily_speed:string,period_type:string,phase_percentage:string,timestamp:string}
      */
+    #[\Override]
     protected function packProperties(): array
     {
         return array_merge(self::getParentProperties(),  [
@@ -124,6 +125,7 @@ class SynodicRhythmRecord extends MovingObjectRecord
      * 
      * @return array{daily_speed:string}
      */
+    #[\Override]
     protected function getParentProperties(): array
     {
         return parent::packProperties();

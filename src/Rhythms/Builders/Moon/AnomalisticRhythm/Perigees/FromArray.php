@@ -76,14 +76,12 @@ class FromArray extends FromArrayBuilder
         })->all();
 
         // Transform raw data in Moon PerigeeRecord instances.
-        $this->data = collect($this->data)->transform(function($item) {
-                return new PerigeeRecord(
-                    SwissEphemerisDateTime::createFromGregorianTT($item["timestamp"]),
-                    Angle::createFromDecimal((float) $item["moon_longitude"]),
-                    Angle::createFromDecimal((float) $item["perigee_longitude"]),
-                    (float) $item["moon_daily_speed"]
-                );
-        })->all();
+        $this->data = collect($this->data)->transform(fn($item) => new PerigeeRecord(
+            SwissEphemerisDateTime::createFromGregorianTT($item["timestamp"]),
+            Angle::createFromDecimal((float) $item["moon_longitude"]),
+            Angle::createFromDecimal((float) $item["perigee_longitude"]),
+            (float) $item["moon_daily_speed"]
+        ))->all();
 
         // Select the correct Moon PerigeeRecord where the Moon is close to its perigee.
         $this->data = collect($this->data)->filter(function ($record) {

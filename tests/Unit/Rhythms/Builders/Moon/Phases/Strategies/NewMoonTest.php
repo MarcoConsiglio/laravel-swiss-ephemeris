@@ -17,6 +17,7 @@ class NewMoonTest extends TestCase
      *
      * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         $this->tested_class = NewMoon::class;

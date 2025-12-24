@@ -42,6 +42,7 @@ abstract class TestCase extends TestbenchTestCase
      *
      * @return void
      */
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

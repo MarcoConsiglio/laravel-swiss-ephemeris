@@ -35,6 +35,7 @@ class IsDateEqual extends Constraint
      * 
      * @return bool
      */
+    #[\Override]
     protected function matches($other): bool
     {
         return $this->date->equalTo($other);
@@ -53,6 +54,7 @@ class IsDateEqual extends Constraint
      *
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
+    #[\Override]
     protected function failureDescription($other): string
     {
        return parent::failureDescription($other->toDateTimeString());

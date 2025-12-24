@@ -125,6 +125,7 @@ class DraconicRecord extends MovingObjectRecord
      * 
      * @return array{daily_speed:string,moon_longitude:string,timestamp:string,north_node_longitude:string,south_node_longitude:string,cardinality:string}
      */
+    #[\Override]
     protected function packProperties(): array
     {
         if ($this->cardinality !== null) $cardinality = $this->enumToString($this->cardinality);
@@ -144,6 +145,7 @@ class DraconicRecord extends MovingObjectRecord
      * 
      * @return array{daily_speed:string}
      */
+    #[\Override]
     protected function getParentProperties(): array
     {
         return parent::packProperties();

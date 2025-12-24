@@ -24,23 +24,13 @@ trait WithCustomAssertions
      */
     public static function assertProperty(string $name, mixed $expected_value, string $expected_type, mixed $actual_value)
     {
-        switch ($expected_type) {
-            case 'string':
-                Assert::assertIsString($actual_value, self::typeFail($name));
-                break;
-            case 'float':
-                Assert::assertIsFloat($actual_value, self::typeFail($name));
-                break;
-            case 'array':
-                Assert::assertIsArray($actual_value, self::typeFail($name));
-                break;
-            case 'integer':
-                Assert::assertIsInt($actual_value, self::typeFail($name));
-                break;
-            default:
-                Assert::assertInstanceOf($expected_type, $actual_value, self::typeFail($name));
-                break;
-        }
+        match ($expected_type) {
+            'string' => Assert::assertIsString($actual_value, self::typeFail($name)),
+            'float' => Assert::assertIsFloat($actual_value, self::typeFail($name)),
+            'array' => Assert::assertIsArray($actual_value, self::typeFail($name)),
+            'integer' => Assert::assertIsInt($actual_value, self::typeFail($name)),
+            default => Assert::assertInstanceOf($expected_type, $actual_value, self::typeFail($name)),
+        };
         Assert::assertEquals($expected_value, $actual_value, self::propertyFail($name));
     }
 

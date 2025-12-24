@@ -67,7 +67,7 @@ class SwissEphemerisDateTime extends Carbon
      */
     public ?bool $isUniversalTime = null {
         set(?bool $value) {
-            $this->isUniversalTime = $this->isUniversalTime ?? $value;
+            $this->isUniversalTime ??= $value;
         }
     }
 
@@ -79,7 +79,7 @@ class SwissEphemerisDateTime extends Carbon
      */
     public ?bool $isGregorianDate = null {
         set(?bool $value) {
-            $this->isGregorianDate = $this->isGregorianDate ?? $value;
+            $this->isGregorianDate ??= $value;
         }
     }
 
@@ -332,7 +332,7 @@ class SwissEphemerisDateTime extends Carbon
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return parent::__toString();
     }

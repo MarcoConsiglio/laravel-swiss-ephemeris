@@ -54,6 +54,7 @@ class PerigeeRecord extends AnomalisticRecord
      * 
      * @return array{moon_longitude:string,timestamp:string,perigee_longitude:string,daily_speed:string}
      */
+    #[\Override]
     protected function packProperties(): array
     {
         return array_merge(self::getParentProperties(), [
@@ -67,6 +68,7 @@ class PerigeeRecord extends AnomalisticRecord
      * 
      * @return array{moon_longitude:string,timestamp:string}
      */
+    #[\Override]
     protected function getParentProperties(): array
     {
         return parent::packProperties();

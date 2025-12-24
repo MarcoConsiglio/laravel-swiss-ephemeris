@@ -31,6 +31,7 @@ class Apogees extends Collection
      * @param mixed $default
      * @return ApogeeRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): ApogeeRecord
     {
         return parent::first($callback, $default);
@@ -43,6 +44,7 @@ class Apogees extends Collection
      * @param mixed $default
      * @return ApogeeRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): ApogeeRecord
     {
         return parent::last($callback, $default);
@@ -55,6 +57,7 @@ class Apogees extends Collection
      * @param mixed $default
      * @return ApogeeRecord
      */
+    #[\Override]
     public function get($key, $default = null): ApogeeRecord
     {
         return parent::get($key, $default);

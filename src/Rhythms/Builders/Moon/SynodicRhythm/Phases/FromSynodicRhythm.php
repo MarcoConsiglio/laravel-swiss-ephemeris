@@ -75,7 +75,7 @@ class FromSynodicRhythm extends Builder
         }
         foreach ($this->moon_phases as $phase) {
             if (! $phase instanceof $phase_class) {
-                throw new InvalidArgumentException("Parameter 2 must be an array of $phase_class but found ".get_class($phase)." inside.");
+                throw new InvalidArgumentException("Parameter 2 must be an array of $phase_class but found ".$phase::class." inside.");
             }
         }
     }
@@ -98,10 +98,7 @@ class FromSynodicRhythm extends Builder
             // Moon synodic rhythm records.
 
             /** @var \Illuminate\Support\Collection $strategies */
-            $strategies = collect($this->moon_phases)->transform(function ($item) {
-                /** @var Phase $items */
-                return Phase::getCorrespondingStrategy($item);
-            });
+            $strategies = collect($this->moon_phases)->transform(Phase::getCorrespondingStrategy(...));
 
             // Each Moon synodic rhythm record is tested against each of the available strategies. 
             // If a strategy finds a useful Moon synodic rhythm record, selects it for the 

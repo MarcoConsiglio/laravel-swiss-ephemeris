@@ -31,6 +31,7 @@ class Perigees extends Collection
      * @param mixed $default
      * @return PerigeeRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): PerigeeRecord
     {
         return parent::first($callback, $default);
@@ -43,6 +44,7 @@ class Perigees extends Collection
      * @param mixed $default
      * @return PerigeeRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): PerigeeRecord
     {
         return parent::last($callback, $default);
@@ -55,6 +57,7 @@ class Perigees extends Collection
      * @param mixed $default
      * @return PerigeeRecord
      */
+    #[\Override]
     public function get($key, $default = null): PerigeeRecord
     {
         return parent::get($key, $default);
