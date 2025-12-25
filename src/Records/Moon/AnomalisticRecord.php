@@ -12,11 +12,6 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 abstract class AnomalisticRecord extends MovingObjectRecord
 {
     /**
-     * The timestamp of this Moon AnomalistcRecord.
-     */
-    public protected(set) SwissEphemerisDateTime $timestamp;
-
-    /**
      * The current Moon longitude. It represents the
      * Moon position.
      * 

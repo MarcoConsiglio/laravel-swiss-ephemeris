@@ -11,14 +11,6 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
  */
 class PhaseRecord extends Record
 {
-
-    /**
-     * The timestamp this record refers to.
-     *
-     * @var SwissEphemerisDateTime
-     */
-    public protected(set) SwissEphemerisDateTime $timestamp;
-
     /**
      * The phase of the Moon it refers to.
      *

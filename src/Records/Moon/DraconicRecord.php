@@ -15,11 +15,6 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 class DraconicRecord extends MovingObjectRecord
 {
     /**
-     * The timestamp of this Moon DraconicRecord.
-     */
-    public protected(set) SwissEphemerisDateTime $timestamp;
-
-    /**
      * The current Moon longitude. It represents the
      * Moon position.
      * 

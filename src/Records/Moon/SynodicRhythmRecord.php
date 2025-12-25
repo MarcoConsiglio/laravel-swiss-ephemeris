@@ -12,14 +12,6 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
  */
 class SynodicRhythmRecord extends MovingObjectRecord
 {
-
-    /**
-     * The timestamp of this record.
-     *
-     * @var \MarcoConsiglio\Ephemeris\SwissEphemerisDateTime
-     */
-    public protected(set) SwissEphemerisDateTime $timestamp;
-
     /**
      * The angular distance between the Moon and the Sun.
      *

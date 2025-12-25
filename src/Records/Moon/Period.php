@@ -12,6 +12,17 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 class Period extends Record
 {
     /**
+     * The timestamp of this `Record`.
+     *
+     * @var SwissEphemerisDateTime
+     */
+    public SwissEphemerisDateTime $timestamp {
+        get {
+            return $this->start;
+        }
+    }
+    
+    /**
      * Start timestamp of this period.
      *
      * @var SwissEphemerisDateTime
