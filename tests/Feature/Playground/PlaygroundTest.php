@@ -78,6 +78,8 @@ class PlaygroundTest extends TestCase
         parent::setUp();
         // Set here your location. Default to Greenwich.
         $this->setLocation();
+        $this->now = Carbon::now($this->timezone);
+        $this->now->setLocale($this->locale);
     }
 
     // Add here your test method to try out the 
@@ -87,9 +89,9 @@ class PlaygroundTest extends TestCase
     public function pizza_leavening(): void
     {
         $this->expectNotToPerformAssertions();
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->now);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->now->round("hour"));
         $moon_phases = $synodic_rhythm->getPhases([Phase::NewMoon, Phase::FullMoon]);
-        $draconic_rhyhtm = $this->ephemeris->getMoonDraconicRhythm($this->now);
+        $draconic_rhyhtm = $this->ephemeris->getMoonDraconicRhythm($this->now->round("hour"));
         $this->writeHeader("Pizza Almanac");
         $this->writeLine("With new moon, use less salt.");
         $this->writeLine("With full moon, use more salt.");
