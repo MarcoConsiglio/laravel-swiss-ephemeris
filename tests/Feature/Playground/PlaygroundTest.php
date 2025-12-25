@@ -1,17 +1,19 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Feature;
+namespace MarcoConsiglio\Ephemeris\Tests\Feature\Playground;
 
 use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Observer\Topocentric;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
+use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
 
 /**
- * This TestCase is intended to be a playground for testing features.
+ * This TestCase is intended to be a playground, so you can try out
+ * the features of this software.
  * 
  * Use `$this->expectNotToPerformAssertions()` to make the test pass
  * while trying this software features as you wish.
