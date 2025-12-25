@@ -8,7 +8,9 @@ use DateTimeZone;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Observer\Topocentric;
+use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -59,6 +61,13 @@ class PlaygroundTest extends TestCase
     protected string $location_name = "Greenwich Royal Observatory, United Kingdom";
 
     /**
+     * The current datetime.
+     *
+     * @var CarbonInterface
+     */
+    protected CarbonInterface $now;
+
+    /**
      * Setup the test environment.
      *
      * @return void
@@ -78,26 +87,62 @@ class PlaygroundTest extends TestCase
     public function pizza_leavening(): void
     {
         $this->expectNotToPerformAssertions();
-        $date = new Carbon("2025-12-20");
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($date);
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->now);
         $moon_phases = $synodic_rhythm->getPhases([Phase::NewMoon, Phase::FullMoon]);
-        $draconic_rhyhtm = $this->ephemeris->getMoonDraconicRhythm($date);
+        $draconic_rhyhtm = $this->ephemeris->getMoonDraconicRhythm($this->now);
         $this->writeHeader("Pizza Almanac");
         $this->writeLine("With new moon, use less salt.");
         $this->writeLine("With full moon, use more salt.");
         $this->writeLine("DATETIME\t\t\t\tLUNAR PHASE\t\tSALT");
-        foreach ($moon_phases as $phase) {
+        $moon_phases->each(function ($phase) {
             /** @var PhaseRecord $phase */
             $salt = $phase->type == Phase::FullMoon ? "\t++" : "\t\t--";
             $this->writeLine("{$this->datetime($phase->timestamp)}\t\t{$phase->type->name}{$salt}");
-        }
+        });
         $this->writeLine("\nAvoid leavening the pizza on these days:");
         $this->writeLine("DATETIME\t\t\t\tLUNAR NODE");
-        foreach ($draconic_rhyhtm as $node) {
+        $draconic_rhyhtm->each(function ($node) {
             /** @var DraconicRecord $node */
             $this->writeLine("{$this->datetime($node->timestamp)}\t\t{$node->cardinality->name}");
-        }
+        });
         $this->writeToFile("pizza.txt");
+    }
+
+    #[TestDox("you can know on which days there's the best mushroom gathering.")]
+    #[Test]
+    public function mushroom_gathering(): void
+    {
+        $this->expectNotToPerformAssertions();
+        $days = 90;
+        $full_moons = $this->ephemeris->getMoonSynodicRhythm($this->now, $days)->getPhases([Phase::FullMoon]);
+        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm($this->now, $days);
+        $perigees = collect($anomalistic_rhythm->all());
+        $perigees = $perigees->filter(function ($record) {
+            return $record->isPerigee();
+        });
+        $calendar = collect(array_merge($full_moons->all(), $perigees->all()));
+        $calendar = $calendar->sort(function ($itemA, $itemB) {
+            /** @var PerigeeRecord|PhaseRecord $itemA */
+            /** @var PerigeeRecord|PhaseRecord $itemB */
+            /** @var SwissEphemerisDateTime $timestampA */
+            /** @var SwissEphemerisDateTime $timestampB */
+            $timestampA = $itemA->timestamp;
+            $timestampB = $itemB->timestamp;
+            if ($timestampA->greaterThanOrEqualTo($timestampB)) return 1;
+            else return -1;
+        });
+        $this->writeHeader("Mushroom Almanac");
+        $this->writeLine("A full moon and perigee on the same day\nare very favorable for mushroom growth.");
+        $calendar->each(function ($record) {
+            /** @var PerigeeRecord|PhaseRecord $record */
+            if ($record instanceof PerigeeRecord) {
+                $this->writeLine($this->datetime($record->timestamp)."\t\tMoon Perigee");
+            }
+            if ($record instanceof PhaseRecord) {
+                $this->writeLine($this->datetime($record->timestamp)."\t\tFull Moon");
+            }
+        });
+        $this->writeToFile("mushrooms.txt");
     }
 
     /**
