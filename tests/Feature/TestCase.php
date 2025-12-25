@@ -44,11 +44,6 @@ abstract class TestCase extends OrchestraTestCase
         parent::setUp();
         $this->createApplication();
         $this->ephemeris = new LaravelSwissEphemeris(
-            // new TopocentricLocale(
-            //     Config::get("ephemeris.latitude"), 
-            //     Config::get("ephemeris.longitude"),
-            //     Config::get("ephemeris.altitude")
-            // ),
             null,
             Config::get("ephemeris.timezone")
         );
