@@ -1,17 +1,13 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 
-use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
-use MarcoConsiglio\Ephemeris\Enums\ObserverPosition;
 use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
-use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
+use MarcoConsiglio\Ephemeris\Parsers\Strategies\Moon\SynodicRecord as SynodicRecordParser;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
 /**
@@ -89,15 +85,7 @@ class SynodicRhythmTemplate extends QueryTemplate
      */
     protected function parse(string $text): array|null
     {
-        if (
-            $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal)
-        ) return [
-            $datetime[0],   // Datetime
-            $decimal[0],    // Angular distance between moon and sun
-            $decimal[1]     // Moon daily speed
-        ];
-        else return null;
+        return new SynodicRecordParser($text)->found();
     }
 
     /**

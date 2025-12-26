@@ -4,11 +4,11 @@ namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
+use MarcoConsiglio\Ephemeris\Parsers\Strategies\Moon\Node as NodeParser;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm\FromArray;
 
 /**
  * A template for an ephemeris query to obtain 
@@ -82,18 +82,7 @@ class DraconicTemplate extends QueryTemplate
      */
     protected function parse(string $text): array|null
     {
-        $object_name_regex = RegExPattern::getRegex(RegExPattern::Moon."|".RegExPattern::TrueNode);
-        if (
-            $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
-            $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal)
-        ) return [
-            $astral_object[0],  // Object name
-            $datetime[0],       // Datetime
-            $decimal[0],        // Object longitude
-            $decimal[1]         // Object daily speed
-        ];
-        else return null;
+        return new NodeParser($text)->found();
     }
 
     /**
@@ -145,8 +134,7 @@ class DraconicTemplate extends QueryTemplate
      */
     public function getResult(): DraconicRhythm
     {
-        if (! $this->completed) $this->query();
-        return $this->fetchObject();
+        return parent::getResult();
     }
 
     /**

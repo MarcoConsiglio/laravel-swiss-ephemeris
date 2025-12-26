@@ -4,8 +4,8 @@ namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag as Flag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
+use MarcoConsiglio\Ephemeris\Parsers\Strategies\Moon\Apogee as ApogeeParser;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 
@@ -65,18 +65,7 @@ class ApogeeTemplate extends AnomalisticTemplate
      */
     protected function parse(string $text): array|null
     {
-        $object_name_regex = RegExPattern::getRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedApogee);
-        if (
-            $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
-            $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal)
-        ) return [
-            $astral_object[0],  // Object name
-            $datetime[0],       // Datetime
-            $decimal[0],        // Object longitude
-            $decimal[1]         // Object daily speed
-        ];
-        else return null;
+        return new ApogeeParser($text)->found();
     }
 
     /**

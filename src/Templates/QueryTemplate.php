@@ -406,45 +406,6 @@ abstract class QueryTemplate
      * @return array|null
      */
     abstract protected function parse(string $text): array|null;
-    
-    /**
-     * Parse a datetime.
-     *
-     * @param string $text
-     * @param mixed $match
-     * @return integer|false
-     */
-    protected function datetimeFound(string $text, &$match): int|false
-    {
-        return preg_match(RegExPattern::UniversalAndTerrestrialDateTime->value, $text, $match);
-    }
-
-    /**
-     * Parse a decimal number.
-     *
-     * @param string $text
-     * @param mixed $match
-     * @return integer|false
-     */
-    protected function decimalNumberFound(string $text, &$match): int|false
-    {
-        $result = preg_match_all(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
-        $match = $match[0];
-        return $result;
-    }
-
-    /**
-     * Parse an astral object name.
-     *
-     * @param string $text
-     * @param string $regex
-     * @param mixed $match
-     * @return integer|false
-     */
-    protected function astralObjectFound(string $text, string $regex, &$match): int|false
-    {
-        return preg_match($regex, $text, $match);       
-    }
 
     /**
      * Return the columns names used by the concrete template.
