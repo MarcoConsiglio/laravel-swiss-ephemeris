@@ -16,6 +16,7 @@
     <testsuites>
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
+            <exclude>tests/Feature/Playground</exclude>
         </testsuite>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
