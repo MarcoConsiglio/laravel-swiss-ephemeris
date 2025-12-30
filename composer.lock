@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b99c87d3a708c9de2958bddfc8d86dea",
+    "content-hash": "fdad2bd1a08c665840915f3f6007b8b9",
     "packages": [
         {
             "name": "adambrett/shell-wrapper",
@@ -2466,6 +2466,124 @@
                 }
             ],
             "time": "2025-12-07T16:03:21+00:00"
+        },
+        {
+            "name": "marcin-orlowski/lombok-php",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MarcinOrlowski/lombok-php.git",
+                "reference": "1e53587483157afff046f90fd3a7c6d987b8d207"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MarcinOrlowski/lombok-php/zipball/1e53587483157afff046f90fd3a7c6d987b8d207",
+                "reference": "1e53587483157afff046f90fd3a7c6d987b8d207",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0|^8.1|^8.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.5",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lombok\\": "src/",
+                    "LombokTest\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Marcin Orlowski",
+                    "homepage": "https://MarcinOrlowski.com/"
+                }
+            ],
+            "description": "Write less code!",
+            "homepage": "https://github.com/MarcinOrlowski/lombok-php",
+            "keywords": [
+                "accessors",
+                "annotation",
+                "annotations",
+                "getters",
+                "lombok",
+                "php",
+                "php8",
+                "setters"
+            ],
+            "support": {
+                "issues": "https://github.com/MarcinOrlowski/lombok-php/issues",
+                "source": "https://github.com/MarcinOrlowski/lombok-php/"
+            },
+            "time": "2023-10-10T18:45:55+00:00"
+        },
+        {
+            "name": "marcin-orlowski/text-table",
+            "version": "2.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MarcinOrlowski/php-text-table.git",
+                "reference": "e0a8f0749ddaf794f5815307763b3e658a132333"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MarcinOrlowski/php-text-table/zipball/e0a8f0749ddaf794f5815307763b3e658a132333",
+                "reference": "e0a8f0749ddaf794f5815307763b3e658a132333",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "marcin-orlowski/lombok-php": "^1.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "marcin-orlowski/lockpick": "^1.2",
+                "marcin-orlowski/phpunit-extra-asserts": "^5.0",
+                "phpstan/phpstan": "^1.8",
+                "phpunit/phpunit": "^10.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MarcinOrlowski\\TextTable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcin Orlowski",
+                    "homepage": "http://MarcinOrlowski.com/"
+                }
+            ],
+            "description": "Fast and flexible PHP library for text tables.",
+            "homepage": "https://github.com/MarcinOrlowski/php-text-table",
+            "keywords": [
+                "ascii",
+                "cli",
+                "console",
+                "php",
+                "php8",
+                "php81",
+                "php82",
+                "php83",
+                "php84",
+                "table",
+                "text"
+            ],
+            "support": {
+                "issues": "https://github.com/MarcinOrlowski/php-text-table/issues",
+                "source": "https://github.com/MarcinOrlowski/php-text-table/"
+            },
+            "time": "2025-04-23T21:14:17+00:00"
         },
         {
             "name": "mockery/mockery",

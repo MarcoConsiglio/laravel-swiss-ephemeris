@@ -1,20 +1,15 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Feature\Playground;
 
-use Override;
-use Carbon\Carbon;
-use Carbon\CarbonInterface;
-use DateTimeZone;
-use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
-use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
-use MarcoConsiglio\Ephemeris\Observer\Topocentric;
-use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Feature\TestCase;
+use MarcinOrlowski\TextTable\TextTable;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
+use MarcoConsiglio\Ephemeris\Enums\Moon\Phase as LunarPhase;
+use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
+use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
+use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
  * This TestCase is intended to be a playground, so you can try out
@@ -27,59 +22,22 @@ use PHPUnit\Framework\Attributes\TestDox;
 #[TestDox("With Laravel Swiss Ephemeris")]
 class PlaygroundTest extends TestCase
 {
-    /**
-     * The playground folder not committed to the code repository.
-     */
-    const string PLAYGROUND_FOLDER = "./tests/playground";
-
-    /**
-     * The demo output.
-     *
-     * @var string[]
-     */
-    protected array $output;
-
-    /**
-     * The timezone of the observer.
-     *
-     * @var DateTimeZone|string|null
-     */
-    protected DateTimeZone|string|int $timezone = "Europe/London"; 
-
-    /**
-     * The locale of the observer.
-     *
-     * @var string
-     */
-    protected string $locale = "en_UK";
-
-    /**
-     * The location name where is placed the observer.
-     *
-     * @var string
-     */
-    protected string $location_name = "Greenwich Royal Observatory, United Kingdom";
-
-    /**
-     * The current datetime.
-     *
-     * @var CarbonInterface
-     */
-    protected CarbonInterface $now;
-
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    #[Override]
-    public function setUp(): void
+    #[TestDox("you can make a lunar calendar.")]
+    #[Test]
+    public function lunar_calendar(): void
     {
-        parent::setUp();
-        // Set here your location. Default to Greenwich.
-        $this->setLocation();
-        $this->now = Carbon::now($this->timezone);
-        $this->now->setLocale($this->locale);
+        $this->expectNotToPerformAssertions();
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->now->round("hour"));
+        // Get all lunar phases.
+        $lunar_phases = $synodic_rhythm->getPhases(LunarPhase::cases());
+        $calendar = new TextTable(["DATETIME", "LUNAR PHASE"]);
+        $lunar_phases->each(function ($phase) use ($calendar) {
+            /** @var PhaseRecord $phase */
+            $calendar->addRow([$this->datetime($phase->timestamp), $this->getLunarPhaseIcon($phase)]);
+        });
+        $this->writeHeader("Lunar Calendar");
+        $this->writeTable($calendar);
+        $this->writeToFile("lunar_calendar.txt");
     }
 
     // Add here your test method to try out the 
@@ -90,23 +48,25 @@ class PlaygroundTest extends TestCase
     {
         $this->expectNotToPerformAssertions();
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->now->round("hour"));
-        $moon_phases = $synodic_rhythm->getPhases([Phase::NewMoon, Phase::FullMoon]);
+        $moon_phases = $synodic_rhythm->getPhases([LunarPhase::NewMoon, LunarPhase::FullMoon]);
         $draconic_rhyhtm = $this->ephemeris->getMoonDraconicRhythm($this->now->round("hour"));
         $this->writeHeader("Pizza Almanac");
         $this->writeLine("With new moon, use less salt.");
         $this->writeLine("With full moon, use more salt.");
-        $this->writeLine("DATETIME\t\t\t\tLUNAR PHASE\t\tSALT");
-        $moon_phases->each(function ($phase) {
+        $salt_table = new TextTable(["DATETIME", "LUNAR PHASE", "SALT"]);
+        $moon_phases->each(function ($phase) use ($salt_table) {
             /** @var PhaseRecord $phase */
-            $salt = $phase->type == Phase::FullMoon ? "\t++" : "\t\t--";
-            $this->writeLine("{$this->datetime($phase->timestamp)}\t\t{$phase->type->name}{$salt}");
+            $salt = $phase->type == LunarPhase::FullMoon ? "++" : "--";
+            $salt_table->addRow([$this->datetime($phase->timestamp), $phase->type->name, $salt]);
         });
+        $this->writeTable($salt_table);
         $this->writeLine("\nAvoid leavening the pizza on these days:");
-        $this->writeLine("DATETIME\t\t\t\tLUNAR NODE");
-        $draconic_rhyhtm->each(function ($node) {
+        $nodes_table = new TextTable(["DATETIME", "LUNAR NODE"]);
+        $draconic_rhyhtm->each(function ($node) use ($nodes_table) {
             /** @var DraconicRecord $node */
-            $this->writeLine("{$this->datetime($node->timestamp)}\t\t{$node->cardinality->name}");
+            $nodes_table->addRow([$this->datetime($node->timestamp), $node->cardinality->name]);
         });
+        $this->writeTable($nodes_table);
         $this->writeToFile("pizza.txt");
     }
 
@@ -116,7 +76,7 @@ class PlaygroundTest extends TestCase
     {
         $this->expectNotToPerformAssertions();
         $days = 90;
-        $full_moons = $this->ephemeris->getMoonSynodicRhythm($this->now, $days)->getPhases([Phase::FullMoon]);
+        $full_moons = $this->ephemeris->getMoonSynodicRhythm($this->now, $days)->getPhases([LunarPhase::FullMoon]);
         $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm($this->now, $days);
         $perigees = collect($anomalistic_rhythm->all());
         $perigees = $perigees->filter(function ($record) {
@@ -135,137 +95,17 @@ class PlaygroundTest extends TestCase
         });
         $this->writeHeader("Mushroom Almanac");
         $this->writeLine("A full moon and perigee on the same day\nare very favorable for mushroom growth.");
-        $calendar->each(function ($record) {
+        $table = new TextTable(["DATETIME", "LUNAR EVENT"]);
+        $calendar->each(function ($record) use ($table) {
             /** @var PerigeeRecord|PhaseRecord $record */
             if ($record instanceof PerigeeRecord) {
-                $this->writeLine($this->datetime($record->timestamp)."\t\tMoon Perigee");
+                $table->addRow([$this->datetime($record->timestamp), "Moon Perigee"]);
             }
             if ($record instanceof PhaseRecord) {
-                $this->writeLine($this->datetime($record->timestamp)."\t\tFull Moon");
+                $table->addRow([$this->datetime($record->timestamp), "Full Moon"]);
             }
         });
+        $this->writeTable($table);
         $this->writeToFile("mushrooms.txt");
-    }
-
-    /**
-     * Returns a playground file name not committed to the code repository,
-     *
-     * @param string $filename
-     * @return string
-     */
-    protected function getPlaygroundFileName(string $filename): string
-    {
-        return self::PLAYGROUND_FOLDER . DIRECTORY_SEPARATOR . $filename;
-    }
-
-    /**
-     * Write a line of text in the demo output.
-     *
-     * @param string $text
-     * @return void
-     */
-    protected function writeLine(string|null $text = null): void
-    {
-        $this->output[] = $text.PHP_EOL;
-    }
-
-    /**
-     * Write an horizontal line.
-     *
-     * @param integer $size The line size expressed in char length.
-     * @return string
-     */
-    protected function writeHorizontalLine(int $size): void
-    {
-        $line = "";
-        for ($i = 0; $i < $size - 2; $i++) {
-            $line .= "-";
-        }
-        $vertex = "+";
-        $this->writeLine($vertex.$line.$vertex);
-    }
-
-    /**
-     * Write an header composed of a title and the location
-     * of the observer.
-     *
-     * @param string $title
-     * @return void
-     */
-    protected function writeHeader(string $title): void
-    {
-        $title_size = strlen($title);
-        $this->writeHorizontalLine($title_size + 4);
-        $this->writeLine("| $title |");
-        $this->writeHorizontalLine($title_size + 4);
-        $this->writeLine();
-        $this->writeNowDatetime();
-        $this->writeLocation();
-        $this->writeLine();
-    }
-
-    /**
-     * Write the location of the observer.
-     *
-     * @return void
-     */
-    protected function writeLocation(): void
-    {
-        $this->writeLine("Location: {$this->location_name}");
-        if ($this->ephemeris->pov instanceof Topocentric) {
-            $latitude = $this->ephemeris->pov->latitude;
-            $longitude = $this->ephemeris->pov->longitude;
-            $altitude = $this->ephemeris->pov->altitude;
-            $this->writeLine("Lat: {$latitude}° Long: {$longitude}° Alt: {$altitude}m\n");     
-        }
-    }
-
-    /**
-     * Write the current datetime.
-     *
-     * @return void
-     */
-    protected function writeNowDatetime(): void
-    {
-        $datetime = $this->datetime(Carbon::now());
-        $this->writeLine("Today is: $datetime");
-    }
-
-    /**
-     * Write the demo output in a file.
-     *
-     * @param string $filename The name of the output file.
-     * @return void
-     */
-    protected function writeToFile(string $filename): void
-    {
-        file_put_contents(
-            $this->getPlaygroundFileName($filename),
-            $this->output
-        );
-    }
-
-    protected function setLocation(
-        float $latitude = 51.0,
-        float $longitude = 0.0,
-        int $altitude = 26,
-        string $location_name = "Greenwich Royal Observatory, United Kingdom",
-        string $locale = "en_UK",
-        string $timezone = "Europe/London" 
-    ): void
-    {
-        $this->ephemeris->pov = new Topocentric(
-            $latitude,
-            $longitude,
-            $altitude
-        );
-        $this->location_name = $location_name;
-        $this->locale = $locale;
-        $this->timezone = $timezone;
-    }
-
-    protected function datetime(CarbonInterface $datetime): string
-    {
-        return $datetime->setTimezone($this->timezone)->isoFormat("LLL");
     }
 }
