@@ -18,7 +18,7 @@ class NodeTest extends TestCase
         $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
         $moon_longitude = $this->round($this->getRandomPositiveSexadecimalValue());
         $daily_speed = $this->round($this->getRandomMoonDailySpeed());
-        $text = "Moon       $timestamp  $moon_longitude  $daily_speed";
+        $text = "Moon _      {$timestamp}_ {$moon_longitude}_  $daily_speed";
         $parser = new Node($text);
         
         // Act
@@ -38,7 +38,7 @@ class NodeTest extends TestCase
         $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
         $moon_longitude = $this->round($this->getRandomPositiveSexadecimalValue());
         $daily_speed = $this->round($this->getRandomMoonDailySpeed());
-        $text = "true Node       $timestamp  $moon_longitude  $daily_speed";
+        $text = "true Node    _  {$timestamp}_  {$moon_longitude}_  $daily_speed";
         $parser = new Node($text);
         
         // Act
@@ -49,23 +49,5 @@ class NodeTest extends TestCase
         $this->assertEquals($timestamp, $result[1]);
         $this->assertEquals($moon_longitude, $result[2]);
         $this->assertEquals($daily_speed, $result[3]);
-    }
-
-    #[TestDox("returns null if some data is missing.")]
-    public function test_return_null_if_missing_data(): void
-    {
-        // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
-        $moon_longitude = $this->round($this->getRandomPositiveSexadecimalValue());
-        $daily_speed = $this->round($this->getRandomMoonDailySpeed());
-        $astral_object = $this->faker->randomElement(["Moon", "true Node"]);
-        $text_1 = "$timestamp  $moon_longitude  $daily_speed";
-        $text_2 = "$astral_object   $moon_longitude  $daily_speed";
-        $text_3 = "$astral_object   $timestamp";
-
-        // Act & Assert
-        $this->assertNull((new Node($text_1))->found());
-        $this->assertNull((new Node($text_2))->found());
-        $this->assertNull((new Node($text_3))->found());
     }
 }

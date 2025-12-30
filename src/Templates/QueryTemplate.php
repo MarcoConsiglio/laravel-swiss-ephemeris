@@ -7,6 +7,7 @@ use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
@@ -422,6 +423,7 @@ abstract class QueryTemplate
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::StepsNumber->value, $this->getStepsNumber()));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::Separator->value, Config::get('ephemeris.value_separator')));
     }
 
 }

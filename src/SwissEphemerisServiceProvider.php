@@ -25,7 +25,7 @@ class SwissEphemerisServiceProvider extends ServiceProvider
         // Publishing the package configuration file.
         $this->publishes([
             __DIR__.'/../config/ephemeris.php' => config_path('ephemeris.php'),
-        ], 'config');
+        ], 'swiss-ephemeris-config');
 
         // Publishing the Swiss Ephemeris library.
         $lib = 'swiss_ephemeris/';

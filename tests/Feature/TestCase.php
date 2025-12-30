@@ -44,7 +44,7 @@ abstract class TestCase extends OrchestraTestCase
         parent::setUp();
         $this->createApplication();
         $this->ephemeris = new LaravelSwissEphemeris(
-            null,
+            null, // Do not set POV
             Config::get("ephemeris.timezone")
         );
         $this->setUpFaker();
@@ -63,7 +63,8 @@ abstract class TestCase extends OrchestraTestCase
                 'latitude' => 51.47783333,
                 'longitude' => 0.0,
                 'altitude' => 0,
-                'timezone' => 'Europe/London'
+                'timezone' => 'Europe/London',
+                'value_separator' => "_"
             ]);
         });
     }

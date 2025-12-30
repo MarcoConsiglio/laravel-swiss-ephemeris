@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Parsers\Strategies;
 
+use Illuminate\Support\Facades\Config;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 
 /**
@@ -14,6 +15,14 @@ abstract class ParsingStrategy implements Strategy
      * @var string
      */
     protected string $text;
+
+    /**
+     * The variables inside $text, splitted
+     * by its configured separator.
+     * 
+     * @var string[]
+     */
+    protected array $data = [];
 
     /**
      * Construct the Error ParsingStrategy
@@ -47,7 +56,7 @@ abstract class ParsingStrategy implements Strategy
      */
     protected function decimalNumberFound(string $text, &$match): int|false
     {
-        $result = preg_match_all(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
+        $result = preg_match(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
         $match = $match[0];
         return $result;
     }
@@ -63,5 +72,25 @@ abstract class ParsingStrategy implements Strategy
     protected function astralObjectFound(string $text, string $regex, &$match): int|false
     {
         return preg_match($regex, $text, $match);       
+    }
+
+    /**
+     * Split the $text based on the configured 'value_separator'.
+     */
+    protected function split(string $text): void
+    {
+        $this->data = explode(Config::get('ephemeris.value_separator'), $text);
+    }
+
+    /**
+     * Trim the splitted values.
+     *
+     * @return void
+     */
+    protected function trim(): void
+    {
+        foreach ($this->data as $index => $value) {
+            $this->data[$index] = trim($value);
+        }
     }
 } 
