@@ -252,8 +252,7 @@ abstract class StrategyTestCase extends TestCase
     protected function getOppositeAbsoluteLongitude(Angle $longitude): Angle
     {
         $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
-        $result = Angle::absSum($longitude, $opposite);
-        return $result;
+        return Angle::absSum($longitude, $opposite);
     }
 
     /**

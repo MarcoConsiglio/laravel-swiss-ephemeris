@@ -142,8 +142,7 @@ PointOfView     * @param float $altitude in meters.
     {
         $start_date = $this->normalizeDatetime($start_date);
         $query = new DraconicTemplate($start_date, $days, $step_size, null, $this->resetShell(), $this->resetCommand());
-        $draconic_rhythm = $query->getResult();
-        return $draconic_rhythm;
+        return $query->getResult();
     }
 
     /**

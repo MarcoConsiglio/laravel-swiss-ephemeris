@@ -58,7 +58,7 @@ trait WithFuzzyLogic
      * @param Angle $delta The delta tolerance at which the condition is true.
      * @return boolean
      */
-    protected function isAboutAngle(Angle $alfa, Angle $beta, Angle $delta){
+    protected function isAboutAngle(Angle $alfa, Angle $beta, Angle $delta): bool{
         [$min, $max] = $this->getAngularDeltaExtrems($delta, $alfa);
         $beta = $beta->toDecimal();
         return $min <= $beta && $max >= $beta;
