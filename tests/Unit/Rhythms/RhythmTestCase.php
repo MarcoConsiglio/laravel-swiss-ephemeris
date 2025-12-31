@@ -51,8 +51,8 @@ abstract class RhythmTestCase extends TestCase
                     $this->getSpecificAngle(-90),
                     $this->getRandomMoonDailySpeed()
                 )
-                ]),
-                $this->sampling_rate
+            ]),
+            $this->sampling_rate
         );
     }
 }

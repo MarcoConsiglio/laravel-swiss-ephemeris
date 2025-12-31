@@ -28,6 +28,20 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 #[TestDox("The Moon SynodicRhythm collection")]
 class SynodicRhythmTest extends RhythmTestCase
 {
+    protected SynodicRhythm $rhythm;
+
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    #[\Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->rhythm = $this->getSynodicRhythm();
+    }
+
     #[TestDox("is a collection of Moon SynodicRhythmRecord instances.")]
     public function test_synodic_rhythm_has_records(): void
     {
@@ -67,11 +81,8 @@ class SynodicRhythmTest extends RhythmTestCase
     #[TestDox("can return a Moon\Periods collection.")]
     public function test_get_periods(): void
     {
-        // Arrange
-        $synodic_rhythm = $this->getSynodicRhythm();
-
         // Act
-        $periods = $synodic_rhythm->getPeriods();
+        $periods = $this->rhythm->getPeriods();
 
         // Assert
         $this->assertInstanceOf(Periods::class, $periods,
@@ -85,11 +96,8 @@ class SynodicRhythmTest extends RhythmTestCase
     #[TestDox("can return a Moon\Phases collection.")]
     public function test_get_phases(): void
     {
-        // Arrange
-        $synodic_rhythm = $this->getSynodicRhythm();   
-        
         // Act
-        $phases = $synodic_rhythm->getPhases(Phase::cases());
+        $phases = $this->rhythm->getPhases(Phase::cases());
 
         // Assert
         $this->assertInstanceOf(Phases::class, $phases,
@@ -103,13 +111,10 @@ class SynodicRhythmTest extends RhythmTestCase
     #[TestDox("can return a specific Moon SynodicRhythmRecord instance.")]
     public function test_getters(): void
     {
-        // Arrange
-        $synodic_rhythm = $this->getSynodicRhythm();
-        
         // Act
-        $first_record = $synodic_rhythm->first();
-        $last_record = $synodic_rhythm->last();
-        $a_record = $synodic_rhythm->get(1);
+        $first_record = $this->rhythm->first();
+        $last_record = $this->rhythm->last();
+        $a_record = $this->rhythm->get(1);
 
         // Assert
         $this->assertInstanceOf(SynodicRhythmRecord::class, $first_record,
