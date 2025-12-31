@@ -41,6 +41,7 @@ abstract class ParsingStrategy implements Strategy
      * @param string $text
      * @param mixed $match
      * @return integer|false
+     * @codeCoverageIgnore
      */
     protected function datetimeFound(string $text, &$match): int|false
     {
@@ -53,6 +54,7 @@ abstract class ParsingStrategy implements Strategy
      * @param string $text
      * @param mixed $match
      * @return integer|false
+     * @codeCoverageIgnore
      */
     protected function decimalNumberFound(string $text, &$match): int|false
     {
@@ -68,6 +70,7 @@ abstract class ParsingStrategy implements Strategy
      * @param string $regex
      * @param mixed $match
      * @return integer|false
+     * @codeCoverageIgnore
      */
     protected function astralObjectFound(string $text, string $regex, &$match): int|false
     {

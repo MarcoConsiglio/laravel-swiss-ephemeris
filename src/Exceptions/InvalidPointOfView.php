@@ -7,6 +7,8 @@ use Throwable;
 /**
  * This Exception is thrown when an invalid point of view
  * strategy is being passed to a concrete QueryTemplate.
+ * 
+ * @codeCoverageIgnore until it is actualy used somewhere.
  */
 class InvalidPointOfView extends Exception
 {

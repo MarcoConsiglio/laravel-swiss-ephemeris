@@ -10,6 +10,11 @@ class Planetocentric extends PointOfView
 {
     public SinglePlanet $planet;
 
+    public function __construct(SinglePlanet $planet)
+    {
+        $this->planet = $planet;
+    }
+
     protected function acceptPointOfView(Command &$command)
     {
         $command->addFlag(new SwissEphemerisFlag(ObserverPosition::Planetocentric->value, 
