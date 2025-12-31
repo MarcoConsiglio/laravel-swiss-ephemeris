@@ -31,7 +31,7 @@ class PlaygroundTest extends TestCase
         // Get all lunar phases.
         $lunar_phases = $synodic_rhythm->getPhases(LunarPhase::cases());
         $calendar = new TextTable(["DATETIME", "LUNAR PHASE"]);
-        $lunar_phases->each(function ($phase) use ($calendar) {
+        $lunar_phases->each(function ($phase) use ($calendar): void {
             /** @var PhaseRecord $phase */
             $calendar->addRow([$this->datetime($phase->timestamp), $this->getLunarPhaseIcon($phase)]);
         });
@@ -54,7 +54,7 @@ class PlaygroundTest extends TestCase
         $this->writeLine("With new moon, use less salt.");
         $this->writeLine("With full moon, use more salt.");
         $salt_table = new TextTable(["DATETIME", "LUNAR PHASE", "SALT"]);
-        $moon_phases->each(function ($phase) use ($salt_table) {
+        $moon_phases->each(function ($phase) use ($salt_table): void {
             /** @var PhaseRecord $phase */
             $salt = $phase->type == LunarPhase::FullMoon ? "++" : "--";
             $salt_table->addRow([$this->datetime($phase->timestamp), $phase->type->name, $salt]);
@@ -62,7 +62,7 @@ class PlaygroundTest extends TestCase
         $this->writeTable($salt_table);
         $this->writeLine("\nAvoid leavening the pizza on these days:");
         $nodes_table = new TextTable(["DATETIME", "LUNAR NODE"]);
-        $draconic_rhyhtm->each(function ($node) use ($nodes_table) {
+        $draconic_rhyhtm->each(function ($node) use ($nodes_table): void {
             /** @var DraconicRecord $node */
             $nodes_table->addRow([$this->datetime($node->timestamp), $node->cardinality->name]);
         });
@@ -96,7 +96,7 @@ class PlaygroundTest extends TestCase
         $this->writeHeader("Mushroom Almanac");
         $this->writeLine("A full moon and perigee on the same day\nare very favorable for mushroom growth.");
         $table = new TextTable(["DATETIME", "LUNAR EVENT"]);
-        $calendar->each(function ($record) use ($table) {
+        $calendar->each(function ($record) use ($table): void {
             /** @var PerigeeRecord|PhaseRecord $record */
             if ($record instanceof PerigeeRecord) {
                 $table->addRow([$this->datetime($record->timestamp), "Moon Perigee"]);
