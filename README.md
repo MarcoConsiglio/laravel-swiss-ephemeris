@@ -62,14 +62,16 @@ When using the word *collection*, it is meant that the class extends the [Illumi
 For more information, see the API documentation at `./docs/html`.
 
 # Index
+## Point of View
+- [Point of View](docs/md/PointOfView.md)
 ## Datetime
-- [Swiss Ephemeris datetime](docs/md/SwissEphemerisDateTime.md)
+- [Swiss Ephemeris Datetime](docs/md/SwissEphemerisDateTime.md)
 ## Moon Ephemeris
-- [Synodic rhythm](docs/md/Moon/SynodicRhythm.md)
-- [Moon periods](docs/md/Moon/Periods.md)
-- [Moon phases](docs/md/Moon/Phases.md)
-- [Moon anomalistic rhythm](docs/md/Moon/AnomalisticRhythm.md)
-- [Moon draconic rhythm](docs/md/Moon/DraconicRhythm.md)
+- [Synodic Rhythm](docs/md/Moon/SynodicRhythm.md)
+- [Moon Periods](docs/md/Moon/Periods.md)
+- [Moon Phases](docs/md/Moon/Phases.md)
+- [Moon Anomalistic Rhythm](docs/md/Moon/AnomalisticRhythm.md)
+- [Moon Draconic Rhythm](docs/md/Moon/DraconicRhythm.md)
 
 
 
