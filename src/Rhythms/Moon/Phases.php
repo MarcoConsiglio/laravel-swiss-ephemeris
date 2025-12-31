@@ -15,8 +15,6 @@ class Phases extends Collection
 {
     /**
      * Construct a Phase collection from a SynodicRhythm collection.
-     *
-     * @param FromSynodicRhythm $builder
      */
     public function __construct(FromSynodicRhythm $builder)
     {
@@ -28,7 +26,6 @@ class Phases extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return PhaseRecord
      */
     #[\Override]
     public function get($key, $default = null): PhaseRecord
@@ -39,9 +36,7 @@ class Phases extends Collection
     /**
      * Get the first Moon PhaseRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return PhaseRecord
      */
     #[\Override]
     public function first(?callable $callback = null, $default = null): PhaseRecord
@@ -52,9 +47,7 @@ class Phases extends Collection
     /**
      * Get the last Moon PhaseRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return PhaseRecord
      */
     #[\Override]
     public function last(?callable $callback = null, $default = null): PhaseRecord

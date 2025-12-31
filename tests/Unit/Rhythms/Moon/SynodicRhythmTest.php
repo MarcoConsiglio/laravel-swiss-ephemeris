@@ -32,8 +32,6 @@ class SynodicRhythmTest extends RhythmTestCase
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     protected function setUp(): void

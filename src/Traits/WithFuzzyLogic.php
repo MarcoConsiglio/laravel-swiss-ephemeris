@@ -16,7 +16,6 @@ trait WithFuzzyLogic
      * @param float   $number   First operand.
      * @param float   $expected Second operand.
      * @param float   $delta    The delta tolerance at which the condition is true.
-     * @return boolean
      */
     protected function isAbout(float $number, float $expected, float $delta): bool
     {
@@ -28,11 +27,6 @@ trait WithFuzzyLogic
      * Check if a $number is almost equal to $expected considering
      * $number like an absolute angular value, that is the minimum
      * value is 0° and the maximum value is 360°.
-     *
-     * @param float $number
-     * @param float $expected
-     * @param float $delta
-     * @return boolean
      */
     protected function isAboutAbsolute(float $number, float $expected, float $delta): bool
     {
@@ -50,13 +44,12 @@ trait WithFuzzyLogic
     }
 
     /**
-     * Check that $alpha is nearly equal to $beta, 
+     * Check that $alpha is nearly equal to $beta,
      * taking into account an angular neighborhood of $delta.
      *
      * @param Angle $alfa The first angle operand.
      * @param Angle $beta The second angle operand.
      * @param Angle $delta The delta tolerance at which the condition is true.
-     * @return boolean
      */
     protected function isAboutAngle(Angle $alfa, Angle $beta, Angle $delta): bool{
         [$min, $max] = $this->getAngularDeltaExtrems($delta, $alfa);
@@ -105,11 +98,6 @@ trait WithFuzzyLogic
     /**
      * Calculate the lower extreme of the $delta angle,
      * with the center being $number.
-     *
-     * @param float $number
-     * @param float $delta
-     * @param float|null|null $limit
-     * @return float
      */
     private function getMinDeltaExtremes(float $number, float $delta, float|null $limit = null): float
     {
@@ -120,10 +108,6 @@ trait WithFuzzyLogic
     /**
      * Calculate the lower extreme of the $delta angle,
      * with the center being $number.
-     *
-     * @param float $number
-     * @param float $delta
-     * @return float
      */
     private function getAbsMinDeltaExtremes(float $number, float $delta): float
     {
@@ -135,11 +119,6 @@ trait WithFuzzyLogic
     /**
      * Calculate the higher extreme of the $delta angle,
      * with the center being $number.
-     *
-     * @param float $number
-     * @param float $delta
-     * @param float|null|null $limit
-     * @return float
      */
     private function getMaxDeltaExtremes(float $number, float $delta, float|null $limit = null): float
     {
@@ -150,10 +129,6 @@ trait WithFuzzyLogic
     /**
      * Calculate the higher extreme of the $delta angle,
      * with the center being $number.
-     *
-     * @param float $number
-     * @param float $delta
-     * @return float
      */
     private function getAbsMaxDeltaExtremes(float $number, float $delta): float
     {
@@ -165,9 +140,6 @@ trait WithFuzzyLogic
     /**
      * Return the epsilon relative error value,
      * based on $delta.
-     *
-     * @param float $delta
-     * @return float
      */
     private function getEpsilon(float $delta): float
     {
@@ -175,12 +147,8 @@ trait WithFuzzyLogic
     }
 
     /**
-     * Transform an $angle value maintaing it between 
+     * Transform an $angle value maintaing it between
      * $limit° or 360° if $limit is not specifified.
-     *
-     * @param float $angle
-     * @param float|null|null $limit
-     * @return float
      */
     protected function normalizeAngularValue(float $angle, float|null $limit = null): float
     {
@@ -217,11 +185,8 @@ trait WithFuzzyLogic
 
     /**
      * Transform an angular value to an absolute value.
-     * 
-     * Warning! This is not the same as the abs() function.
      *
-     * @param float $angle
-     * @return float
+     * Warning! This is not the same as the abs() function.
      */
     protected function toAbsoluteAngularValue(float $angle): float
     {

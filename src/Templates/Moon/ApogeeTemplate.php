@@ -41,14 +41,11 @@ class ApogeeTemplate extends AnomalisticTemplate
      * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
-     * @return void
      */
     protected function setArguments(): void {}
 
     /**
      * Set flags for the swetest executable.
-     *
-     * @return void
      */
     #[\Override]
     protected function setFlags(): void
@@ -60,8 +57,6 @@ class ApogeeTemplate extends AnomalisticTemplate
 
     /**
      * Parse a line of the raw ephemeris output.
-     * 
-     * @return array|null
      */
     protected function parse(string $text): array|null
     {
@@ -70,8 +65,6 @@ class ApogeeTemplate extends AnomalisticTemplate
 
     /**
      * Construct the Apogees collection.
-     *
-     * @return void
      */
     protected function buildObject(): void
     {
@@ -80,8 +73,6 @@ class ApogeeTemplate extends AnomalisticTemplate
 
     /**
      * Return the builded object.
-     *
-     * @return Apogees
      */
     protected function fetchObject(): Apogees
     {
@@ -90,8 +81,6 @@ class ApogeeTemplate extends AnomalisticTemplate
 
     /**
      * Return the builded Apogees collection.
-     *
-     * @return Apogees
      */
     public function getResult(): Apogees
     {
@@ -99,10 +88,8 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It Remaps the output in an associative array, 
+     * It Remaps the output in an associative array,
      * with the columns name as the key.
-     *
-     * @return void
      */
     protected function remapColumns(): void
     {

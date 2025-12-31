@@ -11,8 +11,6 @@ class EmptyLine extends ParsingStrategy
 {
     /**
      * Find an empty line in the raw Swiss Ephemeris output.
-     *
-     * @return boolean
      */
     public function found(): bool
     {

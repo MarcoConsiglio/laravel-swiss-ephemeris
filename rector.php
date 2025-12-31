@@ -17,8 +17,8 @@ return RectorConfig::configure()
         __DIR__ . '/tests',
     ])
     ->withPhpLevel($level)
-    ->withTypeCoverageLevel(18)
-    ->withDeadCodeLevel(18)
+    ->withTypeCoverageLevel($level)
+    ->withDeadCodeLevel($level)
     ->withCodeQualityLevel($level)
     ->withSkip([
         ClassPropertyAssignToConstructorPromotionRector::class,
@@ -28,6 +28,5 @@ return RectorConfig::configure()
         ],
         RemoveDeadZeroAndOneOperationRector::class => [
             __DIR__ . '/tests/Unit/Traits/WithFuzzyLogicTest.php'
-        ],
-        // RemoveUselessParamTagRector::class
+        ]
     ]);

@@ -19,8 +19,7 @@ abstract class PhaseStrategy extends Strategy
     /**
      * Construct a FirstQuarter strategy with a Moon SynodicRhythmRecord.
      *
-     * @param SynodicRhythmRecord $record
-     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * @param int $sampling_rate The sampling rate of the ephemeris
      * expressed in minutes per each step of the ephemeris response.
      */
     public function __construct(SynodicRhythmRecord $record, int $sampling_rate)
@@ -32,8 +31,6 @@ abstract class PhaseStrategy extends Strategy
 
     /**
      * Return the daily speed of the record the strategy uses.
-     *
-     * @return float
      */
     protected function getSpeed(): float
     {

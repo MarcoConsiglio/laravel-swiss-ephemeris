@@ -115,9 +115,8 @@ abstract class QueryTemplate
      * Construct the template in order to produce
      * a MoonSynodicRhythm object.
      *
-     * @param SwissEphemerisDateTime $start_date
      * @param integer $days The length of the requested ephemeris interval.
-     * @param integer $step_size The sampling rate of the ephemeris expressed 
+     * @param integer $step_size The sampling rate of the ephemeris expressed
      * in minutes per each step of the ephemeris response.
      * @param PointOfView|null $pov The point of View
      * @param Exec|DryRunner|FakeRunner|null $shell The shell used to call the "swetest" executable.
@@ -147,8 +146,6 @@ abstract class QueryTemplate
 
     /**
      * The template of a query to the Swiss Ephemeris executable.
-     *
-     * @return void
      */
     final protected function query(): void
     {
@@ -167,23 +164,17 @@ abstract class QueryTemplate
 
     /**
      * Set arguments for the swetest executable.
-     *
-     * @return void
      */
     abstract protected function setArguments(): void;
     
     /**
      * Set flags for the swetest executable.
-     *
-     * @return void
      */
     abstract protected function setFlags(): void;
 
     /**
-     * Set whether or not the header appears in the 
+     * Set whether or not the header appears in the
      * ephemeris response. It defaults to no header.
-     *
-     * @return void
      */
     protected function setHeader(): void
     {
@@ -193,23 +184,18 @@ abstract class QueryTemplate
 
     /**
      * It formats the output before parsing it, if necessary.
-     *
-     * @return void
      */
     abstract protected function formatHook(): void;
 
     /**
      * It sets whether to include debug information in the response.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function debug(): void {}
 
     /**
      * Construct the swetest command with the correct inputs.
-     *
-     * @return void
      */
     final protected function buildCommand(): void
     {
@@ -222,7 +208,6 @@ abstract class QueryTemplate
     /**
      * It runs the swetest executable.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function runCommand(): void 
@@ -244,7 +229,6 @@ abstract class QueryTemplate
      * Search for errors in the swetest executable output.
      *
      * @param array $output
-     * @return void
      * @throws SwissEphemerisError if at least one error have been found.
      */
     protected function checkErrors(): void 
@@ -264,8 +248,6 @@ abstract class QueryTemplate
 
     /**
      * Search for warnings in the swetest executable output.
-     *
-     * @return void
      */
     protected function checkWarnings(): void
     {
@@ -284,8 +266,6 @@ abstract class QueryTemplate
 
     /**
      * Search for notices in the swetest executable output.
-     *
-     * @return void
      */
     protected function checkNotices(): void
     {
@@ -319,15 +299,11 @@ abstract class QueryTemplate
     /**
      * Remap the output in an associative array,
      * with the columns name as the key.
-     *
-     * @return void
      */
     abstract protected function remapColumns(): void;
 
     /**
      * Construct the correct object with a builder.
-     *
-     * @return void
      */
     abstract protected function buildObject(): void;
 
@@ -345,7 +321,6 @@ abstract class QueryTemplate
     /**
      * Remap columns to have names speci
      *
-     * @param array $columns
      * @return void
      */
     protected function remapColumnsBy(array $columns)
@@ -360,8 +335,6 @@ abstract class QueryTemplate
 
     /**
      * Calculate the steps of the ephemeris request.
-     *
-     * @return integer
      */
     protected function getStepsNumber(): int
     {
@@ -376,7 +349,6 @@ abstract class QueryTemplate
      * Remove the line number $index.
      *
      * @param integer $index Zero-based line number.
-     * @return void
      * @codeCoverageIgnore
      */
     protected function removeLine(int $index): void
@@ -393,8 +365,6 @@ abstract class QueryTemplate
 
     /**
      * Parse the response.
-     *
-     * @return void
      */
     protected function parseOutput(): void
     {
@@ -403,8 +373,6 @@ abstract class QueryTemplate
 
     /**
      * Parse a line of the raw ephemeris output.
-     * 
-     * @return array|null
      */
     abstract protected function parse(string $text): array|null;
 

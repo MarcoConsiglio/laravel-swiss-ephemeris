@@ -11,8 +11,6 @@ class Error extends ParsingStrategy
 {
     /**
      * Find an error row in the raw Swiss Ephemeris output.
-     *
-     * @return ?string
      */
     public function found(): ?string
     {

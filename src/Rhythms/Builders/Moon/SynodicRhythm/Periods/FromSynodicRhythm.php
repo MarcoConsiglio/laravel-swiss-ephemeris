@@ -21,8 +21,6 @@ class FromSynodicRhythm extends Builder
 
     /**
      * Construct the builder with the Moon SynodicRhythm.
-     *
-     * @param SynodicRhythm $data
      */
     public function __construct(SynodicRhythm $data)
     {
@@ -38,12 +36,10 @@ class FromSynodicRhythm extends Builder
         // No need to validate data.
     }
 
-    /** 
+    /**
      * Build records of the MoonPeriods collection.
-     *
-     * @return void
      */
-    public function buildRecords()
+    public function buildRecords(): void
     {
         $collection = collect($this->data->all()); // This prevents the original collection to extend LazyCollection.
         // Divide the Moon synodic rhythm in waxing and waning Moon periods.

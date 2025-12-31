@@ -130,8 +130,6 @@ class PhaseTest extends TestCase
      * Test a Phase constant correspond to its PhaseStrategy.
      * This is a Parameterized Test.
      *
-     * @param Phase $enum_constant
-     * @param string $strategy_class
      * @return void
      */
     protected function testPhaseConstantMapToPhaseStrategy(Phase $enum_constant, string $strategy_class)
@@ -152,8 +150,6 @@ class PhaseTest extends TestCase
      * Test a PhaseStrategy corresponds to its Phase constant.
      * This is a Parameterized Test.
      *
-     * @param string $strategy_class
-     * @param Phase $enum_constant
      * @return void
      */
     protected function testPhaseStrategyMapToPhaseConstant(string $strategy_class, Phase $enum_constant)

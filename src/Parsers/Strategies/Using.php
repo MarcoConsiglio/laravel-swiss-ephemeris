@@ -11,8 +11,6 @@ class Using extends ParsingStrategy
 {
     /**
      * Find a "using" notice row in the raw Swiss Ephemeris output.
-     *
-     * @return ?string
      */
     public function found(): ?string
     {

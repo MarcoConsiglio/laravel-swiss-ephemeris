@@ -10,7 +10,6 @@ trait WithFailureMessage
      * Get a property type failure message.
      *
      * @param string $property The property name
-     * @return string
      */
     protected static function typeFail(string $property): string
     {
@@ -21,7 +20,6 @@ trait WithFailureMessage
      * Get a getter/setter failure message.
      *
      * @param string $property The property name
-     * @return string
      */
     protected static function propertyFail(string $property): string
     {
@@ -32,7 +30,6 @@ trait WithFailureMessage
      * Get a function failure message.
      *
      * @param string $name The function name.
-     * @return string
      */
     protected static function functionFail(string $name): string
     {
@@ -43,7 +40,6 @@ trait WithFailureMessage
      * Get an enumeration failure message.
      *
      * @param string $constant The enumeration constant name.
-     * @return string
      */
     protected static function enumFail($constant): string
     {
@@ -55,7 +51,6 @@ trait WithFailureMessage
      *
      * @param [type] $expected_class
      * @param [type] $actual_class
-     * @return string
      */
     protected static function instanceTypeFail($expected_class, $actual_class): string
     {
@@ -65,11 +60,6 @@ trait WithFailureMessage
     /**
      * Produces a failure message when calling $called_class::$method doesn't return
      * the expected $return_type.
-     *
-     * @param string $called_class
-     * @param string $method
-     * @param string $return_type
-     * @return string
      */
     protected static function methodMustReturn(string $called_class, string $method, string $return_type): string
     {
@@ -79,12 +69,6 @@ trait WithFailureMessage
     /**
      * Produces a failure message when calling $called_class::$method doesn't return
      * the expected $return_type in case the $condition is verified.
-     *
-     * @param string $called_class
-     * @param string $method
-     * @param string $return_type
-     * @param string $condition
-     * @return string
      */
     protected static function methodMustReturnIf(string $called_class, string $method, string $return_type, string $condition): string
     {
@@ -94,10 +78,6 @@ trait WithFailureMessage
     /**
      * It produces a failure message when an iterable $collection_class has at least
      * one item different than $expected_items_type
-     *
-     * @param string $collection_class
-     * @param string $expected_items_type
-     * @return string
      */
     protected static function iterableMustContains(string $collection_class, string $expected_items_type): string
     {
@@ -108,11 +88,8 @@ trait WithFailureMessage
      * It produces a failure message when the $expected_format
      * is not equal to the $actual_format.
      *
-     * @param string $expected_format
      * @param string $expected_type The expected datetime format type,
      * i.e. "Gregorian Terrestrial Time" or others.
-     * @param string $actual_format
-     * @return string
      */
     protected static function incorrectDateTimeFormat(
         string $expected_format, 
@@ -124,10 +101,6 @@ trait WithFailureMessage
 
     /**
      * It produces a failure message when $class don't implements $interface.
-     *
-     * @param string $class
-     * @param string $interface
-     * @return string
      */
     protected static function mustImplement(string $class, string $interface): string
     {
@@ -136,10 +109,6 @@ trait WithFailureMessage
 
     /**
      * It produces a failure message when $class don't extends $parent_class.
-     *
-     * @param string $class
-     * @param string $parent_class
-     * @return string
      */
     protected static function mustExtend(string $class, string $parent_class): string
     {

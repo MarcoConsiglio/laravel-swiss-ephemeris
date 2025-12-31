@@ -36,7 +36,6 @@ abstract class AnomalisticTemplate extends QueryTemplate
      * Remap the output in an associative array,
      * with the columns name as the key.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     abstract protected function remapColumns(): void;
@@ -44,7 +43,6 @@ abstract class AnomalisticTemplate extends QueryTemplate
     /**
      * It formats the output before parsing it, if necessary.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function formatHook(): void {}
@@ -52,8 +50,6 @@ abstract class AnomalisticTemplate extends QueryTemplate
 
     /**
      * Return the columns names used by this template.
-     *
-     * @return array
      */
     static public function getColumns(): array
     {

@@ -18,8 +18,6 @@ class AnomalisticRhythm extends Collection
     /**
      * Construct the collection starting from
      * Moon Apogees and Moon Perigees collections.
-     *
-     * @param FromCollections $builder
      */
     public function __construct(FromCollections $builder)
     {
@@ -29,9 +27,7 @@ class AnomalisticRhythm extends Collection
     /**
      * Get the first Moon AnomalisticRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return AnomalisticRecord
      */
     #[\Override]
     public function first(?callable $callback = null, $default = null): AnomalisticRecord
@@ -42,9 +38,7 @@ class AnomalisticRhythm extends Collection
     /**
      * Get the last Moon AnomalisticRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return AnomalisticRecord
      */
     #[\Override]
     public function last(?callable $callback = null, $default = null): AnomalisticRecord
@@ -57,7 +51,6 @@ class AnomalisticRhythm extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return AnomalisticRecord
      */
     #[\Override]
     public function get($key, $default = null): AnomalisticRecord

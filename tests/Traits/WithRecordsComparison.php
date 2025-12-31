@@ -141,17 +141,12 @@ trait WithRecordsComparison
 
     /**
      * Return a comparison dataset with different and equal arguments.
-     * 
-     * @return array
      */
     abstract protected function getComparisonDataset(): array;
 
     /**
-     * Construct the two records to be compared with some $property_couples 
+     * Construct the two records to be compared with some $property_couples
      * representing an equal or different property
-     * 
-     * @param array $property_couples
-     * @return array
      */
     abstract protected function getRecordsToCompare(array $property_couples): array;
 
@@ -159,8 +154,7 @@ trait WithRecordsComparison
      * Calculate the total dispositions with repetition of N properties
      * to be compared, considering the elements composing the disposistions
      * will be two, different comparison result and equal comparison result.
-     * 
-     * @param int $properties_number
+     *
      * @return float|int|object
      */
     protected function getTotalDispositions(int $properties_number) 
@@ -172,10 +166,9 @@ trait WithRecordsComparison
     /**
      * Take a binary number string representation and fill it with missing
      * trailing zeros.
-     *  
+     *
      * @param string $binary_string The string representation of a binary number.
      * @param int $max_length The maximum number of digits in the binary number.
-     * @return string
      */
     private function fillWithTrailingZeros(string $binary_string, int $max_length): string
     {
@@ -190,9 +183,8 @@ trait WithRecordsComparison
 
     /**
      * Return an all zeros bit mask of $length bits.
-     * 
+     *
      * @param int $length The maximum length of the bit mask.
-     * @return string
      */
     private function getTrailingZeroMask(int $length): string
     {
@@ -208,9 +200,8 @@ trait WithRecordsComparison
     /**
      * Cast a string binary number to an array composed of
      * integer bits (0 or 1).
-     * 
+     *
      * @param string $binary_string The string binary number to cast.
-     * @return array
      */
     private function toIntegerBits(string $binary_string): array
     {
@@ -223,10 +214,6 @@ trait WithRecordsComparison
 
     /**
      * Return a failure message for a comparison failure.
-     * 
-     * @param int $case_number
-     * @param array $records
-     * @return string
      */
     private function getComparisonFailureMessage(int $case_number, array $records): string
     {

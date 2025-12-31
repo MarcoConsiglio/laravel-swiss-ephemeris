@@ -28,10 +28,9 @@ class FromArray extends FromArrayBuilder
     /**
      * Construct the builder with raw data.
      *
-     * @param array $data
-     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * @param int $sampling_rate The sampling rate of the ephemeris
      * expressed in minutes per each step of the ephemeris response.
-     * @throws \InvalidArgumentException if one or more columns 
+     * @throws \InvalidArgumentException if one or more columns
      * are missing from the data passed to the builder.
      */
     public function __construct(array $data, int $sampling_rate)

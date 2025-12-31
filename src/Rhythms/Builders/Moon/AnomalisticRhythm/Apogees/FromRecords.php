@@ -14,9 +14,8 @@ class FromRecords extends Builder
      * Construct the builder with an array
      * of ApogeeRecord instances.
      *
-     * @param array $data
-     * @throws \InvalidArgumentException if at least 
-     * one element is not an ApogeeRecord or the 
+     * @throws \InvalidArgumentException if at least
+     * one element is not an ApogeeRecord or the
      * array data is empty.
      */
     public function __construct(array $data)
@@ -49,8 +48,6 @@ class FromRecords extends Builder
 
     /**
      * Fetches the result.
-     *
-     * @return array
      */
     public function fetchCollection(): array
     {

@@ -21,9 +21,7 @@ class DraconicRhythm extends Collection
     /**
      * Get the first Moon DraconicRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return DraconicRecord
      */
     #[\Override]
     public function first(?callable $callback = null, $default = null): DraconicRecord
@@ -34,9 +32,7 @@ class DraconicRhythm extends Collection
     /**
      * Get the last Moon DraconicRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return DraconicRecord
      */
     #[\Override]
     public function last(?callable $callback = null, $default = null): DraconicRecord
@@ -49,7 +45,6 @@ class DraconicRhythm extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return DraconicRecord
      */
     #[\Override]
     public function get($key, $default = null): DraconicRecord

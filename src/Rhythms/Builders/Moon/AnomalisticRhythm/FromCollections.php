@@ -28,11 +28,8 @@ class FromCollections extends Builder
     protected Perigees $perigees;
 
     /**
-     * Construct the builder with 
+     * Construct the builder with
      * the two apogee and perigee collections.
-     *
-     * @param Apogees $apogees
-     * @param Perigees $perigees
      */
     public function __construct(Apogees $apogees, Perigees $perigees)
     {

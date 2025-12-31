@@ -25,8 +25,6 @@ class FromSynodicRhythmTest extends BuilderTestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     protected function setUp(): void
@@ -100,8 +98,6 @@ class FromSynodicRhythmTest extends BuilderTestCase
 
     /**
      * Get the current SUT class.
-     * 
-     * @return string
      */
     protected function getBuilderClass(): string
     {

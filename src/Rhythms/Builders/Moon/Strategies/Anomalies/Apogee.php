@@ -12,8 +12,7 @@ class Apogee extends AnomalisticStrategy
     /**
      * Construct the ApogeeStrategy with an ApogeeRecord.
      *
-     * @param ApogeeRecord $record
-     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * @param int $sampling_rate The sampling rate of the ephemeris
      * expressed in minutes per each step of the ephemeris response.
      */
     public function __construct(ApogeeRecord $record, int $sampling_rate)
@@ -25,8 +24,6 @@ class Apogee extends AnomalisticStrategy
     
     /**
      * Return the record only if the Moon is close to its apogee.
-     *
-     * @return ApogeeRecord|null
      */
     public function found(): ?ApogeeRecord
     {
@@ -40,8 +37,6 @@ class Apogee extends AnomalisticStrategy
 
     /**
      * Return the daily speed of the record the strategy uses.
-     *
-     * @return float
      */
     #[\Override]
     protected function getSpeed(): float

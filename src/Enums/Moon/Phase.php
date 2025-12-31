@@ -34,9 +34,6 @@ enum Phase
     /**
      * Get the corresponding type associated to a Moon PhaseStrategy concrete class.
      * Every Moon PhaseStrategy must have the same name of the corresponding Moon Phase constant.
-     *
-     * @param string $strategy_class
-     * @return Phase|null
      */
     public static function getCorrespondingPhase(string $strategy_class): ?Phase
     {
@@ -59,9 +56,6 @@ enum Phase
 
     /**
      * Get the corresponsing strategy used to find a MoonPhaseType.
-     *
-     * @param Phase $type
-     * @return string|null
      */
     public static function getCorrespondingStrategy(Phase $type): ?string
     {

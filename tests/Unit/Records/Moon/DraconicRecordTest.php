@@ -154,11 +154,8 @@ TEXT, (string) $record
     }
 
     /**
-     * Construct the two records to be compared with some $property_couples 
+     * Construct the two records to be compared with some $property_couples
      * representing an equal or different property
-     * 
-     * @param array $property_couples
-     * @return array
      */
     protected function getRecordsToCompare(array $property_couples): array
     {
@@ -182,8 +179,6 @@ TEXT, (string) $record
 
     /**
      * Return a comparison dataset with different and equal arguments.
-     * 
-     * @return array
      */
     protected function getComparisonDataset(): array
     {

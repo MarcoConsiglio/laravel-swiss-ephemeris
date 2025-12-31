@@ -15,8 +15,6 @@ class ApogeeTest extends TestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     public function setUp(): void

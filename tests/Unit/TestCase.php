@@ -39,8 +39,6 @@ abstract class TestCase extends TestbenchTestCase
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     protected function setUp(): void
@@ -52,11 +50,10 @@ abstract class TestCase extends TestbenchTestCase
     /**
      * Get a mocked object.
      *
-     * @param string  $class                    The class to mock. 
+     * @param string  $class                    The class to mock.
      * @param array   $mocked_methods           The methods to be replaced.
      * @param boolean $original_constructor     Enable or disable original constructor.
      * @param array   $constructor_arguments    If original constructor is enabled, it passes these arguments.
-     * @return \PHPUnit\Framework\MockObject\MockObject
      */
     protected function getMocked(
         string $class,
@@ -82,8 +79,6 @@ abstract class TestCase extends TestbenchTestCase
 
     /**
      * Return a fake representation of a SwissEphemerisDateTime instance.
-     *
-     * @return SwissEphemerisDateTime&MockObject
      */
     protected function getMockedSwissEphemerisDateTime(): SwissEphemerisDateTime&MockObject
     {
@@ -92,9 +87,6 @@ abstract class TestCase extends TestbenchTestCase
 
     /**
      * Create a specific Angle with $decimal_degrees.
-     *
-     * @param float $decimal_degrees
-     * @return Angle
      */
     protected function getSpecificAngle(float $decimal_degrees): Angle
     {

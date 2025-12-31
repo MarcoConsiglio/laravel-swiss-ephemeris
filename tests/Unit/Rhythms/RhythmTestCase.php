@@ -12,8 +12,6 @@ abstract class RhythmTestCase extends TestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     protected function setUp(): void
@@ -24,8 +22,6 @@ abstract class RhythmTestCase extends TestCase
 
     /**
      * Get a Moon SynodicRhythm of a full cycle.
-     *
-     * @return SynodicRhythm
      */
     protected function getSynodicRhythm(): SynodicRhythm
     {

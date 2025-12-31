@@ -13,7 +13,6 @@ class TestCase extends StrategyTestCase
      * Return an ApogeeRecord with the Moon close to its apogee.
      *
      * @param integer $longitude Moon and apogee longitude.
-     * @return ApogeeRecord
      */
     protected function getApogeeRecord(float $longitude = 180.0): ApogeeRecord
     {
@@ -31,7 +30,6 @@ class TestCase extends StrategyTestCase
      * Return an PerigeeRecord with the Moon close to its perigee.
      *
      * @param integer $longitude Moon and perigee longitude.
-     * @return PerigeeRecord
      */
     protected function getPerigeeRecord(float $longitude = 180.0): PerigeeRecord
     {
@@ -49,7 +47,6 @@ class TestCase extends StrategyTestCase
      * Return an ApogeeRecord with the Moon that isn't in its apogee.
      *
      * @param float $longitude The Moon longitude, but not the apogee longitude.
-     * @return ApogeeRecord
      */
     protected function getNonApogeeRecord(float $longitude = 180.0): ApogeeRecord
     {
@@ -67,7 +64,6 @@ class TestCase extends StrategyTestCase
      * Return a PerigeeRecord with the Moon that isn't in its perigee.
      *
      * @param float $longitude The Moon longitude, but not the perigee longitude.
-     * @return PerigeeRecord
      */
     protected function getNonPerigeeRecord(float $longitude = 180.0): PerigeeRecord
     {
@@ -85,8 +81,6 @@ class TestCase extends StrategyTestCase
      * Construct the strategy to test.
      *
      * @param string $strategy
-     * @param ApogeeRecord|PerigeeRecord $record
-     * @return BuilderStrategy
      */
     protected function makeStrategy(ApogeeRecord|PerigeeRecord $record): BuilderStrategy
     {

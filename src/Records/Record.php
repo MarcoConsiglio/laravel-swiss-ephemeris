@@ -21,10 +21,8 @@ abstract class Record implements Stringable
     public protected(set) SwissEphemerisDateTime $timestamp;
 
     /**
-     * Get the parent properties packed in an associative 
+     * Get the parent properties packed in an associative
      * array.
-     * 
-     * @return array
      */
     protected function getParentProperties(): array
     {

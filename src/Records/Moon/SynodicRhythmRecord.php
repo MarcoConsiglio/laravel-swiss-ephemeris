@@ -34,7 +34,6 @@ class SynodicRhythmRecord extends MovingObjectRecord
     /**
      * Construct a Moon SynodicRhythmRecord.
      *
-     * @param SwissEphemerisDateTime $timestamp
      * @param Angle $angular_distance The angular difference between the Moon and the Sun.
      * @param float $daily_speed The daily speed expressed in decimal degrees.
      */
@@ -47,8 +46,6 @@ class SynodicRhythmRecord extends MovingObjectRecord
 
     /**
      * Check if this record refers to a waxing moon period.
-     *
-     * @return boolean
      */
     public function isWaxing(): bool
     {
@@ -57,8 +54,6 @@ class SynodicRhythmRecord extends MovingObjectRecord
 
     /**
      * Check if this record refers to a waning moon period.
-     *
-     * @return boolean
      */
     public function isWaning(): bool
     {
@@ -67,8 +62,6 @@ class SynodicRhythmRecord extends MovingObjectRecord
 
     /**
      * Get the type of the Moon period in this MoonSynodicRhythmRecord.
-     *
-     * @return Period
      */
     public function getPeriodType(): Period
     {
@@ -77,9 +70,6 @@ class SynodicRhythmRecord extends MovingObjectRecord
 
     /**
      * Check if this record is equal to $another_record.
-     *
-     * @param SynodicRhythmRecord $another_record
-     * @return boolean
      */
     public function equals(SynodicRhythmRecord $another_record): bool
     {

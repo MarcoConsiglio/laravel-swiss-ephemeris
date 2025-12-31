@@ -63,12 +63,8 @@ enum RegExPattern: string {
      */
     public const ThreeSpaceDelimiter = '(?<=\b\s\s\s)';
     // @codeCoverageIgnoreEnd
-
     /**
      * Construct a regular expression adding delimiters.
-     *
-     * @param string $partial_regex
-     * @return string
      */
     static public function getRegex(string $partial_regex): string
     {

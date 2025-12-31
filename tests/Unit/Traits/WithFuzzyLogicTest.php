@@ -153,14 +153,10 @@ class WithFuzzyLogicTest extends TestCase
 
     /**
      * Tests isAbout() method.
-     * 
-     * This is a Parameterized Test.
-     * 
      *
-     * @param float $first_nuber
-     * @param float $second_number
-     * @param integer $delta
-     * @param boolean $boolean_assertion
+     * This is a Parameterized Test.
+     *
+     *
      * @return void
      */
     protected function testIsAboutMethod(
@@ -176,14 +172,9 @@ class WithFuzzyLogicTest extends TestCase
 
     /**
      * Tests isAboutAbsolute() method.
-     * 
+     *
      * This is a Parameterized Test.
      *
-     * @param float $first_nuber
-     * @param float $second_number
-     * @param float $delta
-     * @param boolean $bolean_assertion
-     * @param string $error_message
      * @return void
      */
     protected function testIsAboutAbsoluteMethod(
@@ -199,15 +190,10 @@ class WithFuzzyLogicTest extends TestCase
 
     /**
      * This is a Parameterized Test.
-     * 
-     * It tests isAboutAngle method present in 
+     *
+     * It tests isAboutAngle method present in
      * the WithFuzzyLogic trait.
      *
-     * @param Angle $alfa
-     * @param Angle $beta
-     * @param Angle $delta
-     * @param boolean $boolean_assertion
-     * @param string $error_message
      * @return void
      */
     protected function testIsAboutAngleMethod(
@@ -226,11 +212,7 @@ class WithFuzzyLogicTest extends TestCase
      * It tests getDeltaExtremes method present in
      * the WithFuzzyLogic trait.
      *
-     * @param float $delta
-     * @param float $number
-     * @param float|null|null $limit
      * @param boolean $bolean_assertion
-     * @param string $error_message
      * @return void
      */
     protected function testGetDeltaExtremesMethod(

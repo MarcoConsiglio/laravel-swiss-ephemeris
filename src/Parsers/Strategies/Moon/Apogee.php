@@ -12,8 +12,6 @@ class Apogee extends ParsingStrategy
 {
     /**
      * Find a data line in the raw swiss ephemeris output.
-     *
-     * @return array
      */
     public function found(): array
     {

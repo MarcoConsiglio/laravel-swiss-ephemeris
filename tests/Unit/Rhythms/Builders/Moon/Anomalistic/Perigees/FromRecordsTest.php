@@ -58,8 +58,6 @@ class FromRecordsTest extends BuilderTestCase
 
     /**
      * Get the current SUT class.
-     * 
-     * @return string
      */
     protected function getBuilderClass(): string
     {

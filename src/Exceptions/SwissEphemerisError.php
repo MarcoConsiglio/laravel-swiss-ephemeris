@@ -22,9 +22,6 @@ class SwissEphemerisError extends ErrorException
 
     /**
      * Removes duplicates errors.
-     *
-     * @param array $errors
-     * @return array
      */
     protected function unique(array $errors): array
     {
@@ -33,9 +30,6 @@ class SwissEphemerisError extends ErrorException
 
     /**
      * Makes a string error message.
-     *
-     * @param array $errors
-     * @return string
      */
     protected function makeMessage(array $errors): string
     {

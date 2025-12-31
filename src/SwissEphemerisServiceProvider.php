@@ -12,7 +12,7 @@ class SwissEphemerisServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(): void
     {
         /*
          * Optional methods to load your package assets
@@ -63,7 +63,7 @@ class SwissEphemerisServiceProvider extends ServiceProvider
      * Register the application services.
      */
     #[\Override]
-    public function register()
+    public function register(): void
     {
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/ephemeris.php', 'ephemeris');

@@ -21,8 +21,6 @@ abstract class AnomalisticRecord extends MovingObjectRecord
 
     /**
      * Checks if this record is an Apogee.
-     *
-     * @return boolean
      */
     public function isApogee(): bool
     {
@@ -31,9 +29,7 @@ abstract class AnomalisticRecord extends MovingObjectRecord
 
     /**
      * Checks if this record is an Perigee.
-     *
-     * @return boolean
-     */    
+     */
     public function isPerigee(): bool
     {
         return $this instanceof PerigeeRecord;

@@ -44,7 +44,6 @@ class SynodicRhythm extends Collection
      *
      * @param  mixed  $key
      * @param  mixed  $default
-     * @return SynodicRhythmRecord
      */
     #[\Override]
     public function get($key, $default = null): SynodicRhythmRecord
@@ -54,8 +53,6 @@ class SynodicRhythm extends Collection
 
     /**
      * Get a collection of Moon Periods.
-     *
-     * @return Periods
      */
     public function getPeriods(): Periods
     {
@@ -67,7 +64,6 @@ class SynodicRhythm extends Collection
      *
      * @param array $moon_phase_types An array ofMoonPhaseType
      * items representing which moon phases you want to extract.
-     * @return Phases
      */
     public function getPhases(array $moon_phase_types): Phases
     {
@@ -77,9 +73,7 @@ class SynodicRhythm extends Collection
     /**
      * Get the first Moon SynodicRhythmRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return SynodicRhythmRecord
      */
     #[\Override]
     public function first(?callable $callback = null, $default = null): SynodicRhythmRecord
@@ -90,9 +84,7 @@ class SynodicRhythm extends Collection
     /**
      * Get the last Moon SynodicRhythmRecord.
      *
-     * @param callable|null $callback
      * @param mixed        $default
-     * @return SynodicRhythmRecord
      */
     #[\Override]
     public function last(?callable $callback = null, $default = null): SynodicRhythmRecord

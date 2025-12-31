@@ -45,10 +45,6 @@ class Period extends Record
 
     /**
      * Construct a Moon period.
-     *
-     * @param SwissEphemerisDateTime $start
-     * @param SwissEphemerisDateTime $end
-     * @param PeriodType $type
      */
     public function __construct(SwissEphemerisDateTime $start, SwissEphemerisDateTime $end, PeriodType $type)
     {
@@ -59,8 +55,6 @@ class Period extends Record
 
     /**
      * Tells if this period is waxing.
-     *
-     * @return boolean
      */
     public function isWaxing(): bool
     {
@@ -69,8 +63,6 @@ class Period extends Record
 
     /**
      * Tells if this period is waning.
-     *
-     * @return boolean
      */
     public function isWaning(): bool
     {
@@ -92,10 +84,9 @@ class Period extends Record
     }
 
     /**
-     * Get the parent properties packed in an associative 
+     * Get the parent properties packed in an associative
      * array.
-     * 
-     * @return array
+     *
      * @codeCoverageIgnore
      */
     #[\Override]

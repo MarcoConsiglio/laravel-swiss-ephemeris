@@ -18,8 +18,6 @@ class FromArrayTest extends FromArrayTestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     public function setUp(): void
@@ -109,8 +107,6 @@ class FromArrayTest extends FromArrayTestCase
 
     /**
      * Get the current SUT class.
-     * 
-     * @return string
      */
     protected function getBuilderClass(): string
     {
@@ -119,8 +115,6 @@ class FromArrayTest extends FromArrayTestCase
 
     /**
      * Return raw ephemeris data to test the builder.
-     *
-     * @return array
      */
     public  function getRawData(): array
     {

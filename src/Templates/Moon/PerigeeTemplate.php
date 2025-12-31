@@ -40,14 +40,11 @@ class PerigeeTemplate extends AnomalisticTemplate
      * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
-     * @return void
      */
     protected function setArguments(): void {}
 
     /**
      * Set flags for the swetest executable.
-     *
-     * @return void
      */
     #[\Override]
     protected function setFlags(): void
@@ -59,8 +56,6 @@ class PerigeeTemplate extends AnomalisticTemplate
 
     /**
      * Parse a line of the raw ephemeris output.
-     * 
-     * @return array|null
      */
     protected function parse(string $text): array|null
     {
@@ -69,8 +64,6 @@ class PerigeeTemplate extends AnomalisticTemplate
 
     /**
      * Construct the Perigees collection.
-     *
-     * @return void
      */
     protected function buildObject(): void
     {
@@ -79,8 +72,6 @@ class PerigeeTemplate extends AnomalisticTemplate
 
     /**
      * Return the builded object.
-     *
-     * @return Perigees
      */
     protected function fetchObject(): Perigees
     {
@@ -89,8 +80,6 @@ class PerigeeTemplate extends AnomalisticTemplate
 
     /**
      * Return the builded Perigees collection.
-     *
-     * @return Perigees
      */
     public function getResult(): Perigees
     {
@@ -98,10 +87,8 @@ class PerigeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * Remap the output in an associative array, 
+     * Remap the output in an associative array,
      * with the columns name as the key.
-     *
-     * @return void
      */
     protected function remapColumns(): void
     {

@@ -11,8 +11,6 @@ class NewMoon extends PhaseStrategy
 {
     /**
      * Return the record only if its angular_distance is about 0°.
-     *
-     * @return SynodicRhythmRecord|null
      */
     public function found(): ?SynodicRhythmRecord
     {   

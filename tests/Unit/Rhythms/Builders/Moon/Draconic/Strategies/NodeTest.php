@@ -13,8 +13,6 @@ class NodeTest extends TestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     public function setUp(): void
@@ -55,9 +53,6 @@ class NodeTest extends TestCase
 
     /**
      * Construct the strategy to test.
-     *
-     * @param DraconicRecord $record
-     * @return Node
      */
     protected function makeStrategy(DraconicRecord $record): Node
     {

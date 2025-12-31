@@ -59,7 +59,6 @@ abstract class Builder implements BuilderInterface
     /**
      * Validate records passed into the builder.
      *
-     * @param string $record_class
      * @return void
      * @throws \InvalidArgumentException if at least one item
      * is not a $record_class type.
@@ -96,10 +95,6 @@ abstract class Builder implements BuilderInterface
     /**
      * Return an exception message for a
      * record type mismatch.
-     *
-     * @param string $builder_class
-     * @param string $record_class
-     * @return string
      */
     protected function getInvalidRecordTypeMessage(string $builder_class, string $record_class): string
     {
@@ -109,9 +104,6 @@ abstract class Builder implements BuilderInterface
     /**
      * Return an exception message for an
      * empty array data.
-     *
-     * @param string $builder_class
-     * @return string
      */
     protected function getEmptyDataMessage(string $builder_class): string
     {

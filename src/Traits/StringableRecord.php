@@ -9,8 +9,6 @@ trait StringableRecord
     /**
      * Procude a string representation of the object
      * which class has the Stringable trait.
-     *
-     * @return void
      */
     protected function toString(): string
     {
@@ -36,37 +34,31 @@ trait StringableRecord
 
     /**
      * Pack the object properties in an associative array.
-     * 
-     * The keys are the object properties names. The values 
-     * are the object properties already formatted values. 
-     * It is the responsibility of the Stringable class to 
-     * format its properties correctly.
      *
-     * @return array
+     * The keys are the object properties names. The values
+     * are the object properties already formatted values.
+     * It is the responsibility of the Stringable class to
+     * format its properties correctly.
      */
     abstract protected function packProperties(): array;
 
     /**
-     * Get the parent properties packed in an associative 
+     * Get the parent properties packed in an associative
      * array.
-     * 
-     * The keys are the object properties names. The values 
+     *
+     * The keys are the object properties names. The values
      * are the object properties already formatted values.
-     * It is the responsibility of the Stringable class to 
-     * merge the properties of the parent class into its 
+     * It is the responsibility of the Stringable class to
+     * merge the properties of the parent class into its
      * own properties.
-     * 
-     * @return void
      */
     abstract protected function getParentProperties(): array;
 
     /**
      * Return the class name of the Stringable class.
-     * 
-     * The Stringable class means every class with the 
-     * trait Stringable.
      *
-     * @return string
+     * The Stringable class means every class with the
+     * trait Stringable.
      */
     protected function getClassName(): string
     {
@@ -75,9 +67,6 @@ trait StringableRecord
 
     /**
      * Cast a pure enum constant to string.
-     * 
-     * @param mixed $enum_constant
-     * @return string
      */
     protected function enumToString(mixed $enum_constant): string
     {

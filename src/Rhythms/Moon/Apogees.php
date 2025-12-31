@@ -16,8 +16,6 @@ class Apogees extends Collection
 {
     /**
      * Construct a Moon Apogees collection from an array of raw ephemeris.
-     *
-     * @param FromArray|FromRecords $builder
      */
     public function __construct(FromArray|FromRecords $builder)
     {
@@ -27,9 +25,7 @@ class Apogees extends Collection
     /**
      * Get the first Moon ApogeeRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return ApogeeRecord
      */
     #[\Override]
     public function first(?callable $callback = null, $default = null): ApogeeRecord
@@ -40,9 +36,7 @@ class Apogees extends Collection
     /**
      * Get the last Moon ApogeeRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return ApogeeRecord
      */
     #[\Override]
     public function last(?callable $callback = null, $default = null): ApogeeRecord
@@ -55,7 +49,6 @@ class Apogees extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return ApogeeRecord
      */
     #[\Override]
     public function get($key, $default = null): ApogeeRecord

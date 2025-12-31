@@ -28,8 +28,6 @@ abstract class TemplateTestCase extends TestCase
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     protected function setUp(): void
@@ -39,11 +37,10 @@ abstract class TemplateTestCase extends TestCase
     }
 
     /**
-     * Returns an already generated swetest executable response, 
+     * Returns an already generated swetest executable response,
      * reading it from a file specified in $response_file.
-     * Use it to not trigger a call to the executable during tests.  
+     * Use it to not trigger a call to the executable during tests. 
      *
-     * @return string
      */
     protected function getFakeSwetestResponse(): string
     {
@@ -53,8 +50,6 @@ abstract class TemplateTestCase extends TestCase
 
     /**
      * Returns a random Topocentric PointOfView.
-     *
-     * @return Topocentric
      */
     protected function getRandomTopocentricPOV(): Topocentric
     {

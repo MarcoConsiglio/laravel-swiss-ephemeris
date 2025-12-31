@@ -15,8 +15,6 @@ class Periods extends Collection
 {
     /**
      * Construct a Periods collection from a SynodicRhythm collection.
-     *
-     * @param FromSynodicRhythm $builder
      */
     public function __construct(FromSynodicRhythm $builder)
     {
@@ -26,9 +24,7 @@ class Periods extends Collection
     /**
      * Get the first Moon Period.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return Period
      */
     #[\Override]
     public function first(?callable $callback = null, $default = null): Period
@@ -39,9 +35,7 @@ class Periods extends Collection
     /**
      * Get the last Moon Period.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return Period
      */
     #[\Override]
     public function last(?callable $callback = null, $default = null): Period
@@ -54,7 +48,6 @@ class Periods extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return Period
      */
     #[\Override]
     public function get($key, $default = null): Period

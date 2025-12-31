@@ -11,8 +11,6 @@ abstract class TestCase extends StrategyTestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     public function setUp(): void
@@ -25,9 +23,8 @@ abstract class TestCase extends StrategyTestCase
     /**
      * Get a random DraconicRecord which is a lunar north node.
      *
-     * @param bool $set_cardinality Weather the instance have 
+     * @param bool $set_cardinality Weather the instance have
      * the cardinality property already setted.
-     * @return DraconicRecord
      */
     protected function getRandomNorthNodeRecord(bool $set_cardinality = false): DraconicRecord
     {
@@ -48,9 +45,8 @@ abstract class TestCase extends StrategyTestCase
     /**
      * Get a random DraconicRecord which is a lunar south node.
      *
-     * @param bool $set_cardinality Weather the instance have 
+     * @param bool $set_cardinality Weather the instance have
      * the cardinality property already setted.
-     * @return DraconicRecord
      */
     protected function getRandomSouthNodeRecord(bool $set_cardinality = false): DraconicRecord
     {
@@ -72,12 +68,10 @@ abstract class TestCase extends StrategyTestCase
     /**
      * Get a random DraconicRecord which is any Moon position
      * except for north and south nodes.
-     * 
+     *
      * Of course the cardinality property is not setted, because
      * the moon in not in one of the two lunar nodes, therefor
      * is meaningless.
-     *
-     * @return DraconicRecord
      */
     protected function getRandomNonNodeRecord(): DraconicRecord
     {

@@ -60,12 +60,8 @@ class DraconicRecord extends MovingObjectRecord
     }
 
     /**
-     * Construct the Moon DraconicRecord. 
+     * Construct the Moon DraconicRecord.
      *
-     * @param SwissEphemerisDateTime $timestamp
-     * @param Angle $moon_longitude
-     * @param Angle $north_node_longitude
-     * @param float $moon_daily_speed
      */
     public function __construct(
         SwissEphemerisDateTime $timestamp,
@@ -81,8 +77,6 @@ class DraconicRecord extends MovingObjectRecord
 
     /**
      * Calculate the opposite angle of a longitude value.
-     *
-     * @return Angle
      */
     protected function oppositeLongitude(Angle $longitude): Angle
     {
@@ -97,8 +91,6 @@ class DraconicRecord extends MovingObjectRecord
 
     /**
      * Return true if this record is a north node.
-     *
-     * @return boolean
      */
     public function isNorthNode(): bool
     {
@@ -107,8 +99,6 @@ class DraconicRecord extends MovingObjectRecord
 
     /**
      * Return true if this record is a south node.
-     *
-     * @return boolean
      */
     public function isSouthNode(): bool
     {
@@ -147,9 +137,6 @@ class DraconicRecord extends MovingObjectRecord
 
     /**
      * Check if this record is equal to $another_record.
-     *
-     * @param DraconicRecord $another_record
-     * @return boolean
      */
     public function equals(DraconicRecord $another_record): bool
     {

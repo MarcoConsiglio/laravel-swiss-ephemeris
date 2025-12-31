@@ -54,14 +54,11 @@ class DraconicTemplate extends QueryTemplate
      * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
-     * @return void
      */
     protected function setArguments(): void {}
 
     /**
      * Set flags for the swetest executable.
-     *
-     * @return void
      */
     protected function setFlags(): void
     {
@@ -77,8 +74,6 @@ class DraconicTemplate extends QueryTemplate
 
     /**
      * Parse a line of the raw ephemeris output.
-     * 
-     * @return array|null
      */
     protected function parse(string $text): array|null
     {
@@ -87,8 +82,6 @@ class DraconicTemplate extends QueryTemplate
 
     /**
      * Construct the DraconicRhythm object.
-     *
-     * @return void
      */
     protected function buildObject(): void
     {
@@ -100,7 +93,6 @@ class DraconicTemplate extends QueryTemplate
     /**
      * It formats the output before parsing it, if necessary.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function formatHook(): void {}
@@ -109,7 +101,6 @@ class DraconicTemplate extends QueryTemplate
      * Remap the output in an associative array,
      * with the columns name as keys.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function remapColumns(): void
@@ -119,8 +110,6 @@ class DraconicTemplate extends QueryTemplate
 
     /**
      * Return the columns names used by this template.
-     *
-     * @return array
      */
     public static function getColumns(): array
     {
@@ -129,8 +118,6 @@ class DraconicTemplate extends QueryTemplate
 
     /**
      * Return the DraconicRhythm collection.
-     *
-     * @return DraconicRhythm
      */
     public function getResult(): DraconicRhythm
     {
@@ -139,8 +126,6 @@ class DraconicTemplate extends QueryTemplate
 
     /**
      * Return the builded object.
-     *
-     * @return DraconicRhythm
      */
     protected function fetchObject(): DraconicRhythm
     {

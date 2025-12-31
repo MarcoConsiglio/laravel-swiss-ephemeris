@@ -8,9 +8,6 @@ class TestCase extends UnitTestCase
 {
     /**
      * Round the $number to 11 decimal places.
-     *
-     * @param float $number
-     * @return float
      */
     protected function round(float $number): float
     {

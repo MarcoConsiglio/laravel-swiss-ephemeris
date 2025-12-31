@@ -43,10 +43,6 @@ abstract class FromArrayBuilder extends Builder
     /**
      * Return an exception message for a malformed
      * array data passed to the builder.
-     *
-     * @param string $builder_class
-     * @param string $key
-     * @return string
      */
     protected function getMalformedArrayMessage(string $builder_class, string $key): string
     {

@@ -55,8 +55,6 @@ class TestCase extends FeatureTestCase
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[Override]
     public function setUp(): void
@@ -70,13 +68,6 @@ class TestCase extends FeatureTestCase
 
     /**
      * Set the location of the observer.
-     * 
-     * @param float $latitude
-     * @param float $longitude
-     * @param int $altitude
-     * @param string $location_name
-     * @param string $locale
-     * @param string $timezone
      */
     protected function setLocation(
         float $latitude = 51.0,
@@ -98,9 +89,6 @@ class TestCase extends FeatureTestCase
 
     /**
      * Returns a playground file name not committed to the code repository,
-     *
-     * @param string $filename
-     * @return string
      */
     protected function getPlaygroundFileName(string $filename): string
     {
@@ -111,7 +99,6 @@ class TestCase extends FeatureTestCase
      * Write a line of text in the demo output.
      *
      * @param string $text
-     * @return void
      */
     protected function writeLine(string|null $text = null): void
     {
@@ -122,7 +109,6 @@ class TestCase extends FeatureTestCase
      * Write an horizontal line.
      *
      * @param integer $size The line size expressed in char length.
-     * @return string
      */
     protected function writeHorizontalLine(int $size): void
     {
@@ -137,9 +123,6 @@ class TestCase extends FeatureTestCase
     /**
      * Write an header composed of a title and the location
      * of the observer.
-     *
-     * @param string $title
-     * @return void
      */
     protected function writeHeader(string $title): void
     {
@@ -155,8 +138,6 @@ class TestCase extends FeatureTestCase
 
     /**
      * Write the location of the observer.
-     *
-     * @return void
      */
     protected function writeLocation(): void
     {
@@ -171,8 +152,6 @@ class TestCase extends FeatureTestCase
 
     /**
      * Write the current datetime.
-     *
-     * @return void
      */
     protected function writeNowDatetime(): void
     {
@@ -184,7 +163,6 @@ class TestCase extends FeatureTestCase
      * Write the demo output in a file.
      *
      * @param string $filename The name of the output file.
-     * @return void
      */
     protected function writeToFile(string $filename): void
     {
@@ -196,9 +174,6 @@ class TestCase extends FeatureTestCase
 
     /**
      * Format a Carbon datetime with timezone and locale.
-     *
-     * @param CarbonInterface $datetime
-     * @return string
      */
     protected function datetime(CarbonInterface $datetime): string
     {
@@ -208,9 +183,6 @@ class TestCase extends FeatureTestCase
 
     /**
      * Render the $table as string output.
-     *
-     * @param TextTable $table
-     * @return void
      */
     protected function writeTable(TextTable $table): void
     {
@@ -219,9 +191,6 @@ class TestCase extends FeatureTestCase
 
     /**
      * Get the corresponding icon of a lunar $phase.
-     *
-     * @param PhaseRecord $phase
-     * @return string
      */
     protected function getLunarPhaseIcon(PhaseRecord $phase): string
     {

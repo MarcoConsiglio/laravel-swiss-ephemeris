@@ -86,8 +86,6 @@ class SwissEphemerisDateTime extends Carbon
     /**
      * Format this date to the Gregorian calendar expressed in
      * Universal Time.
-     *
-     * @return string
      */
     public function toGregorianUT(): string
     {
@@ -97,8 +95,6 @@ class SwissEphemerisDateTime extends Carbon
     /**
      * Format this date to the Gregorian calendar expressed in
      * Terrestrial Time.
-     *
-     * @return string
      */
     public function toGregorianTT(): string
     {
@@ -108,8 +104,6 @@ class SwissEphemerisDateTime extends Carbon
     /**
      * Format this date to the Julian calendar expressed in
      * Universal Time.
-     *
-     * @return string
      */
     public function toJulianUT(): string
     {
@@ -119,8 +113,6 @@ class SwissEphemerisDateTime extends Carbon
     /**
      * Format this date to the Julian calendar expressed in
      * Terrestrial Time.
-     *
-     * @return string
      */
     public function toJulianTT(): string
     {
@@ -129,8 +121,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Format this date to the Gregorian calendar date.
-     *
-     * @return string
      */
     public function toGregorianDate(): string
     {
@@ -139,8 +129,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Format this date to the Julian calendar date.
-     *
-     * @return string
      */
     public function toJulianDate(): string
     {
@@ -149,8 +137,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Return all available formats.
-     *
-     * @return array
      */
     public static function availableFormats(): array
     {
@@ -164,10 +150,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Create a SwissDateTime from a Gregorian calendar date and a Universal Time.
-     *
-     * @param string                    $date
-     * @param string|\DateTimeZone|null $timezone
-     * @return static
      */
     public static function createFromGregorianUT(string $date, string|DateTimeZone|null $timezone = null): static
     {
@@ -179,10 +161,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Create a SwissDateTime from a Gregorian calendar date and a Terrestrial Time.
-     *
-     * @param string                    $date
-     * @param string|DateTimeZone|null  $timezone
-     * @return static
      */
     public static function createFromGregorianTT(string $date, string|DateTimeZone|null $timezone = null): static
     {
@@ -194,10 +172,6 @@ class SwissEphemerisDateTime extends Carbon
     
     /**
      * Create a SwissDateTime from a Julian calendar date and a Universal Time.
-     *
-     * @param string                    $date
-     * @param string|DateTimeZone|null  $timezone
-     * @return static
      */
     public static function createFromJulianUT(string $date, string|DateTimeZone|null $timezone = null): static
     {
@@ -209,10 +183,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Create a SwissDateTime from a Julian calendar date and a Universal Time.
-     *
-     * @param string                    $date
-     * @param string|DateTimeZone|null  $timezone
-     * @return static
      */
     public static function createFromJulianTT(string $date, string|DateTimeZone|null $timezone = null): static
     {
@@ -224,8 +194,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Alias of isUniversalTime method.
-     *
-     * @return boolean
      */
     public function isUT(): bool
     {
@@ -234,8 +202,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Return whether this instance is created with a Universal Time.
-     *
-     * @return boolean
      */
     public function isUniversalTime(): bool
     {
@@ -244,8 +210,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Alias of isTerrestrialTime method.
-     *
-     * @return boolean
      */
     public function isTT(): bool
     {
@@ -254,8 +218,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Return wheter this instance is created with a Terrestrial Time.
-     *
-     * @return boolean
      */
     public function isTerrestrialTime(): bool
     {
@@ -264,8 +226,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Return weather this instance is created with a Gregorian calendar date.
-     *
-     * @return boolean
      */
     public function isGregorianDate(): bool
     {
@@ -274,8 +234,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Return weather this instance is created with a Julian calendar date.
-     *
-     * @return boolean
      */
     public function isJulianDate(): bool
     {
@@ -285,14 +243,12 @@ class SwissEphemerisDateTime extends Carbon
     /**
      * Create a SwissEphemerisDateTime with one of the
      * available Swiss Ephemeris formats.
-     * 
-     * If $timestamp came from Swiss Ephemeris, you can 
+     *
+     * If $timestamp came from Swiss Ephemeris, you can
      * build this class instance without know what format
      * $timestamp has because this method will guess based
      * on SwissEphemerisDateTime::availableFormats().
      *
-     * @param string $timestamp
-     * @return SwissEphemerisDateTime
      * @throws InvalidFormatException if $timestamp doesn't match any of the available formats.
      * @see \MarcoConsiglio\Ephemeris\SwissEphemerisDateTime::availableFormats()
      */
@@ -310,9 +266,6 @@ class SwissEphemerisDateTime extends Carbon
     /**
      * Create a SwissEphemerisDateTime instance
      * from a Carbon $datetime.
-     *
-     * @param Carbon $datetime
-     * @return SwissEphemerisDateTime
      */
     public static function createFromCarbon(Carbon $datetime): SwissEphemerisDateTime
     {
@@ -329,8 +282,6 @@ class SwissEphemerisDateTime extends Carbon
 
     /**
      * Format the instance as a string.
-     *
-     * @return string
      */
     public function __toString(): string
     {

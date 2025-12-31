@@ -59,8 +59,6 @@ TEXT,
 
     /**
      * Get a random Moon Phase.
-     *
-     * @return Phase
      */
     protected function getRandomMoonPhase(): Phase
     {

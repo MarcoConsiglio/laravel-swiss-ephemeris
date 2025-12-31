@@ -10,8 +10,6 @@ class SynodicRecord extends ParsingStrategy
 {
     /**
      * Find a data line in the raw swiss ephemeris output.
-     *
-     * @return mixed
      */
     public function found(): array
     {

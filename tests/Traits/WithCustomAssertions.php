@@ -15,14 +15,8 @@ trait WithCustomAssertions
 
     /**
      * Asserts type and value of an object property.
-     *
-     * @param string $name
-     * @param mixed  $expected_value
-     * @param string $expected_type
-     * @param mixed $actual_value
-     * @return void
      */
-    public static function assertProperty(string $name, mixed $expected_value, string $expected_type, mixed $actual_value)
+    public static function assertProperty(string $name, mixed $expected_value, string $expected_type, mixed $actual_value): void
     {
         match ($expected_type) {
             'string' => Assert::assertIsString($actual_value, self::typeFail($name)),
@@ -37,24 +31,18 @@ trait WithCustomAssertions
     /**
      * Assert that $actual_date is equal to $expected_date.
      *
-     * @param \Carbon\CarbonInterface $actual_date
-     * @param \Carbon\CarbonInterface $expected_date
      * @param string $message The failure message in case the assertion is false.
-     * @return void
      */
     public static function assertDate(
         CarbonInterface $actual_date, 
         CarbonInterface $expected_date, 
         string $message = ""
-    ) {
+    ): void {
         Assert::assertThat($actual_date, self::isDateEqual($expected_date), $message);
     }
 
     /**
      * Construct a IsDateEqual PHPUnit Constraint.
-     *
-     * @param \Carbon\CarbonInterface $expected_date
-     * @return \PHPUnit\Framework\Constraint\Constraint
      */
     protected static function isDateEqual(CarbonInterface $expected_date): Constraint {
         return new IsDateEqual($expected_date);

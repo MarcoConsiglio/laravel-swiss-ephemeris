@@ -10,8 +10,6 @@ class SwissEphemerisFlag extends Flag
 {
     /**
      * Cast the Flag to a string.
-     *
-     * @return string
      */
     #[\Override]
     protected function getValuesAsString(): string

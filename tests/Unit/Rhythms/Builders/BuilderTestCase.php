@@ -22,18 +22,12 @@ abstract class BuilderTestCase extends TestCase
 
     /**
      * Get the current SUT class.
-     * 
-     * @return string
      */
     protected abstract function getBuilderClass(): string;
 
     /**
      * This is a Guard Assertion that checks if the builder
      * implements a specific interface.
-     *
-     * @param string $builder_interface
-     * @param object $builder
-     * @return void
      */
     protected function checkBuilderInterface(string $builder_interface, object $builder): void
     {

@@ -31,8 +31,6 @@ class FromSynodicRhythmTest extends BuilderTestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     protected function setUp(): void
@@ -107,8 +105,6 @@ class FromSynodicRhythmTest extends BuilderTestCase
 
     /**
      * Get the current SUT class.
-     * 
-     * @return string
      */
     protected function getBuilderClass(): string
     {
@@ -119,7 +115,6 @@ class FromSynodicRhythmTest extends BuilderTestCase
      * Create a specific Moon SynodicRhythmRecord.
      *
      * @param float $angular_distance The angular difference between the Moon and the Sun.
-     * @return SynodicRhythmRecord
      */
     protected function getSpecificSynodicRhythmRecord(float $angular_distance): SynodicRhythmRecord
     {

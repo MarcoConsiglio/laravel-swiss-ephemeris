@@ -27,8 +27,6 @@ abstract class ParsingStrategy implements Strategy
     /**
      * Construct the Error ParsingStrategy
      * with the $text to be examined.
-     *
-     * @param string $text
      */
     public function __construct(string $text)
     {
@@ -38,7 +36,6 @@ abstract class ParsingStrategy implements Strategy
     /**
      * Parse a datetime.
      *
-     * @param string $text
      * @param mixed $match
      * @return integer|false
      * @codeCoverageIgnore
@@ -51,7 +48,6 @@ abstract class ParsingStrategy implements Strategy
     /**
      * Parse a decimal number.
      *
-     * @param string $text
      * @param mixed $match
      * @return integer|false
      * @codeCoverageIgnore
@@ -66,8 +62,6 @@ abstract class ParsingStrategy implements Strategy
     /**
      * Parse an astral object name.
      *
-     * @param string $text
-     * @param string $regex
      * @param mixed $match
      * @return integer|false
      * @codeCoverageIgnore
@@ -87,8 +81,6 @@ abstract class ParsingStrategy implements Strategy
 
     /**
      * Trim the splitted values.
-     *
-     * @return void
      */
     protected function trim(): void
     {

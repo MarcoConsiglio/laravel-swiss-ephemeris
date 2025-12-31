@@ -17,14 +17,10 @@ class PerigeeRecord extends AnomalisticRecord
 
     /**
      * Construct a Moon PerigeeRecord.
-     * 
+     *
      * It can be that $moon_longitude and $apogee_longitute are not close enough
      * to be considered a Moon perigee. In order to have real perigee you should
      * instantiate a Moon Perigees collection.
-     *
-     * @param SwissEphemerisDateTime $timestamp
-     * @param Angle $moon_longitude
-     * @param Angle $apogee_longitude
      */
     public function __construct(SwissEphemerisDateTime $timestamp, Angle $moon_longitude, Angle $apogee_longitude, float $moon_daily_speed)
     {
@@ -36,9 +32,6 @@ class PerigeeRecord extends AnomalisticRecord
 
     /**
      * Check if this record is equal to $another_record.
-     *
-     * @param PerigeeRecord $another_record
-     * @return boolean
      */
     public function equals(PerigeeRecord $another_record): bool
     {

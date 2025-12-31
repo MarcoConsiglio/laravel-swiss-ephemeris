@@ -67,8 +67,6 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     #[\Override]
     public function setUp(): void
@@ -83,9 +81,7 @@ abstract class StrategyTestCase extends TestCase
     /**
      * Get a random unprecise angular distance biased by a delta.
      *
-     * @param float $angular_distance
      * @param float $delta
-     * @return float
      */
     protected function getBiasedAngularDistance(float $angular_distance): float
     {
@@ -94,11 +90,9 @@ abstract class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get a random unprecise angular distance except for $angular_distance. 
+     * Get a random unprecise angular distance except for $angular_distance.
      *
-     * @param float $angular_distance
      * @param float $delta
-     * @return float
      */
     protected function getBiasedAngularDistanceExceptFor(float $angular_distance): float
     {
@@ -122,9 +116,7 @@ abstract class StrategyTestCase extends TestCase
     /**
      * Get a random unprecise longitude.
      *
-     * @param float $longitude
      * @param float $delta
-     * @return float
      */
     protected function getBiasedLongitude(float $longitude): float
     {
@@ -135,9 +127,7 @@ abstract class StrategyTestCase extends TestCase
     /**
      * Get a random biased longitude.
      *
-     * @param float $longitude
      * @param float $delta
-     * @return float
      */
     protected function getAbsBiasedLongitude(float $longitude): float
     {
@@ -154,11 +144,9 @@ abstract class StrategyTestCase extends TestCase
 
 
     /**
-     * Get a random biased longitude except for $longitude. 
+     * Get a random biased longitude except for $longitude.
      *
-     * @param float $longitude
      * @param float $delta
-     * @return float
      */
     protected function getBiasedLongitudeExceptFor(float $longitude): float
     {
@@ -178,11 +166,9 @@ abstract class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get a random biased absolute longitude except for $longitude. 
+     * Get a random biased absolute longitude except for $longitude.
      *
-     * @param float $longitude
      * @param float $delta
-     * @return float
      */
     protected function getAbsBiasedLongitudeExceptFor(float $longitude): float
     {
@@ -200,9 +186,6 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Return a biased Angle near $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
      */
     protected function getLongitude(float $longitude = 180.0): Angle
     {
@@ -211,9 +194,6 @@ abstract class StrategyTestCase extends TestCase
     
     /**
      * Return a biased absolute Angle near $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
      */
     protected function getAbsoluteLongitude(float $longitude = 180.0): Angle
     {
@@ -223,9 +203,6 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Return a biased Angle except for $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
      */
     protected function getLongitudeExceptFor(float $longitude = 180.0): Angle
     {
@@ -234,9 +211,6 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Return a biased Angle except for $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
      */
     protected function getAbsoluteLongitudeExceptFor(float $longitude = 180.0): Angle
     {
@@ -245,9 +219,6 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Return the opposite Angle of $longitude.
-     *
-     * @param Angle $longitude
-     * @return Angle
      */
     protected function getOppositeAbsoluteLongitude(Angle $longitude): Angle
     {
@@ -258,10 +229,6 @@ abstract class StrategyTestCase extends TestCase
     /**
      * Calculate the delta angle which is the accepted error
      * to found an angle with a precise value.
-     *
-     * @param float $daily_speed
-     * @param float $sampling_rate
-     * @return float
      */
     protected function getDelta(float $daily_speed, float $sampling_rate): float
     {
@@ -275,9 +242,6 @@ abstract class StrategyTestCase extends TestCase
     /**
      * This Guard Assertion checks if the $strategy object
      * implements the correct interface.
-     *
-     * @param object $strategy
-     * @return void
      */
     protected function checkStrategyImplementsInterface(object $strategy): void
     {
@@ -289,9 +253,6 @@ abstract class StrategyTestCase extends TestCase
     /**
      * This Guard Assertion checks if the $strategy object
      * extends the correct abstract strategy.
-     *
-     * @param object $strategy
-     * @return void
      */
     protected function checkStrategyExtendsAbstract(object $strategy): void
     {

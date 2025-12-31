@@ -12,12 +12,10 @@ trait WithRandomData
     
     /**
      * Return a random angular distance.
-     * 
+     *
      * The angular distance is the angle difference between
      * two stellar objects. Minimum value: -180°. Maximum
      * value: +180°.
-     *
-     * @return Angle
      */
     protected function getRandomAngularDistance(): Angle
     {
@@ -27,9 +25,8 @@ trait WithRandomData
     /**
      * Return a random Angle between $min° and $max°.
      *
-     * @param float $min The minimum degree of the random angle. 
+     * @param float $min The minimum degree of the random angle.
      * @param float $max The maximum degree of the random angle.
-     * @return Angle
      */
     protected function getAngleBetween(float $min = -Angle::MAX_DEGREES, float $max = Angle::MAX_DEGREES): Angle
     {
@@ -50,7 +47,6 @@ trait WithRandomData
      *
      * @param float $min The slowest speed limit.
      * @param float $max The fastes speed limit.
-     * @return float
      */
     protected function getRandomSpeed(float $min, float $max): float
     {
@@ -60,9 +56,8 @@ trait WithRandomData
     }
 
     /**
-     * Return a random daily speed 
+     * Return a random daily speed
      *
-     * @return float
      */
     protected function getRandomMoonDailySpeed(): float
     {
@@ -72,8 +67,6 @@ trait WithRandomData
     /**
      * Get a random sampling rate expressed in minutes
      * per each step of the ephemeris response.
-     *
-     * @return integer
      */
     protected function getRandomSamplingRate(): int
     {
@@ -85,7 +78,6 @@ trait WithRandomData
      *
      * @param integer $min_year The smallest year of a random date generation.
      * @param integer $max_year The largest year of generating a random date.
-     * @return SwissEphemerisDateTime
      */
     protected function getRandomSwissEphemerisDateTime(int $min_year = 1800, int $max_year = 2399): SwissEphemerisDateTime
     {
@@ -99,7 +91,6 @@ trait WithRandomData
      * Create a random Angle.
      *
      * @param float|null $limit It limits the angle to $limit decimal degrees.
-     * @return Angle
      */
     protected function getRandomAngle(float|null $limit = null): Angle
     {
@@ -119,7 +110,6 @@ trait WithRandomData
      * Create a random positive Angle.
      *
      * @param float|null $limit It limits the angle to $limit decimal degrees.
-     * @return Angle
      */
     protected function getRandomPositiveAngle(float|null $limit = null): Angle
     {
@@ -138,9 +128,6 @@ trait WithRandomData
     /**
      * Returns a random positive sexadecimal value, useful to create an Angle from
      * a decimal value.
-     *
-     * @param float|null|null $limit
-     * @return float
      */
     protected function getRandomPositiveSexadecimalValue(float|null $limit = null): float
     {
@@ -153,11 +140,8 @@ trait WithRandomData
     }
 
     /**
-     * Returns a random relative (positive or negative) sexadecimal value, useful 
+     * Returns a random relative (positive or negative) sexadecimal value, useful
      * to create an Angle from a decimal value.
-     *
-     * @param float|null|null $limit
-     * @return float
      */
     protected function getRandomRelativeSexadecimalValue(float|null $limit = null): float
     {

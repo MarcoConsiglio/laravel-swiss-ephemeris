@@ -17,14 +17,11 @@ class ApogeeRecord extends AnomalisticRecord
 
     /**
      * Construct a Moon ApogeeRecord.
-     * 
+     *
      * It can be that $moon_longitude and $apogee_longitute are not close enough
      * to be considered a Moon apogee. In order to have real apogees you should
      * instantiate a Moon Apogees collection.
      *
-     * @param SwissEphemerisDateTime $timestamp
-     * @param Angle $moon_longitude
-     * @param Angle $apogee_longitude
      * @param float $moon_daily_speed The daily speed of the Moon expressed in
      * decimal degrees.
      */
@@ -38,9 +35,6 @@ class ApogeeRecord extends AnomalisticRecord
 
     /**
      * Check if this record is equal to $another_record.
-     *
-     * @param ApogeeRecord $another_record
-     * @return boolean
      */
     public function equals(ApogeeRecord $another_record): bool
     {

@@ -81,13 +81,12 @@ PointOfView     * @param float $altitude in meters.
     }
 
     /**
-     * Returns the Moon synodic rhythm starting from $start_date up until a specified number 
+     * Returns the Moon synodic rhythm starting from $start_date up until a specified number
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.
      * @param integer $days The number of days included in the response.
      * @param integer $step_size Duration in minutes of each step of the response.
-     * @return SynodicRhythm
      * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
      */
     public function getMoonSynodicRhythm(
@@ -107,7 +106,6 @@ PointOfView     * @param float $altitude in meters.
      * @param CarbonInterface $start_date The starting date of the response.
      * @param integer $days The number of days included in the response.
      * @param integer $step_size Duration in minutes of each step of the response.
-     * @return AnomalisticRhythm
      * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
      */
     public function getMoonAnomalisticRhythm(
@@ -131,7 +129,6 @@ PointOfView     * @param float $altitude in meters.
      * @param CarbonInterface $start_date The starting date of the response.
      * @param integer $days The number of days included in the response.
      * @param integer $step_size Duration in minutes of each step of the response.
-     * @return DraconicRhythm
      * @throws SwissEphemerisError in case the swetest executable returns errors in its own output.
      */
     public function getMoonDraconicRhythm(
@@ -149,8 +146,6 @@ PointOfView     * @param float $altitude in meters.
      * Transform a Carbon instance into a
      * SwissEphemerisDateTime instance.
      *
-     * @param CarbonInterface $datetime
-     * @return SwissEphemerisDateTime
      * @codeCoverageIgnore
      */
     protected function transformDatetime(CarbonInterface $datetime): SwissEphemerisDateTime
@@ -161,9 +156,6 @@ PointOfView     * @param float $altitude in meters.
     /**
      * Normalize the $datetime to a
      * SwissEphemerisDateTime instance.
-     *
-     * @param CarbonInterface $datetime
-     * @return SwissEphemerisDateTime
      */
     protected function normalizeDatetime(CarbonInterface $datetime): SwissEphemerisDateTime
     {

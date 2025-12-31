@@ -52,14 +52,11 @@ class SynodicRhythmTemplate extends QueryTemplate
      * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
-     * @return void
      */
     protected function setArguments(): void {}
 
     /**
      * Set flags for the swetest executable.
-     *
-     * @return void
      */
     protected function setFlags(): void
     {
@@ -73,15 +70,12 @@ class SynodicRhythmTemplate extends QueryTemplate
     /**
      * It formats the output before parsing it, if necessary.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function formatHook(): void {}
 
     /**
      * Parse a line of the raw ephemeris output.
-     * 
-     * @return array|null
      */
     protected function parse(string $text): array|null
     {
@@ -92,7 +86,6 @@ class SynodicRhythmTemplate extends QueryTemplate
      * Remap the output in an associative array,
      * with the columns name as keys.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function remapColumns(): void
@@ -102,8 +95,6 @@ class SynodicRhythmTemplate extends QueryTemplate
 
     /**
      * Construct the SynodicRhythm collection.
-     *
-     * @return void
      */
     protected function buildObject(): void
     {
@@ -115,8 +106,6 @@ class SynodicRhythmTemplate extends QueryTemplate
 
     /**
      * Return the builded object.
-     *
-     * @return SynodicRhythm
      */
     protected function fetchObject(): SynodicRhythm
     {
@@ -125,8 +114,6 @@ class SynodicRhythmTemplate extends QueryTemplate
 
     /**
      * Get the builded SynodicRhythm collection.
-     *
-     * @return SynodicRhythm
      */
     public function getResult(): SynodicRhythm
     {
