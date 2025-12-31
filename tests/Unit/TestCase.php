@@ -29,7 +29,7 @@ abstract class TestCase extends TestbenchTestCase
     /**
      * The angular neighborhood within which to accept a record.
      * 
-     * It represents the maximum error accepted to select some
+     * Represents the maximum error accepted to select some
      * angular ephemeris value and discard others.  
      *
      * @var float

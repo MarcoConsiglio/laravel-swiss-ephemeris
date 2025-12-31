@@ -9,7 +9,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\Fr
 /**
  * A collection of Moon PerigeeRecord instances.
  * 
- * It represents a collection of record where the Moon
+ * Represents a collection of record where the Moon
  * is in its perigee.
  */
 class Perigees extends Collection

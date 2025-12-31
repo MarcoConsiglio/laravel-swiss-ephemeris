@@ -81,7 +81,7 @@ PointOfView     * @param float $altitude in meters.
     }
 
     /**
-     * Returns the Moon synodic rhythm starting from $start_date up until a specified number
+     * Return the Moon synodic rhythm starting from $start_date up until a specified number
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.
@@ -100,7 +100,7 @@ PointOfView     * @param float $altitude in meters.
     }
 
     /**
-     * Returns the Moon anomalistic rhythm starting from $start_date up until a specified number
+     * Return the Moon anomalistic rhythm starting from $start_date up until a specified number
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.
@@ -123,7 +123,7 @@ PointOfView     * @param float $altitude in meters.
     }
 
     /**
-     * Returns the Moon draconic rhythm starting from $start_date up until a specified number
+     * Return the Moon draconic rhythm starting from $start_date up until a specified number
      * of $days. Each step is long $step_size minutes.
      *
      * @param CarbonInterface $start_date The starting date of the response.

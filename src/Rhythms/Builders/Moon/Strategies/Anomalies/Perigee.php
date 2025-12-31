@@ -5,7 +5,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 
 /**
  * The strategy used to find an PerigeeRecord
- * representing the Moon in its perigee.
+ * Representsing the Moon in its perigee.
  */
 class Perigee extends AnomalisticStrategy
 {

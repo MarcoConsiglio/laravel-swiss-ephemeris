@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
 /**
  * A template for an ephemeris query to obtain 
- * the synodic rhythm of the Moon.
+ * the Moon SynodicRhythm collection.
  */
 class SynodicRhythmTemplate extends QueryTemplate
 {
@@ -68,14 +68,14 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * It formats the output before parsing it, if necessary.
+     * Formats the output before parsing it, if necessary.
      *
      * @codeCoverageIgnore
      */
     protected function formatHook(): void {}
 
     /**
-     * Parse a line of the raw ephemeris output.
+     * Parses a line of the raw ephemeris output.
      */
     protected function parse(string $text): array|null
     {
@@ -94,7 +94,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * Construct the SynodicRhythm collection.
+     * Constructss the SynodicRhythm collection.
      */
     protected function buildObject(): void
     {
@@ -113,7 +113,7 @@ class SynodicRhythmTemplate extends QueryTemplate
     }
 
     /**
-     * Get the builded SynodicRhythm collection.
+     * Return the builded SynodicRhythm collection.
      */
     public function getResult(): SynodicRhythm
     {

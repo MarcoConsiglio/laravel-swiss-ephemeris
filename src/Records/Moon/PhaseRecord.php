@@ -6,7 +6,7 @@ use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
- * It represents a time when the Moon 
+ * Represents a time when the Moon 
  * is in a specific lunar phase.
  */
 class PhaseRecord extends Record

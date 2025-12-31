@@ -21,7 +21,7 @@ class SwissEphemerisError extends ErrorException
     }
 
     /**
-     * Removes duplicates errors.
+     * Remove duplicates errors.
      */
     protected function unique(array $errors): array
     {
@@ -29,7 +29,7 @@ class SwissEphemerisError extends ErrorException
     }
 
     /**
-     * Makes a string error message.
+     * Make a string error message.
      */
     protected function makeMessage(array $errors): string
     {

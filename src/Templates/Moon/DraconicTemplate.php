@@ -11,8 +11,8 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
 /**
- * A template for an ephemeris query to obtain 
- * the draconic rhythm of the Moon.
+ * The template for an ephemeris query to obtain 
+ * the Moon DraconicRhythm.
  */
 class DraconicTemplate extends QueryTemplate
 {
@@ -91,7 +91,7 @@ class DraconicTemplate extends QueryTemplate
     }
 
     /**
-     * It formats the output before parsing it, if necessary.
+     * Formats the output before parsing it, if necessary.
      *
      * @codeCoverageIgnore
      */

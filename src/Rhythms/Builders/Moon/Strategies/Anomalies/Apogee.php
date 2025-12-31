@@ -5,7 +5,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 
 /**
  * The strategy used to find an ApogeeRecord
- * representing the Moon in its apogee.
+ * Representsing the Moon in its apogee.
  */
 class Apogee extends AnomalisticStrategy
 {

@@ -7,7 +7,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 
 /**
- * Builds a Moon AnomalisticRhythm collection from
+ * Build a Moon AnomalisticRhythm collection from
  * a Moon Apogees collection and a Moon Perigees 
  * collection.
  */
@@ -49,7 +49,7 @@ class FromCollections extends Builder
     }
 
     /**
-     * Builds records.
+     * Build records.
      *
      * @return void
      */
@@ -68,7 +68,7 @@ class FromCollections extends Builder
     }
 
     /**
-     * Fetches the result.
+     * Fetch the result.
      *
      * @return AnomalisticRecord[]
      */

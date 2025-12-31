@@ -8,7 +8,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollect
 /**
  * A collection of Moon AnomalisticRecord instances.
  * 
- * It represents a collection of records in which the 
+ * Represents a collection of records in which the 
  * Moon passes over its node, that is, the 
  * intersection of the Moon's orbit on the plane of 
  * the ecliptic.

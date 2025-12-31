@@ -1,10 +1,10 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic;
 
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
-use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * The strategy used to find a lunar node.

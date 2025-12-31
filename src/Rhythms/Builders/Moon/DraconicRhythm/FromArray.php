@@ -1,15 +1,15 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm;
 
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\Moon\DraconicTemplate;
-use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node;
 
 /**
- * Builds a DraconicRhythm from an array of raw ephemeris data.
+ * Build a DraconicRhythm from an array of raw ephemeris data.
  */
 class FromArray extends FromArrayBuilder
 {
@@ -43,7 +43,7 @@ class FromArray extends FromArrayBuilder
     }
 
     /**
-     * Builds records.
+     * Build records.
      *
      * @return void
      */
@@ -78,7 +78,7 @@ class FromArray extends FromArrayBuilder
     }
 
     /**
-     * Fetches the result.
+     * Fetch the result.
      *
      * @return mixed
      */

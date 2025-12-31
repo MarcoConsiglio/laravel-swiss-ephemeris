@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Records;
 
 /**
- *  It defines the abstract concept of a record of the
+ *  Defines the abstract concept of a record of the
  *  ephemeris representing a moving stellar object.
  */
 abstract class MovingObjectRecord extends Record

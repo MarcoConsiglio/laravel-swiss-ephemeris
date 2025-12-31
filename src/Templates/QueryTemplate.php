@@ -183,12 +183,12 @@ abstract class QueryTemplate
     }
 
     /**
-     * It formats the output before parsing it, if necessary.
+     * Formats the output before parsing it, if necessary.
      */
     abstract protected function formatHook(): void;
 
     /**
-     * It sets whether to include debug information in the response.
+     * Set whether to include debug information in the response.
      *
      * @codeCoverageIgnore
      */
@@ -206,7 +206,7 @@ abstract class QueryTemplate
     }
 
     /**
-     * It runs the swetest executable.
+     * Runs the swetest executable.
      *
      * @codeCoverageIgnore
      */
@@ -382,7 +382,7 @@ abstract class QueryTemplate
     abstract static public function getColumns(): array;
 
     /**
-     * It sets the common flags for every template
+     * Set the common flags for every template
      * that query the swiss ephemeris executable.
      */
     protected function setCommonFlags(): void

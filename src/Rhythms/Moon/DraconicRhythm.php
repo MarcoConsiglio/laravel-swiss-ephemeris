@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm\FromArray;
 class DraconicRhythm extends Collection
 {
     /**
-     * Constructs a Moon DraconicRhythm collection.
+     * Constructss a Moon DraconicRhythm collection.
      */
     public function __construct(FromArray $builder)
     {

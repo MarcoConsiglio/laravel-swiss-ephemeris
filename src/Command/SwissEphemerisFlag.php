@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Command;
 use AdamBrett\ShellWrapper\Command\Flag;
 
 /**
- * Represent a flag passed into the Swiss Ephemeris executable.
+ * Represents a flag passed into the Swiss Ephemeris executable.
  */
 class SwissEphemerisFlag extends Flag
 {

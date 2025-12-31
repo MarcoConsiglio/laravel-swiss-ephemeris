@@ -3,10 +3,9 @@ namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
- * It represents an instant when the Moon 
+ * Represents an instant when the Moon 
  * is at either apogee or perigee.
  */
 abstract class AnomalisticRecord extends MovingObjectRecord
@@ -20,7 +19,7 @@ abstract class AnomalisticRecord extends MovingObjectRecord
     public protected(set) Angle $moon_longitude;
 
     /**
-     * Checks if this record is an Apogee.
+     * Check if this record is an Apogee.
      */
     public function isApogee(): bool
     {
@@ -28,7 +27,7 @@ abstract class AnomalisticRecord extends MovingObjectRecord
     }
 
     /**
-     * Checks if this record is an Perigee.
+     * Check if this record is an Perigee.
      */
     public function isPerigee(): bool
     {

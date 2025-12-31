@@ -126,7 +126,7 @@ trait WithRandomData
     }
 
     /**
-     * Returns a random positive sexadecimal value, useful to create an Angle from
+     * Return a random positive sexadecimal value, useful to create an Angle from
      * a decimal value.
      */
     protected function getRandomPositiveSexadecimalValue(float|null $limit = null): float
@@ -140,7 +140,7 @@ trait WithRandomData
     }
 
     /**
-     * Returns a random relative (positive or negative) sexadecimal value, useful
+     * Return a random relative (positive or negative) sexadecimal value, useful
      * to create an Angle from a decimal value.
      */
     protected function getRandomRelativeSexadecimalValue(float|null $limit = null): float

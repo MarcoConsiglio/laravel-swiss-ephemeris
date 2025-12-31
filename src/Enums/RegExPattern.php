@@ -7,27 +7,27 @@ namespace MarcoConsiglio\Ephemeris\Enums;
 enum RegExPattern: string {
     // @codeCoverageIgnoreStart
     /**
-     * It matches a datetime of the Gregorian or Julian calendar, Universal Time or Terrestrial Time.
+     * Matches a datetime of the Gregorian or Julian calendar, Universal Time or Terrestrial Time.
     */
     case UniversalAndTerrestrialDateTime = self::RegExDelimiter."\d{1,2}\.\d{1,2}\.-?\d{1,4}j?\s{1}\d{1,2}\:\d{2}\:\d{2}\s(?:(?:TT)|(?:UT)){1}".self::RegExDelimiter;
     /**
-     * It matches a negative or positive decimal number.
+     * Matches a negative or positive decimal number.
     */
     case RelativeDecimalNumber = self::RegExDelimiter.'(?:'.self::OneSpaceDelimeter.'|'.self::TwoSpaceDelimiter.'|'.self::ThreeSpaceDelimiter.')-?\d+\.\d+\b'.self::RegExDelimiter;
     /**
-     * It matches an error within the Swiss Ephemeris output.
+     * Matches an error within the Swiss Ephemeris output.
     */
     case SwetestError = self::RegExDelimiter."(?:error)(.+)".self::RegExDelimiter;
     /**
-     * It matches a warning within the Swiss Ephemeris output.
+     * Matches a warning within the Swiss Ephemeris output.
     */
     case SwetestWarning = self::RegExDelimiter."(?:warning:)(.+)".self::RegExDelimiter;
     /**
-     * It matches a "using" notice within the Swiss Ephemeris output.
+     * Matches a "using" notice within the Swiss Ephemeris output.
      */
     case SwetestUsing = self::RegExDelimiter."(?:using)(.+)".self::RegExDelimiter;
     /**
-     * It matches an empty line within the Swiss Ephemeris output.
+     * Matches an empty line within the Swiss Ephemeris output.
      */
     case EmptyLine = self::RegExDelimiter."^\s*$".self::RegExDelimiter;
     /**
@@ -35,31 +35,31 @@ enum RegExPattern: string {
      */
     protected const RegExDelimiter = '/';
     /**
-     * It matches the string "Moon".
+     * Matches the string "Moon".
      */
     public const Moon = '(Moon)';
     /**
-     * It matches the string "intp. Apogee".
+     * Matches the string "intp. Apogee".
      */
     public const InterpolatedApogee = '(intp\.\sApogee)';
     /**
-     * It matches the string "intp. Perigee".
+     * Matches the string "intp. Perigee".
      */
     public const InterpolatedPerigee = '(intp\.\sPerigee)';
     /**
-     * It matches the string "true Node".
+     * Matches the string "true Node".
      */
     public const TrueNode = '(true\sNode)';
     /**
-     * It matches looking back a word bound and one space.
+     * Matches looking back a word bound and one space.
      */
     public const OneSpaceDelimeter = '(?<=\b\s)';
     /**
-     * It matches looking back a word bound and two spaces.
+     * Matches looking back a word bound and two spaces.
      */
     public const TwoSpaceDelimiter = '(?<=\b\s\s)';
     /**
-     * It matches looking back a word bound and three spaces.
+     * Matches looking back a word bound and three spaces.
      */
     public const ThreeSpaceDelimiter = '(?<=\b\s\s\s)';
     // @codeCoverageIgnoreEnd

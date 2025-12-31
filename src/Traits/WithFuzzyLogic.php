@@ -2,8 +2,8 @@
 namespace MarcoConsiglio\Ephemeris\Traits;
 
 use InvalidArgumentException;
-use MarcoConsiglio\Goniometry\Angle;
 use RoundingMode;
+use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * Support for fuzzy logic.

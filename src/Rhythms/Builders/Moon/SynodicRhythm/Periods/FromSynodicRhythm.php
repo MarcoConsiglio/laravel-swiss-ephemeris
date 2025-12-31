@@ -7,7 +7,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 
 /**
- * Builds a Moon Periods collection 
+ * Build a Moon Periods collection 
  * from the Moon SynodicRhythm collection.
  */
 class FromSynodicRhythm extends Builder

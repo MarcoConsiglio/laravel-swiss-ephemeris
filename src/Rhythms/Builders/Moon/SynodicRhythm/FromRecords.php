@@ -6,7 +6,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 
 /**
- * Builds a Moon SynodicRhythm from an array of Moon SynodicRhythmRecord instances.
+ * Build a Moon SynodicRhythm from an array of Moon SynodicRhythmRecord instances.
  */
 class FromRecords extends Builder
 {

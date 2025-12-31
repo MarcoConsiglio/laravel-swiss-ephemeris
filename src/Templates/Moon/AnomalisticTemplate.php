@@ -6,9 +6,7 @@ use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
 /**
  * The template for an ephemeris query to obtain 
- * the Moon anomalistic rhythm.
- * 
- * 
+ * the Moon AnomalisticRhythm collection.
  */
 abstract class AnomalisticTemplate extends QueryTemplate
 {
@@ -41,7 +39,7 @@ abstract class AnomalisticTemplate extends QueryTemplate
     abstract protected function remapColumns(): void;
 
     /**
-     * It formats the output before parsing it, if necessary.
+     * Formats the output before parsing it, if necessary.
      *
      * @codeCoverageIgnore
      */

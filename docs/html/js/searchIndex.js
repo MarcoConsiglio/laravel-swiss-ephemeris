@@ -13,12 +13,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Command\\SwissEphemerisFlag",
             "name": "SwissEphemerisFlag",
-            "summary": "Represent\u0020a\u0020flag\u0020passed\u0020into\u0020the\u0020Swiss\u0020Ephemeris\u0020executable.",
+            "summary": "Represents\u0020a\u0020flag\u0020passed\u0020into\u0020the\u0020Swiss\u0020Ephemeris\u0020executable.",
             "url": "classes/MarcoConsiglio-Ephemeris-Command-SwissEphemerisFlag.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\Cardinality",
             "name": "Cardinality",
-            "summary": "It\u0020represents\u0020cardinality\u0020values.",
+            "summary": "Represents\u0020cardinality\u0020values.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-Cardinality.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\Cardinality\u003A\u003ANorth",
@@ -91,6 +91,11 @@ Search.appendIndex(
             "summary": "The\u0020format\u0020of\u0020the\u0020ephemeris\u0020response.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-CommandFlag.html#enumcase_ResponseFormat"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\CommandFlag\u003A\u003AGap",
+            "name": "Gap",
+            "summary": "The\u0020separator\u0020between\u0020values.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Enums-CommandFlag.html#enumcase_Gap"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\CommandFlag\u003A\u003ANoHeader",
             "name": "NoHeader",
             "summary": "The\u0020parameter\u0020used\u0020to\u0020switch\u0020on\/off\u0020the\u0020header\u0020response.",
@@ -145,6 +150,31 @@ Search.appendIndex(
             "name": "ThirdQuarter",
             "summary": "\u002D90\u00B0\u0020angular\u0020distance\u0020from\u0020the\u0020Sun.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-Moon-Phase.html#enumcase_ThirdQuarter"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\ObserverPosition",
+            "name": "ObserverPosition",
+            "summary": "Flags\u0020that\u0020specify\u0020the\u0020position\u0020of\u0020the\u0020observer.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Enums-ObserverPosition.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\ObserverPosition\u003A\u003AHeliocentric",
+            "name": "Heliocentric",
+            "summary": "Observation\u0020from\u0020the\u0020POV\u0020of\u0020the\u0020Sun.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Enums-ObserverPosition.html#enumcase_Heliocentric"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\ObserverPosition\u003A\u003ABarycentric",
+            "name": "Barycentric",
+            "summary": "Observation\u0020from\u0020the\u0020solar\u0020system\u0020barycenter,\u0020which\u0020is\u0020close\u0020to\u0020the\u0020Sun.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Enums-ObserverPosition.html#enumcase_Barycentric"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\ObserverPosition\u003A\u003ATopocentric",
+            "name": "Topocentric",
+            "summary": "Observation\u0020from\u0020a\u0020specific\u0020point\u0020on\u0020the\u0020Earth\u0020surface.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Enums-ObserverPosition.html#enumcase_Topocentric"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\ObserverPosition\u003A\u003APlanetocentric",
+            "name": "Planetocentric",
+            "summary": "Observation\u0020from\u0020the\u0020center\u0020of\u0020a\u0020solar\u0020system\u0020body.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Enums-ObserverPosition.html#enumcase_Planetocentric"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\OutputFormat",
             "name": "OutputFormat",
@@ -348,22 +378,22 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\PlanetsList",
             "name": "PlanetsList",
-            "summary": "It\u0020represents\u0020a\u0020shortcut\u0020flag\u0020to\u0020select\u0020a\u0020group\u0020of\u0020stellar\u0020objects.",
+            "summary": "Represents\u0020a\u0020shortcut\u0020flag\u0020to\u0020select\u0020a\u0020group\u0020of\u0020stellar\u0020objects.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-PlanetsList.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\PlanetsList\u003A\u003ADefault",
             "name": "Default",
-            "summary": "It\u0020refers\u0020to\u0020Sun,\u0020Moon,\u0020Mercury,\u0020Venus,\u0020Mars,\u0020Jupiter,\nSaturn,\u0020Uranus,\u0020Neptune,\u0020Pluto,\u0020mean\u0020lunar\u0020node,\u0020true\nlunar\u0020node,\u0020mean\u0020lunar\u0020apogee\u0020\u0028or\u0020Lilith\/Black\u0020Moon\u0029,\nosculating\u0020lunar\u0020apogee,\u0020Earth\u0020\u0028in\u0020heliocentric\u0020or\nbarycentric\u0020calculation\u0029",
+            "summary": "Refers\u0020to\u0020Sun,\u0020Moon,\u0020Mercury,\u0020Venus,\u0020Mars,\u0020Jupiter,\nSaturn,\u0020Uranus,\u0020Neptune,\u0020Pluto,\u0020mean\u0020lunar\u0020node,\u0020true\nlunar\u0020node,\u0020mean\u0020lunar\u0020apogee\u0020\u0028or\u0020Lilith\/Black\u0020Moon\u0029,\nosculating\u0020lunar\u0020apogee,\u0020Earth\u0020\u0028in\u0020heliocentric\u0020or\nbarycentric\u0020calculation\u0029",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-PlanetsList.html#enumcase_Default"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\PlanetsList\u003A\u003ADefaultPlusMainAsteroids",
             "name": "DefaultPlusMainAsteroids",
-            "summary": "It\u0020refers\u0020to\u0020the\u0020main\u0020factors\u0020as\u0020PlanetList\u003A\u003ADefault\u0020plus\nthe\u0020asteroids\/dwarf\u0020planets\u0020Chiron,\u0020Pholus,\u0020Pallas,\u0020Juno,\nVesta,",
+            "summary": "Refers\u0020to\u0020the\u0020main\u0020factors\u0020as\u0020PlanetList\u003A\u003ADefault\u0020plus\nthe\u0020asteroids\/dwarf\u0020planets\u0020Chiron,\u0020Pholus,\u0020Pallas,\u0020Juno,\nVesta,",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-PlanetsList.html#enumcase_DefaultPlusMainAsteroids"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\PlanetsList\u003A\u003AFictiousPlanets",
             "name": "FictiousPlanets",
-            "summary": "It\u0020refers\u0020to\u0020the\u0020fictious\u0020planets\u0020Cupido,\u0020Hades,\u0020Zeus,\nKronos,\u0020Apollon,\u0020Admetos,\u0020Vulkanus,\u0020Poseidon,\u0020Isis,\nNibiru,\u0020Harrington,\u0020Leverrier\u0027s\u0020Neptune,\u0020Adams\u0027\u0020Neptune,\nLowell\u0027s\u0020Pluto,\u0020Pickering\u0027s\u0020Pluto.",
+            "summary": "Refers\u0020to\u0020the\u0020fictious\u0020planets\u0020Cupido,\u0020Hades,\u0020Zeus,\nKronos,\u0020Apollon,\u0020Admetos,\u0020Vulkanus,\u0020Poseidon,\u0020Isis,\nNibiru,\u0020Harrington,\u0020Leverrier\u0027s\u0020Neptune,\u0020Adams\u0027\u0020Neptune,\nLowell\u0027s\u0020Pluto,\u0020Pickering\u0027s\u0020Pluto.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-PlanetsList.html#enumcase_FictiousPlanets"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern",
@@ -378,32 +408,32 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern\u003A\u003AUniversalAndTerrestrialDateTime",
             "name": "UniversalAndTerrestrialDateTime",
-            "summary": "It\u0020matches\u0020a\u0020datetime\u0020of\u0020the\u0020Gregorian\u0020or\u0020Julian\u0020calendar,\u0020Universal\u0020Time\u0020or\u0020Terrestrial\u0020Time.",
+            "summary": "Matches\u0020a\u0020datetime\u0020of\u0020the\u0020Gregorian\u0020or\u0020Julian\u0020calendar,\u0020Universal\u0020Time\u0020or\u0020Terrestrial\u0020Time.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#enumcase_UniversalAndTerrestrialDateTime"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern\u003A\u003ARelativeDecimalNumber",
             "name": "RelativeDecimalNumber",
-            "summary": "It\u0020matches\u0020a\u0020negative\u0020or\u0020positive\u0020decimal\u0020number.",
+            "summary": "Matches\u0020a\u0020negative\u0020or\u0020positive\u0020decimal\u0020number.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#enumcase_RelativeDecimalNumber"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern\u003A\u003ASwetestError",
             "name": "SwetestError",
-            "summary": "It\u0020matches\u0020an\u0020error\u0020within\u0020the\u0020Swiss\u0020Ephemeris\u0020output.",
+            "summary": "Matches\u0020an\u0020error\u0020within\u0020the\u0020Swiss\u0020Ephemeris\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#enumcase_SwetestError"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern\u003A\u003ASwetestWarning",
             "name": "SwetestWarning",
-            "summary": "It\u0020matches\u0020a\u0020warning\u0020within\u0020the\u0020Swiss\u0020Ephemeris\u0020output.",
+            "summary": "Matches\u0020a\u0020warning\u0020within\u0020the\u0020Swiss\u0020Ephemeris\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#enumcase_SwetestWarning"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern\u003A\u003ASwetestUsing",
             "name": "SwetestUsing",
-            "summary": "It\u0020matches\u0020a\u0020\u0022using\u0022\u0020notice\u0020within\u0020the\u0020Swiss\u0020Ephemeris\u0020output.",
+            "summary": "Matches\u0020a\u0020\u0022using\u0022\u0020notice\u0020within\u0020the\u0020Swiss\u0020Ephemeris\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#enumcase_SwetestUsing"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\RegExPattern\u003A\u003AEmptyLine",
             "name": "EmptyLine",
-            "summary": "It\u0020matches\u0020an\u0020empty\u0020line\u0020within\u0020the\u0020Swiss\u0020Ephemeris\u0020output.",
+            "summary": "Matches\u0020an\u0020empty\u0020line\u0020within\u0020the\u0020Swiss\u0020Ephemeris\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-RegExPattern.html#enumcase_EmptyLine"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\SingleFictiousObject",
@@ -498,7 +528,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\SinglePlanet",
             "name": "SinglePlanet",
-            "summary": "It\u0020represents\u0020a\u0020flag\u0020to\u0020select\u0020a\u0020specific\u0020stellar\u0020object.",
+            "summary": "Represents\u0020a\u0020flag\u0020to\u0020select\u0020a\u0020specific\u0020stellar\u0020object.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-SinglePlanet.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Enums\\SinglePlanet\u003A\u003ASun",
@@ -611,6 +641,16 @@ Search.appendIndex(
             "summary": "Used\u0020with\u0020CommandFlag\u003A\u003ATimeSteps,\u0020the\u0020duration\u0020in\u0020time\u0020of\u0020each\u0020step\u0020in\u0020minutes.",
             "url": "classes/MarcoConsiglio-Ephemeris-Enums-TimeSteps.html#enumcase_SecondSteps"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Exceptions\\InvalidPointOfView",
+            "name": "InvalidPointOfView",
+            "summary": "This\u0020Exception\u0020is\u0020thrown\u0020when\u0020an\u0020invalid\u0020point\u0020of\u0020view\nstrategy\u0020is\u0020being\u0020passed\u0020to\u0020a\u0020concrete\u0020QueryTemplate.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Exceptions-InvalidPointOfView.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Exceptions\\InvalidPointOfView\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Ephemeris-Exceptions-InvalidPointOfView.html#method___construct"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Exceptions\\SwissEphemerisError",
             "name": "SwissEphemerisError",
             "summary": "This\u0020Exception\u0020is\u0020thrown\u0020when\u0020the\u0020Swiss\u0020Ephemeris\u0020fail\u0020to\u0020answer\u0020the\u0020query.",
@@ -633,17 +673,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003AgetMoonSynodicRhythm\u0028\u0029",
             "name": "getMoonSynodicRhythm",
-            "summary": "Returns\u0020the\u0020Moon\u0020synodic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
+            "summary": "Return\u0020the\u0020Moon\u0020synodic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
             "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonSynodicRhythm"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003AgetMoonAnomalisticRhythm\u0028\u0029",
             "name": "getMoonAnomalisticRhythm",
-            "summary": "Returns\u0020the\u0020Moon\u0020anomalistic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
+            "summary": "Return\u0020the\u0020Moon\u0020anomalistic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
             "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonAnomalisticRhythm"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003AgetMoonDraconicRhythm\u0028\u0029",
             "name": "getMoonDraconicRhythm",
-            "summary": "Returns\u0020the\u0020Moon\u0020draconic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
+            "summary": "Return\u0020the\u0020Moon\u0020draconic\u0020rhythm\u0020starting\u0020from\u0020\u0024start_date\u0020up\u0020until\u0020a\u0020specified\u0020number\nof\u0020\u0024days.\u0020Each\u0020step\u0020is\u0020long\u0020\u0024step_size\u0020minutes.",
             "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#method_getMoonDraconicRhythm"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003ASWISS_EPHEMERIS_EXECUTABLE",
@@ -656,14 +696,89 @@ Search.appendIndex(
             "summary": "The\u0020resource\u0020folder\u0020where\u0020are\u0020placed\u0020Swiss\u0020Ephemeris\u0020resources.",
             "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#constant_SWISS_EPHEMERIS_PATH"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Output",
-            "name": "Output",
-            "summary": "The\u0020output\u0020of\u0020the\u0020swetest\u0020executable.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Output.html"
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\LaravelSwissEphemeris\u003A\u003A\u0024pov",
+            "name": "pov",
+            "summary": "The\u0020point\u0020of\u0020view\u0020of\u0020the\u0020observer.",
+            "url": "classes/MarcoConsiglio-Ephemeris-LaravelSwissEphemeris.html#property_pov"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Barycentric",
+            "name": "Barycentric",
+            "summary": "The\u0020class\u0020responsible\u0020to\u0020set\u0020the\u0020barycentric\u0020point\u0020of\u0020view\non\u0020the\u0020Swiss\u0020Ephemeris\u0020command.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Barycentric.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Geocentric",
+            "name": "Geocentric",
+            "summary": "The\u0020class\u0020responsible\u0020to\u0020set\u0020the\u0020geocentric\u0020point\u0020of\u0020view\non\u0020the\u0020Swiss\u0020Ephemeris\u0020command.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Geocentric.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Heliocentric",
+            "name": "Heliocentric",
+            "summary": "The\u0020class\u0020responsible\u0020to\u0020set\u0020the\u0020heliocentric\u0020point\u0020of\u0020view\non\u0020the\u0020Swiss\u0020Ephemeris\u0020command.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Heliocentric.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Planetocentric",
+            "name": "Planetocentric",
+            "summary": "The\u0020class\u0020responsible\u0020to\u0020set\u0020the\u0020planetocentric\u0020point\u0020of\u0020view\non\u0020the\u0020Swiss\u0020Ephemeris\u0020command.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Planetocentric.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Planetocentric\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructss\u0020the\u0020point\u0020of\u0020view\u0020from\u0020the\u0020center\u0020of\u0020the\u0020\u0024planet.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Planetocentric.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Planetocentric\u003A\u003A\u0024planet",
+            "name": "planet",
+            "summary": "The\u0020planet\u0020at\u0020the\u0020center\u0020of\u0020which\u0020the\u0020observer\u0020is\u0020located.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Planetocentric.html#property_planet"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\PointOfView",
+            "name": "PointOfView",
+            "summary": "The\u0020point\u0020of\u0020view\u0020from\u0020which\u0020to\u0020obtain\u0020the\u0020ephemeris.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-PointOfView.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\PointOfView\u003A\u003AsetPointOfView\u0028\u0029",
+            "name": "setPointOfView",
+            "summary": "Set\u0020the\u0020viewpoint\u0020in\u0020the\u0020command\u0020if\u0020it\u0027s\u0020an\u0020acceptable\u0020viewpoint\u0020for\u0020the\nQueryTemplate.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-PointOfView.html#method_setPointOfView"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Strategy",
+            "name": "Strategy",
+            "summary": "The\u0020Observer\u0020Strategy\u0020tells\u0020the\u0020concrete\u0020QueryTemplate\u0020how\u0020to\nset\u0020a\u0020point\u0020of\u0020view\u0020to\u0020query\u0020the\u0020Swiss\u0020Ephemeris\u0020from\u0020that\u0020point\u0020of\u0020view.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Strategy.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Strategy\u003A\u003AsetPointOfView\u0028\u0029",
+            "name": "setPointOfView",
+            "summary": "Set\u0020the\u0020point\u0020of\u0020view\u0020for\u0020the\u0020\u0060swetest\u0060\u0020executable.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Strategy.html#method_setPointOfView"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Topocentric",
+            "name": "Topocentric",
+            "summary": "The\u0020class\u0020responsible\u0020to\u0020set\u0020the\u0020topocentric\u0020point\u0020of\u0020view\non\u0020the\u0020Swiss\u0020Ephemeris\u0020command.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Topocentric.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Topocentric\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructss\u0020the\u0020Topcocentric\u0020PointOfView.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Topocentric.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Topocentric\u003A\u003A\u0024longitude",
+            "name": "longitude",
+            "summary": "The\u0020longitude\u0020of\u0020the\u0020topocentric\u0020POV\u0020expressed\u0020in\u0020decimal\u0020degrees.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Topocentric.html#property_longitude"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Topocentric\u003A\u003A\u0024latitude",
+            "name": "latitude",
+            "summary": "The\u0020latitude\u0020of\u0020the\u0020topocentric\u0020POV\u0020expressed\u0020in\u0020decimal\u0020degrees.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Topocentric.html#property_latitude"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer\\Topocentric\u003A\u003A\u0024altitude",
+            "name": "altitude",
+            "summary": "The\u0020altitude\u0020of\u0020the\u0020topocentric\u0020POV\u0020expressed\u0020in\u0020meters\u0020above\u0020see\u0020level.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Observer-Topocentric.html#property_altitude"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\EmptyLine",
             "name": "EmptyLine",
-            "summary": "The\u0020parsing\u0020strategy\u0020used\u0020to\u0020find\u0020an\u0020empty\u0020line\nin\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
+            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020find\u0020an\u0020empty\u0020line\nin\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-EmptyLine.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\EmptyLine\u003A\u003Afound\u0028\u0029",
@@ -681,9 +796,49 @@ Search.appendIndex(
             "summary": "Find\u0020an\u0020error\u0020row\u0020in\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Error.html#method_found"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Moon\\Apogee",
+            "name": "Apogee",
+            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020parse\u0020a\u0020lunar\u0020apogee\u0020from\nraw\u0020ephemeris\u0020output.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Moon-Apogee.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Moon\\Apogee\u003A\u003Afound\u0028\u0029",
+            "name": "found",
+            "summary": "Find\u0020a\u0020data\u0020line\u0020in\u0020the\u0020raw\u0020swiss\u0020ephemeris\u0020output.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Moon-Apogee.html#method_found"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Moon\\Node",
+            "name": "Node",
+            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020parse\u0020a\u0020lunar\u0020Node\u0020from\nraw\u0020ephemeris\u0020output.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Moon-Node.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Moon\\Node\u003A\u003Afound\u0028\u0029",
+            "name": "found",
+            "summary": "Find\u0020a\u0020data\u0020line\u0020in\u0020the\u0020raw\u0020swiss\u0020ephemeris\u0020output.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Moon-Node.html#method_found"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Moon\\Perigee",
+            "name": "Perigee",
+            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020parse\u0020a\u0020lunar\u0020perigee\u0020from\nraw\u0020ephemeris\u0020output.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Moon-Perigee.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Moon\\Perigee\u003A\u003Afound\u0028\u0029",
+            "name": "found",
+            "summary": "Find\u0020a\u0020data\u0020line\u0020in\u0020the\u0020raw\u0020swiss\u0020ephemeris\u0020output.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Moon-Perigee.html#method_found"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Moon\\SynodicRecord",
+            "name": "SynodicRecord",
+            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020parse\u0020a\u0020synodic\u0020rhythm\u0020record\u0020from\nraw\u0020ephemeris\u0020output.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Moon-SynodicRecord.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Moon\\SynodicRecord\u003A\u003Afound\u0028\u0029",
+            "name": "found",
+            "summary": "Find\u0020a\u0020data\u0020line\u0020in\u0020the\u0020raw\u0020swiss\u0020ephemeris\u0020output.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Moon-SynodicRecord.html#method_found"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\ParsingStrategy",
             "name": "ParsingStrategy",
-            "summary": "It\u0020represents\u0020the\u0020parsing\u0020strategy\u0020of\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
+            "summary": "Represents\u0020the\u0020parsing\u0020strategy\u0020of\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-ParsingStrategy.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\ParsingStrategy\u003A\u003A__construct\u0028\u0029",
@@ -698,12 +853,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Strategy\u003A\u003Afound\u0028\u0029",
             "name": "found",
-            "summary": "Find\u0020an\u0020exact\u0020row\u0020in\u0020the\u0020raw\u0020swiss\u0020ephemeris\u0020output.",
+            "summary": "Find\u0020a\u0020data\u0020line\u0020in\u0020the\u0020raw\u0020swiss\u0020ephemeris\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Strategy.html#method_found"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Using",
             "name": "Using",
-            "summary": "The\u0020parsing\u0020strategy\u0020used\u0020to\u0020find\u0020a\u0020\u0022using\u0022\u0020notice\nin\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
+            "summary": "The\u0020ParsingStrategy\u0020used\u0020to\u0020find\u0020a\u0020\u0022using\u0022\u0020notice\nin\u0020the\u0020raw\u0020Swiss\u0020Ephemeris\u0020output.",
             "url": "classes/MarcoConsiglio-Ephemeris-Parsers-Strategies-Using.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Using\u003A\u003Afound\u0028\u0029",
@@ -723,23 +878,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\AnomalisticRecord",
             "name": "AnomalisticRecord",
-            "summary": "It\u0020represents\u0020an\u0020instant\u0020when\u0020the\u0020Moon\nis\u0020at\u0020either\u0020apogee\u0020or\u0020perigee.",
+            "summary": "Represents\u0020an\u0020instant\u0020when\u0020the\u0020Moon\nis\u0020at\u0020either\u0020apogee\u0020or\u0020perigee.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\AnomalisticRecord\u003A\u003AisApogee\u0028\u0029",
             "name": "isApogee",
-            "summary": "Checks\u0020if\u0020this\u0020record\u0020is\u0020an\u0020Apogee.",
+            "summary": "Check\u0020if\u0020this\u0020record\u0020is\u0020an\u0020Apogee.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isApogee"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\AnomalisticRecord\u003A\u003AisPerigee\u0028\u0029",
             "name": "isPerigee",
-            "summary": "Checks\u0020if\u0020this\u0020record\u0020is\u0020an\u0020Perigee.",
+            "summary": "Check\u0020if\u0020this\u0020record\u0020is\u0020an\u0020Perigee.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#method_isPerigee"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\AnomalisticRecord\u003A\u003A\u0024timestamp",
-            "name": "timestamp",
-            "summary": "The\u0020timestamp\u0020of\u0020this\u0020Moon\u0020AnomalistcRecord.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-AnomalisticRecord.html#property_timestamp"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\AnomalisticRecord\u003A\u003A\u0024moon_longitude",
             "name": "moon_longitude",
@@ -748,7 +898,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\ApogeeRecord",
             "name": "ApogeeRecord",
-            "summary": "It\u0020represents\u0020a\u0020moment\u0020when\u0020the\u0020Moon\u0020is\u0020at\u0020its\u0020apogee.",
+            "summary": "Represents\u0020a\u0020moment\u0020when\u0020the\u0020Moon\u0020is\u0020at\u0020its\u0020apogee.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-ApogeeRecord.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\ApogeeRecord\u003A\u003A__construct\u0028\u0029",
@@ -791,11 +941,6 @@ Search.appendIndex(
             "summary": "Check\u0020if\u0020this\u0020record\u0020is\u0020equal\u0020to\u0020\u0024another_record.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#method_equals"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A\u0024timestamp",
-            "name": "timestamp",
-            "summary": "The\u0020timestamp\u0020of\u0020this\u0020Moon\u0020DraconicRecord.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-DraconicRecord.html#property_timestamp"
-        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\DraconicRecord\u003A\u003A\u0024moon_longitude",
             "name": "moon_longitude",
             "summary": "The\u0020current\u0020Moon\u0020longitude.\u0020It\u0020represents\u0020the\nMoon\u0020position.",
@@ -818,7 +963,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PerigeeRecord",
             "name": "PerigeeRecord",
-            "summary": "It\u0020represents\u0020a\u0020moment\u0020when\u0020the\u0020Moon\u0020is\u0020at\u0020its\u0020perigee.",
+            "summary": "Represents\u0020a\u0020moment\u0020when\u0020the\u0020Moon\u0020is\u0020at\u0020its\u0020perigee.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-PerigeeRecord.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PerigeeRecord\u003A\u003A__construct\u0028\u0029",
@@ -848,13 +993,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\Period\u003A\u003AisWaxing\u0028\u0029",
             "name": "isWaxing",
-            "summary": "Tells\u0020if\u0020this\u0020period\u0020is\u0020waxing.",
+            "summary": "Check\u0020if\u0020this\u0020period\u0020is\u0020waxing.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method_isWaxing"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\Period\u003A\u003AisWaning\u0028\u0029",
             "name": "isWaning",
-            "summary": "Tells\u0020if\u0020this\u0020period\u0020is\u0020waning.",
+            "summary": "Check\u0020if\u0020this\u0020period\u0020is\u0020waning.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#method_isWaning"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\Period\u003A\u003A\u0024timestamp",
+            "name": "timestamp",
+            "summary": "The\u0020timestamp\u0020of\u0020this\u0020\u0060Record\u0060.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-Period.html#property_timestamp"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\Period\u003A\u003A\u0024start",
             "name": "start",
@@ -873,18 +1023,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PhaseRecord",
             "name": "PhaseRecord",
-            "summary": "It\u0020represents\u0020a\u0020time\u0020when\u0020the\u0020Moon\nis\u0020in\u0020a\u0020specific\u0020lunar\u0020phase.",
+            "summary": "Represents\u0020a\u0020time\u0020when\u0020the\u0020Moon\nis\u0020in\u0020a\u0020specific\u0020lunar\u0020phase.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-PhaseRecord.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PhaseRecord\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Construct\u0020a\u0020MoonPhaseRecord\u0020with\u0020a\u0020moon\u0020phase\u0020type\u0020and\u0020a\u0020timestamp.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-PhaseRecord.html#method___construct"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PhaseRecord\u003A\u003A\u0024timestamp",
-            "name": "timestamp",
-            "summary": "The\u0020timestamp\u0020this\u0020record\u0020refers\u0020to.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-PhaseRecord.html#property_timestamp"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\PhaseRecord\u003A\u003A\u0024type",
             "name": "type",
@@ -921,11 +1066,6 @@ Search.appendIndex(
             "summary": "Check\u0020if\u0020this\u0020record\u0020is\u0020equal\u0020to\u0020\u0024another_record.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-SynodicRhythmRecord.html#method_equals"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\SynodicRhythmRecord\u003A\u003A\u0024timestamp",
-            "name": "timestamp",
-            "summary": "The\u0020timestamp\u0020of\u0020this\u0020record.",
-            "url": "classes/MarcoConsiglio-Ephemeris-Records-Moon-SynodicRhythmRecord.html#property_timestamp"
-        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon\\SynodicRhythmRecord\u003A\u003A\u0024angular_distance",
             "name": "angular_distance",
             "summary": "The\u0020angular\u0020distance\u0020between\u0020the\u0020Moon\u0020and\u0020the\u0020Sun.",
@@ -938,7 +1078,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\MovingObjectRecord",
             "name": "MovingObjectRecord",
-            "summary": "It\u0020defines\u0020the\u0020abstract\u0020concept\u0020of\u0020a\u0020record\u0020of\u0020the\n\u0020ephemeris\u0020representing\u0020a\u0020moving\u0020stellar\u0020object.",
+            "summary": "Defines\u0020the\u0020abstract\u0020concept\u0020of\u0020a\u0020record\u0020of\u0020the\n\u0020ephemeris\u0020representing\u0020a\u0020moving\u0020stellar\u0020object.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-MovingObjectRecord.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\MovingObjectRecord\u003A\u003A\u0024daily_speed",
@@ -948,8 +1088,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Record",
             "name": "Record",
-            "summary": "It\u0020defines\u0020the\u0020abstract\u0020concept\u0020of\u0020a\u0020record\u0020of\u0020the\nephemeris.",
+            "summary": "Defines\u0020the\u0020abstract\u0020concept\u0020of\u0020a\u0020record\u0020of\u0020the\nephemeris.",
             "url": "classes/MarcoConsiglio-Ephemeris-Records-Record.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Record\u003A\u003A\u0024timestamp",
+            "name": "timestamp",
+            "summary": "The\u0020timestamp\u0020of\u0020this\u0020\u0060Record\u0060.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Records-Record.html#property_timestamp"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Builder",
             "name": "Builder",
@@ -968,7 +1113,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Interfaces\\Builder",
             "name": "Builder",
-            "summary": "The\u0020behaviour\u0020of\u0020a\u0020rhythm\u0020builder.",
+            "summary": "The\u0020behaviour\u0020of\u0020a\u0020Rhythm\u0020Builder\u0020which\u0020constructs\u0020a\u0020collection\u0020from\u0020diverse\ntype\u0020of\u0020inputs.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Interfaces-Builder.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Interfaces\\Builder\u003A\u003AfetchCollection\u0028\u0029",
@@ -988,7 +1133,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Apogees\\FromArray",
             "name": "FromArray",
-            "summary": "Builds\u0020a\u0020Moon\u0020Apogees\u0020collection\u0020from\u0020raw\u0020Swiss\u0020Ephemeris\u0020response.",
+            "summary": "Build\u0020a\u0020Moon\u0020Apogees\u0020collection\u0020from\u0020raw\u0020Swiss\u0020Ephemeris\u0020response.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-AnomalisticRhythm-Apogees-FromArray.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Apogees\\FromArray\u003A\u003A__construct\u0028\u0029",
@@ -1003,7 +1148,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Apogees\\FromRecords",
             "name": "FromRecords",
-            "summary": "Builds\u0020an\u0020Apogees\u0020collection\u0020from\u0020a\u0020list\u0020of\u0020ApogeeRecord\u0020instances.",
+            "summary": "Build\u0020an\u0020Apogees\u0020collection\u0020from\u0020a\u0020list\u0020of\u0020ApogeeRecord\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-AnomalisticRhythm-Apogees-FromRecords.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Apogees\\FromRecords\u003A\u003A__construct\u0028\u0029",
@@ -1013,12 +1158,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Apogees\\FromRecords\u003A\u003AfetchCollection\u0028\u0029",
             "name": "fetchCollection",
-            "summary": "Fetches\u0020the\u0020result.",
+            "summary": "Fetch\u0020the\u0020result.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-AnomalisticRhythm-Apogees-FromRecords.html#method_fetchCollection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\FromCollections",
             "name": "FromCollections",
-            "summary": "Builds\u0020a\u0020Moon\u0020AnomalisticRhythm\u0020collection\u0020from\na\u0020Moon\u0020Apogees\u0020collection\u0020and\u0020a\u0020Moon\u0020Perigees\ncollection.",
+            "summary": "Build\u0020a\u0020Moon\u0020AnomalisticRhythm\u0020collection\u0020from\na\u0020Moon\u0020Apogees\u0020collection\u0020and\u0020a\u0020Moon\u0020Perigees\ncollection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-AnomalisticRhythm-FromCollections.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\FromCollections\u003A\u003A__construct\u0028\u0029",
@@ -1028,12 +1173,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\FromCollections\u003A\u003AfetchCollection\u0028\u0029",
             "name": "fetchCollection",
-            "summary": "Fetches\u0020the\u0020result.",
+            "summary": "Fetch\u0020the\u0020result.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-AnomalisticRhythm-FromCollections.html#method_fetchCollection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Perigees\\FromArray",
             "name": "FromArray",
-            "summary": "Builds\u0020a\u0020Moon\u0020Perigees\u0020collection\u0020from\u0020raw\u0020ephemeris\u0020response.",
+            "summary": "Build\u0020a\u0020Moon\u0020Perigees\u0020collection\u0020from\u0020raw\u0020ephemeris\u0020response.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-AnomalisticRhythm-Perigees-FromArray.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Perigees\\FromArray\u003A\u003A__construct\u0028\u0029",
@@ -1048,7 +1193,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Perigees\\FromRecords",
             "name": "FromRecords",
-            "summary": "Builds\u0020an\u0020Apogees\u0020collection\u0020from\u0020a\u0020list\u0020of\u0020PerigeeRecord\u0020instances.",
+            "summary": "Build\u0020an\u0020Apogees\u0020collection\u0020from\u0020a\u0020list\u0020of\u0020PerigeeRecord\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-AnomalisticRhythm-Perigees-FromRecords.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Perigees\\FromRecords\u003A\u003A__construct\u0028\u0029",
@@ -1058,12 +1203,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\AnomalisticRhythm\\Perigees\\FromRecords\u003A\u003AfetchCollection\u0028\u0029",
             "name": "fetchCollection",
-            "summary": "Fetches\u0020the\u0020result.",
+            "summary": "Fetch\u0020the\u0020result.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-AnomalisticRhythm-Perigees-FromRecords.html#method_fetchCollection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\DraconicRhythm\\FromArray",
             "name": "FromArray",
-            "summary": "Builds\u0020a\u0020DraconicRhythm\u0020from\u0020an\u0020array\u0020of\u0020raw\u0020ephemeris\u0020data.",
+            "summary": "Build\u0020a\u0020DraconicRhythm\u0020from\u0020an\u0020array\u0020of\u0020raw\u0020ephemeris\u0020data.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-DraconicRhythm-FromArray.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\DraconicRhythm\\FromArray\u003A\u003A__construct\u0028\u0029",
@@ -1073,7 +1218,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\DraconicRhythm\\FromArray\u003A\u003AfetchCollection\u0028\u0029",
             "name": "fetchCollection",
-            "summary": "Fetches\u0020the\u0020result.",
+            "summary": "Fetch\u0020the\u0020result.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-DraconicRhythm-FromArray.html#method_fetchCollection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Strategies\\Anomalies\\AnomalisticStrategy",
@@ -1088,7 +1233,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Strategies\\Anomalies\\Apogee",
             "name": "Apogee",
-            "summary": "The\u0020strategy\u0020used\u0020to\u0020find\u0020an\u0020ApogeeRecord\nrepresenting\u0020the\u0020Moon\u0020in\u0020its\u0020apogee.",
+            "summary": "The\u0020strategy\u0020used\u0020to\u0020find\u0020an\u0020ApogeeRecord\nRepresentsing\u0020the\u0020Moon\u0020in\u0020its\u0020apogee.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-Strategies-Anomalies-Apogee.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Strategies\\Anomalies\\Apogee\u003A\u003A__construct\u0028\u0029",
@@ -1103,7 +1248,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Strategies\\Anomalies\\Perigee",
             "name": "Perigee",
-            "summary": "The\u0020strategy\u0020used\u0020to\u0020find\u0020an\u0020PerigeeRecord\nrepresenting\u0020the\u0020Moon\u0020in\u0020its\u0020perigee.",
+            "summary": "The\u0020strategy\u0020used\u0020to\u0020find\u0020an\u0020PerigeeRecord\nRepresentsing\u0020the\u0020Moon\u0020in\u0020its\u0020perigee.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-Strategies-Anomalies-Perigee.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\Strategies\\Anomalies\\Perigee\u003A\u003A__construct\u0028\u0029",
@@ -1183,7 +1328,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromArray",
             "name": "FromArray",
-            "summary": "Builds\u0020a\u0020Moon\u0020SynodicRhythm\u0020starting\u0020from\u0020an\u0020array\u0020of\u0020raw\u0020ephemeris\u0020response.",
+            "summary": "Build\u0020a\u0020Moon\u0020SynodicRhythm\u0020starting\u0020from\u0020an\u0020array\u0020of\u0020raw\u0020ephemeris\u0020response.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromArray.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromArray\u003A\u003A__construct\u0028\u0029",
@@ -1198,7 +1343,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromRecords",
             "name": "FromRecords",
-            "summary": "Builds\u0020a\u0020Moon\u0020SynodicRhythm\u0020from\u0020an\u0020array\u0020of\u0020Moon\u0020SynodicRhythmRecord\u0020instances.",
+            "summary": "Build\u0020a\u0020Moon\u0020SynodicRhythm\u0020from\u0020an\u0020array\u0020of\u0020Moon\u0020SynodicRhythmRecord\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-FromRecords.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\FromRecords\u003A\u003A__construct\u0028\u0029",
@@ -1213,7 +1358,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\Periods\\FromSynodicRhythm",
             "name": "FromSynodicRhythm",
-            "summary": "Builds\u0020a\u0020Moon\u0020Periods\u0020collection\nfrom\u0020the\u0020Moon\u0020SynodicRhythm\u0020collection.",
+            "summary": "Build\u0020a\u0020Moon\u0020Periods\u0020collection\nfrom\u0020the\u0020Moon\u0020SynodicRhythm\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-Periods-FromSynodicRhythm.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\Periods\\FromSynodicRhythm\u003A\u003A__construct\u0028\u0029",
@@ -1233,7 +1378,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\Phases\\FromSynodicRhythm",
             "name": "FromSynodicRhythm",
-            "summary": "Builds\u0020a\u0020Phases\u0020collection\u0020from\u0020a\u0020Moon\u0020SynodicRhythm\u0020collection.",
+            "summary": "Build\u0020a\u0020Phases\u0020collection\u0020from\u0020a\u0020Moon\u0020SynodicRhythm\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-Phases-FromSynodicRhythm.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\Phases\\FromSynodicRhythm\u003A\u003A__construct\u0028\u0029",
@@ -1248,7 +1393,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\Phases\\FromSynodicRhythm\u003A\u003AbuildRecords\u0028\u0029",
             "name": "buildRecords",
-            "summary": "Builds\u0020the\u0020MoonPhasesRecord\u0020instances.",
+            "summary": "Build\u0020the\u0020MoonPhasesRecord\u0020instances.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Moon-SynodicRhythm-Phases-FromSynodicRhythm.html#method_buildRecords"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Moon\\SynodicRhythm\\Phases\\FromSynodicRhythm\u003A\u003AfetchCollection\u0028\u0029",
@@ -1258,7 +1403,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategy",
             "name": "Strategy",
-            "summary": "The\u0020abstract\u0020strategy\u0020used\u0020to\u0020build\u0020a\u0020rhythm.",
+            "summary": "The\u0020abstract\u0020Strategy\u0020used\u0020to\u0020build\u0020a\u0020rhythm.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Builders-Strategy.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Builders\\Strategy\u003A\u003Afound\u0028\u0029",
@@ -1333,7 +1478,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\DraconicRhythm\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructs\u0020a\u0020Moon\u0020DraconicRhythm\u0020collection.",
+            "summary": "Constructss\u0020a\u0020Moon\u0020DraconicRhythm\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Rhythms-Moon-DraconicRhythm.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Rhythms\\Moon\\DraconicRhythm\u003A\u003Afirst\u0028\u0029",
@@ -1623,7 +1768,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Templates\\Moon\\AnomalisticTemplate",
             "name": "AnomalisticTemplate",
-            "summary": "The\u0020template\u0020for\u0020an\u0020ephemeris\u0020query\u0020to\u0020obtain\nthe\u0020Moon\u0020anomalistic\u0020rhythm.",
+            "summary": "The\u0020template\u0020for\u0020an\u0020ephemeris\u0020query\u0020to\u0020obtain\nthe\u0020Moon\u0020AnomalisticRhythm\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Templates-Moon-AnomalisticTemplate.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Templates\\Moon\\AnomalisticTemplate\u003A\u003AgetColumns\u0028\u0029",
@@ -1643,7 +1788,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Templates\\Moon\\DraconicTemplate",
             "name": "DraconicTemplate",
-            "summary": "A\u0020template\u0020for\u0020an\u0020ephemeris\u0020query\u0020to\u0020obtain\nthe\u0020draconic\u0020rhythm\u0020of\u0020the\u0020Moon.",
+            "summary": "The\u0020template\u0020for\u0020an\u0020ephemeris\u0020query\u0020to\u0020obtain\nthe\u0020Moon\u0020DraconicRhythm.",
             "url": "classes/MarcoConsiglio-Ephemeris-Templates-Moon-DraconicTemplate.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Templates\\Moon\\DraconicTemplate\u003A\u003AgetColumns\u0028\u0029",
@@ -1668,12 +1813,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Templates\\Moon\\SynodicRhythmTemplate",
             "name": "SynodicRhythmTemplate",
-            "summary": "A\u0020template\u0020for\u0020an\u0020ephemeris\u0020query\u0020to\u0020obtain\nthe\u0020synodic\u0020rhythm\u0020of\u0020the\u0020Moon.",
+            "summary": "A\u0020template\u0020for\u0020an\u0020ephemeris\u0020query\u0020to\u0020obtain\nthe\u0020Moon\u0020SynodicRhythm\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Templates-Moon-SynodicRhythmTemplate.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Templates\\Moon\\SynodicRhythmTemplate\u003A\u003AgetResult\u0028\u0029",
             "name": "getResult",
-            "summary": "Get\u0020the\u0020builded\u0020SynodicRhythm\u0020collection.",
+            "summary": "Return\u0020the\u0020builded\u0020SynodicRhythm\u0020collection.",
             "url": "classes/MarcoConsiglio-Ephemeris-Templates-Moon-SynodicRhythmTemplate.html#method_getResult"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Templates\\Moon\\SynodicRhythmTemplate\u003A\u003AgetColumns\u0028\u0029",
@@ -1766,6 +1911,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/marcoconsiglio.html"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Observer",
+            "name": "Observer",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-ephemeris-observer.html"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies",
             "name": "Strategies",
             "summary": "",
@@ -1775,6 +1925,11 @@ Search.appendIndex(
             "name": "Parsers",
             "summary": "",
             "url": "namespaces/marcoconsiglio-ephemeris-parsers.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Parsers\\Strategies\\Moon",
+            "name": "Moon",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-ephemeris-parsers-strategies-moon.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Records\\Moon",
             "name": "Moon",

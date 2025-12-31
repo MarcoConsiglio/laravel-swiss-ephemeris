@@ -37,7 +37,7 @@ abstract class TemplateTestCase extends TestCase
     }
 
     /**
-     * Returns an already generated swetest executable response,
+     * Return an already generated swetest executable response,
      * reading it from a file specified in $response_file.
      * Use it to not trigger a call to the executable during tests. 
      *
@@ -49,7 +49,7 @@ abstract class TemplateTestCase extends TestCase
     }
 
     /**
-     * Returns a random Topocentric PointOfView.
+     * Return a random Topocentric PointOfView.
      */
     protected function getRandomTopocentricPOV(): Topocentric
     {

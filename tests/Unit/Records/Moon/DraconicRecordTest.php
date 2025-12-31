@@ -155,7 +155,7 @@ TEXT, (string) $record
 
     /**
      * Construct the two records to be compared with some $property_couples
-     * representing an equal or different property
+     * Representsing an equal or different property
      */
     protected function getRecordsToCompare(array $property_couples): array
     {

@@ -58,7 +58,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Produces a failure message when calling $called_class::$method doesn't return
+     * Produce a failure message when calling $called_class::$method doesn't return
      * the expected $return_type.
      */
     protected static function methodMustReturn(string $called_class, string $method, string $return_type): string
@@ -67,7 +67,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Produces a failure message when calling $called_class::$method doesn't return
+     * Produce a failure message when calling $called_class::$method doesn't return
      * the expected $return_type in case the $condition is verified.
      */
     protected static function methodMustReturnIf(string $called_class, string $method, string $return_type, string $condition): string

@@ -146,7 +146,7 @@ trait WithRecordsComparison
 
     /**
      * Construct the two records to be compared with some $property_couples
-     * representing an equal or different property
+     * Representsing an equal or different property
      */
     abstract protected function getRecordsToCompare(array $property_couples): array;
 

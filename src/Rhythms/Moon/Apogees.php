@@ -9,7 +9,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\Fro
 /**
  * A collection of Moon ApogeeRecord instances.
  * 
- * It represents a collection of record where the Moon
+ * Represents a collection of record where the Moon
  * is in its apogee.
  */
 class Apogees extends Collection

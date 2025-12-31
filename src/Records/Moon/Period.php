@@ -54,7 +54,7 @@ class Period extends Record
     }
 
     /**
-     * Tells if this period is waxing.
+     * Check if this period is waxing.
      */
     public function isWaxing(): bool
     {
@@ -62,7 +62,7 @@ class Period extends Record
     }
 
     /**
-     * Tells if this period is waning.
+     * Check if this period is waning.
      */
     public function isWaning(): bool
     {

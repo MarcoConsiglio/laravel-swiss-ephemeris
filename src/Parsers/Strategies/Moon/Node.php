@@ -1,12 +1,11 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Parsers\Strategies\Moon;
 
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Parsers\Strategies\ParsingStrategy;
 
 /**
  * The ParsingStrategy used to parse a lunar Node from
- * raw ephemeris data.
+ * raw ephemeris output.
  */
 class Node extends ParsingStrategy
 {

@@ -8,7 +8,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSyn
 /**
  * A collection of Moon Period instances.
  * 
- * It represents a collection of time periods between
+ * Represents a collection of time periods between
  * a lunar phase and another.
  */
 class Periods extends Collection

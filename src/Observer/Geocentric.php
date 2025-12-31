@@ -14,6 +14,14 @@ use AdamBrett\ShellWrapper\Command;
  */
 class Geocentric extends PointOfView
 {
+    /**
+     * Set the viewpoint in the $command.
+     * 
+     * This method actually do nothing at all.
+     *
+     * @param Command $command
+     * @return void
+     */
     protected function acceptPointOfView(Command &$command)
     {
         // Do nothing.

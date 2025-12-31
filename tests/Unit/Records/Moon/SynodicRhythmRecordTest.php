@@ -172,7 +172,7 @@ TEXT,
 
     /**
      * Construct the two records to be compared with some $property_couples
-     * representing an equal or different property.
+     * Representsing an equal or different property.
      *
      * @param array $property_couples
      */
@@ -202,7 +202,7 @@ TEXT,
 
     /**
      * Construct the two records to be compared with some $property_couples
-     * representing an equal or different property
+     * Representsing an equal or different property
      */
     protected function getRecordsToCompare(array $property_couples): array
     {

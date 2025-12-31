@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 
 /**
- * Builds a Phases collection from a Moon SynodicRhythm collection.
+ * Build a Phases collection from a Moon SynodicRhythm collection.
  */
 class FromSynodicRhythm extends Builder
 {
@@ -79,7 +79,7 @@ class FromSynodicRhythm extends Builder
     }
 
     /**
-     * Builds the MoonPhasesRecord instances.
+     * Build the MoonPhasesRecord instances.
      */
     public function buildRecords(): void
     {

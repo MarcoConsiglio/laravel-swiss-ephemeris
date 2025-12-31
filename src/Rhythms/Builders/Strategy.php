@@ -1,15 +1,15 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders;
 
+use RoundingMode;
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
-use MarcoConsiglio\Goniometry\Angle;
-use RoundingMode;
 
 /**
- * The abstract strategy used to build a rhythm.
+ * The abstract Strategy used to build a rhythm.
  * 
- * Implemented in a concrete strategy defines the algorithm
+ * Implemented in a concrete Strategy defines the algorithm
  * used to choose which record would be part of the rhythm,
  * and which not.
  * 

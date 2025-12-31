@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Config;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 
 /**
- * It represents the parsing strategy of the raw Swiss Ephemeris output.
+ * Represents the parsing strategy of the raw Swiss Ephemeris output.
  */
 abstract class ParsingStrategy implements Strategy
 {

@@ -7,7 +7,7 @@ namespace MarcoConsiglio\Ephemeris\Traits;
 trait StringableRecord
 {
     /**
-     * Procude a string representation of the object
+     * Procudes a string representation of the object
      * which class has the Stringable trait.
      */
     protected function toString(): string

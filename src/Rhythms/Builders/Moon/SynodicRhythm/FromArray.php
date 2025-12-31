@@ -2,14 +2,14 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm;
 
 use InvalidArgumentException;
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
-use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * Builds a Moon SynodicRhythm starting from an array of raw ephemeris response.
+ * Build a Moon SynodicRhythm starting from an array of raw ephemeris response.
  */
 class FromArray extends FromArrayBuilder
 {

@@ -17,7 +17,7 @@ class ApogeeTemplate extends AnomalisticTemplate
 {
     
     /**
-     * The astral_object that will be built with the requested 
+     * The astral object that will be built with the requested 
      * ephemeris.
     *
     * @var Apogees
@@ -88,7 +88,7 @@ class ApogeeTemplate extends AnomalisticTemplate
     }
 
     /**
-     * It Remaps the output in an associative array,
+     * Remap the output in an associative array,
      * with the columns name as the key.
      */
     protected function remapColumns(): void

@@ -88,7 +88,7 @@ class TestCase extends FeatureTestCase
     }
 
     /**
-     * Returns a playground file name not committed to the code repository,
+     * Return a playground file name not committed to the code repository,
      */
     protected function getPlaygroundFileName(string $filename): string
     {

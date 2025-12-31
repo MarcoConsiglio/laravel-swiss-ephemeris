@@ -1,9 +1,12 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Parsers\Strategies\Moon;
 
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Parsers\Strategies\ParsingStrategy;
 
+/**
+ * The ParsingStrategy used to parse a lunar perigee from
+ * raw ephemeris output.
+ */
 class Perigee extends ParsingStrategy
 {
     /**
