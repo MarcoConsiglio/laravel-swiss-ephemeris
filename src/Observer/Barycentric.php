@@ -14,7 +14,6 @@ class Barycentric extends PointOfView
     /**
      * Set the viewpoint in the $command.
      *
-     * @param Command $command
      * @return void
      */
     protected function acceptPointOfView(Command &$command)

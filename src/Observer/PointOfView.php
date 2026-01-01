@@ -12,10 +12,6 @@ abstract class PointOfView implements ObserverStrategy
     /**
      * Set the viewpoint in the command if it's an acceptable viewpoint for the
      * QueryTemplate.
-     *
-     * @param Command $command
-     * @param callable $is_valid
-     * @return void
      */
     public function setPointOfView(Command &$command, callable $is_valid): void
     {
@@ -25,7 +21,6 @@ abstract class PointOfView implements ObserverStrategy
     /**
      * Set the viewpoint in the $command.
      *
-     * @param Command $command
      * @return void
      */
     abstract protected function acceptPointOfView(Command &$command);

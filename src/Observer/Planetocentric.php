@@ -21,8 +21,6 @@ class Planetocentric extends PointOfView
 
     /**
      * Constructss the point of view from the center of the $planet.
-     *
-     * @param SinglePlanet $planet
      */
     public function __construct(SinglePlanet $planet)
     {
@@ -32,7 +30,6 @@ class Planetocentric extends PointOfView
     /**
      * Set the viewpoint in the $command.
      *
-     * @param Command $command
      * @return void
      */
     protected function acceptPointOfView(Command &$command)
