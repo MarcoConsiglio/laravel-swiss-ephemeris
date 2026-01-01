@@ -1,4 +1,12 @@
 # Changelog
+## 1.3.0-alpha 2026-01-01
+### Added
+- The ability to set a `PointOfView` class in a `LaravelSwissEphemeris` instance in order to query ephemeris from different points of view.
+- Playground testsuit to immediately try out the features of this software.
+- The config value 'value_separator' to separate the raw ephemeris output with a char.
+### Changed
+- The mechanism for parsing ephemeris output, no longer relying on regular expressions, but separating variables with a separator character.
+
 ## 1.2.0-alpha 2025-12-19
 ### Added
 - `MarcoConsiglio\Ephemeris\Enums\Cardinality` enum to specify lunar node cardinality (north and south nodes).
