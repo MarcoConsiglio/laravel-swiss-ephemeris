@@ -15,8 +15,6 @@ use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 #[CoversClass(QueryTemplate::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SwissEphemerisError::class)]
-#[UsesClass(Command::class)]
-#[UsesClass(FakeRunner::class)]
 #[UsesClass(SynodicRhythmTemplate::class)]
 #[TestDox("The abstract QueryTemplate")]
 class QueryTemplateTest extends TemplateTestCase

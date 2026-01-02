@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Traits;
 
-use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\ExpectationFailedException;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -9,7 +9,7 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 #[TestDox("With custom assertions")]
-#[CoversTrait(WithCustomAssertions::class)]
+#[CoversNothing]
 class WithCustomAssertionsTest extends TestCase
 {
     use WithCustomAssertions;

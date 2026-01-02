@@ -2,9 +2,9 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums\Moon;
 
 use Error;
+use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FirstQuarter;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FullMoon;
@@ -13,11 +13,8 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\ThirdQuarte
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Dummy\NonExistentMoonStrategy;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use MarcoConsiglio\Goniometry\Angle;
 
 #[CoversClass(Phase::class)]
-#[UsesClass(Angle::class)]
-#[UsesClass(NonExistentMoonStrategy::class)]
 #[TestDox("The PhaseType enumeration")]
 class PhaseTest extends TestCase
 {

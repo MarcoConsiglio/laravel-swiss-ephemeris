@@ -15,8 +15,6 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 
 #[CoversClass(PerigeeTemplate::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(FakeRunner::class)]
-#[UsesClass(Command::class)]
 #[UsesClass(Perigees::class)]
 #[TestDox("The Moon PerigeeTemplate")]
 class PerigeeTemplateTest extends TemplateTestCase

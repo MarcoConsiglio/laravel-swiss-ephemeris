@@ -1,11 +1,11 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Test\Unit\Observer;
+namespace MarcoConsiglio\Ephemeris\Tests\Unit\Observer;
 
 use AdamBrett\ShellWrapper\Command;
-use MarcoConsiglio\Ephemeris\Observer\Topocentric;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use MarcoConsiglio\Ephemeris\Observer\Topocentric;
+use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 #[CoversClass(Topocentric::class)]
 #[TestDox("The Topocentric PointOfView")]

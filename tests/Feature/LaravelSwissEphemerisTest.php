@@ -4,17 +4,23 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Laravel Swiss Ephemeris")]
 #[CoversClass(LaravelSwissEphemeris::class)]
 #[UsesClass(SynodicRhythm::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
+#[UsesClass(AnomalisticRhythm::class)]
+#[UsesClass(Apogees::class)]
+#[UsesClass(Perigees::class)]
+#[UsesClass(DraconicRhythm::class)]
 class LaravelSwissEphemerisTest extends TestCase
 {
     #[TestDox("can query the Moon synodic rhythm.")]

@@ -1,17 +1,16 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
+use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
-use MarcoConsiglio\Goniometry\Angle;
-use PHPUnit\Framework\MockObject\MockObject;
 
 #[CoversClass(ApogeeRecord::class)]
-#[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon ApogeeRecord")]
 class ApogeeRecordTest extends TestCase

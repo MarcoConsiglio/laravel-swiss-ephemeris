@@ -14,7 +14,6 @@ use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 
 #[CoversClass(SynodicRhythmTemplate::class)]
-#[UsesClass(Command::class)]
 #[UsesClass(SynodicRhythm::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon SynodicRhythmTemplate")]

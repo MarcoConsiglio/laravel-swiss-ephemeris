@@ -1,30 +1,28 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic;
 
-use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
+use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollections;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromRecords as ApogeesBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollections;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\FromRecords as PerigeesBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
-use MarcoConsiglio\Goniometry\Angle;
 
 #[CoversClass(FromCollections::class)]
 #[UsesClass(ApogeeRecord::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(Angle::class)]
 #[UsesClass(ApogeesBuilder::class)]
 #[UsesClass(PerigeesBuilder::class)]
-#[UsesClass(Angle::class)]
 #[TestDox("The Moon AnomalisticRhythm\FromCollections builder")]
 class FromCollectionsTest extends BuilderTestCase
 {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="./vendor/autoload.php"
+         bootstrap="vendor/autoload.php"
          colors="true"
          cacheDirectory=".phpunit.cache"
          executionOrder="depends,defects"
@@ -16,7 +16,7 @@
     <testsuites>
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
-            <!-- <exclude>tests/Feature/Playground</exclude> -->
+            <exclude>tests/Feature/Playground</exclude>
         </testsuite>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
@@ -30,12 +30,11 @@
     </php>
     <logging>
         <testdoxText outputFile="testbook.txt"/>
-        <testdoxHtml outputFile="testbook.html"/>
     </logging>
 
     <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
         <include>
-            <directory>src</directory>
+            <directory suffix=".php">src</directory>
         </include>
     </source>
     <coverage

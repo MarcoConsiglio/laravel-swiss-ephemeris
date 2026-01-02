@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Parsers\Strategies\Moon;
 
-use RoundingMode;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Parsers\Strategies\Moon\Apogee;

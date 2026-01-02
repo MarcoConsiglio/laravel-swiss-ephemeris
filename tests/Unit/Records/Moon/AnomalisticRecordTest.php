@@ -1,21 +1,20 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
-use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
-use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
+use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
+use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 #[TestDox("The Moon AnomalisticRecord")]
 #[CoversClass(AnomalisticRecord::class)]
 #[UsesClass(ApogeeRecord::class)]
 #[UsesClass(PerigeeRecord::class)]
-#[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 class AnomalisticRecordTest extends TestCase
 {

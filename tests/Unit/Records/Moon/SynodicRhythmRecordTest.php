@@ -2,13 +2,13 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
 use RoundingMode;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 #[TestDox("The Moon SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]

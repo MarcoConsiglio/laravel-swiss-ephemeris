@@ -1,16 +1,14 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Traits;
 
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
 use MarcoConsiglio\Goniometry\Angle;
-use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
+use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
+use PHPUnit\Framework\Attributes\CoversTrait;
 
 #[TestDox("The trait WithFuzzyLogic")]
-#[CoversClass(WithFuzzyLogic::class)]
-#[UsesClass(Angle::class)]
+#[CoversTrait(WithFuzzyLogic::class)]
 class WithFuzzyLogicTest extends TestCase
 {
     use WithFuzzyLogic;

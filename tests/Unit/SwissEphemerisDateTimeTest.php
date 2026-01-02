@@ -5,12 +5,11 @@ use Carbon\Carbon;
 use Carbon\Exceptions\InvalidFormatException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
+
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 #[TestDox("The SwissEphemerisDateTime")]
 #[CoversClass(SwissEphemerisDateTime::class)]
-#[UsesClass(Carbon::class)]
 class SwissEphemerisDateTimeTest extends TestCase
 {
     /**

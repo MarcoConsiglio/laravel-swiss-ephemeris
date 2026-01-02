@@ -1,16 +1,16 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
-use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
-use MarcoConsiglio\Ephemeris\Records\Moon\Period;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
+use MarcoConsiglio\Ephemeris\Records\Moon\Period;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 
 #[TestDox("The Moon Periods collection")]
 #[CoversClass(Periods::class)]

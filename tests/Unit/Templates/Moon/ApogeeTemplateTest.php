@@ -15,8 +15,6 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 
 #[CoversClass(ApogeeTemplate::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(FakeRunner::class)]
-#[UsesClass(Command::class)]
 #[UsesClass(Apogees::class)]
 #[TestDox("The Moon ApogeeTemplate")]
 class ApogeeTemplateTest extends TemplateTestCase
