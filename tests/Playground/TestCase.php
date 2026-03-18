@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Feature\Playground;
+namespace MarcoConsiglio\Ephemeris\Tests\Playground;
 
 use DateTimeZone;
 use Override;
@@ -16,7 +16,7 @@ class TestCase extends FeatureTestCase
     /**
      * The playground folder not committed to the code repository.
      */
-    const string PLAYGROUND_FOLDER = "./tests/playground";
+    const string PLAYGROUND_FOLDER = "./tests/Playground/output";
 
     /**
      * The demo output.

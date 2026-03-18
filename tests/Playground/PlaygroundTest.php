@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Ephemeris\Tests\Feature\Playground;
+namespace MarcoConsiglio\Ephemeris\Tests\Playground;
 
 use MarcinOrlowski\TextTable\TextTable;
 use PHPUnit\Framework\Attributes\CoversNothing;
@@ -10,6 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use Override;
 
 /**
  * This TestCase is intended to be a playground, so you can try out
@@ -22,6 +23,12 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 #[TestDox("With Laravel Swiss Ephemeris")]
 class PlaygroundTest extends TestCase
 {
+    #[Override]
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
     #[TestDox("you can make a lunar calendar.")]
     #[Test]
     public function lunar_calendar(): void

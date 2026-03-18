@@ -16,13 +16,13 @@
     <testsuites>
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
-            <exclude>tests/Feature/Playground</exclude>
         </testsuite>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
         </testsuite>
         <testsuite name="Playground">
-            <directory>tests/Feature/Playground</directory>
+            <directory>tests/Playground</directory>
+            <exclude>tests/Playground/PlaygroundTest.php</exclude>
         </testsuite>
     </testsuites>
     <php>
