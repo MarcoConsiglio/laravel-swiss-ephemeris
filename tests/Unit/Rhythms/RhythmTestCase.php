@@ -6,6 +6,8 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 
 abstract class RhythmTestCase extends TestCase
 {
@@ -28,22 +30,22 @@ abstract class RhythmTestCase extends TestCase
             new FromRecords([
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 1),
-                    $this->getSpecificAngle(0),
+                    Angle::createFromValues(0),
                     $this->getRandomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 8),
-                    $this->getSpecificAngle(90),
+                    Angle::createFromValues(90),
                     $this->getRandomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 15),
-                    $this->getSpecificAngle(180),
+                    Angle::createFromValues(180),
                     $this->getRandomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 22),
-                    $this->getSpecificAngle(-90),
+                    Angle::createFromValues(90, direction: Direction::CLOCKWISE),
                     $this->getRandomMoonDailySpeed()
                 )
             ]),

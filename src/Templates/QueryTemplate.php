@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Templates;
 
 use RoundingMode;
 use AdamBrett\ShellWrapper\Command;
+use AdamBrett\ShellWrapper\ExitCodes;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
@@ -82,6 +83,11 @@ abstract class QueryTemplate
      * @var integer
      */
     public protected(set) int $return_value;
+
+    /**
+     * The command error message if something went wrong. 
+     */
+    public protected(set) string|null $command_error = null;
 
     /**
      * The output from the swetest executable.
@@ -216,6 +222,7 @@ abstract class QueryTemplate
             $this->shell->run($this->command);
             $this->return_value = $this->shell->getReturnValue();
             $this->output = collect($this->shell->getOutput());
+            $this->command_error = ExitCodes::getDescription($this->return_value);
         } 
 
         // Used for testing purposes.

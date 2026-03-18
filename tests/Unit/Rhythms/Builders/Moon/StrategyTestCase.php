@@ -7,6 +7,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase as TestCase;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 
 /**
  * Test case for Moon builder strategies.
@@ -150,18 +151,16 @@ abstract class StrategyTestCase extends TestCase
      */
     protected function getBiasedLongitudeExceptFor(float $longitude): float
     {
-        $max_excluded = 0.00000000000001;
-        $min_excluded = -$max_excluded;
         [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
         if ($max == 360) {
-            return $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded);
+            return $this->positiveRandomSexadecimal(0, $min + $this::SSN);
         }
         if ($min == 0) {
-            return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES);
+            return $this->positiveRandomSexadecimal($max - $this::SSN);
         }
         return $this->faker->randomElement([
-            $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded),
-            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES)
+            $this->positiveRandomSexadecimal(0, $min - $this::SSN),
+            $this->positiveRandomSexadecimal($max + $this::SSN)
         ]);
     }
 
@@ -222,7 +221,7 @@ abstract class StrategyTestCase extends TestCase
      */
     protected function getOppositeAbsoluteLongitude(Angle $longitude): Angle
     {
-        $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
+        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
         return Angle::absSum($longitude, $opposite);
     }
 

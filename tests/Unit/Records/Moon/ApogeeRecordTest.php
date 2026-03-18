@@ -79,15 +79,15 @@ class ApogeeRecordTest extends TestCase
         $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();
-        $moon_longitude = $moon_longitude->toDecimal();
-        $apogee_longitude = $apogee_longitude->toDecimal();
+        $moon_longitude = $moon_longitude->toSexadecimalDegrees();
+        $apogee_longitude = $apogee_longitude->toSexadecimalDegrees();
 
         // Act & Assert
         $this->assertEquals(<<<TEXT
 ApogeeRecord
-apogee_longitude: {$apogee_longitude}°
+apogee_longitude: {$apogee_longitude}
 daily_speed: {$moon_daily_speed}°/day
-moon_longitude: {$moon_longitude}°
+moon_longitude: {$moon_longitude}
 timestamp: $timestamp
 
 TEXT,

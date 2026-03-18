@@ -59,20 +59,20 @@ class PerigeeRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();
-        $moon_longitude = $this->getRandomPositiveAngle();
-        $perigee_longitude = $this->getRandomPositiveAngle();
+        $moon_longitude = $this->positiveRandomAngle();
+        $perigee_longitude = $this->positiveRandomAngle();
         $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();
-        $moon_longitude = $moon_longitude->toDecimal();
-        $perigee_longitude = $perigee_longitude->toDecimal();
+        $moon_longitude = $moon_longitude->toSexadecimalDegrees();
+        $perigee_longitude = $perigee_longitude->toSexadecimalDegrees();
 
         // Act & Assert
         $this->assertEquals(<<<TEXT
 PerigeeRecord
 daily_speed: {$moon_daily_speed}°/day
-moon_longitude: {$moon_longitude}°
-perigee_longitude: {$perigee_longitude}°
+moon_longitude: {$moon_longitude}
+perigee_longitude: {$perigee_longitude}
 timestamp: $timestamp
 
 TEXT,
@@ -109,8 +109,8 @@ TEXT,
      */
     protected function getComparisonDataset(): array
     {        
-        $angle_1 = $this->getSpecificAngle(90);
-        $angle_2 = $this->getSpecificAngle(180);
+        $angle_1 = Angle::createFromValues(90);
+        $angle_2 = Angle::createFromValues(180);
         $date_1 = $this->getRandomSwissEphemerisDateTime();
         $date_2 = $date_1->clone()->addYear();
         $speed_1 = 12.0;

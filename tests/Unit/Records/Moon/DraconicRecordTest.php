@@ -10,6 +10,7 @@ use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 
 #[CoversClass(DraconicRecord::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
@@ -37,9 +38,9 @@ class DraconicRecordTest extends TestCase
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMockedSwissEphemerisDateTime();
-        $moon_longitude = $this->getSpecificAngle(180);
-        $north_node_longitude = $this->getSpecificAngle(180);
-        $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
+        $moon_longitude = Angle::createFromValues(180);
+        $north_node_longitude = Angle::createFromValues(180);
+        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
         $south_node_longitude = Angle::sum($north_node_longitude, $opposite);
         $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, 12.0);
 
@@ -125,7 +126,7 @@ class DraconicRecordTest extends TestCase
         // Arrange
         $datetime = $this->getRandomSwissEphemerisDateTime();
         $moon_longitude = $this->getRandomPositiveAngle();
-        $opposite = $this->getSpecificAngle(-180);
+        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
         $north_node_longitude = $this->getRandomPositiveAngle();
         $south_node_longitude = Angle::absSum($north_node_longitude, $opposite);
         $daily_speed = $this->getRandomMoonDailySpeed();
@@ -139,9 +140,9 @@ class DraconicRecordTest extends TestCase
 DraconicRecord
 cardinality: $expected_cardinality
 daily_speed: {$daily_speed}°/day
-moon_longitude: {$moon_longitude->toDecimal()}°
-north_node_longitude: {$north_node_longitude->toDecimal()}°
-south_node_longitude: {$south_node_longitude->toDecimal()}°
+moon_longitude: {$moon_longitude->toSexadecimalDegrees()}
+north_node_longitude: {$north_node_longitude->toSexadecimalDegrees()}
+south_node_longitude: {$south_node_longitude->toSexadecimalDegrees()}
 timestamp: {$datetime->toDateTimeString()}
 
 TEXT, (string) $record
@@ -184,8 +185,8 @@ TEXT, (string) $record
     {
         $d1 = $this->getRandomSwissEphemerisDateTime();
         $d2 = $d1->clone()->addYear();
-        $m1 = $this->getSpecificAngle(180.0);
-        $m2 = $this->getSpecificAngle(90.0);
+        $m1 = Angle::createFromValues(180);
+        $m2 = Angle::createFromValues(90);
         $n1 = clone $m1;
         $n2 = clone $m2;
         $s1 = 12.0;

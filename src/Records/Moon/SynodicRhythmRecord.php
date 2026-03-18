@@ -26,7 +26,7 @@ class SynodicRhythmRecord extends MovingObjectRecord
      */
     public int|float $percentage {
         get => (int) round(
-            $this->angular_distance->toDecimal() / 180 * 100, 
+            $this->angular_distance->toFloat() / 180 * 100, 
             0, RoundingMode::HalfTowardsZero
         );
     }
@@ -89,7 +89,7 @@ class SynodicRhythmRecord extends MovingObjectRecord
     {
         return array_merge(self::getParentProperties(),  [
             "timestamp" => $this->timestamp->toDateTimeString(),
-            "angular_distance" => "{$this->angular_distance->toDecimal()}°",
+            "angular_distance" => "{$this->angular_distance->toSexadecimalDegrees()}",
             "phase_percentage" => "{$this->percentage}%",
             "period_type" => $this->enumToString($this->getPeriodType()),
         ]);

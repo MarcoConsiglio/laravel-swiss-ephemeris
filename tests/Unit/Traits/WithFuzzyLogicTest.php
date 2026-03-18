@@ -5,6 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
+use MarcoConsiglio\Goniometry\Degrees;
 use PHPUnit\Framework\Attributes\CoversTrait;
 
 #[TestDox("The trait WithFuzzyLogic")]
@@ -48,20 +49,20 @@ class WithFuzzyLogicTest extends TestCase
         $this->testIsAboutAbsoluteMethod($expected + $epsilon, $expected, $delta, true);
         $expected = 0;
         //      Outside of $delta returns false.
-        $this->testIsAboutAbsoluteMethod(Angle::MAX_DEGREES + $expected - $delta, $expected, $delta, false);
+        $this->testIsAboutAbsoluteMethod(Degrees::MAX + $expected - $delta, $expected, $delta, false);
         $this->testIsAboutAbsoluteMethod($expected + $delta, $expected, $delta, false);
         //      Inside $delta including its limits returns true.
         $this->testIsAboutAbsoluteMethod($expected, $expected, $delta, true);
-        $this->testIsAboutAbsoluteMethod(Angle::MAX_DEGREES + $expected - $epsilon, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod(Degrees::MAX + $expected - $epsilon, $expected, $delta, true);
         $this->testIsAboutAbsoluteMethod($expected + $epsilon, $expected, $delta, true);
         $expected = 360;
         //      Outside of $delta returns false.
         $this->testIsAboutAbsoluteMethod($expected - $delta, $expected, $delta, false);
-        $this->testIsAboutAbsoluteMethod(-Angle::MAX_DEGREES + $expected + $delta, $expected, $delta, false);
+        $this->testIsAboutAbsoluteMethod(-Degrees::MAX + $expected + $delta, $expected, $delta, false);
         //      Inside $delta including its limits returns true.
         $this->testIsAboutAbsoluteMethod($expected, $expected, $delta, true);
         $this->testIsAboutAbsoluteMethod($expected - $epsilon, $expected, $delta, true);
-        $this->testIsAboutAbsoluteMethod(-Angle::MAX_DEGREES + $expected + $epsilon, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod(-Degrees::MAX + $expected + $epsilon, $expected, $delta, true);
     }
     
     #[TestDox("has isAboutAngle() method that checks if an angle is nearly equal to another angle.")]

@@ -28,8 +28,8 @@ class Apogee extends AnomalisticStrategy
     public function found(): ?ApogeeRecord
     {
         if($this->isAbout(
-            $this->record->moon_longitude->toDecimal(),
-            $this->record->apogee_longitude->toDecimal(),
+            $this->record->moon_longitude->toFloat(),
+            $this->record->apogee_longitude->toFloat(),
             $this->delta
         )) return $this->record;
         else return null;

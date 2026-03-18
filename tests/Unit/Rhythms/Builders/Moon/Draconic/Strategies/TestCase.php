@@ -6,6 +6,7 @@ use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\StrategyTestCase;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 
 abstract class TestCase extends StrategyTestCase
 {
@@ -30,7 +31,7 @@ abstract class TestCase extends StrategyTestCase
     {
         $longitude = $this->getRandomPositiveSexadecimalValue();
         $moon_longitude = $this->getAbsoluteLongitude($longitude);
-        $longitude = $moon_longitude->toDecimal();
+        $longitude = $moon_longitude->toFloat();
         $north_node_longitude = $this->getAbsoluteLongitude($longitude);
         $record = new DraconicRecord(
             $this->date, 
@@ -52,7 +53,7 @@ abstract class TestCase extends StrategyTestCase
     {
         $longitude = $this->getRandomPositiveSexadecimalValue();
         $moon_longitude = $this->getAbsoluteLongitude($longitude);
-        $longitude = $moon_longitude->toDecimal();
+        $longitude = $moon_longitude->toFloat();
         $south_node_longitude = $this->getAbsoluteLongitude($longitude);
         $north_node_longitude = $this->getOppositeAbsoluteLongitude($south_node_longitude);
         $record = new DraconicRecord(
@@ -75,17 +76,17 @@ abstract class TestCase extends StrategyTestCase
      */
     protected function getRandomNonNodeRecord(): DraconicRecord
     {
-        $opposite = $this->getSpecificAngle(-180);
-        $north_node_longitude = $this->getRandomPositiveSexadecimalValue();
-        $north_node_angle_longitude = $this->getSpecificAngle($north_node_longitude);
-        $south_max_longitude = Angle::absSum($north_node_angle_longitude, $opposite)->toDecimal();
+        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
+        $north_node_longitude = $this->positiveRandomSexadecimal();
+        $north_node_angle_longitude = Angle::createFromDecimal($north_node_longitude);
+        $south_max_longitude = Angle::absSum($north_node_angle_longitude, $opposite)->toFloat();
         [$north_min_longitude, $north_max_longitude] = $this->getDeltaExtremes($this->delta, $north_node_longitude); 
-        $south_min_longitude = Angle::absSum($this->getSpecificAngle($north_max_longitude), $opposite)->toDecimal();
-        $south_max_longitude = Angle::absSum($this->getSpecificAngle($north_min_longitude), $opposite)->toDecimal();
-        $moon_angle_longitude = $this->getSpecificAngle(
+        $south_min_longitude = Angle::absSum(Angle::createFromDecimal($north_max_longitude), $opposite)->toFloat();
+        $south_max_longitude = Angle::absSum(Angle::createFromDecimal($north_min_longitude), $opposite)->toFloat();
+        $moon_angle_longitude = Angle::createFromDecimal(
             $this->faker->randomElement([
-                $this->faker->randomFloat(PHP_FLOAT_DIG, $north_max_longitude, $south_min_longitude),
-                $this->faker->randomFloat(PHP_FLOAT_DIG, $south_max_longitude, $north_min_longitude)
+                $this->randomFloat($north_max_longitude, $south_min_longitude),
+                $this->randomFloat($south_max_longitude, $north_min_longitude)
             ])
         );
         return new DraconicRecord(

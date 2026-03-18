@@ -141,7 +141,7 @@ class FromArrayTest extends FromArrayTestCase
     {
         $starting_date = $this->getRandomSwissEphemerisDateTime();
         $daily_speed = $this->getRandomMoonDailySpeed();
-        $starting_angle = $this->getSpecificAngle(-3);
+        $starting_angle = Angle::createFromDecimal(-3);
         $daily_step = $daily_speed / 24;
         $data = [];
         for ($i = 0; $i < 24; $i++) {

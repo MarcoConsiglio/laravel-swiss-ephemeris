@@ -51,7 +51,7 @@ class PerigeeRecord extends AnomalisticRecord
     protected function packProperties(): array
     {
         return array_merge(self::getParentProperties(), [
-            "perigee_longitude" => "{$this->perigee_longitude->toDecimal()}°"
+            "perigee_longitude" => "{$this->perigee_longitude->toSexadecimalDegrees()}"
         ]);
     }
 

@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
+use Illuminate\Config\Repository;
 use InvalidArgumentException;
 use MarcoConsiglio\Goniometry\Angle;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
@@ -44,6 +45,25 @@ abstract class TestCase extends TestbenchTestCase
     {
         parent::setUp();
         $this->setUpFaker();
+    }
+
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    protected function defineEnvironment($app) 
+    {
+        tap($app['config'], function (Repository $config) {
+            $config->set("ephemeris", [
+                "latitude" => 51.5,
+                "longitude" => 0.0,
+                "altitude" => 0,
+                "timezone" => "Europe/London",
+                "value_separator" => "_"
+            ]);
+        });
     }
     
     /**

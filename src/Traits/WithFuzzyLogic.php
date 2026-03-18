@@ -4,6 +4,8 @@ namespace MarcoConsiglio\Ephemeris\Traits;
 use InvalidArgumentException;
 use RoundingMode;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
 /**
  * Support for fuzzy logic.
@@ -25,21 +27,21 @@ trait WithFuzzyLogic
 
     /**
      * Check if a $number is almost equal to $expected considering
-     * $number like an absolute angular value, that is the minimum
-     * value is 0° and the maximum value is 360°.
+     * $number like an absolute angular value, which minimum
+     * value is 0° and maximum value is 360°.
      */
     protected function isAboutAbsolute(float $number, float $expected, float $delta): bool
     {
         [$min, $max] = $this->getAbsDeltaExtremes($delta, $number);
         if ($min > $max) {
             return (
-                ($expected >= $min && $expected <= Angle::MAX_DEGREES) ||
+                ($expected >= $min && $expected <= Degrees::MAX) ||
                 ($expected >= 0 && $expected <= $max)
             );
-        } else if ($max == Angle::MAX_DEGREES) {
+        } else if ($max == Degrees::MAX) {
             return ($expected >= $min && $expected <= $max) || $expected == 0;
         } else if ($min == 0) {
-            return ($expected >= $min && $expected <= $max) || $expected == Angle::MAX_DEGREES;
+            return ($expected >= $min && $expected <= $max) || $expected == Degrees::MAX;
         } else return $expected >= $min && $expected <= $max;
     }
 
@@ -53,7 +55,7 @@ trait WithFuzzyLogic
      */
     protected function isAboutAngle(Angle $alfa, Angle $beta, Angle $delta): bool{
         [$min, $max] = $this->getAngularDeltaExtrems($delta, $alfa);
-        $beta = $beta->toDecimal();
+        $beta = $beta->toFloat();
         return $min <= $beta && $max >= $beta;
     }
 
@@ -158,8 +160,8 @@ trait WithFuzzyLogic
             if ($angle > $limit) return $limit;
             return $angle;
         } else {
-            if ($angle < -Angle::MAX_DEGREES) return -Angle::MAX_DEGREES;
-            if ($angle > Angle::MAX_DEGREES) return Angle::MAX_DEGREES;
+            if ($angle < -Degrees::MAX) return -Degrees::MAX;
+            if ($angle > Degrees::MAX) return Degrees::MAX;
             return $angle;
         }
     }
@@ -174,10 +176,10 @@ trait WithFuzzyLogic
     protected function getAngularDeltaExtrems(Angle $delta, Angle $angle): array
     {
         $epsilon = round(
-            $delta->toDecimal(PHP_FLOAT_DIG) / 2,
+            $delta->toFloat() / 2,
             PHP_FLOAT_DIG, RoundingMode::HalfTowardsZero
         );
-        $angle = $angle->toDecimal(PHP_FLOAT_DIG);
+        $angle = $angle->toFloat(PHP_FLOAT_DIG);
         $min = round($angle - $epsilon, PHP_FLOAT_DIG, RoundingMode::HalfTowardsZero);
         $max = round($angle + $epsilon, PHP_FLOAT_DIG, RoundingMode::HalfTowardsZero);
         return [$min, $max];
@@ -190,19 +192,19 @@ trait WithFuzzyLogic
      */
     protected function toAbsoluteAngularValue(float $angle): float
     {
-        if ($angle < 0) return Angle::MAX_DEGREES + $angle;
-        if ($angle > Angle::MAX_DEGREES) return $angle -  Angle::MAX_DEGREES;
+        if ($angle < 0) return Degrees::MAX + $angle;
+        if ($angle > Degrees::MAX) return $angle -  Degrees::MAX;
         return $angle;
     }
 
     protected function isAbsoluteAngularValue(float $angle): bool
     {
-        return $angle >= 0 && $angle <= Angle::MAX_DEGREES;
+        return $angle >= 0 && $angle <= Degrees::MAX;
     }
 
     protected function checkIsAngularValue(float $angle): void
     {
         if (! $this->isAbsoluteAngularValue(abs($angle)))
-            throw new InvalidArgumentException("$angle\° is not an acceptable angular value.");
+            throw new InvalidArgumentException("{$angle}° is not an acceptable angular value.");
     }
 }

@@ -17,6 +17,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
+use MarcoConsiglio\Goniometry\Angle;
 
 #[TestDox("The Moon Phases\FromMoonSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
@@ -121,7 +122,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
         if ($angular_distance < -180) $angular_distance = -180;
         return new SynodicRhythmRecord(
             $this->getRandomSwissEphemerisDateTime(),
-            $this->getSpecificAngle($angular_distance),
+            Angle::createFromDecimal($angular_distance),
             $this->getRandomMoonDailySpeed()
         );
     }

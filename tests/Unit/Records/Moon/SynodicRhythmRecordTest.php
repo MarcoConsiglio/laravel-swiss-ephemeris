@@ -9,6 +9,8 @@ use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 
 #[TestDox("The Moon SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]
@@ -21,7 +23,7 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();
-        $angular_distance = $this->getRandomAngularDistance();
+        $angular_distance = $this->randomAngularDistance();
         $daily_speed = $this->getRandomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
@@ -34,7 +36,7 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $angular_distance = $this->getRandomAngularDistance();
+        $angular_distance = $this->randomAngularDistance();
         $daily_speed = $this->getRandomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
@@ -47,8 +49,8 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $angular_distance = $this->getRandomAngularDistance();
-        $expected_percentage = round($angular_distance->toDecimal() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
+        $angular_distance = $this->randomAngularDistance();
+        $expected_percentage = round($angular_distance->toFloat() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
         $daily_speed = $this->getRandomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
@@ -61,7 +63,7 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $angular_distance = $this->getRandomAngularDistance();
+        $angular_distance = $this->randomAngularDistance();
         $daily_speed = $this->getRandomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
@@ -93,7 +95,7 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $angular_distance = $this->getAngleBetween(-180, 0);
+        $angular_distance = $this->getAngleBetween(-180, 0 - $this::SSN);
         $daily_speed = $this->getRandomMoonDailySpeed();
         $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
@@ -102,7 +104,7 @@ class SynodicRhythmRecordTest extends TestCase
         $is_waxing = $synodic_rhythm_record->isWaxing();
 
         // Assert
-        $failure_message = "Expected a waning moon.";
+        $failure_message = "Expected a waning moon. Moon angular distance: {$synodic_rhythm_record->angular_distance}";
         $this->assertTrue($is_waning, $failure_message);
         $this->assertFalse($is_waxing, $failure_message);
     }
@@ -119,7 +121,7 @@ class SynodicRhythmRecordTest extends TestCase
         // Arrange
         $record_A = new SynodicRhythmRecord(
             $this->getMockedSwissEphemerisDateTime(), 
-            $this->getAngleBetween(-180, 0),
+            $this->getAngleBetween(-180, 0 - $this::SSN),
             $this->getRandomMoonDailySpeed()
         );
         $record_B = new SynodicRhythmRecord(
@@ -142,9 +144,9 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();
-        $angular_distance = $this->getRandomAngularDistance();
+        $angular_distance = $this->randomAngularDistance();
         $daily_speed = $this->getRandomMoonDailySpeed();
-        $percentage = round($angular_distance->toDecimal() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
+        $percentage = round($angular_distance->toFloat() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
         if ($percentage == -0.0) $percentage = 0;
         $record = new SynodicRhythmRecord(
             $timestamp,
@@ -152,14 +154,14 @@ class SynodicRhythmRecordTest extends TestCase
             $daily_speed
         );
         $period = ((array) $record->getPeriodType())["name"];
-        $angular_distance = $angular_distance->toDecimal();
+        $angular_distance = $angular_distance->toSexadecimalDegrees();
         $timestamp = $timestamp->toDateTimeString();
 
         // Act & Assert
         $this->assertEquals(
             <<<TEXT
 SynodicRhythmRecord
-angular_distance: {$angular_distance}°
+angular_distance: {$angular_distance}
 daily_speed: {$daily_speed}°/day
 period_type: $period
 phase_percentage: $percentage%
@@ -180,8 +182,8 @@ TEXT,
     {
         $d1 = $this->getRandomSwissEphemerisDateTime();
         $d2 = $d1->clone()->addYear();
-        $a1 = $this->getSpecificAngle(180.0);
-        $a2 = $this->getSpecificAngle(90.0);
+        $a1 = Angle::createFromValues(180);
+        $a2 = Angle::createFromValues(90);
         $s1 = 12.0;
         $s2 = 13.0;
         return [

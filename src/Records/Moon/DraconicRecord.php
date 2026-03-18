@@ -5,6 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 
 /**
  * Represents a moment when the moon 
@@ -80,13 +81,8 @@ class DraconicRecord extends MovingObjectRecord
      */
     protected function oppositeLongitude(Angle $longitude): Angle
     {
-        $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
-        $angle = Angle::sum($longitude, $opposite);
-        if ($angle->isClockwise()) {
-            $full = Angle::createFromValues(Angle::MAX_DEGREES);
-            $angle = Angle::sum($full, $angle);
-        }
-        return $angle;
+        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
+        return Angle::absSum($longitude, $opposite);
     }
 
     /**
@@ -115,10 +111,10 @@ class DraconicRecord extends MovingObjectRecord
     {
         $cardinality = $this->cardinality !== null ? $this->enumToString($this->cardinality) : $this->cardinality;
         return array_merge(self::getParentProperties(), [
-            "moon_longitude" => "{$this->moon_longitude->toDecimal()}°",
+            "moon_longitude" => "{$this->moon_longitude->toSexadecimalDegrees()}",
             "timestamp" => $this->timestamp->toDateTimeString(),
-            "north_node_longitude" => "{$this->north_node_longitude->toDecimal()}°",
-            "south_node_longitude" => "{$this->south_node_longitude->toDecimal()}°",
+            "north_node_longitude" => "{$this->north_node_longitude->toSexadecimalDegrees()}",
+            "south_node_longitude" => "{$this->south_node_longitude->toSexadecimalDegrees()}",
             "cardinality" => $cardinality
         ]);
     }

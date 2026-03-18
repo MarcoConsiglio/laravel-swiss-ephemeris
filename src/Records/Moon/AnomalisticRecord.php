@@ -50,7 +50,7 @@ abstract class AnomalisticRecord extends MovingObjectRecord
     {
         return array_merge(self::getParentProperties(), [
             "timestamp" => $this->timestamp->toDateTimeString(),
-            "moon_longitude" => "{$this->moon_longitude->toDecimal()}°"
+            "moon_longitude" => "{$this->moon_longitude->toSexadecimalDegrees()}"
         ]);
     }
 

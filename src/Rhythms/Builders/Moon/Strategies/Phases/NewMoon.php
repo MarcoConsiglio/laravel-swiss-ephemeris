@@ -14,7 +14,7 @@ class NewMoon extends PhaseStrategy
      */
     public function found(): ?SynodicRhythmRecord
     {   
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), 0, $this->calculateDelta())) {
+        if ($this->isAbout($this->record->angular_distance->toFloat(), 0, $this->calculateDelta())) {
             return $this->record;
         }
         return null;

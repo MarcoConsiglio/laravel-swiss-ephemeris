@@ -20,13 +20,6 @@ abstract class TestCase extends OrchestraTestCase
     use WithFailureMessage, WithRandomData;
     
     /**
-     * The application configs.
-     *  
-     * @var \Illuminate\Config\Repository
-     */
-    protected $config;
-
-    /**
      * The Swiss Ephemeris Library
      *
      * @var \MarcoConsiglio\Ephemeris\LaravelSwissEphemeris
@@ -52,9 +45,8 @@ abstract class TestCase extends OrchestraTestCase
      * Define environment setup.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     * @return void
      */
-    protected function defineEnvironment($app) 
+    protected function defineEnvironment($app): void
     {
         tap($app['config'], function (Repository $config): void { 
             $config->set('ephemeris', [

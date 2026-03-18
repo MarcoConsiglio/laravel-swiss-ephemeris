@@ -28,8 +28,8 @@ class Perigee extends AnomalisticStrategy
     public function found(): ?PerigeeRecord
     {
         if($this->isAbout(
-            $this->record->moon_longitude->toDecimal(),
-            $this->record->perigee_longitude->toDecimal(),
+            $this->record->moon_longitude->toFloat(),
+            $this->record->perigee_longitude->toFloat(),
             $this->delta
         )) return $this->record;
         else return null;

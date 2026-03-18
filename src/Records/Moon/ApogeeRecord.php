@@ -54,8 +54,8 @@ class ApogeeRecord extends AnomalisticRecord
     protected function packProperties(): array
     {
         return array_merge(self::getParentProperties(), [
-            "moon_longitude" => "{$this->moon_longitude->toDecimal()}°",
-            "apogee_longitude" => "{$this->apogee_longitude->toDecimal()}°"
+            "moon_longitude" => "{$this->moon_longitude->toSexadecimalDegrees()}",
+            "apogee_longitude" => "{$this->apogee_longitude->toSexadecimalDegrees()}"
         ]);
     }
 

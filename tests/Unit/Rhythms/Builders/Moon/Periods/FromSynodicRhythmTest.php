@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Periods;
 
+use MarcoConsiglio\Ephemeris\Enums\Moon\Period as MoonPeriod;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -12,6 +13,11 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Enums\Direction;
+use PHPUnit\Framework\MockObject\Runtime\PropertyHook;
+use PHPUnit\Framework\MockObject\Stub;
+use PHPUnit\Framework\MockObject\TestStubBuilder;
 
 #[TestDox("The Moon Periods\FromSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
@@ -37,61 +43,35 @@ class FromSynodicRhythmTest extends BuilderTestCase
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
-        $record_class = SynodicRhythmRecord::class;
-        $collection_class = Periods::class;
-        $items_type = Period::class;
-        $daily_speed = $this->getRandomMoonDailySpeed();
-        //      Mock building
-        $record_1 = $this->getMocked($record_class, ["isWaxing"], true, [
-            $this->getRandomSwissEphemerisDateTime(),
-            $this->getSpecificAngle(0.1),
-            $this->getRandomMoonDailySpeed()
-        ]);
-        $record_2 = $this->getMocked($record_class, ["isWaxing"], true, [
-            $this->getRandomSwissEphemerisDateTime(),
-            $this->getSpecificAngle(90),
-            $this->getRandomMoonDailySpeed()
-        ]);
-        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [
-            $this->getRandomSwissEphemerisDateTime(),
-            $this->getSpecificAngle(179.9),
-            $this->getRandomMoonDailySpeed()
-        ]);
-        $record_3 = $this->getMocked($record_class, ["isWaxing"], true, [
-            $this->getRandomSwissEphemerisDateTime(),
-            $this->getSpecificAngle(-179.9),
-            $this->getRandomMoonDailySpeed()
-        ]);
-        $record_4 = $this->getMocked($record_class, ["isWaxing"], true, [
-            $this->getRandomSwissEphemerisDateTime(),
-            $this->getSpecificAngle(-90),
-            $this->getRandomMoonDailySpeed()
-        ]);
-        $record_5 = $this->getMocked($record_class, ["isWaxing"], true, [
-            $this->getRandomSwissEphemerisDateTime(),
-            $this->getSpecificAngle(-0.1),
-            $this->getRandomMoonDailySpeed()
-        ]);
-        //      Mock configuration
-        $record_1->expects($this->any())->method("isWaxing")->willReturn(true);
-        $record_2->expects($this->any())->method("isWaxing")->willReturn(true);
-        $record_3->expects($this->any())->method("isWaxing")->willReturn(true);
-        $record_4->expects($this->any())->method("isWaxing")->willReturn(false);
-        $record_5->expects($this->any())->method("isWaxing")->willReturn(false);
+        $record_1 = $this->getRecordStub();
+        $record_2 = $this->getRecordStub();
+        $record_3 = $this->getRecordStub();
+        $record_4 = $this->getRecordStub();
+        $record_5 = $this->getRecordStub();
+        $record_1->method("isWaxing")->willReturn(true);
+        $record_1->method("getPeriodType")->willReturn(MoonPeriod::Waxing);
+        $record_2->method("isWaxing")->willReturn(true);
+        $record_2->method("getPeriodType")->willReturn(MoonPeriod::Waxing);
+        $record_3->method("isWaxing")->willReturn(true);
+        $record_3->method("getPeriodType")->willReturn(MoonPeriod::Waxing);
+        $record_4->method("isWaxing")->willReturn(false);
+        $record_4->method("getPeriodType")->willReturn(MoonPeriod::Waning);
+        $record_5->method("isWaxing")->willReturn(false);
+        $record_5->method("getPeriodType")->willReturn(MoonPeriod::Waning);
+
         //      Arrange SUT
         $rhythm = new SynodicRhythm(
-            new FromRecords(
-                [$record_1, $record_2, $record_3, $record_4, $record_5]), 
-                $this->sampling_rate
-            );
+            new FromRecords([$record_1, $record_2, $record_3, $record_4, $record_5]), 
+            $this->sampling_rate
+        );
         
         // Act
         $builder = new $builder_class($rhythm);
         $moon_periods = new Periods($builder);
 
         // Assert
-        $this->assertContainsOnlyInstancesOf($items_type, $moon_periods,
-            $this->iterableMustContains($collection_class, $items_type)
+        $this->assertContainsOnlyInstancesOf(Period::class, $moon_periods,
+            $this->iterableMustContains(Periods::class, Period::class)
         );
     }
 
@@ -101,5 +81,17 @@ class FromSynodicRhythmTest extends BuilderTestCase
     protected function getBuilderClass(): string
     {
         return FromSynodicRhythm::class;
+    }
+
+    protected function getRecordStub(): SynodicRhythmRecord&Stub
+    {
+        $stub = $this->getStubBuilder(SynodicRhythmRecord::class);
+        $stub->enableOriginalConstructor();
+        $stub->setConstructorArgs([
+            $this->getRandomSwissEphemerisDateTime(), 
+            $this->createStub(Angle::class), 
+            $this->getRandomMoonDailySpeed()
+        ]);
+        return $stub->getStub();
     }
 }

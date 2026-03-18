@@ -14,7 +14,7 @@ class FirstQuarter extends PhaseStrategy
      */
     public function found(): ?SynodicRhythmRecord
     {
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), 90, $this->calculateDelta())) {
+        if ($this->isAbout($this->record->angular_distance->toFloat(), 90, $this->calculateDelta())) {
             return $this->record;
         }
         return null;
