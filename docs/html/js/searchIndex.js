@@ -1851,6 +1851,11 @@ Search.appendIndex(
             "summary": "The\u0020return\u0020value\u0020from\u0020the\u0020command.",
             "url": "classes/MarcoConsiglio-Ephemeris-Templates-QueryTemplate.html#property_return_value"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Ephemeris\\Templates\\QueryTemplate\u003A\u003A\u0024command_error",
+            "name": "command_error",
+            "summary": "The\u0020command\u0020error\u0020message\u0020if\u0020something\u0020went\u0020wrong.",
+            "url": "classes/MarcoConsiglio-Ephemeris-Templates-QueryTemplate.html#property_command_error"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Ephemeris\\Templates\\QueryTemplate\u003A\u003A\u0024warnings",
             "name": "warnings",
             "summary": "The\u0020warnings\u0020list\u0020found\u0020in\u0020the\u0020output.",
