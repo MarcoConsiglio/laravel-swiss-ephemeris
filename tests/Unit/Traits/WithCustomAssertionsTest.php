@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Traits;
 
-use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\ExpectationFailedException;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -9,13 +9,13 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 #[TestDox("With custom assertions")]
-#[CoversTrait(WithCustomAssertions::class)]
+#[CoversNothing]
 class WithCustomAssertionsTest extends TestCase
 {
     use WithCustomAssertions;
 
     #[TestDox("you can assert a date is what you expect.")]
-    public function test_assert_date()
+    public function test_assert_date(): void
     {
         // Arrange
         $year = 2000; $month = 1; $day = 1; $hour = 0; $minute = 0; $second = 0;
@@ -27,7 +27,7 @@ class WithCustomAssertionsTest extends TestCase
     }
 
     #[TestDox("you can throw ExpectationFailedException if the date is not what you expect.")]
-    public function test_assert_date_exception()
+    public function test_assert_date_exception(): void
     {
         // Arrange
         $year = 2000; $month = 1; $day = 1; $hour = 0; $minute = 0; $second = 0;

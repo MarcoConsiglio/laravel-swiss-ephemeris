@@ -14,9 +14,8 @@ class NewMoonTest extends TestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         $this->tested_class = NewMoon::class;
@@ -25,7 +24,7 @@ class NewMoonTest extends TestCase
     }
 
     #[TestDox("can find a Moon\SyndicRhythmRecord whose \"angular_distance\" is about 0°.")]
-    public function test_can_find_new_moon_if_angular_distance_is_about_zero()
+    public function test_can_find_new_moon_if_angular_distance_is_about_zero(): void
     {
         // Arrange in setUp()
         $record_zero = $this->getNewMoonRecord();

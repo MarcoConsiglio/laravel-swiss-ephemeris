@@ -15,9 +15,8 @@ class ApogeeTest extends TestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         $this->tested_class = Apogee::class;
@@ -26,7 +25,7 @@ class ApogeeTest extends TestCase
     }
 
     #[TestDox("can find a Moon apogee.")]
-    public function test_can_find_moon_apogees()
+    public function test_can_find_moon_apogees(): void
     {
         // Arrange
         $apogee_record = $this->getApogeeRecord();

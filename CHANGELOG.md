@@ -1,4 +1,17 @@
 # Changelog
+##  v1.3.0-alpha 2026-03-18
+### Added
+- `LaravelSwissEphemeris::$pov` property of type `PointOfView` in order to query ephemeris from different points of view.
+- The config value `value_separator` to separate the raw ephemeris output with a character.
+- `Playground` testsuit to immediately try out the features of this software.
+- `InvalidPointOfView` exception.
+### Changed
+- The mechanism for parsing ephemeris output, no longer relying on regular expressions, but separating variables with a separator character.
+- Development roadmap.
+### Removed
+- `LaravelSwissEphemeris` constructor parameters `$latitude`, `$longitude`, `$altitude`, replaced by `PointOfView $pov` parameter.
+- `Output` collection.
+
 ## 1.2.0-alpha 2025-12-19
 ### Added
 - `MarcoConsiglio\Ephemeris\Enums\Cardinality` enum to specify lunar node cardinality (north and south nodes).
@@ -9,6 +22,7 @@
 - `MarcoConsiglio\Ephemeris\Templates\Moon\DraconicTemplate` class to query the Moon draconic rhythm.
 - `MarcoConsiglio\Ephemeris\Traits\StringableRecord` trait to support the implementation of the `Stringable` interface.
 - `MarcoConsiglio\Ephemeris\LaravelSwissEphemeris::getMoonDraconicRhythm()` method to query the Moon draconic rhythm.
+- `Cardinality` enum.
 ### Changed
 - Every classes extending the `MarcoConsiglio\Ephemeris\Records\Record` class have now implementation of the `Stringable` interface, meaning they can safely casted to string.
 - Namespace of classes `MarcoConsiglio\Ephemeris\Rhythms\Builders\{`  

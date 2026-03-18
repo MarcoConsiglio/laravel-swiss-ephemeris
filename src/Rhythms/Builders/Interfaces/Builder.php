@@ -2,9 +2,8 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces;
 
 /**
- * The behaviour of a rhythm builder.
- * 
- * Construct a collection from diverse type of inputs.
+ * The behaviour of a Rhythm Builder which constructs a collection from diverse
+ * type of inputs.
  */
 interface Builder
 {

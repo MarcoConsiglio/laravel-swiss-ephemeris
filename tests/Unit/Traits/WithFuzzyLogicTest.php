@@ -1,22 +1,21 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Traits;
 
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
 use MarcoConsiglio\Goniometry\Angle;
-use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
+use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
+use MarcoConsiglio\Goniometry\Degrees;
+use PHPUnit\Framework\Attributes\CoversTrait;
 
 #[TestDox("The trait WithFuzzyLogic")]
-#[CoversClass(WithFuzzyLogic::class)]
-#[UsesClass(Angle::class)]
+#[CoversTrait(WithFuzzyLogic::class)]
 class WithFuzzyLogicTest extends TestCase
 {
     use WithFuzzyLogic;
 
     #[TestDox("has isAbout() method that checks if a number is almost equal to another number.")]
-    public function test_isAbout_method()
+    public function test_isAbout_method(): void
     {
         // Arrange
         $delta = 1;
@@ -33,7 +32,7 @@ class WithFuzzyLogicTest extends TestCase
         $this->testIsAboutMethod($expected + $epsilon, $expected, $delta, true);
     }
 
-    public function test_isAboutAbsolute_method()
+    public function test_isAboutAbsolute_method(): void
     {
         // Arrange
         $delta = 1;
@@ -50,24 +49,24 @@ class WithFuzzyLogicTest extends TestCase
         $this->testIsAboutAbsoluteMethod($expected + $epsilon, $expected, $delta, true);
         $expected = 0;
         //      Outside of $delta returns false.
-        $this->testIsAboutAbsoluteMethod(Angle::MAX_DEGREES + $expected - $delta, $expected, $delta, false);
+        $this->testIsAboutAbsoluteMethod(Degrees::MAX + $expected - $delta, $expected, $delta, false);
         $this->testIsAboutAbsoluteMethod($expected + $delta, $expected, $delta, false);
         //      Inside $delta including its limits returns true.
         $this->testIsAboutAbsoluteMethod($expected, $expected, $delta, true);
-        $this->testIsAboutAbsoluteMethod(Angle::MAX_DEGREES + $expected - $epsilon, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod(Degrees::MAX + $expected - $epsilon, $expected, $delta, true);
         $this->testIsAboutAbsoluteMethod($expected + $epsilon, $expected, $delta, true);
         $expected = 360;
         //      Outside of $delta returns false.
         $this->testIsAboutAbsoluteMethod($expected - $delta, $expected, $delta, false);
-        $this->testIsAboutAbsoluteMethod(-Angle::MAX_DEGREES + $expected + $delta, $expected, $delta, false);
+        $this->testIsAboutAbsoluteMethod(-Degrees::MAX + $expected + $delta, $expected, $delta, false);
         //      Inside $delta including its limits returns true.
         $this->testIsAboutAbsoluteMethod($expected, $expected, $delta, true);
         $this->testIsAboutAbsoluteMethod($expected - $epsilon, $expected, $delta, true);
-        $this->testIsAboutAbsoluteMethod(-Angle::MAX_DEGREES + $expected + $epsilon, $expected, $delta, true);
+        $this->testIsAboutAbsoluteMethod(-Degrees::MAX + $expected + $epsilon, $expected, $delta, true);
     }
     
     #[TestDox("has isAboutAngle() method that checks if an angle is nearly equal to another angle.")]
-    public function test_isAboutAngle_method()
+    public function test_isAboutAngle_method(): void
     {
         // Arrange
         $delta_value = 2;
@@ -102,7 +101,7 @@ class WithFuzzyLogicTest extends TestCase
     }
     
     #[TestDox("has getDeltaExtremes method that calculates the min and max extremes for a fuzzy condition.")]
-    public function test_getDeltaExtremes_method()
+    public function test_getDeltaExtremes_method(): void
     {
         // Arrange
         $delta = 2;
@@ -153,14 +152,10 @@ class WithFuzzyLogicTest extends TestCase
 
     /**
      * Tests isAbout() method.
-     * 
-     * This is a Parameterized Test.
-     * 
      *
-     * @param float $first_nuber
-     * @param float $second_number
-     * @param integer $delta
-     * @param boolean $boolean_assertion
+     * This is a Parameterized Test.
+     *
+     *
      * @return void
      */
     protected function testIsAboutMethod(
@@ -176,14 +171,9 @@ class WithFuzzyLogicTest extends TestCase
 
     /**
      * Tests isAboutAbsolute() method.
-     * 
+     *
      * This is a Parameterized Test.
      *
-     * @param float $first_nuber
-     * @param float $second_number
-     * @param float $delta
-     * @param boolean $bolean_assertion
-     * @param string $error_message
      * @return void
      */
     protected function testIsAboutAbsoluteMethod(
@@ -199,15 +189,10 @@ class WithFuzzyLogicTest extends TestCase
 
     /**
      * This is a Parameterized Test.
-     * 
-     * It tests isAboutAngle method present in 
+     *
+     * It tests isAboutAngle method present in
      * the WithFuzzyLogic trait.
      *
-     * @param Angle $alfa
-     * @param Angle $beta
-     * @param Angle $delta
-     * @param boolean $boolean_assertion
-     * @param string $error_message
      * @return void
      */
     protected function testIsAboutAngleMethod(
@@ -226,11 +211,7 @@ class WithFuzzyLogicTest extends TestCase
      * It tests getDeltaExtremes method present in
      * the WithFuzzyLogic trait.
      *
-     * @param float $delta
-     * @param float $number
-     * @param float|null|null $limit
      * @param boolean $bolean_assertion
-     * @param string $error_message
      * @return void
      */
     protected function testGetDeltaExtremesMethod(

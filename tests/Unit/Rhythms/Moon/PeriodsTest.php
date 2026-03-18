@@ -1,16 +1,16 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
-use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
-use MarcoConsiglio\Ephemeris\Records\Moon\Period;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
+use MarcoConsiglio\Ephemeris\Records\Moon\Period;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 
 #[TestDox("The Moon Periods collection")]
 #[CoversClass(Periods::class)]
@@ -21,7 +21,7 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 class PeriodsTest extends RhythmTestCase
 {
     #[TestDox("is a collection of Moon\Period instances.")]
-    public function test_moon_periods_is_a_collection()
+    public function test_moon_periods_is_a_collection(): void
     {
         // Arrange
         $periods_builder = $this->getMocked(FromSynodicRhythm::class);
@@ -40,7 +40,7 @@ class PeriodsTest extends RhythmTestCase
     }
 
     #[TestDox("can return a specific Moon\Period.")]
-    public function test_getters()
+    public function test_getters(): void
     {
         // Arrange
         $synodic_rhythm = $this->getSynodicRhythm();

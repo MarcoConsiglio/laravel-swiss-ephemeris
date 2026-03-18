@@ -3,7 +3,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\Console\Kernel as TestbenchConsoleKernel;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
@@ -21,13 +20,6 @@ abstract class TestCase extends OrchestraTestCase
     use WithFailureMessage, WithRandomData;
     
     /**
-     * The application configs.
-     *  
-     * @var \Illuminate\Config\Repository
-     */
-    protected $config;
-
-    /**
      * The Swiss Ephemeris Library
      *
      * @var \MarcoConsiglio\Ephemeris\LaravelSwissEphemeris
@@ -36,16 +28,14 @@ abstract class TestCase extends OrchestraTestCase
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();
         $this->createApplication();
         $this->ephemeris = new LaravelSwissEphemeris(
-            Config::get("ephemeris.latitude"), 
-            Config::get("ephemeris.longitude"),
+            null, // Do not set POV
             Config::get("ephemeris.timezone")
         );
         $this->setUpFaker();
@@ -55,16 +45,16 @@ abstract class TestCase extends OrchestraTestCase
      * Define environment setup.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     * @return void
      */
-    protected function defineEnvironment($app) 
+    protected function defineEnvironment($app): void
     {
-        // Setup default database to use sqlite :memory:
-        tap($app['config'], function (Repository $config) { 
+        tap($app['config'], function (Repository $config): void { 
             $config->set('ephemeris', [
                 'latitude' => 51.47783333,
                 'longitude' => 0.0,
-                'timezone' => 'Europe/London'
+                'altitude' => 0,
+                'timezone' => 'Europe/London',
+                'value_separator' => "_"
             ]);
         });
     }

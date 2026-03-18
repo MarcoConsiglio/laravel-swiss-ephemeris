@@ -2,7 +2,9 @@
 namespace MarcoConsiglio\Ephemeris\Enums;
 
 /**
- * It represents cardinality values.
+ * Represents cardinality values.
+ * 
+ * @codeCoverageIgnore
  */
 enum Cardinality
 {

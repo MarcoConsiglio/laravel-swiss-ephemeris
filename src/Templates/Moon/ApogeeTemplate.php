@@ -4,8 +4,8 @@ namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag as Flag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
+use MarcoConsiglio\Ephemeris\Parsers\Strategies\Moon\Apogee as ApogeeParser;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 
@@ -17,7 +17,7 @@ class ApogeeTemplate extends AnomalisticTemplate
 {
     
     /**
-     * The astral_object that will be built with the requested 
+     * The astral object that will be built with the requested 
      * ephemeris.
     *
     * @var Apogees
@@ -41,46 +41,30 @@ class ApogeeTemplate extends AnomalisticTemplate
      * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
-     * @return void
      */
     protected function setArguments(): void {}
 
     /**
      * Set flags for the swetest executable.
-     *
-     * @return void
      */
+    #[\Override]
     protected function setFlags(): void
     {
         $this->command->addFlag(new Flag(CommandFlag::ObjectSelection->value, SinglePlanet::Moon->value.SinglePlanet::LunarApogee->value));
         $this->command->addFlag(new Flag(CommandFlag::ResponseFormat->value, $this->output_format));
+        parent::setFlags();
     }
 
     /**
      * Parse a line of the raw ephemeris output.
-     * 
-     * @return array|null
      */
     protected function parse(string $text): array|null
     {
-        $object_name_regex = RegExPattern::getRegex(RegExPattern::Moon."|".RegExPattern::InterpolatedApogee);
-        if (
-            $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
-            $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal)
-        ) return [
-            $astral_object[0],  // Object name
-            $datetime[0],       // Datetime
-            $decimal[0],        // Object longitude
-            $decimal[1]         // Object daily speed
-        ];
-        else return null;
+        return new ApogeeParser($text)->found();
     }
 
     /**
      * Construct the Apogees collection.
-     *
-     * @return void
      */
     protected function buildObject(): void
     {
@@ -89,8 +73,6 @@ class ApogeeTemplate extends AnomalisticTemplate
 
     /**
      * Return the builded object.
-     *
-     * @return Apogees
      */
     protected function fetchObject(): Apogees
     {
@@ -99,20 +81,15 @@ class ApogeeTemplate extends AnomalisticTemplate
 
     /**
      * Return the builded Apogees collection.
-     *
-     * @return Apogees
      */
     public function getResult(): Apogees
     {
-        if (!$this->completed) $this->query();
-        return $this->fetchObject();
+        return parent::getResult();
     }
 
     /**
-     * It Remaps the output in an associative array, 
+     * Remap the output in an associative array,
      * with the columns name as the key.
-     *
-     * @return void
      */
     protected function remapColumns(): void
     {

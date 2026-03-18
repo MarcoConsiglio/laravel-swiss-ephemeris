@@ -5,15 +5,14 @@ use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 
 /**
  * The strategy used to find an PerigeeRecord
- * representing the Moon in its perigee.
+ * Representsing the Moon in its perigee.
  */
 class Perigee extends AnomalisticStrategy
 {
     /**
      * Construct the PerigeeStrategy with a PerigeeRecord.
      *
-     * @param PerigeeRecord $record
-     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * @param int $sampling_rate The sampling rate of the ephemeris
      * expressed in minutes per each step of the ephemeris response.
      */
     public function __construct(PerigeeRecord $record, int $sampling_rate)
@@ -25,14 +24,12 @@ class Perigee extends AnomalisticStrategy
     
     /**
      * Return the record only if the Moon is close to its perigee.
-     *
-     * @return PerigeeRecord|null
      */
     public function found(): ?PerigeeRecord
     {
         if($this->isAbout(
-            $this->record->moon_longitude->toDecimal(),
-            $this->record->perigee_longitude->toDecimal(),
+            $this->record->moon_longitude->toFloat(),
+            $this->record->perigee_longitude->toFloat(),
             $this->delta
         )) return $this->record;
         else return null;

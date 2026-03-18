@@ -4,15 +4,13 @@ namespace MarcoConsiglio\Ephemeris\Parsers\Strategies;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 
 /**
- * The parsing strategy used to find an empty line
+ * The ParsingStrategy used to find an empty line
  * in the raw Swiss Ephemeris output.
  */
 class EmptyLine extends ParsingStrategy
 {
     /**
      * Find an empty line in the raw Swiss Ephemeris output.
-     *
-     * @return boolean
      */
     public function found(): bool
     {

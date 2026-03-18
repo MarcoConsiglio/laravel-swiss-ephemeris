@@ -19,8 +19,6 @@ class IsDateEqual extends Constraint
 
     /**
      * Construct the constraint with a $date.
-     *
-     * @param CarbonInterface $date
      */
     public function __construct(CarbonInterface $date)
     {
@@ -32,9 +30,8 @@ class IsDateEqual extends Constraint
      * constraint is met, false otherwise.
      *
      * This method can be overridden to implement the evaluation algorithm.
-     * 
-     * @return bool
      */
+    #[\Override]
     protected function matches($other): bool
     {
         return $this->date->equalTo($other);
@@ -53,6 +50,7 @@ class IsDateEqual extends Constraint
      *
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
+    #[\Override]
     protected function failureDescription($other): string
     {
        return parent::failureDescription($other->toDateTimeString());
@@ -60,8 +58,6 @@ class IsDateEqual extends Constraint
 
     /**
      * Return a string representation of the object.
-     * 
-     * @return string
      */
     public function toString(): string
     {

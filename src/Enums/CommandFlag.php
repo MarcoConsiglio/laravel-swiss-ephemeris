@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Ephemeris\Enums;
 
 /**
  * The executable's flags used to query the Swiss Ephemeris.
+ * 
+ * @codeCoverageIgnore
  */
 enum CommandFlag: string {
     /**
@@ -52,7 +54,15 @@ enum CommandFlag: string {
      */
     case ResponseFormat = "f";
     /**
+     * The separator between values.
+     */
+    case Gap = "g";
+    /**
      * The parameter used to switch on/off the header response.
      */
     case NoHeader = 'head';
+    /**
+     * Alias of Gap constant.
+     */
+    const Separator = self::Gap;
 }

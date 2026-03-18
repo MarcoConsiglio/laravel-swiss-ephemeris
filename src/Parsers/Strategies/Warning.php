@@ -11,8 +11,6 @@ class Warning extends ParsingStrategy
 {
     /**
      * Find an warning row in the raw swiss ephemeris output.
-     *
-     * @return string|null
      */
     public function found(): ?string
     {

@@ -9,15 +9,13 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\Fr
 /**
  * A collection of Moon PerigeeRecord instances.
  * 
- * It represents a collection of record where the Moon
+ * Represents a collection of record where the Moon
  * is in its perigee.
  */
 class Perigees extends Collection
 {
     /**
      * Construct a Moon Perigees collection from an array of raw ephemeris.
-     *
-     * @param FromArray|FromRecords $builder
      */
     public function __construct(FromArray|FromRecords $builder)
     {
@@ -27,10 +25,9 @@ class Perigees extends Collection
     /**
      * Get the first Moon PerigeeRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return PerigeeRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): PerigeeRecord
     {
         return parent::first($callback, $default);
@@ -39,10 +36,9 @@ class Perigees extends Collection
     /**
      * Get the last Moon PerigeeRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return PerigeeRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): PerigeeRecord
     {
         return parent::last($callback, $default);
@@ -53,8 +49,8 @@ class Perigees extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return PerigeeRecord
      */
+    #[\Override]
     public function get($key, $default = null): PerigeeRecord
     {
         return parent::get($key, $default);

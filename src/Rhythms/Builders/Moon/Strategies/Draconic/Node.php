@@ -1,10 +1,10 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic;
 
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
-use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * The strategy used to find a lunar node.
@@ -21,8 +21,7 @@ class Node extends Strategy
     /**
      * Construct the strategy with a DraconicRecord.
      *
-     * @param DraconicRecord $record
-     * @param int $sampling_rate The sampling rate of the ephemeris 
+     * @param int $sampling_rate The sampling rate of the ephemeris
      * expressed in minutes per each step of the ephemeris response.
      */
     public function __construct(DraconicRecord $record, int $sampling_rate)
@@ -33,9 +32,8 @@ class Node extends Strategy
     }
 
     /**
-     * Find an exact record which is a Moon node. 
+     * Find an exact record which is a Moon node.
      *
-     * @return DraconicRecord|null
      */
     public function found(): DraconicRecord|null
     {
@@ -52,24 +50,18 @@ class Node extends Strategy
 
     /**
      * Check if the record refers to a lunar node.
-     *
-     * @param Angle $moon_longitude
-     * @param Angle $node_longitude
-     * @return boolean
      */
     protected function isANode(Angle $moon_longitude, Angle $node_longitude): bool
     {
         return $this->isAboutAbsolute(
-            $moon_longitude->toDecimal(),
-            $node_longitude->toDecimal(),
+            $moon_longitude->toFloat(),
+            $node_longitude->toFloat(),
             $this->delta
         );
     }
 
     /**
      * Return the daily speed of the record the strategy uses.
-     *
-     * @return float
      */
     protected function getSpeed(): float
     {

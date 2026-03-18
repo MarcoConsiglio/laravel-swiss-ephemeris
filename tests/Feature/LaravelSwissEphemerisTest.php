@@ -4,24 +4,27 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
+use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
-use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Laravel Swiss Ephemeris")]
 #[CoversClass(LaravelSwissEphemeris::class)]
 #[UsesClass(SynodicRhythm::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
+#[UsesClass(AnomalisticRhythm::class)]
+#[UsesClass(Apogees::class)]
+#[UsesClass(Perigees::class)]
+#[UsesClass(DraconicRhythm::class)]
 class LaravelSwissEphemerisTest extends TestCase
 {
     #[TestDox("can query the Moon synodic rhythm.")]
-    public function test_moon_synodic_rhythm()
+    public function test_moon_synodic_rhythm(): void
     {
         // Act
         $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->getRandomSwissEphemerisDateTime());
@@ -42,7 +45,7 @@ class LaravelSwissEphemerisTest extends TestCase
     }
 
     #[TestDox("can query the Moon anomalistic rhythm.")]
-    public function test_moon_anomalistic_rhythm()
+    public function test_moon_anomalistic_rhythm(): void
     {
         // Act
         $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm($this->getRandomSwissEphemerisDateTime());
@@ -57,7 +60,7 @@ class LaravelSwissEphemerisTest extends TestCase
     }
 
     #[TestDox("can query the Moon draconic rhythm.")]
-    public function test_moon_draconic_rhythm()
+    public function test_moon_draconic_rhythm(): void
     {
         // Act
         $draconic_rhythm = $this->ephemeris->getMoonDraconicRhythm($this->getRandomSwissEphemerisDateTime());

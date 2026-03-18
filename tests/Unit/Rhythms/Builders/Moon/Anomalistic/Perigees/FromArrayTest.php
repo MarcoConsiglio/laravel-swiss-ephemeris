@@ -18,9 +18,8 @@ class FromArrayTest extends FromArrayTestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();
@@ -28,7 +27,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("can build Perigees collection from an array of raw ephemeris.")]
-    public function test_build_apogees_from_array()
+    public function test_build_apogees_from_array(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -43,7 +42,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require \"astral_object\" column key in its raw data.")]
-    public function test_require_astral_object_column()
+    public function test_require_astral_object_column(): void
     {
         // Arrange
         $column = "astral_object";
@@ -59,7 +58,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require \"timestamp\" column key in its raw data.")]
-    public function test_require_timestamp_column()
+    public function test_require_timestamp_column(): void
     {
         // Arrange
         $column = "timestamp";
@@ -75,7 +74,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require \"longitude\" column key in its raw data.")]
-    public function test_require_longitude_column()
+    public function test_require_longitude_column(): void
     {
         // Arrange
         $column = "longitude";
@@ -91,7 +90,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require \"daily_speed\" column key in its raw data.")]
-    public function test_require_daily_speed_column()
+    public function test_require_daily_speed_column(): void
     {
         // Arrange
         $column = "daily_speed";
@@ -108,8 +107,6 @@ class FromArrayTest extends FromArrayTestCase
 
     /**
      * Get the current SUT class.
-     * 
-     * @return string
      */
     protected function getBuilderClass(): string
     {
@@ -118,8 +115,6 @@ class FromArrayTest extends FromArrayTestCase
 
     /**
      * Return raw ephemeris data to test the builder.
-     *
-     * @return array
      */
     public  function getRawData(): array
     {

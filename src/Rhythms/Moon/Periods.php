@@ -8,15 +8,13 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSyn
 /**
  * A collection of Moon Period instances.
  * 
- * It represents a collection of time periods between
+ * Represents a collection of time periods between
  * a lunar phase and another.
  */
 class Periods extends Collection
 {
     /**
      * Construct a Periods collection from a SynodicRhythm collection.
-     *
-     * @param FromSynodicRhythm $builder
      */
     public function __construct(FromSynodicRhythm $builder)
     {
@@ -26,10 +24,9 @@ class Periods extends Collection
     /**
      * Get the first Moon Period.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return Period
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): Period
     {
         return parent::first($callback, $default);
@@ -38,10 +35,9 @@ class Periods extends Collection
     /**
      * Get the last Moon Period.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return Period
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): Period
     {
         return parent::last($callback, $default); 
@@ -52,8 +48,8 @@ class Periods extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return Period
      */
+    #[\Override]
     public function get($key, $default = null): Period
     {
         return parent::get($key, $default);

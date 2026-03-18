@@ -13,6 +13,7 @@ public
 testbook.*
 tests/cache
 tests/coverage_report
+tests/playground
 tests/xml-coverage
 vendor
 *.dump

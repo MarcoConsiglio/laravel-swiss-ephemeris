@@ -12,17 +12,15 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
-use MarcoConsiglio\Goniometry\Angle;
 
 #[TestDox("The Moon SynodicRhythm\FromRecords builder")]
 #[CoversClass(FromRecords::class)]
-#[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[UsesClass(SynodicRhythmRecord::class)]
 class FromRecordsTest extends BuilderTestCase
 {
     #[TestDox("can build a Moon\SynodicRhythm collection from Moon SynodicRhythmRecord instances.")]
-    public function test_build_synodic_rhythm_from_records()
+    public function test_build_synodic_rhythm_from_records(): void
     {
         // Arrange in setUp()
         $builder_class = $this->getBuilderClass();
@@ -50,7 +48,7 @@ class FromRecordsTest extends BuilderTestCase
     }
 
     #[TestDox("cannot build a Moon\SynodicRhythm collection without Moon SynodicRhythmRecord instances.")]
-    public function test_from_records_builder_wants_synodic_rhythm_records()
+    public function test_from_records_builder_wants_synodic_rhythm_records(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -67,8 +65,6 @@ class FromRecordsTest extends BuilderTestCase
 
     /**
      * Get the current SUT class.
-     *
-     * @return string
      */
     protected function getBuilderClass(): string
     {

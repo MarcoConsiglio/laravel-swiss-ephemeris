@@ -1,19 +1,19 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
-use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
-use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
+use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
+use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 #[TestDox("The Moon PhaseRecord")]
 #[CoversClass(PhaseRecord::class)]
 class PhaseRecordTest extends TestCase
 {
     #[TestDox("has read-only property \"type\" which is a Phase enumeration.")]
-    public function test_type_property()
+    public function test_type_property(): void
     {
         // Arrange
         $moon_phase_type = $this->getRandomMoonPhase();
@@ -26,7 +26,7 @@ class PhaseRecordTest extends TestCase
     }
 
     #[TestDox("has read-only property \"timestamp\" which is a SwissEphemerisDateTime.")]
-    public function test_timestamp_property()
+    public function test_timestamp_property(): void
     {
         // Arrange
         $moon_phase_type = $this->getRandomMoonPhase();
@@ -38,7 +38,7 @@ class PhaseRecordTest extends TestCase
     }
 
     #[TestDox("can be casted to string.")]
-    public function test_casting_to_string()
+    public function test_casting_to_string(): void
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();
@@ -59,8 +59,6 @@ TEXT,
 
     /**
      * Get a random Moon Phase.
-     *
-     * @return Phase
      */
     protected function getRandomMoonPhase(): Phase
     {

@@ -26,8 +26,6 @@ abstract class AnomalisticStrategy extends Strategy
 
     /**
      * Return the daily speed of the record the strategy uses.
-     *
-     * @return float
      */
     protected function getSpeed(): float
     {

@@ -21,9 +21,8 @@ class FromArrayTest extends FromArrayTestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();
@@ -31,7 +30,7 @@ class FromArrayTest extends FromArrayTestCase
     }
     
     #[TestDox("can build an array of Moon SynodicRhythmRecords starting from an array of raw ephemeris data.")]
-    public function test_build_synodic_rhythm()
+    public function test_build_synodic_rhythm(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -56,7 +55,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require the \"timestamp\" column.")]
-    public function test_require_timestamp_column()
+    public function test_require_timestamp_column(): void
     {
         /**
          * Missing key "timestamp"
@@ -76,7 +75,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require the \"angular_distance\" column")]
-    public function test_require_angular_distance_column()
+    public function test_require_angular_distance_column(): void
     {   
         /**
          * Missing key "angular_distance"
@@ -95,7 +94,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("require the \"daily_speed\" column")]
-    public function test_require_daily_speed_column()
+    public function test_require_daily_speed_column(): void
     {   
         /**
          * Missing key "daily_daily"
@@ -114,7 +113,7 @@ class FromArrayTest extends FromArrayTestCase
     }
 
     #[TestDox("cannot build a Moon\SynodicRhythm with an empty array.")]
-    public function test_validate_data_method()
+    public function test_validate_data_method(): void
     {
         // Act
         $builder_class = $this->getBuilderClass();
@@ -129,8 +128,6 @@ class FromArrayTest extends FromArrayTestCase
 
     /**
      * Get the current SUT class.
-     *
-     * @return string
      */
     protected function getBuilderClass(): string
     {
@@ -139,14 +136,12 @@ class FromArrayTest extends FromArrayTestCase
 
     /**
      * Return raw ephemeris data to test the builder.
-     *
-     * @return array
      */
     protected function getRawData(): array
     {
         $starting_date = $this->getRandomSwissEphemerisDateTime();
         $daily_speed = $this->getRandomMoonDailySpeed();
-        $starting_angle = $this->getSpecificAngle(-3);
+        $starting_angle = Angle::createFromDecimal(-3);
         $daily_step = $daily_speed / 24;
         $data = [];
         for ($i = 0; $i < 24; $i++) {

@@ -6,7 +6,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 
 /**
- * Builds an Apogees collection from a list of ApogeeRecord instances.
+ * Build an Apogees collection from a list of ApogeeRecord instances.
  */
 class FromRecords extends Builder
 {
@@ -14,9 +14,8 @@ class FromRecords extends Builder
      * Construct the builder with an array
      * of ApogeeRecord instances.
      *
-     * @param array $data
-     * @throws \InvalidArgumentException if at least 
-     * one element is not an ApogeeRecord or the 
+     * @throws \InvalidArgumentException if at least
+     * one element is not an ApogeeRecord or the
      * array data is empty.
      */
     public function __construct(array $data)
@@ -37,7 +36,7 @@ class FromRecords extends Builder
     }
 
     /**
-     * Builds records.
+     * Build records.
      *
      * @return void
      * @codeCoverageIgnore
@@ -48,9 +47,7 @@ class FromRecords extends Builder
     }
 
     /**
-     * Fetches the result.
-     *
-     * @return array
+     * Fetch the result.
      */
     public function fetchCollection(): array
     {

@@ -1,12 +1,13 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon;
 
+use RoundingMode;
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Angle;
-use RoundingMode;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase as TestCase;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 
 /**
  * Test case for Moon builder strategies.
@@ -67,9 +68,8 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         parent::setUp();
@@ -82,9 +82,7 @@ abstract class StrategyTestCase extends TestCase
     /**
      * Get a random unprecise angular distance biased by a delta.
      *
-     * @param float $angular_distance
      * @param float $delta
-     * @return float
      */
     protected function getBiasedAngularDistance(float $angular_distance): float
     {
@@ -93,11 +91,9 @@ abstract class StrategyTestCase extends TestCase
     }
 
     /**
-     * Get a random unprecise angular distance except for $angular_distance. 
+     * Get a random unprecise angular distance except for $angular_distance.
      *
-     * @param float $angular_distance
      * @param float $delta
-     * @return float
      */
     protected function getBiasedAngularDistanceExceptFor(float $angular_distance): float
     {
@@ -121,9 +117,7 @@ abstract class StrategyTestCase extends TestCase
     /**
      * Get a random unprecise longitude.
      *
-     * @param float $longitude
      * @param float $delta
-     * @return float
      */
     protected function getBiasedLongitude(float $longitude): float
     {
@@ -134,9 +128,7 @@ abstract class StrategyTestCase extends TestCase
     /**
      * Get a random biased longitude.
      *
-     * @param float $longitude
      * @param float $delta
-     * @return float
      */
     protected function getAbsBiasedLongitude(float $longitude): float
     {
@@ -153,35 +145,29 @@ abstract class StrategyTestCase extends TestCase
 
 
     /**
-     * Get a random biased longitude except for $longitude. 
+     * Get a random biased longitude except for $longitude.
      *
-     * @param float $longitude
      * @param float $delta
-     * @return float
      */
     protected function getBiasedLongitudeExceptFor(float $longitude): float
     {
-        $max_excluded = 0.00000000000001;
-        $min_excluded = -$max_excluded;
         [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
         if ($max == 360) {
-            return $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded);
+            return $this->positiveRandomSexadecimal(0, $min + $this::SSN);
         }
         if ($min == 0) {
-            return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES);
+            return $this->positiveRandomSexadecimal($max - $this::SSN);
         }
         return $this->faker->randomElement([
-            $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded),
-            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES)
+            $this->positiveRandomSexadecimal(0, $min - $this::SSN),
+            $this->positiveRandomSexadecimal($max + $this::SSN)
         ]);
     }
 
     /**
-     * Get a random biased absolute longitude except for $longitude. 
+     * Get a random biased absolute longitude except for $longitude.
      *
-     * @param float $longitude
      * @param float $delta
-     * @return float
      */
     protected function getAbsBiasedLongitudeExceptFor(float $longitude): float
     {
@@ -199,69 +185,49 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Return a biased Angle near $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
      */
     protected function getLongitude(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getBiasedLongitude($longitude, $this->delta));
+        return Angle::createFromDecimal($this->getBiasedLongitude($longitude));
     }
     
     /**
      * Return a biased absolute Angle near $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
      */
     protected function getAbsoluteLongitude(float $longitude = 180.0): Angle
     {
         $longitude = abs($longitude);
-        return Angle::createFromDecimal($this->getAbsBiasedLongitude($longitude, $this->delta));
+        return Angle::createFromDecimal($this->getAbsBiasedLongitude($longitude));
     }
 
     /**
      * Return a biased Angle except for $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
      */
     protected function getLongitudeExceptFor(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getBiasedLongitudeExceptFor($longitude, $this->delta));
+        return Angle::createFromDecimal($this->getBiasedLongitudeExceptFor($longitude));
     }
 
     /**
      * Return a biased Angle except for $longitude.
-     *
-     * @param float $longitude
-     * @return Angle
      */
     protected function getAbsoluteLongitudeExceptFor(float $longitude = 180.0): Angle
     {
-        return Angle::createFromDecimal($this->getAbsBiasedLongitudeExceptFor($longitude, $this->delta));
+        return Angle::createFromDecimal($this->getAbsBiasedLongitudeExceptFor($longitude));
     }
 
     /**
      * Return the opposite Angle of $longitude.
-     *
-     * @param Angle $longitude
-     * @return Angle
      */
     protected function getOppositeAbsoluteLongitude(Angle $longitude): Angle
     {
-        $opposite = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
-        $result = Angle::absSum($longitude, $opposite);
-        return $result;
+        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
+        return Angle::absSum($longitude, $opposite);
     }
 
     /**
      * Calculate the delta angle which is the accepted error
      * to found an angle with a precise value.
-     *
-     * @param float $daily_speed
-     * @param float $sampling_rate
-     * @return float
      */
     protected function getDelta(float $daily_speed, float $sampling_rate): float
     {
@@ -275,9 +241,6 @@ abstract class StrategyTestCase extends TestCase
     /**
      * This Guard Assertion checks if the $strategy object
      * implements the correct interface.
-     *
-     * @param object $strategy
-     * @return void
      */
     protected function checkStrategyImplementsInterface(object $strategy): void
     {
@@ -289,9 +252,6 @@ abstract class StrategyTestCase extends TestCase
     /**
      * This Guard Assertion checks if the $strategy object
      * extends the correct abstract strategy.
-     *
-     * @param object $strategy
-     * @return void
      */
     protected function checkStrategyExtendsAbstract(object $strategy): void
     {

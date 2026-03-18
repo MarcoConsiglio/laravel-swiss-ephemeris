@@ -8,15 +8,13 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSyno
 /**
  * A collection of Moon PhaseRecord instances.
  * 
- * It represents a collection of records of the 
+ * Represents a collection of records of the 
  * Moon's synodic rhythm that are exactly common lunar phases.
  */
 class Phases extends Collection
 {
     /**
      * Construct a Phase collection from a SynodicRhythm collection.
-     *
-     * @param FromSynodicRhythm $builder
      */
     public function __construct(FromSynodicRhythm $builder)
     {
@@ -28,8 +26,8 @@ class Phases extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return PhaseRecord
      */
+    #[\Override]
     public function get($key, $default = null): PhaseRecord
     {
         return parent::get($key, $default);
@@ -38,10 +36,9 @@ class Phases extends Collection
     /**
      * Get the first Moon PhaseRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return PhaseRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): PhaseRecord
     {
         return parent::first($callback, $default);
@@ -50,10 +47,9 @@ class Phases extends Collection
     /**
      * Get the last Moon PhaseRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return PhaseRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): PhaseRecord
     {
         return parent::last($callback, $default);

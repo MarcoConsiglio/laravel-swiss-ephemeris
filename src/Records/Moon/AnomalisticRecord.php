@@ -3,19 +3,13 @@ namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
- * It represents an instant when the Moon 
+ * Represents an instant when the Moon 
  * is at either apogee or perigee.
  */
 abstract class AnomalisticRecord extends MovingObjectRecord
 {
-    /**
-     * The timestamp of this Moon AnomalistcRecord.
-     */
-    public protected(set) SwissEphemerisDateTime $timestamp;
-
     /**
      * The current Moon longitude. It represents the
      * Moon position.
@@ -25,9 +19,7 @@ abstract class AnomalisticRecord extends MovingObjectRecord
     public protected(set) Angle $moon_longitude;
 
     /**
-     * Checks if this record is an Apogee.
-     *
-     * @return boolean
+     * Check if this record is an Apogee.
      */
     public function isApogee(): bool
     {
@@ -35,10 +27,8 @@ abstract class AnomalisticRecord extends MovingObjectRecord
     }
 
     /**
-     * Checks if this record is an Perigee.
-     *
-     * @return boolean
-     */    
+     * Check if this record is an Perigee.
+     */
     public function isPerigee(): bool
     {
         return $this instanceof PerigeeRecord;
@@ -55,11 +45,12 @@ abstract class AnomalisticRecord extends MovingObjectRecord
      * 
      * @return array{moon_longitude:string,timestamp:string}
      */
+    #[\Override]
     protected function packProperties(): array
     {
         return array_merge(self::getParentProperties(), [
             "timestamp" => $this->timestamp->toDateTimeString(),
-            "moon_longitude" => "{$this->moon_longitude->toDecimal()}°"
+            "moon_longitude" => "{$this->moon_longitude->toSexadecimalDegrees()}"
         ]);
     }
 
@@ -69,6 +60,7 @@ abstract class AnomalisticRecord extends MovingObjectRecord
      * 
      * @return array{daily_speed:string}
      */
+    #[\Override]
     protected function getParentProperties(): array
     {
         return parent::packProperties();

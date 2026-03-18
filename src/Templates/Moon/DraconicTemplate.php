@@ -4,15 +4,15 @@ namespace MarcoConsiglio\Ephemeris\Templates\Moon;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
 use MarcoConsiglio\Ephemeris\Enums\OutputFormat;
-use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\SinglePlanet;
+use MarcoConsiglio\Ephemeris\Parsers\Strategies\Moon\Node as NodeParser;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm\FromArray;
 
 /**
- * A template for an ephemeris query to obtain 
- * the draconic rhythm of the Moon.
+ * The template for an ephemeris query to obtain 
+ * the Moon DraconicRhythm.
  */
 class DraconicTemplate extends QueryTemplate
 {
@@ -54,14 +54,11 @@ class DraconicTemplate extends QueryTemplate
      * Set arguments for the swetest executable.
      *
      * @codeCoverageIgnore
-     * @return void
      */
     protected function setArguments(): void {}
 
     /**
      * Set flags for the swetest executable.
-     *
-     * @return void
      */
     protected function setFlags(): void
     {
@@ -70,33 +67,21 @@ class DraconicTemplate extends QueryTemplate
             SinglePlanet::Moon->value.SinglePlanet::TrueLunarNode->value
         ));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::ResponseFormat->value, $this->output_format));       
+        // Only the geocentric point of view is acceptable, so no other
+        // point view will be accepted.
+        $this->pov->setPointOfView($this->command, fn() => false);
     }
 
     /**
      * Parse a line of the raw ephemeris output.
-     * 
-     * @return array|null
      */
     protected function parse(string $text): array|null
     {
-        $object_name_regex = RegExPattern::getRegex(RegExPattern::Moon."|".RegExPattern::TrueNode);
-        if (
-            $this->astralObjectFound($text, $object_name_regex, $astral_object) &&
-            $this->datetimeFound($text, $datetime) &&
-            $this->decimalNumberFound($text, $decimal)
-        ) return [
-            $astral_object[0],  // Object name
-            $datetime[0],       // Datetime
-            $decimal[0],        // Object longitude
-            $decimal[1]         // Object daily speed
-        ];
-        else return null;
+        return new NodeParser($text)->found();
     }
 
     /**
      * Construct the DraconicRhythm object.
-     *
-     * @return void
      */
     protected function buildObject(): void
     {
@@ -106,9 +91,8 @@ class DraconicTemplate extends QueryTemplate
     }
 
     /**
-     * It formats the output before parsing it, if necessary.
+     * Formats the output before parsing it, if necessary.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function formatHook(): void {}
@@ -117,18 +101,15 @@ class DraconicTemplate extends QueryTemplate
      * Remap the output in an associative array,
      * with the columns name as keys.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function remapColumns(): void
     {
-        $this->remapColumnsBy($this->getColumns());    
+        $this->remapColumnsBy(static::getColumns());    
     }
 
     /**
      * Return the columns names used by this template.
-     *
-     * @return array
      */
     public static function getColumns(): array
     {
@@ -137,19 +118,14 @@ class DraconicTemplate extends QueryTemplate
 
     /**
      * Return the DraconicRhythm collection.
-     *
-     * @return DraconicRhythm
      */
     public function getResult(): DraconicRhythm
     {
-        if (! $this->completed) $this->query();
-        return $this->fetchObject();
+        return parent::getResult();
     }
 
     /**
      * Return the builded object.
-     *
-     * @return DraconicRhythm
      */
     protected function fetchObject(): DraconicRhythm
     {

@@ -9,15 +9,13 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\Fro
 /**
  * A collection of Moon ApogeeRecord instances.
  * 
- * It represents a collection of record where the Moon
+ * Represents a collection of record where the Moon
  * is in its apogee.
  */
 class Apogees extends Collection
 {
     /**
      * Construct a Moon Apogees collection from an array of raw ephemeris.
-     *
-     * @param FromArray|FromRecords $builder
      */
     public function __construct(FromArray|FromRecords $builder)
     {
@@ -27,10 +25,9 @@ class Apogees extends Collection
     /**
      * Get the first Moon ApogeeRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return ApogeeRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): ApogeeRecord
     {
         return parent::first($callback, $default);
@@ -39,10 +36,9 @@ class Apogees extends Collection
     /**
      * Get the last Moon ApogeeRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return ApogeeRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): ApogeeRecord
     {
         return parent::last($callback, $default);
@@ -53,8 +49,8 @@ class Apogees extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return ApogeeRecord
      */
+    #[\Override]
     public function get($key, $default = null): ApogeeRecord
     {
         return parent::get($key, $default);

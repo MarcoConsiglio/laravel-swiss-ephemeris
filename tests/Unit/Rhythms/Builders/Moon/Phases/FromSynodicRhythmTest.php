@@ -2,9 +2,11 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Phases;
 
 use InvalidArgumentException;
+use stdClass;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
@@ -16,12 +18,10 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
-use stdClass;
-use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The Moon Phases\FromMoonSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
-#[UsesClass(Angle::class)]
+
 #[UsesClass(FromRecords::class)]
 #[UsesClass(Phases::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
@@ -31,9 +31,8 @@ class FromSynodicRhythmTest extends BuilderTestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -41,7 +40,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     }
 
     #[TestDox("can build a Moon\Phases collection from The Moon SynodicRhythm.")]
-    public function test_build_moon_phases_from_synodic_rhythm()
+    public function test_build_moon_phases_from_synodic_rhythm(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -69,7 +68,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     }
 
     #[TestDox("cannot build without Moon\Phase constants.")]
-    public function test_needs_at_least_one_moon_phase_type()
+    public function test_needs_at_least_one_moon_phase_type(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -89,7 +88,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     }
 
     #[TestDox("can build only with Moon\Phase constants.")]
-    public function test_needs_only_moon_phase_type()
+    public function test_needs_only_moon_phase_type(): void
     {
         // Arrange
         /** @var SynodicRhythm&MockObject $synodic_rhythm */
@@ -106,8 +105,6 @@ class FromSynodicRhythmTest extends BuilderTestCase
 
     /**
      * Get the current SUT class.
-     * 
-     * @return string
      */
     protected function getBuilderClass(): string
     {
@@ -118,7 +115,6 @@ class FromSynodicRhythmTest extends BuilderTestCase
      * Create a specific Moon SynodicRhythmRecord.
      *
      * @param float $angular_distance The angular difference between the Moon and the Sun.
-     * @return SynodicRhythmRecord
      */
     protected function getSpecificSynodicRhythmRecord(float $angular_distance): SynodicRhythmRecord
     {
@@ -126,7 +122,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
         if ($angular_distance < -180) $angular_distance = -180;
         return new SynodicRhythmRecord(
             $this->getRandomSwissEphemerisDateTime(),
-            $this->getSpecificAngle($angular_distance),
+            Angle::createFromDecimal($angular_distance),
             $this->getRandomMoonDailySpeed()
         );
     }

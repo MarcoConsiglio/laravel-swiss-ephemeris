@@ -12,14 +12,6 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
  */
 class SynodicRhythmRecord extends MovingObjectRecord
 {
-
-    /**
-     * The timestamp of this record.
-     *
-     * @var \MarcoConsiglio\Ephemeris\SwissEphemerisDateTime
-     */
-    public protected(set) SwissEphemerisDateTime $timestamp;
-
     /**
      * The angular distance between the Moon and the Sun.
      *
@@ -34,7 +26,7 @@ class SynodicRhythmRecord extends MovingObjectRecord
      */
     public int|float $percentage {
         get => (int) round(
-            $this->angular_distance->toDecimal() / 180 * 100, 
+            $this->angular_distance->toFloat() / 180 * 100, 
             0, RoundingMode::HalfTowardsZero
         );
     }
@@ -42,7 +34,6 @@ class SynodicRhythmRecord extends MovingObjectRecord
     /**
      * Construct a Moon SynodicRhythmRecord.
      *
-     * @param SwissEphemerisDateTime $timestamp
      * @param Angle $angular_distance The angular difference between the Moon and the Sun.
      * @param float $daily_speed The daily speed expressed in decimal degrees.
      */
@@ -55,34 +46,22 @@ class SynodicRhythmRecord extends MovingObjectRecord
 
     /**
      * Check if this record refers to a waxing moon period.
-     *
-     * @return boolean
      */
     public function isWaxing(): bool
     {
-        if ($this->angular_distance->isCounterClockwise()) {
-            return true;
-        }
-        return false;
+        return $this->angular_distance->isCounterClockwise();
     }
 
     /**
      * Check if this record refers to a waning moon period.
-     *
-     * @return boolean
      */
     public function isWaning(): bool
     {
-        if ($this->angular_distance->isClockwise()) {
-            return true;
-        }
-        return false;
+        return $this->angular_distance->isClockwise();
     }
 
     /**
      * Get the type of the Moon period in this MoonSynodicRhythmRecord.
-     *
-     * @return Period
      */
     public function getPeriodType(): Period
     {
@@ -91,9 +70,6 @@ class SynodicRhythmRecord extends MovingObjectRecord
 
     /**
      * Check if this record is equal to $another_record.
-     *
-     * @param SynodicRhythmRecord $another_record
-     * @return boolean
      */
     public function equals(SynodicRhythmRecord $another_record): bool
     {
@@ -108,11 +84,12 @@ class SynodicRhythmRecord extends MovingObjectRecord
      * 
      * @return array{angular_distance:string,daily_speed:string,period_type:string,phase_percentage:string,timestamp:string}
      */
+    #[\Override]
     protected function packProperties(): array
     {
         return array_merge(self::getParentProperties(),  [
             "timestamp" => $this->timestamp->toDateTimeString(),
-            "angular_distance" => "{$this->angular_distance->toDecimal()}°",
+            "angular_distance" => "{$this->angular_distance->toSexadecimalDegrees()}",
             "phase_percentage" => "{$this->percentage}%",
             "period_type" => $this->enumToString($this->getPeriodType()),
         ]);
@@ -124,6 +101,7 @@ class SynodicRhythmRecord extends MovingObjectRecord
      * 
      * @return array{daily_speed:string}
      */
+    #[\Override]
     protected function getParentProperties(): array
     {
         return parent::packProperties();

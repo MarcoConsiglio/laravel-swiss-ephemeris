@@ -1,21 +1,18 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Draconic\Strategies;
 
-use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Goniometry\Angle;
-
+use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Draconic\Node;
 #[TestDox("The Moon Node strategy")]
 #[CoversClass(Node::class)]
 class NodeTest extends TestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         $this->tested_class = Node::class;
@@ -24,7 +21,7 @@ class NodeTest extends TestCase
     }
 
     #[TestDox("can find when the Moon is in its north node.")]
-    public function test_can_find_a_north_node()
+    public function test_can_find_a_north_node(): void
     {
         // Arrange
         $north_node_record = $this->getRandomNorthNodeRecord();
@@ -38,7 +35,7 @@ class NodeTest extends TestCase
     }
 
     #[TestDox("can find when the Moon is in its south node.")]
-    public function test_can_find_a_south_node()
+    public function test_can_find_a_south_node(): void
     {
         // Arrange
         $south_node_record = $this->getRandomSouthNodeRecord();
@@ -46,19 +43,14 @@ class NodeTest extends TestCase
         $strategy_1 = $this->makeStrategy($south_node_record);
         $strategy_2 = $this->makeStrategy($non_node_record);
 
-        // Act
-        $accepted_record = $strategy_1->found();
-
-        // Assert
-        $this->assertRecordFound($south_node_record, $accepted_record);
-        $this->assertNull($strategy_2->found());
+        // Act & Assert
+        $this->assertRecordFound($south_node_record, $strategy_1->found());
+        $this->assertRecordNotFound($strategy_2->found());
     }
+
 
     /**
      * Construct the strategy to test.
-     *
-     * @param DraconicRecord $record
-     * @return Node
      */
     protected function makeStrategy(DraconicRecord $record): Node
     {

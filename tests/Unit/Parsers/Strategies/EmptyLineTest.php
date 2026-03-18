@@ -12,7 +12,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 class EmptyLineTest extends TestCase
 {
     #[TestDox("matches an empty line in the raw ephemeris.")]
-    public function test_can_find_an_empty_line()
+    public function test_can_find_an_empty_line(): void
     {
         // Arrange
         $empty_line_1 = "";

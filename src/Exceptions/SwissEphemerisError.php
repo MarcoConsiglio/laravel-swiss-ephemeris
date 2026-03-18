@@ -15,17 +15,13 @@ class SwissEphemerisError extends ErrorException
      */
     public function __construct(array $errors) 
     {
-        // $this->removeNonStringElements($errors);    
         $unique_errors = $this->unique($errors);
         $this->message = $this->makeMessage($unique_errors);
         $this->severity = E_RECOVERABLE_ERROR;
     }
 
     /**
-     * Removes duplicates errors.
-     *
-     * @param array $errors
-     * @return array
+     * Remove duplicates errors.
      */
     protected function unique(array $errors): array
     {
@@ -33,10 +29,7 @@ class SwissEphemerisError extends ErrorException
     }
 
     /**
-     * Makes a string error message.
-     *
-     * @param array $errors
-     * @return string
+     * Make a string error message.
      */
     protected function makeMessage(array $errors): string
     {

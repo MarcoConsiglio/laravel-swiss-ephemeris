@@ -1,6 +1,8 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates;
 
+use MarcoConsiglio\Ephemeris\Observer\PointOfView;
+use MarcoConsiglio\Ephemeris\Observer\Topocentric;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 /**
@@ -18,15 +20,42 @@ abstract class TemplateTestCase extends TestCase
     protected string $response_file;
 
     /**
-     * Get an already generated swetest executable response, 
-     * reading it from a file specified in $response_file.
-     * Use it to not trigger a call to the executable during tests.  
+     * A random testing TopocentricLocale. 
      *
-     * @return string
+     * @var PointOfView
+     */
+    protected PointOfView $pov;
+
+    /**
+     * Setup the test environment.
+     */
+    #[\Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->pov = $this->getRandomTopocentricPOV();
+    }
+
+    /**
+     * Return an already generated swetest executable response,
+     * reading it from a file specified in $response_file.
+     * Use it to not trigger a call to the executable during tests. 
+     *
      */
     protected function getFakeSwetestResponse(): string
     {
         $content = file_get_contents($this->response_file);
         return $content === false ? "" : $content;
+    }
+
+    /**
+     * Return a random Topocentric PointOfView.
+     */
+    protected function getRandomTopocentricPOV(): Topocentric
+    {
+        $longitude = $this->getRandomPositiveSexadecimalValue();
+        $latitude = $this->getRandomRelativeSexadecimalValue(90);
+        $altitude = $this->faker->numberBetween(0, 4000);
+        return new Topocentric($latitude, $longitude, $altitude);
     }
 }

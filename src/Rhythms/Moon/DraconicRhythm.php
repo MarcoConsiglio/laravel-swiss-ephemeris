@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm\FromArray;
 class DraconicRhythm extends Collection
 {
     /**
-     * Constructs a Moon DraconicRhythm collection.
+     * Constructss a Moon DraconicRhythm collection.
      */
     public function __construct(FromArray $builder)
     {
@@ -21,10 +21,9 @@ class DraconicRhythm extends Collection
     /**
      * Get the first Moon DraconicRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return DraconicRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): DraconicRecord
     {
         return parent::first($callback, $default);
@@ -33,10 +32,9 @@ class DraconicRhythm extends Collection
     /**
      * Get the last Moon DraconicRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return DraconicRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): DraconicRecord
     {
         return parent::last($callback, $default);
@@ -47,8 +45,8 @@ class DraconicRhythm extends Collection
      *
      * @param mixed $key
      * @param mixed $default
-     * @return DraconicRecord
      */
+    #[\Override]
     public function get($key, $default = null): DraconicRecord
     {
         return parent::get($key, $default);

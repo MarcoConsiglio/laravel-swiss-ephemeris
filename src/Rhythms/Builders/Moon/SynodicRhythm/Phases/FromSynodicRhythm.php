@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 
 /**
- * Builds a Phases collection from a Moon SynodicRhythm collection.
+ * Build a Phases collection from a Moon SynodicRhythm collection.
  */
 class FromSynodicRhythm extends Builder
 {
@@ -38,15 +38,14 @@ class FromSynodicRhythm extends Builder
     protected int $sampling_rate;
     
     /**
-     * Construct the builder with a MoonSynodicRhythm and a list of MoonPhaseType 
+     * Construct the builder with a MoonSynodicRhythm and a list of MoonPhaseType
      * instances.
      *
-     * @param SynodicRhythm $synodic_rhythm
-     * @param Phase[] $moon_phase_types The list of Moon Phase(s) used to filter the 
+     * @param Phase[] $moon_phase_types The list of Moon Phase(s) used to filter the
      * the result of the builder. The builder needs at least one Moon Phase.
-     * @param int $sampling_rate The sampling rate of the ephemeris expressed in 
+     * @param int $sampling_rate The sampling rate of the ephemeris expressed in
      * minutes per each step of the ephemeris response.
-     * @throws \InvalidArgumentException when at least one element of $moon_phase is 
+     * @throws \InvalidArgumentException when at least one element of $moon_phase is
      * not a Moon Phase.
      * or $moon_phase array is empty.
      */
@@ -61,11 +60,10 @@ class FromSynodicRhythm extends Builder
     /**
      * Validate the list of Phase enum constants.
      *
-     * @return void
-     * @throws \InvalidArgumentException when at least one element of $moon_phase is 
+     * @throws \InvalidArgumentException when at least one element of $moon_phase is
      * not a Moon Phase or $moon_phase array is empty.
      */
-    public function validateData()
+    public function validateData(): void
     {
         $this_class = self::class;
         $phase_class = Phase::class;
@@ -75,17 +73,15 @@ class FromSynodicRhythm extends Builder
         }
         foreach ($this->moon_phases as $phase) {
             if (! $phase instanceof $phase_class) {
-                throw new InvalidArgumentException("Parameter 2 must be an array of $phase_class but found ".get_class($phase)." inside.");
+                throw new InvalidArgumentException("Parameter 2 must be an array of $phase_class but found ".$phase::class." inside.");
             }
         }
     }
 
     /**
-     * Builds the MoonPhasesRecord instances.
-     *
-     * @return void
+     * Build the MoonPhasesRecord instances.
      */
-    public function buildRecords()
+    public function buildRecords(): void
     {
         $sampling_rate = $this->data->sampling_rate;
         $collection = collect($this->data); // This prevents the original collection to extend LazyCollection.
@@ -98,10 +94,7 @@ class FromSynodicRhythm extends Builder
             // Moon synodic rhythm records.
 
             /** @var \Illuminate\Support\Collection $strategies */
-            $strategies = collect($this->moon_phases)->transform(function ($item) {
-                /** @var Phase $items */
-                return Phase::getCorrespondingStrategy($item);
-            });
+            $strategies = collect($this->moon_phases)->transform(Phase::getCorrespondingStrategy(...));
 
             // Each Moon synodic rhythm record is tested against each of the available strategies. 
             // If a strategy finds a useful Moon synodic rhythm record, selects it for the 

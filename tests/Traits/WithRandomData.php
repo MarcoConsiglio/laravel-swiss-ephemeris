@@ -5,43 +5,49 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\WithFaker;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 
 trait WithRandomData
 {
-    use WithFaker;
+    use WithAngleFaker;
     
     /**
      * Return a random angular distance.
-     * 
+     *
      * The angular distance is the angle difference between
      * two stellar objects. Minimum value: -180°. Maximum
      * value: +180°.
-     *
-     * @return Angle
      */
-    protected function getRandomAngularDistance(): Angle
+    protected function randomAngularDistance(): Angle
     {
-        return $this->getRandomAngle(180);
+        return $this->randomAngle(max: 180);
     }
 
     /**
      * Return a random Angle between $min° and $max°.
      *
-     * @param float $min The minimum degree of the random angle. 
-     * @param float $max The maximum degree of the random angle.
-     * @return Angle
+     * @param float $min The minimum degree not lower than -360°.
+     * @param float $max The maximum degree not higher than +360°.
      */
-    protected function getAngleBetween(float $min = -Angle::MAX_DEGREES, float $max = Angle::MAX_DEGREES): Angle
+    protected function getAngleBetween(float $min = -Degrees::MAX, float $max = Degrees::MAX): Angle
     {
-        if ($min < -Angle::MAX_DEGREES) $min = -Angle::MAX_DEGREES;
-        if ($min > Angle::MAX_DEGREES) $min = Angle::MAX_DEGREES;
-        if ($max > Angle::MAX_DEGREES) $max = Angle::MAX_DEGREES;
-        if ($max < -Angle::MAX_DEGREES) $max = -Angle::MAX_DEGREES;
-        $real_min = min($min, $max);
-        $real_max = max($min, $max);
-        return $this->getSpecificAngle(
-            $this->faker->randomFloat(PHP_FLOAT_DIG, $real_min, $real_max)
-        );
+        if ($min < -Degrees::MAX) $min = -Degrees::MAX;
+        if ($min > Degrees::MAX) $min = Degrees::MAX;
+        if ($max > Degrees::MAX) $max = Degrees::MAX;
+        if ($max < -Degrees::MAX) $max = -Degrees::MAX;
+        if ($min < 0 && $max < 0)
+            return Angle::createFromDecimal(
+                $this->negativeRandomFloat(min: abs($max), max: abs($min))
+            );
+        if ($min >= 0 && $max >= 0)
+            return Angle::createFromDecimal(
+                $this->positiveRandomFloat(min: $min, max: $max)
+            );
+        return $this->faker->randomElement([
+            Angle::createFromDecimal($this->negativeRandomFloat(min: 0, max: abs($min))),
+            Angle::createFromDecimal($this->positiveRandomFloat(min: 0, max: $max))
+        ]);
     }
 
     /**
@@ -50,7 +56,6 @@ trait WithRandomData
      *
      * @param float $min The slowest speed limit.
      * @param float $max The fastes speed limit.
-     * @return float
      */
     protected function getRandomSpeed(float $min, float $max): float
     {
@@ -60,9 +65,8 @@ trait WithRandomData
     }
 
     /**
-     * Return a random daily speed 
+     * Return a random daily speed
      *
-     * @return float
      */
     protected function getRandomMoonDailySpeed(): float
     {
@@ -72,8 +76,6 @@ trait WithRandomData
     /**
      * Get a random sampling rate expressed in minutes
      * per each step of the ephemeris response.
-     *
-     * @return integer
      */
     protected function getRandomSamplingRate(): int
     {
@@ -85,7 +87,6 @@ trait WithRandomData
      *
      * @param integer $min_year The smallest year of a random date generation.
      * @param integer $max_year The largest year of generating a random date.
-     * @return SwissEphemerisDateTime
      */
     protected function getRandomSwissEphemerisDateTime(int $min_year = 1800, int $max_year = 2399): SwissEphemerisDateTime
     {
@@ -99,56 +100,45 @@ trait WithRandomData
      * Create a random Angle.
      *
      * @param float|null $limit It limits the angle to $limit decimal degrees.
-     * @return Angle
      */
     protected function getRandomAngle(float|null $limit = null): Angle
     {
-        if ($limit != null) {
-            $limit = abs($limit);
-            if ($limit > Angle::MAX_DEGREES) $limit = Angle::MAX_DEGREES;
-        }
-        return Angle::createFromDecimal(
-            $this->faker->randomFloat(PHP_FLOAT_DIG, 
-                $limit ? -$limit : -Angle::MAX_DEGREES,
-                $limit ? $limit : Angle::MAX_DEGREES
-            )
-        );
+        if ($limit === null) return $this->randomAngle();
+        return $this->randomAngle(max: $limit);
     }
 
     /**
      * Create a random positive Angle.
      *
      * @param float|null $limit It limits the angle to $limit decimal degrees.
-     * @return Angle
      */
     protected function getRandomPositiveAngle(float|null $limit = null): Angle
     {
-        if ($limit != null) {
-            $limit = abs($limit);
-            if ($limit > Angle::MAX_DEGREES) $limit = Angle::MAX_DEGREES;
-        }
-        return Angle::createFromDecimal(
-            $this->faker->randomFloat(PHP_FLOAT_DIG, 
-                0,
-                $limit ? $limit : Angle::MAX_DEGREES
-            )
-        );   
+        if ($limit === null) return $this->positiveRandomAngle();
+        return $this->positiveRandomAngle(max: $limit);   
     }
 
     /**
-     * Get a random positive sexadecimal value, useful to create an Angle from
+     * Return a random positive sexadecimal value, useful to create an Angle from
      * a decimal value.
-     *
-     * @param float|null|null $limit
-     * @return float
      */
     protected function getRandomPositiveSexadecimalValue(float|null $limit = null): float
     {
         if ($limit !== null) {
             $limit = abs($limit);
-            if ($limit > Angle::MAX_DEGREES) $limit = Angle::MAX_DEGREES;
+            if ($limit > Degrees::MAX) $limit = Degrees::MAX;
         }
-        $limit = $limit ?? Angle::MAX_DEGREES;
+        $limit ??= Degrees::MAX;
         return $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $limit);
+    }
+
+    /**
+     * Return a random relative (positive or negative) sexadecimal value, useful
+     * to create an Angle from a decimal value.
+     */
+    protected function getRandomRelativeSexadecimalValue(float|null $limit = null): float
+    {
+        $value = $this->getRandomPositiveSexadecimalValue($limit);
+        return $this->faker->randomElement([-$value, $value]);
     }
 }

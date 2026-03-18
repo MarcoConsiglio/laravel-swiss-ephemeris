@@ -11,12 +11,10 @@ class ThirdQuarter extends PhaseStrategy
 {
     /**
      * Return the record only if its angular_distance is about -90°.
-     *
-     * @return SynodicRhythmRecord|null
      */
     public function found(): ?SynodicRhythmRecord
     {
-        if ($this->isAbout($this->record->angular_distance->toDecimal(), -90, $this->calculateDelta())) {
+        if ($this->isAbout($this->record->angular_distance->toFloat(), -90, $this->calculateDelta())) {
             return $this->record;
         }
         return null;

@@ -3,9 +3,12 @@ namespace MarcoConsiglio\Ephemeris\Templates;
 
 use RoundingMode;
 use AdamBrett\ShellWrapper\Command;
+use AdamBrett\ShellWrapper\ExitCodes;
 use AdamBrett\ShellWrapper\Runners\DryRunner;
 use AdamBrett\ShellWrapper\Runners\Exec;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisArgument;
 use MarcoConsiglio\Ephemeris\Command\SwissEphemerisFlag;
 use MarcoConsiglio\Ephemeris\Enums\CommandFlag;
@@ -13,7 +16,8 @@ use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
 use MarcoConsiglio\Ephemeris\Enums\TimeSteps;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
-use MarcoConsiglio\Ephemeris\Output;
+use MarcoConsiglio\Ephemeris\Observer\Geocentric;
+use MarcoConsiglio\Ephemeris\Observer\PointOfView;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
@@ -53,6 +57,13 @@ abstract class QueryTemplate
      */
     protected int $step_size;
 
+    /**
+     * The topocentric locale.
+     *
+     * @var PointOfView|null
+     */
+    protected PointOfView|null $pov;
+
     /** 
      * @var Exec|DryRunner|FakeRunner|null $shell The shell wrapper used to execute the command. 
      * Use this only for testing purposes, not in production environment.
@@ -74,11 +85,16 @@ abstract class QueryTemplate
     public protected(set) int $return_value;
 
     /**
+     * The command error message if something went wrong. 
+     */
+    public protected(set) string|null $command_error = null;
+
+    /**
      * The output from the swetest executable.
      *
-     * @var Output
+     * @var array|Collection
      */
-    protected Output $output;
+    protected array|Collection $output;
 
     /**
      * Indicates whether the template is completed or not.
@@ -105,21 +121,22 @@ abstract class QueryTemplate
      * Construct the template in order to produce
      * a MoonSynodicRhythm object.
      *
-     * @param SwissEphemerisDateTime $start_date
      * @param integer $days The length of the requested ephemeris interval.
-     * @param integer $step_size The sampling rate of the ephemeris expressed 
+     * @param integer $step_size The sampling rate of the ephemeris expressed
      * in minutes per each step of the ephemeris response.
+     * @param PointOfView|null $pov The point of View
      * @param Exec|DryRunner|FakeRunner|null $shell The shell used to call the "swetest" executable.
      * Do not use this parameter unless for testing purposes.
      * @param Command|null $command The command to be executed.
      * This parameter is useless and it will be deprecated.
      */
     public function __construct(
-        SwissEphemerisDateTime $start_date, 
-        int $days = 30, 
-        int $step_size = 60,
-        Exec|DryRunner|FakeRunner|null $shell = null, 
-        ?Command $command = null
+        SwissEphemerisDateTime          $start_date, 
+        int                             $days = 30, 
+        int                             $step_size = 60,
+        PointOfView|null                $pov = null,
+        Exec|DryRunner|FakeRunner|null  $shell = null, 
+        Command|null                    $command = null
     ) {
         $this->shell = $shell ?? new Exec();
         $this->command = $command ?? new Command(
@@ -129,13 +146,12 @@ abstract class QueryTemplate
         );     
         $this->start_date = $start_date;
         $this->days = $days;
-        $this->step_size = $step_size;   
+        $this->step_size = $step_size;  
+        $this->pov = $pov ?? new Geocentric; 
     }
 
     /**
      * The template of a query to the Swiss Ephemeris executable.
-     *
-     * @return void
      */
     final protected function query(): void
     {
@@ -154,23 +170,17 @@ abstract class QueryTemplate
 
     /**
      * Set arguments for the swetest executable.
-     *
-     * @return void
      */
     abstract protected function setArguments(): void;
     
     /**
      * Set flags for the swetest executable.
-     *
-     * @return void
      */
     abstract protected function setFlags(): void;
 
     /**
-     * Set whether or not the header appears in the 
+     * Set whether or not the header appears in the
      * ephemeris response. It defaults to no header.
-     *
-     * @return void
      */
     protected function setHeader(): void
     {
@@ -179,24 +189,19 @@ abstract class QueryTemplate
     }
 
     /**
-     * It formats the output before parsing it, if necessary.
-     *
-     * @return void
+     * Formats the output before parsing it, if necessary.
      */
     abstract protected function formatHook(): void;
 
     /**
-     * It sets whether to include debug information in the response.
+     * Set whether to include debug information in the response.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function debug(): void {}
 
     /**
      * Construct the swetest command with the correct inputs.
-     *
-     * @return void
      */
     final protected function buildCommand(): void
     {
@@ -207,9 +212,8 @@ abstract class QueryTemplate
     }
 
     /**
-     * It runs the swetest executable.
+     * Runs the swetest executable.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function runCommand(): void 
@@ -217,13 +221,14 @@ abstract class QueryTemplate
         if ($this->shell instanceof Exec) {
             $this->shell->run($this->command);
             $this->return_value = $this->shell->getReturnValue();
-            $this->output = new Output($this->shell->getOutput());
+            $this->output = collect($this->shell->getOutput());
+            $this->command_error = ExitCodes::getDescription($this->return_value);
         } 
 
         // Used for testing purposes.
         if ($this->shell instanceof FakeRunner) {
             $fake_output = $this->shell->getStandardOut();
-            $this->output = new Output(explode(PHP_EOL, $fake_output));
+            $this->output = collect(explode(PHP_EOL, (string) $fake_output));
         }
     }
 
@@ -231,13 +236,12 @@ abstract class QueryTemplate
      * Search for errors in the swetest executable output.
      *
      * @param array $output
-     * @return void
      * @throws SwissEphemerisError if at least one error have been found.
      */
     protected function checkErrors(): void 
     {
         $errors_list = [];
-        $this->output->each(function($row) use(&$errors_list) {
+        $this->output->each(function($row) use(&$errors_list): void {
             if (preg_match(
                     RegExPattern::SwetestError->value, 
                     $row, 
@@ -251,8 +255,6 @@ abstract class QueryTemplate
 
     /**
      * Search for warnings in the swetest executable output.
-     *
-     * @return void
      */
     protected function checkWarnings(): void
     {
@@ -271,8 +273,6 @@ abstract class QueryTemplate
 
     /**
      * Search for notices in the swetest executable output.
-     *
-     * @return void
      */
     protected function checkNotices(): void
     {
@@ -297,26 +297,20 @@ abstract class QueryTemplate
      */
     protected function removeEmptyLines()
     {
-        $this->output = $this->output->reject(function($row) {
-            return preg_match(
+        $this->output = $this->output->reject(fn($row) => preg_match(
                 RegExPattern::EmptyLine->value, 
-                $row, $empty_line_match
-            );
-        });
+            (string) $row, $empty_line_match
+        ));
     }
 
     /**
      * Remap the output in an associative array,
      * with the columns name as the key.
-     *
-     * @return void
      */
     abstract protected function remapColumns(): void;
 
     /**
      * Construct the correct object with a builder.
-     *
-     * @return void
      */
     abstract protected function buildObject(): void;
 
@@ -325,8 +319,17 @@ abstract class QueryTemplate
      *
      * @return mixed
      */
-    abstract public function getResult();
+    public function getResult()
+    {
+        if (!$this->completed) $this->query();
+        return $this->fetchObject();
+    }
 
+    /**
+     * Remap columns to have names speci
+     *
+     * @return void
+     */
     protected function remapColumnsBy(array $columns)
     {
         $this->output->transform(function ($record) use ($columns) {
@@ -339,8 +342,6 @@ abstract class QueryTemplate
 
     /**
      * Calculate the steps of the ephemeris request.
-     *
-     * @return integer
      */
     protected function getStepsNumber(): int
     {
@@ -355,7 +356,6 @@ abstract class QueryTemplate
      * Remove the line number $index.
      *
      * @param integer $index Zero-based line number.
-     * @return void
      * @codeCoverageIgnore
      */
     protected function removeLine(int $index): void
@@ -372,61 +372,16 @@ abstract class QueryTemplate
 
     /**
      * Parse the response.
-     *
-     * @return void
      */
     protected function parseOutput(): void
     {
-        $this->output->transform(function($row) {
-            return $this->parse($row);
-        });
+        $this->output->transform($this->parse(...));
     }
 
     /**
      * Parse a line of the raw ephemeris output.
-     * 
-     * @return array|null
      */
     abstract protected function parse(string $text): array|null;
-    
-    /**
-     * Parse a datetime.
-     *
-     * @param string $text
-     * @param mixed $match
-     * @return integer|false
-     */
-    protected function datetimeFound(string $text, &$match): int|false
-    {
-        return preg_match(RegExPattern::UniversalAndTerrestrialDateTime->value, $text, $match);
-    }
-
-    /**
-     * Parse a decimal number.
-     *
-     * @param string $text
-     * @param mixed $match
-     * @return integer|false
-     */
-    protected function decimalNumberFound(string $text, &$match): int|false
-    {
-        $result = preg_match_all(RegExPattern::RelativeDecimalNumber->value, $text, $match); 
-        $match = $match[0];
-        return $result;
-    }
-
-    /**
-     * Parse an astral object name.
-     *
-     * @param string $text
-     * @param string $regex
-     * @param mixed $match
-     * @return integer|false
-     */
-    protected function astralObjectFound(string $text, string $regex, &$match): int|false
-    {
-        return preg_match($regex, $text, $match);       
-    }
 
     /**
      * Return the columns names used by the concrete template.
@@ -434,7 +389,7 @@ abstract class QueryTemplate
     abstract static public function getColumns(): array;
 
     /**
-     * It sets the common flags for every template
+     * Set the common flags for every template
      * that query the swiss ephemeris executable.
      */
     protected function setCommonFlags(): void
@@ -443,6 +398,7 @@ abstract class QueryTemplate
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::InputTerrestrialTime->value, $this->start_date->toTimeString()));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::StepsNumber->value, $this->getStepsNumber()));
         $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::TimeSteps->value, $this->step_size.TimeSteps::MinuteSteps->value));
+        $this->command->addFlag(new SwissEphemerisFlag(CommandFlag::Separator->value, Config::get('ephemeris.value_separator')));
     }
 
 }

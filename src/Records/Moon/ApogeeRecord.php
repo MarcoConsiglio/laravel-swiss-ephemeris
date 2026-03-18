@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
- * It represents a moment when the Moon is at its apogee.
+ * Represents a moment when the Moon is at its apogee.
  */
 class ApogeeRecord extends AnomalisticRecord
 {
@@ -17,14 +17,11 @@ class ApogeeRecord extends AnomalisticRecord
 
     /**
      * Construct a Moon ApogeeRecord.
-     * 
+     *
      * It can be that $moon_longitude and $apogee_longitute are not close enough
      * to be considered a Moon apogee. In order to have real apogees you should
      * instantiate a Moon Apogees collection.
      *
-     * @param SwissEphemerisDateTime $timestamp
-     * @param Angle $moon_longitude
-     * @param Angle $apogee_longitude
      * @param float $moon_daily_speed The daily speed of the Moon expressed in
      * decimal degrees.
      */
@@ -38,9 +35,6 @@ class ApogeeRecord extends AnomalisticRecord
 
     /**
      * Check if this record is equal to $another_record.
-     *
-     * @param ApogeeRecord $another_record
-     * @return boolean
      */
     public function equals(ApogeeRecord $another_record): bool
     {
@@ -56,11 +50,12 @@ class ApogeeRecord extends AnomalisticRecord
      * 
      * @return array{moon_longitude:string,timestamp:string,apogee_longitude:string,daily_speed:string}
      */
+    #[\Override]
     protected function packProperties(): array
     {
         return array_merge(self::getParentProperties(), [
-            "moon_longitude" => "{$this->moon_longitude->toDecimal()}°",
-            "apogee_longitude" => "{$this->apogee_longitude->toDecimal()}°"
+            "moon_longitude" => "{$this->moon_longitude->toSexadecimalDegrees()}",
+            "apogee_longitude" => "{$this->apogee_longitude->toSexadecimalDegrees()}"
         ]);
     }
 
@@ -70,6 +65,7 @@ class ApogeeRecord extends AnomalisticRecord
      * 
      * @return array{moon_longitude:string,timestamp:string}
      */
+    #[\Override]
     protected function getParentProperties(): array
     {
         return parent::packProperties();

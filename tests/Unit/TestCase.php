@@ -1,22 +1,22 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
-use Carbon\Carbon;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Config\Repository;
 use InvalidArgumentException;
+use MarcoConsiglio\Goniometry\Angle;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
+use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithRandomData;
-use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * Unit custom TestCase.
  */
 abstract class TestCase extends TestbenchTestCase
 {
-    use WithCustomAssertions, WithRandomData;
+    use WithCustomAssertions, WithRandomData, WithFailureMessage;
 
     /**
      * The sampling rate of the ephemeris expressed 
@@ -29,7 +29,7 @@ abstract class TestCase extends TestbenchTestCase
     /**
      * The angular neighborhood within which to accept a record.
      * 
-     * It represents the maximum error accepted to select some
+     * Represents the maximum error accepted to select some
      * angular ephemeris value and discard others.  
      *
      * @var float
@@ -39,23 +39,40 @@ abstract class TestCase extends TestbenchTestCase
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
         $this->setUpFaker();
     }
+
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    protected function defineEnvironment($app) 
+    {
+        tap($app['config'], function (Repository $config) {
+            $config->set("ephemeris", [
+                "latitude" => 51.5,
+                "longitude" => 0.0,
+                "altitude" => 0,
+                "timezone" => "Europe/London",
+                "value_separator" => "_"
+            ]);
+        });
+    }
     
     /**
      * Get a mocked object.
      *
-     * @param string  $class                    The class to mock. 
+     * @param string  $class                    The class to mock.
      * @param array   $mocked_methods           The methods to be replaced.
      * @param boolean $original_constructor     Enable or disable original constructor.
      * @param array   $constructor_arguments    If original constructor is enabled, it passes these arguments.
-     * @return \PHPUnit\Framework\MockObject\MockObject
      */
     protected function getMocked(
         string $class,
@@ -81,8 +98,6 @@ abstract class TestCase extends TestbenchTestCase
 
     /**
      * Return a fake representation of a SwissEphemerisDateTime instance.
-     *
-     * @return SwissEphemerisDateTime&MockObject
      */
     protected function getMockedSwissEphemerisDateTime(): SwissEphemerisDateTime&MockObject
     {
@@ -91,9 +106,6 @@ abstract class TestCase extends TestbenchTestCase
 
     /**
      * Create a specific Angle with $decimal_degrees.
-     *
-     * @param float $decimal_degrees
-     * @return Angle
      */
     protected function getSpecificAngle(float $decimal_degrees): Angle
     {

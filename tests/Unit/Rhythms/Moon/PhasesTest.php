@@ -20,7 +20,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 class PhasesTest extends RhythmTestCase
 {
     #[TestDox("is a collection of Moon\PhaseRecord instances.")]
-    public function test_moon_phases()
+    public function test_moon_phases(): void
     {
         // Arrange
         $date = $this->getMockedSwissEphemerisDateTime();
@@ -41,7 +41,7 @@ class PhasesTest extends RhythmTestCase
     }
 
     #[TestDox("can return a specific Moon\PhaseRecord instance.")]
-    public function test_getters()
+    public function test_getters(): void
     {
         // Arrange
         $synodic_rhythm = $this->getSynodicRhythm();

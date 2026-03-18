@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates\Moon;
 
+use ErrorException;
 use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use ErrorException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -14,14 +14,13 @@ use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 
 #[CoversClass(SynodicRhythmTemplate::class)]
-#[UsesClass(Command::class)]
 #[UsesClass(SynodicRhythm::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon SynodicRhythmTemplate")]
 class SynodicRhythmTemplateTest extends TemplateTestCase
 {
     #[TestDox("is the template used to build a Moon\SynodicRhythm collection.")]
-    public function test_query_template()
+    public function test_query_template(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/synodic_rhythm_decimal.txt";
@@ -32,7 +31,7 @@ class SynodicRhythmTemplateTest extends TemplateTestCase
         $command = $this->getMocked(Command::class);
         $command->expects($this->any())->method("addFlag");
         $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
-        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $runner, $command);
+        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $this->pov, $runner, $command);
 
         // Act
         $object = $template->getResult();
@@ -41,7 +40,7 @@ class SynodicRhythmTemplateTest extends TemplateTestCase
         $this->assertInstanceOf(SynodicRhythm::class, $object);
     }
 
-    public function test_parse_error()
+    public function test_parse_error(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/synodic_rhythm_malformed.txt";
@@ -51,7 +50,7 @@ class SynodicRhythmTemplateTest extends TemplateTestCase
         /** @var Command&MockObject $command */
         $command = $this->getMocked(Command::class);
         $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
-        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $runner, $command);
+        $template = new SynodicRhythmTemplate($start_date, $days, $step_size, $this->pov, $runner, $command);
 
         // Assert
         $this->expectException(ErrorException::class);

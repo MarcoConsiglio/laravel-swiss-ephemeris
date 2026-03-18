@@ -2,9 +2,9 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums\Moon;
 
 use Error;
+use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FirstQuarter;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FullMoon;
@@ -13,18 +13,15 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\ThirdQuarte
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Dummy\NonExistentMoonStrategy;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use MarcoConsiglio\Goniometry\Angle;
 
 #[CoversClass(Phase::class)]
-#[UsesClass(Angle::class)]
-#[UsesClass(NonExistentMoonStrategy::class)]
 #[TestDox("The PhaseType enumeration")]
 class PhaseTest extends TestCase
 {
     use WithFailureMessage;
 
     #[TestDox("has a new moon constant.")]
-    public function test_new_moon_phase()
+    public function test_new_moon_phase(): void
     {
         try {
             // Act
@@ -38,7 +35,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("has a first quarter constant.")]
-    public function test_first_quarter_phase()
+    public function test_first_quarter_phase(): void
     {
         try {
             // Act
@@ -52,7 +49,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("has a third quarter constant.")]
-    public function test_third_quarter_phase()
+    public function test_third_quarter_phase(): void
     {
         try {
             // Act
@@ -66,7 +63,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("has a full moon constant.")]
-    public function test_full_moon_phase()
+    public function test_full_moon_phase(): void
     {
         try {
             // Act
@@ -80,7 +77,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("maps a PhaseStrategy to its Phase constant.")]
-    public function test_map_phase_strategy_to_its_phase_constant()
+    public function test_map_phase_strategy_to_its_phase_constant(): void
     {
         $this->testPhaseConstantMapToPhaseStrategy(Phase::NewMoon, NewMoon::class);
         $this->testPhaseConstantMapToPhaseStrategy(Phase::FirstQuarter, FirstQuarter::class);
@@ -89,7 +86,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("maps a Phase constant to its PhaseStrategy.")]
-    public function test_map_phase_constant_to_its_phase_strategy()
+    public function test_map_phase_constant_to_its_phase_strategy(): void
     {
         $this->testPhaseStrategyMapToPhaseConstant(NewMoon::class, Phase::NewMoon);  
         $this->testPhaseStrategyMapToPhaseConstant(FirstQuarter::class, Phase::FirstQuarter);  
@@ -98,7 +95,7 @@ class PhaseTest extends TestCase
     }
 
     #[TestDox("can't map unregistered PhaseStrategy.")]
-    public function test_cant_map_unknown_moon_phase_strategy()
+    public function test_cant_map_unknown_moon_phase_strategy(): void
     {
         // Arrange
         $fake_strategy = Angle::class;
@@ -130,8 +127,6 @@ class PhaseTest extends TestCase
      * Test a Phase constant correspond to its PhaseStrategy.
      * This is a Parameterized Test.
      *
-     * @param Phase $enum_constant
-     * @param string $strategy_class
      * @return void
      */
     protected function testPhaseConstantMapToPhaseStrategy(Phase $enum_constant, string $strategy_class)
@@ -152,8 +147,6 @@ class PhaseTest extends TestCase
      * Test a PhaseStrategy corresponds to its Phase constant.
      * This is a Parameterized Test.
      *
-     * @param string $strategy_class
-     * @param Phase $enum_constant
      * @return void
      */
     protected function testPhaseStrategyMapToPhaseConstant(string $strategy_class, Phase $enum_constant)

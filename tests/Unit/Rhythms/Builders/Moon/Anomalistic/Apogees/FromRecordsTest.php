@@ -2,21 +2,20 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic\Apogees;
 
 use InvalidArgumentException;
+use stdClass;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees\FromRecords;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
-use stdClass;
 
 #[CoversClass(FromRecords::class)]
 #[TestDox("The Moon Apogees\FromRecords builder")]
 class FromRecordsTest extends BuilderTestCase
 {
     #[TestDox("can build an Apogees collection from ApogeeRecord instances.")]
-    public function test_builds_apogees_collection_from_records()
+    public function test_builds_apogees_collection_from_records(): void
     {
         // Arrange
         $builder_class = $this->getBuilderClass();
@@ -38,7 +37,7 @@ class FromRecordsTest extends BuilderTestCase
     }
 
     #[TestDox("cannot build a Moon\Apogees collection without Moon\ApogeeRecords instances.")]
-    public function test_from_records_builder_wants_apogee_records()
+    public function test_from_records_builder_wants_apogee_records(): void
     {
         // Arrange
         $record_1 = $this->getMocked(stdClass::class);
@@ -53,8 +52,6 @@ class FromRecordsTest extends BuilderTestCase
 
     /**
      * Get the current SUT class.
-     * 
-     * @return string
      */
     protected function getBuilderClass(): string
     {

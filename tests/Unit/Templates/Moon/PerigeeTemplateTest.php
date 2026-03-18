@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Templates\Moon;
 
+use ErrorException;
 use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
-use ErrorException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -15,14 +15,12 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 
 #[CoversClass(PerigeeTemplate::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(FakeRunner::class)]
-#[UsesClass(Command::class)]
 #[UsesClass(Perigees::class)]
 #[TestDox("The Moon PerigeeTemplate")]
 class PerigeeTemplateTest extends TemplateTestCase
 {
     #[TestDox("is the template used to build a Moon\Perigees collection.")]
-    public function test_query_template()
+    public function test_query_template(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/perigees_decimal.txt";
@@ -33,7 +31,7 @@ class PerigeeTemplateTest extends TemplateTestCase
         $command = $this->getMocked(Command::class);
         $command->expects($this->any())->method("addFlag");
         $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
-        $template = new PerigeeTemplate($start_date, $days, $step_size, $runner, $command);
+        $template = new PerigeeTemplate($start_date, $days, $step_size, null, $runner, $command);
 
         // Act
         $object = $template->getResult();
@@ -42,7 +40,7 @@ class PerigeeTemplateTest extends TemplateTestCase
         $this->assertInstanceOf(Perigees::class, $object);
     }
 
-    public function test_parse_error()
+    public function test_parse_error(): void
     {
         // Arrange
         $this->response_file = "./tests/SwissEphemerisResponses/Moon/perigees_malformed.txt";
@@ -52,7 +50,7 @@ class PerigeeTemplateTest extends TemplateTestCase
         /** @var Command&MockObject $command */
         $command = $this->getMocked(Command::class);
         $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
-        $template = new PerigeeTemplate($start_date, $days, $step_size, $runner, $command);
+        $template = new PerigeeTemplate($start_date, $days, $step_size, null, $runner, $command);
 
         // Assert
         $this->expectException(ErrorException::class);

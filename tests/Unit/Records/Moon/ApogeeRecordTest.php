@@ -1,17 +1,16 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
+use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
-use MarcoConsiglio\Goniometry\Angle;
-use PHPUnit\Framework\MockObject\MockObject;
 
 #[CoversClass(ApogeeRecord::class)]
-#[UsesClass(Angle::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon ApogeeRecord")]
 class ApogeeRecordTest extends TestCase
@@ -19,7 +18,7 @@ class ApogeeRecordTest extends TestCase
     use WithRecordsComparison;
 
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
-    public function test_timestamp_property()
+    public function test_timestamp_property(): void
     {
         // Arrange
         $timestamp = SwissEphemerisDateTime::create();
@@ -34,7 +33,7 @@ class ApogeeRecordTest extends TestCase
     }
 
     #[TestDox("has \"moon_longitude\" and \"apogee_longituded\" property which are Angle.")]
-    public function test_moon_and_apogee_longitude_properties()
+    public function test_moon_and_apogee_longitude_properties(): void
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
@@ -49,7 +48,7 @@ class ApogeeRecordTest extends TestCase
     }
 
     #[TestDox("has \"daily_speed\" property which is a float.")]
-    public function test_moon_daily_speed_property()
+    public function test_moon_daily_speed_property(): void
     {
         // Arrange
         $timestamp = SwissEphemerisDateTime::create();
@@ -65,13 +64,13 @@ class ApogeeRecordTest extends TestCase
     }
 
     #[TestDox("can establish equality with another record of the same type.")]
-    public function test_equals_method()
+    public function test_equals_method(): void
     {
         $this->testEqualComparison(4);
     }
 
     #[TestDox("can be casted to string.")]
-    public function test_casting_to_string()
+    public function test_casting_to_string(): void
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();
@@ -80,15 +79,15 @@ class ApogeeRecordTest extends TestCase
         $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();
-        $moon_longitude = $moon_longitude->toDecimal();
-        $apogee_longitude = $apogee_longitude->toDecimal();
+        $moon_longitude = $moon_longitude->toSexadecimalDegrees();
+        $apogee_longitude = $apogee_longitude->toSexadecimalDegrees();
 
         // Act & Assert
         $this->assertEquals(<<<TEXT
 ApogeeRecord
-apogee_longitude: {$apogee_longitude}°
+apogee_longitude: {$apogee_longitude}
 daily_speed: {$moon_daily_speed}°/day
-moon_longitude: {$moon_longitude}°
+moon_longitude: {$moon_longitude}
 timestamp: $timestamp
 
 TEXT,
@@ -98,8 +97,6 @@ TEXT,
 
     /**
      * Return a comparison dataset with different and equal arguments.
-     * 
-     * @return array
      */
     protected function getComparisonDataset(): array
     {
@@ -131,11 +128,8 @@ TEXT,
     }
 
     /**
-     * Construct the two records to be compared with some $property_couples 
-     * representing an equal or different property
-     * 
-     * @param array $property_couples
-     * @return array
+     * Construct the two records to be compared with some $property_couples
+     * Representsing an equal or different property
      */
     protected function getRecordsToCompare(array $property_couples): array
     {

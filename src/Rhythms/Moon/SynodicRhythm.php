@@ -3,15 +3,15 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 
 use Illuminate\Support\Collection;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm as MoonPeriodBuilder;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSynodicRhythm as MoonPhasesBuilder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm as MoonPeriodBuilder;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSynodicRhythm as MoonPhasesBuilder;
 
 /**
  * A collection of Moon SynodicRhythmRecord instances.
  * 
- * It represents the Moon's synodic rhythm over a time range. 
+ * Represents the Moon's synodic rhythm over a time range. 
  * A Moon synodic rhythm, or synodic period, is the time it takes 
  * for a celestial object to return to the same position 
  * relative to the Sun, as seen from the Earth.
@@ -44,8 +44,8 @@ class SynodicRhythm extends Collection
      *
      * @param  mixed  $key
      * @param  mixed  $default
-     * @return SynodicRhythmRecord
      */
+    #[\Override]
     public function get($key, $default = null): SynodicRhythmRecord
     {
         return parent::get($key, $default = null);
@@ -53,8 +53,6 @@ class SynodicRhythm extends Collection
 
     /**
      * Get a collection of Moon Periods.
-     *
-     * @return Periods
      */
     public function getPeriods(): Periods
     {
@@ -64,9 +62,8 @@ class SynodicRhythm extends Collection
     /**
      * Get a collection of Moon Phases.
      *
-     * @param array $moon_phase_types An array ofMoonPhaseType
-     * items representing which moon phases you want to extract.
-     * @return Phases
+     * @param array $moon_phase_types An array of Moon PhaseType
+     * items representing which lunar phases you want to extract.
      */
     public function getPhases(array $moon_phase_types): Phases
     {
@@ -76,10 +73,9 @@ class SynodicRhythm extends Collection
     /**
      * Get the first Moon SynodicRhythmRecord.
      *
-     * @param callable|null $callback
      * @param mixed $default
-     * @return SynodicRhythmRecord
      */
+    #[\Override]
     public function first(?callable $callback = null, $default = null): SynodicRhythmRecord
     {
         return parent::first($callback, $default);
@@ -88,10 +84,9 @@ class SynodicRhythm extends Collection
     /**
      * Get the last Moon SynodicRhythmRecord.
      *
-     * @param callable|null $callback
      * @param mixed        $default
-     * @return SynodicRhythmRecord
      */
+    #[\Override]
     public function last(?callable $callback = null, $default = null): SynodicRhythmRecord
     {
         return parent::last($callback, $default);

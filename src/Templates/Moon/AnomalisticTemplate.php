@@ -6,9 +6,7 @@ use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
 /**
  * The template for an ephemeris query to obtain 
- * the Moon anomalistic rhythm.
- * 
- * 
+ * the Moon AnomalisticRhythm collection.
  */
 abstract class AnomalisticTemplate extends QueryTemplate
 {
@@ -36,15 +34,13 @@ abstract class AnomalisticTemplate extends QueryTemplate
      * Remap the output in an associative array,
      * with the columns name as the key.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     abstract protected function remapColumns(): void;
 
     /**
-     * It formats the output before parsing it, if necessary.
+     * Formats the output before parsing it, if necessary.
      *
-     * @return void
      * @codeCoverageIgnore
      */
     protected function formatHook(): void {}
@@ -52,12 +48,16 @@ abstract class AnomalisticTemplate extends QueryTemplate
 
     /**
      * Return the columns names used by this template.
-     *
-     * @return array
      */
     static public function getColumns(): array
     {
         return static::$columns;
     }
 
+    protected function setFlags(): void
+    {
+        // Only the geocentric point of view is acceptable, so no other
+        // point view will be accepted.
+        $this->pov->setPointOfView($this->command, fn() => false);
+    }
 }

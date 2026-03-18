@@ -7,7 +7,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder as BuilderInterface;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\FromRecords;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
@@ -17,7 +16,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\BuilderTestCase;
 class FromRecordsTest extends BuilderTestCase
 {
     #[TestDox("can build an Perigees collection from PerigeeRecord instances.")]
-    public function test_builds_apogees_collection_from_records()
+    public function test_builds_apogees_collection_from_records(): void
     {
         // Arrange
         $record_class = PerigeeRecord::class;
@@ -40,7 +39,7 @@ class FromRecordsTest extends BuilderTestCase
     }
 
     #[TestDox("cannot build a Moon\Perigees collection without Moon\ApogeeRecords instances.")]
-    public function test_from_records_builder_wants_perigee_records()
+    public function test_from_records_builder_wants_perigee_records(): void
     {
         // Arrange
         $record_1 = $this->getMocked(stdClass::class);
@@ -58,8 +57,6 @@ class FromRecordsTest extends BuilderTestCase
 
     /**
      * Get the current SUT class.
-     * 
-     * @return string
      */
     protected function getBuilderClass(): string
     {

@@ -7,7 +7,7 @@ namespace MarcoConsiglio\Ephemeris\Parsers\Strategies;
 interface Strategy
 {
     /**
-     * Find an exact row in the raw swiss ephemeris output.
+     * Find a data line in the raw swiss ephemeris output.
      *
      * @return mixed
      */

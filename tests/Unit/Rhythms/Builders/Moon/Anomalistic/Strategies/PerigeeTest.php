@@ -15,9 +15,8 @@ class PerigeeTest extends TestCase
 {
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
+    #[\Override]
     public function setUp(): void
     {
         $this->tested_class = Perigee::class;
@@ -26,7 +25,7 @@ class PerigeeTest extends TestCase
     }
 
     #[TestDox("can find a Moon perigee.")]
-    public function test_can_find_moon_perigees()
+    public function test_can_find_moon_perigees(): void
     {
         // Arrange
         $perigee_record = $this->getPerigeeRecord();

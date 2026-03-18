@@ -12,6 +12,17 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 class Period extends Record
 {
     /**
+     * The timestamp of this `Record`.
+     *
+     * @var SwissEphemerisDateTime
+     */
+    public SwissEphemerisDateTime $timestamp {
+        get {
+            return $this->start;
+        }
+    }
+    
+    /**
      * Start timestamp of this period.
      *
      * @var SwissEphemerisDateTime
@@ -34,10 +45,6 @@ class Period extends Record
 
     /**
      * Construct a Moon period.
-     *
-     * @param SwissEphemerisDateTime $start
-     * @param SwissEphemerisDateTime $end
-     * @param PeriodType $type
      */
     public function __construct(SwissEphemerisDateTime $start, SwissEphemerisDateTime $end, PeriodType $type)
     {
@@ -47,9 +54,7 @@ class Period extends Record
     }
 
     /**
-     * Tells if this period is waxing.
-     *
-     * @return boolean
+     * Check if this period is waxing.
      */
     public function isWaxing(): bool
     {
@@ -57,9 +62,7 @@ class Period extends Record
     }
 
     /**
-     * Tells if this period is waning.
-     *
-     * @return boolean
+     * Check if this period is waning.
      */
     public function isWaning(): bool
     {
@@ -81,11 +84,11 @@ class Period extends Record
     }
 
     /**
-     * Get the parent properties packed in an associative 
+     * Get the parent properties packed in an associative
      * array.
-     * 
-     * @return array
+     *
      * @codeCoverageIgnore
      */
+    #[\Override]
     protected function getParentProperties(): array {return [];}
 }

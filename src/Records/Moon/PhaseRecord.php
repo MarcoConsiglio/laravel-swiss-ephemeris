@@ -6,19 +6,11 @@ use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
 /**
- * It represents a time when the Moon 
+ * Represents a time when the Moon 
  * is in a specific lunar phase.
  */
 class PhaseRecord extends Record
 {
-
-    /**
-     * The timestamp this record refers to.
-     *
-     * @var SwissEphemerisDateTime
-     */
-    public protected(set) SwissEphemerisDateTime $timestamp;
-
     /**
      * The phase of the Moon it refers to.
      *
@@ -28,9 +20,6 @@ class PhaseRecord extends Record
 
     /**
      * Construct a MoonPhaseRecord with a moon phase type and a timestamp.
-     *
-     * @param SwissEphemerisDateTime        $timestamp
-     * @param Phase $type
      */
     public function __construct(SwissEphemerisDateTime $timestamp, Phase $type)
     {
@@ -52,11 +41,11 @@ class PhaseRecord extends Record
     }
 
     /**
-     * Get the parent properties packed in an associative 
+     * Get the parent properties packed in an associative
      * array.
-     * 
-     * @return array
+     *
      * @codeCoverageIgnore
      */
+    #[\Override]
     protected function getParentProperties(): array {return [];}
 }
