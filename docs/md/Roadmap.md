@@ -1,9 +1,12 @@
 # Development Roadmap
 Emphasis will be placed on prioritizing the functions necessary for the creation of a biodynamic calendar.
 
-- [ ] POV
+- [x] POV
   - [x] Geocentric
-  - [ ] Topocentric 
+  - [x] Topocentric 
+  - [x] Heliocentric
+  - [x] Baricentric
+  - [x] Planetocentric 
 - [ ] Planets
   - [ ] Moon
     - [ ] Position
@@ -35,3 +38,16 @@ Emphasis will be placed on prioritizing the functions necessary for the creation
   - [ ] Opposition
     - [ ] Saturn-Moon
   - [ ] Trine 
+- [ ] Zodiac constellation
+  - [ ] Aries
+  - [ ] Taurus
+  - [ ] Gemini
+  - [ ] Cancer
+  - [ ] Leo
+  - [ ] Virgo
+  - [ ] Libra
+  - [ ] Scorpio
+  - [ ] Sagittarius
+  - [ ] Capricorn
+  - [ ] Aquarious
+  - [ ] Pisces
