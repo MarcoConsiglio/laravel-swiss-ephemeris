@@ -1,9 +1,9 @@
 # Changelog
-## 1.3.0-alpha 2026-01-01
+## Unreleased
 ### Added
 - The ability to set a `PointOfView` class in a `LaravelSwissEphemeris` instance in order to query ephemeris from different points of view.
+- The config value 'value_separator' to separate the raw ephemeris output with a character.
 - Playground testsuit to immediately try out the features of this software.
-- The config value 'value_separator' to separate the raw ephemeris output with a char.
 ### Changed
 - The mechanism for parsing ephemeris output, no longer relying on regular expressions, but separating variables with a separator character.
 
