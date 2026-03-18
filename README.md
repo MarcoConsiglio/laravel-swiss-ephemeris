@@ -1,9 +1,9 @@
 ![GitHub License](https://img.shields.io/github/license/MarcoConsiglio/laravel-swiss-ephemeris)
-![Static Badge](https://img.shields.io/badge/version-v1.2.0--alpha-white)
+![Static Badge](https://img.shields.io/badge/version-v1.3.0--alpha-white)
 <br>
-![Static Badge](https://img.shields.io/badge/99%25-rgb(40%2C%20167%2C%2069)?label=Line%20coverage&labelColor=rgb(255%2C255%2C255))
+![Static Badge](https://img.shields.io/badge/100%25-rgb(40%2C%20167%2C%2069)?label=Line%20coverage&labelColor=rgb(255%2C255%2C255))
 ![Static Badge](https://img.shields.io/badge/97%25-rgb(40%2C%20167%2C%2069)?label=Branch%20coverage&labelColor=rgb(255%2C255%2C255))
-![Static Badge](https://img.shields.io/badge/79%25-rgb(255%2C193%2C7)?label=Path%20coverage&labelColor=rgb(255%2C255%2C255))
+![Static Badge](https://img.shields.io/badge/85%25-rgb(255%2C193%2C7)?label=Path%20coverage&labelColor=rgb(255%2C255%2C255))
 
 # Laravel Swiss Ephemeris
 This laravel package perform queries to the [Swiss Ephemeris](https://github.com/aloistr/swisseph) executable and therefore relies on it using the same AGPL license. Using this package in your Laravel project means you'll need to use the same license. For commercial use, you'll need to [purchase the corresponding license](https://www.astro.com/swisseph/swephprice_e.htm).
