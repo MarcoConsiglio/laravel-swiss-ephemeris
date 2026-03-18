@@ -1,5 +1,5 @@
 # Changelog
-##  v1.3.0 2026-03-18
+##  v1.3.0-alpha 2026-03-18
 ### Added
 - `LaravelSwissEphemeris::$pov` property of type `PointOfView` in order to query ephemeris from different points of view.
 - The config value `value_separator` to separate the raw ephemeris output with a character.
