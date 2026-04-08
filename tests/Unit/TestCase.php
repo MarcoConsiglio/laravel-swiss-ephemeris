@@ -92,15 +92,4 @@ abstract class TestCase extends TestbenchTestCase
     {
         return $this->createMock(SwissEphemerisDateTime::class);
     }
-
-    /**
-     * Create a specific Angle with $decimal_degrees.
-     */
-    protected function getSpecificAngle(float $decimal_degrees): Angle
-    {
-        if ($decimal_degrees > Angle::MAX_DEGREES) $decimal_degrees = Angle::MAX_DEGREES;
-        if ($decimal_degrees < -Angle::MAX_DEGREES) $decimal_degrees = -Angle::MAX_DEGREES;
-        return Angle::createFromDecimal($decimal_degrees);
-    }
-
 }
