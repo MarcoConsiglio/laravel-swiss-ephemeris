@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm;
 
 use InvalidArgumentException;
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
@@ -53,7 +54,7 @@ class FromArray extends FromArrayBuilder
         $records->transform(function ($item) use ($columns) {
             $datetime = SwissEphemerisDateTime::createFromSwissEphemerisFormat($item[$columns[0]]);
             $angle = Angle::createFromDecimal((float) trim((string) $item[$columns[1]]));
-            $daily_speed = (float) trim((string) $item[$columns[2]]);
+            $daily_speed = DailySpeed::createFromDecimal((float) trim((string) $item[$columns[2]]));
             return new SynodicRhythmRecord($datetime, $angle, $daily_speed);
         });
         $this->data = $records->all();

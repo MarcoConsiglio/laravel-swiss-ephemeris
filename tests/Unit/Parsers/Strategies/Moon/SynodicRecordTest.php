@@ -14,8 +14,8 @@ class SynodicRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
-        $angular_distance = $this->round($this->randomAngularDistance()->toFloat());
-        $daily_speed = $this->round($this->getRandomMoonDailySpeed());
+        $angular_distance = $this->randomAngularDistance(precision: 3)->toFloat();
+        $daily_speed = $this->getRandomMoonDailySpeed();
         $text = "{$timestamp}_ {$angular_distance}_ $daily_speed";
         $parser = new SynodicRecord($text);
 

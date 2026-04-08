@@ -29,6 +29,6 @@ abstract class AnomalisticStrategy extends Strategy
      */
     protected function getSpeed(): float
     {
-        return $this->record->daily_speed;
+        return $this->record->daily_speed->toFloat();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
@@ -22,7 +23,7 @@ class PerigeeRecord extends AnomalisticRecord
      * to be considered a Moon perigee. In order to have real perigee you should
      * instantiate a Moon Perigees collection.
      */
-    public function __construct(SwissEphemerisDateTime $timestamp, Angle $moon_longitude, Angle $apogee_longitude, float $moon_daily_speed)
+    public function __construct(SwissEphemerisDateTime $timestamp, Angle $moon_longitude, Angle $apogee_longitude, DailySpeed $moon_daily_speed)
     {
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;

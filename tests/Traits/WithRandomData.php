@@ -2,8 +2,11 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\WithFaker;
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistance as AngularDistanceGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistance as AngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -19,35 +22,16 @@ trait WithRandomData
      * two stellar objects. Minimum value: -180°. Maximum
      * value: +180°.
      */
-    protected function randomAngularDistance(): Angle
-    {
-        return $this->randomAngle(max: 180);
-    }
-
-    /**
-     * Return a random Angle between $min° and $max°.
-     *
-     * @param float $min The minimum degree not lower than -360°.
-     * @param float $max The maximum degree not higher than +360°.
-     */
-    protected function getAngleBetween(float $min = -Degrees::MAX, float $max = Degrees::MAX): Angle
-    {
-        if ($min < -Degrees::MAX) $min = -Degrees::MAX;
-        if ($min > Degrees::MAX) $min = Degrees::MAX;
-        if ($max > Degrees::MAX) $max = Degrees::MAX;
-        if ($max < -Degrees::MAX) $max = -Degrees::MAX;
-        if ($min < 0 && $max < 0)
-            return Angle::createFromDecimal(
-                $this->negativeRandomFloat(min: abs($max), max: abs($min))
-            );
-        if ($min >= 0 && $max >= 0)
-            return Angle::createFromDecimal(
-                $this->positiveRandomFloat(min: $min, max: $max)
-            );
-        return $this->faker->randomElement([
-            Angle::createFromDecimal($this->negativeRandomFloat(min: 0, max: abs($min))),
-            Angle::createFromDecimal($this->positiveRandomFloat(min: 0, max: $max))
-        ]);
+    protected function randomAngularDistance(
+        float $min = -180.0, 
+        float $max = 180.0, 
+        int $precision = PHP_FLOAT_DIG
+    ): Angle {
+        return new AngularDistanceGenerator(
+            self::$faker,
+            new AngularDistanceValidator,
+            new AngularDistanceRange($min, $max)
+        )->generate($precision);
     }
 
     /**
@@ -59,18 +43,16 @@ trait WithRandomData
      */
     protected function getRandomSpeed(float $min, float $max): float
     {
-        $real_min = min($min, $max);
-        $real_max = max($min, $max);
-        return $this->faker->randomFloat(PHP_FLOAT_DIG, $real_min, $real_max);
+        return self::$faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
     }
 
     /**
      * Return a random daily speed
      *
      */
-    protected function getRandomMoonDailySpeed(): float
+    protected function getRandomMoonDailySpeed(): DailySpeed
     {
-        return $this->getRandomSpeed(10, 14);
+        return DailySpeed::createFromDecimal($this->getRandomSpeed(10, 14));
     }
 
     /**
@@ -79,7 +61,7 @@ trait WithRandomData
      */
     protected function getRandomSamplingRate(): int
     {
-        return $this->faker->numberBetween(1, 1440);
+        return $this->positiveRandomInteger(1, 1440);
     }
 
     /**
@@ -92,7 +74,7 @@ trait WithRandomData
     {
         $min_year = "$min_year-01-01";
         $max_year = "$max_year-12-31";
-        $random_date = new Carbon($this->faker->dateTimeBetween($min_year, $max_year));
+        $random_date = new Carbon(self::$faker->dateTimeBetween($min_year, $max_year));
         return SwissEphemerisDateTime::createFromCarbon($random_date);
     }
 

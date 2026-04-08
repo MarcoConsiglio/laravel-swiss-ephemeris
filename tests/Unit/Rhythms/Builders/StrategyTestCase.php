@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders;
 
 use MarcoConsiglio\Ephemeris\Parsers\Strategies\Strategy;
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
@@ -13,10 +14,8 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * A fake daily speed of the record expressed in decimal degrees per day.
-     *
-     * @var float
      */
-    protected float $daily_speed;
+    protected DailySpeed $daily_speed;
 
     /**
      * The strategy class name.

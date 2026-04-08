@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -27,7 +28,8 @@ class PerigeeRecordTest extends TestCase
         $moon_longitude = $this->getMocked(Angle::class);
         /** @var Angle&MockObject $perigee_longitude */
         $perigee_longitude= $this->getMocked(Angle::class);
-        $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, 12.0);
+        $daily_speed = $this->createMock(DailySpeed::class);
+        $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, $daily_speed);
 
         // Act & Assert
         $this->assertProperty("timestamp", $timestamp, SwissEphemerisDateTime::class, $record->timestamp);
@@ -41,7 +43,8 @@ class PerigeeRecordTest extends TestCase
         $timestamp = $this->getMockedSwissEphemerisDateTime();
         $moon_longitude = $this->getRandomPositiveAngle();
         $perigee_longitude = $this->getRandomPositiveAngle();
-        $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, 12.0);
+        $daily_speed = $this->createMock(DailySpeed::class);
+        $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, $daily_speed);
 
         // Act & Assert
         $this->assertProperty("moon_longitude", $moon_longitude, Angle::class, $record->moon_longitude);
@@ -70,7 +73,7 @@ class PerigeeRecordTest extends TestCase
         // Act & Assert
         $this->assertEquals(<<<TEXT
 PerigeeRecord
-daily_speed: {$moon_daily_speed}°/day
+daily_speed: {$moon_daily_speed}
 moon_longitude: {$moon_longitude}
 perigee_longitude: {$perigee_longitude}
 timestamp: $timestamp
@@ -113,8 +116,8 @@ TEXT,
         $angle_2 = Angle::createFromValues(180);
         $date_1 = $this->getRandomSwissEphemerisDateTime();
         $date_2 = $date_1->clone()->addYear();
-        $speed_1 = 12.0;
-        $speed_2 = 13.0;
+        $speed_1 = DailySpeed::createFromDecimal(12.0);
+        $speed_2 = DailySpeed::createFromDecimal(13.0);
         return [
             0 => [ 
                 self::DIFFERENT =>  [$date_1,  $date_2],

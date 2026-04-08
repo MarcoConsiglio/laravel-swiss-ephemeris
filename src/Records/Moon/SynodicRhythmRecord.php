@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Records\Moon;
 use RoundingMode;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
@@ -35,9 +36,9 @@ class SynodicRhythmRecord extends MovingObjectRecord
      * Construct a Moon SynodicRhythmRecord.
      *
      * @param Angle $angular_distance The angular difference between the Moon and the Sun.
-     * @param float $daily_speed The daily speed expressed in decimal degrees.
+     * @param DailySpeed $daily_speed The daily speed expressed in degrees per day.
      */
-    public function __construct(SwissEphemerisDateTime $timestamp, Angle $angular_distance, float $moon_daily_speed)
+    public function __construct(SwissEphemerisDateTime $timestamp, Angle $angular_distance, DailySpeed $moon_daily_speed)
     {
         $this->timestamp = $timestamp;
         $this->angular_distance = $angular_distance;

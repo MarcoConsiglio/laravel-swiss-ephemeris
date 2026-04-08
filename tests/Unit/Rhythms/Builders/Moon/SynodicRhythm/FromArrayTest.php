@@ -142,7 +142,7 @@ class FromArrayTest extends FromArrayTestCase
         $starting_date = $this->getRandomSwissEphemerisDateTime();
         $daily_speed = $this->getRandomMoonDailySpeed();
         $starting_angle = Angle::createFromDecimal(-3);
-        $daily_step = $daily_speed / 24;
+        $daily_step = $daily_speed->toFloat() / 24;
         $data = [];
         for ($i = 0; $i < 24; $i++) {
             $data[$i]["timestamp"] = $starting_date->clone()->addHours($i)->toGregorianTT();

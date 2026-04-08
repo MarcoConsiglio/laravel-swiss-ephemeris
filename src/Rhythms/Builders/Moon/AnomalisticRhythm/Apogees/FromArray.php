@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Apogees;
 
 use InvalidArgumentException;
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
@@ -68,7 +69,7 @@ class FromArray extends FromArrayBuilder
             SwissEphemerisDateTime::createFromGregorianTT($item["timestamp"]),
             Angle::createFromDecimal((float) $item["moon_longitude"]),
             Angle::createFromDecimal((float) $item["apogee_longitude"]),
-            (float) $item["moon_daily_speed"]
+            DailySpeed::createFromDecimal((float) $item["moon_daily_speed"])
         ))->all();
 
         // Select the correct Moon ApogeeRecord where the Moon is close to its apogee.

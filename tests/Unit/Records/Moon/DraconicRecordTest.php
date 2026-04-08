@@ -7,6 +7,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
@@ -26,7 +27,8 @@ class DraconicRecordTest extends TestCase
         $datetime = $this->getRandomSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
-        $record = new DraconicRecord($datetime, $angle, $angle, 12.0);
+        $daily_speed = $this->createMock(DailySpeed::class);
+        $record = new DraconicRecord($datetime, $angle, $angle, $daily_speed);
 
         // Act & Assert
         $this->assertProperty("timestamp", $datetime, SwissEphemerisDateTime::class, $record->timestamp);
@@ -42,7 +44,8 @@ class DraconicRecordTest extends TestCase
         $north_node_longitude = Angle::createFromValues(180);
         $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
         $south_node_longitude = Angle::sum($north_node_longitude, $opposite);
-        $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, 12.0);
+        $daily_speed = $this->createMock(DailySpeed::class);
+        $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);
 
         // Act & Assert
         $this->assertProperty("moon_longitude", $moon_longitude, Angle::class, $record->moon_longitude);
@@ -57,7 +60,7 @@ class DraconicRecordTest extends TestCase
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
-        $angle = $this->getMocked(Angle::class);
+        $angle = $this->createMock(Angle::class);
         $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
 
@@ -66,14 +69,14 @@ class DraconicRecordTest extends TestCase
     }
 
     #[TestDox("has a \"cardinality\" property which is a Cardinality enumeration.")]
-    public function test_cardinality_speed_property(): void
+    public function test_cardinality_property(): void
     {
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
-        $angle = $this->getMocked(Angle::class);
-        $moon_daily_speed = 12.0;
+        $angle = $this->createMock(Angle::class);
+        $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $north_record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
         $south_record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
         $north_record->cardinality = Cardinality::North;
@@ -91,8 +94,9 @@ class DraconicRecordTest extends TestCase
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
-        $angle = $this->getMocked(Angle::class);
-        $record = new DraconicRecord($datetime, $angle, $angle, 12.0);
+        $angle = $this->createMock(Angle::class);
+        $daily_speed = $this->createMock(DailySpeed::class);
+        $record = new DraconicRecord($datetime, $angle, $angle, $daily_speed);
         $record->cardinality = Cardinality::North;
         // This checks that the property is immutable.
         $record->cardinality = Cardinality::South;
@@ -109,8 +113,9 @@ class DraconicRecordTest extends TestCase
         /** @var SwissEphemerisDateTime&MockObject $datetime */
         $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
-        $angle = $this->getMocked(Angle::class);
-        $record = new DraconicRecord($datetime, $angle, $angle, 12.0);
+        $angle = $this->createMock(Angle::class);
+        $daily_speed = $this->createMock(DailySpeed::class);
+        $record = new DraconicRecord($datetime, $angle, $angle, $daily_speed);
         $record->cardinality = Cardinality::South;
         // This checks that the property is immutable.
         $record->cardinality = Cardinality::North;
@@ -139,7 +144,7 @@ class DraconicRecordTest extends TestCase
         $this->assertEquals(<<<TEXT
 DraconicRecord
 cardinality: $expected_cardinality
-daily_speed: {$daily_speed}°/day
+daily_speed: {$daily_speed}
 moon_longitude: {$moon_longitude->toSexadecimalDegrees()}
 north_node_longitude: {$north_node_longitude->toSexadecimalDegrees()}
 south_node_longitude: {$south_node_longitude->toSexadecimalDegrees()}
@@ -189,8 +194,8 @@ TEXT, (string) $record
         $m2 = Angle::createFromValues(90);
         $n1 = clone $m1;
         $n2 = clone $m2;
-        $s1 = 12.0;
-        $s2 = 13.0;
+        $s1 = DailySpeed::createFromDecimal(12.0);
+        $s2 = DailySpeed::createFromDecimal(13.0);
         return [
             0 => [
                 self::DIFFERENT => [$d1, $d2],

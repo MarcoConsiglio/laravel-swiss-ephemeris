@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Goniometry\Enums\Direction;
@@ -68,7 +69,7 @@ class DraconicRecord extends MovingObjectRecord
         SwissEphemerisDateTime $timestamp,
         Angle $moon_longitude,
         Angle $north_node_longitude,
-        float $moon_daily_speed
+        DailySpeed $moon_daily_speed
     ) {
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;

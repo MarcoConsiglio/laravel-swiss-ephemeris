@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm;
 
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\FromArrayBuilder;
@@ -67,7 +68,7 @@ class FromArray extends FromArrayBuilder
             SwissEphemerisDateTime::createFromGregorianTT($item["timestamp"]),
             Angle::createFromDecimal($item["moon_longitude"]),
             Angle::createFromDecimal($item["node_longitude"]),
-            $item["moon_daily_speed"]
+            DailySpeed::createFromDecimal($item["moon_daily_speed"])
         ))->all();
 
         // Select the correct Moon DraconicRecord where the Moon is close to one of the two nodes.

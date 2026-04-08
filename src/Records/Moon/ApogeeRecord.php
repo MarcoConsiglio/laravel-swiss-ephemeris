@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
+use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
@@ -18,15 +19,19 @@ class ApogeeRecord extends AnomalisticRecord
     /**
      * Construct a Moon ApogeeRecord.
      *
-     * It can be that $moon_longitude and $apogee_longitute are not close enough
-     * to be considered a Moon apogee. In order to have real apogees you should
-     * instantiate a Moon Apogees collection.
+     * It can be that $moon_longitude and $apogee_longitute are not close 
+     * enough to be considered a Moon apogee. In order to have real apogees you
+     * should instantiate a Moon Apogees collection.
      *
-     * @param float $moon_daily_speed The daily speed of the Moon expressed in
-     * decimal degrees.
+     * @param DailySpeed $moon_daily_speed The daily speed of the Moon 
+     * expressed degrees per day.
      */
-    public function __construct(SwissEphemerisDateTime $timestamp, Angle $moon_longitude, Angle $apogee_longitude, float $moon_daily_speed)
-    {
+    public function __construct(
+        SwissEphemerisDateTime $timestamp, 
+        Angle $moon_longitude, 
+        Angle $apogee_longitude, 
+        DailySpeed $moon_daily_speed
+    ) {
         $this->timestamp = $timestamp;
         $this->moon_longitude = $moon_longitude;
         $this->apogee_longitude = $apogee_longitude;
