@@ -65,7 +65,7 @@ class DraconicRecordTest extends TestCase
         $record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
 
         // Act & Assert
-        $this->assertProperty("daily_speed", $moon_daily_speed, "float", $record->daily_speed);
+        $this->assertProperty("daily_speed", $moon_daily_speed, DailySpeed::class, $record->daily_speed);
     }
 
     #[TestDox("has a \"cardinality\" property which is a Cardinality enumeration.")]

@@ -7,6 +7,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase as TestCase;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 
 /**
@@ -76,7 +77,7 @@ abstract class StrategyTestCase extends TestCase
         // Fake daily speed of the Moon.
         $this->daily_speed = $this->getRandomMoonDailySpeed();
         $this->sampling_rate = $this->getRandomSamplingRate();
-        $this->delta = $this->getDelta($this->daily_speed, $this->sampling_rate);
+        $this->delta = $this->getDelta($this->daily_speed->toFloat(), $this->sampling_rate);
     }
 
     /**

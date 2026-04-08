@@ -70,7 +70,7 @@ class SynodicRhythmRecordTest extends TestCase
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
-        $this->assertProperty("daily_speed", $daily_speed, "float", $record->daily_speed);
+        $this->assertProperty("daily_speed", $daily_speed, DailySpeed::class, $record->daily_speed);
     }
 
     #[TestDox("may belong to a waxing moon period.")]

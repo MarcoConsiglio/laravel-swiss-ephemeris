@@ -63,7 +63,7 @@ class ApogeeRecordTest extends TestCase
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
 
         // Act & Assert
-        $this->assertProperty("daily_speed", $moon_daily_speed, "float", $record->daily_speed);
+        $this->assertProperty("daily_speed", $moon_daily_speed, DailySpeed::class, $record->daily_speed);
     }
 
     #[TestDox("can establish equality with another record of the same type.")]
