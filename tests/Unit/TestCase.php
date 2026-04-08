@@ -15,7 +15,7 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithRandomData;
  */
 abstract class TestCase extends TestbenchTestCase
 {
-    use WithCustomAssertions, WithRandomData, WithFailureMessage;
+    use WithCustomAssertions, WithRandomData;
 
     /**
      * The sampling rate of the ephemeris expressed 
