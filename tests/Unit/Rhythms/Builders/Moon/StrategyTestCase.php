@@ -103,14 +103,14 @@ abstract class StrategyTestCase extends TestCase
         $limit_excluded = $max_excluded;
         [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, $limit);
         if ($min == -180) {
-            return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded);
+            return self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded);
         }
         if ($max == 180) {
-            return $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded);
+            return self::$faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded);
         }
-        return $this->faker->randomElement([
-            $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded),
-            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded)
+        return self::$faker->randomElement([
+            self::$faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded),
+            self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded)
         ]);
     }
     
@@ -122,7 +122,7 @@ abstract class StrategyTestCase extends TestCase
     protected function getBiasedLongitude(float $longitude): float
     {
         [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
-        return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
+        return self::$faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
     }
 
     /**
@@ -136,11 +136,11 @@ abstract class StrategyTestCase extends TestCase
         // $min = $this->toAbsoluteAngularValue($min);
         // $max = $this->toAbsoluteAngularValue($max);
         if ($min > $max) {
-            return $this->faker->randomElement([
-                $this->faker->randomFloat(PHP_FLOAT_DIG, $min, Angle::MAX_DEGREES),
-                $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $max)
+            return self::$faker->randomElement([
+                self::$faker->randomFloat(PHP_FLOAT_DIG, $min, Degrees::MAX),
+                self::$faker->randomFloat(PHP_FLOAT_DIG, 0, $max)
             ]);
-        } else return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
+        } else return self::$faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
     }
 
 
@@ -158,7 +158,7 @@ abstract class StrategyTestCase extends TestCase
         if ($min == 0) {
             return $this->positiveRandomSexadecimal($max - $this::SSN);
         }
-        return $this->faker->randomElement([
+        return self::$faker->randomElement([
             $this->positiveRandomSexadecimal(0, $min - $this::SSN),
             $this->positiveRandomSexadecimal($max + $this::SSN)
         ]);
@@ -176,10 +176,10 @@ abstract class StrategyTestCase extends TestCase
         [$min, $max] = $this->getAbsDeltaExtremes($this->delta, $longitude);
         $min = $this->toAbsoluteAngularValue($min);
         $max = $this->toAbsoluteAngularValue($max);
-        if ($min > $max) return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $min + $min_excluded);
-        else return $this->faker->randomElement([
-            $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded),
-            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES)
+        if ($min > $max) return self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $min + $min_excluded);
+        else return self::$faker->randomElement([
+            self::$faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded),
+            self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES)
         ]);
     }
 

@@ -36,7 +36,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->sampling_rate = $this->faker->numberBetween(30, 1440);
+        $this->sampling_rate = self::$faker->numberBetween(30, 1440);
     }
 
     #[TestDox("can build a Moon\Phases collection from The Moon SynodicRhythm.")]
@@ -48,7 +48,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $synodic_rhythm_builder = new FromRecords([
             $this->getSpecificSynodicRhythmRecord(0),
             $this->getSpecificSynodicRhythmRecord(90),
-            $this->getSpecificSynodicRhythmRecord($this->faker->randomElement([-180, 180])),
+            $this->getSpecificSynodicRhythmRecord(self::$faker->randomElement([-180, 180])),
             $this->getSpecificSynodicRhythmRecord(-90)
         ]);
         $this->checkBuilderInterface(Builder::class, $synodic_rhythm_builder);

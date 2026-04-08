@@ -15,9 +15,9 @@ class SwissEphemerisFlagTest extends TestCase
         // Arrange
         $flag_name = self::$faker->randomLetter();
         $flag_values = [
-            $this->faker->randomDigit(),
-            $this->faker->randomDigit(),
-            $this->faker->randomDigit()
+            self::$faker->randomDigit(),
+            self::$faker->randomDigit(),
+            self::$faker->randomDigit()
         ];
         $flag = new SwissEphemerisFlag($flag_name, $flag_values);
         $expected_string = "-{$flag_name}{$flag_values[0]}{$flag_values[1]}{$flag_values[2]}";
