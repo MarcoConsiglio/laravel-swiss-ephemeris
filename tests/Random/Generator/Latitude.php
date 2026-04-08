@@ -5,9 +5,9 @@ use Faker\Generator;
 use MarcoConsiglio\Ephemeris\Tests\Random\LatitudeRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\Latitude as LatitudeValidator;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 
-class Latitude extends AngleGenerator
+class Latitude extends PositiveAngleGenerator
 {
     public function __construct(
         Generator $generator, 
