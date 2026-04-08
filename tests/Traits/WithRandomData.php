@@ -83,25 +83,11 @@ trait WithRandomData
     }
 
     /**
-     * Create a random Angle.
-     *
-     * @param float|null $limit It limits the angle to $limit decimal degrees.
+     * Return a random longitude.
      */
-    protected function getRandomAngle(float|null $limit = null): Angle
+    protected function randomLongitude(float $min = 0.0, float $max = Degrees::MAX): Angle
     {
-        if ($limit === null) return $this->randomAngle();
-        return $this->randomAngle(max: $limit);
-    }
-
-    /**
-     * Create a random positive Angle.
-     *
-     * @param float|null $limit It limits the angle to $limit decimal degrees.
-     */
-    protected function getRandomPositiveAngle(float|null $limit = null): Angle
-    {
-        if ($limit === null) return $this->positiveRandomAngle();
-        return $this->positiveRandomAngle(max: $limit);   
+        return $this->positiveRandomAngle($min, $max);
     }
 
     /**

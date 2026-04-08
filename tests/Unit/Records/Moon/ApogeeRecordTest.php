@@ -40,8 +40,8 @@ class ApogeeRecordTest extends TestCase
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $moon_longitude = $this->getRandomPositiveAngle();
-        $apogee_longitude= $this->getRandomPositiveAngle();
+        $moon_longitude = $this->randomLongitude();
+        $apogee_longitude= $this->randomLongitude();
         $daily_speed = $this->createMock(DailySpeed::class);
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $daily_speed);
 
@@ -77,8 +77,8 @@ class ApogeeRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime();
-        $moon_longitude = $this->getRandomPositiveAngle();
-        $apogee_longitude = $this->getRandomPositiveAngle();
+        $moon_longitude = $this->randomLongitude();
+        $apogee_longitude = $this->randomLongitude();
         $moon_daily_speed = $this->getRandomMoonDailySpeed();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();
