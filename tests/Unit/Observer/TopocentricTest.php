@@ -18,9 +18,9 @@ class TopocentricTest extends TestCase
         $command_name = "dummy_command";
         $command = new Command($command_name);
         $pov = new Topocentric(
-            $latitude = $this->faker->randomFloat(11, -90, 90),
-            $longitude = $this->faker->randomFloat(11, -90, 90),
-            $altitude = $this->faker->numberBetween(0, 4000)
+            $latitude = $this->randomLatitude()->toSexadecimalDegrees()->value(11),
+            $longitude = $this->randomLongitude()->toSexadecimalDegrees()->value(11),
+            $altitude = $this->positiveRandomInteger(0, 4000)
         );
 
         // Act

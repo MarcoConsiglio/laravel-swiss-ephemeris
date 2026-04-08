@@ -84,7 +84,7 @@ abstract class TestCase extends StrategyTestCase
         $south_min_longitude = Angle::absSum(Angle::createFromDecimal($north_max_longitude), $opposite)->toFloat();
         $south_max_longitude = Angle::absSum(Angle::createFromDecimal($north_min_longitude), $opposite)->toFloat();
         $moon_angle_longitude = Angle::createFromDecimal(
-            $this->faker->randomElement([
+            self::$faker->randomElement([
                 $this->randomFloat($north_max_longitude, $south_min_longitude),
                 $this->randomFloat($south_max_longitude, $north_min_longitude)
             ])

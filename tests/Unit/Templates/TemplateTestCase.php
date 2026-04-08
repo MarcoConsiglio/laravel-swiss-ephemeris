@@ -55,7 +55,7 @@ abstract class TemplateTestCase extends TestCase
     {
         $longitude = $this->positiveRandomSexadecimal();
         $latitude = $this->randomSexadecimal(min: -90, max: 90);
-        $altitude = $this->faker->numberBetween(0, 4000);
+        $altitude = self::$faker->numberBetween(0, 4000);
         return new Topocentric($latitude, $longitude, $altitude);
     }
 }

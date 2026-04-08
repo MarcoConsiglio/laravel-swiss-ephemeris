@@ -59,7 +59,7 @@ class PeriodTest extends TestCase
     {
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();
-        $type = $this->faker->randomElement(PeriodType::cases());
+        $type = self::$faker->randomElement(PeriodType::cases());
         $record = new Period($start, $end, $type);
         $start = $start->toDateTimeString();
         $end = $end->toDateTimeString();

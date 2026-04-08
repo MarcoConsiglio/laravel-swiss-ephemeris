@@ -135,7 +135,7 @@ class DraconicRecordTest extends TestCase
         $north_node_longitude = $this->randomLongitude();
         $south_node_longitude = Angle::absSum($north_node_longitude, $opposite);
         $daily_speed = $this->getRandomMoonDailySpeed();
-        $cardinality = $this->faker->randomElement(Cardinality::cases());
+        $cardinality = self::$faker->randomElement(Cardinality::cases());
         $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);
         $record->cardinality = $cardinality;
         $expected_cardinality = ((array) $cardinality)["name"];

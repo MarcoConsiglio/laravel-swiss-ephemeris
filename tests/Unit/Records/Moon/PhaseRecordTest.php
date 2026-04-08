@@ -62,6 +62,6 @@ TEXT,
      */
     protected function getRandomMoonPhase(): Phase
     {
-        return $this->faker->randomElement(Phase::cases());
+        return self::$faker->randomElement(Phase::cases());
     }
 }

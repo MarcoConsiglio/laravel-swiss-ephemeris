@@ -13,7 +13,7 @@ class SwissEphemerisFlagTest extends TestCase
     public function test_cast_a_flag_to_string(): void
     {
         // Arrange
-        $flag_name = $this->faker->randomLetter();
+        $flag_name = self::$faker->randomLetter();
         $flag_values = [
             $this->faker->randomDigit(),
             $this->faker->randomDigit(),

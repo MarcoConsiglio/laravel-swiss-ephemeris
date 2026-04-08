@@ -101,7 +101,7 @@ class PhaseTest extends TestCase
         $fake_strategy = Angle::class;
         $non_existent_class = NonExistentMoonStrategy::class;
         $empty_string = "";
-        $random_string = $this->faker->text(15);
+        $random_string = self::$faker->text(15);
         $failure_message = $this->methodMustReturnIf(
             Phase::class, "getCorrespondingPhase", "null", "the strategy is unregistered."
         );
