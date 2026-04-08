@@ -3,7 +3,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Illuminate\Config\Repository;
 use InvalidArgumentException;
-use MarcoConsiglio\Goniometry\Angle;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
