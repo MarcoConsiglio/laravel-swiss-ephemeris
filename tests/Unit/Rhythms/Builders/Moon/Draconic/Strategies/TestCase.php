@@ -29,7 +29,7 @@ abstract class TestCase extends StrategyTestCase
      */
     protected function getRandomNorthNodeRecord(bool $set_cardinality = false): DraconicRecord
     {
-        $longitude = $this->getRandomPositiveSexadecimalValue();
+        $longitude = $this->positiveRandomSexadecimal();
         $moon_longitude = $this->getAbsoluteLongitude($longitude);
         $longitude = $moon_longitude->toFloat();
         $north_node_longitude = $this->getAbsoluteLongitude($longitude);
@@ -51,7 +51,7 @@ abstract class TestCase extends StrategyTestCase
      */
     protected function getRandomSouthNodeRecord(bool $set_cardinality = false): DraconicRecord
     {
-        $longitude = $this->getRandomPositiveSexadecimalValue();
+        $longitude = $this->positiveRandomSexadecimal();
         $moon_longitude = $this->getAbsoluteLongitude($longitude);
         $longitude = $moon_longitude->toFloat();
         $south_node_longitude = $this->getAbsoluteLongitude($longitude);

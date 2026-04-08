@@ -15,7 +15,7 @@ class NodeTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
-        $moon_longitude = $this->round($this->getRandomPositiveSexadecimalValue());
+        $moon_longitude = $this->positiveRandomSexadecimal();
         $daily_speed = $this->getRandomMoonDailySpeed();
         $text = "Moon _      {$timestamp}_ {$moon_longitude}_  $daily_speed";
         $parser = new Node($text);
@@ -35,7 +35,7 @@ class NodeTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
-        $moon_longitude = $this->round($this->getRandomPositiveSexadecimalValue());
+        $moon_longitude = $this->positiveRandomSexadecimal();
         $daily_speed = $this->getRandomMoonDailySpeed();
         $text = "true Node    _  {$timestamp}_  {$moon_longitude}_  $daily_speed";
         $parser = new Node($text);

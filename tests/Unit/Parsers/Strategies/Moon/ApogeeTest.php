@@ -35,7 +35,7 @@ class ApogeeTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
-        $moon_longitude = $this->round($this->getRandomPositiveSexadecimalValue());
+        $moon_longitude = $this->positiveRandomSexadecimal();
         $daily_speed = $this->getRandomMoonDailySpeed();
         $text = "intp. Apogee     _  {$timestamp}_  {$moon_longitude}_  $daily_speed";
         $parser = new Apogee($text);
