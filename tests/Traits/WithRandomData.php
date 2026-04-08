@@ -6,9 +6,12 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistance as AngularDistanceGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\Latitude as LatitudeGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\SwissEphemerisDate as SwissEphemerisDateGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\LatitudeRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\SwissEphemerisDateRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistance as AngularDistanceValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\Latitude as LatitudeValidator;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -88,5 +91,17 @@ trait WithRandomData
     protected function randomLongitude(float $min = 0.0, float $max = Degrees::MAX): Angle
     {
         return $this->positiveRandomAngle($min, $max);
+    }
+
+    /**
+     * Return a random latitude.
+     */
+    protected function randomLatitude(float $min = -90.0, float $max = 90.0, int $precision = PHP_FLOAT_DIG): Angle
+    {
+        return new LatitudeGenerator(
+            self::$faker,
+            new LatitudeValidator,
+            new LatitudeRange($min, $max)
+        )->generate($precision);
     }
 }
