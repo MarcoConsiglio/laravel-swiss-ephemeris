@@ -27,17 +27,6 @@ abstract class TestCase extends TestbenchTestCase
     protected int $sampling_rate;
 
     /**
-     * The angular neighborhood within which to accept a record.
-     * 
-     * Represents the maximum error accepted to select some
-     * angular ephemeris value and discard others.  
-     *
-     * @var float
-     */
-    protected float $delta;
-
-
-    /**
      * Setup the test environment.
      */
     #[\Override]

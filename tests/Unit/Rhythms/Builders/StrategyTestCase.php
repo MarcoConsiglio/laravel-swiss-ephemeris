@@ -13,6 +13,16 @@ abstract class StrategyTestCase extends TestCase
     use WithFuzzyLogic;
 
     /**
+     * The angular neighborhood within which to accept a record.
+     * 
+     * Represents the maximum error accepted to select some
+     * angular ephemeris value and discard others.  
+     *
+     * @var float
+     */
+    protected float $delta;
+
+    /**
      * A fake daily speed of the record expressed in decimal degrees per day.
      */
     protected DailySpeed $daily_speed;
