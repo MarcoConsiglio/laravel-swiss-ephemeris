@@ -89,14 +89,4 @@ trait WithRandomData
     {
         return $this->positiveRandomAngle($min, $max);
     }
-
-    /**
-     * Return a random relative (positive or negative) sexadecimal value, useful
-     * to create an Angle from a decimal value.
-     */
-    protected function getRandomRelativeSexadecimalValue(float|null $limit = null): float
-    {
-        $value = $this->getRandomPositiveSexadecimalValue($limit);
-        return $this->faker->randomElement([-$value, $value]);
-    }
 }
