@@ -6,10 +6,13 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistance as AngularDistanceGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\SwissEphemerisDate as SwissEphemerisDateGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\SwissEphemerisDateRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistance as AngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\SwissEphemerisDate as SwissEphemerisDateValidator;
 
 trait WithRandomData
 {
@@ -67,15 +70,16 @@ trait WithRandomData
     /**
      * Return a random SwissEphemerisDateTime instance.
      *
-     * @param integer $min_year The smallest year of a random date generation.
-     * @param integer $max_year The largest year of generating a random date.
+     * @param int $min The smallest year of the randomly generated date.
+     * @param int $max The largest year of the randomly generated date.
      */
-    protected function getRandomSwissEphemerisDateTime(int $min_year = 1800, int $max_year = 2399): SwissEphemerisDateTime
+    protected function getRandomSwissEphemerisDateTime(int $min = 1800, int $max = 2399): SwissEphemerisDateTime
     {
-        $min_year = "$min_year-01-01";
-        $max_year = "$max_year-12-31";
-        $random_date = new Carbon(self::$faker->dateTimeBetween($min_year, $max_year));
-        return SwissEphemerisDateTime::createFromCarbon($random_date);
+        return new SwissEphemerisDateGenerator(
+            self::$faker,
+            new SwissEphemerisDateValidator,
+            new SwissEphemerisDateRange($min, $max),
+        )->generate();
     }
 
     /**
