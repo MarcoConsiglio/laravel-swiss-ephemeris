@@ -15,8 +15,8 @@ class PerigeeTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
-        $moon_longitude = $this->positiveRandomSexadecimal();
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $moon_longitude = $this->randomLongitude()->toSexadecimalDegrees()->value;
+        $daily_speed = $this->getRandomMoonDailySpeed()->toSexadecimalDegrees()->value;
         $text = "Moon  _     {$timestamp}_  {$moon_longitude}_  $daily_speed";
         $parser = new Perigee($text);
         
@@ -35,8 +35,8 @@ class PerigeeTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
-        $moon_longitude = $this->positiveRandomSexadecimal();
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $moon_longitude = $this->randomLongitude()->toSexadecimalDegrees()->value;
+        $daily_speed = $this->getRandomMoonDailySpeed()->toSexadecimalDegrees()->value;
         $text = "intp. Perigee   _    {$timestamp}_  {$moon_longitude}_  $daily_speed";
         $parser = new Perigee($text);
         

@@ -87,7 +87,7 @@ abstract class StrategyTestCase extends TestCase
     protected function getBiasedAngularDistance(float $angular_distance): float
     {
         [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, limit: 180);
-        return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
+        return $this->randomFloat($min, $max);
     }
 
     /**
