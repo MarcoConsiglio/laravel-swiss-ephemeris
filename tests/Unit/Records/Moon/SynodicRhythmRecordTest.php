@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
+use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 
@@ -18,7 +18,7 @@ use MarcoConsiglio\Goniometry\Angle;
 #[CoversClass(SynodicRhythmRecord::class)]
 class SynodicRhythmRecordTest extends TestCase
 {
-    use WithRecordsComparison;
+    use RecordsComparison;
 
     #[TestDox("has read-only properties \"timestamp\" which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property(): void

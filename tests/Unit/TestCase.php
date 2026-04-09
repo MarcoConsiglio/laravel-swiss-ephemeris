@@ -6,16 +6,16 @@ use InvalidArgumentException;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithRandomData;
+use MarcoConsiglio\Ephemeris\Tests\Traits\CustomAssertions;
+use MarcoConsiglio\Ephemeris\Tests\Traits\FailureMessage;
+use MarcoConsiglio\Ephemeris\Tests\Traits\RandomData;
 
 /**
  * Unit custom TestCase.
  */
 abstract class TestCase extends TestbenchTestCase
 {
-    use WithCustomAssertions, WithRandomData;
+    use CustomAssertions, RandomData;
 
     /**
      * The sampling rate of the ephemeris expressed 

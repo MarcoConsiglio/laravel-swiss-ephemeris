@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
+use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 
 #[CoversClass(PerigeeRecord::class)]
 
@@ -17,7 +17,7 @@ use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
 #[TestDox("The Moon PerigeeRecord")]
 class PerigeeRecordTest extends TestCase
 {
-    use WithRecordsComparison;
+    use RecordsComparison;
 
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property(): void

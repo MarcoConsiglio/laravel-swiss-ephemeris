@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 /**
  * This trait provides testing failure message helpers.
  */
-trait WithFailureMessage
+trait FailureMessage
 {
     /**
      * Get a property type failure message.

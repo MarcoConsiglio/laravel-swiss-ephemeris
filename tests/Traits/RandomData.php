@@ -17,7 +17,7 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\SwissEphemerisDate as SwissEphemerisDateValidator;
 
-trait WithRandomData
+trait RandomData
 {
     use WithAngleFaker;
     

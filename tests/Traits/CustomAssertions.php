@@ -9,9 +9,9 @@ use MarcoConsiglio\Ephemeris\Tests\Constraints\IsDateEqual;
 /**
  * This trait provides Custom Assertions for tests.
  */
-trait WithCustomAssertions
+trait CustomAssertions
 {
-    use WithFailureMessage;
+    use FailureMessage;
 
     /**
      * Asserts type and value of an object property.

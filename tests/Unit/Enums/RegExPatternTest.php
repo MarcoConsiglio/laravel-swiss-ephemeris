@@ -5,13 +5,13 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 use MarcoConsiglio\Ephemeris\Enums\RegExPattern;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
+use MarcoConsiglio\Ephemeris\Tests\Traits\FailureMessage;
 
 #[TestDox("The RegExPattern enumeration")]
 #[CoversClass(RegExPattern::class)]
 class RegExPatternTest extends TestCase
 {
-    use WithFailureMessage;
+    use FailureMessage;
 
     #[TestDox("can produce a regular expression to match ephemeris object names.")]
     public function test_get_object_name_regex(): void

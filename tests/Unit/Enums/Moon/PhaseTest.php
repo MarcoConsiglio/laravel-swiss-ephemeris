@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FirstQuarte
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FullMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\NewMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\ThirdQuarter;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
+use MarcoConsiglio\Ephemeris\Tests\Traits\FailureMessage;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Dummy\NonExistentMoonStrategy;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
@@ -18,7 +18,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 #[TestDox("The PhaseType enumeration")]
 class PhaseTest extends TestCase
 {
-    use WithFailureMessage;
+    use FailureMessage;
 
     #[TestDox("has a new moon constant.")]
     public function test_new_moon_phase(): void

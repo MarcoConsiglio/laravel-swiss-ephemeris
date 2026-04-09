@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
+use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 
 #[CoversClass(DraconicRecord::class)]
@@ -18,7 +18,7 @@ use MarcoConsiglio\Goniometry\Enums\Direction;
 #[TestDox("The Moon DraconicRecord")]
 class DraconicRecordTest extends TestCase
 {
-    use WithRecordsComparison;
+    use RecordsComparison;
 
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property(): void
