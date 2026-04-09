@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Phases\Strategies;
 
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\StrategyTestCase;
@@ -73,7 +72,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(0)),
+            $this->randomErroredAngularDistanceExceptFor(0),
             $this->daily_speed
         );
     }
@@ -85,7 +84,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(90)),
+            $this->randomErroredAngularDistanceExceptFor(90),
             $this->daily_speed
         );
     }
@@ -98,7 +97,7 @@ class TestCase extends StrategyTestCase
         $angle_value = self::$faker->randomElement([-180, +180]);
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor($angle_value)),
+            $this->randomErroredAngularDistanceExceptFor($angle_value),
             $this->daily_speed
         );
     }
@@ -110,7 +109,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistanceExceptFor(-90)),
+            $this->randomErroredAngularDistanceExceptFor(-90),
             $this->daily_speed
         );
     }

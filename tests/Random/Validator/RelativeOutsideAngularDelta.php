@@ -2,27 +2,11 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Random\Validator;
 
 use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
-use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDelta as AngularDeltaValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\RelativeAngularDelta as RelativeAngularDeltaValidator;
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 
-class RelativeAngularDelta extends AngularDeltaValidator
+class RelativeOutsideAngularDelta extends RelativeAngularDeltaValidator
 {
-    protected function calcHigherExtreme(): void
-    {
-        $this->higher_extreme = Angle::sum(
-            $this->center_value, 
-            $this->epsilon
-        );
-    }
-
-    protected function calcLowerExtreme(): void
-    {
-        $this->lower_extreme = Angle::sum(
-            $this->center_value,
-            $this->epsilon->toggleDirection()
-        );
-    }
-
     protected function setMin(float &$value): void
     {
         $lower_extreme = $this->lower_extreme->toSexadecimalDegrees()->value;
@@ -30,7 +14,7 @@ class RelativeAngularDelta extends AngularDeltaValidator
         if ($lower_extreme->lt($min_angular_distance))
             $value = AngularDistanceRange::min();
         else
-            $value = $this->lower_extreme->toFloat();
+            $value = NextFloat::before($this->lower_extreme->toFloat());
     }
 
     protected function setMax(float &$value): void
@@ -40,6 +24,6 @@ class RelativeAngularDelta extends AngularDeltaValidator
         if ($higher_extreme->gt($max_angular_distance))
             $value = AngularDistanceRange::max();
         else
-            $value = $this->higher_extreme->toFloat();
+            $value = NextFloat::after($this->higher_extreme->toFloat());
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Random\Validator;
 
+use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 
@@ -27,15 +28,9 @@ abstract class AngularDelta extends SexadecimalValidator
         $this->setMax($max);
     }
 
-    protected function setMin(float &$value): void
-    {
-        $value = $this->lower_extreme->toFloat();
-    }
+    abstract protected function setMin(float &$value): void;
 
-    protected function setMax(float &$value): void
-    {
-        $value = $this->higher_extreme->toFloat();
-    }
+    abstract protected function setMax(float &$value): void;
 
     protected function calcEpsilon(): void
     {

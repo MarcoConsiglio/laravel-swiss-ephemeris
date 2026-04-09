@@ -84,30 +84,6 @@ abstract class StrategyTestCase extends TestCase
             )
         );
     }
-
-    /**
-     * Get a random unprecise angular distance except for $angular_distance.
-     *
-     * @param float $delta
-     */
-    protected function getBiasedAngularDistanceExceptFor(float $angular_distance): float
-    {
-        $limit = 180;
-        $max_excluded = 0.00000000000001;
-        $min_excluded = $max_excluded;
-        $limit_excluded = $max_excluded;
-        [$min, $max] = $this->getDeltaExtremes($this->delta->toFloat(), $angular_distance, $limit);
-        if ($min == -180) {
-            return self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded);
-        }
-        if ($max == 180) {
-            return self::$faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded);
-        }
-        return self::$faker->randomElement([
-            self::$faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded),
-            self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded)
-        ]);
-    }
     
     /**
      * Get a random unprecise longitude.
