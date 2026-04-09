@@ -1,25 +1,36 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
-use Carbon\Carbon;
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistance as AngularDistanceGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistanceWithDelta as AngularDistanceGeneratorWithDelta;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\Latitude as LatitudeGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\SwissEphemerisDate as SwissEphemerisDateGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\LatitudeRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\SwissEphemerisDateRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistance as AngularDistanceValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\Latitude as LatitudeValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\RelativeAngularDelta as RelativeAngularDeltaValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\SwissEphemerisDate as SwissEphemerisDateValidator;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
-use MarcoConsiglio\Ephemeris\Tests\Random\Validator\SwissEphemerisDate as SwissEphemerisDateValidator;
 
 trait RandomData
 {
     use WithAngleFaker;
+
+    /**
+     * The angular neighborhood within which to accept a record.
+     * 
+     * Represents the maximum error accepted to select some
+     * angular ephemeris value and discard others. 
+     */
+    protected Angle $delta;
     
     /**
      * Return a random angular distance.
@@ -102,6 +113,26 @@ trait RandomData
             self::$faker,
             new LatitudeValidator,
             new LatitudeRange($min, $max)
+        )->generate($precision);
+    }
+
+    protected function setDelta(float|SexadecimalDegrees $sexadecimal): void
+    {
+        $this->delta = Angle::createFromDecimal($sexadecimal);
+    }
+
+    /**
+     * Return an angular distance with a delta error tolerance.
+     */
+    protected function randomErroredAngularDistance(float $center_value, int $precision = PHP_FLOAT_DIG): Angle
+    {
+        return new AngularDistanceGeneratorWithDelta(
+            self::$faker,
+            new RelativeAngularDeltaValidator(
+                Angle::createFromDecimal($center_value),
+                $this->delta
+            ),
+            new SexadecimalRange(0, 0)
         )->generate($precision);
     }
 }

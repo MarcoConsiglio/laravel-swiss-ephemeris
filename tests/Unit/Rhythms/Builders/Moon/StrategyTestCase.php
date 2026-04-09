@@ -77,18 +77,12 @@ abstract class StrategyTestCase extends TestCase
         // Fake daily speed of the Moon.
         $this->daily_speed = $this->getRandomMoonDailySpeed();
         $this->sampling_rate = $this->getRandomSamplingRate();
-        $this->delta = $this->getDelta($this->daily_speed->toFloat(), $this->sampling_rate);
-    }
-
-    /**
-     * Get a random unprecise angular distance biased by a delta.
-     *
-     * @param float $delta
-     */
-    protected function getBiasedAngularDistance(float $angular_distance): float
-    {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, limit: 180);
-        return $this->randomFloat($min, $max);
+        $this->setDelta(
+            $this->getDelta(
+                $this->daily_speed->toFloat(), 
+                $this->sampling_rate
+            )
+        );
     }
 
     /**
@@ -102,7 +96,7 @@ abstract class StrategyTestCase extends TestCase
         $max_excluded = 0.00000000000001;
         $min_excluded = $max_excluded;
         $limit_excluded = $max_excluded;
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, $limit);
+        [$min, $max] = $this->getDeltaExtremes($this->delta->toFloat(), $angular_distance, $limit);
         if ($min == -180) {
             return self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded);
         }

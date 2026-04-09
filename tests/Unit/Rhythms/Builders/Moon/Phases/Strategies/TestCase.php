@@ -15,7 +15,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistance(0)),
+            $this->randomErroredAngularDistance(0),
             $this->daily_speed
         );
     }
@@ -27,7 +27,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistance(90)),
+            $this->randomErroredAngularDistance(90),
             $this->daily_speed
         );
     }
@@ -43,13 +43,13 @@ class TestCase extends StrategyTestCase
         if ($positive) {
             return new SynodicRhythmRecord(
                 $this->date, 
-                Angle::createFromDecimal($this->getBiasedAngularDistance(180)),
+                $this->randomErroredAngularDistance(180),
                 $this->daily_speed
             );
         } else
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistance(-180)),
+            $this->randomErroredAngularDistance(-180),
             $this->daily_speed
         );
     }
@@ -61,7 +61,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            Angle::createFromDecimal($this->getBiasedAngularDistance(-90)),
+            $this->randomErroredAngularDistance(-90),
             $this->daily_speed
         );
     }
