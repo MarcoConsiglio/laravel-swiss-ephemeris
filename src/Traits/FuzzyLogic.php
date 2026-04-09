@@ -9,7 +9,7 @@ use MarcoConsiglio\Goniometry\Degrees;
 /**
  * Support for fuzzy logic.
  */
-trait WithFuzzyLogic
+trait FuzzyLogic
 {
     /**
      * Check if a $number is almost equal to $expected.

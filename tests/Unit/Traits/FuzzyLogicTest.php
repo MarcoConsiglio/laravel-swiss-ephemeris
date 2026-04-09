@@ -4,15 +4,15 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Traits;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
+use MarcoConsiglio\Ephemeris\Traits\FuzzyLogic;
 use MarcoConsiglio\Goniometry\Degrees;
 use PHPUnit\Framework\Attributes\CoversTrait;
 
-#[TestDox("The trait WithFuzzyLogic")]
-#[CoversTrait(WithFuzzyLogic::class)]
-class WithFuzzyLogicTest extends TestCase
+#[TestDox("The trait FuzzyLogic")]
+#[CoversTrait(FuzzyLogic::class)]
+class FuzzyLogicTest extends TestCase
 {
-    use WithFuzzyLogic;
+    use FuzzyLogic;
 
     #[TestDox("has isAbout() method that checks if a number is almost equal to another number.")]
     public function test_isAbout_method(): void
@@ -191,7 +191,7 @@ class WithFuzzyLogicTest extends TestCase
      * This is a Parameterized Test.
      *
      * It tests isAboutAngle method present in
-     * the WithFuzzyLogic trait.
+     * the FuzzyLogic trait.
      *
      * @return void
      */
@@ -209,7 +209,7 @@ class WithFuzzyLogicTest extends TestCase
     /**
      * This is a Parameterized Test.
      * It tests getDeltaExtremes method present in
-     * the WithFuzzyLogic trait.
+     * the FuzzyLogic trait.
      *
      * @param boolean $bolean_assertion
      * @return void

@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Ephemeris\Rhythms\Builders;
 use RoundingMode;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
-use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
+use MarcoConsiglio\Ephemeris\Traits\FuzzyLogic;
 
 /**
  * The abstract Strategy used to build a rhythm.
@@ -16,7 +16,7 @@ use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
  */
 abstract class Strategy implements BuilderStrategy
 {
-    use WithFuzzyLogic;
+    use FuzzyLogic;
 
     /**
      * Angular value expressed as a decimal number: It 

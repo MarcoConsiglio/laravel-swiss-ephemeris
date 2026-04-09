@@ -6,11 +6,11 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
+use MarcoConsiglio\Ephemeris\Traits\FuzzyLogic;
 
 abstract class StrategyTestCase extends TestCase
 {
-    use WithFuzzyLogic;
+    use FuzzyLogic;
 
     /**
      * The angular neighborhood within which to accept a record.
