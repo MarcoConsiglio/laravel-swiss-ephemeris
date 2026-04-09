@@ -5,9 +5,9 @@ use Faker\Generator;
 use MarcoConsiglio\Ephemeris\Tests\Random\LatitudeRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\Latitude as LatitudeValidator;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 
-class Latitude extends PositiveAngleGenerator
+class Latitude extends RelativeAngleGenerator
 {
     public function __construct(
         Generator $generator, 
@@ -15,10 +15,5 @@ class Latitude extends PositiveAngleGenerator
         LatitudeRange $range
     ) {
         return parent::__construct($generator, $validator, $range);
-    }
-
-    public function generate(int $precision = PHP_FLOAT_DIG): Angle
-    {
-        return parent::generate($precision);
     }
 }
