@@ -5,7 +5,7 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistance as AngularDistanceGenerator;
-use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistanceWithDelta as AngularDistanceGeneratorWithDelta;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\NeighbourhoodAngularDistance as AngularDistanceGeneratorWithDelta;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\Latitude as LatitudeGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\SwissEphemerisDate as SwissEphemerisDateGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\LatitudeRange;
