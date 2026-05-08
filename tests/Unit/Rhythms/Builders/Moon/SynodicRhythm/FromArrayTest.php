@@ -146,7 +146,7 @@ class FromArrayTest extends FromArrayTestCase
         $data = [];
         for ($i = 0; $i < 24; $i++) {
             $data[$i]["timestamp"] = $starting_date->clone()->addHours($i)->toGregorianTT();
-            $data[$i]["angular_distance"] = Angle::sum($starting_angle, Angle::createFromDecimal($daily_step * $i));
+            $data[$i]["angular_distance"] = $starting_angle->sum(Angle::createFromDecimal($daily_step * $i));
             $data[$i]["daily_speed"] = $daily_speed;
         }
         return $data;

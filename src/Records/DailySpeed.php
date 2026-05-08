@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Records;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
 class DailySpeed extends Angle

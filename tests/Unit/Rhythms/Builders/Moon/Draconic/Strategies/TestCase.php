@@ -79,10 +79,10 @@ abstract class TestCase extends StrategyTestCase
         $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
         $north_node_longitude = $this->positiveRandomSexadecimal();
         $north_node_angle_longitude = Angle::createFromDecimal($north_node_longitude);
-        $south_max_longitude = Angle::absSum($north_node_angle_longitude, $opposite)->toFloat();
-        [$north_min_longitude, $north_max_longitude] = $this->getDeltaExtremes($this->delta, $north_node_longitude); 
-        $south_min_longitude = Angle::absSum(Angle::createFromDecimal($north_max_longitude), $opposite)->toFloat();
-        $south_max_longitude = Angle::absSum(Angle::createFromDecimal($north_min_longitude), $opposite)->toFloat();
+        $south_max_longitude = $north_node_angle_longitude->absSum($opposite)->toFloat();
+        [$north_min_longitude, $north_max_longitude] = $this->getDeltaExtremes($this->delta->toFloat(), $north_node_longitude); 
+        $south_min_longitude = Angle::createFromDecimal($north_max_longitude)->absSum($opposite)->toFloat();
+        $south_max_longitude = Angle::createFromDecimal($north_min_longitude)->absSum($opposite)->toFloat();
         $moon_angle_longitude = Angle::createFromDecimal(
             self::$faker->randomElement([
                 $this->randomFloat($north_max_longitude, $south_min_longitude),

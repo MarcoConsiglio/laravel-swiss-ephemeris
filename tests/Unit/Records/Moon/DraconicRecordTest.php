@@ -43,7 +43,7 @@ class DraconicRecordTest extends TestCase
         $moon_longitude = Angle::createFromValues(180);
         $north_node_longitude = Angle::createFromValues(180);
         $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
-        $south_node_longitude = Angle::sum($north_node_longitude, $opposite);
+        $south_node_longitude = $north_node_longitude->absSum($opposite);
         $daily_speed = $this->createMock(DailySpeed::class);
         $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);
 
@@ -133,7 +133,7 @@ class DraconicRecordTest extends TestCase
         $moon_longitude = $this->randomLongitude();
         $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
         $north_node_longitude = $this->randomLongitude();
-        $south_node_longitude = Angle::absSum($north_node_longitude, $opposite);
+        $south_node_longitude = $north_node_longitude->absSum($opposite);
         $daily_speed = $this->getRandomMoonDailySpeed();
         $cardinality = self::$faker->randomElement(Cardinality::cases());
         $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);

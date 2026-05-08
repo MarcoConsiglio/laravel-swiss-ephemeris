@@ -7,6 +7,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase as TestCase;
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 
@@ -92,7 +93,7 @@ abstract class StrategyTestCase extends TestCase
      */
     protected function getBiasedLongitude(float $longitude): float
     {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
+        [$min, $max] = $this->getDeltaExtremes($this->delta->toFloat(), $longitude);
         return self::$faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
     }
 
@@ -103,7 +104,7 @@ abstract class StrategyTestCase extends TestCase
      */
     protected function getAbsBiasedLongitude(float $longitude): float
     {
-        [$min, $max] = $this->getAbsDeltaExtremes($this->delta, $longitude);
+        [$min, $max] = $this->getAbsDeltaExtremes($this->delta->toFloat(), $longitude);
         // $min = $this->toAbsoluteAngularValue($min);
         // $max = $this->toAbsoluteAngularValue($max);
         if ($min > $max) {
@@ -122,16 +123,16 @@ abstract class StrategyTestCase extends TestCase
      */
     protected function getBiasedLongitudeExceptFor(float $longitude): float
     {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
+        [$min, $max] = $this->getDeltaExtremes($this->delta->toFloat(), $longitude);
         if ($max == 360) {
-            return $this->positiveRandomSexadecimal(0, $min + $this::SSN);
+            return $this->positiveRandomSexadecimal(0, NextFloat::after($min));
         }
         if ($min == 0) {
-            return $this->positiveRandomSexadecimal($max - $this::SSN);
+            return $this->positiveRandomSexadecimal(NextFloat::before($max));
         }
         return self::$faker->randomElement([
-            $this->positiveRandomSexadecimal(0, $min - $this::SSN),
-            $this->positiveRandomSexadecimal($max + $this::SSN)
+            $this->positiveRandomSexadecimal(0, NextFloat::before($min)),
+            $this->positiveRandomSexadecimal(NextFloat::after($max))
         ]);
     }
 
@@ -144,13 +145,13 @@ abstract class StrategyTestCase extends TestCase
     {
         $max_excluded = 0.00000000000001;
         $min_excluded = -$max_excluded;
-        [$min, $max] = $this->getAbsDeltaExtremes($this->delta, $longitude);
+        [$min, $max] = $this->getAbsDeltaExtremes($this->delta->toFloat(), $longitude);
         $min = $this->toAbsoluteAngularValue($min);
         $max = $this->toAbsoluteAngularValue($max);
         if ($min > $max) return self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $min + $min_excluded);
         else return self::$faker->randomElement([
             self::$faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded),
-            self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES)
+            self::$faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Degrees::MAX)
         ]);
     }
 
@@ -193,7 +194,7 @@ abstract class StrategyTestCase extends TestCase
     protected function getOppositeAbsoluteLongitude(Angle $longitude): Angle
     {
         $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
-        return Angle::absSum($longitude, $opposite);
+        return $longitude->absSum($opposite);
     }
 
     /**

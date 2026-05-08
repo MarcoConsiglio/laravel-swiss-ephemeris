@@ -9,37 +9,21 @@ class RelativeAngularDelta extends AngularDeltaValidator
 {
     protected function calcHigherExtreme(): void
     {
-        $this->higher_extreme = Angle::sum(
-            $this->center_value, 
-            $this->epsilon
-        );
+        $this->higher_extreme = $this->center_value->sum($this->epsilon);
     }
 
     protected function calcLowerExtreme(): void
     {
-        $this->lower_extreme = Angle::sum(
-            $this->center_value,
-            $this->epsilon->toggleDirection()
-        );
+        $this->lower_extreme = $this->center_value->sum($this->epsilon->toggleDirection());
     }
 
     protected function setMin(float &$value): void
     {
-        $lower_extreme = $this->lower_extreme->toSexadecimalDegrees()->value;
-        $min_angular_distance = AngularDistanceRange::min();
-        if ($lower_extreme->lt($min_angular_distance))
-            $value = AngularDistanceRange::min();
-        else
-            $value = $this->lower_extreme->toFloat();
+        $value = $this->lower_extreme->toFloat();
     }
 
     protected function setMax(float &$value): void
     {
-        $higher_extreme = $this->higher_extreme->toSexadecimalDegrees()->value;
-        $max_angular_distance = AngularDistanceRange::max();
-        if ($higher_extreme->gt($max_angular_distance))
-            $value = AngularDistanceRange::max();
-        else
-            $value = $this->higher_extreme->toFloat();
+        $value = $this->higher_extreme->toFloat();
     }
 }

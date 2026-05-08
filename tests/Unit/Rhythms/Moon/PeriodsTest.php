@@ -43,7 +43,7 @@ class PeriodsTest extends RhythmTestCase
     public function test_getters(): void
     {
         // Arrange
-        $synodic_rhythm = $this->getSynodicRhythm();
+        $synodic_rhythm = $this->getMoonSynodicRhythm();
         $periods = $synodic_rhythm->getPeriods();
 
         // Act
