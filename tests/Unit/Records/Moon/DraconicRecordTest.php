@@ -11,7 +11,7 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 
 #[CoversClass(DraconicRecord::class)]
 #[UsesClass(SwissEphemerisDateTime::class)]
@@ -42,7 +42,7 @@ class DraconicRecordTest extends TestCase
         $datetime = $this->getMockedSwissEphemerisDateTime();
         $moon_longitude = Angle::createFromValues(180);
         $north_node_longitude = Angle::createFromValues(180);
-        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
+        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
         $south_node_longitude = $north_node_longitude->absSum($opposite);
         $daily_speed = $this->createMock(DailySpeed::class);
         $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);
@@ -131,7 +131,7 @@ class DraconicRecordTest extends TestCase
         // Arrange
         $datetime = $this->getRandomSwissEphemerisDateTime();
         $moon_longitude = $this->randomLongitude();
-        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
+        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
         $north_node_longitude = $this->randomLongitude();
         $south_node_longitude = $north_node_longitude->absSum($opposite);
         $daily_speed = $this->getRandomMoonDailySpeed();

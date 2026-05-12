@@ -14,7 +14,7 @@ class RelativeAngularDelta extends AngularDeltaValidator
 
     protected function calcLowerExtreme(): void
     {
-        $this->lower_extreme = $this->center_value->sum($this->epsilon->toggleDirection());
+        $this->lower_extreme = $this->center_value->sum($this->epsilon->oppositeRotation());
     }
 
     protected function setMin(float &$value): void

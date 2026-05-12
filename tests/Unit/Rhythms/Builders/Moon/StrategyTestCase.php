@@ -9,7 +9,7 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase as TestCase;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 
 /**
  * Test case for Moon builder strategies.
@@ -193,7 +193,7 @@ abstract class StrategyTestCase extends TestCase
      */
     protected function getOppositeAbsoluteLongitude(Angle $longitude): Angle
     {
-        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
+        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
         return $longitude->absSum($opposite);
     }
 

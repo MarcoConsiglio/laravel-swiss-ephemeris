@@ -6,7 +6,7 @@ use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 
 /**
  * Represents a moment when the moon 
@@ -82,7 +82,7 @@ class DraconicRecord extends MovingObjectRecord
      */
     protected function oppositeLongitude(Angle $longitude): Angle
     {
-        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
+        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
         return $longitude->absSum($opposite);
     }
 
