@@ -15,7 +15,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon\RhythmTestCase;
 
 #[CoversClass(SynodicRhythm::class)]
 #[UsesClass(SynodicRhythmRecord::class)]

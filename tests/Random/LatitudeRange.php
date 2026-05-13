@@ -3,16 +3,23 @@ namespace MarcoConsiglio\Ephemeris\Tests\Random;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
+use Override;
 
 class LatitudeRange extends SexadecimalRange
 {
+    public const float MAX = 90.0;
+
+    public const float MIN = -self::MAX;
+
+    #[Override]
     public static function max(): float
     {
-        return NextFloat::before(90.0);
+        return self::MAX;
     }
 
+    #[Override]
     public static function min(): float
     {
-        return NextFloat::after(-90.0);
-    }   
+        return self::MIN;
+    }
 }

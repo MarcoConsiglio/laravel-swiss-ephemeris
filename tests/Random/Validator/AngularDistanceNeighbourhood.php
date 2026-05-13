@@ -1,11 +1,9 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Random\Validator;
 
-use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDelta as AngularDeltaValidator;
 
-class RelativeAngularDelta extends AngularDeltaValidator
+class AngularDistanceNeighbourhood extends AngularDeltaValidator
 {
     protected function calcHigherExtreme(): void
     {

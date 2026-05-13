@@ -21,17 +21,17 @@ class AngularDistance extends SexadecimalValidator
 
     protected function avoidTooHighValues(float &$min, float &$max): void
     {
-        if ($this->greaterThanOrEqual($min, AngularDistanceRange::max()))
+        if ($this->greaterThan($min, AngularDistanceRange::max()))
             $this->setMin($min);
-        if ($this->greaterThanOrEqual($max, AngularDistanceRange::max()))
+        if ($this->greaterThan($max, AngularDistanceRange::max()))
             $this->setMax($max);
     }
 
     protected function avoidTooLowValues(float &$min, float &$max): void
     {
-        if ($this->lessThanOrEqual($min, AngularDistanceRange::min()))
+        if ($this->lessThan($min, AngularDistanceRange::min()))
             $this->setMin($min);
-        if ($this->lessThanOrEqual($max, AngularDistanceRange::min()))
+        if ($this->lessThan($max, AngularDistanceRange::min()))
             $this->setMax($max);
     }
 

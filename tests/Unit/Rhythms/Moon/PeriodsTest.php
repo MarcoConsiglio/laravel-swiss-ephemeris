@@ -10,7 +10,7 @@ use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon\RhythmTestCase;
 
 #[TestDox("The Moon Periods collection")]
 #[CoversClass(Periods::class)]
@@ -43,7 +43,7 @@ class PeriodsTest extends RhythmTestCase
     public function test_getters(): void
     {
         // Arrange
-        $synodic_rhythm = $this->getMoonSynodicRhythm();
+        $synodic_rhythm = $this->getSynodicRhythm();
         $periods = $synodic_rhythm->getPeriods();
 
         // Act

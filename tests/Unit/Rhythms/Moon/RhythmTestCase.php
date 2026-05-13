@@ -8,6 +8,7 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase as GenericRhythmTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 
 class RhythmTestCase extends GenericRhythmTestCase
 {
@@ -20,22 +21,22 @@ class RhythmTestCase extends GenericRhythmTestCase
             new FromRecords([
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 1),
-                    Angle::createFromValues(0),
+                    Angle::createFromDecimal(0),
                     $this->getRandomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 8),
-                    Angle::createFromValues(90),
+                    Angle::createFromDecimal(90),
                     $this->getRandomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 15),
-                    Angle::createFromValues(180),
+                    Angle::createFromDecimal(180),
                     $this->getRandomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 22),
-                    Angle::createFromValues(90, direction: Direction::CLOCKWISE),
+                    Angle::createFromDecimal(-90),
                     $this->getRandomMoonDailySpeed()
                 )
             ]),

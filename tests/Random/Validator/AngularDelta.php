@@ -1,24 +1,23 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Random\Validator;
 
-use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 
 abstract class AngularDelta extends SexadecimalValidator
 {    
     protected Angle $epsilon;
 
-    protected Angle $higher_extreme;
+    protected AngleInterface $higher_extreme;
 
-    protected Angle $lower_extreme;
+    protected AngleInterface $lower_extreme;
 
     public function __construct(
-        protected Angle $center_value, 
+        protected AngleInterface $center_value, 
         protected Angle $delta
     ) {
-        if ($this->delta->isClockwise()) 
-            $this->delta = $this->delta->toggleDirection();
+        $this->delta = $this->delta->absolute();
         $this->calcDeltaExtremes();
     }
 
@@ -47,5 +46,22 @@ abstract class AngularDelta extends SexadecimalValidator
         $this->calcEpsilon();
         $this->calcHigherExtreme();
         $this->calcLowerExtreme();
+        $this->swapExtremes();
+    }
+
+    protected function swapExtremes(): void
+    {
+        if ($this->needToSwap($this->lower_extreme, $this->higher_extreme)) {
+            $temp = $this->lower_extreme;
+            $this->lower_extreme = $this->higher_extreme;
+            $this->higher_extreme = $temp;
+        }
+    }
+
+    protected function needToSwap(AngleInterface $alfa, AngleInterface $beta): bool
+    {
+        $alfa_value = $alfa->toSexadecimalDegrees()->value;
+        $beta_value = $beta->toSexadecimalDegrees()->value;
+        return $alfa_value->gt($beta_value);
     }
 }

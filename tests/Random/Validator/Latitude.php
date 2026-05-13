@@ -21,23 +21,23 @@ class Latitude extends SexadecimalValidator
 
     protected function avoidTooHighValues(float &$min, float &$max): void
     {
-        if ($this->greaterThan($min, LatitudeRange::max())) $this->setMin($min);
-        if ($this->greaterThan($max, LatitudeRange::max())) $this->setMax($max);
+        if ($this->greaterThan($min, LatitudeRange::MAX)) $this->setMin($min);
+        if ($this->greaterThan($max, LatitudeRange::MAX)) $this->setMax($max);
     }
 
     protected function avoidTooLowValues(float &$min, float &$max): void
     {
-        if ($this->lessThan($min, LatitudeRange::min())) $this->setMin($min);
-        if ($this->lessThan($max, LatitudeRange::min())) $this->setMax($max);
+        if ($this->lessThan($min, LatitudeRange::MIN)) $this->setMin($min);
+        if ($this->lessThan($max, LatitudeRange::MIN)) $this->setMax($max);
     }
 
     protected function setMin(float &$value): void
     {
-        $value = LatitudeRange::min();
+        $value = LatitudeRange::MIN;
     }
 
     protected function setMax(float &$value): void
     {
-        $value = LatitudeRange::max();
+        $value = LatitudeRange::MAX;
     }
 }
