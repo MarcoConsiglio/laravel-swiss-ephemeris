@@ -59,7 +59,7 @@ class ApogeeRecordTest extends TestCase
         $moon_longitude = $this->getMocked(Angle::class);
         /** @var Angle&MockObject $apogee_longitude */
         $apogee_longitude= $this->getMocked(Angle::class);
-        $moon_daily_speed = $this->getRandomMoonDailySpeed();
+        $moon_daily_speed = $this->randomMoonDailySpeed();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
 
         // Act & Assert
@@ -76,10 +76,10 @@ class ApogeeRecordTest extends TestCase
     public function test_casting_to_string(): void
     {
         // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $timestamp = $this->randomSwissEphemerisDateTime();
         $moon_longitude = $this->randomLongitude();
         $apogee_longitude = $this->randomLongitude();
-        $moon_daily_speed = $this->getRandomMoonDailySpeed();
+        $moon_daily_speed = $this->randomMoonDailySpeed();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();
         $moon_longitude = $moon_longitude->toSexadecimalDegrees();

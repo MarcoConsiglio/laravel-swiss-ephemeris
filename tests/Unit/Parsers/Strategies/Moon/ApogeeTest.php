@@ -14,9 +14,9 @@ class ApogeeTest extends TestCase
     public function test_parse_moon_data(): void
     {
         // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
+        $timestamp = $this->randomSwissEphemerisDateTime()->toGregorianTT();
         $moon_longitude = $this->randomLongitude()->toSexadecimalDegrees()->value;
-        $daily_speed = $this->getRandomMoonDailySpeed()->toSexadecimalDegrees()->value;
+        $daily_speed = $this->randomMoonDailySpeed()->toSexadecimalDegrees()->value;
         $text = "Moon_       {$timestamp}_  {$moon_longitude}_  {$daily_speed}";
         $parser = new Apogee($text);
         
@@ -34,9 +34,9 @@ class ApogeeTest extends TestCase
     public function test_parse_apogee_data(): void
     {
         // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime()->toGregorianTT();
+        $timestamp = $this->randomSwissEphemerisDateTime()->toGregorianTT();
         $moon_longitude = $this->randomLongitude()->toSexadecimalDegrees()->value;
-        $daily_speed = $this->getRandomMoonDailySpeed()->toSexadecimalDegrees()->value;
+        $daily_speed = $this->randomMoonDailySpeed()->toSexadecimalDegrees()->value;
         $text = "intp. Apogee     _  {$timestamp}_  {$moon_longitude}_  $daily_speed";
         $parser = new Apogee($text);
         

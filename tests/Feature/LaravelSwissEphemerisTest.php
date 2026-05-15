@@ -27,7 +27,7 @@ class LaravelSwissEphemerisTest extends TestCase
     public function test_moon_synodic_rhythm(): void
     {
         // Act
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->getRandomSwissEphemerisDateTime());
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->randomSwissEphemerisDateTime());
 
         // Assert
         $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm, 
@@ -48,7 +48,7 @@ class LaravelSwissEphemerisTest extends TestCase
     public function test_moon_anomalistic_rhythm(): void
     {
         // Act
-        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm($this->getRandomSwissEphemerisDateTime());
+        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm($this->randomSwissEphemerisDateTime());
 
         // Assert
         $this->assertInstanceOf(AnomalisticRhythm::class, $anomalistic_rhythm,
@@ -63,7 +63,7 @@ class LaravelSwissEphemerisTest extends TestCase
     public function test_moon_draconic_rhythm(): void
     {
         // Act
-        $draconic_rhythm = $this->ephemeris->getMoonDraconicRhythm($this->getRandomSwissEphemerisDateTime());
+        $draconic_rhythm = $this->ephemeris->getMoonDraconicRhythm($this->randomSwissEphemerisDateTime());
 
         // Assert
         $this->assertInstanceOf(DraconicRhythm::class, $draconic_rhythm,

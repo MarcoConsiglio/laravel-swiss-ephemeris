@@ -87,7 +87,7 @@ TEXT,
      */
     protected function getRandomMoonPeriodInterval(): array
     {
-        $start = $this->getRandomSwissEphemerisDateTime();
+        $start = $this->randomSwissEphemerisDateTime();
         $end = $start->clone()->addWeeks(2);
         return [$start, $end];
     }

@@ -139,8 +139,8 @@ class FromArrayTest extends FromArrayTestCase
      */
     protected function getRawData(): array
     {
-        $starting_date = $this->getRandomSwissEphemerisDateTime();
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $starting_date = $this->randomSwissEphemerisDateTime();
+        $daily_speed = $this->randomMoonDailySpeed();
         $starting_angle = Angle::createFromDecimal(-3);
         $daily_step = $daily_speed->toFloat() / 24;
         $data = [];

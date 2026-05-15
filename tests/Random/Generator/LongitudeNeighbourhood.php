@@ -13,6 +13,6 @@ class LongitudeNeighbourhood extends LongitudeGenerator
         LongitudeNeighbourhoodValidator $validator, 
         LongitudeRange $range
     ) {
-        return parent::__construct($generator, $validator, $range);
+        parent::__construct($generator, $validator, $range);
     }
 }

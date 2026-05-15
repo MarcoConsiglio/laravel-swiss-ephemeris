@@ -27,9 +27,9 @@ class FromRecordsTest extends BuilderTestCase
         $record_class = SynodicRhythmRecord::class;
         for ($i=0; $i < 2; $i++) { 
             $records[$i] = new SynodicRhythmRecord(
-                $this->getRandomSwissEphemerisDateTime(),
+                $this->randomSwissEphemerisDateTime(),
                 $this->randomAngularDistance(),
-                $this->getRandomMoonDailySpeed()
+                $this->randomMoonDailySpeed()
             );
         }
         

@@ -3,9 +3,9 @@ namespace MarcoConsiglio\Ephemeris\Tests\Random\Validator;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
-use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\AngularDistance as AngularDistanceValidator;
 
-abstract class AngularDelta extends SexadecimalValidator
+abstract class AngularDelta extends AngularDistanceValidator
 {    
     protected Angle $epsilon;
 

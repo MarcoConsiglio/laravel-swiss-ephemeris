@@ -32,22 +32,22 @@ class DraconicRhythmTest extends RhythmTestCase
     {
         // Arrange
         $record_1 = new DraconicRecord(
-            $this->getRandomSwissEphemerisDateTime(), 
+            $this->randomSwissEphemerisDateTime(), 
             $this->randomAngle(), 
             $this->randomAngle(), 
-            $this->getRandomMoonDailySpeed()
+            $this->randomMoonDailySpeed()
         );
         $record_2 = new DraconicRecord(
-            $this->getRandomSwissEphemerisDateTime(), 
+            $this->randomSwissEphemerisDateTime(), 
             $this->randomAngle(), 
             $this->randomAngle(), 
-            $this->getRandomMoonDailySpeed()
+            $this->randomMoonDailySpeed()
         );
         $record_3 = new DraconicRecord(
-            $this->getRandomSwissEphemerisDateTime(), 
+            $this->randomSwissEphemerisDateTime(), 
             $this->randomAngle(), 
             $this->randomAngle(), 
-            $this->getRandomMoonDailySpeed()
+            $this->randomMoonDailySpeed()
         );
         /** @var FromArray&MockObject $builder */
         $builder = $this->getMocked(FromArray::class);

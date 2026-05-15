@@ -121,9 +121,9 @@ class FromSynodicRhythmTest extends BuilderTestCase
         if ($angular_distance > 180) $angular_distance = 180;
         if ($angular_distance < -180) $angular_distance = -180;
         return new SynodicRhythmRecord(
-            $this->getRandomSwissEphemerisDateTime(),
+            $this->randomSwissEphemerisDateTime(),
             Angle::createFromDecimal($angular_distance),
-            $this->getRandomMoonDailySpeed()
+            $this->randomMoonDailySpeed()
         );
     }
 }

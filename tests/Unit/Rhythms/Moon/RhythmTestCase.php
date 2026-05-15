@@ -22,22 +22,22 @@ class RhythmTestCase extends GenericRhythmTestCase
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 1),
                     Angle::createFromDecimal(0),
-                    $this->getRandomMoonDailySpeed()
+                    $this->randomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 8),
                     Angle::createFromDecimal(90),
-                    $this->getRandomMoonDailySpeed()
+                    $this->randomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 15),
                     Angle::createFromDecimal(180),
-                    $this->getRandomMoonDailySpeed()
+                    $this->randomMoonDailySpeed()
                 ),
                 new SynodicRhythmRecord(
                     SwissEphemerisDateTime::create(2000, 1, 22),
                     Angle::createFromDecimal(-90),
-                    $this->getRandomMoonDailySpeed()
+                    $this->randomMoonDailySpeed()
                 )
             ]),
             $this->sampling_rate

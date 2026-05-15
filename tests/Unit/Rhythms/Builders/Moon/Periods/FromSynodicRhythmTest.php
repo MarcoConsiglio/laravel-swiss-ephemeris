@@ -88,9 +88,9 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $stub = $this->getStubBuilder(SynodicRhythmRecord::class);
         $stub->enableOriginalConstructor();
         $stub->setConstructorArgs([
-            $this->getRandomSwissEphemerisDateTime(), 
+            $this->randomSwissEphemerisDateTime(), 
             $this->createStub(Angle::class), 
-            $this->getRandomMoonDailySpeed()
+            $this->randomMoonDailySpeed()
         ]);
         return $stub->getStub();
     }

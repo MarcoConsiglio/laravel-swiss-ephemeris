@@ -24,7 +24,7 @@ class DraconicRecordTest extends TestCase
     public function test_timestamp_property(): void
     {
         // Arrange
-        $datetime = $this->getRandomSwissEphemerisDateTime();
+        $datetime = $this->randomSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->getMocked(Angle::class);
         $daily_speed = $this->createMock(DailySpeed::class);
@@ -61,7 +61,7 @@ class DraconicRecordTest extends TestCase
         $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->createMock(Angle::class);
-        $moon_daily_speed = $this->getRandomMoonDailySpeed();
+        $moon_daily_speed = $this->randomMoonDailySpeed();
         $record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
 
         // Act & Assert
@@ -76,7 +76,7 @@ class DraconicRecordTest extends TestCase
         $datetime = $this->getMockedSwissEphemerisDateTime();
         /** @var Angle&MockObject $angle */
         $angle = $this->createMock(Angle::class);
-        $moon_daily_speed = $this->getRandomMoonDailySpeed();
+        $moon_daily_speed = $this->randomMoonDailySpeed();
         $north_record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
         $south_record = new DraconicRecord($datetime, $angle, $angle, $moon_daily_speed);
         $north_record->cardinality = Cardinality::North;
@@ -129,12 +129,12 @@ class DraconicRecordTest extends TestCase
     public function test_casting_to_string(): void
     {
         // Arrange
-        $datetime = $this->getRandomSwissEphemerisDateTime();
+        $datetime = $this->randomSwissEphemerisDateTime();
         $moon_longitude = $this->randomLongitude();
         $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
         $north_node_longitude = $this->randomLongitude();
         $south_node_longitude = $north_node_longitude->absSum($opposite);
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $daily_speed = $this->randomMoonDailySpeed();
         $cardinality = self::$faker->randomElement(Cardinality::cases());
         $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);
         $record->cardinality = $cardinality;
@@ -188,7 +188,7 @@ TEXT, (string) $record
      */
     protected function getComparisonDataset(): array
     {
-        $d1 = $this->getRandomSwissEphemerisDateTime();
+        $d1 = $this->randomSwissEphemerisDateTime();
         $d2 = $d1->clone()->addYear();
         $m1 = Angle::createFromValues(180);
         $m2 = Angle::createFromValues(90);

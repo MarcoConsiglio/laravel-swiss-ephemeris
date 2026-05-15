@@ -3,21 +3,20 @@ namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
-use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistance as AngularDistanceGenerator;
-use MarcoConsiglio\Ephemeris\Tests\Random\Generator\NeighbourhoodAngularDistance as NeighbourhoodAngularDistanceGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistanceNeighbourhood as AngularDistanceNeighbourhoodGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistanceOutsideNeighbourhood as AngularDistanceOutsideNeighbourhoodGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\Latitude as LatitudeGenerator;
-use MarcoConsiglio\Ephemeris\Tests\Random\Generator\OutsideNeighbourhoodAngularDistance as OutsideNeighbourhoodAngularDistanceGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\SwissEphemerisDate as SwissEphemerisDateGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\LatitudeRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\SwissEphemerisDateRange;
-use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistance as AngularDistanceValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistanceNeighbourhood as AngularDistanceNeighbourhoodValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistanceOutsideNeighbourhood as AngularDistanceOutsideNeighbourhoodValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\Latitude as LatitudeValidator;
-use MarcoConsiglio\Ephemeris\Tests\Random\Validator\RelativeAngularDelta as RelativeAngularDeltaValidator;
-use MarcoConsiglio\Ephemeris\Tests\Random\Validator\RelativeOutsideAngularDelta as RelativeOutsideAngularDeltaValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\SwissEphemerisDate as SwissEphemerisDateValidator;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 
@@ -32,25 +31,6 @@ trait RandomData
      * angular ephemeris value and discard others. 
      */
     protected Angle $delta;
-    
-    /**
-     * Return a random angular distance.
-     *
-     * The angular distance is the angle difference between
-     * two stellar objects. Minimum value: -180°. Maximum
-     * value: +180°.
-     */
-    protected function randomAngularDistance(
-        float $min = -180.0, 
-        float $max = 180.0, 
-        int $precision = PHP_FLOAT_DIG
-    ): Angle {
-        return new AngularDistanceGenerator(
-            self::$faker,
-            new AngularDistanceValidator,
-            new AngularDistanceRange($min, $max)
-        )->generate($precision);
-    }
 
     /**
      * Generate a random speed between $min and $max
@@ -59,7 +39,7 @@ trait RandomData
      * @param float $min The slowest speed limit.
      * @param float $max The fastes speed limit.
      */
-    protected function getRandomSpeed(float $min, float $max): float
+    protected function randomSpeed(float $min, float $max): float
     {
         return self::$faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
     }
@@ -68,16 +48,16 @@ trait RandomData
      * Return a random daily speed
      *
      */
-    protected function getRandomMoonDailySpeed(): DailySpeed
+    protected function randomMoonDailySpeed(): DailySpeed
     {
-        return DailySpeed::createFromDecimal($this->getRandomSpeed(10, 14));
+        return DailySpeed::createFromDecimal($this->randomSpeed(10, 14));
     }
 
     /**
      * Get a random sampling rate expressed in minutes
      * per each step of the ephemeris response.
      */
-    protected function getRandomSamplingRate(): int
+    protected function randomSamplingRate(): int
     {
         return $this->positiveRandomInteger(1, 1440);
     }
@@ -88,7 +68,7 @@ trait RandomData
      * @param int $min The smallest year of the randomly generated date.
      * @param int $max The largest year of the randomly generated date.
      */
-    protected function getRandomSwissEphemerisDateTime(int $min = 1800, int $max = 2399): SwissEphemerisDateTime
+    protected function randomSwissEphemerisDateTime(int $min = 1800, int $max = 2399): SwissEphemerisDateTime
     {
         return new SwissEphemerisDateGenerator(
             self::$faker,
@@ -125,11 +105,13 @@ trait RandomData
     /**
      * Return an angular distance within a delta error neighbourhood.
      */
-    protected function randomErroredAngularDistance(float $center_value, int $precision = PHP_FLOAT_DIG): Angle
-    {
-        return new NeighbourhoodAngularDistanceGenerator(
+    protected function inaccurateRandomAngularDistance(
+        float $center_value, 
+        int $precision = PHP_FLOAT_DIG
+    ): AngularDistance {
+        return new AngularDistanceNeighbourhoodGenerator(
             self::$faker,
-            new RelativeAngularDeltaValidator(
+            new AngularDistanceNeighbourhoodValidator(
                 Angle::createFromDecimal($center_value),
                 $this->delta
             ),
@@ -140,13 +122,13 @@ trait RandomData
     /**
      * Return an angular distance outside a delta error neighbourhood.
      */
-    protected function randomErroredAngularDistanceExceptFor(
+    protected function inaccurateRandomAngularDistanceExceptFor(
         float $excluded_center_value, 
         int $precision = PHP_FLOAT_DIG
-    ): Angle {
-        return new OutsideNeighbourhoodAngularDistanceGenerator(
+    ): AngularDistance {
+        return new AngularDistanceOutsideNeighbourhoodGenerator(
             self::$faker,
-            new RelativeOutsideAngularDeltaValidator(
+            new AngularDistanceOutsideNeighbourhoodValidator(
                 Angle::createFromDecimal($excluded_center_value),
                 $this->delta
             ),

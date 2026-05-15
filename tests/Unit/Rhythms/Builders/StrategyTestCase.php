@@ -75,7 +75,7 @@ abstract class StrategyTestCase extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->date = $this->getRandomSwissEphemerisDateTime();
+        $this->date = $this->randomSwissEphemerisDateTime();
         $this->strategy_basename = class_basename($this->tested_class);
     }
 

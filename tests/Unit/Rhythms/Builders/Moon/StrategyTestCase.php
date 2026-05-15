@@ -76,7 +76,7 @@ abstract class StrategyTestCase extends TestCase
     {
         parent::setUp();
         // Fake daily speed of the Moon.
-        $this->daily_speed = $this->getRandomMoonDailySpeed();
+        $this->daily_speed = $this->randomMoonDailySpeed();
         $this->sampling_rate = $this->getRandomSamplingRate();
         $this->setDelta(
             $this->getDelta(

@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Random\Validator;
 
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase as UnitTestCase;
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 

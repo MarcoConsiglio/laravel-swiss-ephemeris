@@ -1,9 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Random\Validator;
 
-use MarcoConsiglio\Ephemeris\Tests\Random\LongitudeRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDelta as AngularDeltaValidator;
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 class LongitudeNeighbourhood extends AngularDeltaValidator
 {
     protected function calcLowerExtreme(): void

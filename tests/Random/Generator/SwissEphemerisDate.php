@@ -20,6 +20,7 @@ class SwissEphemerisDate extends RandomGenerator
 
     public function generate(): SwissEphemerisDateTime
     {
+        $this->validate();
         $min_year = "{$this->range->start}-01-01";
         $max_year = "{$this->range->end}-12-31";
         $random_date = new Carbon($this->generator->dateTimeBetween($min_year, $max_year));

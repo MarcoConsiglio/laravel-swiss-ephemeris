@@ -34,7 +34,7 @@ class FromCollectionsTest extends BuilderTestCase
         $d2 = $d1->copy()->addMonth();
         $d3 = $d2->copy()->addMonth();
         $d4 = $d3->copy()->addMonth();
-        $s = $this->getRandomMoonDailySpeed();
+        $s = $this->randomMoonDailySpeed();
         /** @var Angle&MockObject $a */
         $a = $this->getMocked(Angle::class);
         $apogee_1 =  new ApogeeRecord( $d1, $a, $a, $s);

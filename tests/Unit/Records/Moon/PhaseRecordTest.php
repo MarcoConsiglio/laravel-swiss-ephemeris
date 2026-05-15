@@ -30,7 +30,7 @@ class PhaseRecordTest extends TestCase
     {
         // Arrange
         $moon_phase_type = $this->getRandomMoonPhase();
-        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $timestamp = $this->randomSwissEphemerisDateTime();
         $moon_phase_record = new PhaseRecord($timestamp, $moon_phase_type);
 
         // Act & Assert
@@ -41,7 +41,7 @@ class PhaseRecordTest extends TestCase
     public function test_casting_to_string(): void
     {
         // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $timestamp = $this->randomSwissEphemerisDateTime();
         $moon_phase_type = $this->getRandomMoonPhase();
         $record = new PhaseRecord($timestamp, $moon_phase_type);
         $timestamp = $timestamp->toDateTimeString();

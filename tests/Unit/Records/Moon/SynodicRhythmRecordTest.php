@@ -9,7 +9,7 @@ use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
@@ -24,9 +24,9 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_timestamp_property(): void
     {
         // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $timestamp = $this->randomSwissEphemerisDateTime();
         $angular_distance = $this->randomAngularDistance();
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $daily_speed = $this->randomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
@@ -39,7 +39,7 @@ class SynodicRhythmRecordTest extends TestCase
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->randomAngularDistance();
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $daily_speed = $this->randomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
@@ -53,7 +53,7 @@ class SynodicRhythmRecordTest extends TestCase
         $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->randomAngularDistance();
         $expected_percentage = round($angular_distance->toFloat() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $daily_speed = $this->randomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
@@ -66,7 +66,7 @@ class SynodicRhythmRecordTest extends TestCase
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->randomAngularDistance();
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $daily_speed = $this->randomMoonDailySpeed();
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
@@ -79,7 +79,7 @@ class SynodicRhythmRecordTest extends TestCase
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->randomAngle(0.0, AngularDistanceRange::max());
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $daily_speed = $this->randomMoonDailySpeed();
         $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act
@@ -98,7 +98,7 @@ class SynodicRhythmRecordTest extends TestCase
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
         $angular_distance = $this->randomAngle(AngularDistanceRange::min(), NextFloat::before(0.0));
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $daily_speed = $this->randomMoonDailySpeed();
         $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act
@@ -124,12 +124,12 @@ class SynodicRhythmRecordTest extends TestCase
         $record_A = new SynodicRhythmRecord(
             $this->getMockedSwissEphemerisDateTime(), 
             $this->randomAngle(AngularDistanceRange::min(), NextFloat::before(0.0)),
-            $this->getRandomMoonDailySpeed()
+            $this->randomMoonDailySpeed()
         );
         $record_B = new SynodicRhythmRecord(
             $this->getMockedSwissEphemerisDateTime(),
             $this->randomAngle(0.0, AngularDistanceRange::max()),
-            $this->getRandomMoonDailySpeed()
+            $this->randomMoonDailySpeed()
         );
 
         // Act
@@ -145,9 +145,9 @@ class SynodicRhythmRecordTest extends TestCase
     public function test_casting_to_string(): void
     {
         // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $timestamp = $this->randomSwissEphemerisDateTime();
         $angular_distance = $this->randomAngularDistance();
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $daily_speed = $this->randomMoonDailySpeed();
         $percentage = round($angular_distance->toFloat() / 180 * 100, 0, RoundingMode::HalfTowardsZero);
         if ($percentage == -0.0) $percentage = 0;
         $record = new SynodicRhythmRecord(
@@ -182,7 +182,7 @@ TEXT,
      */
     protected function getComparisonDataset(): array
     {
-        $d1 = $this->getRandomSwissEphemerisDateTime();
+        $d1 = $this->randomSwissEphemerisDateTime();
         $d2 = $d1->clone()->addYear();
         $a1 = Angle::createFromValues(180);
         $a2 = Angle::createFromValues(90);
