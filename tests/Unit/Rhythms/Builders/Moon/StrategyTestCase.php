@@ -77,7 +77,7 @@ abstract class StrategyTestCase extends TestCase
         parent::setUp();
         // Fake daily speed of the Moon.
         $this->daily_speed = $this->randomMoonDailySpeed();
-        $this->sampling_rate = $this->getRandomSamplingRate();
+        $this->sampling_rate = $this->randomSamplingRate();
         $this->setDelta(
             $this->getDelta(
                 $this->daily_speed->toFloat(), 
@@ -88,8 +88,6 @@ abstract class StrategyTestCase extends TestCase
     
     /**
      * Get a random unprecise longitude.
-     *
-     * @param float $delta
      */
     protected function getBiasedLongitude(float $longitude): float
     {
@@ -99,8 +97,6 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Get a random biased longitude.
-     *
-     * @param float $delta
      */
     protected function getAbsBiasedLongitude(float $longitude): float
     {
@@ -118,8 +114,6 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Get a random biased longitude except for $longitude.
-     *
-     * @param float $delta
      */
     protected function getBiasedLongitudeExceptFor(float $longitude): float
     {
@@ -138,8 +132,6 @@ abstract class StrategyTestCase extends TestCase
 
     /**
      * Get a random biased absolute longitude except for $longitude.
-     *
-     * @param float $delta
      */
     protected function getAbsBiasedLongitudeExceptFor(float $longitude): float
     {

@@ -14,7 +14,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            $this->randomErroredAngularDistance(0),
+            $this->inaccurateRandomAngularDistance(0),
             $this->daily_speed
         );
     }
@@ -26,7 +26,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            $this->randomErroredAngularDistance(90),
+            $this->inaccurateRandomAngularDistance(90),
             $this->daily_speed
         );
     }
@@ -42,13 +42,13 @@ class TestCase extends StrategyTestCase
         if ($positive) {
             return new SynodicRhythmRecord(
                 $this->date, 
-                $this->randomErroredAngularDistance(180),
+                $this->inaccurateRandomAngularDistance(180),
                 $this->daily_speed
             );
         } else
         return new SynodicRhythmRecord(
             $this->date, 
-            $this->randomErroredAngularDistance(-180),
+            $this->inaccurateRandomAngularDistance(-180),
             $this->daily_speed
         );
     }
@@ -60,7 +60,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            $this->randomErroredAngularDistance(-90),
+            $this->inaccurateRandomAngularDistance(-90),
             $this->daily_speed
         );
     }
@@ -72,7 +72,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            $this->randomErroredAngularDistanceExceptFor(0),
+            $this->inaccurateRandomAngularDistanceExceptFor(0),
             $this->daily_speed
         );
     }
@@ -84,7 +84,7 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            $this->randomErroredAngularDistanceExceptFor(90),
+            $this->inaccurateRandomAngularDistanceExceptFor(90),
             $this->daily_speed
         );
     }
@@ -97,7 +97,7 @@ class TestCase extends StrategyTestCase
         $angle_value = self::$faker->randomElement([-180, +180]);
         return new SynodicRhythmRecord(
             $this->date, 
-            $this->randomErroredAngularDistanceExceptFor($angle_value),
+            $this->inaccurateRandomAngularDistanceExceptFor($angle_value),
             $this->daily_speed
         );
     }
@@ -109,15 +109,13 @@ class TestCase extends StrategyTestCase
     {
         return new SynodicRhythmRecord(
             $this->date, 
-            $this->randomErroredAngularDistanceExceptFor(-90),
+            $this->inaccurateRandomAngularDistanceExceptFor(-90),
             $this->daily_speed
         );
     }
 
     /**
      * Construct the strategy to test.
-     *
-     * @param string $strategy
      */
     protected function makeStrategy(SynodicRhythmRecord $record): BuilderStrategy
     {
