@@ -79,18 +79,18 @@ class PhaseTest extends TestCase
     #[TestDox("maps a PhaseStrategy to its Phase constant.")]
     public function test_map_phase_strategy_to_its_phase_constant(): void
     {
-        $this->testPhaseConstantMapToPhaseStrategy(Phase::NewMoon, NewMoon::class);
+        $this->testPhaseConstantMapToPhaseStrategy(Phase::NewMoon,      NewMoon::class);
         $this->testPhaseConstantMapToPhaseStrategy(Phase::FirstQuarter, FirstQuarter::class);
-        $this->testPhaseConstantMapToPhaseStrategy(Phase::FullMoon, FullMoon::class);
+        $this->testPhaseConstantMapToPhaseStrategy(Phase::FullMoon,     FullMoon::class);
         $this->testPhaseConstantMapToPhaseStrategy(Phase::ThirdQuarter, ThirdQuarter::class);
     }
 
     #[TestDox("maps a Phase constant to its PhaseStrategy.")]
     public function test_map_phase_constant_to_its_phase_strategy(): void
     {
-        $this->testPhaseStrategyMapToPhaseConstant(NewMoon::class, Phase::NewMoon);  
+        $this->testPhaseStrategyMapToPhaseConstant(NewMoon::class,      Phase::NewMoon);  
         $this->testPhaseStrategyMapToPhaseConstant(FirstQuarter::class, Phase::FirstQuarter);  
-        $this->testPhaseStrategyMapToPhaseConstant(FullMoon::class, Phase::FullMoon);  
+        $this->testPhaseStrategyMapToPhaseConstant(FullMoon::class,     Phase::FullMoon);  
         $this->testPhaseStrategyMapToPhaseConstant(ThirdQuarter::class, Phase::ThirdQuarter);  
     }
 
