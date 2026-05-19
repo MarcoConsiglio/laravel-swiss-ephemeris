@@ -4,7 +4,9 @@ namespace MarcoConsiglio\Ephemeris\Enums\Moon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FirstQuarter as FirstQuarterStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FullMoon as FullMoonStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\NewMoon as NewMoonStrategy;
+use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\PhaseStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\ThirdQuarter as ThirdQuarterStrategy;
+use UnhandledMatchError;
 
 /**
  * Moon phases definitions.
@@ -37,21 +39,16 @@ enum Phase
      */
     public static function getCorrespondingPhase(string $strategy_class): ?Phase
     {
-        switch ($strategy_class) {
-            case NewMoonStrategy::class:
-                return self::NewMoon;
-                break; // @codeCoverageIgnore
-            case FirstQuarterStrategy::class:
-                return self::FirstQuarter;
-                break; // @codeCoverageIgnore
-            case FullMoonStrategy::class:
-                return self::FullMoon;
-                break; // @codeCoverageIgnore
-            case ThirdQuarterStrategy::class:
-                return self::ThirdQuarter;
-                break; // @codeCoverageIgnore
+        try {
+            return match ($strategy_class) {
+                NewMoonStrategy::class => self::NewMoon,
+                FirstQuarterStrategy::class => self::FirstQuarter,
+                FullMoonStrategy::class => self::FullMoon,
+                ThirdQuarterStrategy::class => self::ThirdQuarter
+            };
+        } catch (UnhandledMatchError $error) {
+            return null;
         }
-        return null;
     }
 
     /**
