@@ -3,7 +3,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\Period;
@@ -14,17 +13,9 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon\RhythmTestCase;
 
 #[CoversClass(SynodicRhythm::class)]
-#[UsesClass(SynodicRhythmRecord::class)]
-#[UsesClass(Period::class)]
-#[UsesClass(Periods::class)]
-#[UsesClass(Phase::class)]
-#[UsesClass(PhaseRecord::class)]
-#[UsesClass(Phases::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon SynodicRhythm collection")]
 class SynodicRhythmTest extends RhythmTestCase
 {

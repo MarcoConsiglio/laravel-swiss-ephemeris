@@ -3,20 +3,18 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit;
 
 use Illuminate\Config\Repository;
 use InvalidArgumentException;
-use MarcoConsiglio\Goniometry\Angle;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithRandomData;
+use MarcoConsiglio\Ephemeris\Tests\Traits\CustomAssertions;
+use MarcoConsiglio\Ephemeris\Tests\Traits\RandomData;
 
 /**
  * Unit custom TestCase.
  */
 abstract class TestCase extends TestbenchTestCase
 {
-    use WithCustomAssertions, WithRandomData, WithFailureMessage;
+    use CustomAssertions, RandomData;
 
     /**
      * The sampling rate of the ephemeris expressed 
@@ -25,17 +23,6 @@ abstract class TestCase extends TestbenchTestCase
      * @var integer
      */
     protected int $sampling_rate;
-
-    /**
-     * The angular neighborhood within which to accept a record.
-     * 
-     * Represents the maximum error accepted to select some
-     * angular ephemeris value and discard others.  
-     *
-     * @var float
-     */
-    protected float $delta;
-
 
     /**
      * Setup the test environment.
@@ -103,15 +90,4 @@ abstract class TestCase extends TestbenchTestCase
     {
         return $this->createMock(SwissEphemerisDateTime::class);
     }
-
-    /**
-     * Create a specific Angle with $decimal_degrees.
-     */
-    protected function getSpecificAngle(float $decimal_degrees): Angle
-    {
-        if ($decimal_degrees > Angle::MAX_DEGREES) $decimal_degrees = Angle::MAX_DEGREES;
-        if ($decimal_degrees < -Angle::MAX_DEGREES) $decimal_degrees = -Angle::MAX_DEGREES;
-        return Angle::createFromDecimal($decimal_degrees);
-    }
-
 }

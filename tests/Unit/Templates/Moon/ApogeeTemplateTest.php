@@ -6,7 +6,6 @@ use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -14,8 +13,6 @@ use MarcoConsiglio\Ephemeris\Templates\Moon\ApogeeTemplate;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Templates\TemplateTestCase;
 
 #[CoversClass(ApogeeTemplate::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(Apogees::class)]
 #[TestDox("The Moon ApogeeTemplate")]
 class ApogeeTemplateTest extends TemplateTestCase
 {

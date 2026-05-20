@@ -4,40 +4,31 @@ namespace MarcoConsiglio\Ephemeris\Tests\Feature;;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Apogees;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm as MoonSynodicRhythm;
 
 #[TestDox("The Laravel Swiss Ephemeris")]
 #[CoversClass(LaravelSwissEphemeris::class)]
-#[UsesClass(SynodicRhythm::class)]
-#[UsesClass(SynodicRhythmRecord::class)]
-#[UsesClass(AnomalisticRhythm::class)]
-#[UsesClass(Apogees::class)]
-#[UsesClass(Perigees::class)]
-#[UsesClass(DraconicRhythm::class)]
 class LaravelSwissEphemerisTest extends TestCase
 {
     #[TestDox("can query the Moon synodic rhythm.")]
     public function test_moon_synodic_rhythm(): void
     {
         // Act
-        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->getRandomSwissEphemerisDateTime());
+        $synodic_rhythm = $this->ephemeris->getMoonSynodicRhythm($this->randomSwissEphemerisDateTime());
 
         // Assert
-        $this->assertInstanceOf(SynodicRhythm::class, $synodic_rhythm, 
+        $this->assertInstanceOf(MoonSynodicRhythm::class, $synodic_rhythm, 
             $this->methodMustReturn(
                 LaravelSwissEphemeris::class, 
                 "getMoonSynodicRhythm", 
-                SynodicRhythm::class
+                MoonSynodicRhythm::class
         ));
         $this->assertContainsOnlyInstancesOf(SynodicRhythmRecord::class, $synodic_rhythm, 
-            $this->iterableMustContains(SynodicRhythm::class, SynodicRhythmRecord::class)    
+            $this->iterableMustContains(MoonSynodicRhythm::class, SynodicRhythmRecord::class)    
         );
         $this->assertCount(720, $synodic_rhythm, 
             "In this test, the SynodicRhythm must contain 720 SynodicRhythmRecord instances."
@@ -48,7 +39,7 @@ class LaravelSwissEphemerisTest extends TestCase
     public function test_moon_anomalistic_rhythm(): void
     {
         // Act
-        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm($this->getRandomSwissEphemerisDateTime());
+        $anomalistic_rhythm = $this->ephemeris->getMoonAnomalisticRhythm($this->randomSwissEphemerisDateTime());
 
         // Assert
         $this->assertInstanceOf(AnomalisticRhythm::class, $anomalistic_rhythm,
@@ -63,7 +54,7 @@ class LaravelSwissEphemerisTest extends TestCase
     public function test_moon_draconic_rhythm(): void
     {
         // Act
-        $draconic_rhythm = $this->ephemeris->getMoonDraconicRhythm($this->getRandomSwissEphemerisDateTime());
+        $draconic_rhythm = $this->ephemeris->getMoonDraconicRhythm($this->randomSwissEphemerisDateTime());
 
         // Assert
         $this->assertInstanceOf(DraconicRhythm::class, $draconic_rhythm,

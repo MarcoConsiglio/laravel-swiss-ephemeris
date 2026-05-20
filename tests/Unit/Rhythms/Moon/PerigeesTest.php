@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\Perigees\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Perigees;
@@ -12,8 +11,6 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 
 #[TestDox("The Moon Perigees collection")]
 #[CoversClass(Perigees::class)]
-#[UsesClass(FromArray::class)]
-#[UsesClass(PerigeeRecord::class)]
 class PerigeesTest extends RhythmTestCase
 {
     #[TestDox("is a collection of PerigeeRecord instances.")]

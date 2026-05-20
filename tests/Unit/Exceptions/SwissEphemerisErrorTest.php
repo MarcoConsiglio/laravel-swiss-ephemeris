@@ -14,8 +14,8 @@ class SwissEphemerisErrorTest extends TestCase
     public function test_multiple_errors(): void
     {
         // Arrange
-        $error_message_A = $this->faker->sentence;
-        $error_message_B = $this->faker->sentence;
+        $error_message_A = self::$faker->sentence;
+        $error_message_B = self::$faker->sentence;
         
         // Act
         $error_1 = new SwissEphemerisError([$error_message_A, $error_message_B, $error_message_B]);

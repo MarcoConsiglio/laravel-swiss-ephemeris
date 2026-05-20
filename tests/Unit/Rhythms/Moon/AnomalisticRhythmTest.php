@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\AnomalisticRhythm\FromCollections;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\AnomalisticRhythm;
@@ -12,8 +11,6 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\RhythmTestCase;
 
 #[TestDox("The Moon AnomalisticRhythm collection")]
 #[CoversClass(AnomalisticRhythm::class)]
-#[UsesClass(FromCollections::class)]
-#[UsesClass(AnomalisticRecord::class)]
 class AnomalisticRhythmTest extends RhythmTestCase
 {
     #[TestDox("is a collection of AnomalisticRecord instances.")]

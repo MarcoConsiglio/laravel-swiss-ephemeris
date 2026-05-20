@@ -9,15 +9,15 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Orchestra\Workbench\WorkbenchServiceProvider;
 use MarcoConsiglio\Ephemeris\LaravelSwissEphemeris;
 use MarcoConsiglio\Ephemeris\SwissEphemerisServiceProvider;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithRandomData;
+use MarcoConsiglio\Ephemeris\Tests\Traits\FailureMessage;
+use MarcoConsiglio\Ephemeris\Tests\Traits\RandomData;
 
 /**
  * Feature custom TestCase.
  */
 abstract class TestCase extends OrchestraTestCase
 {
-    use WithFailureMessage, WithRandomData;
+    use FailureMessage, RandomData;
     
     /**
      * The Swiss Ephemeris Library

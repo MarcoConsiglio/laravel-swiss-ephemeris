@@ -7,7 +7,9 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Strategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\StrategyTestCase as TestCase;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 
 /**
  * Test case for Moon builder strategies.
@@ -74,155 +76,14 @@ abstract class StrategyTestCase extends TestCase
     {
         parent::setUp();
         // Fake daily speed of the Moon.
-        $this->daily_speed = $this->getRandomMoonDailySpeed();
-        $this->sampling_rate = $this->getRandomSamplingRate();
-        $this->delta = $this->getDelta($this->daily_speed, $this->sampling_rate);
-    }
-
-    /**
-     * Get a random unprecise angular distance biased by a delta.
-     *
-     * @param float $delta
-     */
-    protected function getBiasedAngularDistance(float $angular_distance): float
-    {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, limit: 180);
-        return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
-    }
-
-    /**
-     * Get a random unprecise angular distance except for $angular_distance.
-     *
-     * @param float $delta
-     */
-    protected function getBiasedAngularDistanceExceptFor(float $angular_distance): float
-    {
-        $limit = 180;
-        $max_excluded = 0.00000000000001;
-        $min_excluded = $max_excluded;
-        $limit_excluded = $max_excluded;
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $angular_distance, $limit);
-        if ($min == -180) {
-            return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded);
-        }
-        if ($max == 180) {
-            return $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded);
-        }
-        return $this->faker->randomElement([
-            $this->faker->randomFloat(PHP_FLOAT_DIG, -$limit + $limit_excluded, $min - $min_excluded),
-            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $limit - $limit_excluded)
-        ]);
-    }
-    
-    /**
-     * Get a random unprecise longitude.
-     *
-     * @param float $delta
-     */
-    protected function getBiasedLongitude(float $longitude): float
-    {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
-        return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
-    }
-
-    /**
-     * Get a random biased longitude.
-     *
-     * @param float $delta
-     */
-    protected function getAbsBiasedLongitude(float $longitude): float
-    {
-        [$min, $max] = $this->getAbsDeltaExtremes($this->delta, $longitude);
-        // $min = $this->toAbsoluteAngularValue($min);
-        // $max = $this->toAbsoluteAngularValue($max);
-        if ($min > $max) {
-            return $this->faker->randomElement([
-                $this->faker->randomFloat(PHP_FLOAT_DIG, $min, Angle::MAX_DEGREES),
-                $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $max)
-            ]);
-        } else return $this->faker->randomFloat(PHP_FLOAT_DIG, $min, $max);
-    }
-
-
-    /**
-     * Get a random biased longitude except for $longitude.
-     *
-     * @param float $delta
-     */
-    protected function getBiasedLongitudeExceptFor(float $longitude): float
-    {
-        [$min, $max] = $this->getDeltaExtremes($this->delta, $longitude);
-        if ($max == 360) {
-            return $this->positiveRandomSexadecimal(0, $min + $this::SSN);
-        }
-        if ($min == 0) {
-            return $this->positiveRandomSexadecimal($max - $this::SSN);
-        }
-        return $this->faker->randomElement([
-            $this->positiveRandomSexadecimal(0, $min - $this::SSN),
-            $this->positiveRandomSexadecimal($max + $this::SSN)
-        ]);
-    }
-
-    /**
-     * Get a random biased absolute longitude except for $longitude.
-     *
-     * @param float $delta
-     */
-    protected function getAbsBiasedLongitudeExceptFor(float $longitude): float
-    {
-        $max_excluded = 0.00000000000001;
-        $min_excluded = -$max_excluded;
-        [$min, $max] = $this->getAbsDeltaExtremes($this->delta, $longitude);
-        $min = $this->toAbsoluteAngularValue($min);
-        $max = $this->toAbsoluteAngularValue($max);
-        if ($min > $max) return $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, $min + $min_excluded);
-        else return $this->faker->randomElement([
-            $this->faker->randomFloat(PHP_FLOAT_DIG, 0, $min + $min_excluded),
-            $this->faker->randomFloat(PHP_FLOAT_DIG, $max + $max_excluded, Angle::MAX_DEGREES)
-        ]);
-    }
-
-    /**
-     * Return a biased Angle near $longitude.
-     */
-    protected function getLongitude(float $longitude = 180.0): Angle
-    {
-        return Angle::createFromDecimal($this->getBiasedLongitude($longitude));
-    }
-    
-    /**
-     * Return a biased absolute Angle near $longitude.
-     */
-    protected function getAbsoluteLongitude(float $longitude = 180.0): Angle
-    {
-        $longitude = abs($longitude);
-        return Angle::createFromDecimal($this->getAbsBiasedLongitude($longitude));
-    }
-
-    /**
-     * Return a biased Angle except for $longitude.
-     */
-    protected function getLongitudeExceptFor(float $longitude = 180.0): Angle
-    {
-        return Angle::createFromDecimal($this->getBiasedLongitudeExceptFor($longitude));
-    }
-
-    /**
-     * Return a biased Angle except for $longitude.
-     */
-    protected function getAbsoluteLongitudeExceptFor(float $longitude = 180.0): Angle
-    {
-        return Angle::createFromDecimal($this->getAbsBiasedLongitudeExceptFor($longitude));
-    }
-
-    /**
-     * Return the opposite Angle of $longitude.
-     */
-    protected function getOppositeAbsoluteLongitude(Angle $longitude): Angle
-    {
-        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
-        return Angle::absSum($longitude, $opposite);
+        $this->daily_speed = $this->randomMoonDailySpeed();
+        $this->sampling_rate = $this->randomSamplingRate();
+        $this->setDelta(
+            $this->getDelta(
+                $this->daily_speed->toFloat(), 
+                $this->sampling_rate
+            )
+        );
     }
 
     /**

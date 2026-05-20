@@ -5,12 +5,11 @@ use InvalidArgumentException;
 use RoundingMode;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
 /**
  * Support for fuzzy logic.
  */
-trait WithFuzzyLogic
+trait FuzzyLogic
 {
     /**
      * Check if a $number is almost equal to $expected.

@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
 use RoundingMode;
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Interfaces\Angle;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
@@ -15,8 +15,6 @@ class SynodicRhythmRecord extends MovingObjectRecord
 {
     /**
      * The angular distance between the Moon and the Sun.
-     *
-     * @var \MarcoConsiglio\Goniometry\Angle
      */
     public protected(set) Angle $angular_distance;
 

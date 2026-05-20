@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\AnomalisticRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
@@ -19,10 +18,6 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 
 #[CoversClass(FromCollections::class)]
-#[UsesClass(ApogeeRecord::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(ApogeesBuilder::class)]
-#[UsesClass(PerigeesBuilder::class)]
 #[TestDox("The Moon AnomalisticRhythm\FromCollections builder")]
 class FromCollectionsTest extends BuilderTestCase
 {
@@ -34,7 +29,7 @@ class FromCollectionsTest extends BuilderTestCase
         $d2 = $d1->copy()->addMonth();
         $d3 = $d2->copy()->addMonth();
         $d4 = $d3->copy()->addMonth();
-        $s = $this->getRandomMoonDailySpeed();
+        $s = $this->randomMoonDailySpeed();
         /** @var Angle&MockObject $a */
         $a = $this->getMocked(Angle::class);
         $apogee_1 =  new ApogeeRecord( $d1, $a, $a, $s);

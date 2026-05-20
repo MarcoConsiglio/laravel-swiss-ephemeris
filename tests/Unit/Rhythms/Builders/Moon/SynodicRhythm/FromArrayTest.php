@@ -5,18 +5,14 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\SynodicRhyth
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\FromArrayTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
 #[TestDox("The Moon SynodicRhythm\FromArray builder")]
 #[CoversClass(FromArray::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(SynodicRhythmRecord::class)]
 class FromArrayTest extends FromArrayTestCase
 {
     /**
@@ -139,14 +135,14 @@ class FromArrayTest extends FromArrayTestCase
      */
     protected function getRawData(): array
     {
-        $starting_date = $this->getRandomSwissEphemerisDateTime();
-        $daily_speed = $this->getRandomMoonDailySpeed();
+        $starting_date = $this->randomSwissEphemerisDateTime();
+        $daily_speed = $this->randomMoonDailySpeed();
         $starting_angle = Angle::createFromDecimal(-3);
         $daily_step = $daily_speed->toFloat() / 24;
         $data = [];
         for ($i = 0; $i < 24; $i++) {
             $data[$i]["timestamp"] = $starting_date->clone()->addHours($i)->toGregorianTT();
-            $data[$i]["angular_distance"] = Angle::sum($starting_angle, Angle::createFromDecimal($daily_step * $i));
+            $data[$i]["angular_distance"] = $starting_angle->sum(Angle::createFromDecimal($daily_step * $i));
             $data[$i]["daily_speed"] = $daily_speed;
         }
         return $data;

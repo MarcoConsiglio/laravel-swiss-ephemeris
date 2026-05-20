@@ -5,25 +5,22 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
+use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 
 #[CoversClass(PerigeeRecord::class)]
-
-#[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon PerigeeRecord")]
 class PerigeeRecordTest extends TestCase
 {
-    use WithRecordsComparison;
+    use RecordsComparison;
 
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property(): void
     {
         // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $timestamp = $this->randomSwissEphemerisDateTime();
         /** @var Angle&MockObject $moon_longitude */
         $moon_longitude = $this->getMocked(Angle::class);
         /** @var Angle&MockObject $perigee_longitude */
@@ -41,8 +38,8 @@ class PerigeeRecordTest extends TestCase
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $moon_longitude = $this->getRandomPositiveAngle();
-        $perigee_longitude = $this->getRandomPositiveAngle();
+        $moon_longitude = $this->randomLongitude();
+        $perigee_longitude = $this->randomLongitude();
         $daily_speed = $this->createMock(DailySpeed::class);
         $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, $daily_speed);
 
@@ -61,10 +58,10 @@ class PerigeeRecordTest extends TestCase
     public function test_casting_to_string(): void
     {
         // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime();
+        $timestamp = $this->randomSwissEphemerisDateTime();
         $moon_longitude = $this->positiveRandomAngle();
         $perigee_longitude = $this->positiveRandomAngle();
-        $moon_daily_speed = $this->getRandomMoonDailySpeed();
+        $moon_daily_speed = $this->randomMoonDailySpeed();
         $record = new PerigeeRecord($timestamp, $moon_longitude, $perigee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();
         $moon_longitude = $moon_longitude->toSexadecimalDegrees();
@@ -114,7 +111,7 @@ TEXT,
     {        
         $angle_1 = Angle::createFromValues(90);
         $angle_2 = Angle::createFromValues(180);
-        $date_1 = $this->getRandomSwissEphemerisDateTime();
+        $date_1 = $this->randomSwissEphemerisDateTime();
         $date_2 = $date_1->clone()->addYear();
         $speed_1 = DailySpeed::createFromDecimal(12.0);
         $speed_2 = DailySpeed::createFromDecimal(13.0);

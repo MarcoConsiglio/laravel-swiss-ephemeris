@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums\Moon;
 
-use Error;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -10,7 +9,7 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FirstQuarte
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\FullMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\NewMoon;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Phases\ThirdQuarter;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithFailureMessage;
+use MarcoConsiglio\Ephemeris\Tests\Traits\FailureMessage;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Dummy\NonExistentMoonStrategy;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
@@ -18,7 +17,7 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 #[TestDox("The PhaseType enumeration")]
 class PhaseTest extends TestCase
 {
-    use WithFailureMessage;
+    use FailureMessage;
 
     #[TestDox("has a new moon constant.")]
     public function test_new_moon_phase(): void
@@ -79,18 +78,18 @@ class PhaseTest extends TestCase
     #[TestDox("maps a PhaseStrategy to its Phase constant.")]
     public function test_map_phase_strategy_to_its_phase_constant(): void
     {
-        $this->testPhaseConstantMapToPhaseStrategy(Phase::NewMoon, NewMoon::class);
+        $this->testPhaseConstantMapToPhaseStrategy(Phase::NewMoon,      NewMoon::class);
         $this->testPhaseConstantMapToPhaseStrategy(Phase::FirstQuarter, FirstQuarter::class);
-        $this->testPhaseConstantMapToPhaseStrategy(Phase::FullMoon, FullMoon::class);
+        $this->testPhaseConstantMapToPhaseStrategy(Phase::FullMoon,     FullMoon::class);
         $this->testPhaseConstantMapToPhaseStrategy(Phase::ThirdQuarter, ThirdQuarter::class);
     }
 
     #[TestDox("maps a Phase constant to its PhaseStrategy.")]
     public function test_map_phase_constant_to_its_phase_strategy(): void
     {
-        $this->testPhaseStrategyMapToPhaseConstant(NewMoon::class, Phase::NewMoon);  
+        $this->testPhaseStrategyMapToPhaseConstant(NewMoon::class,      Phase::NewMoon);  
         $this->testPhaseStrategyMapToPhaseConstant(FirstQuarter::class, Phase::FirstQuarter);  
-        $this->testPhaseStrategyMapToPhaseConstant(FullMoon::class, Phase::FullMoon);  
+        $this->testPhaseStrategyMapToPhaseConstant(FullMoon::class,     Phase::FullMoon);  
         $this->testPhaseStrategyMapToPhaseConstant(ThirdQuarter::class, Phase::ThirdQuarter);  
     }
 
@@ -101,7 +100,7 @@ class PhaseTest extends TestCase
         $fake_strategy = Angle::class;
         $non_existent_class = NonExistentMoonStrategy::class;
         $empty_string = "";
-        $random_string = $this->faker->text(15);
+        $random_string = self::$faker->text(15);
         $failure_message = $this->methodMustReturnIf(
             Phase::class, "getCorrespondingPhase", "null", "the strategy is unregistered."
         );

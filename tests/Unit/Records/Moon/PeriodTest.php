@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
 use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -12,8 +11,6 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 #[TestDox("The Moon Period")]
 #[CoversClass(Period::class)]
-#[UsesClass(PeriodType::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
 class PeriodTest extends TestCase
 {
     #[TestDox("has read-only properties \"start\" and '\"end\" which are SwissEphemerisDateTime.")]
@@ -59,7 +56,7 @@ class PeriodTest extends TestCase
     {
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();
-        $type = $this->faker->randomElement(PeriodType::cases());
+        $type = self::$faker->randomElement(PeriodType::cases());
         $record = new Period($start, $end, $type);
         $start = $start->toDateTimeString();
         $end = $end->toDateTimeString();
@@ -87,7 +84,7 @@ TEXT,
      */
     protected function getRandomMoonPeriodInterval(): array
     {
-        $start = $this->getRandomSwissEphemerisDateTime();
+        $start = $this->randomSwissEphemerisDateTime();
         $end = $start->clone()->addWeeks(2);
         return [$start, $end];
     }

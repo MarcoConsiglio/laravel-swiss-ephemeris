@@ -1,10 +1,10 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Random\Validator;
 
-use MarcoConsiglio\Ephemeris\Tests\Random\AngularDistanceRange;
+use MarcoConsiglio\Ephemeris\Tests\Random\LatitudeRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 
-class AngularDistance extends SexadecimalValidator
+class Latitude extends SexadecimalValidator
 {
     public function validate(float &$min, float &$max): void
     {
@@ -21,27 +21,23 @@ class AngularDistance extends SexadecimalValidator
 
     protected function avoidTooHighValues(float &$min, float &$max): void
     {
-        if ($this->greaterThanOrEqual($min, AngularDistanceRange::max()))
-            $this->setMin($min);
-        if ($this->greaterThanOrEqual($max, AngularDistanceRange::max()))
-            $this->setMax($max);
+        if ($this->greaterThan($min, LatitudeRange::MAX)) $this->setMin($min);
+        if ($this->greaterThan($max, LatitudeRange::MAX)) $this->setMax($max);
     }
 
     protected function avoidTooLowValues(float &$min, float &$max): void
     {
-        if ($this->lessThanOrEqual($min, AngularDistanceRange::min()))
-            $this->setMin($min);
-        if ($this->lessThanOrEqual($max, AngularDistanceRange::min()))
-            $this->setMax($max);
+        if ($this->lessThan($min, LatitudeRange::MIN)) $this->setMin($min);
+        if ($this->lessThan($max, LatitudeRange::MIN)) $this->setMax($max);
     }
 
     protected function setMin(float &$value): void
     {
-        $value = AngularDistanceRange::min();
+        $value = LatitudeRange::MIN;
     }
 
     protected function setMax(float &$value): void
     {
-        $value = AngularDistanceRange::max();
+        $value = LatitudeRange::MAX;
     }
 }

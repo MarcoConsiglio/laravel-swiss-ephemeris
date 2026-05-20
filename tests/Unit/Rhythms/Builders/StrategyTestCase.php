@@ -6,11 +6,11 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Interfaces\BuilderStrategy;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
-use MarcoConsiglio\Ephemeris\Traits\WithFuzzyLogic;
+use MarcoConsiglio\Ephemeris\Traits\FuzzyLogic;
 
 abstract class StrategyTestCase extends TestCase
 {
-    use WithFuzzyLogic;
+    use FuzzyLogic;
 
     /**
      * A fake daily speed of the record expressed in decimal degrees per day.
@@ -75,7 +75,7 @@ abstract class StrategyTestCase extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->date = $this->getRandomSwissEphemerisDateTime();
+        $this->date = $this->randomSwissEphemerisDateTime();
         $this->strategy_basename = class_basename($this->tested_class);
     }
 

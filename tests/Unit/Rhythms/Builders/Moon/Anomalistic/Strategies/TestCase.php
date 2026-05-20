@@ -16,7 +16,7 @@ class TestCase extends StrategyTestCase
      */
     protected function getApogeeRecord(float $longitude = 180.0): ApogeeRecord
     {
-        $moon_longitude = $this->getLongitude($longitude);
+        $moon_longitude = $this->inaccurateRandomLongitude($longitude);
         $apogee_longitude = Angle::createFromDecimal($longitude);
         return new ApogeeRecord(
             $this->date,
@@ -33,7 +33,7 @@ class TestCase extends StrategyTestCase
      */
     protected function getPerigeeRecord(float $longitude = 180.0): PerigeeRecord
     {
-        $moon_longitude = $this->getLongitude($longitude);
+        $moon_longitude = $this->inaccurateRandomLongitude($longitude);
         $perigee_longitude = Angle::createFromDecimal($longitude);
         return new PerigeeRecord(
             $this->date,
@@ -50,8 +50,8 @@ class TestCase extends StrategyTestCase
      */
     protected function getNonApogeeRecord(float $longitude = 180.0): ApogeeRecord
     {
-        $moon_longitude = $this->getLongitude($longitude);
-        $apogee_longitude = $this->getLongitudeExceptFor($longitude);
+        $moon_longitude = $this->inaccurateRandomLongitude($longitude);
+        $apogee_longitude = $this->inaccurateRandomLongitudeExceptFor($longitude);
         return new ApogeeRecord(
             $this->date,
             $moon_longitude,
@@ -67,8 +67,8 @@ class TestCase extends StrategyTestCase
      */
     protected function getNonPerigeeRecord(float $longitude = 180.0): PerigeeRecord
     {
-        $moon_longitude = $this->getLongitude($longitude);
-        $perigee_longitude = $this->getLongitudeExceptFor($longitude);
+        $moon_longitude = $this->inaccurateRandomLongitude($longitude);
+        $perigee_longitude = $this->inaccurateRandomLongitudeExceptFor($longitude);
         return new PerigeeRecord(
             $this->date,
             $moon_longitude,
@@ -79,8 +79,6 @@ class TestCase extends StrategyTestCase
 
     /**
      * Construct the strategy to test.
-     *
-     * @param string $strategy
      */
     protected function makeStrategy(ApogeeRecord|PerigeeRecord $record): BuilderStrategy
     {

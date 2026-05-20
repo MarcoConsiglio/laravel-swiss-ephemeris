@@ -5,18 +5,16 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithRecordsComparison;
+use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 
 #[CoversClass(ApogeeRecord::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon ApogeeRecord")]
 class ApogeeRecordTest extends TestCase
 {
-    use WithRecordsComparison;
+    use RecordsComparison;
 
     #[TestDox("has a \"timestamp\" property which is a SwissEphemerisDateTime.")]
     public function test_timestamp_property(): void
@@ -40,8 +38,8 @@ class ApogeeRecordTest extends TestCase
         // Arrange
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $moon_longitude = $this->getRandomPositiveAngle();
-        $apogee_longitude= $this->getRandomPositiveAngle();
+        $moon_longitude = $this->randomLongitude();
+        $apogee_longitude = $this->randomLongitude();
         $daily_speed = $this->createMock(DailySpeed::class);
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $daily_speed);
 
@@ -59,11 +57,11 @@ class ApogeeRecordTest extends TestCase
         $moon_longitude = $this->getMocked(Angle::class);
         /** @var Angle&MockObject $apogee_longitude */
         $apogee_longitude= $this->getMocked(Angle::class);
-        $moon_daily_speed = $this->getRandomMoonDailySpeed();
+        $moon_daily_speed = $this->randomMoonDailySpeed();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
 
         // Act & Assert
-        $this->assertProperty("daily_speed", $moon_daily_speed, "float", $record->daily_speed);
+        $this->assertProperty("daily_speed", $moon_daily_speed, DailySpeed::class, $record->daily_speed);
     }
 
     #[TestDox("can establish equality with another record of the same type.")]
@@ -76,10 +74,10 @@ class ApogeeRecordTest extends TestCase
     public function test_casting_to_string(): void
     {
         // Arrange
-        $timestamp = $this->getRandomSwissEphemerisDateTime();
-        $moon_longitude = $this->getRandomPositiveAngle();
-        $apogee_longitude = $this->getRandomPositiveAngle();
-        $moon_daily_speed = $this->getRandomMoonDailySpeed();
+        $timestamp = $this->randomSwissEphemerisDateTime();
+        $moon_longitude = $this->randomLongitude();
+        $apogee_longitude = $this->randomLongitude();
+        $moon_daily_speed = $this->randomMoonDailySpeed();
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $moon_daily_speed);
         $timestamp = $timestamp->toDateTimeString();
         $moon_longitude = $moon_longitude->toSexadecimalDegrees();

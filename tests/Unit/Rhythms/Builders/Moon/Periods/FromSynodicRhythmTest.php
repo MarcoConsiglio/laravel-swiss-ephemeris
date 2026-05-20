@@ -4,28 +4,18 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Period as MoonPeriod;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\Period;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Enums\Direction;
-use PHPUnit\Framework\MockObject\Runtime\PropertyHook;
 use PHPUnit\Framework\MockObject\Stub;
-use PHPUnit\Framework\MockObject\TestStubBuilder;
 
 #[TestDox("The Moon Periods\FromSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
-#[UsesClass(FromRecords::class)]
-#[UsesClass(Period::class)]
-#[UsesClass(Periods::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(SynodicRhythm::class)]
 class FromSynodicRhythmTest extends BuilderTestCase
 {
     /**
@@ -35,7 +25,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->sampling_rate = $this->faker->numberBetween(30, 1440);
+        $this->sampling_rate = self::$faker->numberBetween(30, 1440);
     }
 
     #[TestDox("can build a Moon\Periods collection starting from a Moon\SynodicRhythm.")]
@@ -88,9 +78,9 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $stub = $this->getStubBuilder(SynodicRhythmRecord::class);
         $stub->enableOriginalConstructor();
         $stub->setConstructorArgs([
-            $this->getRandomSwissEphemerisDateTime(), 
+            $this->randomSwissEphemerisDateTime(), 
             $this->createStub(Angle::class), 
-            $this->getRandomMoonDailySpeed()
+            $this->randomMoonDailySpeed()
         ]);
         return $stub->getStub();
     }

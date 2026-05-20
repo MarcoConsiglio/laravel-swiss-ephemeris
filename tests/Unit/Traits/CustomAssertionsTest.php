@@ -5,14 +5,14 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\ExpectationFailedException;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\WithCustomAssertions;
+use MarcoConsiglio\Ephemeris\Tests\Traits\CustomAssertions;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 #[TestDox("With custom assertions")]
 #[CoversNothing]
-class WithCustomAssertionsTest extends TestCase
+class CustomAssertionsTest extends TestCase
 {
-    use WithCustomAssertions;
+    use CustomAssertions;
 
     #[TestDox("you can assert a date is what you expect.")]
     public function test_assert_date(): void
