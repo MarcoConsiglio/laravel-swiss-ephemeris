@@ -26,7 +26,7 @@ class ApogeeTemplateTest extends TemplateTestCase
         $step_size = 60;
         /** @var Command&MockObject $command */
         $command = $this->getMocked(Command::class);
-        $command->expects($this->any())->method("addFlag");
+        $command->expects($this->exactly(7))->method("addFlag");
         $runner = new FakeRunner(standardOutput: $this->getFakeSwetestResponse());
         $template = new ApogeeTemplate($start_date, $days, $step_size, null, $runner, $command);
 
