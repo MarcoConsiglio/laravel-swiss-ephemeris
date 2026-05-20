@@ -6,12 +6,17 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistanceNeighbourhood as AngularDistanceNeighbourhoodGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistanceOutsideNeighbourhood as AngularDistanceOutsideNeighbourhoodGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\Latitude as LatitudeGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\Longitude as LongitudeGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\LongitudeNeighbourhood as LongitudeNeighbourhoodGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\LongitudeOutsideNeighbourhood as LongitudeOutsideNeighbourhoodGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\SwissEphemerisDate as SwissEphemerisDateGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\SwissEphemerisDateRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDelta as AngularDeltaValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistanceNeighbourhood as AngularDistanceNeighbourhoodValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistanceOutsideNeighbourhood as AngularDistanceOutsideNeighbourhoodValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\Latitude as LatitudeValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\LongitudeNeighbourhood as LongitudeNeighbourhoodValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\LongitudeOutsideNeighbourhood as LongitudeOutsideNeighbourhoodValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\SwissEphemerisDate as SwissEphemerisDateValidator;
 use MarcoConsiglio\Ephemeris\Tests\Traits\RandomData;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
@@ -23,18 +28,23 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversTrait(RandomData::class)]
-#[UsesClass(DailySpeed::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(SwissEphemerisDateGenerator::class)]
-#[UsesClass(SwissEphemerisDateRange::class)]
-#[UsesClass(SwissEphemerisDateValidator::class)]
-#[UsesClass(LatitudeGenerator::class)]
-#[UsesClass(LatitudeValidator::class)]
-#[UsesClass(AngularDistanceNeighbourhoodGenerator::class)]
 #[UsesClass(AngularDeltaValidator::class)]
+#[UsesClass(AngularDistanceNeighbourhoodGenerator::class)]
 #[UsesClass(AngularDistanceNeighbourhoodValidator::class)]
 #[UsesClass(AngularDistanceOutsideNeighbourhoodGenerator::class)]
 #[UsesClass(AngularDistanceOutsideNeighbourhoodValidator::class)]
+#[UsesClass(DailySpeed::class)]
+#[UsesClass(LatitudeGenerator::class)]
+#[UsesClass(LatitudeValidator::class)]
+#[UsesClass(LongitudeGenerator::class)]
+#[UsesClass(LongitudeNeighbourhoodGenerator::class)]
+#[UsesClass(LongitudeNeighbourhoodValidator::class)]
+#[UsesClass(LongitudeOutsideNeighbourhoodGenerator::class)]
+#[UsesClass(LongitudeOutsideNeighbourhoodValidator::class)]
+#[UsesClass(SwissEphemerisDateGenerator::class)]
+#[UsesClass(SwissEphemerisDateRange::class)]
+#[UsesClass(SwissEphemerisDateTime::class)]
+#[UsesClass(SwissEphemerisDateValidator::class)]
 class RandomDataTest extends TestCase
 {
     public function test_randomSpeed(): void
@@ -139,6 +149,55 @@ class RandomDataTest extends TestCase
         $this->assertInstanceOf(Angle::class, $longitude);
     }
 
+    public function test_inaccurateRandomLongitude(): void
+    {
+        // Arrange
+        $class = new class {
+            use RandomData;
+
+            public function random(float $center_value, Angle $delta, int $precision = PHP_FLOAT_DIG): Angle
+            {
+                $this->setUpFaker();
+                $this->setDelta($delta);
+                return $this->inaccurateRandomLongitude($center_value, $precision);
+            }
+
+        };
+
+        // Act
+        $longitude = $class->random(
+            $this->positiveRandomAngle()->toFloat(),
+            $this->positiveRandomAngle(max: 90)
+        );
+
+        // Assert
+        $this->assertInstanceOf(Angle::class, $longitude);
+    }
+
+    public function test_inaccurateRandomLongitudeExceptFor(): void
+    {
+        // Arrange
+        $class = new class {
+            use RandomData;
+
+            public function random(float $excluded_center_value, Angle $delta, int $precision = PHP_FLOAT_DIG): Angle
+            {
+                $this->setUpFaker();
+                $this->setDelta($delta);
+                return $this->inaccurateRandomLongitudeExceptFor($excluded_center_value, $precision);
+            }
+        };
+
+        // Act
+        $longitude = $class->random(
+            $this->positiveRandomAngle()->toFloat(),
+            $this->positiveRandomAngle(max: 90)
+        );
+
+        // Assert
+        $this->assertInstanceOf(Angle::class, $longitude);
+    }
+
     public function test_randomLatitude(): void
     {
         // Arrange
@@ -179,8 +238,7 @@ class RandomDataTest extends TestCase
             } 
         };
         $center_value = $this->randomAngularDistance();
-        $epsilon = Angle::createFromValues($this->randomDegrees(max: 45)->value());
-        $delta = $epsilon->sum($epsilon);
+        $delta = $this->positiveRandomAngle(max: 90);
 
         // Act
         $angle = $class->random($center_value->toFloat(), $delta->toSexadecimalDegrees());

@@ -33,16 +33,4 @@ class TestCase extends UnitTestCase
         $faker_mock->expects($this->atLeastOnce())->method("__call")->with("boolean")->willReturn(false);
         return $faker_mock;
     }
-
-    // protected function getValidatorPartialMock(
-    //     string $class, 
-    //     array $constructor_arguments, 
-    //     array $methods
-    // ): AngularDeltaValidator&MockObject {
-    //     $builder = $this->getMockBuilder($class);
-    //     $builder->onlyMethods($methods);
-    //     $builder->enableOriginalConstructor();
-    //     $builder->setConstructorArgs($constructor_arguments);
-    //     return $builder->getMock();
-    // }
 }

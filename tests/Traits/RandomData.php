@@ -6,12 +6,17 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistanceNeighbourhood as AngularDistanceNeighbourhoodGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistanceOutsideNeighbourhood as AngularDistanceOutsideNeighbourhoodGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\Latitude as LatitudeGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\LongitudeNeighbourhood as LongitudeNeighbourhoodGenerator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Generator\LongitudeOutsideNeighbourhood as LongitudeOutsideNeighbourhoodGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\SwissEphemerisDate as SwissEphemerisDateGenerator;
 use MarcoConsiglio\Ephemeris\Tests\Random\LatitudeRange;
+use MarcoConsiglio\Ephemeris\Tests\Random\LongitudeRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\SwissEphemerisDateRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistanceNeighbourhood as AngularDistanceNeighbourhoodValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistanceOutsideNeighbourhood as AngularDistanceOutsideNeighbourhoodValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\Latitude as LatitudeValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\LongitudeNeighbourhood as LongitudeNeighbourhoodValidator;
+use MarcoConsiglio\Ephemeris\Tests\Random\Validator\LongitudeOutsideNeighbourhood as LongitudeOutsideNeighbourhoodValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\SwissEphemerisDate as SwissEphemerisDateValidator;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
@@ -31,6 +36,15 @@ trait RandomData
      * angular ephemeris value and discard others. 
      */
     protected Angle $delta;
+
+    /**
+     * Set the delta error angle used to generate inaccurate data.
+     */
+    protected function setDelta(float|SexadecimalDegrees|Angle $angle): void
+    {
+        if ($angle instanceof Angle) $this->delta = $angle;
+        else $this->delta = Angle::createFromDecimal($angle);
+    }
 
     /**
      * Generate a random speed between $min and $max
@@ -86,6 +100,37 @@ trait RandomData
     }
 
     /**
+     * Return a random longitude within a delta error neighbourhood.
+     */
+    protected function inaccurateRandomLongitude(float $center_value, int $precision = PHP_FLOAT_DIG): Angle
+    {
+        return new LongitudeNeighbourhoodGenerator(
+            self::$faker,
+            new LongitudeNeighbourhoodValidator(
+                Angle::createFromDecimal($center_value),
+                $this->delta,
+            ), new LongitudeRange(0, 0) // Any range is meaningless.
+        )->generate($precision);
+    }
+
+    /**
+     * Return a random longitude outside a delta error neighbourhood.
+     */
+    protected function inaccurateRandomLongitudeExceptFor(
+        float $excluded_center_value, 
+        int $precision = PHP_FLOAT_DIG
+    ): Angle {
+        return new LongitudeOutsideNeighbourhoodGenerator(
+            self::$faker,
+            new LongitudeOutsideNeighbourhoodValidator(
+                Angle::createFromDecimal($excluded_center_value),
+                $this->delta
+            ),
+            new LongitudeRange(0, 0) // Any range is meaningless.
+        )->generate($precision);
+    }
+
+    /**
      * Return a random latitude.
      */
     protected function randomLatitude(float $min = -90.0, float $max = 90.0, int $precision = PHP_FLOAT_DIG): Angle
@@ -97,13 +142,8 @@ trait RandomData
         )->generate($precision);
     }
 
-    protected function setDelta(float|SexadecimalDegrees $sexadecimal): void
-    {
-        $this->delta = Angle::createFromDecimal($sexadecimal);
-    }
-
     /**
-     * Return an angular distance within a delta error neighbourhood.
+     * Return a random angular distance within a delta error neighbourhood.
      */
     protected function inaccurateRandomAngularDistance(
         float $center_value, 
@@ -120,7 +160,7 @@ trait RandomData
     }
 
     /**
-     * Return an angular distance outside a delta error neighbourhood.
+     * Return a random angular distance outside a delta error neighbourhood.
      */
     protected function inaccurateRandomAngularDistanceExceptFor(
         float $excluded_center_value, 

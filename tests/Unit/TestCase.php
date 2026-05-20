@@ -7,7 +7,6 @@ use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\CustomAssertions;
-use MarcoConsiglio\Ephemeris\Tests\Traits\FailureMessage;
 use MarcoConsiglio\Ephemeris\Tests\Traits\RandomData;
 
 /**

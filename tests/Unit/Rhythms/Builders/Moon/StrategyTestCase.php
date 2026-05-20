@@ -173,14 +173,6 @@ abstract class StrategyTestCase extends TestCase
     }
 
     /**
-     * Return a biased Angle except for $longitude.
-     */
-    protected function getAbsoluteLongitudeExceptFor(float $longitude = 180.0): Angle
-    {
-        return Angle::createFromDecimal($this->getAbsBiasedLongitudeExceptFor($longitude));
-    }
-
-    /**
      * Return the opposite Angle of $longitude.
      */
     protected function getOppositeAbsoluteLongitude(Angle $longitude): Angle

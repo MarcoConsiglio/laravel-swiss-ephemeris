@@ -5,6 +5,8 @@ use InvalidArgumentException;
 
 /**
  * This trait provides equal or not equal comparison Parameterized Tests.
+ * 
+ * @codeCoverageIgnore
  */
 trait RecordsComparison
 {
