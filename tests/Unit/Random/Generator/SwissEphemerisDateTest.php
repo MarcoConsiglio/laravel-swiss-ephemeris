@@ -7,11 +7,8 @@ use MarcoConsiglio\Ephemeris\Tests\Random\SwissEphemerisDateRange;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\SwissEphemerisDate as SwissEphemerisDateValidator;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(SwissEphemerisDateGenerator::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(SwissEphemerisDateRange::class)]
 class SwissEphemerisDateTest extends TestCase
 {
     public function test_random_generation(): void

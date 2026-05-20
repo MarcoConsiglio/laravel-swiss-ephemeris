@@ -5,7 +5,6 @@ use AdamBrett\ShellWrapper\Command;
 use AdamBrett\ShellWrapper\Runners\FakeRunner;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Exceptions\SwissEphemerisError;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
@@ -13,9 +12,6 @@ use MarcoConsiglio\Ephemeris\Templates\Moon\SynodicRhythmTemplate;
 use MarcoConsiglio\Ephemeris\Templates\QueryTemplate;
 
 #[CoversClass(QueryTemplate::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(SwissEphemerisError::class)]
-#[UsesClass(SynodicRhythmTemplate::class)]
 #[TestDox("The abstract QueryTemplate")]
 class QueryTemplateTest extends TemplateTestCase
 {

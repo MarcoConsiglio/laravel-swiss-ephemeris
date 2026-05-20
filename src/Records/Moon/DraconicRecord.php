@@ -19,8 +19,6 @@ class DraconicRecord extends MovingObjectRecord
     /**
      * The current Moon longitude. It represents the
      * Moon position.
-     * 
-     * @var Angle
      */
     public protected(set) Angle $moon_longitude;
     
@@ -29,8 +27,6 @@ class DraconicRecord extends MovingObjectRecord
      * 
      * The Swiss Ephemeris returns only one of the two nodes.
      * This is the one returned by the Swiss Ephemeris.
-     * 
-     * @var Angle
      */
     public protected(set) Angle $north_node_longitude;
 
@@ -40,19 +36,15 @@ class DraconicRecord extends MovingObjectRecord
      * The Swiss Ephemeris returns only one of the two nodes.
      * This is the one opposite to the only node presents in
      * the ephemeris response.
-     * 
-     * @var Angle
      */
     public Angle $south_node_longitude {
         get {
-            return $this->oppositeLongitude($this->north_node_longitude);
+            return $this->north_node_longitude->oppositeDirection();
         }
     }
 
     /**
      * The cardinality of this node.
-     *
-     * @var Cardinality
      */
     public Cardinality|null $cardinality = null {
         set(Cardinality|null $cardinality) {
@@ -75,15 +67,6 @@ class DraconicRecord extends MovingObjectRecord
         $this->moon_longitude = $moon_longitude;
         $this->north_node_longitude = $north_node_longitude;
         $this->daily_speed = $moon_daily_speed;
-    }
-
-    /**
-     * Calculate the opposite angle of a longitude value.
-     */
-    protected function oppositeLongitude(Angle $longitude): Angle
-    {
-        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
-        return $longitude->absSum($opposite);
     }
 
     /**

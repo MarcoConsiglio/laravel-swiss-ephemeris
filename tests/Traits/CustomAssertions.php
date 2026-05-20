@@ -8,6 +8,8 @@ use MarcoConsiglio\Ephemeris\Tests\Constraints\IsDateEqual;
 
 /**
  * This trait provides Custom Assertions for tests.
+ * 
+ * @codeCoverageIgnore
  */
 trait CustomAssertions
 {

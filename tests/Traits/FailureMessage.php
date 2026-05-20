@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Ephemeris\Tests\Traits;
 
 /**
  * This trait provides testing failure message helpers.
+ * 
+ * @codeCoverageIgnore
  */
 trait FailureMessage
 {

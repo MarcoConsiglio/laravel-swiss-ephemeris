@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Draconic;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\DraconicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\DraconicRhythm;
@@ -12,7 +11,6 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\FromArrayTestCase;
 
 #[TestDox("The DraconicRhythm FromArray builder")]
 #[CoversClass(FromArray::class)]
-#[UsesClass(DraconicRhythm::class)]
 class FromArrayTest extends FromArrayTestCase
 {
     /**

@@ -53,9 +53,9 @@ abstract class TemplateTestCase extends TestCase
      */
     protected function getRandomTopocentricPOV(): Topocentric
     {
-        $longitude = $this->positiveRandomSexadecimal();
-        $latitude = $this->randomSexadecimal(min: -90, max: 90);
-        $altitude = self::$faker->numberBetween(0, 4000);
+        $longitude = $this->randomLongitude()->toFloat();
+        $latitude = $this->randomLatitude()->toFloat();
+        $altitude = $this->positiveRandomInteger(max: 4000);
         return new Topocentric($latitude, $longitude, $altitude);
     }
 }

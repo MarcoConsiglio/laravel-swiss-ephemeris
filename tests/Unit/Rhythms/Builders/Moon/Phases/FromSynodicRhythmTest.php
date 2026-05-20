@@ -5,7 +5,6 @@ use InvalidArgumentException;
 use stdClass;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
@@ -15,18 +14,11 @@ use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Phases\FromSynodicRhythm;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 
 #[TestDox("The Moon Phases\FromMoonSynodicRhythm builder")]
 #[CoversClass(FromSynodicRhythm::class)]
-
-#[UsesClass(FromRecords::class)]
-#[UsesClass(Phases::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(SynodicRhythm::class)]
-#[UsesClass(SynodicRhythmRecord::class)]
 class FromSynodicRhythmTest extends BuilderTestCase
 {
     /**

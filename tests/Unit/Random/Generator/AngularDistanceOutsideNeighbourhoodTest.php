@@ -3,20 +3,14 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Random\Generator;
 
 use MarcoConsiglio\BCMathExtended\Range;
 use MarcoConsiglio\Ephemeris\Tests\Random\Generator\AngularDistanceOutsideNeighbourhood as AngularDistanceOutsideNeighbourhoodGenerator;
-use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDelta as AngularDeltaValidator;
-use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistanceNeighbourhood as AngularDistanceNeighbourhoodValidator;
 use MarcoConsiglio\Ephemeris\Tests\Random\Validator\AngularDistanceOutsideNeighbourhood as AngularDistanceOutsideNeighbourhoodValidator;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Random\Generator\TestCase as GeneratorTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(AngularDistanceOutsideNeighbourhoodGenerator::class)]
-#[UsesClass(AngularDeltaValidator::class)]
-#[UsesClass(AngularDistanceNeighbourhoodValidator::class)]
-#[UsesClass(AngularDistanceOutsideNeighbourhoodValidator::class)]
 class AngularDistanceOutsideNeighbourhoodTest extends GeneratorTestCase
 {
     public function test_random_generation(): void

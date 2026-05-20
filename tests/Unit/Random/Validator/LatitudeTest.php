@@ -7,11 +7,9 @@ use MarcoConsiglio\Ephemeris\Tests\Unit\Random\Validator\TestCase as ValidatorTe
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Latitude validator")]
 #[CoversClass(Latitude::class)]
-#[UsesClass(LatitudeRange::class)]
 class LatitudeTest extends ValidatorTestCase
 {
     #[TestDox("validates a LatitudeRange.")]

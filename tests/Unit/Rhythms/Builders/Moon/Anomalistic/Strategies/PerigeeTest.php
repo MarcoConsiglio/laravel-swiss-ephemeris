@@ -3,13 +3,11 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic\
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\Strategies\Anomalies\Perigee;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Anomalistic\Strategies\TestCase;
 
 #[CoversClass(Perigee::class)]
-#[UsesClass(PerigeeRecord::class)]
 #[TestDox("The Perigee AnomalisticStrategy")]
 class PerigeeTest extends TestCase
 {

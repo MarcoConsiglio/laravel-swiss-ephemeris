@@ -7,10 +7,8 @@ use MarcoConsiglio\Ephemeris\Tests\Random\Validator\Longitude as LongitudeValida
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(LongitudeGenerator::class)]
-#[UsesClass(LongitudeRange::class)]
 class LongitudeTest extends TestCase
 {
     public function test_random_generation(): void

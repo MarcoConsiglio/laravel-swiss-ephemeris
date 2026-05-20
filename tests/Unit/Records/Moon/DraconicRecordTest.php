@@ -4,17 +4,14 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Enums\Cardinality;
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\Moon\DraconicRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
-use MarcoConsiglio\Goniometry\Enums\Rotation;
 
 #[CoversClass(DraconicRecord::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon DraconicRecord")]
 class DraconicRecordTest extends TestCase
 {
@@ -42,8 +39,7 @@ class DraconicRecordTest extends TestCase
         $datetime = $this->getMockedSwissEphemerisDateTime();
         $moon_longitude = Angle::createFromValues(180);
         $north_node_longitude = Angle::createFromValues(180);
-        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
-        $south_node_longitude = $north_node_longitude->absSum($opposite);
+        $south_node_longitude = $north_node_longitude->oppositeDirection();
         $daily_speed = $this->createMock(DailySpeed::class);
         $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);
 
@@ -131,9 +127,8 @@ class DraconicRecordTest extends TestCase
         // Arrange
         $datetime = $this->randomSwissEphemerisDateTime();
         $moon_longitude = $this->randomLongitude();
-        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
         $north_node_longitude = $this->randomLongitude();
-        $south_node_longitude = $north_node_longitude->absSum($opposite);
+        $south_node_longitude = $north_node_longitude->oppositeDirection();
         $daily_speed = $this->randomMoonDailySpeed();
         $cardinality = self::$faker->randomElement(Cardinality::cases());
         $record = new DraconicRecord($datetime, $moon_longitude, $north_node_longitude, $daily_speed);

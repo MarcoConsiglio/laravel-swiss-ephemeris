@@ -5,15 +5,12 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 
 #[CoversClass(PerigeeRecord::class)]
-
-#[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon PerigeeRecord")]
 class PerigeeRecordTest extends TestCase
 {

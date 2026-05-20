@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Enums\Moon;
 
-use Error;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;

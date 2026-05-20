@@ -5,14 +5,12 @@ use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Records\Moon\ApogeeRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 
 #[CoversClass(ApogeeRecord::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
 #[TestDox("The Moon ApogeeRecord")]
 class ApogeeRecordTest extends TestCase
 {
@@ -41,7 +39,7 @@ class ApogeeRecordTest extends TestCase
         /** @var SwissEphemerisDateTime&MockObject $timestamp */
         $timestamp = $this->getMockedSwissEphemerisDateTime();
         $moon_longitude = $this->randomLongitude();
-        $apogee_longitude= $this->randomLongitude();
+        $apogee_longitude = $this->randomLongitude();
         $daily_speed = $this->createMock(DailySpeed::class);
         $record = new ApogeeRecord($timestamp, $moon_longitude, $apogee_longitude, $daily_speed);
 

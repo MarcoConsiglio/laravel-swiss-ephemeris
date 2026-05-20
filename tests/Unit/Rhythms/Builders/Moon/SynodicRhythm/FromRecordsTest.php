@@ -6,17 +6,13 @@ use InvalidArgumentException;
 use stdClass;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesClass;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
 
 #[TestDox("The Moon SynodicRhythm\FromRecords builder")]
 #[CoversClass(FromRecords::class)]
-#[UsesClass(SwissEphemerisDateTime::class)]
-#[UsesClass(SynodicRhythmRecord::class)]
 class FromRecordsTest extends BuilderTestCase
 {
     #[TestDox("can build a Moon\SynodicRhythm collection from Moon SynodicRhythmRecord instances.")]
