@@ -7,7 +7,7 @@
          executionOrder="depends,defects"
          shortenArraysForExportThreshold="10"
          requireCoverageMetadata="true"
-         beStrictAboutCoverageMetadata="false"
+         beStrictAboutCoverageMetadata="true"
          beStrictAboutOutputDuringTests="true"
          displayDetailsOnPhpunitDeprecations="true"
          failOnPhpunitDeprecation="true"
@@ -28,15 +28,16 @@
     <php>
         <env name="APP_ENV" value="testing"/>
     </php>
-    <logging>
-        <testdoxText outputFile="testbook.txt"/>
-    </logging>
-
     <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
         <include>
             <directory suffix=".php">src</directory>
+            <directory suffix=".php">tests/Random</directory>
+            <directory suffix=".php">tests/Traits</directory>
         </include>
     </source>
+    <logging>
+        <testdoxText outputFile="testbook.txt"/>
+    </logging>
     <coverage
         includeUncoveredFiles="true"
         pathCoverage="true">
