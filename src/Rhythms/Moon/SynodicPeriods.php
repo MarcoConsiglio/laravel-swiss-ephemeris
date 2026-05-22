@@ -2,16 +2,16 @@
 namespace MarcoConsiglio\Ephemeris\Rhythms\Moon;
 
 use Illuminate\Support\Collection;
-use MarcoConsiglio\Ephemeris\Records\Moon\Period;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicPeriod;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
 
 /**
- * A collection of Moon Period instances.
+ * A collection of Moon `SynodicPeriod` instances.
  * 
  * Represents a collection of time periods between
  * a lunar phase and another.
  */
-class Periods extends Collection
+class SynodicPeriods extends Collection
 {
     /**
      * Construct a Periods collection from a SynodicRhythm collection.
@@ -27,7 +27,7 @@ class Periods extends Collection
      * @param mixed $default
      */
     #[\Override]
-    public function first(?callable $callback = null, $default = null): Period
+    public function first(?callable $callback = null, $default = null): SynodicPeriod
     {
         return parent::first($callback, $default);
     }
@@ -38,7 +38,7 @@ class Periods extends Collection
      * @param mixed $default
      */
     #[\Override]
-    public function last(?callable $callback = null, $default = null): Period
+    public function last(?callable $callback = null, $default = null): SynodicPeriod
     {
         return parent::last($callback, $default); 
     }
@@ -50,7 +50,7 @@ class Periods extends Collection
      * @param mixed $default
      */
     #[\Override]
-    public function get($key, $default = null): Period
+    public function get($key, $default = null): SynodicPeriod
     {
         return parent::get($key, $default);
     }

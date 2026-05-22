@@ -19,20 +19,18 @@ abstract class Strategy implements BuilderStrategy
     use FuzzyLogic;
 
     /**
-     * Angular value expressed as a decimal number: It 
-     * is used for an error biased search. 
+     *  Delta error expressed as a sexadecimal angle: It is used for an error biased search, aka fuzzy comparison.  
      * 
      * @var float
      */
     public protected(set) float $delta;
 
     /**
-     * Angular distance delta: It is used for an error 
-     * biased search. 
+     * Delta error angle: It is used for an error biased search, aka fuzzy comparison. 
      *
      * @var Angle $delta
      */
-    public Angle $angular_delta {
+    public Angle $delta_angle {
         get { return Angle::createFromDecimal($this->delta); }
     }
 

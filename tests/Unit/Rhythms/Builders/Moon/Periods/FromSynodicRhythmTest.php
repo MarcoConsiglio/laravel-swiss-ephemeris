@@ -1,17 +1,17 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\Periods;
 
-use MarcoConsiglio\Ephemeris\Enums\Moon\Period as MoonPeriod;
+use MarcoConsiglio\Ephemeris\Enums\Moon\SynodicPeriod as MoonPeriod;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Records\Moon\Period;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicPeriod;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods\FromSynodicRhythm;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicPeriods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Builders\Moon\BuilderTestCase;
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularDistance;
 use PHPUnit\Framework\MockObject\Stub;
 
 #[TestDox("The Moon Periods\FromSynodicRhythm builder")]
@@ -57,11 +57,11 @@ class FromSynodicRhythmTest extends BuilderTestCase
         
         // Act
         $builder = new $builder_class($rhythm);
-        $moon_periods = new Periods($builder);
+        $moon_periods = new SynodicPeriods($builder);
 
         // Assert
-        $this->assertContainsOnlyInstancesOf(Period::class, $moon_periods,
-            $this->iterableMustContains(Periods::class, Period::class)
+        $this->assertContainsOnlyInstancesOf(SynodicPeriod::class, $moon_periods,
+            $this->iterableMustContains(SynodicPeriod::class, SynodicPeriod::class)
         );
     }
 
@@ -79,7 +79,7 @@ class FromSynodicRhythmTest extends BuilderTestCase
         $stub->enableOriginalConstructor();
         $stub->setConstructorArgs([
             $this->randomSwissEphemerisDateTime(), 
-            $this->createStub(Angle::class), 
+            $this->createStub(AngularDistance::class), 
             $this->randomMoonDailySpeed()
         ]);
         return $stub->getStub();

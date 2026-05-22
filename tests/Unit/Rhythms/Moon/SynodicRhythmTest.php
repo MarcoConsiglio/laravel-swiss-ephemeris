@@ -5,12 +5,12 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
-use MarcoConsiglio\Ephemeris\Records\Moon\Period;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicPeriod;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromArray;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\FromRecords;
-use MarcoConsiglio\Ephemeris\Rhythms\Moon\Periods;
+use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicPeriods;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\Phases;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
 use MarcoConsiglio\Ephemeris\Tests\Unit\Rhythms\Moon\RhythmTestCase;
@@ -74,11 +74,11 @@ class SynodicRhythmTest extends RhythmTestCase
         $periods = $this->rhythm->getPeriods();
 
         // Assert
-        $this->assertInstanceOf(Periods::class, $periods,
-            $this->methodMustReturn(SynodicRhythm::class, "getPeriods", Periods::class)
+        $this->assertInstanceOf(SynodicPeriods::class, $periods,
+            $this->methodMustReturn(SynodicRhythm::class, "getPeriods", SynodicPeriods::class)
         );
-        $this->assertContainsOnlyInstancesOf(Period::class, $periods,
-            $this->iterableMustContains(Periods::class, Period::class)
+        $this->assertContainsOnlyInstancesOf(SynodicPeriod::class, $periods,
+            $this->iterableMustContains(SynodicPeriods::class, SynodicPeriod::class)
         );
     }
 

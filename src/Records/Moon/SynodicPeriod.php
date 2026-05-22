@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
-use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
+use MarcoConsiglio\Ephemeris\Enums\Moon\SynodicPeriod as PeriodType;
 use MarcoConsiglio\Ephemeris\Records\Record;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 
@@ -9,7 +9,7 @@ use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
  * Represents a fraction of the Moon phase cicle, 
  * i.e. a waxing or a waning Moon period.
  */
-class Period extends Record
+class SynodicPeriod extends Record
 {
     /**
      * The timestamp of this `Record`.

@@ -1,12 +1,12 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Records\Moon;
 
-use RoundingMode;
-use MarcoConsiglio\Goniometry\Interfaces\Angle;
-use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
+use MarcoConsiglio\Ephemeris\Enums\Moon\SynodicPeriod;
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\MovingObjectRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Goniometry\AngularDistance;
+use RoundingMode;
 
 /**
  * It represent a moment of the Moon synodic rhythm.
@@ -16,7 +16,7 @@ class SynodicRhythmRecord extends MovingObjectRecord
     /**
      * The angular distance between the Moon and the Sun.
      */
-    public protected(set) Angle $angular_distance;
+    public protected(set) AngularDistance $angular_distance;
 
     /**
      * Angular distance percentage.
@@ -33,11 +33,14 @@ class SynodicRhythmRecord extends MovingObjectRecord
     /**
      * Construct a Moon SynodicRhythmRecord.
      *
-     * @param Angle $angular_distance The angular difference between the Moon and the Sun.
-     * @param DailySpeed $daily_speed The daily speed expressed in degrees per day.
+     * @param AngularDistance $angular_distance The angular difference between the Moon and the Sun.
+     * @param DailySpeed $moon_daily_speed The daily speed expressed in degrees per day.
      */
-    public function __construct(SwissEphemerisDateTime $timestamp, Angle $angular_distance, DailySpeed $moon_daily_speed)
-    {
+    public function __construct(
+        SwissEphemerisDateTime $timestamp, 
+        AngularDistance $angular_distance, 
+        DailySpeed $moon_daily_speed
+    ) {
         $this->timestamp = $timestamp;
         $this->angular_distance = $angular_distance;
         $this->daily_speed = $moon_daily_speed;
@@ -62,9 +65,9 @@ class SynodicRhythmRecord extends MovingObjectRecord
     /**
      * Get the type of the Moon period in this MoonSynodicRhythmRecord.
      */
-    public function getPeriodType(): Period
+    public function getPeriodType(): SynodicPeriod
     {
-        return $this->isWaxing() ? Period::Waxing : Period::Waning;
+        return $this->isWaxing() ? SynodicPeriod::Waxing : SynodicPeriod::Waning;
     }
 
     /**

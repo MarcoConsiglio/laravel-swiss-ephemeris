@@ -4,13 +4,13 @@ namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Enums\Moon\Period as PeriodType;
-use MarcoConsiglio\Ephemeris\Records\Moon\Period;
+use MarcoConsiglio\Ephemeris\Enums\Moon\SynodicPeriod as PeriodType;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicPeriod;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
 
 #[TestDox("The Moon Period")]
-#[CoversClass(Period::class)]
+#[CoversClass(SynodicPeriod::class)]
 class PeriodTest extends TestCase
 {
     #[TestDox("has read-only properties \"start\" and '\"end\" which are SwissEphemerisDateTime.")]
@@ -18,7 +18,7 @@ class PeriodTest extends TestCase
     {
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();
-        $moon_period = new Period($start, $end, PeriodType::Waxing);
+        $moon_period = new SynodicPeriod($start, $end, PeriodType::Waxing);
 
         // Act & Assert
         $this->assertProperty("start", $start, SwissEphemerisDateTime::class, $moon_period->start);
@@ -30,7 +30,7 @@ class PeriodTest extends TestCase
     {
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();
-        $moon_period = new Period($start, $end, PeriodType::Waxing);
+        $moon_period = new SynodicPeriod($start, $end, PeriodType::Waxing);
         $failure_message = "This moon period should be a waxing one but found the opposite.";
 
         // Act & Assert
@@ -43,7 +43,7 @@ class PeriodTest extends TestCase
     {
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();
-        $moon_period = new Period($start, $end, PeriodType::Waning);
+        $moon_period = new SynodicPeriod($start, $end, PeriodType::Waning);
         $failure_message = "This moon period should be a waning one but found the opposite.";
 
         // Act & Assert
@@ -57,14 +57,14 @@ class PeriodTest extends TestCase
         // Arrange
         [$start, $end] = $this->getRandomMoonPeriodInterval();
         $type = self::$faker->randomElement(PeriodType::cases());
-        $record = new Period($start, $end, $type);
+        $record = new SynodicPeriod($start, $end, $type);
         $start = $start->toDateTimeString();
         $end = $end->toDateTimeString();
         $type = ((array) $type)["name"]; // Cast PeriodType to string.
 
         // Act & Assert
         $this->assertEquals(<<<TEXT
-Period
+SynodicPeriod
 end: {$end}
 start: {$start}
 type: {$type}

@@ -2,17 +2,15 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
 use RoundingMode;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use MarcoConsiglio\Ephemeris\Enums\Moon\Period;
+use MarcoConsiglio\Ephemeris\Enums\Moon\SynodicPeriod;
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularDistance;
 
 #[TestDox("The Moon SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]
@@ -43,7 +41,7 @@ class SynodicRhythmRecordTest extends TestCase
         $record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
         // Act & Assert
-        $this->assertProperty("timestamp", $angular_distance, AngleInterface::class, $record->angular_distance);
+        $this->assertProperty("timestamp", $angular_distance, AngularDistance::class, $record->angular_distance);
     }
 
     #[TestDox("has read-only properties 'percentage' which is an integer.")]
@@ -78,7 +76,7 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $angular_distance = $this->randomAngle(0.0, AngularDistanceRange::max());
+        $angular_distance = $this->randomAngularDistance(min: 0);
         $daily_speed = $this->randomMoonDailySpeed();
         $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
@@ -97,7 +95,7 @@ class SynodicRhythmRecordTest extends TestCase
     {
         // Arrange
         $timestamp = $this->getMockedSwissEphemerisDateTime();
-        $angular_distance = $this->randomAngle(AngularDistanceRange::min(), NextFloat::before(0.0));
+        $angular_distance = $this->randomAngularDistance(max: NextFloat::before(0.0));
         $daily_speed = $this->randomMoonDailySpeed();
         $synodic_rhythm_record = new SynodicRhythmRecord($timestamp, $angular_distance, $daily_speed);
 
@@ -123,12 +121,12 @@ class SynodicRhythmRecordTest extends TestCase
         // Arrange
         $record_A = new SynodicRhythmRecord(
             $this->getMockedSwissEphemerisDateTime(), 
-            $this->randomAngle(AngularDistanceRange::min(), NextFloat::before(0.0)),
+            $this->randomAngularDistance(max: NextFloat::before(0.0)),
             $this->randomMoonDailySpeed()
         );
         $record_B = new SynodicRhythmRecord(
             $this->getMockedSwissEphemerisDateTime(),
-            $this->randomAngle(0.0, AngularDistanceRange::max()),
+            $this->randomAngularDistance(min: 0.0),
             $this->randomMoonDailySpeed()
         );
 
@@ -137,8 +135,8 @@ class SynodicRhythmRecordTest extends TestCase
         $actual_period_type_B = $record_B->getPeriodType();
 
         // Assert
-        $this->assertEquals(Period::Waning, $actual_period_type_A);
-        $this->assertEquals(Period::Waxing, $actual_period_type_B);
+        $this->assertEquals(SynodicPeriod::Waning, $actual_period_type_A);
+        $this->assertEquals(SynodicPeriod::Waxing, $actual_period_type_B);
     }
 
     #[TestDox("can be casted to string.")]
@@ -177,15 +175,13 @@ TEXT,
     /**
      * Construct the two records to be compared with some $property_couples
      * Representsing an equal or different property.
-     *
-     * @param array $property_couples
      */
     protected function getComparisonDataset(): array
     {
         $d1 = $this->randomSwissEphemerisDateTime();
         $d2 = $d1->clone()->addYear();
-        $a1 = Angle::createFromValues(180);
-        $a2 = Angle::createFromValues(90);
+        $a1 = AngularDistance::createFromValues(180);
+        $a2 = AngularDistance::createFromValues(90);
         $s1 = DailySpeed::createFromDecimal(12.0);
         $s2 = DailySpeed::createFromDecimal(13.0);
         return [

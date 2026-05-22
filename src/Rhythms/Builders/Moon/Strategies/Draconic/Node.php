@@ -53,11 +53,7 @@ class Node extends Strategy
      */
     protected function isANode(Angle $moon_longitude, Angle $node_longitude): bool
     {
-        return $this->isAboutAbsolute(
-            $moon_longitude->toFloat(),
-            $node_longitude->toFloat(),
-            $this->delta
-        );
+        return $moon_longitude->fuzzyEqual($node_longitude, $this->delta_angle);
     }
 
     /**

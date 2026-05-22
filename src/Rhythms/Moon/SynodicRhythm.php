@@ -54,9 +54,9 @@ class SynodicRhythm extends Collection
     /**
      * Get a collection of Moon Periods.
      */
-    public function getPeriods(): Periods
+    public function getPeriods(): SynodicPeriods
     {
-        return new Periods(new MoonPeriodBuilder($this));
+        return new SynodicPeriods(new MoonPeriodBuilder($this));
     }
 
     /**

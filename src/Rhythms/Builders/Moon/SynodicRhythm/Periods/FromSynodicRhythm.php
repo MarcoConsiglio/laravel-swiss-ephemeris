@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Rhythms\Builders\Moon\SynodicRhythm\Periods;
 
-use MarcoConsiglio\Ephemeris\Records\Moon\Period;
+use MarcoConsiglio\Ephemeris\Records\Moon\SynodicPeriod;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\Rhythms\Builders\Builder;
 use MarcoConsiglio\Ephemeris\Rhythms\Moon\SynodicRhythm;
@@ -15,7 +15,7 @@ class FromSynodicRhythm extends Builder
     /**
      * The builded records.
      *
-     * @var Period[]
+     * @var SynodicPeriod[]
      */
     protected array $records = [];
 
@@ -58,14 +58,14 @@ class FromSynodicRhythm extends Builder
             $first_record = $period->first();
             $last_record = $period->last();
             // ...take the first and the last timestamp to build a MoonPeriod.
-            return new Period($first_record->timestamp, $last_record->timestamp, $first_record->getPeriodType());
+            return new SynodicPeriod($first_record->timestamp, $last_record->timestamp, $first_record->getPeriodType());
         })->all();
     }
 
     /**
      * Fetch the builded array of MoonPeriod instances.
      *
-     * @return Period[]
+     * @return SynodicPeriod[]
      */
     public function fetchCollection(): array
     {

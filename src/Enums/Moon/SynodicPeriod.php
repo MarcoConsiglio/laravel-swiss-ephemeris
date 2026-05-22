@@ -2,13 +2,13 @@
 namespace MarcoConsiglio\Ephemeris\Enums\Moon;
 
 /**
- * Moon periods definitions.
+ * Moon synodic periods definitions.
  * 
- * A moon period is a fraction of a moon phase cycle.
+ * A Moon synodic period is a fraction of the Moon phase cycle.
  * 
  * @codeCoverageIgnore
  */
-enum Period
+enum SynodicPeriod
 {
     /**
      * From new moon to full moon.
