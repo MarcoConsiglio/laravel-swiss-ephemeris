@@ -34,8 +34,8 @@ class AngularDistanceOutsideNeighbourhoodTest extends GeneratorTestCase
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $angle);
         $this->assertTrue(
-            $angle->toSexadecimalDegrees()->value->inRangeMaxExcluded(
-                new Range(AngularDistanceRange::min(), -1)
+            $angle->toSexadecimalDegrees()->value->inRangeMinExcluded(
+                new Range(+1, AngularDistanceRange::max())
             ),
             "Center value: {$center}\nDelta: {$delta}\nRandom angle: {$angle}.\n"
         );
@@ -59,8 +59,8 @@ class AngularDistanceOutsideNeighbourhoodTest extends GeneratorTestCase
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $angle);
         $this->assertTrue(
-            $angle->toSexadecimalDegrees()->value->inRangeMinExcluded(
-                new Range(1, AngularDistanceRange::max())
+            $angle->toSexadecimalDegrees()->value->inRangeMaxExcluded(
+                new Range(AngularDistanceRange::min(), -1)
             ), "Center value: {$center}\nDelta: {$delta}\nRandom angle: {$angle}.\n"
         );
 
