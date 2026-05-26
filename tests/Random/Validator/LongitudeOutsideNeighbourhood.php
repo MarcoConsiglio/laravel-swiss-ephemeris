@@ -23,7 +23,7 @@ class LongitudeOutsideNeighbourhood extends LongitudeNeighbourhoodValidator
     protected function setMax(float &$value): void
     {
         $higher_extreme = $this->higher_extreme->toFloat();
-        if ($higher_extreme == 360)
+        if ($higher_extreme == 0)
             $value = NextFloat::afterZero();
         else
             $value = NextFloat::after($this->higher_extreme->toFloat());
