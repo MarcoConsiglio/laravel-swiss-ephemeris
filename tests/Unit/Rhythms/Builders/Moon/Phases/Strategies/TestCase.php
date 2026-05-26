@@ -94,10 +94,10 @@ class TestCase extends StrategyTestCase
      */
     protected function getNonFullMoonRecord(): SynodicRhythmRecord
     {
-        $angle_value = self::$faker->randomElement([-180, +180]);
+        $full_moon = self::$faker->randomElement([-180, +180]);
         return new SynodicRhythmRecord(
             $this->date, 
-            $this->inaccurateRandomAngularDistanceExceptFor($angle_value),
+            $this->inaccurateRandomAngularDistanceExceptFor($full_moon),
             $this->daily_speed
         );
     }

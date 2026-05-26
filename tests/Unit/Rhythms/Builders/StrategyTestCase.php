@@ -89,7 +89,7 @@ abstract class StrategyTestCase extends TestCase
     protected function assertRecordFound($expected_record, $actual_record)
     {
         $this->assertInstanceOf($this->record_class, $actual_record, <<<TEXT
-The {$this->strategy_basename} strategy must find an instance of type {$this->record_class} with delta {$this->delta}° and sampling rate {$this->sampling_rate} min.
+The {$this->strategy_basename} strategy must find an instance of type {$this->record_class} with delta {$this->delta->toSexadecimalDegrees()} and sampling rate {$this->sampling_rate} min.
 The accepted record should be:
 $expected_record
 TEXT
@@ -108,7 +108,7 @@ TEXT
     protected function assertRecordNotFound($actual_record)
     {
         $this->assertNull($actual_record, <<<TEXT
-The {$this->strategy_basename} strategy accepted a record that must be rejected with delta {$this->delta}° and sampling rate {$this->sampling_rate} min.
+The {$this->strategy_basename} strategy accepted a record that must be rejected with delta {$this->delta->toSexadecimalDegrees()} and sampling rate {$this->sampling_rate} min.
 The record to be rejected is:
 $actual_record
 TEXT
