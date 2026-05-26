@@ -115,80 +115,80 @@ class FromArrayTest extends FromArrayTestCase
         return [
             0 => [
                 "astral_object" => "Moon",
-                "timestamp" => "06.03.2002 15:00:00 TT",
-                "longitude" => "262.6391284",
-                "daily_speed" => "12.8895235"
+                "timestamp" => "06.03.2021 00:00:00 TT",
+                "longitude" => "254.8083527",
+                "daily_speed" => "13.9505680"
             ],
             1 => [
                 "astral_object" => "true Node",
-                "timestamp" => "06.03.2002 15:00:00 TT",
-                "longitude" => "83.3604529",
-                "daily_speed" => "0.0003887"
+                "timestamp" => "06.03.2021 00:00:00 TT",
+                "longitude" => "75.3584237",
+                "daily_speed" => "0.0000224"
             ],
             // Start selection (south node)
             2 => [
                 "astral_object" => "Moon",
-                "timestamp" => "06.03.2002 16:00:00 TT",
-                "longitude" => "263.1758818",
-                "daily_speed" => "12.8746426"
+                "timestamp" => "06.03.2021 1:00:00 TT",
+                "longitude" => "255.3894371",
+                "daily_speed" => "13.9414895"
             ],
             3 => [
                 "astral_object" => "true Node",
-                "timestamp" => "06.03.2002 16:00:00 TT",
-                "longitude" => "83.3604642",
-                "daily_speed" => "0.0001438"
+                "timestamp" => "06.03.2021 1:00:00 TT",
+                "longitude" => "75.3584255",
+                "daily_speed" => "0.0000553"
             ],
             // End selection
             4 => [
                 "astral_object" => "Moon",
-                "timestamp" => "06.03.2002 17:00:00 TT",
-                "longitude" => "263.7120178",
-                "daily_speed" => "12.8598875"
+                "timestamp" => "06.03.2021 2:00:00 TT",
+                "longitude" => "255.9701435",
+                "daily_speed" => "13.9324199"
             ],
             5 => [
                 "astral_object" => "true Node",
-                "timestamp" => "06.03.2002 17:00:00 TT",
-                "longitude" => "83.3604644",
-                "daily_speed" => "-0.0001384"
-            ],     
+                "timestamp" => "06.03.2021 2:00:00 TT",
+                "longitude" => "75.3584277",
+                "daily_speed" => "0.0000473"
+            ],
             6 => [
                 "astral_object" => "Moon",
-                "timestamp" => "21.03.2002 7:00:00 TT",
-                "longitude" => "80.7645136",
-                "daily_speed" => "12.8168975"
+                "timestamp" => "20.03.2021 3:00:00 TT",
+                "longitude" => "73.3843113",
+                "daily_speed" => "11.8594630"
             ],
             7 => [
                 "astral_object" => "true Node",
-                "timestamp" => "21.03.2002 7:00:00 TT",
-                "longitude" => "81.4351514",
-                "daily_speed" => "-0.0003977"
+                "timestamp" => "20.03.2021 3:00:00 TT",
+                "longitude" => "73.6451923",
+                "daily_speed" => "-0.0002661"
             ],
-            // Start selection (north node)
+            // Start selection (north node)  
             8 => [
                 "astral_object" => "Moon",
-                "timestamp" => "21.03.2002 8:00:00 TT",
-                "longitude" => "81.2988484",
-                "daily_speed" => "12.8312154"
+                "timestamp" => "20.03.2021 4:00:00 TT",
+                "longitude" => "73.8785588",
+                "daily_speed" => "11.8644573"
             ],
             9 => [
                 "astral_object" => "true Node",
-                "timestamp" => "21.03.2002 8:00:00 TT",
-                "longitude" => "81.4351425",
-                "daily_speed" => "-0.0000376"
-            ],     
+                "timestamp" => "20.03.2021 4:00:00 TT",
+                "longitude" => "73.6451933",
+                "daily_speed" => "0.0003051"
+            ],
             // End selection
             10 => [
                 "astral_object" => "Moon",
-                "timestamp" => "21.03.2002 9:00:00 TT",
-                "longitude" => "81.8337825",
-                "daily_speed" => "12.8456591"
-            ],   
+                "timestamp" => "20.03.2021 5:00:00 TT",
+                "longitude" => "74.3730176",
+                "daily_speed" => "11.8696082"
+            ],
             11 => [
                 "astral_object" => "true Node",
-                "timestamp" => "21.03.2002 9:00:00 TT",
-                "longitude" => "81.4351478",
-                "daily_speed" => "0.0002859"
-            ],
+                "timestamp" => "20.03.2021 5:00:00 TT",
+                "longitude" => "73.6452173",
+                "daily_speed" => "0.0008442"
+            ]
         ];
     }
 }
