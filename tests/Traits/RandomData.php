@@ -169,7 +169,7 @@ trait RandomData
         return new AngularDistanceOutsideNeighbourhoodGenerator(
             self::$faker,
             new AngularDistanceOutsideNeighbourhoodValidator(
-                Angle::createFromDecimal($excluded_center_value),
+                AngularDistance::createFromDecimal($excluded_center_value),
                 $this->delta
             ),
             new AngularDistanceRange(0, 0) // Any range is meaningless.
