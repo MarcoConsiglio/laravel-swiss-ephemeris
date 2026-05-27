@@ -16,7 +16,57 @@ class AngularDistanceOutsideNeighbourhoodTest extends GeneratorTestCase
     public function test_random_generation(): void
     {
         /**
-         * Relative extremes
+         * Relative not inverted extremes
+         */
+        // Arrange
+        $validator = new AngularDistanceOutsideNeighbourhoodValidator(
+            $center = AngularDistance::createFromValues(
+                self::$faker->randomElement([-180, 180])
+            ),
+            $delta = Angle::createFromValues(2)
+        );
+        $generator = new AngularDistanceOutsideNeighbourhoodGenerator(
+            self::$faker, $validator, new AngularDistanceRange(0, 0)
+        );
+
+        // Act
+        $angle = $generator->generate();
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $angle);
+        $this->assertTrue(
+            $angle->toSexadecimalDegrees()->value->inRangeMinExcluded(
+                new Range(-179, AngularDistanceRange::max())
+            ),
+            "Center value: {$center}\nDelta: {$delta}\nRandom angle: {$angle}.\n"
+        );
+
+        /**
+         * Relative inverted extremes
+         * Faker return boolean false
+         */
+        // Arrange
+        $validator = new AngularDistanceOutsideNeighbourhoodValidator(
+            $center = AngularDistance::createFromValues(0),
+            $delta = Angle::createFromValues(2)
+        );
+        $generator = new AngularDistanceOutsideNeighbourhoodGenerator(
+            $this->trickFakerToGetFalseOut(), $validator, new AngularDistanceRange(0, 0)
+        );
+
+        // Act
+        $angle = $generator->generate();
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $angle);
+        $this->assertTrue(
+            $angle->toSexadecimalDegrees()->value->inRangeMinExcluded(
+                new Range(AngularDistance::MIN, +1)
+            ), "Center value: {$center}\nDelta: {$delta}\nRandom angle: {$angle}.\n"
+        );
+
+        /**
+         * Relative inverted extremes
          * Faker return boolean true
          */
         // Arrange
@@ -35,32 +85,7 @@ class AngularDistanceOutsideNeighbourhoodTest extends GeneratorTestCase
         $this->assertInstanceOf(AngularDistance::class, $angle);
         $this->assertTrue(
             $angle->toSexadecimalDegrees()->value->inRangeMinExcluded(
-                new Range(+1, AngularDistanceRange::max())
-            ),
-            "Center value: {$center}\nDelta: {$delta}\nRandom angle: {$angle}.\n"
-        );
-
-        /**
-         * Relative extremes
-         * Faker return boolean false
-         */
-        // Arrange
-        $validator = new AngularDistanceOutsideNeighbourhoodValidator(
-            $center = AngularDistance::createFromValues(0),
-            $delta = Angle::createFromValues(2)
-        );
-        $generator = new AngularDistanceOutsideNeighbourhoodGenerator(
-            $this->trickFakerToGetFalseOut(), $validator, new AngularDistanceRange(0, 0)
-        );
-
-        // Act
-        $angle = $generator->generate();
-
-        // Assert
-        $this->assertInstanceOf(AngularDistance::class, $angle);
-        $this->assertTrue(
-            $angle->toSexadecimalDegrees()->value->inRangeMaxExcluded(
-                new Range(AngularDistanceRange::min(), -1)
+                new Range(-1, AngularDistance::MAX)
             ), "Center value: {$center}\nDelta: {$delta}\nRandom angle: {$angle}.\n"
         );
 
