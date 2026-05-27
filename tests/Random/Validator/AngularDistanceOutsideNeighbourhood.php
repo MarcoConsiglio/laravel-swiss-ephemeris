@@ -18,4 +18,13 @@ class AngularDistanceOutsideNeighbourhood extends AngularDistanceNeighbourhoodVa
     {
         $value = NextFloat::after($this->higher_extreme->toFloat());
     }
+
+    #[Override]
+    protected function calcDeltaExtremes(): void
+    {
+        $this->calcEpsilon();
+        $this->calcHigherExtreme();
+        $this->calcLowerExtreme();
+        // Do not swap extremes!
+    }
 }

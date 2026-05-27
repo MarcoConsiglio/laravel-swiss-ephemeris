@@ -41,15 +41,17 @@ class AngularDistanceOutsideNeighbourhood extends AngularDistanceGenerator
             return parent::generate($precision);
         }
         $this->validator = new RelativeSexadecimalValidator;
-        if ($this->generator->boolean())
-            $this->range = new AngularDistanceRange(
-                0, $this->range->end
-            );
-        else
-            $this->range = new AngularDistanceRange(
-                $this->range->start,
-                NextFloat::beforeZero()
-            );
+        if ($this->range->end > $this->range->start) {
+            if ($this->generator->boolean())
+                $this->range = new AngularDistanceRange($this->range->end, AngularDistance::MAX);
+            else
+                $this->range = new AngularDistanceRange(AngularDistance::MIN, $this->range->start);
+        } else $this->range = $this->swapRangeExtremes();
         return parent::generate($precision);
+    }
+
+    protected function swapRangeExtremes(): AngularDistanceRange
+    {
+        return new AngularDistanceRange($this->range->end, $this->range->start);
     }
 }

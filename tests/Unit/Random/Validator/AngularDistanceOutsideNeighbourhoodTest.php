@@ -30,8 +30,8 @@ class AngularDistanceOutsideNeighbourhoodTest extends ValidatorTestCase
         $this->testNeighbourhoodValidator(
             AngularDistance::createFromValues(+180),
             Angle::createFromValues(2),
-            NextFloat::before(-179),
-            NextFloat::after(+179)
+            NextFloat::before(+179),
+            NextFloat::after(-179)
         );
         
         /**
@@ -40,8 +40,8 @@ class AngularDistanceOutsideNeighbourhoodTest extends ValidatorTestCase
         $this->testNeighbourhoodValidator(
             AngularDistance::createFromValues(-180),
             Angle::createFromValues(2),
-            NextFloat::before(-179),
-            NextFloat::after(+179)
+            NextFloat::before(+179),
+            NextFloat::after(-179)
         );
     }
 
