@@ -2,16 +2,16 @@
 
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Enums\Moon\SynodicPeriod as PeriodType;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicPeriod;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Unit\TestCase;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon\TestCase as MoonRecordTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("The Moon Period")]
 #[CoversClass(SynodicPeriod::class)]
-class PeriodTest extends TestCase
+class PeriodTest extends MoonRecordTestCase
 {
     #[TestDox("has read-only properties \"start\" and '\"end\" which are SwissEphemerisDateTime.")]
     public function test_getters(): void

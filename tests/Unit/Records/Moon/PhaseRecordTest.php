@@ -1,16 +1,17 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\MockObject\MockObject;
 use MarcoConsiglio\Ephemeris\Enums\Moon\Phase;
 use MarcoConsiglio\Ephemeris\Records\Moon\PhaseRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon\TestCase as MoonRecordTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The Moon PhaseRecord")]
 #[CoversClass(PhaseRecord::class)]
-class PhaseRecordTest extends TestCase
+class PhaseRecordTest extends MoonRecordTestCase
 {
     #[TestDox("has read-only property \"type\" which is a Phase enumeration.")]
     public function test_type_property(): void

@@ -1,20 +1,21 @@
 <?php
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
-use RoundingMode;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use MarcoConsiglio\Ephemeris\Enums\Moon\SynodicPeriod;
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
 use MarcoConsiglio\Ephemeris\Records\Moon\SynodicRhythmRecord;
 use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
 use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon\TestCase as MoonRecordTestCase;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\AngularDistance;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
+use RoundingMode;
 
 #[TestDox("The Moon SynodicRhythmRecord")]
 #[CoversClass(SynodicRhythmRecord::class)]
-class SynodicRhythmRecordTest extends TestCase
+class SynodicRhythmRecordTest extends MoonRecordTestCase
 {
     use RecordsComparison;
 

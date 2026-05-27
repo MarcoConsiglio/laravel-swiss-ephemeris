@@ -2,17 +2,18 @@
 namespace MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon;
 
 use MarcoConsiglio\Ephemeris\Records\DailySpeed;
+use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
+use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
+use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
+use MarcoConsiglio\Ephemeris\Tests\Unit\Records\Moon\TestCase as MoonRecordTestCase;
 use MarcoConsiglio\Goniometry\Angle;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
-use MarcoConsiglio\Ephemeris\Records\Moon\PerigeeRecord;
-use MarcoConsiglio\Ephemeris\SwissEphemerisDateTime;
-use MarcoConsiglio\Ephemeris\Tests\Traits\RecordsComparison;
 
 #[CoversClass(PerigeeRecord::class)]
 #[TestDox("The Moon PerigeeRecord")]
-class PerigeeRecordTest extends TestCase
+class PerigeeRecordTest extends MoonRecordTestCase
 {
     use RecordsComparison;
 
